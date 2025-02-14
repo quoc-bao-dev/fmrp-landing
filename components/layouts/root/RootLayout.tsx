@@ -28,7 +28,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
 
     const sectionId = useSearchParams().get('sectionId')
 
-    const { duration, openToast, message, type, setToast, description } = useToastStore()
+    const { openToast, message, type, setToast, title } = useToastStore()
 
     const {
         isVisibleMobile,
@@ -128,15 +128,15 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
         onCloseResizeDesktopXXL,
     ]);
 
-    const showToast = (type: 'success' | 'error' | 'warning', message: string, description?: string) => {
+    const showToast = (type: 'success' | 'error' | 'warning', message: string, title?: string) => {
         return toast({
-            duration: duration,
+            duration: 5000,
             className: 'rounded-[13px] max-w-[336px]',
             description: (
                 <ToastCustom
                     type={type}
                     content={message}
-                    description={description}
+                    title={title}
                 />
             )
         });
@@ -146,8 +146,8 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
         if (openToast && type && message) {
             setTimeout(() => {
                 setToast(false)
-            }, duration)
-            showToast(type, message, description)
+            }, 5000)
+            showToast(type, message, title)
         }
     }, [openToast])
 
