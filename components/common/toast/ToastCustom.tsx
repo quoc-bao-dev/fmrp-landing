@@ -1,17 +1,14 @@
 import { ToastClose } from "@/components/ui/toast";
 import { useToastStore } from "@/stores/useToastStore";
 import { CloseCircle, TickCircle, Warning2 } from "iconsax-react";
-import { useRouter } from "next/navigation";
 
 type Props = {
     type: 'success' | 'error' | 'warning'
     content: string,
-    description?: string,
+    title?: string,
 }
-const ToastCustom = ({ type, content, description }: Props) => {
-    const router = useRouter()
-
-    const { showType, dataObject } = useToastStore()
+const ToastCustom = ({ type, content, title }: Props) => {
+    const { showType } = useToastStore()
 
     const types = {
         success: <TickCircle
@@ -39,31 +36,27 @@ const ToastCustom = ({ type, content, description }: Props) => {
                 {types[type]}
             </div>
             <div className={'flex flex-col gap-2'}>
-                <h1 className={'text-[#1B2124] dark:text-white font-bold text-base leading-5'}>
-                    {
-                        showType
-                            ?
-                            type.replace(/^./, (char) => char.toUpperCase())
-                            :
-                            content
-                    }
-                </h1>
-                
-                <div className="flex flex-col gap-0.5">
-                    {
-                        showType && (
-                            <h2 className={'text-[#717A95] dark:text-white font-normal text-base'}>
+                {
+                    showType ?
+                        <div className="flex flex-col gap-0.5">
+                            <h1 className={'text-[#1B2124] dark:text-white font-bold 2xl:text-base text-sm leading-5'}>
+                                {type.replace(/^./, (char) => char.toUpperCase())}
+                            </h1>
+                            <h2 className={'text-[#717A95] dark:text-white font-normal 2xl:text-base text-sm'}>
                                 {content}
                             </h2>
-                        )
-                    }
-                    {
-                        description &&
-                        <h2 className={`${dataObject ? "cursor-pointer" : ""} text-[#717A95] dark:text-white font-normal text-sm`}>
-                            {description}
-                        </h2>
-                    }
-                </div>
+                        </div>
+                        :
+                        <div className="flex flex-col gap-0.5">
+                            <h1 className={'text-[#1B2124] dark:text-white font-bold 2xl:text-base text-sm leading-5'}>
+                                {title}
+                            </h1>
+                            <h2 className={'text-[#717A95] dark:text-white font-normal 2xl:text-base text-sm'}>
+                                {content}
+                            </h2>
+                        </div>
+
+                }
             </div>
         </div>
     )

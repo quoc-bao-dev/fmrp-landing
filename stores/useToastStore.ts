@@ -1,37 +1,38 @@
 import { create } from "zustand";
-import { IToastStore } from "@/types/ui/toast/IToastUI";
+
+export interface IToastStore {
+    openToast: boolean;
+    type?: "success" | "error" | "warning";
+    message?: string;
+    title?: string;
+    showType: boolean;
+    setToast: (
+        key: any,
+        type?: "success" | "error" | "warning",
+        showType?: boolean,
+        message?: string,
+        title?: string
+    ) => void;
+}
 
 export const useToastStore = create<IToastStore>((set) => ({
     openToast: false,
     type: "success",
     message: "",
-    duration: 1200,
-    style: {
-        className: "",
-        classNameDescription: {},
-    },
-    description: "",
-    showType: true,
-    setShowType: (key: boolean) => set((state) => ({ showType: key })),
-    setDataObject: (key: any) => set((state) => ({ dataObject: key })),
-    dataObject: null,
+    title: "",
+    showType: false,
     setToast: (
         key: any,
         type?: "success" | "error" | "warning",
+        showType?: boolean,
         message?: string,
-        duration?: number,
-        description?: string,
-        style?: {
-            className: string;
-            classNameDescription: any;
-        }
+        title?: string
     ) =>
         set((state) => ({
             openToast: key,
             type,
+            showType,
             message,
-            duration,
-            description,
-            style,
+            title,
         })),
 }));

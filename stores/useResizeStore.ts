@@ -1,5 +1,22 @@
-import { IResizeStore } from "@/types/ui/resize/IResize";
 import { create } from "zustand";
+
+interface IResizeStore {
+    isVisibleMobile: boolean;
+    isVisibleTablet: boolean;
+    isVisibleDesktopLG: boolean;
+    isVisibleDesktopXL: boolean;
+    isVisibleDesktopXXL: boolean;
+    onResizeMobile: () => void;
+    onResizeTablet: () => void;
+    onResizeDesktopLG: () => void;
+    onResizeDesktopXL: () => void;
+    onResizeDesktopXXL: () => void;
+    onCloseResizeMobile: () => void;
+    onCloseResizeTablet: () => void;
+    onCloseResizeDesktopXL: () => void;
+    onCloseResizeDesktopLG: () => void;
+    onCloseResizeDesktopXXL: () => void;
+}
 
 // resize responsive
 export const useResizeStore = create<IResizeStore>((set) => ({
