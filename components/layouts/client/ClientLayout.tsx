@@ -13,8 +13,8 @@ import WidgetButton from '@/components/common/button/WidgetButton'
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
 import ProviderLayout from '../provider/ProviderLayout'
-import HeaderContainer from '@/components/common/header/HeaderContainer'
-import FooterContainer from '@/components/common/footer/FooterContainer'
+import HeaderContainer from '@/components/layouts/header/HeaderContainer'
+import FooterContainer from '@/components/layouts/footer/FooterContainer'
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const pathName = usePathname()

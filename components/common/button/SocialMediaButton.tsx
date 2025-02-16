@@ -6,12 +6,14 @@ import { useState, useEffect, useCallback } from 'react'
 type SocialMediaProps = {
     children: React.ReactNode
     handleClick?: () => void,
+    className?: string,
     background_animation: string
 }
 
 const SocialMediaButton = ({
     children,
     handleClick,
+    className,
     background_animation
 }: SocialMediaProps) => {
     const [isShow, sIsShow] = useState(false)
@@ -51,13 +53,13 @@ const SocialMediaButton = ({
                         }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className='relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center'
+                        className={`${className} relative z-[1] size-12 rounded-full text-white flex flex-col justify-center items-center shadow-2xl`}
                     >
                         {children}
                     </motion.button>
 
                     <div
-                        className='3xl:size-10 size-8 rounded-full absolute animate-ping'
+                        className='size-10 rounded-full absolute animate-ping z-0'
                         style={{
                             background: background_animation
                         }}

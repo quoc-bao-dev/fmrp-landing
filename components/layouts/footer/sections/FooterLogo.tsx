@@ -1,0 +1,42 @@
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { variantButtonScaleZoom } from "@/utils/animations/variantsAnimation";
+import { usePathname, useRouter } from "next/navigation";
+import { scrollToTop } from "@/utils/scroll/scrollUtils";
+
+const FooterLogo = () => {
+    const pathname = usePathname()
+    const router = useRouter();
+
+    const handleMoveHome = () => {
+        // Sử dụng framer-motion để cuộn đến vị trí tính toán
+        scrollToTop()
+
+        if (pathname !== "/") {
+            router.push("/");
+        }
+    };
+
+    return (
+        <motion.div
+            initial={false}
+            animate="rest"
+            whileTap="press"
+            variants={variantButtonScaleZoom}
+            className="aspect-square w-32 cursor-pointer"
+            onClick={handleMoveHome}
+        >
+            <Image
+                alt="logo"
+                src="/logo/logo-single.svg"
+                width={400}
+                height={400}
+                quality={100}
+                priority
+                className="size-full object-contain"
+            />
+        </motion.div>
+    );
+};
+
+export default FooterLogo;

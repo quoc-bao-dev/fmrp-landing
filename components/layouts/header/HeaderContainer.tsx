@@ -16,6 +16,7 @@ import { useEffect } from 'react'
 // import DesktopHeaderClient from './DesktopHeaderClient'
 // import TabletHeaderClient from './TabletHeaderClient'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
+import DesktopHeaderClient from './sections/DesktopHeaderClient'
 
 const HeaderContainer = () => {
     const router = useRouter()
@@ -38,21 +39,47 @@ const HeaderContainer = () => {
     const dataHeader: IMenuHeader[] = [
         {
             id: uuidv4(),
-            name: dataLang?.q_layout_home ?? 'q_layout_home',
-            link: '/',
+            name: "Về chúng tôi",
+            link: '/abount-us',
             children: [],
             visible: true,
         },
         {
             id: uuidv4(),
-            name: dataLang?.q_layout_order_quote ?? 'q_layout_order_quote',
+            name: "Giải Pháp",
             link: '/order-quote',
+            children: [
+                {
+                    id:"1",
+                    name:"hello"
+                }
+            ],
+            visible: true,
+        },
+        {
+            id: uuidv4(),
+            name: "Bảng giá",
+            link: '/contact-us',
             children: [],
             visible: true,
         },
         {
             id: uuidv4(),
-            name: dataLang?.q_layout_contact_us ?? 'q_layout_contact_us',
+            name: "Dự án",
+            link: '/contact-us',
+            children: [],
+            visible: true,
+        },
+        {
+            id: uuidv4(),
+            name: "Câu chuyện khách hàng",
+            link: '/contact-us',
+            children: [],
+            visible: true,
+        },
+        {
+            id: uuidv4(),
+            name: "Blog",
             link: '/contact-us',
             children: [],
             visible: true,
@@ -141,8 +168,19 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed top-0 w-full z-50 bg-white border-b border-[#F2EEEE]'>
-            <div className='custom-container lg:py-4 py-3'>
+        <header className='fixed top-2 w-full z-50 pointer-events-none'>
+            <div
+                className='custom-container bg-[#FFFFFF]/65 px-12 py-3 pointer-events-auto rounded-[40px]'
+                style={{
+                    backdropFilter: "blur(25px)", // Làm tròn giá trị
+                    boxShadow: `
+                        0px 2px 84px 0px rgba(0, 0, 0, 0.05) inset, 
+                        -9px 20px 60px -24px rgba(0, 0, 0, 0.08), 
+                        1px -1px 0px 0px #FFFFFF, 
+                        -1px 1px 0px 0px #F0F0F0
+                    `
+                }}
+            >
                 {
                     isVisibleTablet ?
                         // màn hình mobile, tablet
@@ -159,7 +197,6 @@ const HeaderContainer = () => {
                         :
                         // màn hình desktop
                         <>
-                            desktop
                             {/* <DesktopHeaderClient
                             dataHeader={dataHeader}
                             handleToggleMenu={handleToggleMenu}
@@ -167,6 +204,13 @@ const HeaderContainer = () => {
                             handleOpenDialog={handleOpenDialog}
                             handleValueChange={handleValueChange}
                         /> */}
+                            <DesktopHeaderClient
+                                dataHeader={dataHeader}
+                                handleToggleMenu={handleToggleMenu}
+                                handleChangeLanguage={handleChangeLanguage}
+                                handleOpenDialog={handleOpenDialog}
+                                handleValueChange={handleValueChange}
+                            />
                         </>
                 }
             </div>

@@ -1,42 +1,38 @@
-import React, { forwardRef } from 'react'
-
-import { motion } from 'framer-motion'
-import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation'
+import React, { forwardRef } from 'react';
+import { motion } from 'framer-motion';
+import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
 
 type Props = {
-    title_button?: string | React.ReactNode
-    className?: string
-    classNameWithIcon?: string
-    variant?: any
-    onClick?: (e?: any) => void
-    style?: React.CSSProperties | undefined
-    icon?: React.ReactNode
-    reverse?: boolean
-    type?: 'submit' | 'button'
-    title_hidden?: boolean
-    disabled?: boolean
-    isStateloading?: boolean,
-    classLoading?: string,
-    ref?: any
-}
+    title?: string | React.ReactNode;
+    className?: string;
+    classNameWithIcon?: string;
+    classLoading?: string;
+    variant?: any;
+    onClick?: (e?: any) => void;
+    style?: React.CSSProperties;
+    icon?: React.ReactNode;
+    reverse?: boolean;
+    type?: 'submit' | 'button';
+    hideTitle?: boolean;
+    disabled?: boolean;
+    isLoading?: boolean;
+};
 
 const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
-    title_button = "",
-    className,
-    classNameWithIcon,
+    title = "",
+    className = "",
+    classNameWithIcon = "",
+    classLoading = 'border-current',
     variant = variantButtonPressZoom,
     onClick = () => { },
     style,
     icon,
     reverse = false,
     type = 'submit',
-    title_hidden = false,
-
+    hideTitle = false,
     disabled = false,
-    isStateloading = false,
-    classLoading = 'border-current'
+    isLoading = false,
 }, ref) => {
-
     return (
         <motion.button
             initial={false}
@@ -44,34 +40,28 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
             whileTap="press"
             whileHover="hover"
             variants={disabled ? {} : variant}
-            className={`${className} ${icon && `${classNameWithIcon}`} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-[#333538]/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto`}
+            className={`${className} ${icon ? classNameWithIcon : ''} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-gray-500/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto`}
             type={type}
             onClick={onClick}
             style={style}
             disabled={disabled}
             ref={ref}
         >
-            {
-                isStateloading &&
+            {isLoading && (
                 <span className={`${classLoading} inline-block min-h-4 min-w-4 h-4 w-4 animate-spin rounded-full border-[3px] border-solid border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`} />
-            }
+            )}
 
-            {
-                !reverse && icon && <span className={`${title_hidden ? "max-w-full" : "max-w-[20%]"} `}>{icon}</span>
-            }
+            {!reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>}
 
-            {
-                !title_hidden &&
-                <span className='flex items-center max-w-[80%] text-center'>
-                    {title_button}
+            {!hideTitle && (
+                <span className='flex items-center w-full text-center'>
+                    {title}
                 </span>
-            }
+            )}
 
-            {
-                reverse && icon && <span className={`${title_hidden ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>
-            }
+            {reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>}
         </motion.button>
-    )
-})
+    );
+});
 
-export default ButtonAnimation
+export default ButtonAnimation;
