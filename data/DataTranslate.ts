@@ -2,7 +2,7 @@ import { ILanguage } from "@/types/translate/ILanguageOptions";
 
 export const dataLanguageOptions: ILanguage[] = [
     {
-        code: "vietnamese",
+        code: "vietnam",
         country: "VI",
         flag: "/flag/vi.png",
         extra: "VietNam",

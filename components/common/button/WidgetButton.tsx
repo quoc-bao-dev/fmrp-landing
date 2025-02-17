@@ -1,81 +1,64 @@
-import React from 'react'
+import React from "react";
+import Image from "next/image";
+import ButtonToTop from "./ButtonToTop";
+import SocialMediaButton from "./SocialMediaButton";
 
-import Image from 'next/image'
-import ButtonToTop from './ButtonToTop'
-import SocialMediaButton from './SocialMediaButton'
+// Danh sách các button mạng xã hội với `handleClick` riêng
+const socialButtons = [
+    {
+        icon: "/icons/social-media/zalo2.svg",
+        background_animation: "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
+        handleClick: () => console.log("Zalo button clicked!")
+    },
+    {
+        icon: "/icons/social-media/messenger.svg",
+        background_animation: "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
+        handleClick: () => console.log("Messenger button clicked!")
+    },
+    {
+        icon: "/icons/social-media/call.svg",
+        background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
+        handleClick: () => alert("Calling...")
+    },
+    {
+        icon: "/icons/social-media/gmail.svg",
+        background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
+        className: "bg-[#53B086]/80",
+        handleClick: () => alert("Opening Gmail...")
+    }
+];
 
-// eslint-disable-next-line react/display-name
-const WidgetButton = React.memo(() => {
+// Component WidgetButton
+const WidgetButton: React.FC = () => {
     return (
-        <div className='flex flex-col gap-6 fixed bottom-8 lg:right-8 right-5 z-[999]'>
-            <SocialMediaButton
-                children={
-                    <div className="bg-white hover:bg-[#F2F2F2]/5 p-3 rounded-full custom-transition">
+        <div className="flex flex-col gap-4 fixed bottom-8 lg:right-8 right-5 z-[999]">
+            {socialButtons.map((button, index) => (
+                <SocialMediaButton
+                    key={index}
+                    className={button.className || ""}
+                    background_animation={button.background_animation}
+                    handleClick={button.handleClick} // ✅ Truyền `handleClick` riêng cho từng button
+                >
+                    <div
+                        className="bg-white hover:bg-[#53B086]/80 p-3 rounded-full custom-transition"
+                        style={{
+                            boxShadow: "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A"
+                        }}
+                    >
                         <Image
                             width={100}
                             height={100}
                             alt="social-media"
-                            className='size-6 object-contain'
-                            src="/icons/social-media/zalo-color.svg"
+                            className="size-6 object-contain"
+                            src={button.icon}
                         />
                     </div>
-                }
-                className=""
-                // handleClick={() => handleClickFacebook()}
-                background_animation="linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)"
-            />
-            <SocialMediaButton
-                children={
-                    <div className="bg-white hover:bg-[#F2F2F2]/5 p-3 rounded-full custom-transition">
-                        <Image
-                            width={100}
-                            height={100}
-                            alt="social-media"
-                            className='size-6 object-contain'
-                            src="/icons/social-media/messenger.svg"
-                        />
-                    </div>
-                }
-                className=""
-                // handleClick={() => handleClickFacebook()}
-                background_animation="linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)"
-            />
-            <SocialMediaButton
-                children={
-                    <div className="bg-white hover:bg-[#F2F2F2]/5 p-3 rounded-full custom-transition">
-                        <Image
-                            width={100}
-                            height={100}
-                            alt="social-media"
-                            className='size-6 object-contain'
-                            src="/icons/social-media/call.svg"
-                        />
-                    </div>
-                }
-                className=""
-                // handleClick={() => handleClickFacebook()}
-                background_animation="linear-gradient(90deg, #E0FFCC 0%, #CCFFEC 100%)"
-            />
-            <SocialMediaButton
-                children={
-                    <div className="bg-white hover:bg-[#F2F2F2]/5 p-3 rounded-full custom-transition">
-                        <Image
-                            width={100}
-                            height={100}
-                            alt="social-media"
-                            className='size-6 object-contain'
-                            src="/icons/social-media/gmail.svg"
-                        />
-                    </div>
-                }
-                className="bg-[#53B086]/50"
-                // handleClick={() => handleClickFacebook()}
-                background_animation="linear-gradient(90deg, #E0FFCC 0%, #CCFFEC 100%)"
-            />
+                </SocialMediaButton>
+            ))}
 
             <ButtonToTop />
         </div>
-    )
-})
+    );
+}
 
-export default WidgetButton
+export default React.memo(WidgetButton);

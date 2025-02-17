@@ -16,7 +16,8 @@ import { useEffect } from 'react'
 // import DesktopHeaderClient from './DesktopHeaderClient'
 // import TabletHeaderClient from './TabletHeaderClient'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-import DesktopHeaderClient from './sections/DesktopHeaderClient'
+import DesktopHeader from './sections/DesktopHeader'
+import TabletHeader from './sections/TabletHeader'
 
 const HeaderContainer = () => {
     const router = useRouter()
@@ -40,47 +41,53 @@ const HeaderContainer = () => {
         {
             id: uuidv4(),
             name: "Về chúng tôi",
-            link: '/abount-us',
+            link: '/about-us',
             children: [],
             visible: true,
         },
         {
             id: uuidv4(),
             name: "Giải Pháp",
-            link: '/order-quote',
+            link: '',
             children: [
                 {
-                    id:"1",
-                    name:"hello"
-                }
+                    id: "1",
+                    name: "hello",
+                    link: "/solutions/a"
+                },
+                {
+                    id: "2",
+                    name: "hello 2",
+                    link: "/solutions/b"
+                },
             ],
             visible: true,
         },
         {
             id: uuidv4(),
             name: "Bảng giá",
-            link: '/contact-us',
+            link: '/pricing',
             children: [],
             visible: true,
         },
         {
             id: uuidv4(),
             name: "Dự án",
-            link: '/contact-us',
+            link: '/projects',
             children: [],
             visible: true,
         },
         {
             id: uuidv4(),
             name: "Câu chuyện khách hàng",
-            link: '/contact-us',
+            link: '/customer-stories',
             children: [],
             visible: true,
         },
         {
             id: uuidv4(),
             name: "Blog",
-            link: '/contact-us',
+            link: '/blog',
             children: [],
             visible: true,
         },
@@ -125,7 +132,7 @@ const HeaderContainer = () => {
             }
         })
 
-        setCookie(KEY_COOKIES.LANGUAGE, value)
+        setCookie(KEY_COOKIES.WEBSITE_LANG, value)
 
         if (informationUser) {
             // // const res = await onSubmitChangeLanguage.mutateAsync(value)
@@ -170,7 +177,7 @@ const HeaderContainer = () => {
     return (
         <header className='fixed top-2 w-full z-50 pointer-events-none'>
             <div
-                className='custom-container bg-[#FFFFFF]/65 px-12 py-3 pointer-events-auto rounded-[40px]'
+                className='custom-container lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
                     backdropFilter: "blur(25px)", // Làm tròn giá trị
                     boxShadow: `
@@ -184,34 +191,22 @@ const HeaderContainer = () => {
                 {
                     isVisibleTablet ?
                         // màn hình mobile, tablet
-                        <>
-                            tablet
-                            {/* <TabletHeaderClient
+                        <TabletHeader
                             dataHeader={dataHeader}
                             handleToggleMenu={handleToggleMenu}
                             handleChangeLanguage={handleChangeLanguage}
                             handleOpenDialog={handleOpenDialog}
                             handleValueChange={handleValueChange}
-                        /> */}
-                        </>
+                        />
                         :
                         // màn hình desktop
-                        <>
-                            {/* <DesktopHeaderClient
+                        <DesktopHeader
                             dataHeader={dataHeader}
                             handleToggleMenu={handleToggleMenu}
                             handleChangeLanguage={handleChangeLanguage}
                             handleOpenDialog={handleOpenDialog}
                             handleValueChange={handleValueChange}
-                        /> */}
-                            <DesktopHeaderClient
-                                dataHeader={dataHeader}
-                                handleToggleMenu={handleToggleMenu}
-                                handleChangeLanguage={handleChangeLanguage}
-                                handleOpenDialog={handleOpenDialog}
-                                handleValueChange={handleValueChange}
-                            />
-                        </>
+                        />
                 }
             </div>
         </header >

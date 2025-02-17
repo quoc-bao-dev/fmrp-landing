@@ -1,6 +1,7 @@
 export const KEY_COOKIES = {
     WEBSITE: 'token_camboquick',
     LANGUAGE: "language",
-    DEFAULT_LANGUAGE: "vietnamese",
+    DEFAULT_LANGUAGE: "vietnam",
+    WEBSITE_LANG: "language_foso",
     THEME: ['light', 'dark'],
 }

@@ -64,7 +64,7 @@ interface DesktopHeaderClientProps {
     handleValueChange: (e?: any) => void
 }
 
-const DesktopHeaderClient = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
+const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
     const { getCookie } = useCookieStore()
 
     const dropdownRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div cần kiểm tra
@@ -167,100 +167,100 @@ const DesktopHeaderClient = ({ dataHeader, handleToggleMenu, handleChangeLanguag
     return (
         <div className="flex items-center justify-between w-full">
             {/* Logo */}
-            <div className="w-auto min-w-[134px]">
-                <Link
-                    href="/"
-                    className="w-fit h-full flex justify-start items-center gap-2"
-                    prefetch={false}
-                >
-                    <div className="aspect-2.4/1 w-[134px]">
-                        <Image
-                            alt="logo"
-                            src="/logo/logo.svg"
-                            width={134}
-                            height={55}
-                            quality={100}
-                            priority
-                            className="size-full object-contain"
-                        />
-                    </div>
-                </Link>
-            </div>
+            <Link
+                href="/"
+                className="w-auto 3xl:min-w-[134px] xl:min-w-[110px] min-w-[86px] h-full flex justify-start items-center gap-2"
+                prefetch={false}
+            >
+                <div className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px]">
+                    <Image
+                        alt="logo"
+                        src="/logo/logo.svg"
+                        width={134}
+                        height={55}
+                        quality={100}
+                        priority
+                        className="size-full object-contain"
+                    />
+                </div>
+            </Link>
 
             {/* Menu Navigation */}
-            <div className="flex-grow max-w-[55%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
-                {dataHeader && dataHeader.map((item) => (
-                    <React.Fragment key={item.id}>
-                        {
-                            item.children?.length > 0 ?
-                                (
-                                    <ActionTooltip
-                                        side="bottom"
-                                        align="start"
-                                        classNameContent={"bg-[#00A5BD]"}
-                                        label={
-                                            <div className='flex flex-col gap-2'>
-                                                {
-                                                    item.children && item.children?.map((item) => (
-                                                        <motion.div
-                                                            key={item.id}
-                                                            // onClick={() => handleSelectedCategory(item, "desktop")}
-                                                            initial={false}
-                                                            animate="rest"
-                                                            whileTap="press"
-                                                            variants={{
-                                                                rest: { scale: 1 },
-                                                                press: { scale: 1.03 },
-                                                            }}
-                                                        >
-                                                            <Link
-                                                                href={`${item.link}?id=${item.id}`}
-                                                                prefetch={false}
-                                                                // ${isStateProductCategory?.category?.selectedCategory?.id === item.id ? 'bg-[#FCFFF9] text-[#0E0E0E]' : ''} 
-                                                                className={` 
-                                                            flex flex-row items-center gap-3 group hover:bg-[#FCFFF9] hover:text-[#25272A] py-2 px-8 rounded-xl cursor-pointer custom-transition`}
+            <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
+                {
+                    dataHeader && dataHeader.map((item) => (
+                        <React.Fragment key={item.id}>
+                            {
+                                item.children?.length > 0 ?
+                                    (
+                                        <ActionTooltip
+                                            side="bottom"
+                                            align="start"
+                                            classNameContent={"bg-[#00A5BD]"}
+                                            label={
+                                                <div className='flex flex-col gap-2'>
+                                                    {
+                                                        item.children && item.children?.map((item) => (
+                                                            <motion.div
+                                                                key={item.id}
+                                                                // onClick={() => handleSelectedCategory(item, "desktop")}
+                                                                initial={false}
+                                                                animate="rest"
+                                                                whileTap="press"
+                                                                variants={{
+                                                                    rest: { scale: 1 },
+                                                                    press: { scale: 1.03 },
+                                                                }}
                                                             >
-                                                                <div className={`max-w-full font-medium text-sm-default line-clamp-2`}>
-                                                                    {item?.name ? item?.name : ''}
-                                                                </div>
-                                                            </Link>
-                                                        </motion.div>
-                                                    ))
-                                                }
+                                                                <Link
+                                                                    href={`${item.link}?id=${item.id}`}
+                                                                    prefetch={false}
+                                                                    // ${isStateProductCategory?.category?.selectedCategory?.id === item.id ? 'bg-[#FCFFF9] text-[#0E0E0E]' : ''} 
+                                                                    className={` 
+                                                            flex flex-row items-center gap-3 group hover:bg-[#FCFFF9] hover:text-[#25272A] py-2 px-8 rounded-xl cursor-pointer custom-transition`}
+                                                                >
+                                                                    <div className={`max-w-full font-medium text-sm-default line-clamp-2`}>
+                                                                        {item?.name ? item?.name : ''}
+                                                                    </div>
+                                                                </Link>
+                                                            </motion.div>
+                                                        ))
+                                                    }
+                                                </div>
+                                            }
+                                        >
+                                            <div
+                                                // href={item.link}
+                                                className={`${(item.link === "/" && pathname === "/") ||
+                                                    (pathname.includes(item.link) && item.link !== "/")
+                                                    ? "text-[#25272A]"
+                                                    : "text-[#25272A] hover:text-[#25272A]/[90%]"
+                                                    } flex items-center gap-2 3xl:!text-base xxl:!text-sm xl:!text-xs lg:!text-xs !text-sm !tracking-[1%] font-medium xl:px-2 px-1 cursor-pointer custom-transition`}
+                                            // prefetch={false}
+                                            >
+                                                <span>{item.name}</span>
+                                                <IoIosArrowDown className="size-4 text-[#25272A]" />
                                             </div>
-                                        }
-                                    >
+                                        </ActionTooltip>
+                                    )
+                                    :
+                                    (
                                         <Link
                                             href={item.link}
                                             className={`${(item.link === "/" && pathname === "/") ||
                                                 (pathname.includes(item.link) && item.link !== "/")
-                                                ? "text-[#25272A]/[90%]"
-                                                : "text-[#25272A]/[48%] hover:text-[#25272A]/[90%]"
-                                                } flex items-center gap-2 text-sm-default font-medium px-2 cursor-pointer custom-transition`}
+                                                ? "text-[#25272A]"
+                                                : "text-[#25272A] hover:text-[#25272A]/[90%]"
+                                                } 3xl:!text-base xxl:!text-sm xl:!text-xs lg:!text-xs !text-sm !tracking-[1%] font-medium xl:px-2 px-1 cursor-pointer custom-transition capitalize`}
                                             prefetch={false}
                                         >
-                                            <span>{item.name}</span>
-                                            <IoIosArrowDown className="text-xl text-[#25272A]" />
+                                            {item.name}
                                         </Link>
-                                    </ActionTooltip>
-                                )
-                                :
-                                (
-                                    <Link
-                                        href={item.link}
-                                        className={`${(item.link === "/" && pathname === "/") ||
-                                            (pathname.includes(item.link) && item.link !== "/")
-                                            ? "text-[#25272A]/[90%]"
-                                            : "text-[#25272A]/[48%] hover:text-[#25272A]/[90%]"
-                                            } text-sm-default font-medium px-2 cursor-pointer custom-transition capitalize`}
-                                        prefetch={false}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                )
-                        }
-                    </React.Fragment>
-                ))}
+                                    )
+                            }
+                        </React.Fragment>
+                    ))
+                }
             </div>
 
             {/* Nút chuyển ngôn ngữ + CTA */}
@@ -321,7 +321,7 @@ const DesktopHeaderClient = ({ dataHeader, handleToggleMenu, handleChangeLanguag
 
                 <ButtonAnimation
                     icon={
-                        <div className='size-6 flex-shrink-0'>
+                        <div className='xl:size-6 size-5 flex-shrink-0'>
                             <Image
                                 width={100}
                                 height={100}
@@ -333,16 +333,11 @@ const DesktopHeaderClient = ({ dataHeader, handleToggleMenu, handleChangeLanguag
                     }
                     reverse={true}
                     title="Trở thành khách hàng"
-                    className='flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border w-fit rounded-full px-4 py-2'
-                    style={{
-                        background: "linear-gradient(0deg, #1AD598, #1AD598), radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%)",
-                        borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)"
-
-                    }}
+                    className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                 />
             </div>
         </div>
     )
 }
 
-export default DesktopHeaderClient
+export default DesktopHeader

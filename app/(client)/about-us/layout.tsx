@@ -43,6 +43,6 @@ export const metadata = {
         icon: "/favicon.ico",
     },
 };
-export default function HomeLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+export default function AboutUsLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return children
 }

@@ -50,8 +50,11 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
 
     useEffect(() => {
         setIsMounted(true)
-        const rootElement = document.documentElement;
-        rootElement.removeAttribute('cz-shortcut-listen');
+
+        // Fix lỗi Hydration failed
+        if (typeof window !== "undefined") {
+            document.documentElement.removeAttribute("cz-shortcut-listen");
+        }
     }, [])
 
     useEffect(() => {
@@ -64,8 +67,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
 
     // ẩn/hiện khi chuyển qua màn hình nhỏ khi không dùng chung div để tránh xung đột 
     useEffect(() => {
-        // Kiểm tra kích thước màn hình và cập nhật trạng thái isVisible
-        if (typeof window == 'undefined') return;
+        // Kiểm tra kích thước màn hình và cập nhật trạng thái isVisible 
         const handleResize = () => {
             if (window.innerWidth < 768) {
                 // khi đến màn 768 thì bắt đầu thực hiện function
@@ -155,7 +157,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
 
     return (
         <QueryClientProvider client={queryClient}>
-            <main className='bg-white w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative'>
+            <main className='bg-white w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient'>
                 <AnimatePresence
                     mode="wait"
                     onExitComplete={() => {

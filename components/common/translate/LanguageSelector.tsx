@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
-import { KEY_COOKIES } from '@/constants/Cookie'
 import { dataLanguageOptions } from '@/data/DataTranslate'
-import { dataCountrySelected } from '@/enums/lang'
 // import { useScrollHeader } from '@/hooks/use-scroll'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 // import { usePostLocale } from '@/managers/api-management/other/usePostLocale'
@@ -17,6 +15,7 @@ import { usePathname } from 'next/dist/client/components/navigation'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { IoIosArrowDown } from 'react-icons/io'
+import { KEY_COOKIES } from '@/constants/Cookie';
 
 const LanguageSelector = () => {
     const router = useRouter()
@@ -38,21 +37,18 @@ const LanguageSelector = () => {
     const { informationUser } = useAuthStore()
 
     const handleLanguageChange = async (value: string) => {
-        const selectedCountry = dataLanguageOptions.find(option => option.code === value);
-        console.log('value', value);
-        console.log('selectedCountry', selectedCountry);
-        if (!selectedCountry) return;
+        const selectedLanguage = dataLanguageOptions.find(option => option.code === value);
 
-
+        if (!selectedLanguage) return;
 
         queryKeyIsStateClientLayout({
-            header: {
-                ...isStateClientLayout?.header,
-                selectedLanguage: selectedCountry
+            language: {
+                ...isStateClientLayout?.language,
+                selectedLanguage: selectedLanguage
             }
         });
 
-        // setCookie(KEY_COOKIES.WEBSITE_LANG, value)
+        setCookie(KEY_COOKIES.WEBSITE_LANG, value)
 
         if (informationUser) {
             //     const res = await submitMutation.mutateAsync()
@@ -71,33 +67,35 @@ const LanguageSelector = () => {
         <div>
             <Select
                 onValueChange={handleLanguageChange}
-                value={isStateClientLayout.header.selectedLanguage?.code}
-                defaultValue={isStateClientLayout.header.selectedLanguage?.code}
+                value={isStateClientLayout.language.selectedLanguage?.code}
+                defaultValue={isStateClientLayout.language.selectedLanguage?.code}
             >
                 <SelectTrigger
-                    className="flex items-center  gap-2 min-w-[110px] h-full border rounded-[40px] focus:outline-none focus:ring-0 focus:ring-offset-0 text-[#25272A]"
+                    className="lg:px-3 lg:py-2 px-0 py-0 flex items-center gap-1 3xl:min-w-[100px] lg:min-w-[90px] min-w-fit lg:w-full w-fit h-full border-none rounded-[40px] focus:outline-none focus:ring-0 focus:ring-offset-0 text-[#25272A]"
                     style={{
-                        background: "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
-                        borderImageSource: "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)"
+                        background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                        boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
                     }}
                 >
                     {
-                        isStateClientLayout.header.selectedLanguage && (
+                        isStateClientLayout.language.selectedLanguage && (
                             <React.Fragment>
-                                <div className='size-6 rounded-full aspect-square'>
+                                <div className='3xl:size-6 size-5 rounded-full aspect-square'>
                                     <Image
-                                        src={isStateClientLayout.header.selectedLanguage?.flag}
-                                        alt={`${isStateClientLayout.header.selectedLanguage?.country} flag`}
+                                        src={isStateClientLayout.language.selectedLanguage?.flag}
+                                        alt={`${isStateClientLayout.language.selectedLanguage?.country} flag`}
                                         width={1280}
                                         height={1280}
                                         className="size-full object-cover rounded-full"
                                     />
                                 </div>
-                                <div className={`3xl:text-base xl:text-sm lg:text-xs text-sm uppercase font-medium text-[#1E1E1E]`}>
-                                    {isStateClientLayout.header.selectedLanguage?.country}
-                                </div>
+                                <div className='flex items-center gap-1'>
+                                    <div className={`text-sm-default uppercase font-medium text-[#1E1E1E]`}>
+                                        {isStateClientLayout.language.selectedLanguage?.country}
+                                    </div>
 
-                                <IoIosArrowDown className={`size-5 text-[#1E1E1E]`} />
+                                    <IoIosArrowDown className={`3xl:size-5 size-4 text-[#1E1E1E]`} />
+                                </div>
                             </React.Fragment>
                         )
                     }
@@ -126,7 +124,7 @@ const LanguageSelector = () => {
                     }
                 </SelectContent>
             </Select>
-        </div>
+        </div >
     )
 }
 

@@ -50,18 +50,18 @@ const FooterContent = () => {
 
 
     return (
-        <div className="flex items-center justify-between">
-            <div className="flex flex-col 3xl:gap-6 gap-4 max-w-[50%]">
-                <div className="text-default font-bold text-[#F1F5F7] uppercase">
-                    CÔNG TY TNHH CÔNG NGHỆ FOSO
-                </div>
-                <InfoSection items={companyInfo} />
+        <div className="flex lg:flex-row flex-col lg:items-center lg:justify-between lg:gap-0 gap-4">
+            <div className="lg:max-w-[60%] max-w-full">
+                <InfoSection title="CÔNG TY TNHH CÔNG NGHỆ FOSO" items={companyInfo} />
             </div>
 
-            <div className="grid grid-cols-5 gap-20 justify-end max-w-[50%]">
-                <div className="col-span-1" />
-                <InfoSection title="Dịch vụ" items={services} />
-                <InfoSection title="Chính sách" items={policies} />
+            <div className="grid grid-cols-4 2xl:gap-20 md:gap-10 gap-4 justify-end lg:max-w-[40%] max-w-full">
+                <div className='md:col-span-2 col-span-4'>
+                    <InfoSection title="Dịch vụ" items={services} />
+                </div>
+                <div className='md:col-span-2 col-span-4'>
+                    <InfoSection title="Chính sách" items={policies} />
+                </div>
             </div>
         </div>
     )

@@ -23,7 +23,7 @@ const FooterLogo = () => {
             animate="rest"
             whileTap="press"
             variants={variantButtonScaleZoom}
-            className="aspect-square w-32 cursor-pointer"
+            className="aspect-square 3xl:w-32 xl:w-28 w-24 cursor-pointer"
             onClick={handleMoveHome}
         >
             <Image
