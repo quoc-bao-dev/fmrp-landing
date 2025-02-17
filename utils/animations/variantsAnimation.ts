@@ -33,13 +33,13 @@ const variantSlideZoomOut = {
 
 const variantButtonPressZoom = {
     rest: { scale: 1 },
-    press: { scale: 0.98, transition: { duration: 0.4 } },
+    press: { scale: 0.95, transition: { duration: 0.4 } },
     hover: { scale: 1, transition: { duration: 0.4 } },
 };
 
 const variantButtonScaleZoom = {
     rest: { scale: 1 },
-    press: { scale: 0.98, transition: { duration: 0.3 } },
+    press: { scale: 0.95, transition: { duration: 0.3 } },
     hover: { scale: 1.02, transition: { duration: 0.3 } },
 };
 
