@@ -175,7 +175,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                 <div className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px]">
                     <Image
                         alt="logo"
-                        src="/logo/logo.svg"
+                        src="/logo/foso/logo.svg"
                         width={134}
                         height={55}
                         quality={100}

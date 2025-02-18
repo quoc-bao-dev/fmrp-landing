@@ -198,7 +198,7 @@ const LoginComponent = () => {
                         // isStateloading={isLoading}
                         // disabled={isLoading}
                         type='submit'
-                        title_button={"Đăng nhập"}
+                        title={"Đăng nhập"}
                         className='bg-[#333538] text-white rounded-full 2xl:text-lg text-base font-normal w-full md:py-3 py-2.5 h-auto hover:opacity-80 transition-all duration-150 ease-linear'
                     />
 
@@ -213,7 +213,7 @@ const LoginComponent = () => {
                     <div className="flex items-center gap-4">
                         <ButtonAnimation
                             // onClick={() => onSubmit({}, 'loginGoogle')}
-                            title_button={"Google"}
+                            title={"Google"}
                             icon={
                                 <div className="3xl:max-w-7 max-w-6">
                                     <FcGoogle className='3xl:size-7 size-6 object-contain' />
@@ -229,7 +229,7 @@ const LoginComponent = () => {
 
                         <ButtonAnimation
                             // onClick={() => onSubmit({}, 'loginFacebook')}
-                            title_button={"Facebook"}
+                            title={"Facebook"}
                             icon={
                                 <div className="3xl:max-w-7 max-w-6">
                                     <FaFacebook className='3xl:size-7 size-6 object-contain text-[#1877FE]' />

@@ -81,6 +81,10 @@ html {
         @apply 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-xl !tracking-[2%];
     }
 
+    .text-button {
+        @apply 3xl:!text-xl xl:!text-lg lg:!text-base !text-xl !tracking-[1%];
+    }
+
     .text-default {
         @apply 3xl:!text-lg xl:!text-base lg:!text-sm !text-lg !tracking-[1%];
     }

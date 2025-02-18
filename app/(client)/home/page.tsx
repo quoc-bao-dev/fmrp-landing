@@ -8,13 +8,13 @@ import ServicePresentationSection from './components/sections/ServicePresentatio
 import CustomerProjectsSection from './components/sections/CustomerProjectsSection'
 import CustomerFeedbackSection from './components/sections/CustomerFeedbackSection'
 import MediaCoverageSection from './components/sections/MediaCoverageSection'
-import ContactUsNow from './components/sections/ContactUsNow'
+import ContactUsNowSection from './components/sections/ContactUsNowSection'
 
 type Props = {}
 
 const Home = (props: Props) => {
     return (
-        <main>
+        <main className='overflow-x-hidden'>
             <HeroSection />
             <MessageOneSection />
             <MessageTwoSection />
@@ -22,7 +22,7 @@ const Home = (props: Props) => {
             <CustomerProjectsSection />
             <CustomerFeedbackSection />
             <MediaCoverageSection />
-            <ContactUsNow />
+            <ContactUsNowSection />
         </main>
     )
 }

@@ -20,7 +20,7 @@ const FooterBottom = (props: Props) => {
             <div className='xl:col-span-3 lg:col-span-4 col-span-1 flex items-center lg:justify-end'>
                 <div className='xxl:w-[200px] lg:w-[160px] md:w-[220x] w-[160px] aspect-8/3'>
                     <Image
-                        src="/logo/logo-bct.svg"
+                        src="/logo/foso/logo-bct.svg"
                         alt="logo"
                         width={300}
                         height={200}

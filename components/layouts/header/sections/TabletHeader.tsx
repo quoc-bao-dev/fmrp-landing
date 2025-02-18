@@ -69,7 +69,7 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
                             width={800}
                             height={800}
                             alt="logo"
-                            src="/logo/logo.svg"
+                            src="/logo/foso/logo.svg"
                             className="w-fit h-[40px] object-contain cursor-pointer"
                             priority
                         />
@@ -122,7 +122,7 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
                                             width={800}
                                             height={800}
                                             alt="logo"
-                                            src="/logo/logo.svg"
+                                            src="/logo/foso/logo.svg"
                                             className="w-fit h-[40px] object-contain cursor-pointer"
                                             priority
                                         />
