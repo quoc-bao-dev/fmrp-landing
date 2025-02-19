@@ -122,12 +122,29 @@ const ProcessStep = (props: Props) => {
 
                         <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"} flex flex-col gap-8 h-full absolute top-0 left-1/2 transform -translate-x-1/2`}>
                             {/* Hình tròn Active */}
-                            <motion.div
-                                className={`size-4 shrink-0 rounded-full flex items-center justify-center font-bold transition-all duration-300`}
+                            <div
+                                className={`relative size-4 shrink-0 rounded-full flex items-center justify-center font-bold transition-all duration-300`}
                                 style={{
                                     background: activeStep === index ? "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)" : "#809FB8"
                                 }}
-                            />
+                            >
+                                {
+                                    activeStep === index &&
+                                    <motion.div
+                                        className="absolute size-8 rounded-full bg-green-400 opacity-20"
+                                        initial={{ scale: 1, opacity: 0.3 }}
+                                        animate={{
+                                            scale: [1, 1.5],
+                                            opacity: [0.3, 0],
+                                        }}
+                                        transition={{
+                                            duration: 1.5,
+                                            repeat: Infinity,
+                                            ease: "easeOut",
+                                        }}
+                                    />
+                                }
+                            </div>
 
                             {/* Thanh dọc (chỉ vẽ nếu không phải bước cuối cùng) */}
                             {

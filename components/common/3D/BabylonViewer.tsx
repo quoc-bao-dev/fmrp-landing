@@ -21,12 +21,12 @@ const BabylonViewer = () => {
             "camera",
             Math.PI / 4,                                  // 🔹 Góc xoay trục X (nghiêng mô hình)
             Math.PI / 2,                                  // 🔹 Góc xoay trục Y (nhìn từ trên xuống)
-            4, // Khoảng cách camera đến mô hình
+            3.5, // Khoảng cách camera đến mô hình
             new BABYLON.Vector3(0, 1, 0),                 // 🔹 Đặt camera nhìn vào vị trí trung tâm mô hình
             scene
         );
         camera.attachControl(canvasRef.current, true);
-        camera.lowerRadiusLimit = 4;
+        camera.lowerRadiusLimit = 3.5;
         camera.upperRadiusLimit = 40;
         camera.panningSensibility = 0;                  // 🔹 Tắt kéo ngang dọc để không làm lệch mô hình
 
@@ -200,7 +200,7 @@ const BabylonViewer = () => {
           </p>
         </div>
       )} */}
-            <canvas ref={canvasRef} className="w-full h-full flex justify-center items-center"></canvas>
+            <canvas ref={canvasRef} tabIndex={-1} className="w-full h-full flex justify-center items-center"></canvas>
         </React.Fragment>
     )
 };

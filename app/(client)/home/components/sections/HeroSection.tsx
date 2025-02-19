@@ -24,6 +24,16 @@ const HeroSection = (props: Props) => {
         },
     ]
 
+    // ✅ Hàm chặn scroll
+    const disableScroll = () => {
+        document.body.style.overflow = "hidden";
+    };
+
+    // ✅ Hàm bật lại scroll
+    const enableScroll = () => {
+        document.body.style.overflow = "";
+    };
+
     return (
         <div className='3xl:py-24 py-20 h-screen relative'>
             {/* background color linear */}
@@ -95,7 +105,11 @@ const HeroSection = (props: Props) => {
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
-                <div className="max-w-[45%] relative flex flex-col items-center justify-center w-full h-[600px]">
+                <div
+                    className="max-w-[45%] relative flex flex-col items-center justify-center w-full h-[600px] cursor-pointer"
+                    onMouseEnter={disableScroll} // ✅ Chặn scroll khi hover vào
+                    onMouseLeave={enableScroll} // ✅ Bật lại scroll khi rời chuột
+                >
                     <BabylonViewer />
                 </div>
             </div>
