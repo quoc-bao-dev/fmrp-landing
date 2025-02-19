@@ -52,7 +52,7 @@ const ServicePresentationSection = (props: Props) => {
             {/* <BlurredBackground className='-top-[10%] -left-[250px] -z-0' /> */}
 
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
-                <div className='space-x-2 font-extrabold max-w-[50%]'>
+                <div className='space-x-2 font-extrabold max-w-[49%]'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>
                         AI tiên tiến cho giải pháp thông minh – Giải pháp công nghệ đột phá từ
                     </span>
