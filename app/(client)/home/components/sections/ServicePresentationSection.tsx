@@ -49,8 +49,6 @@ const ServicePresentationSection = (props: Props) => {
 
     return (
         <div className='relative 3xl:py-24 py-20 '>
-            {/* <BlurredBackground className='-top-[10%] -left-[250px] -z-0' /> */}
-
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
                 <div className='space-x-2 font-extrabold max-w-[49%]'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>

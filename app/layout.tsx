@@ -2,10 +2,11 @@
 import { Suspense } from "react";
 import { KEY_COOKIES } from "@/constants/Cookie";
 
-import "@/styles/globals.scss";
-import '@smastrom/react-rating/style.css';
 import RootLayout from "@/components/layouts/root/RootLayout";
 import { raleway_sans } from "@/utils/fonts/fontUtils";
+import "@/styles/globals.scss";
+import '@smastrom/react-rating/style.css';
+import "@babylonjs/loaders";
 
 export const metadata = {
     title: "FOSO Tech - Giải pháp công nghệ cho doanh nghiệp",

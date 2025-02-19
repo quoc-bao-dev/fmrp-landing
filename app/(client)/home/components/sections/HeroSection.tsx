@@ -1,11 +1,32 @@
+
+import BabylonViewer from '@/components/common/3D/BabylonViewer';
+import Image from 'next/image';
 import React, { useEffect, useRef } from 'react';
+
+import { motion } from 'framer-motion'
+import { uuidv4 } from '@/lib/uuid';
 
 type Props = {}
 
 const HeroSection = (props: Props) => {
+    const iconArrow = [
+        {
+            id: uuidv4(),
+            icon: "/icons/common/arrow/arrow-1.svg"
+        },
+        {
+            id: uuidv4(),
+            icon: "/icons/common/arrow/arrow-2.svg"
+        },
+        {
+            id: uuidv4(),
+            icon: "/icons/common/arrow/arrow-3.svg"
+        },
+    ]
 
     return (
         <div className='3xl:py-24 py-20 h-screen relative'>
+            {/* background color linear */}
             <div
                 className='absolute top-0 left-0 size-full blur-[772.7864379882812px]'
                 style={{
@@ -13,7 +34,52 @@ const HeroSection = (props: Props) => {
                 }}
             />
 
+            {/* logo pattern */}
+            <div className='absolute -top-8 -right-[12%] h-[800px] aspect-3/2'>
+                <Image
+                    alt="logo"
+                    width={900}
+                    height={900}
+                    src="/logo/foso/logo-pattern.svg"
+                    className="size-full object-contain opacity-35"
+                />
+            </div>
+
+
+
             <div className='mx-[128px] flex flex-wrap items-center justify-between gap-2 h-full relative z-[2]'>
+                {/* button logo */}
+                <div className='flex flex-col items-center justify-center gap-2 absolute bottom-4 left-0 z-[999] cursor-pointer group'>
+                    <div className="flex flex-col items-center space-y-1">
+                        {iconArrow.map((icon, index) => (
+                            <motion.div
+                                key={`ic-${icon.id}`}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: [0, 1, 0], y: [0, 5, 0] }}
+                                transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: index * 0.7, // Hiển thị từng mũi tên theo thứ tự
+                                }}
+                            >
+                                <Image
+                                    alt="arrow"
+                                    width={24}
+                                    height={24}
+                                    src={icon?.icon}
+                                    className="size-full object-contain"
+                                    priority
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                    <div className='text-default font-medium text-[#17181A] group-hover:text-[#17181A]/80 custom-transition'>
+                        Khám phá
+                    </div>
+                </div>
+
+                {/* contetn left */}
                 <div className='max-w-[55%]'>
                     <span className='text-[#050505] text-title-section font-extrabold'>Đồng Hành Cùng</span>
                     <span
@@ -29,17 +95,11 @@ const HeroSection = (props: Props) => {
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
-                <div className="max-w-[45%] relative">
-                    <iframe
-                        title="Sketchfab Model"
-                        src="https://sketchfab.com/models/9a793a9293fb4ec89936aebfda8fc434/embed?autostart=1&camera=0&transparent=1&ui_infos=0&ui_controls=0&ui_watermark=0&ui_stop=0&ui_fullscreen=0&ui_hint=0"
-                        width="100%"
-                        height="600px"
-                        className="rounded-lg w-full aspect-[1.89/1]"
-                        allowFullScreen
-                    />
+                <div className="max-w-[45%] relative flex flex-col items-center justify-center w-full h-[600px]">
+                    <BabylonViewer />
                 </div>
             </div>
+
         </div>
     )
 }
