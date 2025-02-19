@@ -5,14 +5,15 @@ type Props = {}
 const HeroSection = (props: Props) => {
 
     return (
-        <div
-            className='3xl:py-24 py-20 h-screen'
-            style={{
-                background: "linear-gradient(95.16deg, #E0FFCC 12.93%, #CCFFEC 65.56%)",
-                backdropFilter: "blur(772.7864379882812px)"
-            }}
-        >
-            <div className='mx-[128px] flex flex-wrap items-center justify-between gap-2 h-full'>
+        <div className='3xl:py-24 py-20 h-screen relative'>
+            <div
+                className='absolute top-0 left-0 size-full blur-[772.7864379882812px]'
+                style={{
+                    background: "linear-gradient(95.16deg, #E0FFCC 12.93%, #CCFFEC 65.56%)",
+                }}
+            />
+
+            <div className='mx-[128px] flex flex-wrap items-center justify-between gap-2 h-full relative z-[2]'>
                 <div className='max-w-[55%]'>
                     <span className='text-[#050505] text-title-section font-extrabold'>Đồng Hành Cùng</span>
                     <span
@@ -36,8 +37,7 @@ const HeroSection = (props: Props) => {
                         height="600px"
                         className="rounded-lg w-full aspect-[1.89/1]"
                         allowFullScreen
-                    ></iframe>
-                    
+                    />
                 </div>
             </div>
         </div>
@@ -45,3 +45,4 @@ const HeroSection = (props: Props) => {
 }
 
 export default HeroSection
+

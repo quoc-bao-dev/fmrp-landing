@@ -7,11 +7,12 @@ const PartnerWithFoso = (props: Props) => {
     return (
         <div className='3xl:py-24 py-20 custom-container '>
             <div
-                className='grid grid-cols-12  pl-20 gap-20 rounded-3xl w-full'
+                className='grid grid-cols-12  pl-20 gap-20 rounded-3xl w-full relative'
                 style={{
                     background: "linear-gradient(to right, rgba(157, 255, 179, 0.1) 8%, rgba(61, 221, 173, 0.45) 73.22%)",
                 }}
             >
+                <div className='absolute top-0 left-0 size-full ' />
                 <div className='col-span-5 flex flex-col gap-6 justify-center size-full '>
                     <div className='space-x-2 font-extrabold text-title-section-small max-w-[90%]'>
                         <span
