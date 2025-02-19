@@ -129,20 +129,35 @@ const ProcessStep = (props: Props) => {
                                 }}
                             >
                                 {
-                                    activeStep === index &&
-                                    <motion.div
-                                        className="absolute size-8 rounded-full bg-green-400 opacity-20"
-                                        initial={{ scale: 1, opacity: 0.3 }}
-                                        animate={{
-                                            scale: [1, 1.5],
-                                            opacity: [0.3, 0],
-                                        }}
-                                        transition={{
-                                            duration: 1.5,
-                                            repeat: Infinity,
-                                            ease: "easeOut",
-                                        }}
-                                    />
+                                    activeStep === index ?
+                                        <motion.div
+                                            className="absolute size-10 rounded-full bg-green-400 opacity-20"
+                                            initial={{ scale: 1, opacity: 0.3 }}
+                                            animate={{
+                                                scale: [1, 1.5],
+                                                opacity: [0.3, 0],
+                                            }}
+                                            transition={{
+                                                duration: 1.5,
+                                                repeat: Infinity,
+                                                ease: "easeOut",
+                                            }}
+                                        />
+                                        :
+                                        <div className="absolute size-8 rounded-full bg-[#33404A] opacity-20" />
+                                    // <motion.div
+                                    //     className="absolute size-6 rounded-full bg-[#33404A] opacity-20"
+                                    //     initial={{ scale: 1, opacity: 0.3 }}
+                                    //     animate={{
+                                    //         scale: [1, 1.5],
+                                    //         opacity: [0.3, 0],
+                                    //     }}
+                                    //     transition={{
+                                    //         duration: 1.5,
+                                    //         repeat: Infinity,
+                                    //         ease: "easeOut",
+                                    //     }}
+                                    // />
                                 }
                             </div>
 

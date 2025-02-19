@@ -6,9 +6,11 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion'
 import { uuidv4 } from '@/lib/uuid';
 
-type Props = {}
+type HeroSectionProps = {
+    scrollToServiceProcess: () => void
+}
 
-const HeroSection = (props: Props) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ scrollToServiceProcess }) => {
     const iconArrow = [
         {
             id: uuidv4(),
@@ -58,8 +60,11 @@ const HeroSection = (props: Props) => {
 
 
             <div className='mx-[128px] flex flex-wrap items-center justify-between gap-2 h-full relative z-[2]'>
-                {/* button logo */}
-                <div className='flex flex-col items-center justify-center gap-2 absolute bottom-4 left-0 z-[999] cursor-pointer group'>
+                {/* button arrow */}
+                <div
+                    className='flex flex-col items-center justify-center gap-2 absolute bottom-4 left-0 z-[999] cursor-pointer group'
+                    onClick={scrollToServiceProcess}
+                >
                     <div className="flex flex-col items-center space-y-1">
                         {iconArrow.map((icon, index) => (
                             <motion.div
@@ -106,7 +111,7 @@ const HeroSection = (props: Props) => {
 
                 {/* Phần mô hình 3D bên phải */}
                 <div
-                    className="max-w-[45%] relative flex flex-col items-center justify-center w-full h-[600px] cursor-pointer"
+                    className="max-w-[45%] relative flex flex-col items-center justify-center w-full h-[600px] cursor-pointer rounded-xl"
                     onMouseEnter={disableScroll} // ✅ Chặn scroll khi hover vào
                     onMouseLeave={enableScroll} // ✅ Bật lại scroll khi rời chuột
                 >

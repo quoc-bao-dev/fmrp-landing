@@ -2,15 +2,16 @@ import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import React from 'react'
 import { GoArrowUpRight } from 'react-icons/go'
 import ProcessStep from '../ui/ProcessStep'
+import { forwardRef } from 'react';
 
 type Props = {}
 
 
 
 
-const ServiceProcessSection = (props: Props) => {
+const ServiceProcessSection = forwardRef<HTMLDivElement>((props, ref) => {
     return (
-        <div className='relative 3xl:py-24 py-20 '>
+        <div ref={ref} className='relative 3xl:py-24 py-20 '>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
                 <div className='flex flex-col gap-4 max-w-[49%]'>
                     <div className='space-x-2 font-extrabold text-center'>
@@ -54,6 +55,9 @@ const ServiceProcessSection = (props: Props) => {
             </div>
         </div>
     )
-}
+});
+
+// ✅ Bắt buộc phải đặt `displayName` khi dùng `forwardRef`
+ServiceProcessSection.displayName = "ServiceProcessSection";
 
 export default ServiceProcessSection

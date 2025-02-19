@@ -1,40 +1,60 @@
 import React from 'react'
-
-import LogoMarquee from '../ui/LogoMarquee';
-import ButtonAnimation from '@/components/common/button/ButtonAnimation';
-import { GoArrowUpRight } from 'react-icons/go';
+import FeedbackMarquee from '../ui/FeedbackMarquee'
+import { uuidv4 } from '@/lib/uuid';
 
 type Props = {}
 
+export type FeedbackItem = {
+    id: string;
+    name: string;
+    position: string;
+    message: string;
+    image: string;
+};
+
 const CustomerFeedbackSection = (props: Props) => {
-    const logos = [
-        "/logo/partner/partner-logo1.svg", "/logo/partner/partner-logo2.svg", "/logo/partner/partner-logo3.svg", "/logo/partner/partner-logo4.svg", "/logo/partner/partner-logo5.svg",
-        "/logo/partner/partner-logo6.svg", "/logo/partner/partner-logo7.svg", "/logo/partner/partner-logo8.svg", "/logo/partner/partner-logo9.svg", "/logo/partner/partner-logo10.svg",
-        "/logo/partner/partner-logo11.svg", "/logo/partner/partner-logo12.svg", "/logo/partner/partner-logo13.svg", "/logo/partner/partner-logo14.svg", "/logo/partner/partner-logo15.svg",
-        "/logo/partner/partner-logo16.svg", "/logo/partner/partner-logo17.svg", "/logo/partner/partner-logo18.svg", "/logo/partner/partner-logo19.svg", "/logo/partner/partner-logo20.svg"
+    const feedbacks: FeedbackItem[] = [
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mr. Tâm", position: "Quản lý Nam Việt", message: "Công việc tôi khá bận khi quản lý dữ liệu...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mr. Tâm", position: "Quản lý Nam Việt", message: "Công việc tôi khá bận khi quản lý dữ liệu...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mr. Tâm", position: "Quản lý Nam Việt", message: "Công việc tôi khá bận khi quản lý dữ liệu...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mr. Tâm", position: "Quản lý Nam Việt", message: "Công việc tôi khá bận khi quản lý dữ liệu...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mr. Tâm", position: "Quản lý Nam Việt", message: "Công việc tôi khá bận khi quản lý dữ liệu...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mr. Tâm", position: "Quản lý Nam Việt", message: "Công việc tôi khá bận khi quản lý dữ liệu...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
+        { id: uuidv4(), name: "Mrs. Nguyễn", position: "Giám Đốc NPCare Việt Nam", message: "Do nhu cầu sử dụng khẩu trang tăng cao...", image: "/avatar/example/avatar1.png" },
     ];
 
     return (
-        <div className='3xl:py-24 py-20 '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
-                <div className='space-x-2 font-extrabold'>
-                    <span className='text-title-section-small text-[#1A2025] capitalize'>Khách hàng và đối tác</span>
+        <div className='3xl:py-24 py-20 overflow-hidden'>
+            <div className='custom-container flex items-center 3xl:gap-16 gap-14 relative z-[1]'>
+                <div className='w-full max-w-[60%] overflow-hidden'>
+                    <FeedbackMarquee feedbacks={feedbacks} />
                 </div>
+                <div className='w-full max-w-[40%] flex flex-col justify-center gap-4'>
+                    <h3 className='text-title-section-small text-[#1A2025] capitalize font-extrabold'>
+                        Phản hồi từ Khách hàng
+                    </h3>
 
-                <LogoMarquee logos={logos} />
-
-                <ButtonAnimation
-                    type="button"
-                    title="Trở thành khách hàng của chúng tôi"
-                    reverse={true}
-                    icon={
-                        <div className='size-5'>
-                            <GoArrowUpRight className='size-full' />
-                        </div>
-                    }
-                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px]"
-                    onClick={() => { }}
-                />
+                    <p className='text-default text-[#33404A] font-normal'>
+                        Cùng lắng nghe những phản hồi tích cực đến từ những khách hàng đang đồng hành cùng FOSO
+                    </p>
+                </div>
             </div>
         </div>
     )

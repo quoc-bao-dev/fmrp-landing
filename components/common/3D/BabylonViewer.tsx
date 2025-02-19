@@ -27,7 +27,7 @@ const BabylonViewer = () => {
         );
         camera.attachControl(canvasRef.current, true);
         camera.lowerRadiusLimit = 3.5;
-        camera.upperRadiusLimit = 40;
+        camera.upperRadiusLimit = 20;
         camera.panningSensibility = 0;                  // 🔹 Tắt kéo ngang dọc để không làm lệch mô hình
 
         // 3️⃣ Thêm ánh sáng mềm mại
@@ -200,7 +200,7 @@ const BabylonViewer = () => {
           </p>
         </div>
       )} */}
-            <canvas ref={canvasRef} tabIndex={-1} className="w-full h-full flex justify-center items-center"></canvas>
+            <canvas ref={canvasRef} tabIndex={-1} className="w-full h-full flex justify-center items-center rounded-xl"></canvas>
         </React.Fragment>
     )
 };

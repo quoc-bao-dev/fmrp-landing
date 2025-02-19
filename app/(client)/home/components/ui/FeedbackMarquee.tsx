@@ -1,9 +1,9 @@
 import Marquee from 'react-fast-marquee';
 import Image from 'next/image';
-import { FeedbackItem } from '../sections/CustomerProjectsSection';
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react';
+import { FeedbackItem } from '../sections/CustomerFeedbackSection';
 
 type FeedbackMarqueeProps = {
     feedbacks: FeedbackItem[];
@@ -30,7 +30,8 @@ const FeedbackMarquee: React.FC<FeedbackMarqueeProps> = ({ feedbacks }) => {
                 pauseOnHover
                 gradient={true}
                 gradientWidth={50}
-                className="w-full h-full leading-none" // Đảm bảo các phần tử dính sát nhau
+                // className="w-full h-full leading-none" // Đảm bảo các phần tử dính sát nhau
+                className="w-full h-full flex flex-col space-y-4" // ✅ Thêm flex
                 autoFill
             >
                 {
