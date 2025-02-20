@@ -82,12 +82,13 @@ html {
 }
 
 .custom-size-text {
+  // chỉ sử dụng cho section nổi bật
   .text-title-section {
-    @apply 3xl:text-[64px] 2xl:text-[58px] xxl:text-[56px] lg:text-[52px] text-[38px] 3xl:!leading-[96px] 2xl:!leading-[70px] xl:!leading-[66px] lg:!leading-[62px] !leading-[48px] tracking-normal;
+    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[104px] 2xl:!leading-[94px] xxl:!leading-[90px] xl:!leading-[88px] lg:!leading-[70px] md:!leading-[60px] !leading-[46px] tracking-normal;
   }
 
   .text-title-section-small {
-    @apply 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[24px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%];
+    @apply 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%];
   }
 
   .text-title {
@@ -157,7 +158,9 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -232,5 +235,19 @@ html {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.custom-swiper-pagination {
+  .swiper-pagination {
+    @apply w-screen text-center bottom-0;
+    // @apply md:text-start text-center 3xl:-bottom-[5px] 2xl:bottom-6 xl:bottom-8 lg:bottom-10 bottom-12;
+    .swiper-pagination-bullet {
+      @apply w-12 bg-[#bbc3c9] rounded-sm;
+    }
+    .swiper-pagination-bullet-active {
+      background: linear-gradient(180deg, #9dffb3 0%, #1aa37a 100%);
+      @apply w-12 rounded-sm;
+    }
   }
 }

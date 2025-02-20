@@ -34,11 +34,11 @@ const MediaCard = ({ media }: MediaCardProps) => {
 
             <div className="flex flex-col gap-2 p-4 bg-white rounded-b-2xl">
                 <div className="flex items-center justify-between">
-                    <div className="text-sm-default text-[#667F93] max-w-[40%]">
+                    <div className="text-sm-default text-[#667F93] lg:max-w-[40%] max-w-[30%]">
                         {moment(media?.date).format("DD/MM/YYYY")}
                     </div>
 
-                    <div className="text-sm-default text-[#10805B] group-hover:text-[#14A76C] max-w-[60%] custom-transition">
+                    <div className="text-sm-default text-[#10805B] group-hover:text-[#14A76C] lg:max-w-[60%] max-w-[70%] custom-transition">
                         {media?.category}
                     </div>
                 </div>

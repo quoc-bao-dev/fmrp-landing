@@ -7,6 +7,14 @@ import { raleway_sans } from "@/utils/fonts/fontUtils";
 import "@/styles/globals.scss";
 import '@smastrom/react-rating/style.css';
 import "@babylonjs/loaders";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/thumbs";
+import "swiper/swiper-bundle.css";
 
 export const metadata = {
     title: "FOSO Tech - Giải pháp công nghệ cho doanh nghiệp",

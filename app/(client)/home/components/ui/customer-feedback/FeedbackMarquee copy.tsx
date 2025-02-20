@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react';
-import { FeedbackItem } from '../sections/CustomerFeedbackSection';
+import { FeedbackItem } from '../../sections/CustomerFeedbackSection';
 
 type FeedbackMarqueeProps = {
     feedbacks: FeedbackItem[];

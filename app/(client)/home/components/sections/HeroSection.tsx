@@ -1,16 +1,18 @@
 
 import BabylonViewer from '@/components/common/3D/BabylonViewer';
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
-import { motion } from 'framer-motion'
 import { uuidv4 } from '@/lib/uuid';
+import { useScrollContext } from '@/contexts/ScrollContext';
+import AnimatedArrows from '../ui/hero/AnimatedArrows';
 
 type HeroSectionProps = {
-    scrollToServiceProcess: () => void
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ scrollToServiceProcess }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
+    const { scrollToElementRef } = useScrollContext();
+
     const iconArrow = [
         {
             id: uuidv4(),
@@ -26,79 +28,50 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToServiceProcess }) => 
         },
     ]
 
-    // ✅ Hàm chặn scroll
-    const disableScroll = () => {
-        document.body.style.overflow = "hidden";
-    };
-
-    // ✅ Hàm bật lại scroll
-    const enableScroll = () => {
-        document.body.style.overflow = "";
+    const handleScroll = (type: string) => {
+        document.body.style.overflow = type === "disable" ? "hidden" : "";
     };
 
     return (
-        <div className='3xl:py-24 py-20 h-screen relative'>
+        <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 lg:h-screen h-svh relative'>
             {/* background color linear */}
             <div
                 className='absolute top-0 left-0 size-full blur-[772.7864379882812px]'
                 style={{
                     background: "linear-gradient(95.16deg, #E0FFCC 12.93%, #CCFFEC 65.56%)",
+                    filter: "blur(386.3932189941406px)"
                 }}
             />
 
             {/* logo pattern */}
-            <div className='absolute -top-8 -right-[12%] h-[800px] aspect-3/2'>
+            <div className='absolute xxl:-top-8 lg:-top-4 xl:-right-[12%] lg:-right-[15%] md:-right-[4%] -right-[18%]  3xl:h-[840px] 2xl:h-[680px] xxl:h-[640px] xl:h-[580px] lg:h-[500px] md:h-[550px] h-[360px] aspect-3/2'>
                 <Image
                     alt="logo"
                     width={900}
                     height={900}
                     src="/logo/foso/logo-pattern.svg"
-                    className="size-full object-contain opacity-35"
+                    className="size-full object-contain opacity-15"
                 />
             </div>
+            {/* <div className='absolute -top-8 -right-[12%] 3xl:h-[840px] 2xl:h-[680px] xxl:h-[640px] h-[580px] aspect-3/2'>
+                <Image
+                    alt="logo"
+                    width={900}
+                    height={900}
+                    src="/logo/foso/logo-pattern-2.svg"
+                    className="size-full object-contain opacity-60"
+                />
+            </div> */}
 
-
-
-            <div className='mx-[128px] flex flex-wrap items-center justify-between gap-2 h-full relative z-[2]'>
+            <div className='3xl:mx-[128px] 2xl:mx-[98px] xl:mx-[88px] md:mx-[60px] mx-8 flex lg:flex-row flex-col-reverse items-center lg:justify-between justify-center gap-2 h-full relative z-[2]'>
                 {/* button arrow */}
-                <div
-                    className='flex flex-col items-center justify-center gap-2 absolute bottom-4 left-0 z-[999] cursor-pointer group'
-                    onClick={scrollToServiceProcess}
-                >
-                    <div className="flex flex-col items-center space-y-1">
-                        {iconArrow.map((icon, index) => (
-                            <motion.div
-                                key={`ic-${icon.id}`}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: [0, 1, 0], y: [0, 5, 0] }}
-                                transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: index * 0.7, // Hiển thị từng mũi tên theo thứ tự
-                                }}
-                            >
-                                <Image
-                                    alt="arrow"
-                                    width={24}
-                                    height={24}
-                                    src={icon?.icon}
-                                    className="size-full object-contain"
-                                    priority
-                                />
-                            </motion.div>
-                        ))}
-                    </div>
-                    <div className='text-default font-medium text-[#17181A] group-hover:text-[#17181A]/80 custom-transition'>
-                        Khám phá
-                    </div>
-                </div>
+                <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
 
                 {/* contetn left */}
-                <div className='max-w-[55%]'>
+                <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-center'>
                     <span className='text-[#050505] text-title-section font-extrabold'>Đồng Hành Cùng</span>
                     <span
-                        className='text-[56px] font-extrabold text-white px-6 py-2 rounded-full uppercase ml-4'
+                        className='3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] lg:text-[36px] md:text-[32px] text-[20px] font-extrabold text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2'
                         style={{
                             background: "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
                         }}
@@ -110,12 +83,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToServiceProcess }) => 
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
-                <div
-                    className="max-w-[45%] relative flex flex-col items-center justify-center w-full h-[600px] cursor-pointer rounded-xl"
-                    onMouseEnter={disableScroll} // ✅ Chặn scroll khi hover vào
-                    onMouseLeave={enableScroll} // ✅ Bật lại scroll khi rời chuột
-                >
-                    <BabylonViewer />
+                <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
+                    <div
+                        className='relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square'
+                        onMouseEnter={() => handleScroll("disable")} // ✅ Chặn scroll khi hover vào
+                        onMouseLeave={() => handleScroll("enable")} // ✅ Bật lại scroll khi rời chuột
+                    >
+                        <BabylonViewer />
+                    </div>
                 </div>
             </div>
 

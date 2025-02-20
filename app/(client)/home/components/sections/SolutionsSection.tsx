@@ -1,15 +1,15 @@
 import React from 'react'
 import { GoArrowUpRight } from 'react-icons/go';
 import ButtonAnimation from './../../../../../components/common/button/ButtonAnimation';
-import ProjectShowcase from '../ui/ProjectShowcase';
+import ProjectShowcase from '../ui/solutions/ProjectShowcase';
 
 type Props = {}
 
 const SolutionsSection = (props: Props) => {
     return (
-        <div className='3xl:py-24 py-20 '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
-                <div className='space-x-2 font-extrabold text-title-section-small max-w-[50%]'>
+        <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 '>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
+                <div className='space-x-2 font-extrabold text-title-section-small lg:text-center text-start lg:max-w-[50%] max-w-full'>
                     <span
                         className='uppercase'
                         style={{
@@ -36,7 +36,7 @@ const SolutionsSection = (props: Props) => {
                             <GoArrowUpRight className='size-full' />
                         </div>
                     }
-                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px]"
+                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     onClick={() => { }}
                 />
             </div>

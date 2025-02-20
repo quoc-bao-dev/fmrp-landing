@@ -1,12 +1,19 @@
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import ProjectCard from '@/components/common/card/project/ProjectCard'
 import { uuidv4 } from '@/lib/uuid'
-import React from 'react'
+import { useResizeStore } from '@/stores/useResizeStore'
+import React, { useRef } from 'react'
 import { GoArrowUpRight } from 'react-icons/go'
+
+import { Autoplay, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Props = {}
 
 const ServicePresentationSection = (props: Props) => {
+    const swiperRef = useRef<any>(null);
+    const { isVisibleTablet } = useResizeStore()
+
     const projectList = [
         {
             id: uuidv4(),
@@ -46,11 +53,19 @@ const ServicePresentationSection = (props: Props) => {
         },
     ]
 
+    const customPagination = {
+        clickable: true,
+        renderBullet: function (index: number, className: string) {
+            return `<span class=${className}></span>`
+        },
+
+    }
+
 
     return (
-        <div className='relative 3xl:py-24 py-20 '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
-                <div className='space-x-2 font-extrabold max-w-[49%]'>
+        <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1] h-full'>
+                <div className='space-x-2 font-extrabold 3xl:max-w-[49%] 2xl:max-w-[55%] lg:max-w-[60%] max-w-full'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>
                         AI tiên tiến cho giải pháp thông minh – Giải pháp công nghệ đột phá từ
                     </span>
@@ -66,15 +81,69 @@ const ServicePresentationSection = (props: Props) => {
                     </span>
                 </div>
 
-                <div className='grid grid-cols-3 3xl:gap-6 gap-4 w-full'>
-                    {
-                        projectList && projectList?.map((project) => (
-                            <React.Fragment key={`project-${project?.id}`}>
-                                <ProjectCard project={project} />
-                            </React.Fragment>
-                        ))
-                    }
-                </div>
+                {
+                    isVisibleTablet
+                        ?
+                        <div className='w-full '>
+                            <Swiper
+                                slidesPerView={4}
+                                spaceBetween={60}
+                                modules={[Pagination, Autoplay]}
+                                onSwiper={(swiper) => {
+                                    swiperRef.current = swiper;
+                                }}
+                                autoplay={true}
+                                speed={1000}
+                                loop
+                                pagination={customPagination}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 30
+                                    },
+                                    640: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 30
+                                    },
+                                    768: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 30
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 30
+                                    },
+                                    1920: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 60,
+                                    }
+                                }}
+                                className='custom-swiper-pagination md:h-[440px] h-[460px] rounded-3xl'
+                                allowTouchMove={true}
+                            >
+                                {
+                                    projectList && projectList?.map((project) => (
+                                        <SwiperSlide
+                                            key={`project-${project?.id}`}
+                                        // className='h-full relative cursor-pointer group'
+                                        >
+                                            <ProjectCard project={project} />
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                        </div>
+                        :
+                        <div className='grid grid-cols-3 gap-6 w-full h-full'>
+                            {
+                                projectList && projectList?.map((project) => (
+                                    <React.Fragment key={`project-${project?.id}`}>
+                                        <ProjectCard project={project} />
+                                    </React.Fragment>
+                                ))
+                            }
+                        </div>
+                }
 
                 <ButtonAnimation
                     type="button"
@@ -85,7 +154,7 @@ const ServicePresentationSection = (props: Props) => {
                             <GoArrowUpRight className='size-full' />
                         </div>
                     }
-                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px]"
+                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     onClick={() => { }}
                 />
             </div>

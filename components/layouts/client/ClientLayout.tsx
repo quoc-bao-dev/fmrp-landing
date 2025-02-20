@@ -57,10 +57,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll]);
-
-    console.log('hello baby');
-    
+    }, [handleScroll]);    
 
     return (
         <ProviderLayout data={data}>

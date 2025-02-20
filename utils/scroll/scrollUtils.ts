@@ -1,5 +1,8 @@
 import { animate, motionValue } from 'framer-motion';
+import { RefObject, useCallback } from 'react';
 
+
+// Khi reload page thì sử dụng hàm này để tự động chuyển lên đầu trang
 const scrollToTop = () => {
     const scrollY = motionValue(window.scrollY); // Lưu giá trị hiện tại vào motionValue
 
@@ -33,5 +36,5 @@ const scrollToSection = (idSection: number | string) => {
 
 export {
     scrollToTop,
-    scrollToSection
+    scrollToSection,
 }

@@ -11,6 +11,7 @@ import { useAuthStore } from '@/stores/useAuthStores'
 import { KEY_COOKIES } from '@/constants/Cookie'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 import { dataLanguageOptions } from '../../../data/DataTranslate';
+import { ScrollProvider } from '@/contexts/ScrollContext'
 
 const ProviderLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const { setCookie, getCookie } = useCookieStore()
@@ -54,7 +55,9 @@ const ProviderLayout = ({ children, data }: { children: React.ReactNode, data: a
 
     return (
         <TranslateProvider dataLang={data?.dataLang} language={data?.language} loading={false}>
-            {children}
+            <ScrollProvider>
+                {children}
+            </ScrollProvider>
         </TranslateProvider>
     )
 }

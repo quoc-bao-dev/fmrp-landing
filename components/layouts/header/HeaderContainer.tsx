@@ -180,12 +180,19 @@ const HeaderContainer = () => {
                 className='custom-container lg:bg-[#FFFFFF]/80 bg-[#FFFFFF]/50 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
                     backdropFilter: "blur(25px)", // Làm tròn giá trị
-                    boxShadow: `
-                        0px 4px 100px 0px rgba(0, 0, 0, 0.12) inset, 
-                        -9px 20px 80px -20px rgba(0, 0, 0, 0.15), 
-                        2px -2px 0px #FFFFFF, 
-                        -2px 2px 0px #E5E5E5
-                    `
+                    // boxShadow: `
+                    //     0px 4px 100px 0px rgba(0, 0, 0, 0.12) inset, 
+                    //     -9px 20px 80px -20px rgba(0, 0, 0, 0.15), 
+                    //     2px -2px 0px #FFFFFF, 
+                    //     -2px 2px 0px #E5E5E5
+                    // `
+                    boxShadow: `0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px 0px #FFFFFF, -1px 1px 0px 0px #F0F0F0`
+                    // boxShadow: `
+                    //     0px 4px 100px 0px rgba(0, 0, 0, 0.12) inset, 
+                    //     -9px 20px 80px -20px rgba(0, 0, 0, 0.15), 
+                    //     2px -2px 0px #FFFFFF, 
+                    //     -2px 2px 0px #E5E5E5
+                    // `
                 }}
             >
                 {

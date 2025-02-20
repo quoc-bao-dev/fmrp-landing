@@ -1,15 +1,22 @@
 import BlurredBackground from '@/components/common/blur/BlurredBackground'
-import React from 'react'
+import React, { useRef } from 'react'
 
 import { uuidv4 } from '@/lib/uuid';
 import MediaCard from '@/components/common/card/media/MediaCard';
 import ButtonAnimation from '@/components/common/button/ButtonAnimation';
 
 import { GoArrowUpRight } from "react-icons/go";
+import { useResizeStore } from '@/stores/useResizeStore';
+
+import { Autoplay, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Props = {}
 
 const MediaCoverageSection = (props: Props) => {
+    const swiperRef = useRef<any>(null);
+    const { isVisibleTablet } = useResizeStore()
+
     const mediaList = [
         {
             id: uuidv4(),
@@ -34,11 +41,19 @@ const MediaCoverageSection = (props: Props) => {
         },
     ]
 
+    const customPagination = {
+        clickable: true,
+        renderBullet: function (index: number, className: string) {
+            return `<span class=${className}></span>`
+        },
+
+    }
+
     return (
-        <div className='relative 3xl:py-24 py-20 '>
+        <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
             <BlurredBackground className='-top-[10%] -left-[250px] -z-0' />
 
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 gap-10 relative z-[1]'>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
                 <div className='space-x-2 font-extrabold'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về</span>
                     <span
@@ -53,15 +68,69 @@ const MediaCoverageSection = (props: Props) => {
                     </span>
                 </div>
 
-                <div className='grid grid-cols-3 3xl:gap-6 gap-4 w-full'>
-                    {
-                        mediaList && mediaList?.map((media) => (
-                            <React.Fragment key={`media-${media?.id}`}>
-                                <MediaCard media={media} />
-                            </React.Fragment>
-                        ))
-                    }
-                </div>
+                {
+                    isVisibleTablet
+                        ?
+                        <div className='w-full '>
+                            <Swiper
+                                slidesPerView={4}
+                                spaceBetween={60}
+                                modules={[Pagination, Autoplay]}
+                                onSwiper={(swiper) => {
+                                    swiperRef.current = swiper;
+                                }}
+                                // loop
+                                autoplay={true}
+                                speed={1000}
+                                pagination={customPagination}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 30
+                                    },
+                                    640: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 30
+                                    },
+                                    768: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 30
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 30
+                                    },
+                                    1920: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 60,
+                                    }
+                                }}
+                                className='custom-swiper-pagination md:h-[400px] h-[400px] rounded-2xl'
+                                allowTouchMove={true}
+                            >
+                                {
+                                    mediaList && mediaList?.map((media) => (
+                                        <SwiperSlide
+                                            key={`media-${media?.id}`}
+                                        // className='h-full relative cursor-pointer group'
+                                        >
+                                            <MediaCard media={media} />
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                        </div>
+                        :
+                        <div className='grid grid-cols-3 3xl:gap-6 gap-4 w-full'>
+                            {
+                                mediaList && mediaList?.map((media) => (
+                                    <React.Fragment key={`media-${media?.id}`}>
+                                        <MediaCard media={media} />
+                                    </React.Fragment>
+                                ))
+                            }
+                        </div>
+                }
 
                 <ButtonAnimation
                     type="button"
@@ -72,7 +141,7 @@ const MediaCoverageSection = (props: Props) => {
                             <GoArrowUpRight className='size-full' />
                         </div>
                     }
-                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px]"
+                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     onClick={() => { }}
                 />
             </div>

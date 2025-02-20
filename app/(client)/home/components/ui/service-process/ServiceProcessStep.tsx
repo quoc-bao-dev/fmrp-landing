@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type Props = {}
 
@@ -36,7 +37,8 @@ const steps = [
     },
 ];
 
-const ProcessStep = (props: Props) => {
+const ServiceProcessStep = (props: Props) => {
+    const { isVisibleTablet } = useResizeStore()
     const [activeStep, setActiveStep] = useState<number>(0);
 
     useEffect(() => {
@@ -62,7 +64,7 @@ const ProcessStep = (props: Props) => {
 
 
     return (
-        <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12">
             {/* Timeline Steps */}
             <div className="relative flex flex-col gap-10">
                 {steps.map((step, index) => (
@@ -72,40 +74,39 @@ const ProcessStep = (props: Props) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.3 }}
-                        className={`relative flex items-center gap-20 justify-between ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                            }`}
+                        className={`${!isVisibleTablet ? index % 2 === 0 ? "flex-row" : "flex-row-reverse" : ""} relative flex items-center gap-20 justify-between`}
                     >
-
                         {/* Hình ảnh */}
-                        <div className="w-1/2 aspect-square relativee z-0">
-                            <Image
-                                src={step.image}
-                                alt={step.title}
-                                width={1920}
-                                height={1080}
-                                className="size-full rounded-lg object-contain aspect-square"
-                                style={{
-                                    WebkitMaskImage:
-                                        "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
-                                }}
-                                loading='lazy'
-                            />
-                        </div>
+                        {
+                            !isVisibleTablet &&
+                            <div className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}>
+                                <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
+                                    <Image
+                                        src={step.image}
+                                        alt={step.title}
+                                        width={1920}
+                                        height={1080}
+                                        className="size-full rounded-lg object-contain aspect-square"
+                                        style={{
+                                            WebkitMaskImage:
+                                                "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
+                                        }}
+                                        loading='lazy'
+                                    />
+                                </div>
+                            </div>
+                        }
 
                         {/* Nội dung */}
-                        <div className={`w-1/2 space-y-2`}>
-                            <div className='relative w-fit'>
-                                <h3 className="text-title font-bold text-[#33404A] relative z-[1]">
+                        <div className={`lg:w-1/2 w-full lg:max-w-[50%] max-w-full md:pl-10 pl-6 space-y-2`}>
+
+                            <div className='relative w-fit '>
+                                <h3 className="3xl:!text-2xl xl:!text-xl lg:!text-lg !text-lg font-bold text-[#33404A] relative z-[1]">
                                     {step.title}
                                 </h3>
-                                <div
-                                    className='absolute -top-14 -right-12 z-0'
-                                // style={{
-                                //     background: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 0%, #F9FBFC 100%)"
-                                // }}
-                                >
+                                <div className='absolute 3xl:-top-14 xl:-top-12 md:-top-10 -top-10 3xl:-right-12 xl:-right-10 md:-right-7 -right-7 z-0'>
                                     <h3
-                                        className='text-title-section font-extrabold'
+                                        className='3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[52px] text-[52px] font-extrabold '
                                         style={{
                                             background: "linear-gradient(209deg, #09090B -58.41%, #FFF 69.81%)",
                                             backgroundClip: "text",
@@ -117,10 +118,31 @@ const ProcessStep = (props: Props) => {
                                     </h3>
                                 </div>
                             </div>
-                            <p className="text-button text-[#33404A] font-medium">{step.description}</p>
+                            <p className="3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] font-medium">{step.description}</p>
+                            {
+                                isVisibleTablet &&
+                                <div className={`w-full flex justify-center`}>
+                                    <div className="md:w-1/2 w-full aspect-square relativee z-0 ">
+                                        <Image
+                                            src={step.image}
+                                            alt={step.title}
+                                            width={1920}
+                                            height={1080}
+                                            className="size-full rounded-lg object-contain aspect-square"
+                                            style={{
+                                                WebkitMaskImage:
+                                                    "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
+                                            }}
+                                            loading='lazy'
+                                        />
+                                    </div>
+                                </div>
+                            }
                         </div>
 
-                        <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"} flex flex-col gap-8 h-full absolute top-0 left-1/2 transform -translate-x-1/2`}>
+                        <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"}
+                             flex flex-col gap-8 h-full absolute top-0 lg:left-1/2 left-0 transform -translate-x-1/2
+                             `}>
                             {/* Hình tròn Active */}
                             <div
                                 className={`relative size-4 shrink-0 rounded-full flex items-center justify-center font-bold transition-all duration-300`}
@@ -145,19 +167,6 @@ const ProcessStep = (props: Props) => {
                                         />
                                         :
                                         <div className="absolute size-8 rounded-full bg-[#33404A] opacity-20" />
-                                    // <motion.div
-                                    //     className="absolute size-6 rounded-full bg-[#33404A] opacity-20"
-                                    //     initial={{ scale: 1, opacity: 0.3 }}
-                                    //     animate={{
-                                    //         scale: [1, 1.5],
-                                    //         opacity: [0.3, 0],
-                                    //     }}
-                                    //     transition={{
-                                    //         duration: 1.5,
-                                    //         repeat: Infinity,
-                                    //         ease: "easeOut",
-                                    //     }}
-                                    // />
                                 }
                             </div>
 
@@ -175,4 +184,4 @@ const ProcessStep = (props: Props) => {
     )
 }
 
-export default ProcessStep
+export default ServiceProcessStep

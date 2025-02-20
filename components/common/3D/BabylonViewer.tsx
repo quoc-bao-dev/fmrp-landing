@@ -200,7 +200,7 @@ const BabylonViewer = () => {
           </p>
         </div>
       )} */}
-            <canvas ref={canvasRef} tabIndex={-1} className="w-full h-full flex justify-center items-center rounded-xl"></canvas>
+            <canvas ref={canvasRef} tabIndex={-1} className="w-full h-full flex justify-center items-center rounded-xl" />
         </React.Fragment>
     )
 };

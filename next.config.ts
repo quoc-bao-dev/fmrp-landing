@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
     /* config options here */
     reactStrictMode: false,
     images: {
-        unoptimized: false,
+        // unoptimized: true,
         dangerouslyAllowSVG: true,
         remotePatterns: [
             {
@@ -19,6 +19,21 @@ const nextConfig: NextConfig = {
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840], // Kích thước thiết bị hỗ trợ
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Kích thước hình ảnh
     },
+    async headers() {
+        return [
+            {
+                source: "/icons/(.*)", // Cache tất cả hình ảnh trong thư mục `/public/icons`
+                // source: "/_next/image(.*)", // Cache tất cả hình ảnh tối ưu của Next.js
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable", // Cache 1 năm
+                    },
+                ],
+            },
+        ];
+    },
+
     async rewrites() {
         return [
             {

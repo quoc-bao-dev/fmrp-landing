@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import React, { useState, useCallback } from 'react';
 
 import { HiArrowUpRight } from "react-icons/hi2";
+import BlurImage from '../../blur/BlurImage';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type ProjectCardProps = {
     project: {
@@ -16,6 +18,7 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+    const { isVisibleTablet } = useResizeStore()
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [rotation, setRotation] = useState<number>(0);
     const [imageLoaded, setImageLoaded] = useState(false); // State kiểm tra ảnh đã load chưa
@@ -41,22 +44,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
             <div className='absolute w-full aspect-0.87/1 rounded-3xl z-0 overflow-hidden'>
                 {/* Skeleton Loading */}
-                {!imageLoaded && (
-                    <div className="absolute inset-0 bg-gray-300 animate-pulse" />
-                )}
-
-                <Image
+                <BlurImage
+                    src={project?.image ?? "/default/default.png"}
+                    alt="Project Image"
                     width={500}
                     height={800}
-                    alt="project image"
-                    src={project?.image ?? "/default/default.png"}
-                    className={`size-full object-cover object-top rounded-3xl transition-all duration-500 ${imageLoaded ? "blur-0 opacity-100" : "blur-md opacity-0"
-                        }`}
-                    placeholder="blur"
-                    blurDataURL="/default/default-blur.png"
-                    loading='eager'
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..." // Chuỗi Base64 của ảnh mờ
                     priority
-                    onLoadingComplete={() => setImageLoaded(true)}
+                    className="size-full object-cover object-top rounded-3xl"
                 />
 
                 {/* Hover Overlay */}
@@ -76,8 +71,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             <div
                 className='w-full p-3 rounded-b-3xl relative z-[2]'
                 style={{
-                    boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
-                    background: "linear-gradient(360deg, rgba(0, 0, 0, 0.2) 12.85%, rgba(0, 0, 0, 0) 100%)"
+                    boxShadow: isVisibleTablet ? "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
+                    background: isVisibleTablet ? "linear-gradient(360deg, rgba(0, 0, 0, 0.5) 12.85%, rgba(0, 0, 0, 0) 100%)" : "linear-gradient(360deg, rgba(0, 0, 0, 0.2) 12.85%, rgba(0, 0, 0, 0) 100%)"
                 }}
             >
                 <div className='flex items-center justify-between gap-6 bg-white rounded-3xl px-6 py-3'>
@@ -87,8 +82,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                                 <Image
                                     alt='logo'
                                     src={`${project?.logo ?? "/default/default.png"}`}
-                                    width={100}
-                                    height={50}
+                                    width={300}
+                                    height={150}
                                     className='size-full object-contain'
                                 />
                             </div>
@@ -103,16 +98,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     <motion.div
                         animate={{ rotate: rotation }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="flex items-center max-w-12"
+                        className="flex items-center 3xl:max-w-12 max-w-10"
                     >
-                        <div className="bg-[#000000] p-3.5 rounded-full">
-                            <HiArrowUpRight className='size-5 text-white' />
+                        <div className="bg-[#000000] 3xl:p-3.5 p-3 rounded-full">
+                            <HiArrowUpRight className='3xl:size-5 size-[18px] text-white' />
                         </div>
                     </motion.div>
                 </div>
             </div>
-
-
         </Link >
     )
 }

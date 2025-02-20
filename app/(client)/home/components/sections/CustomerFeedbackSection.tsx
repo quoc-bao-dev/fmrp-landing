@@ -1,6 +1,6 @@
 import React from 'react'
-import FeedbackMarquee from '../ui/FeedbackMarquee'
 import { uuidv4 } from '@/lib/uuid';
+import FeedbackMarquee from '../ui/customer-feedback/FeedbackMarquee';
 
 type Props = {}
 
@@ -41,12 +41,13 @@ const CustomerFeedbackSection = (props: Props) => {
     ];
 
     return (
-        <div className='3xl:py-24 py-20 overflow-hidden'>
-            <div className='custom-container flex items-center 3xl:gap-16 gap-14 relative z-[1]'>
-                <div className='w-full max-w-[60%] overflow-hidden'>
+        <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 overflow-hidden'>
+            <div className='custom-container flex lg:flex-row flex-col lg:items-center 3xl:gap-16 gap-14 relative z-[1]'>
+                <div className='w-full lg:max-w-[60%] max-w-full overflow-hidden  lg:order-1 order-2 '>
                     <FeedbackMarquee feedbacks={feedbacks} />
                 </div>
-                <div className='w-full max-w-[40%] flex flex-col justify-center gap-4'>
+
+                <div className='w-full lg:max-w-[40%] max-w-full flex flex-col justify-center gap-4 lg:order-2 order-1'>
                     <h3 className='text-title-section-small text-[#1A2025] capitalize font-extrabold'>
                         Phản hồi từ Khách hàng
                     </h3>
