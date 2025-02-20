@@ -8,10 +8,16 @@ import { useScrollContext } from '@/contexts/ScrollContext';
 import AnimatedArrows from '../ui/hero/AnimatedArrows';
 import AnimatedTitle from '@/components/common/animations/AnimatedTitle';
 
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+
 type HeroSectionProps = {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
     const { scrollToElementRef } = useScrollContext();
 
     const iconArrow = [
@@ -32,11 +38,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     const handleScroll = (type: string) => {
         document.body.style.overflow = type === "disable" ? "hidden" : "";
     };
-
-    // Sử dụng component trong phần render
-    const heroTitle = "Đồng Hành Cùng trong kỷ nguyên số mới"
-    // const heroTitle = "Giao hàng quốc tế nhanh chóng";
-    const heroPerTitle = heroTitle.split('').map((letter: string, index: number) => ({ letter: letter, id: index + 1 }));
 
     const heroPerTitle1 = "Đồng Hành Cùng".split("").map((letter, index) => ({ id: index, letter }));
     const heroPerTitle2 = "trong kỷ nguyên số mới".split("").map((letter, index) => ({ id: index + heroPerTitle1.length, letter }));
@@ -62,15 +63,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                     className="size-full object-contain opacity-15"
                 />
             </div>
-            {/* <div className='absolute -top-8 -right-[12%] 3xl:h-[840px] 2xl:h-[680px] xxl:h-[640px] h-[580px] aspect-3/2'>
-                <Image
-                    alt="logo"
-                    width={900}
-                    height={900}
-                    src="/logo/foso/logo-pattern-2.svg"
-                    className="size-full object-contain opacity-60"
-                />
-            </div> */}
 
             <div className='3xl:mx-[128px] 2xl:mx-[98px] xl:mx-[88px] md:mx-[60px] mx-8 flex lg:flex-row flex-col-reverse items-center lg:justify-between justify-center gap-2 h-full relative z-[2]'>
                 {/* button arrow */}
@@ -78,19 +70,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 
                 {/* contetn left */}
                 <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-center'>
-                    {/* Chạy Animation */}
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
-                    <span
-                        className='3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] lg:text-[36px] md:text-[32px] text-[20px] font-extrabold text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2'
+
+                    <motion.span
+                        ref={ref}
+                        initial={{ opacity: 0, scale: 0.8 }} // Bắt đầu nhỏ & mờ
+                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }} // Khi vào viewport thì hiển thị
+                        transition={{ duration: 0.8, ease: "easeOut" }} // Hiệu ứng mượt mà
+                        className="3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] 
+                       lg:text-[36px] md:text-[32px] text-[20px] font-extrabold 
+                       text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2"
                         style={{
                             background: "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
                         }}
                     >
                         Foso
-                    </span>
+                    </motion.span>
                     <br />
-                    {/* Chạy Animation */}
-                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle2} delay={2}  />
+
+                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle2} delay={2} />
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
