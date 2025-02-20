@@ -1,0 +1,60 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
+interface Letter {
+    id: number
+    letter: string
+}
+
+interface AnimatedTitleProps {
+    heroPerTitle: Letter[]
+    className?: string
+    delay?: number // ⬅️ Thêm prop để điều chỉnh delay
+}
+
+export default function AnimatedTitle({ heroPerTitle, className, delay = 0 }: AnimatedTitleProps) {
+    const container = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.06, delayChildren: delay }, // ⬅️ Tăng staggerChildren và dùng delay
+        },
+    }
+
+    const child = {
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                damping: 15, // ⬅️ Tăng damping để giảm rung
+                stiffness: 20, // ⬅️ Giảm stiffness để mượt hơn
+            },
+        },
+        hidden: {
+            opacity: 0,
+            y: 20,
+            transition: {
+                type: "spring",
+                damping: 15,
+                stiffness: 20,
+            },
+        },
+    }
+
+    return (
+        <motion.span
+            className={className}
+            variants={container}
+            initial="hidden"
+            animate="visible"
+        >
+            {heroPerTitle.map((e) => (
+                <motion.span key={e.id.toString()} variants={child}>
+                    {e.letter}
+                </motion.span>
+            ))}
+        </motion.span>
+    )
+}

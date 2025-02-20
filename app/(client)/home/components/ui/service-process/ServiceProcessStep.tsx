@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image';
@@ -37,9 +37,27 @@ const steps = [
     },
 ];
 
+const imageVariants = {
+    hiddenLeft: { opacity: 0, x: -100 }, // Trượt từ trái
+    hiddenRight: { opacity: 0, x: 100 }, // Trượt từ phải
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            type: "spring",
+            stiffness: 80,
+            damping: 15,
+        },
+    }
+};
+
+
 const ServiceProcessStep = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     const [activeStep, setActiveStep] = useState<number>(0);
+
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -62,9 +80,26 @@ const ServiceProcessStep = (props: Props) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect(); // Ngừng theo dõi sau khi đã hiển thị
+                }
+            },
+            { threshold: 0.05 } // Khi 20% của section vào viewport thì kích hoạt animation
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <div className="3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12">
+        <div ref={sectionRef} className="3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12">
             {/* Timeline Steps */}
             <div className="relative flex flex-col gap-10">
                 {steps.map((step, index) => (
@@ -72,14 +107,19 @@ const ServiceProcessStep = (props: Props) => {
                         key={step.id}
                         id={`step-${index}`}
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} // Chỉ chạy khi visible
                         transition={{ duration: 0.5, delay: index * 0.3 }}
                         className={`${!isVisibleTablet ? index % 2 === 0 ? "flex-row" : "flex-row-reverse" : ""} relative flex items-center gap-20 justify-between`}
                     >
-                        {/* Hình ảnh */}
+                        {/* Hình ảnh hiển thị từ desktop */}
                         {
                             !isVisibleTablet &&
-                            <div className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}>
+                            <motion.div
+                                className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}
+                                initial={index % 2 === 0 ? "hiddenRight" : "hiddenLeft"}
+                                animate={isVisible ? "visible" : "hiddenRight"} // Chỉ chạy animation khi visible
+                                variants={imageVariants}
+                            >
                                 <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
                                     <Image
                                         src={step.image}
@@ -94,7 +134,23 @@ const ServiceProcessStep = (props: Props) => {
                                         loading='lazy'
                                     />
                                 </div>
-                            </div>
+                            </motion.div>
+                            // <div className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}>
+                            //     <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
+                            //         <Image
+                            //             src={step.image}
+                            //             alt={step.title}
+                            //             width={1920}
+                            //             height={1080}
+                            //             className="size-full rounded-lg object-contain aspect-square"
+                            //             style={{
+                            //                 WebkitMaskImage:
+                            //                     "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
+                            //             }}
+                            //             loading='lazy'
+                            //         />
+                            //     </div>
+                            // </div>
                         }
 
                         {/* Nội dung */}
@@ -118,7 +174,10 @@ const ServiceProcessStep = (props: Props) => {
                                     </h3>
                                 </div>
                             </div>
+
                             <p className="3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] font-medium">{step.description}</p>
+
+                            {/* Hình ảnh hiển thị ở giao diện tablet */}
                             {
                                 isVisibleTablet &&
                                 <div className={`w-full flex justify-center`}>

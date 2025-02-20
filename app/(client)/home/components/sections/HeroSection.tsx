@@ -6,6 +6,7 @@ import React from 'react';
 import { uuidv4 } from '@/lib/uuid';
 import { useScrollContext } from '@/contexts/ScrollContext';
 import AnimatedArrows from '../ui/hero/AnimatedArrows';
+import AnimatedTitle from '@/components/common/animations/AnimatedTitle';
 
 type HeroSectionProps = {
 }
@@ -31,6 +32,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     const handleScroll = (type: string) => {
         document.body.style.overflow = type === "disable" ? "hidden" : "";
     };
+
+    // Sử dụng component trong phần render
+    const heroTitle = "Đồng Hành Cùng trong kỷ nguyên số mới"
+    // const heroTitle = "Giao hàng quốc tế nhanh chóng";
+    const heroPerTitle = heroTitle.split('').map((letter: string, index: number) => ({ letter: letter, id: index + 1 }));
+
+    const heroPerTitle1 = "Đồng Hành Cùng".split("").map((letter, index) => ({ id: index, letter }));
+    const heroPerTitle2 = "trong kỷ nguyên số mới".split("").map((letter, index) => ({ id: index + heroPerTitle1.length, letter }));
 
     return (
         <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 lg:h-screen h-svh relative'>
@@ -69,7 +78,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 
                 {/* contetn left */}
                 <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-center'>
-                    <span className='text-[#050505] text-title-section font-extrabold'>Đồng Hành Cùng</span>
+                    {/* Chạy Animation */}
+                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
                     <span
                         className='3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] lg:text-[36px] md:text-[32px] text-[20px] font-extrabold text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2'
                         style={{
@@ -79,7 +89,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                         Foso
                     </span>
                     <br />
-                    <span className='text-[#050505] text-title-section font-extrabold'>trong kỷ nguyên số mới</span>
+                    {/* Chạy Animation */}
+                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle2} delay={2}  />
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
