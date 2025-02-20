@@ -95,38 +95,6 @@ const BabylonViewer = () => {
 
                     // 🌟 **Thêm hiệu ứng phản chiếu vật liệu**
                     scene.blockMaterialDirtyMechanism = true; // 🚀 Giảm số lần cập nhật vật liệu
-                    // 🌟 OPTION 1
-                    // meshes.forEach((mesh) => {
-                    //     if (mesh.material) {
-                    //         const pbr = mesh.material as BABYLON.PBRMaterial;
-                    //         pbr.reflectionTexture = scene.environmentTexture;
-                    //         const materialName = mesh.material.name.toLowerCase();
-
-                    //         switch (true) {
-                    //             case materialName.includes("lambert4"):
-                    //                 pbr.albedoColor = new BABYLON.Color3(0.5, 1, 0);
-                    //                 pbr.metallic = 0.1;
-                    //                 pbr.roughness = 1;
-                    //                 break;
-                    //             case materialName.includes("metalshiny"):
-                    //                 pbr.albedoColor = new BABYLON.Color3(0.2, 0.2, 0.2);
-                    //                 pbr.metallic = 1;
-                    //                 pbr.roughness = 0.05;
-                    //                 break;
-                    //             case materialName.includes("pasted_eyes"):
-                    //                 pbr.emissiveColor = new BABYLON.Color3(0, 0, 1);
-                    //                 pbr.emissiveIntensity = 8;
-                    //                 break;
-                    //             case materialName.includes("blackglass"):
-                    //                 pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
-                    //                 pbr.metallic = 1;
-                    //                 pbr.roughness = 0.01;
-                    //                 pbr.reflectionTexture = new BABYLON.HDRCubeTexture("/hdr/test4.hdr", scene, 128);
-                    //                 pbr.reflectionTexture.level = 0.8;
-                    //                 break;
-                    //         }
-                    //     }
-                    // });
 
                     // 🌟 OPTION 2
                     meshes.forEach((mesh) => {
