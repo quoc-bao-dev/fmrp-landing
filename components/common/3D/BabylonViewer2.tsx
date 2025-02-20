@@ -6,18 +6,13 @@ import "@babylonjs/loaders";
 
 const BabylonViewer = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const engineRef = useRef<BABYLON.Engine | null>(null);
-    const sceneRef = useRef<BABYLON.Scene | null>(null);
-    const rootRef = useRef<BABYLON.TransformNode | null>(null);
 
     useEffect(() => {
         if (!canvasRef.current) return;
 
         // 1️⃣ Khởi tạo BabylonJS Engine
         const engine = new BABYLON.Engine(canvasRef.current, true);
-        engineRef.current = engine;
         const scene = new BABYLON.Scene(engine);
-        sceneRef.current = scene;
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Làm nền trong suốt
 
         // 2️⃣ Tạo camera
@@ -55,6 +50,7 @@ const BabylonViewer = () => {
         ]).then((messages) => {
             console.log(...messages);
             console.log("✅ HDR đã load xong, bắt đầu load robot...");
+
             scene.environmentTexture = envTexture;
 
             // 5️⃣ Load mô hình GLB
@@ -62,18 +58,13 @@ const BabylonViewer = () => {
                 if (meshes.length > 0) {
                     console.log("✅ Robot đã load thành công!");
 
-                    // Nếu root đã tồn tại, xóa để tránh đè lên mô hình cũ
-                    if (rootRef.current) {
-                        rootRef.current.dispose();
-                    }
-
                     const root = new BABYLON.TransformNode("root", scene); // Gốc chứa mô hình
-                    rootRef.current = root;
                     meshes.forEach((mesh) => mesh.setParent(root)); // Gán tất cả vào node gốc
 
-                    // 👉 Tính toán Bounding Box tổng
-                    let min = BABYLON.Vector3.Zero();
-                    let max = BABYLON.Vector3.Zero();
+                    // 👉 Tính toán Bounding Box tổng từ tất cả meshes
+                    let min = new BABYLON.Vector3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
+                    let max = new BABYLON.Vector3(Number.MIN_VALUE, Number.MIN_VALUE, Number.MIN_VALUE);
+
                     meshes.forEach((mesh) => {
                         if (mesh.getBoundingInfo) {
                             const bbox = mesh.getBoundingInfo().boundingBox;
@@ -82,14 +73,14 @@ const BabylonViewer = () => {
                         }
                     });
 
-                    // 👉 Điều chỉnh kích thước mô hình
+
+                    // 👉 Tính kích thước Bounding Box
                     const size = max.subtract(min);
                     const center = min.add(size.scale(0.5));
+
                     // 👉 Điều chỉnh kích thước mô hình để nó luôn vừa với khung
                     const scaleFactor = 2 / Math.max(size.x, size.y, size.z);
                     root.scaling = new BABYLON.Vector3(scaleFactor, scaleFactor, scaleFactor);
-                    root.position = new BABYLON.Vector3(-center.x * scaleFactor, -min.y * scaleFactor, -center.z * scaleFactor);
-                    root.rotationQuaternion = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, Math.PI / 2);
 
                     // 👉 Căn giữa mô hình
                     root.position = new BABYLON.Vector3(-center.x * scaleFactor, -min.y * scaleFactor, -center.z * scaleFactor);
@@ -99,78 +90,85 @@ const BabylonViewer = () => {
 
                     // 🔹 Thêm hiệu ứng phản chiếu vật liệu (custom robot)
                     // 🌟 OPTION 2
-                    // 🔹 Tùy chỉnh vật liệu
                     meshes.forEach((mesh) => {
                         if (mesh.material) {
                             const pbr = mesh.material as BABYLON.PBRMaterial;
+
+                            // Ánh sáng môi trường
+                            // pbr.environmentTexture = scene.environmentTexture;
                             pbr.reflectionTexture = scene.environmentTexture;
+
+                            // Tùy chỉnh từng phần màu sắc dựa trên tên vật liệu
                             const materialName = mesh.material.name.toLowerCase();
 
-                            switch (true) {
-                                case materialName.includes("lambert4"):
-                                    pbr.albedoColor = new BABYLON.Color3(0.5, 1, 0);
-                                    pbr.metallic = 0.1;
-                                    pbr.roughness = 1;
-                                    break;
-                                case materialName.includes("metalshiny"):
-                                    pbr.albedoColor = new BABYLON.Color3(0.2, 0.2, 0.2);
-                                    pbr.metallic = 1;
-                                    pbr.roughness = 0.05;
-                                    break;
-                                case materialName.includes("rubber"):
-                                    pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
-                                    pbr.metallic = 0.2;
-                                    pbr.roughness = 0.5;
-                                    break;
-                                case materialName.includes("metal"):
-                                    pbr.albedoColor = new BABYLON.Color3(0.08, 0.08, 0.08);
-                                    pbr.metallic = 0.4;
-                                    pbr.roughness = 0.35;
-                                    break;
-                                case materialName.includes("lambert1"):
-                                    pbr.albedoColor = new BABYLON.Color3(0.65, 0.65, 0.65);
-                                    pbr.metallic = 0.1;
-                                    pbr.roughness = 0.65;
-                                    pbr.clearCoat.isEnabled = true;
-                                    pbr.clearCoat.roughness = 0.9;
-                                    pbr.clearCoat.intensity = 0.2;
-                                    break;
-                                case materialName.includes("pasted_eyes"):
-                                    pbr.emissiveColor = new BABYLON.Color3(0, 0, 1);
-                                    pbr.emissiveIntensity = 8;
-                                    break;
-                                case materialName.includes("blackglass"):
-                                    pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
-                                    pbr.metallic = 1;
-                                    pbr.roughness = 0.01;
-                                    pbr.reflectionTexture = new BABYLON.HDRCubeTexture("/hdr/test4.hdr", scene, 128);
-                                    pbr.reflectionTexture.level = 0.8;
-                                    break;
+                            if (materialName.includes("lambert4")) {
+                                // 🔹 Các đường viền trên lưng (xám nhạt)
+                                pbr.albedoColor = new BABYLON.Color3(0.5, 1, 0); // Phối màu vàng xanh lá
+
+                                // Thiết lập phản chiếu ánh sáng
+                                pbr.metallic = 0.1;
+                                pbr.roughness = 1;
+
+                            } else if (materialName.includes("metalshiny")) { // done
+                                // 🔹 Phần cổ (xám bạc bóng)
+                                pbr.albedoColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+                                pbr.metallic = 1;             // Tăng độ phản chiếu
+                                pbr.roughness = 0.05;         // Giảm độ nhám để bóng hơn
+                            } else if (materialName.includes("rubber")) {
+                                // 🔹 Bàn chân (xám đậm)
+                                pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                                pbr.metallic = 0.2;
+                                pbr.roughness = 0.5;
+                            } else if (materialName.includes("metal")) {
+                                // 🔹 Phần thân ngay gần cổ (xám kim loại)
+                                pbr.albedoColor = new BABYLON.Color3(0.08, 0.08, 0.08);
+                                pbr.metallic = 0.4;           // Tăng độ kim loại
+                                pbr.roughness = 0.35;         // Giảm độ nhám để phản xạ nhẹ
+                            } else if (materialName.includes("lambert1")) {
+                                // 🔹 Thân chính chứa cả chân (xám trung bình)
+                                pbr.albedoColor = new BABYLON.Color3(0.65, 0.65, 0.65);
+                                pbr.metallic = 0.1;
+                                pbr.roughness = 0.65;
+
+                                pbr.clearCoat.isEnabled = true;
+                                pbr.clearCoat.roughness = 0.9;
+                                pbr.clearCoat.intensity = 0.2;
+                            } else if (materialName.includes("pasted_eyes")) {
+                                // 🔹 Mắt robot (vàng phát sáng)
+                                pbr.emissiveColor = new BABYLON.Color3(0, 0, 1);
+                                pbr.emissiveIntensity = 8; // Tăng độ sáng hơn
+                                console.log("🔆 Đã chỉnh màu mắt:", materialName);
+                            } else if (materialName.includes("blackglass")) {
+                                // 🔹 Mặt kính (đen bóng)
+                                pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                                pbr.metallic = 1;
+                                pbr.roughness = 0.01;
+
+                                // Áp dụng file HDR làm texture phản chiếu
+                                let hdrTexture = new BABYLON.HDRCubeTexture("/hdr/test4.hdr", scene, 128);
+                                pbr.reflectionTexture = hdrTexture;
+                                pbr.reflectionTexture.level = 0.8; // Điều chỉnh độ phản chiếu
                             }
                         }
                     });
 
-
-                    // 🔹 Xoay mô hình nhẹ
-                    scene.onBeforeRenderObservable.add(() => {
-                        camera.alpha += 0.004;
-                    });
+                    // console.log("Mô hình đã load:", root);
                 }
             });
         })
 
-        // 6️⃣ Render loop
+        // 6️⃣ Xoay mô hình tự động nhẹ nhàng
+        scene.onBeforeRenderObservable.add(() => {
+            camera.alpha += 0.004;
+        });
+
+        // 7️⃣ Render loop
         engine.runRenderLoop(() => scene.render());
-        
-        // 7️⃣ Cleanup khi component unmount
+
+        // 8️⃣ Cleanup khi unmount
         return () => {
-            console.log("🧹 Cleaning up Babylon scene...");
-            if (rootRef.current) rootRef.current.dispose();
-            if (scene) scene.dispose();
-            if (engine) engine.dispose();
-            engineRef.current = null;
-            sceneRef.current = null;
-            rootRef.current = null;
+            scene.dispose();
+            engine.dispose();
         };
     }, []);
 

@@ -1,46 +1,48 @@
 
 import BabylonViewer from '@/components/common/3D/BabylonViewer';
 import Image from 'next/image';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { uuidv4 } from '@/lib/uuid';
 import { useScrollContext } from '@/contexts/ScrollContext';
 import AnimatedArrows from '../ui/hero/AnimatedArrows';
 import AnimatedTitle from '@/components/common/animations/AnimatedTitle';
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
+import FadeInZoom from '@/components/common/animations/fade/FadeInZoom';
 
 type HeroSectionProps = {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
     const { scrollToElementRef } = useScrollContext();
 
-    const iconArrow = [
-        {
-            id: uuidv4(),
-            icon: "/icons/common/arrow/arrow-1.svg"
-        },
-        {
-            id: uuidv4(),
-            icon: "/icons/common/arrow/arrow-2.svg"
-        },
-        {
-            id: uuidv4(),
-            icon: "/icons/common/arrow/arrow-3.svg"
-        },
-    ]
+    // ✅ Tạo danh sách mũi tên với `useMemo` để tránh tạo lại mảng mỗi lần render
+    const iconArrow = useMemo(
+        () => [
+            { id: uuidv4(), icon: "/icons/common/arrow/arrow-1.svg" },
+            { id: uuidv4(), icon: "/icons/common/arrow/arrow-2.svg" },
+            { id: uuidv4(), icon: "/icons/common/arrow/arrow-3.svg" },
+        ],
+        []
+    );
 
-    const handleScroll = (type: string) => {
+    // ✅ Tạo hàm handleScroll với `useCallback` để tránh tạo lại hàm mỗi lần render
+    const handleScroll = useCallback((type: "enable" | "disable") => {
         document.body.style.overflow = type === "disable" ? "hidden" : "";
-    };
+    }, []);
 
-    const heroPerTitle1 = "Đồng Hành Cùng".split("").map((letter, index) => ({ id: index, letter }));
-    const heroPerTitle2 = "trong kỷ nguyên số mới".split("").map((letter, index) => ({ id: index + heroPerTitle1.length, letter }));
+    // ✅ Tạo danh sách chữ để hiển thị với hiệu ứng Animation
+    const heroPerTitle1 = useMemo(
+        () => "Đồng Hành Cùng".split("").map((letter, index) => ({ id: index, letter })),
+        []
+    );
+    const heroPerTitle2 = useMemo(
+        () =>
+            "trong kỷ nguyên số mới"
+                .split("")
+                .map((letter, index) => ({ id: index + heroPerTitle1.length, letter })),
+        [heroPerTitle1]
+    );
 
     return (
         <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 lg:h-screen h-svh relative'>
@@ -72,20 +74,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-center'>
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
 
-                    <motion.span
-                        ref={ref}
-                        initial={{ opacity: 0, scale: 0.8 }} // Bắt đầu nhỏ & mờ
-                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }} // Khi vào viewport thì hiển thị
-                        transition={{ duration: 0.8, ease: "easeOut" }} // Hiệu ứng mượt mà
+                    <FadeInZoom
+                        delay={1.2} // ⬅️ Xuất hiện sau heroPerTitle1
                         className="3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] 
-                       lg:text-[36px] md:text-[32px] text-[20px] font-extrabold 
-                       text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2"
+                        lg:text-[36px] md:text-[32px] text-[20px] font-extrabold 
+                        text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2"
                         style={{
                             background: "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
                         }}
                     >
                         Foso
-                    </motion.span>
+                    </FadeInZoom>
                     <br />
 
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle2} delay={2} />
@@ -93,13 +92,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 
                 {/* Phần mô hình 3D bên phải */}
                 <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
-                    <div
-                        className='relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square'
+                    <FadeInZoom
+                        delay={1}
+                        duration={0.8}
+                        className="relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square"
                         onMouseEnter={() => handleScroll("disable")} // ✅ Chặn scroll khi hover vào
                         onMouseLeave={() => handleScroll("enable")} // ✅ Bật lại scroll khi rời chuột
                     >
                         <BabylonViewer />
-                    </div>
+                    </FadeInZoom>
                 </div>
             </div>
 

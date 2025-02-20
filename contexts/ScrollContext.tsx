@@ -1,4 +1,3 @@
-// 📌 contexts/ScrollContext.tsx
 "use client";
 
 import React, { createContext, useContext, useRef, RefObject } from "react";
@@ -30,7 +29,7 @@ export const ScrollProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         refs.current[key] = ref;
     };
 
-    // 📌 Hàm cuộn đến section được chỉ định
+    // 📌 Hàm cuộn đến section được chỉ định (Nhanh hơn)
     const scrollToElementRef = (key: string) => {
         const targetRef = refs.current[key];
         if (!targetRef?.current) return;
@@ -38,11 +37,12 @@ export const ScrollProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         const targetPosition = targetRef.current.getBoundingClientRect().top + window.scrollY;
         const startPosition = window.scrollY;
         const distance = targetPosition - startPosition;
-        const duration = 1000; // Thời gian cuộn (ms)
+        const duration = 100; // ⬅️ Giảm thời gian cuộn để nhanh hơn
         let startTime: number | null = null;
 
+        // 📌 Tăng tốc easing để phản hồi nhanh hơn
         const easeInOutQuad = (t: number): number => {
-            return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            return t < 0.4 ? 3 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
         };
 
         const animateScroll = (currentTime: number) => {
