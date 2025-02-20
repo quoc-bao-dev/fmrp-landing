@@ -4,7 +4,7 @@ import * as BABYLON from "@babylonjs/core";
 import React, { useEffect, useRef } from "react";
 import "@babylonjs/loaders";
 
-const BabylonViewer = () => {
+const BabylonViewer2 = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
@@ -89,7 +89,7 @@ const BabylonViewer = () => {
                     root.rotationQuaternion = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, Math.PI / 2);
 
                     // 🔹 Thêm hiệu ứng phản chiếu vật liệu (custom robot)
-                    // 🌟 OPTION 2
+                    // 🌟 OPTION 1
                     meshes.forEach((mesh) => {
                         if (mesh.material) {
                             const pbr = mesh.material as BABYLON.PBRMaterial;
@@ -152,6 +152,74 @@ const BabylonViewer = () => {
                         }
                     });
 
+                    // 🌟 OPTION 2
+                    // meshes.forEach((mesh) => {
+                    //     if (mesh.material) {
+                    //         const pbr = mesh.material as BABYLON.PBRMaterial;
+                    
+                    //         // 🌟 Kích hoạt phản chiếu môi trường
+                    //         pbr.reflectionTexture = scene.environmentTexture;
+                    
+                    //         // 📌 Lấy tên vật liệu
+                    //         const materialName = mesh.material.name.toLowerCase();
+                    
+                    //         switch (true) {
+                    //             case materialName.includes("lambert4"): // 🔹 Các đường viền trên lưng
+                    //                 pbr.albedoColor = new BABYLON.Color3(0.5, 1, 0);
+                    //                 pbr.metallic = 0.15;  // Tăng nhẹ độ kim loại
+                    //                 pbr.roughness = 0.9;  // Giảm độ phản chiếu để trông tự nhiên hơn
+                    //                 break;
+                    
+                    //             case materialName.includes("metalshiny"): // 🔹 Phần cổ (xám bạc bóng)
+                    //                 pbr.albedoColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+                    //                 pbr.metallic = 1;
+                    //                 pbr.roughness = 0.02; // Giảm roughness để tăng độ bóng mượt
+                    //                 pbr.clearCoat.isEnabled = true; 
+                    //                 pbr.clearCoat.roughness = 0.05;
+                    //                 pbr.clearCoat.intensity = 0.5;
+                    //                 break;
+                    
+                    //             case materialName.includes("rubber"): // 🔹 Bàn chân (xám đậm)
+                    //                 pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                    //                 pbr.metallic = 0.2;
+                    //                 pbr.roughness = 0.6; // Giảm độ bóng để mô phỏng cao su tốt hơn
+                    //                 break;
+                    
+                    //             case materialName.includes("metal"): // 🔹 Phần thân gần cổ (xám kim loại)
+                    //                 pbr.albedoColor = new BABYLON.Color3(0.08, 0.08, 0.08);
+                    //                 pbr.metallic = 0.5;  // Tăng độ kim loại để tạo cảm giác cứng cáp hơn
+                    //                 pbr.roughness = 0.3; // Giảm độ nhám để phản chiếu nhẹ hơn
+                    //                 break;
+                    
+                    //             case materialName.includes("lambert1"): // 🔹 Thân chính chứa cả chân
+                    //                 pbr.albedoColor = new BABYLON.Color3(0.65, 0.65, 0.65);
+                    //                 pbr.metallic = 0.1;
+                    //                 pbr.roughness = 0.65;
+                    //                 pbr.clearCoat.isEnabled = true;
+                    //                 pbr.clearCoat.roughness = 0.85; // Giữ nguyên độ mờ nhưng làm cho bóng sáng hơn
+                    //                 pbr.clearCoat.intensity = 0.3;
+                    //                 break;
+                    
+                    //             case materialName.includes("pasted_eyes"): // 🔹 Mắt robot (vàng phát sáng)
+                    //                 pbr.emissiveColor = new BABYLON.Color3(1, 1, 0); // Chuyển sang màu vàng sáng hơn
+                    //                 pbr.emissiveIntensity = 10; // Tăng độ sáng hơn nữa để rõ ràng
+                    //                 console.log("🔆 Đã chỉnh màu mắt:", materialName);
+                    //                 break;
+                    
+                    //             case materialName.includes("blackglass"): // 🔹 Mặt kính (đen bóng)
+                    //                 pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                    //                 pbr.metallic = 1;
+                    //                 pbr.roughness = 0.01; // Giữ nguyên độ mịn
+                    
+                    //                 // 🚀 Tăng cường phản chiếu HDR
+                    //                 let hdrTexture = new BABYLON.HDRCubeTexture("/hdr/test4.hdr", scene, 128);
+                    //                 pbr.reflectionTexture = hdrTexture;
+                    //                 pbr.reflectionTexture.level = 1; // Tăng độ phản chiếu để rõ ràng hơn
+                    //                 break;
+                    //         }
+                    //     }
+                    // });
+
                     // console.log("Mô hình đã load:", root);
                 }
             });
@@ -179,4 +247,4 @@ const BabylonViewer = () => {
     )
 };
 
-export default BabylonViewer;
+export default BabylonViewer2;
