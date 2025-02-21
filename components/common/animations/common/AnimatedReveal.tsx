@@ -23,7 +23,7 @@ interface ScrollRevealProps {
 const AnimatedReveal: React.FC<ScrollRevealProps> = ({
     children,
     delay = 0,
-    duration = 1, // ⬅️ Tăng thời gian giúp hiệu ứng chậm hơn
+    duration = 0.7, // ⬅️ Tăng thời gian giúp hiệu ứng chậm hơn
     from = "center", // ⬅️ Mặc định không di chuyển
     effect = "fade",
     once = true,

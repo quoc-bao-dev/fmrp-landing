@@ -122,7 +122,7 @@ const MediaCoverageSection = (props: Props) => {
                                             <AnimatedReveal
                                                 effect="fade"
                                                 from="center"
-                                                duration={0.8}
+                                                duration={0.7}
                                             >
                                                 <MediaCard media={media} />
                                             </AnimatedReveal>
@@ -140,7 +140,7 @@ const MediaCoverageSection = (props: Props) => {
                                         effect="fade"
                                         from="bottom"
                                         // once={false}
-                                        duration={0.8}
+                                        duration={0.7}
                                         delay={index * 0.2} // Hiệu ứng hiển thị theo thứ tự với mỗi project cách nhau 0.2s
                                     >
 
@@ -154,7 +154,7 @@ const MediaCoverageSection = (props: Props) => {
                 <AnimatedReveal
                     effect="fade"
                     from="bottom"
-                    duration={0.8}
+                    duration={0.7}
                 >
                     <ButtonAnimation
                         type="button"

@@ -15,7 +15,7 @@ const ContactUsNowSection = (props: Props) => {
                     <AnimatedReveal
                         effect="fade"
                         from="bottom"
-                        duration={0.8}
+                        duration={0.7}
                         className="text-title-section-small font-extrabold text-[#1A2025]"
                     >
                         Có Dự Án Cần Thực Hiện?
@@ -23,7 +23,7 @@ const ContactUsNowSection = (props: Props) => {
                     <AnimatedReveal
                         effect="fade"
                         from="bottom"
-                        duration={0.8}
+                        duration={0.7}
                     >
                         <ButtonAnimation
                             icon={
@@ -51,7 +51,7 @@ const ContactUsNowSection = (props: Props) => {
                     <AnimatedReveal
                         effect="fade"
                         from="center"
-                        duration={0.8}
+                        duration={0.7}
                         className='3xl:h-[456px] xl:h-[380px] lg:h-[320px] h-[240px] aspect-0.715/1 relative z-0'
                     >
                         <Image

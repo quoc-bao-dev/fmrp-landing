@@ -97,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
                     <FadeInZoomDiv
                         delay={1}
-                        duration={0.8}
+                        duration={0.7}
                         className="relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square"
                         onMouseEnter={() => handleScroll("disable")} // ✅ Chặn scroll khi hover vào
                         onMouseLeave={() => handleScroll("enable")} // ✅ Bật lại scroll khi rời chuột
