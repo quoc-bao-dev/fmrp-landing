@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image';
 import { useResizeStore } from '@/stores/useResizeStore';
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type Props = {}
 
@@ -37,124 +38,83 @@ const steps = [
     },
 ];
 
-const imageVariants = {
-    hiddenLeft: { opacity: 0, x: -100 }, // Trượt từ trái
-    hiddenRight: { opacity: 0, x: 100 }, // Trượt từ phải
-    visible: {
-        opacity: 1,
-        x: 0,
-        transition: {
-            type: "spring",
-            stiffness: 80,
-            damping: 15,
-        },
-    }
-};
+const StepImage = React.memo(({ src, alt }: { src: string, alt: string }) => (
+    <Image
+        src={src}
+        alt={alt}
+        width={1920}
+        height={1080}
+        className="size-full rounded-lg object-contain aspect-square"
+        style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
+        loading="lazy"
+    />
+));
+
 
 
 const ServiceProcessStep = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     const [activeStep, setActiveStep] = useState<number>(0);
+    const stepRefs = useRef<(HTMLElement | null)[]>([]);
+    const scrollTimeout = useRef<number | null>(null);
 
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            let stepIndex = 0;
-
-            steps.forEach((_, index) => {
-                const element = document.getElementById(`step-${index}`);
+    const handleScroll = useCallback(() => {
+        if (scrollTimeout.current) return;
+        scrollTimeout.current = window.requestAnimationFrame(() => {
+            let newStepIndex = 0;
+            stepRefs.current.forEach((element, index) => {
                 if (element) {
                     const rect = element.getBoundingClientRect();
                     if (rect.top < window.innerHeight / 2) {
-                        stepIndex = index;
+                        newStepIndex = index;
                     }
                 }
             });
-
-            setActiveStep(stepIndex);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+            setActiveStep((prev) => (prev !== newStepIndex ? newStepIndex : prev));
+            scrollTimeout.current = null;
+        });
     }, []);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect(); // Ngừng theo dõi sau khi đã hiển thị
-                }
-            },
-            { threshold: 0.05 } // Khi 20% của section vào viewport thì kích hoạt animation
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, []);
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (scrollTimeout.current) cancelAnimationFrame(scrollTimeout.current);
+        };
+    }, [handleScroll]);
 
     return (
-        <div ref={sectionRef} className="3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12">
+        <div className="3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12">
             {/* Timeline Steps */}
             <div className="relative flex flex-col gap-10">
                 {steps.map((step, index) => (
-                    <motion.div
-                        key={step.id}
-                        id={`step-${index}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} // Chỉ chạy khi visible
-                        transition={{ duration: 0.5, delay: index * 0.3 }}
+                    <div
+                        key={`step-${step.id}`}
+                        ref={(el) => { stepRefs.current[index] = el }}
                         className={`${!isVisibleTablet ? index % 2 === 0 ? "flex-row" : "flex-row-reverse" : ""} relative flex items-center gap-20 justify-between`}
                     >
                         {/* Hình ảnh hiển thị từ desktop */}
                         {
                             !isVisibleTablet &&
-                            <motion.div
+                            <AnimatedReveal
+                                from={index % 2 === 0 ? "left" : "right"}
+                                effect='fade'
+                                // once={false}
                                 className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}
-                                initial={index % 2 === 0 ? "hiddenRight" : "hiddenLeft"}
-                                animate={isVisible ? "visible" : "hiddenRight"} // Chỉ chạy animation khi visible
-                                variants={imageVariants}
                             >
                                 <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
-                                    <Image
-                                        src={step.image}
-                                        alt={step.title}
-                                        width={1920}
-                                        height={1080}
-                                        className="size-full rounded-lg object-contain aspect-square"
-                                        style={{
-                                            WebkitMaskImage:
-                                                "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
-                                        }}
-                                        loading='lazy'
-                                    />
+                                    <StepImage src={step.image} alt={step.title} />
                                 </div>
-                            </motion.div>
-                            // <div className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}>
-                            //     <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
-                            //         <Image
-                            //             src={step.image}
-                            //             alt={step.title}
-                            //             width={1920}
-                            //             height={1080}
-                            //             className="size-full rounded-lg object-contain aspect-square"
-                            //             style={{
-                            //                 WebkitMaskImage:
-                            //                     "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
-                            //             }}
-                            //             loading='lazy'
-                            //         />
-                            //     </div>
-                            // </div>
+                            </AnimatedReveal>
                         }
 
                         {/* Nội dung */}
-                        <div className={`lg:w-1/2 w-full lg:max-w-[50%] max-w-full md:pl-10 pl-6 space-y-2`}>
+                        <AnimatedReveal
+                            from={index % 2 === 0 ? "right" : "left"}
+                            effect='fade'
+                            // once={false}
+                            className={`lg:w-1/2 w-full lg:max-w-[50%] max-w-full md:pl-10 pl-6 space-y-2`}
+                        >
 
                             <div className='relative w-fit '>
                                 <h3 className="3xl:!text-2xl xl:!text-xl lg:!text-lg !text-lg font-bold text-[#33404A] relative z-[1]">
@@ -182,23 +142,13 @@ const ServiceProcessStep = (props: Props) => {
                                 isVisibleTablet &&
                                 <div className={`w-full flex justify-center`}>
                                     <div className="md:w-1/2 w-full aspect-square relativee z-0 ">
-                                        <Image
-                                            src={step.image}
-                                            alt={step.title}
-                                            width={1920}
-                                            height={1080}
-                                            className="size-full rounded-lg object-contain aspect-square"
-                                            style={{
-                                                WebkitMaskImage:
-                                                    "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)",
-                                            }}
-                                            loading='lazy'
-                                        />
+                                        <StepImage src={step.image} alt={step.title} />
                                     </div>
                                 </div>
                             }
-                        </div>
+                        </AnimatedReveal>
 
+                        {/* Thanh timeline */}
                         <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"}
                              flex flex-col gap-8 h-full absolute top-0 lg:left-1/2 left-0 transform -translate-x-1/2
                              `}>
@@ -236,7 +186,7 @@ const ServiceProcessStep = (props: Props) => {
                                 )
                             }
                         </div>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
         </div >

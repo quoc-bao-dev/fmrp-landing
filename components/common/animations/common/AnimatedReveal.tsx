@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 interface ScrollRevealProps {
     children: React.ReactNode;
@@ -15,23 +15,33 @@ interface ScrollRevealProps {
     fadeOpacity?: number; // Độ mờ ban đầu
     className?: string;
     style?: React.CSSProperties;
+    onClick?: () => void; // Sự kiện khi người dùng click vào phần tử
+    onMouseEnter?: () => void; // Sự kiện khi di chuột vào
+    onMouseLeave?: () => void; // Sự kiện khi rời chuột khỏi phần tử
 }
 
-const ScrollReveal: React.FC<ScrollRevealProps> = ({
+const AnimatedReveal: React.FC<ScrollRevealProps> = ({
     children,
     delay = 0,
     duration = 1, // ⬅️ Tăng thời gian giúp hiệu ứng chậm hơn
     from = "center", // ⬅️ Mặc định không di chuyển
     effect = "fade",
-    once = false,
+    once = true,
     stagger = 0,
     blurEffect = false,
     fadeOpacity = 0.01, // ⬅️ Tăng độ mờ mạnh hơn
     className = "",
     style,
+    onClick,
+    onMouseEnter,
+    onMouseLeave
 }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.33  , once });
+    const isInView = useInView(ref, { amount: 0.33, once });
+
+
+    // State để theo dõi hiệu ứng khi click
+    const [isClicked, setIsClicked] = useState<boolean>(false);
 
     // Xác định hướng xuất hiện (Mặc định "center" sẽ không di chuyển)
     const xMove = from !== "center" ? (from === "left" ? -60 : from === "right" ? 60 : 0) : 0;
@@ -43,7 +53,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
             opacity: effect === "fade" ? fadeOpacity : 1, // ⬅️ Đảm bảo fade có độ mờ ban đầu
             x: xMove,
             y: yMove,
-            scale: effect === "zoom-in" ? 0.85 : effect === "zoom-out" ? 1.15 : 1,
+            scale: effect === "zoom-in" ? 0.6 : effect === "zoom-out" ? 1.15 : 1,
             rotate: effect === "rotate" ? -15 : 0,
             rotateY: effect === "flip" ? 90 : 0,
             filter: blurEffect ? "blur(15px)" : "blur(0px)", // ⬅️ Tăng độ mờ nếu bật blurEffect
@@ -64,18 +74,28 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         },
     };
 
+    // Xử lý sự kiện click
+    const handleClick = () => {
+        setIsClicked(true);
+        if (onClick) onClick();
+        setTimeout(() => setIsClicked(false), 200); // Reset hiệu ứng sau 200ms
+    };
+
     return (
         <motion.div
             ref={ref}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isClicked ? "clicked" : isInView ? "visible" : "hidden"}
             variants={variants}
             className={className}
             style={style}
+            onClick={handleClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
             {children}
         </motion.div>
     );
 };
 
-export default ScrollReveal;
+export default React.memo(AnimatedReveal);

@@ -10,6 +10,7 @@ import { useResizeStore } from '@/stores/useResizeStore';
 
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type Props = {}
 
@@ -54,7 +55,11 @@ const MediaCoverageSection = (props: Props) => {
             <BlurredBackground className='-top-[10%] -left-[250px] -z-0' />
 
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
-                <div className='space-x-2 font-extrabold'>
+                <AnimatedReveal
+                    from="bottom"
+                    effect='fade'
+                    className='space-x-2 font-extrabold'
+                >
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về</span>
                     <span
                         className='text-title-section-small uppercase'
@@ -66,7 +71,7 @@ const MediaCoverageSection = (props: Props) => {
                     >
                         Foso
                     </span>
-                </div>
+                </AnimatedReveal>
 
                 {
                     isVisibleTablet
@@ -114,7 +119,13 @@ const MediaCoverageSection = (props: Props) => {
                                             key={`media-${media?.id}`}
                                         // className='h-full relative cursor-pointer group'
                                         >
-                                            <MediaCard media={media} />
+                                            <AnimatedReveal
+                                                effect="fade"
+                                                from="center"
+                                                duration={0.8}
+                                            >
+                                                <MediaCard media={media} />
+                                            </AnimatedReveal>
                                         </SwiperSlide>
                                     ))
                                 }
@@ -123,27 +134,41 @@ const MediaCoverageSection = (props: Props) => {
                         :
                         <div className='grid grid-cols-3 3xl:gap-6 gap-4 w-full'>
                             {
-                                mediaList && mediaList?.map((media) => (
-                                    <React.Fragment key={`media-${media?.id}`}>
+                                mediaList && mediaList?.map((media, index) => (
+                                    <AnimatedReveal
+                                        key={`media-${media?.id}`}
+                                        effect="fade"
+                                        from="center"
+                                        // once={false}
+                                        duration={0.8}
+                                        delay={index * 0.2} // Hiệu ứng hiển thị theo thứ tự với mỗi project cách nhau 0.2s
+                                    >
+
                                         <MediaCard media={media} />
-                                    </React.Fragment>
+                                    </AnimatedReveal>
                                 ))
                             }
                         </div>
                 }
 
-                <ButtonAnimation
-                    type="button"
-                    title="Xem tất cả"
-                    reverse={true}
-                    icon={
-                        <div className='size-5'>
-                            <GoArrowUpRight className='size-full' />
-                        </div>
-                    }
-                    className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
-                    onClick={() => { }}
-                />
+                <AnimatedReveal
+                    effect="fade"
+                    from="bottom"
+                    duration={0.8}
+                >
+                    <ButtonAnimation
+                        type="button"
+                        title="Xem tất cả"
+                        reverse={true}
+                        icon={
+                            <div className='size-5'>
+                                <GoArrowUpRight className='size-full' />
+                            </div>
+                        }
+                        className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                        onClick={() => { }}
+                    />
+                </AnimatedReveal>
             </div>
 
         </div>

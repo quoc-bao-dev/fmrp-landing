@@ -7,6 +7,7 @@ import React, { useState, useCallback } from 'react';
 import { HiArrowUpRight } from "react-icons/hi2";
 import BlurImage from '../../blur/BlurImage';
 import { useResizeStore } from '@/stores/useResizeStore';
+import AnimatedReveal from '../../animations/common/AnimatedReveal';
 
 type ProjectCardProps = {
     project: {
@@ -21,15 +22,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     const { isVisibleTablet } = useResizeStore()
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [rotation, setRotation] = useState<number>(0);
-    const [imageLoaded, setImageLoaded] = useState(false); // State kiểm tra ảnh đã load chưa
 
     const handleHover = useCallback((hovering: boolean) => {
         setIsHovered(hovering);
         if (hovering) setRotation((prev) => prev + 360); // Xoay icon 360° mỗi lần hover
     }, []);
-
-    console.log('imageLoaded: ', imageLoaded);
-
 
     return (
         <Link
@@ -110,4 +107,5 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     )
 }
 
-export default ProjectCard
+// Bọc React.memo() để tối ưu re-render
+export default React.memo(ProjectCard);

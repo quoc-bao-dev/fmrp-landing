@@ -1,10 +1,10 @@
 import React from "react";
-import ScrollReveal from '@/components/common/animations/common/ScrollReveal';
+import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 
 const ServiceProcessIntro: React.FC = () => {
     return (
         <div className="flex flex-col justify-center items-center gap-4 w-full">
-            <ScrollReveal
+            <AnimatedReveal
                 from={"bottom"}
                 effect="fade"
                 duration={0.5}
@@ -27,15 +27,16 @@ const ServiceProcessIntro: React.FC = () => {
                 <span className="text-title-section-small text-[#1A2025] capitalize">
                     vận hành tối ưu
                 </span>
-            </ScrollReveal>
+            </AnimatedReveal>
 
-            <ScrollReveal
+            <AnimatedReveal
                 from={"bottom"}
                 effect="fade"
                 duration={1}
-                className="text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] 2xl:max-w-[54%] xxl:max-w-[60%] lg:max-w-[64%] md:max-w-[95%] max-w-full">
+                className="text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] 2xl:max-w-[54%] xxl:max-w-[60%] lg:max-w-[64%] md:max-w-[95%] max-w-full"
+            >
                 Khát vọng nâng tầm doanh nghiệp nhỏ – FOSO đồng hành cùng SME Việt Nam, giúp họ quản trị hiệu quả, bứt phá kinh doanh. Mỗi giải pháp chúng tôi mang lại là cơ hội để bạn vươn xa hơn. Đồng hành cùng doanh nghiệp Việt.
-            </ScrollReveal>
+            </AnimatedReveal>
         </div>
     );
 };

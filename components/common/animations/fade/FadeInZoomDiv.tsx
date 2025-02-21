@@ -13,7 +13,7 @@ interface FadeInZoomProps {
     onMouseLeave?: () => void;
 }
 
-const FadeInZoom: React.FC<FadeInZoomProps> = ({
+const FadeInZoomSpan: React.FC<FadeInZoomProps> = ({
     children,
     delay = 0,
     duration = 1, // ⬅️ Hiệu ứng rõ hơn (tăng duration)
@@ -26,7 +26,7 @@ const FadeInZoom: React.FC<FadeInZoomProps> = ({
     const isInView = useInView(ref, { once: true, margin: "-100px" }); // ⬅️ Phát hiện sớm hơn khi cuộn tới
 
     return (
-        <motion.span
+        <motion.div
             ref={ref}
             initial={{ opacity: 0, scale: 0.6 }} // ⬅️ Bắt đầu nhỏ hơn
             animate={isInView ? { opacity: 1, scale: [0.6, 1.1, 1] } : { opacity: 0, scale: 0.6 }} // ⬅️ Zoom lên rồi trở về 1
@@ -41,8 +41,8 @@ const FadeInZoom: React.FC<FadeInZoomProps> = ({
             onMouseLeave={onMouseLeave}
         >
             {children}
-        </motion.span>
+        </motion.div>
     );
 };
 
-export default FadeInZoom;
+export default FadeInZoomSpan;

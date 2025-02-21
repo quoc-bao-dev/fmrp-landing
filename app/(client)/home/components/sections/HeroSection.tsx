@@ -8,7 +8,9 @@ import { useScrollContext } from '@/contexts/ScrollContext';
 import AnimatedArrows from '../ui/hero/AnimatedArrows';
 import AnimatedTitle from '@/components/common/animations/AnimatedTitle';
 
-import FadeInZoom from '@/components/common/animations/fade/FadeInZoom';
+import FadeInZoomSpan from '@/components/common/animations/fade/FadeInZoomSpan';
+import FadeInZoomDiv from '@/components/common/animations/fade/FadeInZoomDiv';
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type HeroSectionProps = {
 }
@@ -68,14 +70,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 
             <div className='3xl:mx-[128px] 2xl:mx-[98px] xl:mx-[88px] md:mx-[60px] mx-8 flex lg:flex-row flex-col-reverse items-center lg:justify-between justify-center gap-2 h-full relative z-[2]'>
                 {/* button arrow */}
+
                 <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
 
                 {/* contetn left */}
                 <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-center'>
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
 
-                    <FadeInZoom
-                        delay={1.2} // ⬅️ Xuất hiện sau heroPerTitle1
+                    <FadeInZoomSpan
+                        delay={0.8} // ⬅️ Xuất hiện sau heroPerTitle1
                         className="3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] 
                         lg:text-[36px] md:text-[32px] text-[20px] font-extrabold 
                         text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2"
@@ -84,7 +87,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                         }}
                     >
                         Foso
-                    </FadeInZoom>
+                    </FadeInZoomSpan>
                     <br />
 
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle2} delay={2} />
@@ -92,7 +95,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 
                 {/* Phần mô hình 3D bên phải */}
                 <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
-                    <FadeInZoom
+                    <FadeInZoomDiv
                         delay={1}
                         duration={0.8}
                         className="relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square"
@@ -100,7 +103,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                         onMouseLeave={() => handleScroll("enable")} // ✅ Bật lại scroll khi rời chuột
                     >
                         <BabylonViewer />
-                    </FadeInZoom>
+                    </FadeInZoomDiv>
                 </div>
             </div>
 

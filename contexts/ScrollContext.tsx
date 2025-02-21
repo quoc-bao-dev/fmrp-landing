@@ -37,7 +37,7 @@ export const ScrollProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         const targetPosition = targetRef.current.getBoundingClientRect().top + window.scrollY;
         const startPosition = window.scrollY;
         const distance = targetPosition - startPosition;
-        const duration = 100; // ⬅️ Giảm thời gian cuộn để nhanh hơn
+        const duration = 500; // ⬅️ Giảm thời gian cuộn để nhanh hơn
         let startTime: number | null = null;
 
         // 📌 Tăng tốc easing để phản hồi nhanh hơn

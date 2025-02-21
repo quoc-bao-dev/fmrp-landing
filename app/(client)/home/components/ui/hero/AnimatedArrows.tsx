@@ -1,3 +1,4 @@
+import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
@@ -8,9 +9,12 @@ type AnimatedArrowsProps = {
 
 const AnimatedArrows: React.FC<AnimatedArrowsProps> = ({ onClick, iconArrow }) => {
     return (
-        <div
+        <AnimatedReveal
+            delay={2}
+            effect='fade'
             className="flex flex-col items-center justify-center gap-2 lg:absolute lg:bottom-4 lg:left-0 z-[999] cursor-pointer group"
             onClick={onClick}
+            once={true}
         >
             {/* Icon động */}
             <div className="flex flex-col items-center space-y-1 h-[50px]">
@@ -43,7 +47,7 @@ const AnimatedArrows: React.FC<AnimatedArrowsProps> = ({ onClick, iconArrow }) =
             <div className="text-default font-medium text-[#17181A] group-hover:text-[#17181A]/80 custom-transition">
                 Khám phá
             </div>
-        </div>
+        </AnimatedReveal>
     );
 };
 
