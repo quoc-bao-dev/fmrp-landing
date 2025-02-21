@@ -153,7 +153,7 @@ const ServicePresentationSection = (props: Props) => {
                                         <AnimatedReveal
                                             key={`project-${project.id}`}
                                             effect="fade"
-                                            from="center"
+                                            from="bottom"
                                             duration={0.8}
                                             delay={Math.min(index * 0.1, 0.3)} // Giới hạn delay tối đa 0.3s
                                         >

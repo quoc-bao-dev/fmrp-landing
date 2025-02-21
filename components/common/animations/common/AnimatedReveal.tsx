@@ -85,7 +85,7 @@ const AnimatedReveal: React.FC<ScrollRevealProps> = ({
         <motion.div
             ref={ref}
             initial="hidden"
-            animate={isClicked ? "clicked" : isInView ? "visible" : "hidden"}
+            animate={isInView ? "visible" : "hidden"}
             variants={variants}
             className={className}
             style={style}

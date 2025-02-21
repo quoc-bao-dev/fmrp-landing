@@ -5,10 +5,13 @@ import { useScrollContext } from '@/contexts/ScrollContext';
 import ServiceProcessIntro from '../ui/service-process/ServiceProcessIntro';
 import ServiceProcessStep from '../ui/service-process/ServiceProcessStep';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type Props = {}
 
 const ServiceProcessSection = () => {
+    const { isVisibleTablet } = useResizeStore()
     const serviceProcessRef = useRef<HTMLDivElement>(null!)
     const { registerRef } = useScrollContext();
 
@@ -18,7 +21,10 @@ const ServiceProcessSection = () => {
 
     return (
         <div ref={serviceProcessRef} className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[10]'>
+                {!isVisibleTablet && <BlurredBackground className='top-[25%] -left-[40%] z-[1]' />}
+
+                {!isVisibleTablet && <BlurredBackground className='bottom-[25%] -right-[40%] z-[1]' />}
                 <ServiceProcessIntro />
 
                 <ServiceProcessStep />

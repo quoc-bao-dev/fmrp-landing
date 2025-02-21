@@ -3,13 +3,19 @@ import { GoArrowUpRight } from 'react-icons/go';
 import ButtonAnimation from './../../../../../components/common/button/ButtonAnimation';
 import ProjectShowcase from '../ui/solutions/ProjectShowcase';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type Props = {}
 
 const SolutionsSection = (props: Props) => {
+    const { isVisibleTablet } = useResizeStore()
+    
     return (
         <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-10'>
+                {!isVisibleTablet && <BlurredBackground className='top-[20%] -left-[40%] z-[1]' />}
+
                 <AnimatedReveal
                     // once={false}
                     from="bottom"

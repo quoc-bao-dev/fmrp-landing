@@ -52,8 +52,8 @@ const MediaCoverageSection = (props: Props) => {
 
     return (
         <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
-            <BlurredBackground className='-top-[10%] -left-[250px] -z-0' />
-
+            {!isVisibleTablet &&  <BlurredBackground className='-top-[25%] -left-[250px] z-[1]' />}
+           
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
                 <AnimatedReveal
                     from="bottom"
@@ -138,7 +138,7 @@ const MediaCoverageSection = (props: Props) => {
                                     <AnimatedReveal
                                         key={`media-${media?.id}`}
                                         effect="fade"
-                                        from="center"
+                                        from="bottom"
                                         // once={false}
                                         duration={0.8}
                                         delay={index * 0.2} // Hiệu ứng hiển thị theo thứ tự với mỗi project cách nhau 0.2s
