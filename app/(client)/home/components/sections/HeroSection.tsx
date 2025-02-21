@@ -96,7 +96,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 {/* Phần mô hình 3D bên phải */}
                 <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
                     <FadeInZoomDiv
-                        delay={1}
+                        delay={0.1}
                         duration={0.7}
                         className="relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square"
                         onMouseEnter={() => handleScroll("disable")} // ✅ Chặn scroll khi hover vào
