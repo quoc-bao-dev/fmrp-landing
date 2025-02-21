@@ -78,7 +78,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
 
                     <FadeInZoomSpan
-                        delay={0.8} // ⬅️ Xuất hiện sau heroPerTitle1
+                        delay={1.2} // ⬅️ Xuất hiện sau heroPerTitle1
                         className="3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] 
                         lg:text-[36px] md:text-[32px] text-[20px] font-extrabold 
                         text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2"
