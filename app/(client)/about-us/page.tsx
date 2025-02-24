@@ -1,10 +1,14 @@
 import React from 'react'
+import AboutMissionSection from './components/sections/AboutMissionSection'
 
 type Props = {}
 
 const AboutUs = (props: Props) => {
     return (
-        <div className='flex justify-center items-center h-screen bg-green-200'>About us</div>
+        <main className='overflow-x-hidden'>
+            <AboutMissionSection />
+
+        </main>
     )
 }
 

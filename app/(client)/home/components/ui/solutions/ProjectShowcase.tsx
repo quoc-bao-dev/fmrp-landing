@@ -67,7 +67,6 @@ const ProjectShowcase = () => {
         ));
     }, [selectedCategory, handleCategoryChange]);
 
-
     const categoryListDesktop = useMemo(() => {
         return categories.map((item) => (
             <motion.div
@@ -119,12 +118,11 @@ const ProjectShowcase = () => {
                     <ScrollArea
                         type="hover"
                         className="lg:col-span-6 col-span-16 flex flex-row lg:order-0 order-1 h-full overflow-x-auto w-full"
-                    // onMouseEnter={() => setIsUserHovering(true)} // Dừng auto nếu hover
-                    // onMouseLeave={() => setIsUserHovering(false)} // Tiếp tục auto khi rời chuột
+                        onMouseEnter={() => setIsUserHovering(true)} // Dừng auto nếu hover
+                        onMouseLeave={() => setIsUserHovering(false)} // Tiếp tục auto khi rời chuột
                     >
                         <AnimatedReveal
                             effect="fade"
-                            // once={false}
                             className='flex flex-row gap-6 w-full md:max-w-[700px] max-w-[360px] overflow-x-auto'
                         >
                             {categoryListMobile}
@@ -166,7 +164,7 @@ const ProjectShowcase = () => {
                             priority // Chỉ giữ nếu ảnh quan trọng
                             placeholder="blur" // Nếu có ảnh blur
                             blurDataURL={selectedCategory.image} // Dùng hình ảnh mờ trước khi load
-                            className="size-full rounded-3xl aspect-2/1 shadow-xl"
+                            className="size-full rounded-3xl aspect-2/1"
                         />
                     </motion.div>
                 </AnimatePresence>

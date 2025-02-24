@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useResizeStore } from '@/stores/useResizeStore';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 import AnimatedCircle from '../../../../../../components/common/animations/ui/AnimatedCircle';
+import BlurImage from '@/components/common/blur/BlurImage';
 
 type Props = {}
 
@@ -49,6 +50,7 @@ const StepImage = React.memo(({ src, alt }: { src: string, alt: string }) => (
         style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
         loading="lazy"
     />
+
 ));
 
 
@@ -103,9 +105,19 @@ const ServiceProcessStep = (props: Props) => {
                                 // once={false}
                                 className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}
                             >
-                                <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
+                                {/* <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
                                     <StepImage src={step.image} alt={step.title} />
-                                </div>
+                                </div> */}
+                                <BlurImage
+                                    src={step.image}
+                                    alt={step.title}
+                                    width={1920}
+                                    height={1080}
+                                    className="size-full h-auto aspect-square object-contain"
+                                    classNameContainer='3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relative z-0'
+                                    style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
+                                    loading="lazy"
+                                />
                             </AnimatedReveal>
                         }
 
@@ -142,9 +154,19 @@ const ServiceProcessStep = (props: Props) => {
                             {
                                 isVisibleTablet &&
                                 <div className={`w-full flex justify-center`}>
-                                    <div className="md:w-1/2 w-full aspect-square relativee z-0 ">
+                                    {/* <div className="md:w-1/2 w-full aspect-square relativee z-0 ">
                                         <StepImage src={step.image} alt={step.title} />
-                                    </div>
+                                    </div> */}
+                                    <BlurImage
+                                        src={step.image}
+                                        alt={step.title}
+                                        width={1920}
+                                        height={1080}
+                                        className="size-full aspect-square object-contain relativee z-0"
+                                        classNameContainer='md:w-1/2 w-full aspect-square relativee z-0'
+                                        style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
+                                        loading="lazy"
+                                    />
                                 </div>
                             }
                         </AnimatedReveal>
@@ -154,31 +176,6 @@ const ServiceProcessStep = (props: Props) => {
                              flex flex-col gap-8 h-full absolute top-0 lg:left-1/2 left-0 transform -translate-x-1/2
                              `}>
                             {/* Hình tròn Active */}
-                            {/* <div
-                                className={`relative size-4 shrink-0 rounded-full flex items-center justify-center font-bold transition-all duration-300`}
-                                style={{
-                                    background: activeStep === index ? "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)" : "#809FB8"
-                                }}
-                            >
-                                {
-                                    activeStep === index ?
-                                        <motion.div
-                                            className="absolute size-10 rounded-full bg-green-400 opacity-20"
-                                            initial={{ scale: 1, opacity: 0.3 }}
-                                            animate={{
-                                                scale: [1, 1.5],
-                                                opacity: [0.3, 0],
-                                            }}
-                                            transition={{
-                                                duration: 1.5,
-                                                repeat: Infinity,
-                                                ease: "easeOut",
-                                            }}
-                                        />
-                                        :
-                                        <div className="absolute size-8 rounded-full bg-[#33404A] opacity-20" />
-                                }
-                            </div> */}
                             <AnimatedCircle active={activeStep === index} />
 
                             {/* Thanh dọc (chỉ vẽ nếu không phải bước cuối cùng) */}

@@ -1,67 +1,58 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 interface ScrollRevealProps {
     children: React.ReactNode;
     delay?: number;
     duration?: number;
-    from?: "left" | "right" | "top" | "bottom" | "center";
+    from?: "left" | "right" | "top" | "bottom" | "center"; // Mặc định "center" sẽ không di chuyển
     effect?: "fade" | "zoom-in" | "zoom-out" | "rotate" | "flip" | "slide";
     once?: boolean;
     stagger?: number;
     blurEffect?: boolean;
-    fadeOpacity?: number;
+    fadeOpacity?: number; // Độ mờ ban đầu
     className?: string;
     style?: React.CSSProperties;
-    onClick?: () => void;
-    onMouseEnter?: () => void;
-    onMouseLeave?: () => void;
-    autoPlay?: boolean; // 🔥 Thêm prop để chạy ngay lập tức khi render
+    onClick?: () => void; // Sự kiện khi người dùng click vào phần tử
+    onMouseEnter?: () => void; // Sự kiện khi di chuột vào
+    onMouseLeave?: () => void; // Sự kiện khi rời chuột khỏi phần tử
 }
 
 const AnimatedReveal: React.FC<ScrollRevealProps> = ({
     children,
     delay = 0,
-    duration = 0.7,
-    from = "center",
+    duration = 0.7, // ⬅️ Tăng thời gian giúp hiệu ứng chậm hơn
+    from = "center", // ⬅️ Mặc định không di chuyển
     effect = "fade",
     once = true,
     stagger = 0,
     blurEffect = false,
-    fadeOpacity = 0.01,
+    fadeOpacity = 0.01, // ⬅️ Tăng độ mờ mạnh hơn
     className = "",
     style,
     onClick,
     onMouseEnter,
-    onMouseLeave,
-    autoPlay = false, // Mặc định không auto play
+    onMouseLeave
 }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { amount: 0.33, once });
 
-    // Nếu autoPlay = true, thì animation luôn hiển thị
-    const [animate, setAnimate] = useState(autoPlay ? "visible" : "hidden");
-
-    useEffect(() => {
-        if (!autoPlay) {
-            setAnimate(isInView ? "visible" : "hidden");
-        }
-    }, [isInView, autoPlay]);
-
-    // Xác định hướng xuất hiện
+    // Xác định hướng xuất hiện (Mặc định "center" sẽ không di chuyển)
     const xMove = from !== "center" ? (from === "left" ? -60 : from === "right" ? 60 : 0) : 0;
     const yMove = from !== "center" ? (from === "top" ? -60 : from === "bottom" ? 60 : 0) : 0;
 
-    // Biến animation theo hiệu ứng
+    // Biến animation theo hiệu ứng được chọn
     const variants = {
         hidden: {
-            opacity: effect === "fade" ? fadeOpacity : 1,
+            opacity: effect === "fade" ? fadeOpacity : 1, // ⬅️ Đảm bảo fade có độ mờ ban đầu
             x: xMove,
             y: yMove,
             scale: effect === "zoom-in" ? 0.6 : effect === "zoom-out" ? 1.15 : 1,
             rotate: effect === "rotate" ? -15 : 0,
             rotateY: effect === "flip" ? 90 : 0,
-            filter: blurEffect ? "blur(15px)" : "blur(0px)",
+            filter: blurEffect ? "blur(15px)" : "blur(0px)", // ⬅️ Tăng độ mờ nếu bật blurEffect
         },
         visible: {
             opacity: 1,
@@ -74,20 +65,25 @@ const AnimatedReveal: React.FC<ScrollRevealProps> = ({
             transition: {
                 duration,
                 delay,
-                ease: [0.42, 0, 0.58, 1],
+                ease: [0.42, 0, 0.58, 1], // ⬅️ Làm hiệu ứng mềm mại hơn
             },
         },
+    };
+
+    // Xử lý sự kiện click
+    const handleClick = () => {
+        if (onClick) onClick();
     };
 
     return (
         <motion.div
             ref={ref}
             initial="hidden"
-            animate={animate} // 🔥 Điều khiển animation qua state
+            animate={isInView ? "visible" : "hidden"}
             variants={variants}
             className={className}
             style={style}
-            onClick={onClick}
+            onClick={handleClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >

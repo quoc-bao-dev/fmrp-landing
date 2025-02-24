@@ -57,9 +57,10 @@ const ContactUsNowSection = (props: Props) => {
                         <Image
                             src="/background/robot/robot-hand-search.svg"
                             alt="Robot AI"
-                            width={400}
-                            height={400}
+                            width={456}
+                            height={456}
                             className="size-full object-contain aspect-0.715/1"
+                            loading='lazy'
                         />
                     </AnimatedReveal>
                 </div>

@@ -16,33 +16,43 @@ import ProviderLayout from '../provider/ProviderLayout'
 import HeaderContainer from '@/components/layouts/header/HeaderContainer'
 import FooterContainer from '@/components/layouts/footer/FooterContainer'
 
-import { motion } from "framer-motion"
-import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
+import { motion, useAnimation } from "framer-motion"
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const pathName = usePathname()
-    const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
     const { openDialogCustom } = useDialogStore()
     const { openAlertDialog } = useAlertDialogStore()
 
     const lastScrollY = useRef<number>(0); // Stores last known scroll position
     const ticking = useRef<boolean>(false); // Prevents redundant re-renders
+    const isHeaderVisible = useRef<boolean>(false);
+    const controls = useAnimation(); // Framer Motion controls
 
     // const pusher = usePusher({ language: data?.language }) // auto call 
 
-    // Optimized scroll function with useCallback
+    // ✅ Xử lý scroll để kiểm tra hướng cuộn
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
 
         if (!ticking.current) {
             requestAnimationFrame(() => {
-                if (scrollY > 50 && lastScrollY.current <= 50) {
-                    queryKeyIsStateClientLayout({
-                        header: { ...isStateClientLayout?.header, isVisibleHeader: true }
-                    });
-                } else if (scrollY <= 50 && lastScrollY.current > 50) {
-                    queryKeyIsStateClientLayout({
-                        header: { ...isStateClientLayout?.header, isVisibleHeader: false }
+                let shouldShowHeader = isHeaderVisible.current;
+
+                if (scrollY === 0) {
+                    shouldShowHeader = false; // Ẩn header khi ở đầu trang
+                } else if (scrollY > lastScrollY.current) {
+                    shouldShowHeader = false; // Ẩn header khi cuộn xuống
+                } else if (scrollY < lastScrollY.current) {
+                    shouldShowHeader = true; // Hiện header khi cuộn lên
+                }
+
+                // Chỉ cập nhật nếu trạng thái thực sự thay đổi
+                if (shouldShowHeader !== isHeaderVisible.current) {
+                    isHeaderVisible.current = shouldShowHeader;
+                    controls.start({
+                        y: shouldShowHeader ? 0 : -100,
+                        opacity: shouldShowHeader ? 1 : 0,
+                        transition: { duration: 0.5, ease: 'easeInOut' },
                     });
                 }
 
@@ -52,22 +62,21 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
 
             ticking.current = true;
         }
-    }, [isStateClientLayout, queryKeyIsStateClientLayout]);
+    }, [controls]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll]);    
+    }, [handleScroll]);
 
     return (
         <ProviderLayout data={data}>
             {/* header */}
             <motion.div
                 initial={{ y: -100, opacity: 0 }}
-                animate={isStateClientLayout?.header?.isVisibleHeader ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                animate={controls}
                 className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"
-                style={{ willChange: "transform, opacity" }} // Optimizes for GPU rendering
+                style={{ willChange: 'transform, opacity' }} // Tối ưu hóa GPU rendering
             >
                 <HeaderContainer />
             </motion.div>
@@ -77,11 +86,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
             {/* footer */}
             <FooterContainer />
 
-            {
-                !pathName.startsWith("/auth")
-                &&
-                <WidgetButton />
-            }
+            {!pathName.startsWith("/auth") && <WidgetButton />}
 
             {/* {openDialogCustom && <DialogCustom />} */}
             {/* {openAlertDialog && <AlertDialogCustom />} */}

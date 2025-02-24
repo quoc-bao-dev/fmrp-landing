@@ -6,11 +6,12 @@ type BlurImageProps = {
     alt: string;
     width: number;
     height: number;
+    classNameContainer?: string;
     className?: string;
     blurDataURL?: string;
     priority?: boolean;
     loading?: "eager" | "lazy";
-    objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down"; // 👈 Hỗ trợ objectFit
+    style?: any
 };
 
 const BlurImage: React.FC<BlurImageProps> = ({
@@ -18,11 +19,12 @@ const BlurImage: React.FC<BlurImageProps> = ({
     alt,
     width,
     height,
+    classNameContainer = "",
     className = "",
-    blurDataURL = "/default/default-blur.png",
+    blurDataURL = "data:image/jpeg;base64,/9j/4AAQSk...",
     priority = false,
     loading,
-    objectFit = "cover", // 👈 Mặc định là object-cover
+    style
 }) => {
     const [status, setStatus] = useState<"loading" | "error" | "loaded">("loading");
 
@@ -32,7 +34,7 @@ const BlurImage: React.FC<BlurImageProps> = ({
 
     return (
         <div
-            className={`relative overflow-hidden ${className}`}
+            className={`relative overflow-hidden ${classNameContainer}`}
         // style={{ aspectRatio: `${width} / ${height}` }} // Giữ tỷ lệ ảnh
         >
             {/* Skeleton nếu ảnh chưa tải */}
@@ -43,7 +45,7 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 alt={alt}
                 width={width}
                 height={height}
-                className="transition-opacity duration-700 opacity-0 blur-md size-full" // Giữ class tĩnh
+                className={`${className} transition-opacity duration-700 opacity-0 blur-md size-full`} // Giữ class tĩnh
                 placeholder="blur"
                 blurDataURL={blurDataURL}
                 priority={priority}
@@ -54,7 +56,7 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 style={{
                     opacity: status === "loaded" ? 1 : 0, // Tránh cập nhật class gây re-render
                     filter: status === "loaded" ? "blur(0px)" : "blur(10px)",
-                    objectFit: objectFit, // 👈 Fix lỗi, dùng objectFit trong style
+                    ...style,
                 }}
             />
         </div>

@@ -27,10 +27,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         if (hovering) setRotation((prev) => prev + 360); // Xoay icon 360° mỗi lần hover
     }, []);
 
-    useEffect(() => {
-        console.log("Ảnh đang load:", project?.logo);
-    }, [project?.logo]);
-
     return (
         <Link
             href="#"
@@ -52,6 +48,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..." // Chuỗi Base64 của ảnh mờ
                     priority
                     className="size-full object-cover object-top rounded-3xl"
+                    classNameContainer="size-full rounded-3xl"
                 />
 
                 {/* Hover Overlay */}
@@ -68,16 +65,16 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
 
             {/* Project Details (Trigger hover effect) */}
-            <AnimatedReveal
-                className='w-full p-3 rounded-b-3xl relative z-[9999999]'
+            <div
+                className='w-full p-3 relative z-10 rounded-3xl'
                 style={{
+                    // boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
+                    // background: "linear-gradient(360deg, rgba(0, 0, 0, 0.2) 12.85%, rgba(0, 0, 0, 0) 100%)"
                     boxShadow: isVisibleTablet ? "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
                     background: isVisibleTablet ? "linear-gradient(360deg, rgba(0, 0, 0, 0.5) 12.85%, rgba(0, 0, 0, 0) 100%)" : "linear-gradient(360deg, rgba(0, 0, 0, 0.2) 12.85%, rgba(0, 0, 0, 0) 100%)"
                 }}
-                // autoPlay={true}
-                duration={0.1}
             >
-                <div className='flex items-center justify-between gap-6 bg-white rounded-3xl px-6 py-3'>
+                <div className='flex items-center justify-between gap-6 bg-white rounded-3xl px-6 py-3 relative z-20'>
                     <div className='flex flex-col gap-4 max-w-full'>
                         <div className='flex items-start w-full h-8'>
                             <BlurImage
@@ -86,24 +83,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                                 width={300}
                                 height={150}
                                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..." // Base64 của ảnh mờ
-                                className='h-8 w-auto'
-                                objectFit='contain'
-                                priority={true}
-                                loading='eager'
+                                className='size-full object-contain'
+                                classNameContainer='h-8 w-auto'
+                                loading='lazy'
                             />
                         </div>
-
-                        {/* <div className='flex items-start'>
-                            <div className='h-6 w-auto'>
-                                <img
-                                    alt='logo'
-                                    src={`${project?.logo ?? "/default/default.png"}`}
-                                    width={300}
-                                    height={150}
-                                    className='size-full object-contain'
-                                />
-                            </div>
-                        </div> */}
 
                         <div className='text-sm-default text-[#667F93] group-hover:text-[#667F93]/80 line-clamp-3'>
                             {project?.content}
@@ -121,10 +105,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                         </div>
                     </motion.div>
                 </div>
-            </AnimatedReveal>
+            </div>
         </Link >
     )
 }
 
-// Bọc React.memo() để tối ưu re-render
-export default React.memo(ProjectCard);
+export default ProjectCard;

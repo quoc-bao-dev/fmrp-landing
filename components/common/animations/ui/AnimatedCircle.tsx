@@ -15,10 +15,10 @@ const AnimatedCircle: React.FC<AnimatedCircleProps> = ({ active }) => {
                         className="absolute size-4 rounded-full bg-green-200 z-[1]"
                         initial={{ scale: 0.8 }}
                         animate={{
-                            scale: [1, 3, 1],
+                            scale: [0.8, 3.5, 0.8],
                         }}
                         transition={{
-                            duration: 2.5,
+                            duration: 4,
                             repeat: Infinity,
                             ease: "easeInOut",
                         }}
@@ -26,17 +26,21 @@ const AnimatedCircle: React.FC<AnimatedCircleProps> = ({ active }) => {
 
                     {/* Hiệu ứng lan tỏa lớn hơn khi đạt cực đại */}
                     <motion.div
-                        className="absolute size-9 rounded-full bg-green-100 z-0"
-                        initial={{ scale: 1.2 }}
+                        className="absolute size-8 rounded-full bg-green-100 z-0"
+                        initial={{ scale: 1 }}
                         animate={{
-                            scale: [1.2, 2, 1.2],
+                            scale: [1.6, 2.5],
+                            opacity: [0.5, 0],
                         }}
                         transition={{
-                            duration: 2,
+                            duration: 4,
                             repeat: Infinity,
                             ease: "easeInOut",
+                            delay: 2, // Delay bằng một nửa thời gian của hiệu ứng đầu tiên (3s)
                         }}
                     />
+
+
                 </>
             )}
 

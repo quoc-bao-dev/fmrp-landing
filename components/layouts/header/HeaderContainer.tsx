@@ -25,7 +25,7 @@ const HeaderContainer = () => {
 
     const { dataLang } = useTranslate();
 
-    const { setCookie, getCookie } = useCookieStore()
+    const { setCookie } = useCookieStore()
 
     const { informationUser } = useAuthStore()
     const { isVisibleTablet } = useResizeStore()
@@ -175,24 +175,19 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed top-2 w-full z-50 pointer-events-none'>
+        <header className='fixed top-4 w-full z-50 pointer-events-none'>
             <div
                 className='custom-container lg:bg-[#FFFFFF]/80 bg-[#FFFFFF]/50 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
-                    backdropFilter: "blur(25px)", // Làm tròn giá trị
-                    // boxShadow: `
-                    //     0px 4px 100px 0px rgba(0, 0, 0, 0.12) inset, 
-                    //     -9px 20px 80px -20px rgba(0, 0, 0, 0.15), 
-                    //     2px -2px 0px #FFFFFF, 
-                    //     -2px 2px 0px #E5E5E5
-                    // `
-                    boxShadow: `0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px 0px #FFFFFF, -1px 1px 0px 0px #F0F0F0`
-                    // boxShadow: `
-                    //     0px 4px 100px 0px rgba(0, 0, 0, 0.12) inset, 
-                    //     -9px 20px 80px -20px rgba(0, 0, 0, 0.15), 
-                    //     2px -2px 0px #FFFFFF, 
-                    //     -2px 2px 0px #E5E5E5
-                    // `
+                    backdropFilter: "blur(25px)",
+                    boxShadow: `
+                        inset 0px 2px 30px rgba(0, 0, 0, 0.03), /* Bóng bên trong mềm mại */
+                        -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
+                        9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
+                        0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
+                        1px -1px 0px rgba(255, 255, 255, 0.9), /* Điều chỉnh viền sáng */
+                        -1px 1px 0px rgba(240, 240, 240, 0.9) /* Bóng xám mềm */
+                    `
                 }}
             >
                 {

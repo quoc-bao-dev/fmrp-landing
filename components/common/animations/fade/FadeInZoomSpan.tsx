@@ -11,6 +11,7 @@ interface FadeInZoomProps {
     style?: React.CSSProperties;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
+    onAnimationComplete?: () => void; // ✅ Thêm prop mới
 }
 
 const FadeInZoomSpan: React.FC<FadeInZoomProps> = ({
