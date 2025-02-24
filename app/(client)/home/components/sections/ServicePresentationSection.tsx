@@ -67,11 +67,7 @@ const ServicePresentationSection = (props: Props) => {
     return (
         <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1] h-full'>
-                <AnimatedReveal
-                    from="bottom"
-                    effect='fade'
-                    className='space-x-2 font-extrabold 3xl:max-w-[49%] 2xl:max-w-[55%] lg:max-w-[60%] max-w-full'
-                >
+                <div className='space-x-2 font-extrabold 3xl:max-w-[49%] 2xl:max-w-[55%] xl:max-w-[58%] lg:max-w-[60%] max-w-full' >
                     <span className='text-title-section-small text-[#1A2025] capitalize'>
                         AI tiên tiến cho giải pháp thông minh – Giải pháp công nghệ đột phá từ
                     </span>
@@ -85,7 +81,7 @@ const ServicePresentationSection = (props: Props) => {
                     >
                         Foso
                     </span>
-                </AnimatedReveal>
+                </div>
 
                 {
                     isVisibleTablet
@@ -152,24 +148,19 @@ const ServicePresentationSection = (props: Props) => {
                         </div>
                 }
 
-                <AnimatedReveal
-                    // once={false}
-                    from="bottom"
-                    effect='fade'
-                >
-                    <ButtonAnimation
-                        type="button"
-                        title="Xem tất cả"
-                        reverse={true}
-                        icon={
-                            <div className='size-5'>
-                                <GoArrowUpRight className='size-full' />
-                            </div>
-                        }
-                        className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
-                        onClick={() => { }}
-                    />
-                </AnimatedReveal>
+
+                <ButtonAnimation
+                    type="button"
+                    title="Xem tất cả"
+                    reverse={true}
+                    icon={
+                        <div className='size-5'>
+                            <GoArrowUpRight className='size-full' />
+                        </div>
+                    }
+                    className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                    onClick={() => { }}
+                />
             </div>
 
         </div>

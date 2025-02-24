@@ -55,11 +55,7 @@ const MediaCoverageSection = (props: Props) => {
             {!isVisibleTablet && <BlurredBackground className='-top-[25%] -left-[250px] z-[1]' />}
 
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
-                <AnimatedReveal
-                    from="bottom"
-                    effect='fade'
-                    className='space-x-2 font-extrabold'
-                >
+                <div className='space-x-2 font-extrabold'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về</span>
                     <span
                         className='text-title-section-small uppercase'
@@ -71,7 +67,7 @@ const MediaCoverageSection = (props: Props) => {
                     >
                         Foso
                     </span>
-                </AnimatedReveal>
+                </div>
 
                 {
                     isVisibleTablet
@@ -137,24 +133,19 @@ const MediaCoverageSection = (props: Props) => {
                         </div>
                 }
 
-                <AnimatedReveal
-                    effect="fade"
-                    from="bottom"
-                    duration={0.7}
-                >
-                    <ButtonAnimation
-                        type="button"
-                        title="Xem tất cả"
-                        reverse={true}
-                        icon={
-                            <div className='size-5'>
-                                <GoArrowUpRight className='size-full' />
-                            </div>
-                        }
-                        className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
-                        onClick={() => { }}
-                    />
-                </AnimatedReveal>
+
+                <ButtonAnimation
+                    type="button"
+                    title="Xem tất cả"
+                    reverse={true}
+                    icon={
+                        <div className='size-5'>
+                            <GoArrowUpRight className='size-full' />
+                        </div>
+                    }
+                    className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                    onClick={() => { }}
+                />
             </div>
 
         </div>

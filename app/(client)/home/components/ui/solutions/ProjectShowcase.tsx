@@ -117,7 +117,7 @@ const ProjectShowcase = () => {
                     ?
                     <ScrollArea
                         type="hover"
-                        className="lg:col-span-6 col-span-16 flex flex-row lg:order-0 order-1 h-full overflow-x-auto w-full"
+                        className="2xl:col-span-6 lg:col-span-5 col-span-16 flex flex-row lg:order-0 order-1 h-full overflow-x-auto w-full"
                         onMouseEnter={() => setIsUserHovering(true)} // Dừng auto nếu hover
                         onMouseLeave={() => setIsUserHovering(false)} // Tiếp tục auto khi rời chuột
                     >
@@ -132,7 +132,7 @@ const ProjectShowcase = () => {
                     <AnimatedReveal
                         effect="fade"
                         // once={false}
-                        className="lg:col-span-6 col-span-16 flex lg:flex-col gap-10 lg:order-0 order-1 justify-between h-full overflow-scroll"
+                        className="2xl:col-span-6 lg:col-span-5 col-span-16 flex lg:flex-col 2xl:gap-10 gap-6 lg:order-0 order-1 justify-between h-full overflow-scroll"
                         onMouseEnter={() => setIsUserHovering(true)} // Dừng auto nếu hover
                         onMouseLeave={() => setIsUserHovering(false)} // Tiếp tục auto khi rời chuột
                     >
@@ -144,7 +144,7 @@ const ProjectShowcase = () => {
             <AnimatedReveal
                 effect="fade"
                 // once={false}
-                className="relative lg:col-span-10 col-span-16 lg:order-1 order-0 aspect-2/1 w-full h-auto"
+                className="relative 2xl:col-span-10 lg:col-span-11 col-span-16 lg:order-1 order-0 aspect-2/1 w-full h-auto"
             >
                 <AnimatePresence mode="wait">
                     <motion.div
