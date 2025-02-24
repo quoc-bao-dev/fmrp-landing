@@ -52,8 +52,8 @@ const MediaCoverageSection = (props: Props) => {
 
     return (
         <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
-            {!isVisibleTablet &&  <BlurredBackground className='-top-[25%] -left-[250px] z-[1]' />}
-           
+            {!isVisibleTablet && <BlurredBackground className='-top-[25%] -left-[250px] z-[1]' />}
+
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
                 <AnimatedReveal
                     from="bottom"
@@ -119,13 +119,7 @@ const MediaCoverageSection = (props: Props) => {
                                             key={`media-${media?.id}`}
                                         // className='h-full relative cursor-pointer group'
                                         >
-                                            <AnimatedReveal
-                                                effect="fade"
-                                                from="center"
-                                                duration={0.7}
-                                            >
-                                                <MediaCard media={media} />
-                                            </AnimatedReveal>
+                                            <MediaCard media={media} />
                                         </SwiperSlide>
                                     ))
                                 }
@@ -135,17 +129,9 @@ const MediaCoverageSection = (props: Props) => {
                         <div className='grid grid-cols-3 3xl:gap-6 gap-4 w-full'>
                             {
                                 mediaList && mediaList?.map((media, index) => (
-                                    <AnimatedReveal
-                                        key={`media-${media?.id}`}
-                                        effect="fade"
-                                        from="bottom"
-                                        // once={false}
-                                        duration={0.7}
-                                        delay={index * 0.2} // Hiệu ứng hiển thị theo thứ tự với mỗi project cách nhau 0.2s
-                                    >
-
+                                    <React.Fragment key={`media-${media?.id}`}>
                                         <MediaCard media={media} />
-                                    </AnimatedReveal>
+                                    </React.Fragment>
                                 ))
                             }
                         </div>
@@ -165,7 +151,7 @@ const MediaCoverageSection = (props: Props) => {
                                 <GoArrowUpRight className='size-full' />
                             </div>
                         }
-                        className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                        className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                         onClick={() => { }}
                     />
                 </AnimatedReveal>

@@ -133,13 +133,7 @@ const ServicePresentationSection = (props: Props) => {
                                             key={`project-${project?.id}`}
                                         // className='h-full relative cursor-pointer group'
                                         >
-                                            <AnimatedReveal
-                                                effect="fade"
-                                                from="center"
-                                                duration={0.7}
-                                            >
-                                                <ProjectCard project={project} />
-                                            </AnimatedReveal>
+                                            <ProjectCard project={project} />
                                         </SwiperSlide>
                                     ))
                                 }
@@ -150,15 +144,7 @@ const ServicePresentationSection = (props: Props) => {
                             {
                                 projectList && projectList?.map((project, index) => (
                                     <React.Fragment key={`project-${project?.id}`}>
-                                        <AnimatedReveal
-                                            key={`project-${project.id}`}
-                                            effect="fade"
-                                            from="bottom"
-                                            duration={0.7}
-                                            delay={Math.min(index * 0.1, 0.3)} // Giới hạn delay tối đa 0.3s
-                                        >
-                                            <ProjectCard project={project} />
-                                        </AnimatedReveal>
+                                        <ProjectCard project={project} />
                                     </React.Fragment>
 
                                 ))
@@ -180,7 +166,7 @@ const ServicePresentationSection = (props: Props) => {
                                 <GoArrowUpRight className='size-full' />
                             </div>
                         }
-                        className="flex items-center gap-2 text-default text-[#10805B] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                        className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                         onClick={() => { }}
                     />
                 </AnimatedReveal>

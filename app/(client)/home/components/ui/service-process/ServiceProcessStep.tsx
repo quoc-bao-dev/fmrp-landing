@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image';
 import { useResizeStore } from '@/stores/useResizeStore';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import AnimatedCircle from '../../../../../../components/common/animations/ui/AnimatedCircle';
 
 type Props = {}
 
@@ -153,7 +154,7 @@ const ServiceProcessStep = (props: Props) => {
                              flex flex-col gap-8 h-full absolute top-0 lg:left-1/2 left-0 transform -translate-x-1/2
                              `}>
                             {/* Hình tròn Active */}
-                            <div
+                            {/* <div
                                 className={`relative size-4 shrink-0 rounded-full flex items-center justify-center font-bold transition-all duration-300`}
                                 style={{
                                     background: activeStep === index ? "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)" : "#809FB8"
@@ -177,7 +178,8 @@ const ServiceProcessStep = (props: Props) => {
                                         :
                                         <div className="absolute size-8 rounded-full bg-[#33404A] opacity-20" />
                                 }
-                            </div>
+                            </div> */}
+                            <AnimatedCircle active={activeStep === index} />
 
                             {/* Thanh dọc (chỉ vẽ nếu không phải bước cuối cùng) */}
                             {

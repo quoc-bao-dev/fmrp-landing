@@ -1,8 +1,5 @@
 import Image from "next/image";
 import moment from "moment";
-import { motion } from "framer-motion";
-import ButtonAnimation from "../../button/ButtonAnimation";
-import { BsArrowUpRight } from "react-icons/bs";
 
 type MediaCardProps = {
     media: {

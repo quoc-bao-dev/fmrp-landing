@@ -63,7 +63,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                     alt="logo"
                     width={900}
                     height={900}
-                    src="/logo/foso/logo-pattern.svg"
+                    src="/logo/foso/logo-pattern.webp"
                     className="size-full object-contain opacity-15"
                 />
             </div>

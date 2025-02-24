@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import { GoArrowUpRight } from 'react-icons/go';
 import Link from 'next/link';
 import { motion } from 'framer-motion'
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import { HiArrowUpRight } from "react-icons/hi2";
 import BlurImage from '../../blur/BlurImage';
 import { useResizeStore } from '@/stores/useResizeStore';
-import AnimatedReveal from '../../animations/common/AnimatedReveal';
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type ProjectCardProps = {
     project: {
@@ -27,6 +26,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         setIsHovered(hovering);
         if (hovering) setRotation((prev) => prev + 360); // Xoay icon 360° mỗi lần hover
     }, []);
+
+    useEffect(() => {
+        console.log("Ảnh đang load:", project?.logo);
+    }, [project?.logo]);
 
     return (
         <Link
@@ -65,18 +68,34 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
 
             {/* Project Details (Trigger hover effect) */}
-            <div
-                className='w-full p-3 rounded-b-3xl relative z-[2]'
+            <AnimatedReveal
+                className='w-full p-3 rounded-b-3xl relative z-[9999999]'
                 style={{
                     boxShadow: isVisibleTablet ? "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
                     background: isVisibleTablet ? "linear-gradient(360deg, rgba(0, 0, 0, 0.5) 12.85%, rgba(0, 0, 0, 0) 100%)" : "linear-gradient(360deg, rgba(0, 0, 0, 0.2) 12.85%, rgba(0, 0, 0, 0) 100%)"
                 }}
+                // autoPlay={true}
+                duration={0.1}
             >
                 <div className='flex items-center justify-between gap-6 bg-white rounded-3xl px-6 py-3'>
                     <div className='flex flex-col gap-4 max-w-full'>
-                        <div className='flex items-start'>
+                        <div className='flex items-start w-full h-8'>
+                            <BlurImage
+                                alt="logo"
+                                src={project?.logo ?? "/default/default.png"}
+                                width={300}
+                                height={150}
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..." // Base64 của ảnh mờ
+                                className='h-8 w-auto'
+                                objectFit='contain'
+                                priority={true}
+                                loading='eager'
+                            />
+                        </div>
+
+                        {/* <div className='flex items-start'>
                             <div className='h-6 w-auto'>
-                                <Image
+                                <img
                                     alt='logo'
                                     src={`${project?.logo ?? "/default/default.png"}`}
                                     width={300}
@@ -84,7 +103,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                                     className='size-full object-contain'
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className='text-sm-default text-[#667F93] group-hover:text-[#667F93]/80 line-clamp-3'>
                             {project?.content}
@@ -102,7 +121,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                         </div>
                     </motion.div>
                 </div>
-            </div>
+            </AnimatedReveal>
         </Link >
     )
 }

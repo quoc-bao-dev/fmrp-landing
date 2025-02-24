@@ -40,7 +40,11 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
             whileTap="press"
             whileHover="hover"
             variants={disabled ? {} : variant}
-            className={`${className} ${icon ? classNameWithIcon : ''} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-gray-500/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto`}
+            className={`${className} ${icon ? classNameWithIcon : ''} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-gray-500/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto transition-colors duration-300 ease-in-out`}
+            transition={{
+                backgroundColor: { duration: 0.5, ease: "easeInOut" },
+                color: { duration: 0.5, ease: "easeInOut" }
+            }}
             type={type}
             onClick={onClick}
             style={style}
