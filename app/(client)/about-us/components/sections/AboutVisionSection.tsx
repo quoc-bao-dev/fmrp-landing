@@ -1,8 +1,6 @@
 import BlurImage from '@/components/common/blur/BlurImage'
 import React from 'react'
 
-import { motion } from 'framer-motion'
-
 type Props = {}
 
 const AboutVisionSection = (props: Props) => {
