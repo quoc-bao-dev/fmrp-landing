@@ -16,10 +16,6 @@ type HeroSectionProps = {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
-     // Trạng thái kiểm soát animation
-     const [title1Done, setTitle1Done] = useState<boolean>(false);
-     const [fosoDone, setFosoDone] = useState<boolean>(false);
-
     const { scrollToElementRef } = useScrollContext();
 
     // ✅ Tạo danh sách mũi tên với `useMemo` để tránh tạo lại mảng mỗi lần render

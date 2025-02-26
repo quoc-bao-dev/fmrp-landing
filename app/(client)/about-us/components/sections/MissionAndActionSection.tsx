@@ -29,11 +29,13 @@ const MissionAndActionSection = (props: Props) => {
                     <h2 className="text-title-section-small font-bold space-x-2">
                         <span className="text-[#050505] font-extrabold capitalize">Tôn chỉ và</span>
                         <span
-                            className="text-transparent bg-clip-text font-extrabold capitalize"
+                            className="font-extrabold capitalize"
                             style={{
                                 backgroundImage: `
                                 linear-gradient(-90deg, #85EEB3, #53B086),
-                                radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`
+                                radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
                             }}
                         >
                             Hành động

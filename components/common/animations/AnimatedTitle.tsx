@@ -11,9 +11,10 @@ interface AnimatedTitleProps {
     heroPerTitle: Letter[]
     className?: string
     delay?: number // ⬅️ Thêm prop để điều chỉnh delay
+    style?: any
 }
 
-export default function AnimatedTitle({ heroPerTitle, className, delay = 0 }: AnimatedTitleProps) {
+export default function AnimatedTitle({ heroPerTitle, className, delay = 0, style }: AnimatedTitleProps) {
     const container = {
         hidden: { opacity: 0 },
         visible: {
@@ -49,6 +50,9 @@ export default function AnimatedTitle({ heroPerTitle, className, delay = 0 }: An
             variants={container}
             initial="hidden"
             animate="visible"
+            style={{
+                ...style
+            }}
         >
             {heroPerTitle.map((e) => (
                 <motion.span key={e.id.toString()} variants={child}>

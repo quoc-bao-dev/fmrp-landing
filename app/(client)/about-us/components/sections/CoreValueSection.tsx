@@ -15,11 +15,13 @@ const CoreValueSection = (props: Props) => {
                 <h2 className="text-title-section-small font-bold">
                     <span className="text-[#050505] font-extrabold capitalize">4-SO makes</span>
                     <span
-                        className="text-transparent bg-clip-text font-extrabold capitalize pl-2"
+                        className="font-extrabold capitalize pl-2"
                         style={{
                             backgroundImage: `
                                 linear-gradient(90deg, #85EEB3 0%, #53B086 100%),
-                                radial-gradient(20.78% 106.02% at 55% 32.91%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`
+                                radial-gradient(20.78% 106.02% at 55% 32.91%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`,
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
                         }}
                     >
                         FOSO

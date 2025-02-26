@@ -1,7 +1,8 @@
 import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb'
 import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
+import AnimatedTitle from '../../../../../components/common/animations/AnimatedTitle';
 
 type Props = {}
 
@@ -13,14 +14,50 @@ const breadcrumbItems = [
 // CSS gradient tái sử dụng
 const gradientStyle = {
     backgroundImage: `linear-gradient(to right, #53B086 0%, #53B086 50%, #85EEB3 100%), 
-  radial-gradient(219.3% 1471.82% at 24.6% -30.56%, 
-  rgba(84, 171, 177, 0) 0%, 
-  rgba(84, 171, 177, 0.409141) 34.37%, 
-  rgba(133, 238, 179, 0.71) 51.52%, 
-  rgba(84, 171, 177, 0) 100%)`,
+    radial-gradient(219.3% 1471.82% at 24.6% -30.56%, 
+    rgba(84, 171, 177, 0) 0%, 
+    rgba(84, 171, 177, 0.409141) 34.37%, 
+    rgba(133, 238, 179, 0.71) 51.52%, 
+    rgba(84, 171, 177, 0) 100%)`,
 };
 
 const SolveSolutionSection = memo((props: Props) => {
+    // ✅ Tạo danh sách chữ để hiển thị với hiệu ứng Animation
+    const heroPerTitle1 = useMemo(
+        () => "Giải Quyết".split("").map((letter, index) => ({ id: index, letter })),
+        []
+    );
+
+    const heroPerTitle2 = useMemo(
+        () =>
+            "Vấn đề"
+                .split("")
+                .map((letter, index) => ({ id: index + heroPerTitle1.length, letter })),
+        [heroPerTitle1]
+    );
+
+    const heroPerTitle3 = useMemo(
+        () =>
+            "Và"
+                .split("")
+                .map((letter, index) => ({ id: index + heroPerTitle2.length, letter })),
+        [heroPerTitle2]
+    );
+
+    const heroPerTitle4 = useMemo(
+        () =>
+            "Mang đến"
+                .split("")
+                .map((letter, index) => ({ id: index + heroPerTitle3.length, letter })),
+        [heroPerTitle3]
+    );
+    const heroPerTitle5 = useMemo(
+        () =>
+            "Giải Pháp"
+                .split("")
+                .map((letter, index) => ({ id: index + heroPerTitle4.length, letter })),
+        [heroPerTitle4]
+    );
 
     return (
         <div className='custom-padding-section lg:h-screen h-svh relative'>
@@ -82,7 +119,25 @@ const SolveSolutionSection = memo((props: Props) => {
                     </div>
 
                     <h2 className="text-title-section font-normal space-x-2">
-                        <span>Giải Quyết</span>
+                        <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle1} delay={0} />
+                        <span className="relative inline-block">
+                            <span className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"></span>
+                            <AnimatedTitle className='text-[#050505] relative z-10 font-extrabold' heroPerTitle={heroPerTitle2} delay={0.5} />
+                        </span>
+                        <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle3} delay={1} />
+                        <br />
+                        <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle4} delay={1.5} />
+                        <AnimatedTitle
+                            className='font-extrabold'
+                            heroPerTitle={heroPerTitle5}
+                            delay={0}
+                            style={{
+                                ...gradientStyle,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                            }}
+                        />
+                        {/* <span>Giải Quyết</span>
                         <span className="relative inline-block">
                             <span className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"></span>
                             <span className="relative z-10 font-extrabold">Vấn Đề</span>
@@ -91,25 +146,19 @@ const SolveSolutionSection = memo((props: Props) => {
                         <br />
                         <span>Mang Đến</span>
                         <span
-                            className="font-extrabold text-transparent bg-clip-text"
+                            className="font-extrabold"
                             style={{
-                                    backgroundImage: `linear-gradient(to right, #53B086 0%, #53B086 50%, #85EEB3 100%), 
-                                radial-gradient(219.3% 1471.82% at 24.6% -30.56%, 
-                                rgba(84, 171, 177, 0) 0%, 
-                                rgba(84, 171, 177, 0.409141) 34.37%, 
-                                rgba(133, 238, 179, 0.71) 51.52%, 
-                                rgba(84, 171, 177, 0) 100%)`,
-                               
+                                ...gradientStyle,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
                             }}
-
-
                         >
                             Giải Pháp
-                        </span>
+                        </span> */}
                     </h2>
                 </div>
             </div>
-        </div>
+        </div >
     )
 })
 

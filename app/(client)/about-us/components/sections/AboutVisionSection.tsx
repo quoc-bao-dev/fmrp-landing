@@ -12,12 +12,13 @@ const AboutVisionSection = (props: Props) => {
                         <h2 className="text-title-section-small font-bold space-x-2">
                             <span className="text-[#050505] font-extrabold capitalize">Tầm nhìn</span>
                             <span
-                                className="text-transparent bg-clip-text font-extrabold"
+                                className="font-extrabold"
                                 style={{
                                     // backgroundImage: `linear-gradient(to right, #85EEB3, #53B086), radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)` /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
                                     // backgroundImage: `radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`
-                                    backgroundImage: `linear-gradient(90deg, #85EEB3 0%, rgba(83, 176, 134, 0.99) 27.5%), radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`
-
+                                    backgroundImage: `linear-gradient(90deg, #85EEB3 0%, rgba(83, 176, 134, 0.99) 27.5%), radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`,
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
                                 }}
                             >
                                 FOSO
