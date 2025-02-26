@@ -11,13 +11,13 @@ canvas {
   padding: 0 !important;
 }
 
-ol,
-ul,
-menu {
-  list-style: revert; /* Hoặc bạn có thể để list-style mặc định */
-  margin: revert; /* Trả về giá trị mặc định của trình duyệt */
-  padding: revert; /* Trả về giá trị mặc định của trình duyệt */
-}
+// ol,
+// ul,
+// menu {
+//   list-style: revert; /* Hoặc bạn có thể để list-style mặc định */
+//   margin: revert; /* Trả về giá trị mặc định của trình duyệt */
+//   padding: revert; /* Trả về giá trị mặc định của trình duyệt */
+// }
 
 .disable-selection {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -29,6 +29,7 @@ menu {
 }
 
 html {
+  height: 100%;
   scroll-behavior: smooth;
 }
 
@@ -69,15 +70,19 @@ html {
   // }
 
   .custom-container-no-right {
-    @apply 3xl:ml-28 xxl:ml-24 xl:ml-20 lg:ml-16 md:ml-8 ml-4;
+    @apply 3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 md:ml-8 ml-4 4xl:px-[25%];
   }
 
   .custom-container-no-left {
-    @apply 3xl:mr-28 xxl:mr-24 xl:mr-20 lg:mr-16 md:mr-8 mr-4;
+    @apply 3xl:mr-60 xxl:mr-40 xl:mr-32 lg:mr-10 md:mr-8 mr-4 4xl:px-[25%];
   }
 
   .custom-padding-right {
-    @apply 3xl:pr-20 xxl:pr-24 xl:pr-20 lg:pr-16 md:pr-8 pr-4;
+    @apply 3xl:pr-20 xxl:pr-24 xl:pr-20 lg:pr-16 md:pr-8 pr-4 4xl:px-[25%];
+  }
+
+  .custom-padding-section {
+    @apply 3xl:py-24 xl:py-20 lg:py-16 py-8;
   }
 }
 

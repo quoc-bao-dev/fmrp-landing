@@ -65,7 +65,7 @@ const ServicePresentationSection = (props: Props) => {
 
 
     return (
-        <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
+        <div className='relative custom-padding-section '>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1] h-full'>
                 <div className='space-x-2 font-extrabold 3xl:max-w-[49%] 2xl:max-w-[55%] xl:max-w-[58%] lg:max-w-[60%] max-w-full' >
                     <span className='text-title-section-small text-[#1A2025] capitalize'>

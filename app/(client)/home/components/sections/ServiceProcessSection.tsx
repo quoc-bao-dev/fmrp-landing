@@ -20,7 +20,7 @@ const ServiceProcessSection = () => {
     }, [registerRef]);
 
     return (
-        <div ref={serviceProcessRef} className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
+        <div ref={serviceProcessRef} className='relative custom-padding-section '>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[10]'>
                 {!isVisibleTablet && <BlurredBackground className='top-[25%] -left-[40%] z-[1]' />}
 

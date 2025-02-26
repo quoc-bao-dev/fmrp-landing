@@ -51,7 +51,7 @@ const MediaCoverageSection = (props: Props) => {
     }
 
     return (
-        <div className='relative 3xl:py-24 xl:py-20 lg:py-16 py-8 '>
+        <div className='relative custom-padding-section '>
             {!isVisibleTablet && <BlurredBackground className='-top-[25%] -left-[250px] z-[1]' />}
 
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>

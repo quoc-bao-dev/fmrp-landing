@@ -44,14 +44,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     );
     const heroPerTitle2 = useMemo(
         () =>
-            "trong kỷ nguyên số mới"
+            "Trong Kỷ Nguyên Số Mới"
                 .split("")
                 .map((letter, index) => ({ id: index + heroPerTitle1.length, letter })),
         [heroPerTitle1]
     );
 
     return (
-        <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 lg:h-screen h-svh relative'>
+        <div className='custom-padding-section lg:h-screen h-svh relative'>
             {/* background color linear */}
             <div
                 className='absolute top-0 left-0 size-full blur-[772.7864379882812px]'
@@ -78,7 +78,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
 
                 {/* contetn left */}
-                <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-center'>
+                <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-start'>
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
 
                     <FadeInZoomSpan
@@ -116,4 +116,3 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 }
 
 export default HeroSection
-

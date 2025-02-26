@@ -45,7 +45,7 @@ const CustomerFeedbackSection = (props: Props) => {
     ];
 
     return (
-        <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 overflow-hidden'>
+        <div className='custom-padding-section overflow-hidden'>
             <div className='custom-container flex lg:flex-row flex-col lg:items-center 3xl:gap-16 gap-14 relative z-[10]'>
                 {!isVisibleTablet && <BlurredBackground className='top-[20%] -right-[45%] z-[1]' />}
                 <AnimatedReveal

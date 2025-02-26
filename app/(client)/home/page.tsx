@@ -15,6 +15,7 @@ type Props = {}
 
 const Home = (props: Props) => {
 
+    
     return (
         <main className='overflow-x-hidden'>
             <HeroSection />

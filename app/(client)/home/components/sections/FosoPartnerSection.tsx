@@ -16,7 +16,7 @@ const FosoPartnerSection = (props: Props) => {
     }), [isVisibleTablet]);
 
     return (
-        <div className='3xl:py-24 xl:py-20 lg:py-16 py-8 custom-container '>
+        <div className='custom-padding-section custom-container '>
             <div
                 className='grid grid-cols-16 lg:p-0 px-6 pt-6 rounded-3xl w-full relative'
                 style={backgroundStyle}
