@@ -51,9 +51,11 @@ const AboutVisionSection = (props: Props) => {
 
                         <div className='absolute bottom-4 right-0 z-[5] flex flex-col gap-0.5 justify-end '>
                             <div
-                                className='text-title capitalize font-extrabold text-transparent bg-clip-text'
+                                className='text-title capitalize font-extrabold'
                                 style={{
-                                    backgroundImage: `linear-gradient(0deg, #53B086, #53B086), radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`
+                                    backgroundImage: `linear-gradient(0deg, #53B086, #53B086), radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`,
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
                                 }}
                             >
                                 Mr. An

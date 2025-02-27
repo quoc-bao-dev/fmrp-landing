@@ -17,7 +17,12 @@ import { useRouter } from 'next/navigation'
 import { IoIosArrowDown } from 'react-icons/io'
 import { KEY_COOKIES } from '@/constants/Cookie';
 
-const LanguageSelector = () => {
+type LanguageProps = {
+    classNameTrigger?: string
+    styleTrigger?: any
+}
+
+const LanguageSelector = ({ classNameTrigger, styleTrigger }: LanguageProps) => {
     const router = useRouter()
 
     const pathname = usePathname();
@@ -71,10 +76,9 @@ const LanguageSelector = () => {
                 defaultValue={isStateClientLayout.language.selectedLanguage?.code}
             >
                 <SelectTrigger
-                    className="lg:px-3 lg:py-2 px-0 py-0 flex items-center gap-1 3xl:min-w-[100px] lg:min-w-[90px] min-w-fit lg:w-full w-fit h-full border-none rounded-[40px] focus:outline-none focus:ring-0 focus:ring-offset-0 text-[#25272A]"
+                    className={`${classNameTrigger} lg:px-3 lg:py-2 px-3 py-2 flex items-center gap-1 3xl:min-w-[100px] lg:min-w-[90px] min-w-fit lg:w-full w-fit h-full rounded-[40px] focus:outline-none focus:ring-0 focus:ring-offset-0`}
                     style={{
-                        background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
-                        boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
+                        ...styleTrigger,
                     }}
                 >
                     {
@@ -90,11 +94,11 @@ const LanguageSelector = () => {
                                     />
                                 </div>
                                 <div className='flex items-center gap-1'>
-                                    <div className={`text-sm-default uppercase font-medium text-[#1E1E1E]`}>
+                                    <div className={`text-sm-default uppercase font-medium`}>
                                         {isStateClientLayout.language.selectedLanguage?.country}
                                     </div>
 
-                                    <IoIosArrowDown className={`3xl:size-5 size-4 text-[#1E1E1E]`} />
+                                    <IoIosArrowDown className={`3xl:size-5 size-4`} />
                                 </div>
                             </React.Fragment>
                         )

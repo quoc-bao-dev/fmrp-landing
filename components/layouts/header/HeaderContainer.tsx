@@ -19,6 +19,60 @@ import { useStateClientLayout } from '@/managers/state/client/useStateClientLayo
 import DesktopHeader from './sections/DesktopHeader'
 import TabletHeader from './sections/TabletHeader'
 
+const dataHeader: IMenuHeader[] = [
+    {
+        id: uuidv4(),
+        name: "Về chúng tôi",
+        link: '/about-us',
+        children: [],
+        visible: true,
+    },
+    {
+        id: uuidv4(),
+        name: "Giải Pháp",
+        link: '',
+        children: [
+            {
+                id: "1",
+                name: "hello",
+                link: "/solutions/a"
+            },
+            {
+                id: "2",
+                name: "hello 2",
+                link: "/solutions/b"
+            },
+        ],
+        visible: true,
+    },
+    {
+        id: uuidv4(),
+        name: "Tài nguyên",
+        link: '',
+        children: [
+            {
+                id: "3",
+                name: "hello",
+                link: "/solutions/a"
+            },
+            {
+                id: "4",
+                name: "hello 2",
+                link: "/solutions/b"
+            },
+        ],
+        visible: true,
+    },
+   
+    {
+        id: uuidv4(),
+        name: "Liên hệ",
+        link: '/contact-us',
+        children: [],
+        visible: true,
+    },
+]
+
 const HeaderContainer = () => {
     const router = useRouter()
     const pathname = usePathname()
@@ -35,63 +89,6 @@ const HeaderContainer = () => {
     // const { onSubmitChangeLanguage, isLoading } = usePostChangeLanguage()
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
-
-
-    const dataHeader: IMenuHeader[] = [
-        {
-            id: uuidv4(),
-            name: "Về chúng tôi",
-            link: '/about-us',
-            children: [],
-            visible: true,
-        },
-        {
-            id: uuidv4(),
-            name: "Giải Pháp",
-            link: '',
-            children: [
-                {
-                    id: "1",
-                    name: "hello",
-                    link: "/solutions/a"
-                },
-                {
-                    id: "2",
-                    name: "hello 2",
-                    link: "/solutions/b"
-                },
-            ],
-            visible: true,
-        },
-        {
-            id: uuidv4(),
-            name: "Bảng giá",
-            link: '/pricing',
-            children: [],
-            visible: true,
-        },
-        {
-            id: uuidv4(),
-            name: "Dự án",
-            link: '/projects',
-            children: [],
-            visible: true,
-        },
-        {
-            id: uuidv4(),
-            name: "Câu chuyện khách hàng",
-            link: '/customer-stories',
-            children: [],
-            visible: true,
-        },
-        {
-            id: uuidv4(),
-            name: "Blog",
-            link: '/blog',
-            children: [],
-            visible: true,
-        },
-    ]
 
     useEffect(() => {
         const body = document.body;

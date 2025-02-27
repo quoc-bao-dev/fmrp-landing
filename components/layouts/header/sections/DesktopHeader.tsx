@@ -55,6 +55,7 @@ import { useStateClientLayout } from '@/managers/state/client/useStateClientLayo
 import LanguageSelector from '../../../common/translate/LanguageSelector';
 
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import { useResizeStore } from '@/stores/useResizeStore'
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -65,6 +66,7 @@ interface DesktopHeaderClientProps {
 }
 
 const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
+    const { isVisibleTablet } = useResizeStore()
     const { getCookie } = useCookieStore()
 
     const dropdownRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div cần kiểm tra
@@ -265,7 +267,13 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
 
             {/* Nút chuyển ngôn ngữ + CTA */}
             <div className="flex items-center justify-end gap-2 max-w-[30%]">
-                <LanguageSelector />
+                <LanguageSelector
+                    classNameTrigger='text-[#25272A] border border-[#09090B]/[2%]'
+                    styleTrigger={{
+                        background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                        boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
+                    }}
+                />
 
                 {/* <DropdownMenu
                     open={isStateClientLayout?.header?.openDropdownProfile}

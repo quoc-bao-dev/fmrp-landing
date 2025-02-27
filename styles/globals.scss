@@ -109,7 +109,7 @@ html {
   }
 
   .text-sm-default {
-    @apply 3xl:!text-base xxl:!text-sm lg:!text-xs !text-base !tracking-[1%];
+    @apply 3xl:!text-base xxl:!text-sm lg:!text-xs !text-sm !tracking-[1%];
   }
 
   .text-xs-default {

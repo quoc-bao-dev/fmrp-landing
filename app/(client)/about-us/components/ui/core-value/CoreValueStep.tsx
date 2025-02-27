@@ -109,9 +109,12 @@ const CoreValueStep = (props: Props) => {
                                     </h3>
                                     <div className='absolute 2xl:-top-10 xl:-top-11 lg:-top-10 -top-12 left-0 z-0'>
                                         <h2
-                                            className='3xl:text-[54px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[52px] text-[52px] font-bold uppercase text-transparent bg-clip-text w-fit'
+                                            className='3xl:text-[54px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[52px] text-[52px] font-bold uppercase w-fit'
                                             style={{
-                                                backgroundImage: "linear-gradient(420deg, #FFFFFF 10%, #B3B3B3 80%, #FFFFFF 100%)"
+                                                // backgroundImage: "linear-gradient(420deg, #FFFFFF 10%, #B3B3B3 80%, #FFFFFF 100%)"
+                                                background: "linear-gradient(218.75deg, #CDCDCE 43.55%, #FFFFFF 80.72%)",
+                                                WebkitBackgroundClip: "text",
+                                                WebkitTextFillColor: "transparent",
                                             }}
                                         >
 

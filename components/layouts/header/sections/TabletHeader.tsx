@@ -24,6 +24,7 @@ import { TbMenu3 } from "react-icons/tb";
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import AvatarCustom from '@/components/common/avatar/AvatarCustom'
 import LanguageSelector from '@/components/common/translate/LanguageSelector'
+import { useResizeStore } from '@/stores/useResizeStore'
 
 interface TabletHeaderProps {
     dataHeader: IMenuHeader[]
@@ -47,7 +48,7 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
     const pathname = usePathname()
 
     const { getCookie } = useCookieStore()
-
+    const { isVisibleTablet } = useResizeStore()
     const { informationUser } = useAuthStore()
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
@@ -241,7 +242,13 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
                                             ))
                                         }
                                     </div>
-                                    <LanguageSelector />
+                                    <LanguageSelector
+                                        classNameTrigger='text-[#25272A] border border-[#09090B]/[2%]'
+                                        styleTrigger={{
+                                            background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                                            boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
+                                        }}
+                                    />
                                 </div>
 
                                 <ButtonAnimation
