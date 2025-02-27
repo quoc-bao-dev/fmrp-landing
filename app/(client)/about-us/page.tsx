@@ -21,7 +21,22 @@ const AboutUs = (props: Props) => {
             <CoreValueSection />
             <JourneySection />
             <CTASection />
-        </main>
+
+            {/* <div className='size-[100px] aspect-square '
+                style={{
+                    background: `linear-gradient(0deg, #20376D, #20376D),
+linear-gradient(250.94deg, #134FDB -11.28%, #A969F1 142.77%)`,
+                    backgroundBlendMode: "screen", // Hoặc try 'multiply', 'screen', 'hard-light' tùy vào Figma,
+                }}
+            />
+            <div style={{
+                background: `linear-gradient(0deg, #20376D, #20376D),
+                linear-gradient(250.94deg, #134FDB -11.28%, #A969F1 142.77%)`,
+                backgroundBlendMode: "overlay", // Hoặc try 'multiply', 'screen', 'hard-light' tùy vào Figma,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+            }}>Helo</div> */}
+        </main >
     )
 }
 

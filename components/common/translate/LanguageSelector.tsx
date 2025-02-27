@@ -121,7 +121,8 @@ const LanguageSelector = ({ classNameTrigger, styleTrigger }: LanguageProps) => 
                                             className="size-full object-cover rounded-full text-white"
                                         />
                                     </div>
-                                    <p>{option?.country} ({option?.extra})</p>
+                                    <p>{option?.country}</p>
+                                    {/* <p>{option?.country} ({option?.extra})</p> */}
                                 </div>
                             </SelectItem>
                         ))

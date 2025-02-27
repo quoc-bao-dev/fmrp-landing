@@ -18,6 +18,7 @@ interface ActionTooltipProps {
     classNameArrow?: string
     onArrow?: boolean;
     sideOffset?: number
+    styleContent?: any
 }
 
 export const ActionTooltip = ({
@@ -28,35 +29,39 @@ export const ActionTooltip = ({
     classNameContent,
     onArrow = true,
     sideOffset = 10,
-    classNameArrow
+    classNameArrow,
+    styleContent
 }: ActionTooltipProps) => {
     const StyledArrow = TooltipPrimitive.Arrow
     return (
-        <TooltipProvider >
-            <Tooltip delayDuration={50} >
-                <TooltipTrigger asChild>
+        <TooltipPrimitive.TooltipProvider>
+            <TooltipPrimitive.Tooltip delayDuration={50} >
+                <TooltipPrimitive.TooltipTrigger asChild>
                     {children}
-                </TooltipTrigger>
-                <TooltipContent
+                </TooltipPrimitive.TooltipTrigger>
+                <TooltipPrimitive.TooltipContent
                     side={side}
                     align={align}
                     sideOffset={sideOffset}
-                    className={`${classNameContent} w-fit`}
+                    className={`${classNameContent} w-fit shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] will-change-[transform,opacity] data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade`}
                     arrowPadding={10}
+                    style={{
+                        ...styleContent
+                    }}
                 >
                     <span>
                         {label}
                     </span>
                     {
                         onArrow &&
-                        <TooltipPrimitive.Arrow
+                        <TooltipPrimitive.TooltipArrow
                             width={14}
                             height={10}
-                            className={`${classNameArrow} custom-transition`}
+                            className={`${classNameArrow}`}
                         />
                     }
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
+                </TooltipPrimitive.TooltipContent>
+            </TooltipPrimitive.Tooltip>
+        </TooltipPrimitive.TooltipProvider>
     )
 }

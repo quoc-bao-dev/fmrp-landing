@@ -51,6 +51,8 @@ const SolveSolutionSection = memo((props: Props) => {
                 .map((letter, index) => ({ id: index + heroPerTitle3.length, letter })),
         [heroPerTitle3]
     );
+
+    
     const heroPerTitle5 = useMemo(
         () =>
             "Giải Pháp"
@@ -88,7 +90,7 @@ const SolveSolutionSection = memo((props: Props) => {
             </div>
 
             {/* Container chính */}
-            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2]'>
+            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] pt-4'>
                 <CustomBreadcrumb items={breadcrumbItems} />
 
                 {/* Nội dung chính */}
@@ -105,7 +107,9 @@ const SolveSolutionSection = memo((props: Props) => {
                                     loading="lazy"
                                 />
                             </div>
-                            <span className={`${playwrite_is_sans.className} 3xl:!text-xl xl:!text-lg lg:!text-base md:!text-xl !text-lg italic font-normal text-[#4D5F6E] -rotate-3`}>sứ mệnh</span>
+                            <span className={`${playwrite_is_sans.className} 3xl:!text-xl xl:!text-lg lg:!text-base md:!text-xl !text-lg italic font-normal text-[#4D5F6E] -rotate-3`}>
+                                sứ mệnh
+                            </span>
                         </div>
                         <div className='xl:w-[85px] w-16 h-auto aspect-square'>
                             <Image

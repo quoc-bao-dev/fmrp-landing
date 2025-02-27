@@ -56,6 +56,7 @@ import LanguageSelector from '../../../common/translate/LanguageSelector';
 
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useResizeStore } from '@/stores/useResizeStore'
+import CustomTooltipContent from '@/components/common/tooltip/CustomTooltipContent'
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -188,7 +189,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
             </Link>
 
             {/* Menu Navigation */}
-            <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
+            {/* <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
                 {
                     dataHeader && dataHeader.map((item) => (
                         <React.Fragment key={item.id}>
@@ -197,48 +198,52 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                     (
                                         <ActionTooltip
                                             side="bottom"
-                                            align="start"
-                                            classNameContent={"bg-[#00A5BD]"}
+                                            align="center"
+                                            classNameContent={"bg-white rounded-3xl p-6"}
+                                            classNameArrow="fill-white custom-arrow"
+                                            // label={
+                                            //     <div className='flex flex-col gap-2'>
+                                            //         {
+                                            //             item.children && item.children?.map((item) => (
+                                            //                 <motion.div
+                                            //                     key={item.id}
+                                            //                     // onClick={() => handleSelectedCategory(item, "desktop")}
+                                            //                     initial={false}
+                                            //                     animate="rest"
+                                            //                     whileTap="press"
+                                            //                     variants={{
+                                            //                         rest: { scale: 1 },
+                                            //                         press: { scale: 1.03 },
+                                            //                     }}
+                                            //                 >
+                                            //                     <Link
+                                            //                         href={`${item.link}?id=${item.id}`}
+                                            //                         prefetch={false}
+                                            //                         // ${isStateProductCategory?.category?.selectedCategory?.id === item.id ? 'bg-[#FCFFF9] text-[#0E0E0E]' : ''} 
+                                            //                         className={` 
+                                            //                 flex flex-row items-center gap-3 group hover:bg-[#FCFFF9] hover:text-[#25272A] py-2 px-8 rounded-xl cursor-pointer custom-transition`}
+                                            //                     >
+                                            //                         <div className={`max-w-full font-medium text-sm-default line-clamp-2`}>
+                                            //                             {item?.name ? item?.name : ''}
+                                            //                         </div>
+                                            //                     </Link>
+                                            //                 </motion.div>
+                                            //             ))
+                                            //         }
+                                            //     </div>
+                                            // }
                                             label={
-                                                <div className='flex flex-col gap-2'>
-                                                    {
-                                                        item.children && item.children?.map((item) => (
-                                                            <motion.div
-                                                                key={item.id}
-                                                                // onClick={() => handleSelectedCategory(item, "desktop")}
-                                                                initial={false}
-                                                                animate="rest"
-                                                                whileTap="press"
-                                                                variants={{
-                                                                    rest: { scale: 1 },
-                                                                    press: { scale: 1.03 },
-                                                                }}
-                                                            >
-                                                                <Link
-                                                                    href={`${item.link}?id=${item.id}`}
-                                                                    prefetch={false}
-                                                                    // ${isStateProductCategory?.category?.selectedCategory?.id === item.id ? 'bg-[#FCFFF9] text-[#0E0E0E]' : ''} 
-                                                                    className={` 
-                                                            flex flex-row items-center gap-3 group hover:bg-[#FCFFF9] hover:text-[#25272A] py-2 px-8 rounded-xl cursor-pointer custom-transition`}
-                                                                >
-                                                                    <div className={`max-w-full font-medium text-sm-default line-clamp-2`}>
-                                                                        {item?.name ? item?.name : ''}
-                                                                    </div>
-                                                                </Link>
-                                                            </motion.div>
-                                                        ))
-                                                    }
-                                                </div>
+                                                <CustomTooltipContent
+                                                    type={item.link === "Giải Pháp" ? "solution" : "resource"}
+                                                />
                                             }
+                                            styleContent={{
+                                                boxShadow: "0px 1px 1px 2px #1018280D"
+                                            }}
                                         >
                                             <div
-                                                // href={item.link}
-                                                className={`${(item.link === "/" && pathname === "/") ||
-                                                    (pathname.includes(item.link) && item.link !== "/")
-                                                    ? "text-[#25272A]"
-                                                    : "text-[#25272A] hover:text-[#25272A]/[90%]"
-                                                    } flex items-center gap-2 3xl:!text-base xxl:!text-sm xl:!text-xs lg:!text-xs !text-sm !tracking-[1%] font-medium xl:px-2 px-1 cursor-pointer custom-transition`}
-                                            // prefetch={false}
+                                                className={`${pathname.includes(item.link) && item.link !== "/" ? "text-[#25272A] font-bold" : "text-[#25272A] hover:text-[#25272A]/80 font-medium"}
+                                                     flex items-center gap-2 3xl:!text-base xxl:!text-sm xl:!text-xs lg:!text-xs !text-sm !tracking-[1%] xl:px-2 px-1 cursor-pointer custom-transition relative`}
                                             >
                                                 <span>{item.name}</span>
                                                 <IoIosArrowDown className="size-4 text-[#25272A]" />
@@ -249,14 +254,76 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                     (
                                         <Link
                                             href={item.link}
-                                            className={`${(item.link === "/" && pathname === "/") ||
-                                                (pathname.includes(item.link) && item.link !== "/")
-                                                ? "text-[#25272A]"
-                                                : "text-[#25272A] hover:text-[#25272A]/[90%]"
-                                                } 3xl:!text-base xxl:!text-sm xl:!text-xs lg:!text-xs !text-sm !tracking-[1%] font-medium xl:px-2 px-1 cursor-pointer custom-transition capitalize`}
+                                            className={`${(pathname.includes(item.link) && item.link !== "/") ? "text-[#25272A] font-bold" : "text-[#25272A] hover:text-[#25272A]/80 font-medium"} 
+                                                3xl:!text-base xxl:!text-sm xl:!text-xs lg:!text-xs !text-sm !tracking-[1%] xl:px-2 px-1 cursor-pointer custom-transition capitalize relative`}
                                             prefetch={false}
                                         >
                                             {item.name}
+
+                                            {
+                                                (pathname.includes(item.link) && item.link !== "/") &&
+                                                <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                            }
+                                        </Link>
+                                    )
+                            }
+                        </React.Fragment>
+                    ))
+                }
+            </div> */}
+
+            <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
+                {
+                    dataHeader.map((item) => (
+                        <React.Fragment key={item.id}>
+                            {
+                                item.subMenu ?
+                                    (
+                                        <ActionTooltip
+                                            side="bottom"
+                                            align="center"
+                                            classNameContent="bg-white rounded-3xl p-6"
+                                            classNameArrow="fill-white custom-arrow"
+                                            label={
+                                                <CustomTooltipContent
+                                                    subMenu={item.subMenu}
+                                                />
+                                            }
+                                            styleContent={{
+                                                boxShadow: "0px 1px 1px 2px #1018280D",
+                                            }}
+                                        >
+                                            <div
+                                                className={`${pathname.includes(item.link)
+                                                    ? "text-[#25272A] font-bold"
+                                                    : "text-[#25272A] hover:text-[#25272A]/80 font-medium"
+                                                    } flex items-center 3xl:!text-lg xl:text-base !text-sm gap-2 xl:px-2 px-1 cursor-pointer custom-transition relative`}
+                                            >
+                                                <span>{item.name}</span>
+                                                <IoIosArrowDown className="size-4 text-[#25272A]" />
+
+                                                {
+                                                    (pathname.includes(item.link) && item.link !== "/") &&
+                                                    <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                }
+                                            </div>
+                                        </ActionTooltip>
+                                    )
+                                    :
+                                    (
+                                        <Link
+                                            href={item.link}
+                                            className={`${pathname.includes(item.link)
+                                                ? "text-[#25272A] font-bold"
+                                                : "text-[#25272A] hover:text-[#25272A]/80 font-medium"
+                                                }  3xl:!text-lg xl:text-base !text-sm !tracking-[1%] xl:px-2 px-1 cursor-pointer custom-transition capitalize relative`}
+                                            prefetch={false}
+                                        >
+                                            {item.name}
+                                            {
+                                                (pathname.includes(item.link) && item.link !== "/") &&
+                                                <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                            }
                                         </Link>
                                     )
                             }
@@ -341,7 +408,11 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                     }
                     reverse={true}
                     title="Trở thành khách hàng"
-                    className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
+                    className='flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
+                    style={{
+                        background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`
+                        // background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`
+                    }}
                 />
             </div>
         </div>

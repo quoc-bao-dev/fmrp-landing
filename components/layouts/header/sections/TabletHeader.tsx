@@ -26,6 +26,8 @@ import AvatarCustom from '@/components/common/avatar/AvatarCustom'
 import LanguageSelector from '@/components/common/translate/LanguageSelector'
 import { useResizeStore } from '@/stores/useResizeStore'
 
+import { FiMinus, FiPlus } from "react-icons/fi";
+
 interface TabletHeaderProps {
     dataHeader: IMenuHeader[]
     handleToggleMenu: (action: string) => void
@@ -53,8 +55,17 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
 
-    console.log('isStateClientLayout', isStateClientLayout);
 
+    const handleToggleSubMenu = (id: string) => {
+        let active = isStateClientLayout?.header?.isActiveSubMenu === id ? null : id
+
+        queryKeyIsStateClientLayout({
+            header: {
+                ...isStateClientLayout?.header,
+                isActiveSubMenu: active
+            }
+        })
+    };
 
     return (
         <React.Fragment>
@@ -108,164 +119,180 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
                         animate={{ x: 0 }}      // Trượt vào vị trí hiển thị
                         exit={{ x: '100%' }}    // Trượt ra khi đóng
                         transition={{ duration: 0.5 }} // Tốc độ trượt
-                        className={`flex flex-col justify-between z-[999] absolute w-screen h-dvh -top-2 md:-left-8 -left-4 bg-[#E8FBF5]`}
+                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 md:-left-8 -left-4 bg-[#E8FBF5]`}
                     >
-                        <div className='custom-container h-full'>
-                            <div className='grid grid-cols-12 py-3 items-center justify-center'>
-                                <div className='col-span-10 w-full flex items-center justify-start gap-2'>
-                                    <Link
-                                        href="/"
-                                        className='flex items-center justify-start w-fit h-[40px] py-4'
-                                        prefetch={false}
-                                        onClick={() => handleToggleMenu("off")}
-                                    >
-                                        <Image
-                                            width={800}
-                                            height={800}
-                                            alt="logo"
-                                            src="/logo/foso/logo.svg"
-                                            className="w-fit h-[40px] object-contain cursor-pointer"
-                                            priority
-                                        />
-                                    </Link>
-                                </div>
-
-                                <div className="col-span-2 flex items-center justify-start gap-1">
-                                    <motion.div
-                                        initial={false}
-                                        animate="rest"
-                                        whileTap="press"
-                                        variants={{
-                                            rest: { scale: 1 },
-                                            press: { scale: 1.03, transition: { duration: 0.2 } },
-                                        }}
-                                        className="flex items-center justify-center bg-transparent p-3 rounded-[6px] cursor-pointer border-gradient-gray"
-                                        onClick={() => handleToggleMenu('off')}
-                                        style={{
-                                            background: "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
-                                            "--border-radius": "6px",
-                                            "--border-width": "1.5px",
-                                            "--border-color": " rgba(9, 9, 11, 0.2) 0%, rgba(9, 9, 11, 0.05) 16%, rgba(9, 9, 11, 0.05) 86%, rgba(9, 9, 11, 0) 100%"
-                                        } as React.CSSProperties}
-                                    >
-                                        <IoCloseSharp className='size-5 scale-110 text-[#28303F]' />
-                                    </motion.div>
-                                </div>
+                        <div className='grid grid-cols-12 py-3 items-center justify-center md:px-8 px-6'>
+                            <div className='col-span-10 w-full flex items-center justify-start gap-2'>
+                                <Link
+                                    href="/"
+                                    className='flex items-center justify-start w-fit h-[40px] py-4'
+                                    prefetch={false}
+                                    onClick={() => handleToggleMenu("off")}
+                                >
+                                    <Image
+                                        width={800}
+                                        height={800}
+                                        alt="logo"
+                                        src="/logo/foso/logo.svg"
+                                        className="w-fit h-[40px] object-contain cursor-pointer"
+                                        priority
+                                    />
+                                </Link>
                             </div>
 
-                            <div className='flex flex-col justify-between py-4 h-[calc(100dvh_-_68px)]'>
-                                <div className='space-y-0'>
-                                    <div className='relative flex flex-col  overflow-y-auto'>
-                                        {
-                                            dataHeader.map((data) => (
-                                                data.children?.length > 0 ?
-                                                    <div
-                                                        key={`header-tablet-${data.id}`}
-                                                        className={`${isStateClientLayout?.header?.isActiveService ? "mb-6" : ""}`}
-                                                    >
-                                                        <div
-                                                            className='flex justify-between'
-                                                            onClick={() =>
-                                                                queryKeyIsStateClientLayout({
-                                                                    header: {
-                                                                        ...isStateClientLayout?.header,
-                                                                        isActiveService: !isStateClientLayout?.header?.isActiveService
-                                                                    }
-                                                                })}
-                                                        >
-                                                            <div
-                                                                className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 underline underline-offset-8 decoration-4 decoration-[#25272A]/90' : 'text-[#25272A]'}
-                                                                 mb-6 cursor-pointer text-base w-fit custom-transition flex items-center font-medium`}
-                                                            // onClick={() => handleToggleMenu("off")}
-                                                            >
-                                                                {data.name}
-                                                            </div>
-                                                            <div
-                                                                className=' md:w-[10%] w-[15%] flex justify-end'
-                                                            >
-                                                                <IoIosArrowDown className={`${isStateClientLayout?.header?.isActiveService ? 'rotate-180 transform transition duration-700 ease-in-out text-[#1AD598]' : ''}`} />
-                                                            </div>
-                                                        </div>
+                            <div className="col-span-2 flex items-center justify-end gap-1">
+                                <motion.div
+                                    initial={false}
+                                    animate="rest"
+                                    whileTap="press"
+                                    variants={{
+                                        rest: { scale: 1 },
+                                        press: { scale: 1.03, transition: { duration: 0.2 } },
+                                    }}
+                                    className="flex items-center justify-center bg-transparent p-3 rounded-[6px] cursor-pointer border-gradient-gray"
+                                    onClick={() => handleToggleMenu('off')}
+                                    style={{
+                                        background: "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                                        "--border-radius": "6px",
+                                        "--border-width": "1.5px",
+                                        "--border-color": " rgba(9, 9, 11, 0.2) 0%, rgba(9, 9, 11, 0.05) 16%, rgba(9, 9, 11, 0.05) 86%, rgba(9, 9, 11, 0) 100%"
+                                    } as React.CSSProperties}
+                                >
+                                    <IoCloseSharp className='size-5 scale-110 text-[#28303F]' />
+                                </motion.div>
+                            </div>
+                        </div>
 
-                                                        {
-                                                            isStateClientLayout?.header?.isActiveService ?
-                                                                <div className='flex flex-col gap-2'>
-                                                                    {/* {
-                                                                            listCategoryProducts && listCategoryProducts?.map((item) => (
-                                                                                <motion.div
-                                                                                    key={item.id}
-                                                                                    initial={false}
-                                                                                    animate="rest"
-                                                                                    whileTap="press"
-                                                                                    variants={{
-                                                                                        rest: { scale: 1 },
-                                                                                        press: { scale: 1.03 },
-                                                                                    }}
-                                                                                    onTouchStart={() => handleSelectedCategory(item, "mobile")}
-                                                                                >
-                                                                                    <Link
-                                                                                        href={`${item.link}`}
-                                                                                        prefetch={false}
-                                                                                        className={`${isStateProductCategory?.category?.selectedCategory?.id === item.id ? 'bg-[#25A35A]/50 text-[#0E0E0E]' : 'text-[#9D9FA6]'} 
-                                                                                flex flex-row items-center gap-3 group hover:bg-[#FCFFF9] hover:text-[#0E0E0E] py-2 px-8 rounded-xl cursor-pointer custom-transition`}
-                                                                                    >
-                                                                                        <div className={`max-w-full font-normal text-base line-clamp-2`}>
-                                                                                            {item?.name ? item?.name : ''}
-                                                                                        </div>
-                                                                                    </Link>
-                                                                                </motion.div>
-                                                                            ))
-                                                                        } */}
-                                                                    tab service con
+                        <div className='flex flex-col gap-6 py-4 h-[calc(100dvh_-_68px)]'>
+                            <div className="relative flex flex-col gap-4 overflow-y-auto">
+                                {
+                                    dataHeader.map((data) => (
+                                        <React.Fragment key={`menu-${data.id}`}>
+                                            {
+                                                data.subMenu ?
+                                                    (
+                                                        // Nếu có submenu
+                                                        <React.Fragment>
+                                                            <div
+                                                                className="flex justify-between items-center cursor-pointer md:px-8 px-6"
+                                                                onClick={() => handleToggleSubMenu(data.id)}
+                                                            >
+                                                                <span
+                                                                    className={`text-lg font-medium transition-all 
+                                                                        ${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 font-medium underline underline-offset-[6px] decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'}
+                                                                        ${isStateClientLayout?.header?.isActiveSubMenu === data.id ? "text-[#1AD598]" : "text-[#25272A]"}`}
+                                                                >
+                                                                    {data.name}
+                                                                </span>
+
+                                                                {/* Animated Icon */}
+                                                                <div className="relative w-6 h-6 flex items-center justify-center">
+                                                                    <AnimatePresence mode="wait">
+                                                                        {isStateClientLayout?.header?.isActiveSubMenu === data.id ? (
+                                                                            <motion.span
+                                                                                key="minus"
+                                                                                initial={{ opacity: 0, scale: 0.8 }}
+                                                                                animate={{ opacity: 1, scale: 1 }}
+                                                                                exit={{ opacity: 0, scale: 0.8 }}
+                                                                                transition={{ duration: 0.2 }}
+                                                                                className="absolute"
+                                                                            >
+                                                                                <FiMinus className="text-[#1AD598] size-6" />
+                                                                            </motion.span>
+                                                                        ) : (
+                                                                            <motion.span
+                                                                                key="plus"
+                                                                                initial={{ opacity: 0, scale: 0.8 }}
+                                                                                animate={{ opacity: 1, scale: 1 }}
+                                                                                exit={{ opacity: 0, scale: 0.8 }}
+                                                                                transition={{ duration: 0.2 }}
+                                                                                className="absolute"
+                                                                            >
+                                                                                <FiPlus className="text-[#25272A] size-6" />
+                                                                            </motion.span>
+                                                                        )}
+                                                                    </AnimatePresence>
                                                                 </div>
-                                                                :
-                                                                (null)
-                                                        }
-                                                    </div>
-                                                    :
-                                                    <Link
-                                                        key={data.id}
-                                                        href={data.link}
-                                                        className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 font-medium underline underline-offset-8 decoration-4 decoration-[#25272A]/90' : 'text-[#25272A]'} mb-6 text-base w-fit duration-300 transition ease-in-out flex items-center font-medium`}
-                                                        onClick={() => {
-                                                            setTimeout(() => {
-                                                                queryKeyIsStateClientLayout({
-                                                                    isActiveService: false
-                                                                })
-                                                            }, 400);
-                                                            handleToggleMenu("off")
-                                                        }}
-                                                        prefetch={false}
-                                                    >
-                                                        {data.name}
-                                                    </Link>
-                                            ))
-                                        }
-                                    </div>
-                                    <LanguageSelector
-                                        classNameTrigger='text-[#25272A] border border-[#09090B]/[2%]'
-                                        styleTrigger={{
-                                            background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
-                                            boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
-                                        }}
-                                    />
-                                </div>
+                                                            </div>
 
-                                <ButtonAnimation
-                                    icon={
-                                        <div className='xl:size-6 size-5 flex-shrink-0'>
-                                            <Image
-                                                width={100}
-                                                height={100}
-                                                alt='icon'
-                                                src={"/icons/common/arrow-circle.svg"}
-                                                className='size-full object-contain'
-                                            />
-                                        </div>
-                                    }
-                                    reverse={true}
-                                    title="Trở thành khách hàng"
-                                    className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 font-bold capitalize border-none w-full rounded-full px-5 py-3 transition-colors duration-300 ease-in-out'
+                                                            {/* Submenu Animation */}
+                                                            <AnimatePresence>
+                                                                {isStateClientLayout?.header?.isActiveSubMenu === data.id && (
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0, height: 0 }}
+                                                                        animate={{ opacity: 1, height: "auto" }}
+                                                                        exit={{ opacity: 0, height: 0 }}
+                                                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                                        className="md:px-6 px-4 flex flex-col gap-2"
+                                                                    >
+                                                                        {/* Dịch vụ & Sản phẩm */}
+                                                                        {
+                                                                            data.subMenu.tabs.map((tab) => (
+                                                                                <React.Fragment key={`submenu-${tab}`}>
+                                                                                    <span className="text-base font-normal text-[#667F93] mb-1 block">
+                                                                                        {tab}
+                                                                                    </span>
+                                                                                    <div className="flex flex-col gap-2">
+                                                                                        {
+                                                                                            data.subMenu?.content[tab]?.items.map((item) => (
+                                                                                                <Link
+                                                                                                    key={item.id}
+                                                                                                    href={item.link}
+                                                                                                    className="flex items-center gap-2 text-[#33404A] hover:text-[#1AD598] transition-all"
+                                                                                                    onClick={() => handleToggleMenu("off")}
+                                                                                                >
+                                                                                                    <div className="size-10 flex items-center justify-center border border-[#99B2C6] rounded-xl">
+                                                                                                        <div className='size-6'>
+                                                                                                            {item.icon}
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <h4 className="font-semibold">{item.name}</h4>
+                                                                                                        <p className="text-sm text-[#667F93]">
+                                                                                                            {item.description}
+                                                                                                        </p>
+                                                                                                    </div>
+                                                                                                </Link>
+                                                                                            ))
+                                                                                        }
+                                                                                    </div>
+                                                                                </React.Fragment>
+                                                                            ))
+                                                                        }
+                                                                    </motion.div>
+                                                                )}
+                                                            </AnimatePresence>
+                                                        </React.Fragment>
+                                                    )
+                                                    :
+                                                    (
+                                                        // Nếu không có submenu
+                                                        <Link
+                                                            key={data.id}
+                                                            href={data.link}
+                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 font-medium underline underline-offset-[6px] decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-lg w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
+                                                            onClick={() => {
+
+                                                                handleToggleMenu("off")
+                                                            }}
+                                                            prefetch={false}
+                                                        >
+                                                            {data.name}
+                                                        </Link>
+                                                    )
+                                            }
+                                        </React.Fragment>
+                                    ))
+                                }
+                            </div>
+
+                            <div className='md:px-8 px-6'>
+                                <LanguageSelector
+                                    classNameTrigger='text-[#25272A] border border-[#09090B]/[2%] !w-full bg-white'
+                                    styleTrigger={{
+                                        background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                                        boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
+                                    }}
                                 />
                             </div>
                         </div>

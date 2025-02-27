@@ -1,17 +1,37 @@
+import { ReactNode } from "react";
+
+// Type cho một mục con trong menu (submenu items)
+interface SubMenuItem {
+    id: string;
+    name: string;
+    link: string;
+    icon: ReactNode;
+    description: string;
+}
+
+// Type cho từng nội dung trong tab
+interface SubMenuContent {
+    image: string;
+    items: SubMenuItem[];
+}
+
+// Type cho SubMenu
+interface SubMenu {
+    tabs: string[];
+    activeTab: string;
+    content: Record<string, SubMenuContent>; // Object chứa các nội dung theo tab
+}
+
+// Type cho một mục trong `dataHeader`
 interface IMenuHeader {
     id: string;
     name: string;
     link: string;
-    children: any[];
+    type?: "default" | "solution" | "resource";
+    description?: string;
+    subMenu?: SubMenu;
     visible: boolean;
 }
 
-interface IMenuSidebar {
-    id: string;
-    icon: string;
-    name: string;
-    link: string;
-    parent_link: string;
-}
 
-export type { IMenuHeader, IMenuSidebar };
+export type { IMenuHeader };

@@ -8,7 +8,7 @@ type WhyCardProps = {
 
 const WhyCard = memo(({ icon, title, description }: WhyCardProps) => (
     <div
-        className="bg-white rounded-3xl shadow-md p-6 hover:shadow-lg h-full transition-all duration-200 border border-gray-100"
+        className="bg-white rounded-3xl shadow-sm p-6 hover:shadow-md h-full transition-all duration-200 border border-gray-100"
     >
         <div className="flex flex-col items-start 3xl:gap-6 gap-4">
             <div className="3xl:size-16 xl:size-14 size-12 flex items-center justify-center bg-inherit">

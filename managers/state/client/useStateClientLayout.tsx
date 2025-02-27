@@ -4,7 +4,7 @@ interface InitialStateStore {
     isStateClientLayout: {
         header: {
             isVisibleHeader: boolean;
-            isActiveService: boolean;
+            isActiveSubMenu: string | null;
             isShowMenuScreen: boolean;
             openDropdownProfile: boolean;
         },
@@ -19,7 +19,7 @@ export const useStateClientLayout = create<InitialStateStore>((set) => ({
     isStateClientLayout: {
         header: {
             isVisibleHeader: false,         // hiển thị header animation
-            isActiveService: false,         // hiển thị active sub menu con
+            isActiveSubMenu: null,         // hiển thị active sub menu con
             isShowMenuScreen: false,        // hiển thị menuscreen cho màn tablet
             openDropdownProfile: false,     // Hiển thị dropdown của profile account
         },

@@ -11,7 +11,7 @@ type BlurImageProps = {
     blurDataURL?: string;
     priority?: boolean;
     loading?: "eager" | "lazy";
-    style?: any
+    style?: any;
 };
 
 const BlurImage: React.FC<BlurImageProps> = ({
@@ -24,28 +24,25 @@ const BlurImage: React.FC<BlurImageProps> = ({
     blurDataURL = "data:image/jpeg;base64,/9j/4AAQSk...",
     priority = false,
     loading,
-    style
+    style,
 }) => {
-    const [status, setStatus] = useState<"loading" | "error" | "loaded">("loading");
+    const [loaded, setLoaded] = useState(false);
 
     // Callback giúp tránh re-render không cần thiết
-    const handleLoad = useCallback(() => setStatus("loaded"), []);
-    const handleError = useCallback(() => setStatus("error"), []);
+    const handleLoad = useCallback(() => setLoaded(true), []);
+    const handleError = useCallback(() => setLoaded(true), []); // Nếu lỗi cũng tránh re-render
 
     return (
-        <div
-            className={`relative overflow-hidden ${classNameContainer}`}
-        // style={{ aspectRatio: `${width} / ${height}` }} // Giữ tỷ lệ ảnh
-        >
+        <div className={`relative overflow-hidden ${classNameContainer}`}>
             {/* Skeleton nếu ảnh chưa tải */}
-            {status === "loading" && <div className="absolute inset-0 bg-gray-300 animate-pulse size-full" />}
+            {!loaded && <div className="absolute inset-0 bg-gray-300 animate-pulse size-full" />}
 
             <Image
-                src={status === "error" ? "/default/default.png" : src}
+                src={src}
                 alt={alt}
                 width={width}
                 height={height}
-                className={`${className} transition-opacity duration-700 opacity-0 blur-md size-full`} // Giữ class tĩnh
+                className={`${className} transition-opacity duration-700 size-full`}
                 placeholder="blur"
                 blurDataURL={blurDataURL}
                 priority={priority}
@@ -54,8 +51,8 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 onLoadingComplete={handleLoad}
                 onError={handleError}
                 style={{
-                    opacity: status === "loaded" ? 1 : 0, // Tránh cập nhật class gây re-render
-                    filter: status === "loaded" ? "blur(0px)" : "blur(10px)",
+                    opacity: loaded ? 1 : 0,
+                    filter: loaded ? "blur(0px)" : "blur(10px)",
                     ...style,
                 }}
             />

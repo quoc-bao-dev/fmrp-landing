@@ -39,7 +39,9 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
                 let shouldShowHeader = isHeaderVisible.current;
 
                 if (scrollY === 0) {
-                    shouldShowHeader = false; // Ẩn header khi ở đầu trang
+                    // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
+                    shouldShowHeader = pathName !== "/";
+                    // shouldShowHeader = false; // Ẩn header khi ở đầu trang
                 } else if (scrollY > lastScrollY.current) {
                     shouldShowHeader = false; // Ẩn header khi cuộn xuống
                 } else if (scrollY < lastScrollY.current) {
@@ -62,7 +64,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
 
             ticking.current = true;
         }
-    }, [controls]);
+    }, [controls, pathName]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
@@ -73,7 +75,8 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
         <ProviderLayout data={data}>
             {/* header */}
             <motion.div
-                initial={{ y: -100, opacity: 0 }}
+                // initial={{ y: -100, opacity: 0 }}
+                initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
                 animate={controls}
                 className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"
                 style={{ willChange: 'transform, opacity' }} // Tối ưu hóa GPU rendering
