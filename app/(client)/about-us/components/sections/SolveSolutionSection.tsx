@@ -3,6 +3,7 @@ import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
 import React, { memo, useMemo } from 'react'
 import AnimatedTitle from '../../../../../components/common/animations/AnimatedTitle';
+import { motion } from 'framer-motion'
 
 type Props = {}
 
@@ -52,7 +53,7 @@ const SolveSolutionSection = memo((props: Props) => {
         [heroPerTitle3]
     );
 
-    
+
     const heroPerTitle5 = useMemo(
         () =>
             "Giải Pháp"
@@ -124,10 +125,25 @@ const SolveSolutionSection = memo((props: Props) => {
 
                     <h2 className="text-title-section font-normal space-x-2">
                         <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle1} delay={0} />
-                        <span className="relative inline-block">
+                        {/* <span className="relative inline-block">
                             <span className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"></span>
                             <AnimatedTitle className='text-[#050505] relative z-10 font-extrabold' heroPerTitle={heroPerTitle2} delay={0.5} />
+                        </span> */}
+
+                        <span className="relative inline-block">
+                            <motion.span
+                                className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }} // 🔥 Làm background xuất hiện đồng bộ với chữ
+                            />
+                            <AnimatedTitle
+                                className="text-[#050505] relative z-10 font-extrabold"
+                                heroPerTitle={heroPerTitle2}
+                                delay={0} // 🔥 Đồng bộ delay để không bị lệch
+                            />
                         </span>
+
                         <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle3} delay={1} />
                         <br />
                         <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle4} delay={1.5} />

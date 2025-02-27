@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
 
 type Props = {
@@ -16,6 +16,7 @@ type Props = {
     hideTitle?: boolean;
     disabled?: boolean;
     isLoading?: boolean;
+    whileHover?: Variants | { [key: string]: any }; // ✅ Type chính xác
 };
 
 const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
@@ -32,13 +33,14 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
     hideTitle = false,
     disabled = false,
     isLoading = false,
+    whileHover
 }, ref) => {
     return (
         <motion.button
             initial={false}
             animate="rest"
             whileTap="press"
-            whileHover="hover"
+            whileHover={whileHover || "hover"} // ✅ Nhận động từ props hoặc dùng mặc định
             variants={disabled ? {} : variant}
             className={`${className} ${icon ? classNameWithIcon : ''} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-gray-500/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto transition-colors duration-300 ease-in-out`}
             transition={{

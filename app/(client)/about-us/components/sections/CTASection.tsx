@@ -5,6 +5,8 @@ import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
 import React from 'react'
 
+import { motion } from 'framer-motion'
+
 type Props = {}
 
 const CTASection = (props: Props) => {
@@ -49,11 +51,22 @@ const CTASection = (props: Props) => {
                             }
                             reverse={true}
                             title="Đăng ký ngay"
-                            className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 border border-[#A3EED6] font-bold capitalize border-none w-fit rounded-full px-4 py-2'
+                            className='flex items-center gap-2 text-sm-default text-[#052B1E] border border-[#A3EED6] font-bold capitalize border-none w-fit rounded-full px-4 py-2'
+                            style={{
+                                background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                                border: "1px solid #A3EED6",
+                                borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
+
+                            }}
+                            whileHover={{
+                                background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                                border: "1px solid rgba(255, 255, 255, 0.00)",
+                                transition: { duration: 0.5, ease: "easeInOut" }
+                            }}
                         />
 
-                        <div className='absolute 3xl:-top-14 xl:-top-10 lg:-top-11 -top-6 3xl:left-44 xl:left-40 lg:left-36 md:left-[62%] left-[70%] flex flex-col lg:-space-y-4 space-y-2 -space-x-14'>
-                            {
+                        <div className='absolute 3xl:-top-12 xl:-top-10 lg:-top-11 -top-6 3xl:left-44 xl:left-40 lg:left-36 md:left-[62%] left-[70%] flex flex-col lg:-space-y-4 space-y-2 -space-x-0'>
+                            {/* {
                                 !isVisibleTablet ?
                                     <div className='3xl:w-[120px] w-[100px] h-auto aspect-square'>
                                         <Image
@@ -78,7 +91,67 @@ const CTASection = (props: Props) => {
 
                             <div className={`${playwrite_is_sans.className} -rotate-[5deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%]; text-[#4D5F6E] font-normal`}>
                                 để phát triển vượt trội
-                            </div>
+                            </div> */}
+
+                            {/* Mũi tên với hiệu ứng nhấp nháy */}
+                            {!isVisibleTablet ? (
+                                <motion.div
+                                    className='3xl:w-[120px] w-[100px] h-auto aspect-square'
+                                    animate={{
+                                        scale: [1, 1.05, 1], // Giảm biên độ scale để tránh bị gắt
+                                        opacity: [1, 0.85, 1], // Làm mờ nhẹ hơn để không bị quá "gắt"
+                                    }}
+                                    transition={{
+                                        duration: 1.2, // Kéo dài thời gian để mềm mại hơn
+                                        repeat: Infinity, // Lặp vô hạn
+                                        repeatType: "mirror", // Chuyển động mượt mà hơn khi lặp lại
+                                        ease: [0.25, 1, 0.5, 1] // Bezier curve giúp animation mềm mại hơn
+                                    }}
+                                >
+                                    <Image
+                                        src="/icons/common/arrow/arrow-long.webp"
+                                        alt="icon"
+                                        width={200}
+                                        height={200}
+                                        className='size-full object-contain'
+                                    />
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    className='w-[60px] h-auto'
+                                    animate={{
+                                        y: [0, -5, 0], // Nhảy lên xuống nhẹ
+                                    }}
+                                    transition={{
+                                        duration: 0.8,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    <Image
+                                        src="/icons/common/arrow/arrow-long2.svg"
+                                        alt="icon"
+                                        width={200}
+                                        height={200}
+                                        className='size-full object-contain'
+                                    />
+                                </motion.div>
+                            )}
+
+                            {/* Chữ có hiệu ứng rung nhẹ */}
+                            <motion.div
+                                className="-rotate-[5deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%] text-[#4D5F6E] font-normal"
+                                animate={{
+                                    rotate: [-5, -3, -5], // Lắc nhẹ qua lại
+                                }}
+                                transition={{
+                                    duration: 0.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                để phát triển vượt trội
+                            </motion.div>
                         </div>
                     </div>
                 </div>

@@ -163,9 +163,7 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -177,6 +175,7 @@ html {
     text-wrap: balance;
   }
 }
+
 
 @layer base {
   :root {

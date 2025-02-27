@@ -131,7 +131,18 @@ const WhyChooseFosoSection = () => {
                                 }
                                 reverse={true}
                                 title="Tư vấn ngay"
-                                className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 border border-[#A3EED6] font-bold capitalize border-none w-fit rounded-full px-4 py-2'
+                                className='flex items-center gap-2 text-sm-default text-[#052B1E] border border-[#A3EED6] font-bold capitalize border-none w-fit rounded-full px-4 py-2'
+                                style={{
+                                    background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                                    border: "1px solid #A3EED6",
+                                    borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
+                                    
+                                }}
+                                whileHover={{
+                                    background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                                    border: "1px solid rgba(255, 255, 255, 0.00)",
+                                    transition: { duration: 0.5, ease: "easeInOut" }
+                                }}
                             />
                         }
                     </div>
@@ -140,7 +151,7 @@ const WhyChooseFosoSection = () => {
 
                 {/* Nội dung các lợi ích */}
                 <div className='w-full lg:max-w-[60%] max-w-full flex flex-col justify-center gap-4 relative'>
-                    {!isVisibleMobile && <BlurredBackground className='3xl:top-10 top-20 3xl:right-10 right-20' />}
+                    {!isVisibleMobile && <BlurredBackground className='3xl:top-10 top-20 right-20' />}
 
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto">
                         {values.map((value, index) => (
@@ -171,7 +182,18 @@ const WhyChooseFosoSection = () => {
                         }
                         reverse={true}
                         title="Tư vấn ngay"
-                        className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 border border-[#A3EED6] font-bold capitalize border-none w-full rounded-full px-4 py-2'
+                        className='flex items-center gap-2 text-sm-default text-[#052B1E] border border-[#A3EED6] font-bold capitalize border-none w-full rounded-full px-4 py-2'
+                        style={{
+                            background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                            border: "1px solid #A3EED6",
+                            borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
+                            
+                        }}
+                        whileHover={{
+                            background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                            border: "1px solid rgba(255, 255, 255, 0.00)",
+                            transition: { duration: 0.5, ease: "easeInOut" }
+                        }}
                     />
                 }
             </div>

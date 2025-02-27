@@ -3,10 +3,12 @@ import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import { useResizeStore } from '@/stores/useResizeStore'
 import Image from 'next/image'
 import React from 'react'
+import { useRouter } from 'next/navigation';
 
 type Props = {}
 
 const MissionAndActionSection = (props: Props) => {
+    const router = useRouter()
     const { isVisibleTablet } = useResizeStore()
 
     return (
@@ -47,6 +49,7 @@ const MissionAndActionSection = (props: Props) => {
                     </p>
 
                     <ButtonAnimation
+                        onClick={() => window.open("https://drive.google.com/file/d/1P8QvtBg86RtHE5bW0UZ8GSHJd0bO4crt/view", "_blank")}
                         icon={
                             <div className='xl:size-6 size-5 flex-shrink-0'>
                                 <Image
@@ -60,7 +63,18 @@ const MissionAndActionSection = (props: Props) => {
                         }
                         reverse={true}
                         title="Hồ sơ năng lực"
-                        className='flex items-center gap-2 text-sm-default text-[#052B1E] bg-[#1AD598] hover:bg-[#1AD598]/80 border border-[#A3EED6] font-bold capitalize border-none lg:w-fit w-full rounded-full px-4 py-2'
+                        className='flex items-center gap-2 text-sm-default text-[#052B1E] border border-[#A3EED6] font-bold capitalize border-none lg:w-fit w-full rounded-full px-4 py-2'
+                        style={{
+                            background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                            border: "1px solid #A3EED6",
+                            borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
+                            
+                        }}
+                        whileHover={{
+                            background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
+                            border: "1px solid rgba(255, 255, 255, 0.00)",
+                            transition: { duration: 0.5, ease: "easeInOut" }
+                        }}
                     />
                 </div>
             </div>
