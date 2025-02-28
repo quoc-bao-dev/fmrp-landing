@@ -140,7 +140,7 @@ const CTASection = (props: Props) => {
 
                             {/* Chữ có hiệu ứng rung nhẹ */}
                             <motion.div
-                                className="-rotate-[5deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%] text-[#4D5F6E] font-normal"
+                                className={`${playwrite_is_sans.className} -rotate-[5deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%] text-[#4D5F6E] font-normal`}
                                 animate={{
                                     rotate: [-5, -3, -5], // Lắc nhẹ qua lại
                                 }}

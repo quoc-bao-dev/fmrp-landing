@@ -6,7 +6,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { uuidv4 } from '@/lib/uuid';
 import { useScrollContext } from '@/contexts/ScrollContext';
 import AnimatedArrows from '../ui/hero/AnimatedArrows';
-import AnimatedTitle from '@/components/common/animations/AnimatedTitle';
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 
 import FadeInZoomSpan from '@/components/common/animations/fade/FadeInZoomSpan';
 import FadeInZoomDiv from '@/components/common/animations/fade/FadeInZoomDiv';
