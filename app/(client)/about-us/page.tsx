@@ -13,7 +13,7 @@ type Props = {}
 
 const AboutUs = (props: Props) => {
     return (
-        <main className='overflow-x-hidden'>
+        <main>
             <SolveSolutionSection />
             <WhyChooseFosoSection />
             <AboutVisionSection />

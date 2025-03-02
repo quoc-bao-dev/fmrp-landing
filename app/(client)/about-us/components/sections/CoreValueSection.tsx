@@ -9,9 +9,7 @@ const CoreValueSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     return (
         <div className='custom-padding-section'>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-6 gap-4 relative'>
-                {!isVisibleTablet && <BlurredBackground className='top-0 -right-[42%] z-[1]' />}
-
+            <div className='custom-container sticky top-0 z-10 3xl:py-6 py-4 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'>
                 <h2 className="text-title-section-small font-bold">
                     <span className="text-[#050505] font-extrabold capitalize">4-SO makes</span>
                     <span
@@ -38,9 +36,9 @@ const CoreValueSection = (props: Props) => {
                     </span>
                     <span className='font-medium'>hình thành nên FOSO.</span>
                 </div>
-
-                <CoreValueStep />
             </div>
+
+            <CoreValueStep />
         </div>
     )
 }

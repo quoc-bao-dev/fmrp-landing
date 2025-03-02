@@ -24,59 +24,133 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     const { openAlertDialog } = useAlertDialogStore()
 
     const lastScrollY = useRef<number>(0); // Stores last known scroll position
+    const lastScrollX = useRef<number>(0); // Lưu vị trí scroll ngang trước đó
     const ticking = useRef<boolean>(false); // Prevents redundant re-renders
+    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
     const isHeaderVisible = useRef<boolean>(false);
     const controls = useAnimation(); // Framer Motion controls
+    const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
+    const forceCheckScroll = useRef<boolean>(false); // Flag để kiểm tra hướng cuộn sau khi tự hiện header
 
-    // const pusher = usePusher({ language: data?.language }) // auto call 
-
-    // ✅ Xử lý scroll để kiểm tra hướng cuộn
+    // ✅ Xử lý scroll để kiểm tra hướng cuộn (dùng throttle để tránh lag)
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
+        const scrollX = window.scrollX;
 
-        if (!ticking.current) {
-            requestAnimationFrame(() => {
-                let shouldShowHeader = isHeaderVisible.current;
-
-                if (scrollY === 0) {
-                    // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
-                    shouldShowHeader = pathName !== "/";
-                    // shouldShowHeader = false; // Ẩn header khi ở đầu trang
-                } else if (scrollY > lastScrollY.current) {
-                    shouldShowHeader = false; // Ẩn header khi cuộn xuống
-                } else if (scrollY < lastScrollY.current) {
-                    shouldShowHeader = true; // Hiện header khi cuộn lên
-                }
-
-                // Chỉ cập nhật nếu trạng thái thực sự thay đổi
-                if (shouldShowHeader !== isHeaderVisible.current) {
-                    isHeaderVisible.current = shouldShowHeader;
-                    controls.start({
-                        y: shouldShowHeader ? 0 : -100,
-                        opacity: shouldShowHeader ? 1 : 0,
-                        transition: { duration: 0.5, ease: 'easeInOut' },
-                    });
-                }
-
-                lastScrollY.current = scrollY;
-                ticking.current = false;
-            });
-
-            ticking.current = true;
+        // Nếu chỉ cuộn ngang (scrollX thay đổi mà scrollY không đổi) → Bỏ qua
+        if (scrollX !== lastScrollX.current && scrollY === lastScrollY.current) {
+            lastScrollX.current = scrollX; // Cập nhật scrollX để không xử lý lần sau
+            return;
         }
-    }, [controls, pathName]);
+
+        // Dùng throttle để chỉ xử lý scroll mỗi 50ms
+        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+
+        // if (!ticking.current) {
+        //     requestAnimationFrame(() => {
+        //         let shouldShowHeader = isHeaderVisible.current;
+
+        //         if (scrollY > lastScrollY.current || forceCheckScroll.current) {
+        //             shouldShowHeader = false; // Ẩn header khi cuộn xuống
+        //             forceCheckScroll.current = false; // Reset flag sau lần đầu tiên kiểm tra
+        //         } else if (scrollY < lastScrollY.current) {
+        //             shouldShowHeader = true; // Hiện header khi cuộn lên
+        //         }
+
+
+        //         if (shouldShowHeader !== isHeaderVisible.current) {
+        //             isHeaderVisible.current = shouldShowHeader;
+        //             controls.start({
+        //                 y: shouldShowHeader ? 0 : -100,
+        //                 opacity: shouldShowHeader ? 1 : 0,
+        //                 transition: {
+        //                     type: "spring", // 🏆 Mượt hơn với spring easing
+        //                     stiffness: 250,
+        //                     damping: 30
+        //                 },
+        //             });
+        //         }
+
+        //         lastScrollY.current = scrollY;
+        //         lastScrollX.current = scrollX; // Cập nhật vị trí scroll ngang
+        //         ticking.current = false;
+        //     });
+        //     ticking.current = true;
+        // }
+
+        scrollTimeout.current = setTimeout(() => {
+            let shouldShowHeader = isHeaderVisible.current;
+
+            if (scrollY > lastScrollY.current || forceCheckScroll.current) {
+                shouldShowHeader = false;
+                forceCheckScroll.current = false;
+            } else if (scrollY < lastScrollY.current) {
+                shouldShowHeader = true;
+            }
+
+            if (shouldShowHeader !== isHeaderVisible.current) {
+                isHeaderVisible.current = shouldShowHeader;
+                controls.start({
+                    y: shouldShowHeader ? 0 : -100,
+                    opacity: shouldShowHeader ? 1 : 0,
+                    transition: {
+                        type: "spring",
+                        stiffness: 150, // 🏆 Giảm stiffness giúp animation mượt hơn
+                        damping: 20 // 🏆 Giảm damping để không bị delay khi cuộn nhanh
+                    },
+                });
+            }
+
+            lastScrollY.current = scrollY;
+            lastScrollX.current = scrollX;
+        }, 50); // 🏆 Chỉ xử lý scroll mỗi 50ms, tránh spam event gây lag
+
+        // resetInactivityTimer();
+    }, [controls]);
+
+    // ✅ Xử lý khi không thao tác để tự hiện header
+    const resetInactivityTimer = useCallback(() => {
+        if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+
+        inactivityTimer.current = setTimeout(() => {
+            isHeaderVisible.current = true;
+            forceCheckScroll.current = true;
+            controls.start({
+                y: 0,
+                opacity: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 18
+                }
+            });
+            inactivityTimer.current = null;
+        }, 3000);
+    }, [controls]);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll]);
+        lastScrollY.current = window.scrollY; // Cập nhật vị trí scroll ngay khi tải trang
+
+        // 🚀 Khi load trang, đảm bảo header HIỆN ra trước
+        isHeaderVisible.current = true; // Đặt lại giá trị ref
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', resetInactivityTimer);
+        window.addEventListener('keydown', resetInactivityTimer);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', resetInactivityTimer);
+            window.removeEventListener('keydown', resetInactivityTimer);
+        };
+    }, [handleScroll, resetInactivityTimer]);
 
     return (
         <ProviderLayout data={data}>
             {/* header */}
             <motion.div
-                // initial={{ y: -100, opacity: 0 }}
-                initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
+                initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
+                // initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
                 animate={controls}
                 className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"
                 style={{ willChange: 'transform, opacity' }} // Tối ưu hóa GPU rendering

@@ -1,10 +1,11 @@
 import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb'
 import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
-import React, { memo, useMemo, useRef, useState } from 'react'
+import React, { memo, useMemo, useRef, useState, useEffect } from 'react'
 import AnimatedTitle from '../../../../../components/common/animations/text/AnimatedTitle';
 import { motion } from 'framer-motion'
 import AnimatedTitleGradient from '../../../../../components/common/animations/text/AnimatedTitleGradient';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type Props = {}
 
@@ -24,8 +25,70 @@ const gradientStyle = {
 };
 
 const SolveSolutionSection = memo((props: Props) => {
-    const sectionRef = useRef<HTMLDivElement>(null); // Giới hạn vùng kéo
-    const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: 500, y: 500 });
+    const [isDragging, setIsDragging] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (isDragging && sectionRef.current) {
+                const sectionRect = sectionRef.current.getBoundingClientRect();
+
+                // Giữ icon trong section
+                const newX = Math.max(0, Math.min(e.clientX - sectionRect.left, sectionRect.width - 85));
+                const newY = Math.max(0, Math.min(e.clientY - sectionRect.top, sectionRect.height - 85));
+
+                setPosition({ x: newX, y: newY });
+            }
+        };
+
+        const handleMouseUp = () => {
+            setIsDragging(false);
+        };
+
+        if (isDragging) {
+            window.addEventListener("mousemove", handleMouseMove);
+            window.addEventListener("mouseup", handleMouseUp);
+        }
+
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
+    }, [isDragging]);
+
+    // 🛠 Xử lý `initial position` và `size` theo từng độ phân giải màn hình
+    const updatePositionAndSize = () => {
+        const screenWidth = window.innerWidth;
+
+        let newPosition = { x: 50, y: 50 };
+
+        if (screenWidth >= 1920) {
+            newPosition = { x: 1166, y: 440 };
+        } else if (screenWidth >= 1536) {
+            newPosition = { x: 910, y: 256 };
+        } else if (screenWidth >= 1440) {
+            newPosition = { x: 860, y: 265 };
+        } else if (screenWidth >= 1280) {
+            newPosition = { x: 780, y: 260 };
+        } else if (screenWidth >= 1024) {
+            newPosition = { x: 640, y: 295 };
+        } else if (screenWidth >= 768) {
+            newPosition = { x: 430, y: 115 };
+        } else {
+            newPosition = { x: 260, y: 155 }; // Màn hình nhỏ hơn 768px
+        }
+
+        setPosition(newPosition);
+    };
+
+    // 🔥 Chạy khi component mount & khi resize màn hình
+    useEffect(() => {
+        updatePositionAndSize(); // Chạy lần đầu
+        window.addEventListener("resize", updatePositionAndSize);
+        return () => window.removeEventListener("resize", updatePositionAndSize);
+    }, []);
+
 
     // ✅ Tạo danh sách chữ để hiển thị với hiệu ứng Animation
     const heroPerTitle1 = useMemo(
@@ -57,7 +120,6 @@ const SolveSolutionSection = memo((props: Props) => {
         [heroPerTitle3]
     );
 
-
     const heroPerTitle5 = useMemo(
         () =>
             "Giải Pháp"
@@ -66,11 +128,41 @@ const SolveSolutionSection = memo((props: Props) => {
         [heroPerTitle4]
     );
 
-    console.log('position', position);
-
-
     return (
         <div ref={sectionRef} className='custom-padding-section lg:h-screen h-svh relative'>
+            {/* icon mục tiêu kéo đặt ở mọi nơi */}
+            <div
+                onMouseDown={(e) => {
+                    if (!sectionRef.current) return;
+                    const sectionRect = sectionRef.current.getBoundingClientRect();
+
+                    // 🔥 Khi click, icon ngay lập tức nằm chính giữa con trỏ
+                    setPosition({
+                        x: e.clientX - sectionRect.left,
+                        y: e.clientY - sectionRect.top
+                    });
+
+                    setIsDragging(true);
+                    e.preventDefault();
+                }}
+                style={{
+                    left: `${position.x}px`,
+                    top: `${position.y}px`,
+                    cursor: isDragging ? "grabbing" : "grab",
+                    userSelect: "none",
+                    transform: "translate(-50%, -50%)",
+                }}
+                className='xl:w-[85px] w-16 h-auto aspect-square absolute z-40'
+            >
+                <Image
+                    src="/background/ui/about-us/target-dynamic.webp"
+                    alt="Mission Icon"
+                    width={85}
+                    height={85}
+                    draggable={false}
+                    className="size-full object-contain aspect-square"
+                />
+            </div>
             {/* Hình nền trái - Tối ưu lazy loading */}
             <div className='absolute lg:top-1/2 top-[80%] left-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[270px] xl:h-[250px] lg:h-[200px] md:h-[300px] h-[200px] aspect-square pointer-events-none'>
                 <Image
@@ -130,7 +222,7 @@ const SolveSolutionSection = memo((props: Props) => {
 
                             {/* Chữ "sứ mệnh" lắc nhẹ đồng bộ với mũi tên */}
                             <motion.div
-                                className={`${playwrite_is_sans.className} 3xl:!text-xl xl:!text-lg lg:!text-base md:!text-xl !text-lg italic font-normal text-[#4D5F6E] -rotate-3 pointer-events-none`}
+                                className={`${playwrite_is_sans.className} 3xl:!text-xl xl:!text-lg lg:!text-base md:!text-base !text-base italic font-normal text-[#4D5F6E] -rotate-3 pointer-events-none`}
                                 animate={{
                                     rotate: [-8, 0, -8], // Lắc cùng hướng với mũi tên
                                     x: [-2, 0, -2], // Nhẹ nhàng đẩy qua lại
@@ -144,7 +236,7 @@ const SolveSolutionSection = memo((props: Props) => {
                                 sứ mệnh
                             </motion.div>
                         </div>
-                        <div className='xl:w-[85px] w-16 h-auto aspect-square'>
+                        {/* <div className='xl:w-[85px] w-16 h-auto aspect-square'>
                             <Image
                                 src="/background/ui/about-us/target-dynamic.webp"
                                 alt="Mission Icon"
@@ -152,40 +244,13 @@ const SolveSolutionSection = memo((props: Props) => {
                                 height={150}
                                 className='size-full object-contain aspect-square'
                             />
-                        </div>
-
-                        {/* Phần tử có thể kéo thả */}
-                        {/* <motion.div
-                            className='xl:w-[85px] w-16 h-auto aspect-square cursor-grab active:cursor-grabbing absolute'
-                            drag
-                            dragConstraints={{ left: -300, right: 300, top: -200, bottom: 200 }} // Cho phép kéo xa hơn
-                            dragElastic={0.2} // Giảm độ đàn hồi khi kéo
-                            initial={{ x: position.x, y: position.y }} // Giữ vị trí sau khi render lại
-                            onDragEnd={(event, info) => {
-                                setPosition({ x: info.point.x, y: info.point.y }); // Lưu vị trí khi thả ra
-                            }}
-                        >
-                            <Image
-                                src="/background/ui/about-us/target-dynamic.webp"
-                                alt="Mission Icon"
-                                width={150}
-                                height={150}
-                                className='size-full object-contain aspect-square'
-                            />
-                        </motion.div> */}
-
+                        </div> */}
                     </div>
 
                     <h2 className="text-title-section font-normal space-x-2">
-                        {/* <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle1} delay={0} /> */}
-                        {/* <span className="relative inline-block">
-                            <span className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"></span>
-                            <AnimatedTitle className='text-[#050505] relative z-10 font-extrabold' heroPerTitle={heroPerTitle2} delay={0.5} />
-                        </span> */}
 
                         <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle1} delay={0} />
                         <span className="relative inline-block">
-                            {/* <span className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"></span> */}
                             {/* Background trượt từ trái sang phải */}
                             <motion.span
                                 className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"
@@ -213,24 +278,6 @@ const SolveSolutionSection = memo((props: Props) => {
                                 WebkitTextFillColor: "transparent",
                             }}
                         />
-                        {/* <span>Giải Quyết</span>
-                        <span className="relative inline-block">
-                            <span className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"></span>
-                            <span className="relative z-10 font-extrabold">Vấn Đề</span>
-                        </span>
-                        <span>Và</span>
-                        <br />
-                        <span>Mang Đến</span>
-                        <span
-                            className="font-extrabold"
-                            style={{
-                                ...gradientStyle,
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                            }}
-                        >
-                            Giải Pháp
-                        </span> */}
                     </h2>
                 </div>
             </div>

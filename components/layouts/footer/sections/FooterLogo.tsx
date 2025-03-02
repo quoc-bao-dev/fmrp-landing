@@ -28,7 +28,7 @@ const FooterLogo = () => {
         >
             <Image
                 alt="logo"
-                src="/logo/foso/logo-single.svg"
+                src="/logo/foso/logo-pattern.webp"
                 width={400}
                 height={400}
                 quality={100}

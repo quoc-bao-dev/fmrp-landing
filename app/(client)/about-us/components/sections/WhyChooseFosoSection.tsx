@@ -151,7 +151,7 @@ const WhyChooseFosoSection = () => {
 
                 {/* Nội dung các lợi ích */}
                 <div className='w-full lg:max-w-[60%] max-w-full flex flex-col justify-center gap-4 relative'>
-                    {!isVisibleMobile && <BlurredBackground className='3xl:top-10 top-20 right-20' />}
+                    {!isVisibleMobile && <BlurredBackground className='3xl:top-10 top-20 right-24' />}
 
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto">
                         {values.map((value, index) => (

@@ -7,6 +7,7 @@ import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal
 import BlurImage from '@/components/common/blur/BlurImage';
 import AnimatedCircle from '@/components/common/animations/ui/AnimatedCircle';
 import { uuidv4 } from '@/lib/uuid';
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
 
 type Props = {}
 
@@ -73,78 +74,83 @@ const CoreValueStep = (props: Props) => {
     }, [handleScroll]);
 
     return (
-        <div className="3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12">
-            {/* Timeline Steps */}
-            <div className="relative flex flex-col gap-10">
-                {steps.map((step, index) => (
-                    <div
-                        key={`step-${step.id}`}
-                        ref={(el) => { stepRefs.current[index] = el }}
-                        className={`relative flex items-center gap-20 justify-between`}
-                    >
-                        {/* Nội dung */}
-                        <AnimatedReveal
-                            from="left"
-                            effect='fade'
-                            // once={false}
-                            className={`${index !== steps.length - 1 ? "3xl:pb-40 pb-36 3xl:pt-20 lg:pt-10 pt-12" : ""} flex lg:flex-row flex-col lg:items-center xl:gap-20 gap-16 w-full max-w-full lg:pl-20 pl-8 `}
+        <div className='w-full relative overflow-x-hidden'>
+            <div className=" 3xl:max-w-5xl xl:max-w-4xl max-w-3xl mx-auto px-6 py-12 flex flex-col gap-10 ">
+                {
+                    steps.map((step, index) => (
+                        <div
+                            key={`step-${step.id}`}
+                            ref={(el) => { stepRefs.current[index] = el }}
+                            className={`relative`}
                         >
-                            <div className={`w-full 2xl:max-w-[50%] lg:max-w-[45%] max-w-full flex items-center justify-center lg:order-1 order-2`}>
-                                <BlurImage
-                                    src={step.image}
-                                    alt={step.title}
-                                    width={800}
-                                    height={600}
-                                    className=" w-full h-auto aspect-square object-contain relativee z-0"
-                                    classNameContainer='w-full h-auto aspect-square relativee z-0'
-                                    // style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
-                                    loading="lazy"
-                                />
-                            </div>
+                            {/* Nội dung */}
+                            <AnimatedReveal
+                                from="left"
+                                effect='fade'
+                                // once={false}
+                                className={`${index !== steps.length - 1 ? "3xl:pt-20 lg:pt-10 pt-12 lg:h-[80vh]" : " pb-10"}  flex lg:flex-row flex-col lg:items-start xl:gap-20 gap-16 w-full max-w-full lg:pl-20 pl-8 relative`}
+                            >
+                                {!isVisibleTablet && (index !== steps.length - 1) &&
+                                    <BlurredBackground className='top-0 -right-[90%] z-[1]' />
+                                }
 
-                            <div className='space-y-2 w-full 2xl:max-w-[50%] lg:max-w-[55%] max-w-full lg:order-2 order-1'>
-                                <div className='relative w-fit '>
-                                    <h3 className="3xl:!text-2xl xl:!text-2xl lg:!text-xl !text-2xl font-extrabold text-[#33404A] relative z-[1]">
-                                        {step.title}
-                                    </h3>
-                                    <div className='absolute 2xl:-top-10 xl:-top-11 lg:-top-10 -top-12 left-0 z-0'>
-                                        <h2
-                                            className='3xl:text-[54px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[52px] text-[52px] font-bold uppercase w-fit'
-                                            style={{
-                                                // backgroundImage: "linear-gradient(420deg, #FFFFFF 10%, #B3B3B3 80%, #FFFFFF 100%)"
-                                                background: "linear-gradient(218.75deg, #CDCDCE 43.55%, #FFFFFF 80.72%)",
-                                                WebkitBackgroundClip: "text",
-                                                WebkitTextFillColor: "transparent",
-                                            }}
-                                        >
-
-                                            {step.word}
-                                        </h2>
-                                    </div>
+                                <div className={`w-full 2xl:max-w-[50%] lg:max-w-[45%] max-w-full flex items-center justify-center lg:order-1 order-2`}>
+                                    <BlurImage
+                                        src={step.image}
+                                        alt={step.title}
+                                        width={800}
+                                        height={600}
+                                        className=" w-full h-auto aspect-square object-contain relativee z-0"
+                                        classNameContainer='w-full h-auto aspect-square relativee z-0'
+                                        // style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
+                                        loading="lazy"
+                                    />
                                 </div>
 
-                                <p className="3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] font-medium">{step.description}</p>
-                            </div>
-                        </AnimatedReveal>
+                                <div className='space-y-2 w-full 2xl:max-w-[50%] lg:max-w-[55%] max-w-full lg:order-2 order-1'>
+                                    <div className='relative w-fit '>
+                                        <h3 className="3xl:!text-2xl xl:!text-2xl lg:!text-xl !text-2xl font-extrabold text-[#33404A] relative z-[1]">
+                                            {step.title}
+                                        </h3>
+                                        <div className='absolute 2xl:-top-10 xl:-top-11 lg:-top-10 -top-12 left-0 z-0'>
+                                            <h2
+                                                className='3xl:text-[54px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[52px] text-[52px] font-bold uppercase w-fit'
+                                                style={{
+                                                    // backgroundImage: "linear-gradient(420deg, #FFFFFF 10%, #B3B3B3 80%, #FFFFFF 100%)"
+                                                    background: "linear-gradient(218.75deg, #CDCDCE 43.55%, #FFFFFF 80.72%)",
+                                                    WebkitBackgroundClip: "text",
+                                                    WebkitTextFillColor: "transparent",
+                                                }}
+                                            >
 
-                        {/* Thanh timeline */}
-                        <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"}
+                                                {step.word}
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <p className="3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] font-medium">{step.description}</p>
+                                </div>
+                            </AnimatedReveal>
+
+                            {/* Thanh timeline */}
+                            <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"}
                              flex flex-col gap-8 h-full absolute top-0 left-0 transform -translate-x-1/2
                              `}>
-                            {/* Hình tròn Active */}
-                            <AnimatedCircle active={activeStep === index} />
+                                {/* Hình tròn Active */}
+                                <AnimatedCircle active={activeStep === index} />
 
-                            {/* Thanh dọc (chỉ vẽ nếu không phải bước cuối cùng) */}
-                            {
-                                index !== steps.length - 1 && (
-                                    <div className="w-[1px] h-full bg-[#D9E1E7]"></div>
-                                )
-                            }
+                                {/* Thanh dọc (chỉ vẽ nếu không phải bước cuối cùng) */}
+                                {
+                                    index !== steps.length - 1 && (
+                                        <div className="w-[1px] h-full bg-[#D9E1E7]"></div>
+                                    )
+                                }
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
-        </div >
+        </div>
     )
 }
 
