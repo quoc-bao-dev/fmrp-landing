@@ -5,6 +5,8 @@ import Image from 'next/image'
 import React from 'react'
 import { useRouter } from 'next/navigation';
 
+import { motion } from 'framer-motion'
+
 type Props = {}
 
 const MissionAndActionSection = (props: Props) => {
@@ -17,7 +19,7 @@ const MissionAndActionSection = (props: Props) => {
                 {/* blur */}
                 {!isVisibleTablet && <BlurredBackground className='top-[20%] -left-[40%] z-[1]' />}
 
-                <div className='w-[200px] h-auto aspect-square'>
+                {/* <div className='w-[200px] h-auto aspect-square'>
                     <Image
                         width={400}
                         height={400}
@@ -25,7 +27,36 @@ const MissionAndActionSection = (props: Props) => {
                         src="/background/ui/about-us/saly.webp"
                         className='size-full object-contain'
                     />
-                </div>
+                </div> */}
+
+                <motion.div
+                    className="w-[200px] h-auto aspect-square"
+                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <motion.div
+                        animate={{
+                            y: [0, -8, 0],  // Hiệu ứng trôi lên xuống
+                            rotate: [0, 2, -4, 0]  // Lắc nhẹ qua lại
+                        }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    >
+                        <Image
+                            width={400}
+                            height={400}
+                            alt="saly"
+                            src="/background/ui/about-us/saly.webp"
+                            className="size-full object-contain"
+                        />
+                    </motion.div>
+                </motion.div>
 
                 <div className='flex flex-col lg:items-center lg:justify-center items-start justify-start 3xl:gap-6 gap-4 3xl:max-w-[54%] lg:max-w-[70%] max-w-full lg:text-center text-start'>
                     <h2 className="text-title-section-small font-bold space-x-2">
@@ -68,7 +99,7 @@ const MissionAndActionSection = (props: Props) => {
                             background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
                             border: "1px solid #A3EED6",
                             borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
-                            
+
                         }}
                         whileHover={{
                             background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,

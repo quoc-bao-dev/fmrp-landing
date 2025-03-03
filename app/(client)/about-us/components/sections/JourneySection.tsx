@@ -9,6 +9,8 @@ import Marquee from 'react-fast-marquee'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { motion } from 'framer-motion'
+
 type Props = {}
 
 const dataImage = [
@@ -59,7 +61,18 @@ const JourneySection = (props: Props) => {
         <div className='custom-padding-section'>
             <div className='custom-container-no-right relative'>
                 <div className='absolute -top-20 -left-3 flex space-x-2 space-y-8'>
-                    <div className='relative xl:w-[50px] w-11 h-auto aspect-1/2 left-4'>
+                    <motion.div
+                        className='relative xl:w-[50px] w-11 h-auto aspect-1/2 left-4'
+                        animate={{
+                            y: [0, -3, 0], // Nhảy lên xuống nhẹ
+                            rotate: [-8, 0, -8], // Lắc nhẹ để nhấn mạnh hướng
+                        }}
+                        transition={{
+                            duration: 1, // Đồng bộ với chữ
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    >
                         <Image
                             src="/background/ui/about-us/arrow-right-down.webp"
                             alt="Mission Icon"
@@ -68,11 +81,22 @@ const JourneySection = (props: Props) => {
                             className='size-full object-contain aspect-1/2'
                             loading="lazy"
                         />
-                    </div>
+                    </motion.div>
 
-                    <div className={`${playwrite_is_sans.className} capitalize -rotate-[3deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%] text-[#4D5F6E] font-normal`}>
+                    <motion.div
+                        className={`${playwrite_is_sans.className} capitalize -rotate-[3deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%] text-[#4D5F6E] font-normal`}
+                        animate={{
+                            rotate: [-4, 0, -4], // Lắc cùng hướng với mũi tên
+                            x: [-2, 0, -2], // Nhẹ nhàng đẩy qua lại
+                        }}
+                        transition={{
+                            duration: 1, // Đồng bộ với mũi tên
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    >
                         Chặng đường khởi tạo nên FOSO
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/* <Marquee
@@ -126,7 +150,7 @@ const JourneySection = (props: Props) => {
                             spaceBetween: 30,
                         }
                     }}
-                    className='custom-swiper-pagination md:h-[380px] h-[380px] rounded-2xl'
+                    className='custom-swiper-pagination 3xl:h-[380px] xl:h-[320px] lg:h-[280px] h-[280px] rounded-l-2xl'
                     allowTouchMove={true}
                     grabCursor={true}
                 >
@@ -134,15 +158,15 @@ const JourneySection = (props: Props) => {
                         dataImage.map((item, index) => (
                             <SwiperSlide
                                 key={`item-${index}`}
-                                className='size-full flex items-center rounded-2xl relative group'
                                 onClick={() => setSelectedImage(item.image)}
+                                className='w-full h-auto flex items-center rounded-2xl relative group aspect-3/2'
                             >
                                 <Image
                                     src={item.image}
                                     alt={`item-${index}`}
                                     width={800}
                                     height={600}
-                                    className="size-full object-cover rounded-2xl"
+                                    className="size-full object-cover rounded-2xl aspect-3/2"
                                 />
 
                                 <div
@@ -163,8 +187,8 @@ const JourneySection = (props: Props) => {
                     selectedImage &&
                     (
                         <div
-                            className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-50"
-                            // onClick={() => setSelectedImage(null)}
+                            className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 z-50 overflow-x-hidden"
+                        // onClick={() => setSelectedImage(null)}
                         >
                             {/* Nút Close */}
                             <button

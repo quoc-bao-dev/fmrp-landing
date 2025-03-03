@@ -9,7 +9,7 @@ const CoreValueSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     return (
         <div className='custom-padding-section'>
-            <div className='custom-container sticky top-0 z-10 3xl:py-6 py-4 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'>
+            <div className='custom-container sticky top-0 z-10 2xl:pt-32 pt-28 3xl:pb-6 pb-4 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'>
                 <h2 className="text-title-section-small font-bold">
                     <span className="text-[#050505] font-extrabold capitalize">4-SO makes</span>
                     <span
