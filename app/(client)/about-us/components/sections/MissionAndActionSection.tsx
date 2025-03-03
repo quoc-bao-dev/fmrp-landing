@@ -6,6 +6,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation';
 
 import { motion } from 'framer-motion'
+import SalyAnimation from '@/components/common/animations/common/SalyAnimation'
 
 type Props = {}
 
@@ -29,34 +30,15 @@ const MissionAndActionSection = (props: Props) => {
                     />
                 </div> */}
 
-                <motion.div
-                    className="w-[200px] h-auto aspect-square"
-                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <motion.div
-                        animate={{
-                            y: [0, -8, 0],  // Hiệu ứng trôi lên xuống
-                            rotate: [0, 2, -4, 0]  // Lắc nhẹ qua lại
-                        }}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    >
-                        <Image
-                            width={400}
-                            height={400}
-                            alt="saly"
-                            src="/background/ui/about-us/saly.webp"
-                            className="size-full object-contain"
-                        />
-                    </motion.div>
-                </motion.div>
+                <SalyAnimation className="w-[200px] h-auto aspect-square">
+                    <Image
+                        width={400}
+                        height={400}
+                        alt="saly"
+                        src="/background/ui/about-us/saly.webp"
+                        className="size-full object-contain"
+                    />
+                </SalyAnimation>
 
                 <div className='flex flex-col lg:items-center lg:justify-center items-start justify-start 3xl:gap-6 gap-4 3xl:max-w-[54%] lg:max-w-[70%] max-w-full lg:text-center text-start'>
                     <h2 className="text-title-section-small font-bold space-x-2">
