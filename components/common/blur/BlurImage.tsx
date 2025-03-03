@@ -12,6 +12,7 @@ type BlurImageProps = {
     priority?: boolean;
     loading?: "eager" | "lazy";
     style?: any;
+    onClick?: () => void
 };
 
 const BlurImage: React.FC<BlurImageProps> = ({

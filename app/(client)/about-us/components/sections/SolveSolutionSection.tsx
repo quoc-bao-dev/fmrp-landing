@@ -64,7 +64,7 @@ const SolveSolutionSection = memo((props: Props) => {
         let newPosition = { x: 50, y: 50 };
 
         if (screenWidth >= 1920) {
-            newPosition = { x: 1166, y: 440 };
+            newPosition = { x: 1105, y: 370 };
         } else if (screenWidth >= 1536) {
             newPosition = { x: 910, y: 256 };
         } else if (screenWidth >= 1440) {
@@ -195,7 +195,7 @@ const SolveSolutionSection = memo((props: Props) => {
 
                 {/* Nội dung chính */}
                 <div className="flex lg:items-center items-start justify-center w-full h-full relative lg:pt-0 md:pt-20 pt-28">
-                    <div className="absolute flex items-center justify-center gap-2 3xl:top-[28%] xl:top-[18%] lg:top-[25%] md:top-0 top-[5%] lg:left-[47%] md:left-[35%] left-[25%] ">
+                    <div className="absolute flex items-center justify-center gap-2 3xl:top-[25%] xl:top-[18%] lg:top-[25%] md:top-0 top-[5%] lg:left-[47%] md:left-[35%] left-[25%] ">
                         <div className='flex items-center relative top-4'>
                             {/* Mũi tên và chữ đều có chung hiệu ứng lắc nhẹ theo hướng */}
                             <motion.div
