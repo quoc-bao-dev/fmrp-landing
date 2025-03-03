@@ -6,7 +6,7 @@ import BlurredBackground from '@/components/common/blur/BlurredBackground'
 type Props = {}
 
 const CoreValueSection = (props: Props) => {
-    const { isVisibleTablet } = useResizeStore()
+
     return (
         <div className='custom-padding-section'>
             <div
@@ -44,7 +44,7 @@ const CoreValueSection = (props: Props) => {
             </div>
 
             <CoreValueStep />
-        </div >
+        </div>
     )
 }
 

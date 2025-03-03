@@ -103,26 +103,28 @@ const CustomTooltipContent = memo(({ subMenu }: CustomTooltipContentProps) => {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="grid grid-cols-2 gap-4"
                     >
-                        {activeContent?.items.map((item: any) => (
-                            <Link key={item.id} href={item.link ?? "#"} className='grid-cols-1 w-fit'>
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                                    className="flex items-center gap-2 w-fit"
-                                >
-                                    <div className="flex items-center justify-center border border-[#99B2C6] rounded-xl xl:size-12 size-10 p-0.5">
-                                        <div className="xl:size-8 size-6">{item.icon}</div>
-                                    </div>
+                        {
+                            activeContent?.items.map((item: any) => (
+                                <Link key={item.id} href={item.link ?? "#"} className='grid-cols-1 w-fit'>
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                                        className="flex items-center gap-2 w-fit"
+                                    >
+                                        <div className="flex items-center justify-center border border-[#99B2C6] rounded-xl xl:size-12 size-10 p-0.5">
+                                            <div className="xl:size-8 size-6">{item.icon}</div>
+                                        </div>
 
-                                    <div>
-                                        <h4 className="text-default text-[#33404A] font-bold">{item.name}</h4>
-                                        <p className="text-sm-default text-[#667F93] font-normal">{item.description}</p>
-                                    </div>
-                                </motion.div>
-                            </Link>
-                        ))}
+                                        <div>
+                                            <h4 className="text-default text-[#33404A] font-bold">{item.name}</h4>
+                                            <p className="text-sm-default text-[#667F93] font-normal">{item.description}</p>
+                                        </div>
+                                    </motion.div>
+                                </Link>
+                            ))
+                        }
                     </motion.div>
                 </AnimatePresence>
             </div>

@@ -3,8 +3,9 @@ import { FormatPhoneNumberCountry } from "@/utils/format/FormatNumber";
 import PhoneLink from "../../../common/contact-links/PhoneLink";
 import EmailLink from "../../../common/contact-links/EmailLink";
 import InfoSection from "../elements/InfoSection";
-import SocialSection from "../elements/SocialSection";
 import { useResizeStore } from "@/stores/useResizeStore";
+import { SocialMediaItem } from "@/types/social-media/ISocialMedia";
+import SocialMediaList from "../../../common/social/SocialMediaList";
 
 interface CompanyInfoItem {
     label: string;
@@ -49,14 +50,19 @@ const policies: PolicyItem[] = [
     { name: "Chính sách cookie", link: "#" }
 ];
 
-const FooterContent = () => {
+
+interface SocialSectionProps {
+    socialMedia: SocialMediaItem[];
+}
+
+const FooterContent: React.FC<SocialSectionProps> = ({ socialMedia }) => {
     const { isVisibleTablet } = useResizeStore()
 
     return (
         <div className="flex lg:flex-row flex-col lg:items-center lg:justify-between lg:gap-0 gap-4">
             <div className="lg:max-w-[60%] max-w-full space-y-6">
                 <InfoSection title="CÔNG TY TNHH CÔNG NGHỆ FOSO" items={companyInfo} />
-                {!isVisibleTablet && <SocialSection />}
+                {!isVisibleTablet && <SocialMediaList socialMedia={socialMedia} className='bg-[#F2F2F2]/10 hover:bg-[#F2F2F2]/5' />}
             </div>
 
             <div className="grid grid-cols-4 2xl:gap-20 md:gap-10 gap-4 justify-end lg:max-w-[40%] max-w-full">

@@ -11,6 +11,13 @@ import FooterBottom from './sections/FooterBottom';
 
 type Props = {}
 
+const socialMedia = [
+    { icon: "/icons/social-media/zalo.svg", link: "#" },
+    { icon: "/icons/social-media/facebook.svg", link: "#" },
+    { icon: "/icons/social-media/tiktok.svg", link: "#" },
+    { icon: "/icons/social-media/youtube.svg", link: "#" },
+];
+
 const FooterContainer = (props: Props) => {
     const router = useRouter()
 
@@ -32,12 +39,12 @@ const FooterContainer = (props: Props) => {
                 <LineSeparator color="#4D5F6E" />
 
                 {/* Phần nội dung chính */}
-                <FooterContent />
+                <FooterContent socialMedia={socialMedia}/>
 
                 <LineSeparator color="#4D5F6E" />
 
                 {/* Phần mạng xã hội */}
-                <FooterBottom />
+                <FooterBottom socialMedia={socialMedia} />
             </div>
         </footer >
     )

@@ -1,18 +1,21 @@
 import React from 'react'
 import Image from 'next/image'
 import LanguageSelector from '@/components/common/translate/LanguageSelector'
-import SocialSection from '../elements/SocialSection'
 import { useResizeStore } from '@/stores/useResizeStore'
+import { SocialMediaItem } from '@/types/social-media/ISocialMedia'
+import SocialMediaList from '../../../common/social/SocialMediaList'
 
-type Props = {}
+interface SocialSectionProps {
+    socialMedia: SocialMediaItem[];
+}
 
-const FooterBottom = (props: Props) => {
+const FooterBottom: React.FC<SocialSectionProps> = ({ socialMedia }) => {
     const { isVisibleTablet } = useResizeStore()
 
     return (
         <div className="grid xl:grid-cols-12 lg:grid-cols-14 grid-cols-2 lg:gap-0 gap-4 justify-between items-center">
 
-            {isVisibleTablet && <div className='col-span-2'><SocialSection /></div>}
+            {isVisibleTablet && <div className='col-span-2'><SocialMediaList socialMedia={socialMedia} className='bg-[#F2F2F2]/10 hover:bg-[#F2F2F2]/5' /></div>}
             <div className='xl:col-span-3 lg:col-span-4 col-span-1 flex flex-col lg:justify-center lg:items-start items-end lg:gap-0 gap-6 lg:order-1 order-3'>
 
                 <div className='w-fit'>

@@ -1,10 +1,17 @@
+'use client'
+
 import React from 'react'
+import IntroContactSection from './components/sections/IntroContactSection'
+import FormContactSection from './components/sections/FormContactSection'
 
 type Props = {}
 
 const ContactUs = (props: Props) => {
     return (
-        <div className='flex justify-center items-center h-screen bg-green-200'>ContactUs</div>
+        <main>
+            <IntroContactSection />
+            <FormContactSection />
+        </main>
     )
 }
 
