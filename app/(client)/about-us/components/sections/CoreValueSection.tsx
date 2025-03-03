@@ -9,7 +9,12 @@ const CoreValueSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     return (
         <div className='custom-padding-section'>
-            <div className='custom-container sticky top-0 z-10 2xl:pt-32 pt-28 3xl:pb-6 pb-4 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'>
+            <div
+                className='custom-container sticky top-0 z-10 2xl:pt-32 pt-28 3xl:pb-10 pb-8 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'
+                style={{
+                    WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 10%)"
+                }}
+            >
                 <h2 className="text-title-section-small font-bold">
                     <span className="text-[#050505] font-extrabold capitalize">4-SO makes</span>
                     <span
@@ -39,7 +44,7 @@ const CoreValueSection = (props: Props) => {
             </div>
 
             <CoreValueStep />
-        </div>
+        </div >
     )
 }
 
