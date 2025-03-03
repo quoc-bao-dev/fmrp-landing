@@ -11,7 +11,13 @@ import React, { ReactNode } from 'react'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
-import { User } from 'iconsax-react';
+import { NumericFormatCore } from '@/lib/numericFormat'
+import { regexPatterns } from '../../../../../utils/regex/regexUtils';
+
+import { SelectCustomSearch } from '@/components/common/select/SelectCustomSearch'
+import { useStatePageContactUs } from './../../_state/useStatePageContactUs';
+import { uuidv4 } from '@/lib/uuid';
+import ContactCard from '../../../../../components/common/card/contact/ContactCard';
 
 type Props = {}
 
@@ -72,17 +78,53 @@ const socialMedia = [
     { icon: "/icons/social-media/basic/youtube.svg", link: "#" },
 ];
 
+const roleData = [
+    {
+        id: uuidv4(),
+        label: "Quản lý",
+        value: "Quản lý"
+    },
+    {
+        id: uuidv4(),
+        label: "Admin",
+        value: "Admin"
+    },
+    {
+        id: uuidv4(),
+        label: "Nhân viên",
+        value: "Nhân viên"
+    },
+    {
+        id: uuidv4(),
+        label: "Khác",
+        value: "Khác"
+    },
+]
+
 const defaultValues: any = {
     email: "",
-    name: "",
+    fullname: "",
     phone: "",
     title: "",
     description: "",
-    file: []
+    file: [],
+    name_company: ""
 }
 
 const FormContactSection = (props: Props) => {
+    const { isStatePageContactUs, queryKeyIsStatePageContactUs } = useStatePageContactUs()
     const form = useForm({ defaultValues: { ...defaultValues } })
+
+    // Hàm Chọn riêng lẻ từng item
+    const handleSingleSelect = (value: any, field: any, type?: string, item?: any, index?: number) => {
+        const isSameValue = JSON.stringify(value) === JSON.stringify(field.value); // So sánh đối tượng
+
+        // if (type === "variant") {
+        //     onSubmitChangeVariantsQuote(value.id, id ?? "", item, index)
+        // }
+        // Nếu chọn lại chính nó, đặt thành undefined
+        field.onChange(isSameValue ? undefined : value);
+    };
 
     const onSubmit = (value: any) => {
 
@@ -109,66 +151,9 @@ const FormContactSection = (props: Props) => {
                     <div className='col-span-5 space-y-4 w-full'>
                         {
                             contactData.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="p-5 bg-white rounded-3xl flex gap-3"
-                                    style={{
-                                        boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A"
-                                    }}
-                                >
-                                    <div className="size-6 shrink-0">{item.icon}</div>
-                                    {/* <div className="size-6 flex-shrink-0">{item.icon}</div> */}
-                                    <div className='space-y-3'>
-                                        <h3 className="text-sm-default font-extrabold text-[#33404A]">{item.title}</h3>
-
-                                        <div className='space-y-0.5'>
-                                            {item.description && <p className="text-sm text-[#33404A] font-medium">{item.description}</p>}
-
-                                            {
-                                                Array.isArray(item.content) ?
-                                                    (
-                                                        <div className={`${item.type === "working_hours" ? "space-y-0.5" : "space-y-3"} text-sm`}>
-                                                            {item.content.map((subItem, subIndex) => (
-                                                                <p key={subIndex}>
-                                                                    <span className="font-bold text-[#33404A]">{subItem.label}</span> {subItem.value}
-                                                                </p>
-                                                            ))}
-                                                        </div>
-                                                    )
-                                                    :
-
-                                                    <>
-
-                                                        {
-                                                            !["phone", "email"].includes(item.type) ?
-                                                                (
-                                                                    <p className="text-[#33404A] font-medium">{item.content}</p>
-                                                                )
-                                                                :
-                                                                (
-                                                                    <>
-                                                                        {/* Tuỳ chỉnh nội dung khi type là "phone" hoặc "email" */}
-                                                                        {
-                                                                            item.type === "phone" &&
-                                                                            <PhoneLink phoneNumber={item.content} className='text-[#33404A] hover:text-[#33404A]/80 font-medium hover:underline hover:underline-offset-2 custom-transition'>
-                                                                                {FormatPhoneNumberCountry(item.content, "VN")}
-                                                                            </PhoneLink>
-                                                                        }
-                                                                        {
-                                                                            item.type === "email" &&
-                                                                            <EmailLink email={item.content} className='text-[#33404A] hover:text-[#33404A]/80 font-medium hover:underline hover:underline-offset-2 custom-transition'>
-                                                                                {item.content}
-                                                                            </EmailLink>
-                                                                        }
-                                                                    </>
-                                                                )
-                                                        }
-
-                                                    </>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
+                                <React.Fragment key={`contact-${index}`}>
+                                    <ContactCard item={item} />
+                                </React.Fragment>
                             ))
                         }
 
@@ -184,44 +169,213 @@ const FormContactSection = (props: Props) => {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit((data) => onSubmit(data))}
-                            className='col-span-13 grid md:grid-cols-2 grid-cols-1 gap-6 bg-white w-full rounded-3xl p-5'
+                            className='col-span-13  gap-6 bg-white w-full rounded-3xl p-5'
                             style={{
                                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A"
                             }}
                         >
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                rules={{
-                                    required: "Lỗi",
-                                }}
-                                render={({ field, fieldState }) => (
-                                    <FormItem className='flex flex-col w-full col-span-2'>
-                                        <FormLabel
-                                            htmlFor="name"
-                                            className="3xl:text-sm text-xs font-semibold text-[#505458] w-fit"
-                                        >
-                                            Họ và tên <span className="text-[#505458]">*</span>
-                                        </FormLabel>
-                                        <FormControl>
-                                            <div className="relative">
-                                                <Input
-                                                    id="name"
-                                                    className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
-                                            text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#B2BABD] placeholder:font-normal focus:ring-none focus:outline-none`}
-                                                    placeholder={"Nhập tên của bạn"}
-                                                    type="text"
-                                                    {...field}
-                                                />
-                                                <User className="text-[#808990] 3xl:size-6 size-5 absolute left-4 top-1/2 -translate-y-1/2" />
-                                            </div>
-                                        </FormControl>
-                                        {fieldState?.invalid && fieldState?.error && (
+                            <div className='grid md:grid-cols-2 grid-cols-1 gap-6'>
+                                <FormField
+                                    control={form.control}
+                                    name="fullname"
+                                    rules={{
+                                        required: "Vui lòng nhập họ và tên!",
+                                    }}
+                                    render={({ field, fieldState }) => (
+                                        <FormItem className='flex flex-col w-full col-span-2 gap-1'>
+                                            <FormLabel
+                                                htmlFor="name"
+                                                className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                            >
+                                                Họ và tên
+                                            </FormLabel>
+                                            <FormControl>
+                                                <div className="relative">
+                                                    <Input
+                                                        id="name"
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                            text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
+                                                        placeholder={"Nhập tên của bạn"}
+                                                        type="text"
+                                                        {...field}
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            {fieldState?.invalid && fieldState?.error && (
+                                                <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                            )}
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="phone"
+                                    rules={{
+                                        required: {
+                                            value: true,
+                                            message: "Vui lòng nhập số điện thoại!"
+                                        },
+                                        pattern: {
+                                            value: regexPatterns.lengthPhone,
+                                            message: "Số diện thoại không được để trống!",
+                                        },
+                                        validate: {
+                                            isValidPhone: (value) => {
+                                                if (!value) return true;
+                                                return (regexPatterns.phone.test(value) || 'Số diện thoại không hợp lệ!')
+                                            }
+                                        },
+                                    }}
+                                    render={({ field: { onChange, onBlur, ref, value, ...props }, fieldState }) => {
+
+                                        return (
+                                            <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                                <FormLabel
+                                                    className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                                >
+                                                    Số điện thoại
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <NumericFormatCore
+                                                        id="number_phone"
+                                                        name="phone"
+                                                        value={value}
+                                                        getInputRef={ref}
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                    px-3 py-1 text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-[#15AA7A]`}
+                                                        placeholder={"09xxx"}
+                                                        thousandSeparator={' '}
+                                                        maxLength={12}
+                                                        onValueChange={(values: any) => {
+                                                            const { value } = values;
+                                                            onChange(`${value}`); // Combine country code with phone number
+                                                        }}
+                                                        allowLeadingZeros={true}
+                                                        onBlur={onBlur} // Ensure onBlur is called for validation
+                                                    />
+                                                </FormControl>
+
+                                                {fieldState?.invalid && fieldState?.error && (
+                                                    <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                                )}
+                                            </FormItem>
+                                        );
+                                    }}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    rules={{
+                                        required: "Vui lòng nhập email!",
+                                    }}
+                                    render={({ field, fieldState }) => (
+                                        <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                            <FormLabel
+                                                htmlFor="name"
+                                                className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                            >
+                                                Email
+                                            </FormLabel>
+                                            <FormControl>
+                                                <div className="relative">
+                                                    <Input
+                                                        id="email"
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                            text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
+                                                        placeholder={"email@gmail.com"}
+                                                        type="text"
+                                                        {...field}
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            {fieldState?.invalid && fieldState?.error && (
+                                                <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                            )}
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="name_company"
+                                    // rules={{
+                                    //     required: "Vui lòng nhập tên tổ chức doanh nghiệp",
+                                    // }}
+                                    render={({ field, fieldState }) => (
+                                        <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                            <FormLabel
+                                                htmlFor="name"
+                                                className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                            >
+                                                Tên tổ chức doanh nghiệp
+                                            </FormLabel>
+                                            <FormControl>
+                                                <div className="relative">
+                                                    <Input
+                                                        id="name-company"
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                            text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
+                                                        placeholder={"Nhập tên công ty"}
+                                                        type="text"
+                                                        {...field}
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            {/* {fieldState?.invalid && fieldState?.error && (
                                             <FormMessage>{fieldState?.error?.message}</FormMessage>
-                                        )}
-                                    </FormItem>
-                                )}
-                            />
+                                        )} */}
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="role"
+                                    // rules={{
+                                    //     required: "Vui lòng nhập tên tổ chức doanh nghiệp",
+                                    // }}
+                                    render={({ field, fieldState }) => (
+                                        <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                            <FormLabel
+                                                htmlFor="role"
+                                                className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                            >
+                                                Chức vụ <span className="text-[#FA3434]">*</span>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <SelectCustomSearch
+                                                    onChange={(value) => handleSingleSelect(value, field)}
+                                                    onValueChange={() => { }}
+                                                    selected={field.value}
+                                                    options={roleData || []}
+                                                    onOpen={(e: boolean) => queryKeyIsStatePageContactUs({
+                                                        combobox: {
+                                                            ...isStatePageContactUs?.combobox,
+                                                            variants: {
+                                                                value: "",
+                                                                selected: {},
+                                                                open: e,
+                                                            }
+                                                        }
+                                                    })}
+                                                    // loading={isLoadingDataCamboquickService}'
+                                                    mutiValue={false}
+                                                    title='Chức vụ'
+                                                    classNameArrow={`${isStatePageContactUs?.combobox?.variants?.open ? 'rotate-180 text-[#F78F08]' : ''}`}
+                                                    classNameButtonTrigger={`${isStatePageContactUs?.combobox?.variants?.open ? 'border-[#F78F08]' : ''} bg-white 3xl:text-base lg:text-sm text-xs rounded-lg w-full h-full  px-3 py-1 text-[#33404A] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-[#15AA7A]`}
+                                                    classNameInputSearch='bg-white rounded-none border-t-0 border-x-0 border-b'
+                                                    // color=''
+                                                />
+                                            </FormControl>
+                                            {/* {fieldState?.invalid && fieldState?.error && (
+                                            <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                        )} */}
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                         </form>
                     </Form>
                 </div>

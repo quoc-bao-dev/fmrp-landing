@@ -122,11 +122,16 @@ const JourneySection = (props: Props) => {
                 <Swiper
                     slidesPerView={2.5}
                     spaceBetween={30}
-                    modules={[Pagination]}
+                    modules={[Pagination, Autoplay]}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
                     }}
                     // loop
+                    autoplay={{
+                        delay: 3000, // Thời gian giữa các lần chuyển slide (tính bằng ms, ở đây là 3 giây)
+                        disableOnInteraction: false, // Giữ autoplay ngay cả khi người dùng tương tác
+                    }}
+                    speed={1200}
                     pagination={false}
                     breakpoints={{
                         320: {
