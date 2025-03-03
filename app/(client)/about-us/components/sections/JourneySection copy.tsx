@@ -94,22 +94,24 @@ const JourneySection = (props: Props) => {
                     className='custom-swiper-pagination md:h-[400px] h-[400px] rounded-2xl'
                     allowTouchMove={true}
                 >
-                    {dataImage.map((item, index) => (
-                        <SwiperSlide
-                            key={`item-${index}`}
-                        // className='h-full relative cursor-pointer group'
-                        >
-                            <div className="3xl:w-[600px] xl:w-[480px] w-[380px] h-auto aspect-3/2 3xl:px-4 xl:px-3 px-2 flex items-center rounded-xl">
-                                <Image
-                                    src={item.image}
-                                    alt={`item-${index}`}
-                                    width={800}
-                                    height={600}
-                                    className="size-full object-cover aspect-3/2 rounded-xl"
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
+                    {
+                        dataImage.map((item, index) => (
+                            <SwiperSlide
+                                key={`item-${index}`}
+                            // className='h-full relative cursor-pointer group'
+                            >
+                                <div className="3xl:w-[600px] xl:w-[480px] w-[380px] h-auto aspect-3/2 3xl:px-4 xl:px-3 px-2 flex items-center rounded-xl">
+                                    <Image
+                                        src={item.image}
+                                        alt={`item-${index}`}
+                                        width={800}
+                                        height={600}
+                                        className="size-full object-cover aspect-3/2 rounded-xl"
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
             </div>
         </div>
