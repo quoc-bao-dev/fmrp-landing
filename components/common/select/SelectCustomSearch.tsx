@@ -43,6 +43,7 @@ interface MultiSelectProps {
     loading?: boolean;
     styleButtonTrigger?: React.CSSProperties;
     classNameTitle?: string
+    colorActive?: string; // Thêm prop color
 }
 
 function SelectCustomSearch({
@@ -66,16 +67,23 @@ function SelectCustomSearch({
     loading = false, // loading data,
     styleButtonTrigger,
     classNameTitle,
+    colorActive = "#F78F08", // Màu mặc định là cam
     ...props
 }: MultiSelectProps) {
     const itemRef = React.useRef<any>(null);
-
     const buttonRef = React.useRef<HTMLButtonElement>(null);
+
     const [popoverWidth, setPopoverWidth] = React.useState<number | null>(null);
-
-    const { dataLang } = useTranslate()
-
     const [open, setOpen] = React.useState(false);
+
+    // ✅ Chuyển `selected` thành mảng nếu cần thiết để tránh lỗi
+    const normalizedSelected = Array.isArray(selected) ? selected : selected ? [selected] : [];
+
+    // ✅ Fix lỗi `.some()`
+    const isActive = (optionValue: string) => {
+        return normalizedSelected.some((selectedItem: any) => selectedItem?.value === optionValue && selectedItem?.active);
+    };
+
 
     // Cập nhật chiều rộng của PopoverContent
     React.useEffect(() => {
@@ -83,11 +91,6 @@ function SelectCustomSearch({
             setPopoverWidth(buttonRef.current.offsetWidth);
         }
     }, [open]); // Chỉ cập nhật khi popover mở
-
-    const isActive = (optionValue: string) => {
-        // Tìm trong mảng selected phần tử có value trùng với option.value và active là true
-        return selected.some((selectedItem: any) => selectedItem.value === optionValue && selectedItem.active);
-    };
 
     // Đảm bảo width cập nhật khi resize màn hình
     React.useEffect(() => {
@@ -100,10 +103,15 @@ function SelectCustomSearch({
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    console.log('open', open);
+
+
     return (
         <Popover
             open={open}
             onOpenChange={(open: any) => {
+                console.log('open change', open);
+
                 onOpen(open);
                 setOpen(open);
             }}
@@ -123,6 +131,7 @@ function SelectCustomSearch({
                         e.preventDefault();
                         e.stopPropagation();
                         setOpen(!open)
+                        onOpen(!open);
                     }}
                     disabled={!disabled}
                 >
@@ -164,6 +173,7 @@ function SelectCustomSearch({
             <PopoverContent
                 align="start"
                 className={classNameContent}
+                style={{ width: popoverWidth || "auto" }}
             >
                 <Command className="">
                     {
@@ -237,10 +247,12 @@ function SelectCustomSearch({
                                                                     }
                                                                     onChange({ ...option, active: true });
                                                                     if (mutiValue) {
+                                                                        onOpen(!open)
                                                                         setOpen(true);
                                                                         return
                                                                     } else {
                                                                         setOpen(!open);
+                                                                        onOpen(!open)
                                                                         return
                                                                     }
                                                                 }}
@@ -258,22 +270,32 @@ function SelectCustomSearch({
                                                                     selected?.length > 0 ?
                                                                         // show active ra khi chọn nhiều (multi value)
                                                                         <div className={cn("flex items-center justify-between gap-2 w-full")}>
-                                                                            <h1 className={`${isActive(option.value) ? option?.color ? "" : "text-[#F78F08]" : ""} 3xl:text-base text-sm text-wrap font-medium space-x-1 max-w-[80%]`}>
+                                                                            <h1
+                                                                                className={`${isActive(option.value) ? option?.color ? "" : "text-[#F78F08]" : ""} 3xl:text-base text-sm text-wrap font-medium space-x-1 max-w-[80%]`}
+                                                                                style={{ color: isActive(option.value) ? option?.color ? "" : colorActive : "" }} // Truyền màu động
+                                                                            >
                                                                                 {option?.label}{option?.label === option?.label && <span className='hidden'>{index}</span>}
                                                                             </h1>
-                                                                            <Check className={cn("size-4 text-[#F78F08]", isActive(option.value) ? "block" : "hidden")} />
+                                                                            // <Check className={cn("size-4 text-[#F78F08]", isActive(option.value) ? "block" : "hidden")} />
+                                                                            <Check
+                                                                                className="size-4"
+                                                                                style={{ color: isActive(option.value) ? colorActive : "transparent" }} // Truyền màu động
+                                                                            />
                                                                         </div>
                                                                         :
                                                                         // show active ra khi chọn ít (single value)
                                                                         <div
                                                                             className={cn("flex items-center justify-between gap-2 w-full")}>
-                                                                            <h1 className={`${option.value === selected?.value ? option?.color ? "" : "text-[#F78F08]" : ""} 3xl:text-base text-sm text-wrap font-medium space-x-1 max-w-[80%]`}>
+                                                                            <h1
+                                                                                className={`3xl:text-base text-sm text-wrap font-medium space-x-1 max-w-[80%]`}
+                                                                                style={{ color: option.value === selected?.value ? option?.color ? "" : colorActive : "" }} // Truyền màu động
+                                                                            >
                                                                                 {option?.label}
                                                                             </h1>
                                                                             <Check
-                                                                             className={cn(`size-4 text-[#F78F08]`, option.value === selected?.value ? "block" : "hidden")} 
-                                                                             
-                                                                             />
+                                                                                className="size-4"
+                                                                                style={{ color: isActive(option.value) ? colorActive : "transparent" }} // Truyền màu động
+                                                                            />
                                                                         </div>
                                                                 }
                                                             </CommandItem>

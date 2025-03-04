@@ -6,7 +6,7 @@ import EnvelopeSimpleIconLinear from '@/components/icons/linear/EnvelopeSimpleIc
 import MapPinIconLinear from '@/components/icons/linear/MapPinIconLinear';
 import PhoneIconLinear from '@/components/icons/linear/PhoneIconLinear';
 import { FormatPhoneNumberCountry } from '@/utils/format/FormatNumber';
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useForm } from 'react-hook-form';
@@ -18,6 +18,14 @@ import { SelectCustomSearch } from '@/components/common/select/SelectCustomSearc
 import { useStatePageContactUs } from './../../_state/useStatePageContactUs';
 import { uuidv4 } from '@/lib/uuid';
 import ContactCard from '../../../../../components/common/card/contact/ContactCard';
+import { ICardContactItem } from '@/types/card/ICard';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { cn } from '@/lib/utils';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import Captcha from '@/components/common/captcha/Captcha';
+import ButtonAnimation from '@/components/common/button/ButtonAnimation';
+import { GoArrowUpRight } from 'react-icons/go';
 
 type Props = {}
 
@@ -29,15 +37,19 @@ const gradientStyle = {
     // backgroundBlendMode: "hard-light", // Hoặc try 'multiply', 'screen', 'hard-light' tùy vào Figma,
 };
 
-export interface ContactItem {
-    icon: ReactNode;
-    title: string;
-    description?: string;
-    content: string | { label: string; value: string }[];
-    type: string
+interface FormValues {
+    email: string;
+    fullname: string;
+    phone: string;
+    description: string;
+    file: File[]; // Nếu file là danh sách tệp đính kèm
+    name_company: string;
+    service: string; // Nếu chọn 1 dịch vụ, dùng string
+    role: string; // Chức vụ
 }
 
-export const contactData: ContactItem[] = [
+
+const contactData: ICardContactItem[] = [
     {
         icon: <PhoneIconLinear className='size-6' />,
         title: "Hotline",
@@ -101,27 +113,62 @@ const roleData = [
     },
 ]
 
-const defaultValues: any = {
+const serviceList = [
+    {
+        id: "898989",
+        name: "Thiết kế Website"
+    },
+    {
+        id: "37434",
+        name: "Thiết kế App Mobile"
+    },
+    {
+        id: "5454545",
+        name: "Thuê Hosting & Server"
+    },
+    {
+        id: "987989",
+        name: "Thuê IT OutSourcing"
+    },
+    {
+        id: "8989892143",
+        name: "FMRP - Trợ lý sản xuất"
+    },
+    {
+        id: "89898921321",
+        name: "FPOS - Trợ lý bán hàng"
+    },
+]
+
+const defaultValues: FormValues = {
     email: "",
     fullname: "",
     phone: "",
-    title: "",
     description: "",
     file: [],
-    name_company: ""
+    name_company: "",
+    service: "",
+    role: ""
 }
 
 const FormContactSection = (props: Props) => {
     const { isStatePageContactUs, queryKeyIsStatePageContactUs } = useStatePageContactUs()
-    const form = useForm({ defaultValues: { ...defaultValues } })
+    const form = useForm({
+        defaultValues: {
+            ...defaultValues,
+            mode: "onChange", // Chế độ validation
+        }
+    })
+
+    useEffect(() => {
+        if (!form.getValues("service") && serviceList.length > 0) {
+            form.setValue("service", serviceList[0].id); // Đặt giá trị mặc định
+        }
+    }, [form]);
 
     // Hàm Chọn riêng lẻ từng item
     const handleSingleSelect = (value: any, field: any, type?: string, item?: any, index?: number) => {
         const isSameValue = JSON.stringify(value) === JSON.stringify(field.value); // So sánh đối tượng
-
-        // if (type === "variant") {
-        //     onSubmitChangeVariantsQuote(value.id, id ?? "", item, index)
-        // }
         // Nếu chọn lại chính nó, đặt thành undefined
         field.onChange(isSameValue ? undefined : value);
     };
@@ -174,7 +221,7 @@ const FormContactSection = (props: Props) => {
                                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A"
                             }}
                         >
-                            <div className='grid md:grid-cols-2 grid-cols-1 gap-6'>
+                            <div className='grid md:grid-cols-4 grid-cols-1 gap-6'>
                                 <FormField
                                     control={form.control}
                                     name="fullname"
@@ -182,18 +229,18 @@ const FormContactSection = (props: Props) => {
                                         required: "Vui lòng nhập họ và tên!",
                                     }}
                                     render={({ field, fieldState }) => (
-                                        <FormItem className='flex flex-col w-full col-span-2 gap-1'>
+                                        <FormItem className='flex flex-col w-full col-span-4 gap-1'>
                                             <FormLabel
                                                 htmlFor="name"
                                                 className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
                                             >
-                                                Họ và tên
+                                                Họ và tên <span className="text-[#FA3434]">*</span>
                                             </FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         id="name"
-                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
                                             text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
                                                         placeholder={"Nhập tên của bạn"}
                                                         type="text"
@@ -230,11 +277,11 @@ const FormContactSection = (props: Props) => {
                                     render={({ field: { onChange, onBlur, ref, value, ...props }, fieldState }) => {
 
                                         return (
-                                            <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                            <FormItem className='flex flex-col w-full col-span-2 gap-1'>
                                                 <FormLabel
                                                     className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
                                                 >
-                                                    Số điện thoại
+                                                    Số điện thoại <span className="text-[#FA3434]">*</span>
                                                 </FormLabel>
                                                 <FormControl>
                                                     <NumericFormatCore
@@ -242,7 +289,7 @@ const FormContactSection = (props: Props) => {
                                                         name="phone"
                                                         value={value}
                                                         getInputRef={ref}
-                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
                                                     px-3 py-1 text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-[#15AA7A]`}
                                                         placeholder={"09xxx"}
                                                         thousandSeparator={' '}
@@ -271,18 +318,18 @@ const FormContactSection = (props: Props) => {
                                         required: "Vui lòng nhập email!",
                                     }}
                                     render={({ field, fieldState }) => (
-                                        <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                        <FormItem className='flex flex-col w-full col-span-2 gap-1'>
                                             <FormLabel
                                                 htmlFor="name"
                                                 className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
                                             >
-                                                Email
+                                                Email <span className="text-[#FA3434]">*</span>
                                             </FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         id="email"
-                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
                                             text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
                                                         placeholder={"email@gmail.com"}
                                                         type="text"
@@ -300,22 +347,22 @@ const FormContactSection = (props: Props) => {
                                 <FormField
                                     control={form.control}
                                     name="name_company"
-                                    // rules={{
-                                    //     required: "Vui lòng nhập tên tổ chức doanh nghiệp",
-                                    // }}
+                                    rules={{
+                                        required: "Vui lòng nhập tên công ty!",
+                                    }}
                                     render={({ field, fieldState }) => (
-                                        <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                        <FormItem className='flex flex-col w-full col-span-2 gap-1'>
                                             <FormLabel
                                                 htmlFor="name"
                                                 className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
                                             >
-                                                Tên tổ chức doanh nghiệp
+                                                Tên tổ chức doanh nghiệp <span className="text-[#FA3434]">*</span>
                                             </FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         id="name-company"
-                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
                                             text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
                                                         placeholder={"Nhập tên công ty"}
                                                         type="text"
@@ -323,9 +370,9 @@ const FormContactSection = (props: Props) => {
                                                     />
                                                 </div>
                                             </FormControl>
-                                            {/* {fieldState?.invalid && fieldState?.error && (
-                                            <FormMessage>{fieldState?.error?.message}</FormMessage>
-                                        )} */}
+                                            {fieldState?.invalid && fieldState?.error && (
+                                                <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                            )}
                                         </FormItem>
                                     )}
                                 />
@@ -333,11 +380,11 @@ const FormContactSection = (props: Props) => {
                                 <FormField
                                     control={form.control}
                                     name="role"
-                                    // rules={{
-                                    //     required: "Vui lòng nhập tên tổ chức doanh nghiệp",
-                                    // }}
+                                    rules={{
+                                        required: "Vui lòng chọn chức vụ!",
+                                    }}
                                     render={({ field, fieldState }) => (
-                                        <FormItem className='flex flex-col w-full col-span-1 gap-1'>
+                                        <FormItem className='flex flex-col w-full col-span-2 gap-1'>
                                             <FormLabel
                                                 htmlFor="role"
                                                 className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
@@ -350,31 +397,145 @@ const FormContactSection = (props: Props) => {
                                                     onValueChange={() => { }}
                                                     selected={field.value}
                                                     options={roleData || []}
-                                                    onOpen={(e: boolean) => queryKeyIsStatePageContactUs({
-                                                        combobox: {
-                                                            ...isStatePageContactUs?.combobox,
-                                                            variants: {
-                                                                value: "",
-                                                                selected: {},
-                                                                open: e,
+                                                    onOpen={(e: boolean) => {
+                                                        console.log('e', e);
+
+
+                                                        queryKeyIsStatePageContactUs({
+                                                            combobox: {
+                                                                ...isStatePageContactUs?.combobox,
+                                                                variants: {
+                                                                    value: "",
+                                                                    selected: {},
+                                                                    open: e,
+                                                                }
                                                             }
-                                                        }
-                                                    })}
+                                                        })
+                                                    }}
                                                     // loading={isLoadingDataCamboquickService}'
                                                     mutiValue={false}
                                                     title='Chức vụ'
-                                                    classNameArrow={`${isStatePageContactUs?.combobox?.variants?.open ? 'rotate-180 text-[#F78F08]' : ''}`}
-                                                    classNameButtonTrigger={`${isStatePageContactUs?.combobox?.variants?.open ? 'border-[#F78F08]' : ''} bg-white 3xl:text-base lg:text-sm text-xs rounded-lg w-full h-full  px-3 py-1 text-[#33404A] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-[#15AA7A]`}
+                                                    classNameArrow={`${isStatePageContactUs?.combobox?.variants?.open ? 'rotate-180 text-[#15AA7A] custom-transition' : ''}`}
+                                                    classNameButtonTrigger={`
+                                                        ${isStatePageContactUs?.combobox?.variants?.open ? 'border-[#15AA7A]' : ''}
+                                                        ${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"}
+                                                        bg-white 3xl:text-base lg:text-sm text-xs rounded-lg w-full h-full  px-3 py-1 text-[#33404A] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`}
                                                     classNameInputSearch='bg-white rounded-none border-t-0 border-x-0 border-b'
-                                                    // color=''
+                                                    colorActive='#15AA7A'
                                                 />
                                             </FormControl>
-                                            {/* {fieldState?.invalid && fieldState?.error && (
-                                            <FormMessage>{fieldState?.error?.message}</FormMessage>
-                                        )} */}
+                                            {fieldState?.invalid && fieldState?.error && (
+                                                <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                            )}
                                         </FormItem>
                                     )}
                                 />
+
+                                <FormField
+                                    control={form.control}
+                                    name="service"
+                                    rules={{
+                                        required: "Vui lòng chọn dịch vụ!",
+                                    }}
+                                    render={({ field, fieldState }) => {
+                                        console.log('field.valu', field.value);
+
+                                        return (
+                                            <FormItem className='flex flex-col w-full col-span-4 gap-1'>
+                                                <FormLabel
+                                                    htmlFor="role"
+                                                    className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                                >
+                                                    Vui lòng chọn dịch vụ bạn quan tâm <span className="text-[#FA3434]">*</span>
+                                                </FormLabel>
+                                                <FormControl className='max-w-[80%]'>
+                                                    <RadioGroup
+                                                        onValueChange={(value) => {
+                                                            console.log("Selected service:", value)
+                                                            field.onChange(value)
+                                                        }}
+                                                        value={field.value}
+                                                        className="flex flex-wrap gap-3 max-w-[80%]"
+                                                    >
+                                                        {
+                                                            serviceList.map((service) => (
+                                                                <Label
+                                                                    key={`service-form-${service.id}`}
+                                                                    className={cn(
+                                                                        "text-sm border border-[#D9E1E7] rounded-[8px] p-3 font-medium text-[#33404A] cursor-pointer w-fit flex items-center gap-2 custom-transition",
+                                                                        field.value === service.id ? "bg-[#A3EED6] border-[#15AA7A]" : "hover:bg-[#A3EED6] hover:border-[#15AA7A]"
+                                                                    )}
+                                                                >
+                                                                    <RadioGroupItem value={service.id} className="sr-only" />
+                                                                    {service.name}
+                                                                </Label>
+                                                            ))
+                                                        }
+                                                    </RadioGroup>
+                                                </FormControl>
+                                                {fieldState?.invalid && fieldState?.error && (
+                                                    <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                                )}
+                                            </FormItem>
+                                        )
+                                    }}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="description"
+                                    rules={{
+                                        required: "Vui lòng nhập nội dung!",
+                                    }}
+                                    render={({ field, fieldState }) => (
+                                        <FormItem className='flex flex-col w-full col-span-4 gap-1'>
+                                            <FormLabel
+                                                htmlFor="name"
+                                                className="3xl:text-base lg:text-sm text-xs font-extrabold text-[#33404A] w-fit"
+                                            >
+                                                Chia sẻ nhu cầu của bạn để nhận tư vấn tối ưu từ chuyên gia <span className="text-[#FA3434]">*</span>
+                                            </FormLabel>
+                                            <FormControl>
+                                                <div className="relative">
+                                                    <Textarea
+                                                        id="description"
+                                                        placeholder="Nhập mô tả"
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                text-[#333538] bg-transparent text-sm-default w-full h-28 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
+                                                        {...field}
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            {fieldState?.invalid && fieldState?.error && (
+                                                <FormMessage>{fieldState?.error?.message}</FormMessage>
+                                            )}
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <div className='col-span-4 flex items-center justify-between'>
+                                    {/* CAPTCHA */}
+                                    <div className='space-y-1 '>
+                                        <Captcha onVerify={(token) => console.log("Captcha Token:", token)} />
+
+                                        {/* Thông báo lỗi hoặc thành công */}
+                                        {/* {message && <p className="text-red-500">{message}</p>} */}
+                                    </div>
+
+
+                                    <ButtonAnimation
+                                        type="button"
+                                        title="Gửi Yêu Cầu"
+                                        reverse={true}
+                                        icon={
+                                            <div className='size-5'>
+                                                <GoArrowUpRight className='size-full' />
+                                            </div>
+                                        }
+                                        className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                                        onClick={() => { }}
+                                    />
+                                </div>
                             </div>
                         </form>
                     </Form>

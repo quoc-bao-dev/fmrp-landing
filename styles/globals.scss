@@ -163,7 +163,9 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -175,7 +177,6 @@ html {
     text-wrap: balance;
   }
 }
-
 
 @layer base {
   :root {
@@ -296,3 +297,17 @@ html {
     transform: translateY(0);
   }
 }
+
+/* Bọc toàn bộ captcha */
+.custom-recaptcha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #1b365d; /* Viền xanh đậm */
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tùy chỉnh phần hiển thị reCAPTCHA */
+

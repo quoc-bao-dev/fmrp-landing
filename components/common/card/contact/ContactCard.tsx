@@ -1,15 +1,16 @@
+import { ICardContactItem } from "@/types/card/ICard";
 import React from "react";
 
-export type ContactItemType = {
-    icon: React.ReactNode;
-    title: string;
-    description?: string;
-    content: string | { label: string; value: string }[];
-    type?: "phone" | "email" | "working_hours" | string;
-};
+// export type ContactItemType = {
+//     icon: React.ReactNode;
+//     title: string;
+//     description?: string;
+//     content: string | { label: string; value: string }[];
+//     type?: "phone" | "email" | "working_hours" | string;
+// };
 
 interface ContactCardProps {
-    item: ContactItemType;
+    item: ICardContactItem;
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({ item }) => {
@@ -36,8 +37,8 @@ const ContactCard: React.FC<ContactCardProps> = ({ item }) => {
                     {Array.isArray(item.content) ? (
                         <div
                             className={`${item.type === "working_hours"
-                                    ? "space-y-0.5"
-                                    : "space-y-3"
+                                ? "space-y-0.5"
+                                : "space-y-3"
                                 } text-sm`}
                         >
                             {item.content.map((subItem, subIndex) => (
