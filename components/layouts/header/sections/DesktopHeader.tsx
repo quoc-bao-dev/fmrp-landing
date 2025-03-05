@@ -298,7 +298,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                                 className={`${pathname.includes(item.link)
                                                     ? "text-[#25272A] font-bold"
                                                     : "text-[#25272A] hover:text-[#1AD598] font-medium"
-                                                    } flex items-center 3xl:!text-lg xl:text-base !text-sm gap-2 px-2 cursor-pointer custom-transition relative`}
+                                                    } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
                                                 <span>{item.name}</span>
                                                 <IoIosArrowDown className="size-4" />
@@ -317,7 +317,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                             className={`${pathname.includes(item.link)
                                                 ? "text-[#25272A] font-bold"
                                                 : "text-[#25272A] hover:text-[#1AD598] font-medium"
-                                                }  3xl:!text-lg xl:text-base !text-sm !tracking-[1%] px-2 cursor-pointer custom-transition capitalize relative`}
+                                                }  text-sm-default !tracking-[1%] px-2 cursor-pointer custom-transition capitalize relative`}
                                             prefetch={false}
                                         >
                                             {item.name}

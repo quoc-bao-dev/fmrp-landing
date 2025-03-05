@@ -6,7 +6,7 @@ interface CaptchaProps {
     onVerify: (token: string | null) => void;
 }
 
-const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
+const CaptchaOrigin: React.FC<CaptchaProps> = ({ onVerify }) => {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
@@ -55,4 +55,4 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     );
 };
 
-export default Captcha;
+export default CaptchaOrigin;

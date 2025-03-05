@@ -263,23 +263,30 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed w-full z-50 pointer-events-none'>
+        // <header className='fixed w-full z-50 pointer-events-none'>
             <div
-                className='custom-container lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 backdrop-filter backdrop-blur-[20px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className='custom-container lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[20px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                // style={{
+                //     boxShadow:
+                //         isVisibleTablet
+                //             ?
+                //             `
+                //                 0px 2px 30px rgba(0, 0, 0, 0.03) inset, /* Bóng bên trong mềm mại */
+                //                 -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
+                //                 9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
+                //                 0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
+                //                 1px -1px 0px rgba(255, 255, 255, 0.9), /* Điều chỉnh viền sáng */
+                //                 -1px 1px 0px rgba(240, 240, 240, 0.9) /* Bóng xám mềm */
+                //             `
+                //             :
+                //             "0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px rgba(255, 255, 255, 0.9),  -1px 1px 0px rgba(240, 240, 240, 0.9)"
+                // }}
+
                 style={{
-                    boxShadow:
-                        isVisibleTablet
-                            ?
-                            `
-                                0px 2px 30px rgba(0, 0, 0, 0.03) inset, /* Bóng bên trong mềm mại */
-                                -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
-                                9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
-                                0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
-                                1px -1px 0px rgba(255, 255, 255, 0.9), /* Điều chỉnh viền sáng */
-                                -1px 1px 0px rgba(240, 240, 240, 0.9) /* Bóng xám mềm */
-                            `
-                            :
-                            "0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px rgba(255, 255, 255, 0.9),  -1px 1px 0px rgba(240, 240, 240, 0.9)"
+                    backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt
+                    backdropFilter: "blur(100px)",
+                    WebkitBackdropFilter: "blur(100px)", // Safari
+                    boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"
                 }}
             >
                 {
@@ -303,7 +310,7 @@ const HeaderContainer = () => {
                         />
                 }
             </div>
-        </header >
+        // </header >
     )
 }
 

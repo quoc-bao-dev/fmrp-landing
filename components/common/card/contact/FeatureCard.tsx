@@ -22,7 +22,7 @@ const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description, link, lin
         >
             <div className="space-y-6">
                 {/* Icon */}
-                <div className="xl:size-16 size-14">
+                <div className="2xl:size-16 size-14">
                     {icon}
                 </div>
 
