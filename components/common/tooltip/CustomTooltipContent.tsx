@@ -20,59 +20,34 @@ const CustomTooltipContent = memo(({ subMenu }: CustomTooltipContentProps) => {
     // Memoized content để tránh tính toán lại khi activeTab không thay đổi
     const activeContent = useMemo(() => subMenu.content[activeTab], [subMenu.content, activeTab]);
 
+    console.log("subMenu", subMenu);
+
+
     return (
-        <div className="flex gap-4 w-full xl:min-w-[800px] min-w-[680px]">
+        <div className="grid grid-cols-2 gap-4 w-full xl:min-w-[800px] min-w-[680px]">
             {/* Sidebar Tabs */}
-            <div className="xl:w-[180px] w-[160px] max-w-[20%] flex flex-col items-start">
+            <div className=" w-full items-start col-span-1">
+                <div className='text-default'>{subMenu?.content?.services?.title} </div>
                 {
-                    subMenu.tabs.map((tab: string) => (
-                        <button
-                            key={tab}
-                            onClick={() => handleTabClick(tab)}
-                            className={`py-2 text-left text-default ${activeTab === tab ? "text-[#33404A] font-bold" : "text-[#667F93] hover:text-[#33404A] font-normal w-fit"} custom-transition`}
-                        >
-                            {tab}
-                        </button>
-                    ))
+                    subMenu?.content?.map((tab: any) => {
+                        console.log(tab);
+
+                        return (
+                            <div
+                                key={`${tab.id}`}
+                                // onClick={() => handleTabClick(tab)}
+                                className={`py-2 text-[#667F93] text-left text-default custom-transition col-span-1`}
+                            >
+                                {tab.name}
+                            </div>
+                        )
+                    }
+                    )
                 }
             </div>
 
             {/* Main Content */}
-            <div className="w-[80%] max-w-[80%] xl:min-w-[640px] min-w-[520px] flex flex-col gap-4">
-                {/* Image Preview */}
-                {/* <BlurImage
-                    alt="image"
-                    src={activeContent.image}
-                    width={800}
-                    height={300}
-                    className='size-full object-cover aspect-2.57/1 rounded-3xl'
-                    classNameContainer="h-[320px] w-full aspect-2.57/1 rounded-3xl"
-                />
-
-                <div className="grid grid-cols-2 gap-4">
-                    {
-                        activeContent?.items.map((item: any) => (
-                            <div key={item.id} className="flex items-center gap-2">
-                                <div className='flex items-center justify-center border border-[#99B2C6] rounded-xl size-12 p-0.5'>
-                                    <div className='size-8'>
-                                        {item.icon}
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h4 className="text-default text-[#33404A] font-bold">
-                                        {item.name}
-                                    </h4>
-                                    <p className="text-sm-default text-[#667F93] font-normal">
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div> */}
-
-                {/* Image Preview */}
+            {/* <div className="w-[80%] max-w-[80%] xl:min-w-[640px] min-w-[520px] flex flex-col gap-4">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}
@@ -93,7 +68,6 @@ const CustomTooltipContent = memo(({ subMenu }: CustomTooltipContentProps) => {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Content List */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab + "-items"}
@@ -127,7 +101,7 @@ const CustomTooltipContent = memo(({ subMenu }: CustomTooltipContentProps) => {
                         }
                     </motion.div>
                 </AnimatePresence>
-            </div>
+            </div> */}
         </div>
     );
 });
