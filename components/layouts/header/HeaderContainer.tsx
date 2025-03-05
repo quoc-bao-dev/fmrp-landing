@@ -84,7 +84,7 @@ import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLi
 // ]
 
 
-const dataHeader: IMenuHeader[] = [
+const dataHeader: any[] = [
     {
         id: uuidv4(),
         name: "Về chúng tôi",
@@ -101,8 +101,10 @@ const dataHeader: IMenuHeader[] = [
         subMenu: {
             tabs: ["Dịch vụ", "Sản phẩm"],
             activeTab: "Dịch vụ",
-            content: {
-                "Dịch vụ": {
+            content: [
+                {
+                    id: uuidv4(),
+                    title: "Dịch vụ",
                     image: "/background/banner/banner1.webp",
                     items: [
                         {
@@ -135,7 +137,9 @@ const dataHeader: IMenuHeader[] = [
                         }
                     ]
                 },
-                "Sản phẩm": {
+                {
+                    id: uuidv4(),
+                    title: "Sản phẩm",
                     image: "/background/banner/banner2.webp",
                     items: [
                         {
@@ -154,7 +158,7 @@ const dataHeader: IMenuHeader[] = [
                         }
                     ]
                 }
-            }
+            ]
         },
         visible: true,
     },
@@ -167,8 +171,10 @@ const dataHeader: IMenuHeader[] = [
         subMenu: {
             tabs: ["Khách hàng", "Nâng cao"],
             activeTab: "Khách hàng",
-            content: {
-                "Khách hàng": {
+            content: [
+                {
+                    id: uuidv4(),
+                    title: "Khách hàng",
                     image: "/background/banner/banner3.webp",
                     items: [
                         {
@@ -187,7 +193,9 @@ const dataHeader: IMenuHeader[] = [
                         },
                     ]
                 },
-                "Nâng cao": {
+                {
+                    id: uuidv4(),
+                    title: "Nâng cao",
                     image: "/background/banner/banner4.webp",
                     items: [
                         {
@@ -206,7 +214,7 @@ const dataHeader: IMenuHeader[] = [
                         }
                     ]
                 }
-            }
+            ]
         },
         visible: true,
     },
