@@ -283,7 +283,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                         <ActionTooltip
                                             side="bottom"
                                             align="center"
-                                            classNameContent="bg-white rounded-3xl p-6"
+                                            classNameContent="bg-white rounded-3xl xl:p-6 p-4"
                                             classNameArrow="fill-white custom-arrow"
                                             label={
                                                 <SubmenuTooltip
@@ -297,11 +297,11 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                             <div
                                                 className={`${pathname.includes(item.link)
                                                     ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] hover:text-[#25272A]/80 font-medium"
-                                                    } flex items-center 3xl:!text-lg xl:text-base !text-sm gap-2 xl:px-2 px-1 cursor-pointer custom-transition relative`}
+                                                    : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                    } flex items-center 3xl:!text-lg xl:text-base !text-sm gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
                                                 <span>{item.name}</span>
-                                                <IoIosArrowDown className="size-4 text-[#25272A]" />
+                                                <IoIosArrowDown className="size-4" />
 
                                                 {
                                                     (pathname.includes(item.link) && item.link !== "/") &&
@@ -316,8 +316,8 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                             href={item.link}
                                             className={`${pathname.includes(item.link)
                                                 ? "text-[#25272A] font-bold"
-                                                : "text-[#25272A] hover:text-[#25272A]/80 font-medium"
-                                                }  3xl:!text-lg xl:text-base !text-sm !tracking-[1%] xl:px-2 px-1 cursor-pointer custom-transition capitalize relative`}
+                                                : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                }  3xl:!text-lg xl:text-base !text-sm !tracking-[1%] px-2 cursor-pointer custom-transition capitalize relative`}
                                             prefetch={false}
                                         >
                                             {item.name}
@@ -428,3 +428,6 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
 }
 
 export default DesktopHeader
+
+
+

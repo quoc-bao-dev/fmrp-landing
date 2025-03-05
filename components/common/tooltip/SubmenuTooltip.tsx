@@ -27,49 +27,52 @@ const SubmenuTooltip = memo(({ subMenu }: SubmenuTooltipProps) => {
     }, []);
 
     return (
-        <div className="grid grid-cols-2 gap-4 w-full xl:min-w-[800px] min-w-[680px]">
-            {/* Hiển thị tất cả nội dung */}
-            {Object.keys(subMenu.content).map((category) => (
-                <div key={category} className="col-span-1">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-3">{category}</h3>
+        <div className="grid grid-cols-2 gap-4 w-full 2xl:min-w-[880px] xl:min-w-[780px] min-w-[680px]">
+            {
+                Object.keys(subMenu.content).map((category) => (
+                    <div key={category} className="col-span-1 space-y-3">
+                        <h3 className="2xl:text-lg text-base font-normal text-[#667F93]">{category}</h3>
 
-                    <div className="space-y-3">
-                        {subMenu.content[category].items.map((item: any) => (
-                            <Link
-                                key={item.id}
-                                href={item.link}
-                                className="flex items-center gap-3 hover:bg-[#E8FBF5]/50 p-2 rounded-3xl relative custom-transition"
-                                onMouseEnter={() => handleMouseEnter(item.id)}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                {/* Icon */}
-                                <div className="size-12 flex items-center justify-center">
-                                    <div className="size-8">{item.icon}</div>
-                                </div>
+                        <div className="space-y-3">
+                            {
+                                subMenu.content[category].items.map((item: any) => (
+                                    <Link
+                                        key={item.id}
+                                        href={item.link}
+                                        className="flex items-center 2xl:gap-3 gap-2.5 hover:bg-[#E8FBF5]/80 p-2 rounded-3xl relative custom-transition"
+                                        onMouseEnter={() => handleMouseEnter(item.id)}
+                                        onMouseLeave={handleMouseLeave}
+                                    >
+                                        {/* Icon */}
+                                        <div className="2xl:size-12 size-11 flex items-center justify-center">
+                                            <div className="2xl:size-8 size-7">{item.icon}</div>
+                                        </div>
 
-                                {/* Nội dung */}
-                                <div className="space-y-2">
-                                    <h4 className="xl:text-lg text-base text-[#33404A] font-bold">{item.name}</h4>
-                                    <p className="xl:text-sm text-xs text-[#667F93] font-normal">{item.description}</p>
-                                </div>
+                                        {/* Nội dung */}
+                                        <div className="2xl:space-y-2 space-y-1.5 pr-8">
+                                            <h4 className="2xl:text-lg text-base text-[#33404A] font-bold">{item.name}</h4>
+                                            <p className="text-sm text-[#667F93] font-normal text-wrap">{item.description}</p>
+                                        </div>
 
-                                {/* Mũi tên hiển thị khi hover */}
-                                <motion.div
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{
-                                        opacity: hoveredItem === item.id ? 1 : 0,
-                                        x: hoveredItem === item.id ? 0 : -10,
-                                    }}
-                                    transition={{ duration: 0.2, ease: "easeOut" }}
-                                    className="absolute right-3"
-                                >
-                                    <CaretRightIcon className="size-6" color="#33404A" />
-                                </motion.div>
-                            </Link>
-                        ))}
+                                        {/* Mũi tên hiển thị khi hover */}
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{
+                                                opacity: hoveredItem === item.id ? 1 : 0,
+                                                x: hoveredItem === item.id ? 0 : -10,
+                                            }}
+                                            transition={{ duration: 0.2, ease: "easeOut" }}
+                                            className="absolute right-3"
+                                        >
+                                            <CaretRightIcon className="2xl:size-6 size-5" color="#33404A" />
+                                        </motion.div>
+                                    </Link>
+                                ))
+                            }
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     );
 });

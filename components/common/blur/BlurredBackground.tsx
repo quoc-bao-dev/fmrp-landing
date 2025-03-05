@@ -15,7 +15,7 @@ const BlurredBackground: React.FC<BlurredBackgroundProps> = ({
         <div
             className={`3xl:w-[500px] lg:w-[400px] w-[320px] aspect-square absolute -z-0 blur-[100px] backdrop-blur-[267.447px] ${className}`}
             style={{
-                background
+                background,
             }}
         />
     );

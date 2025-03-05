@@ -59,7 +59,7 @@ const dataHeader: IMenuHeader[] = [
                         },
                         {
                             id: "3",
-                            name: "Thiết Kế Mobile App",
+                            name: "Thiết Kế App Mobile",
                             link: "/solution/mobile",
                             icon: <DeviceMobileIconLinear className='size-full' />,
                             description: "Nâng tầm doanh nghiệp"
@@ -265,14 +265,13 @@ const HeaderContainer = () => {
     return (
         <header className='fixed w-full z-50 pointer-events-none'>
             <div
-                className='custom-container lg:bg-[#FFFFFF]/80 bg-[#FFFFFF]/50 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className='custom-container lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 backdrop-filter backdrop-blur-[20px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
-                    backdropFilter: "blur(25px)",
                     boxShadow:
                         isVisibleTablet
                             ?
                             `
-                                inset 0px 2px 30px rgba(0, 0, 0, 0.03), /* Bóng bên trong mềm mại */
+                                0px 2px 30px rgba(0, 0, 0, 0.03) inset, /* Bóng bên trong mềm mại */
                                 -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
                                 9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
                                 0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
