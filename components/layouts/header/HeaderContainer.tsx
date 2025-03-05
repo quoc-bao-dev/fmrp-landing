@@ -29,62 +29,7 @@ import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear
 import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
 import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
 
-// const dataHeader: IMenuHeader[] = [
-//     {
-//         id: uuidv4(),
-//         name: "Về chúng tôi",
-//         link: '/about-us',
-//         children: [],
-//         visible: true,
-//     },
-//     {
-//         id: uuidv4(),
-//         name: "Giải Pháp",
-//         link: 'solution',
-//         children: [
-//             {
-//                 id: "1",
-//                 name: "hello",
-//                 link: "/solutions/a"
-//             },
-//             {
-//                 id: "2",
-//                 name: "hello 2",
-//                 link: "/solutions/b"
-//             },
-//         ],
-//         visible: true,
-//     },
-//     {
-//         id: uuidv4(),
-//         name: "Tài nguyên",
-//         link: 'resource',
-//         children: [
-//             {
-//                 id: "3",
-//                 name: "hello",
-//                 link: "/solutions/a"
-//             },
-//             {
-//                 id: "4",
-//                 name: "hello 2",
-//                 link: "/solutions/b"
-//             },
-//         ],
-//         visible: true,
-//     },
-
-//     {
-//         id: uuidv4(),
-//         name: "Liên hệ",
-//         link: '/contact-us',
-//         children: [],
-//         visible: true,
-//     },
-// ]
-
-
-const dataHeader: any[] = [
+const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Về chúng tôi",
@@ -101,10 +46,8 @@ const dataHeader: any[] = [
         subMenu: {
             tabs: ["Dịch vụ", "Sản phẩm"],
             activeTab: "Dịch vụ",
-            content: [
-                {
-                    id: uuidv4(),
-                    title: "Dịch vụ",
+            content: {
+                "Dịch vụ": {
                     image: "/background/banner/banner1.webp",
                     items: [
                         {
@@ -115,13 +58,6 @@ const dataHeader: any[] = [
                             description: "Bệ phóng thương hiệu"
                         },
                         {
-                            id: "2",
-                            name: "Thuê IT Outsourcing",
-                            link: "/solution/it-outsourcing",
-                            icon: <CodeIconLinear className='size-full' />,
-                            description: "Giải pháp nhân lực linh hoạt"
-                        },
-                        {
                             id: "3",
                             name: "Thiết Kế App Mobile",
                             link: "/solution/mobile",
@@ -129,17 +65,22 @@ const dataHeader: any[] = [
                             description: "Nâng tầm doanh nghiệp"
                         },
                         {
+                            id: "2",
+                            name: "Thuê IT Outsourcing",
+                            link: "/solution/it-outsourcing",
+                            icon: <CodeIconLinear className='size-full' />,
+                            description: "Giải pháp nhân lực linh hoạt"
+                        },
+                        {
                             id: "4",
-                            name: "Hạ Tầng Máy Chủ",
+                            name: "Thuê Hosting & Server",
                             link: "/solution/server",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
-                            description: "Hosting & Server bảo mật vận hành"
+                            description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp"
                         }
                     ]
                 },
-                {
-                    id: uuidv4(),
-                    title: "Sản phẩm",
+                "Sản phẩm": {
                     image: "/background/banner/banner2.webp",
                     items: [
                         {
@@ -158,7 +99,7 @@ const dataHeader: any[] = [
                         }
                     ]
                 }
-            ]
+            }
         },
         visible: true,
     },
@@ -171,10 +112,8 @@ const dataHeader: any[] = [
         subMenu: {
             tabs: ["Khách hàng", "Nâng cao"],
             activeTab: "Khách hàng",
-            content: [
-                {
-                    id: uuidv4(),
-                    title: "Khách hàng",
+            content: {
+                "Khách hàng": {
                     image: "/background/banner/banner3.webp",
                     items: [
                         {
@@ -193,9 +132,7 @@ const dataHeader: any[] = [
                         },
                     ]
                 },
-                {
-                    id: uuidv4(),
-                    title: "Nâng cao",
+                "Nâng cao": {
                     image: "/background/banner/banner4.webp",
                     items: [
                         {
@@ -214,7 +151,7 @@ const dataHeader: any[] = [
                         }
                     ]
                 }
-            ]
+            }
         },
         visible: true,
     },
@@ -326,24 +263,30 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed w-full z-50 pointer-events-none'>
+        // <header className='fixed w-full z-50 pointer-events-none'>
             <div
-                className='custom-container lg:bg-[#FFFFFF]/80 bg-[#FFFFFF]/50 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className='custom-container lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[20px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                // style={{
+                //     boxShadow:
+                //         isVisibleTablet
+                //             ?
+                //             `
+                //                 0px 2px 30px rgba(0, 0, 0, 0.03) inset, /* Bóng bên trong mềm mại */
+                //                 -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
+                //                 9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
+                //                 0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
+                //                 1px -1px 0px rgba(255, 255, 255, 0.9), /* Điều chỉnh viền sáng */
+                //                 -1px 1px 0px rgba(240, 240, 240, 0.9) /* Bóng xám mềm */
+                //             `
+                //             :
+                //             "0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px rgba(255, 255, 255, 0.9),  -1px 1px 0px rgba(240, 240, 240, 0.9)"
+                // }}
+
                 style={{
-                    backdropFilter: "blur(25px)",
-                    boxShadow:
-                        isVisibleTablet
-                            ?
-                            `
-                                inset 0px 2px 30px rgba(0, 0, 0, 0.03), /* Bóng bên trong mềm mại */
-                                -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
-                                9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
-                                0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
-                                1px -1px 0px rgba(255, 255, 255, 0.9), /* Điều chỉnh viền sáng */
-                                -1px 1px 0px rgba(240, 240, 240, 0.9) /* Bóng xám mềm */
-                            `
-                            :
-                            "0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px rgba(255, 255, 255, 0.9),  -1px 1px 0px rgba(240, 240, 240, 0.9)"
+                    backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt
+                    backdropFilter: "blur(100px)",
+                    WebkitBackdropFilter: "blur(100px)", // Safari
+                    boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"
                 }}
             >
                 {
@@ -367,7 +310,7 @@ const HeaderContainer = () => {
                         />
                 }
             </div>
-        </header >
+        // </header >
     )
 }
 

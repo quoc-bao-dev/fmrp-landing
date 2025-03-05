@@ -3,52 +3,78 @@ import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 interface CaptchaProps {
-    onVerify: (token: string | null) => void;
+    onVerify: (token: string | null | any) => void;
 }
 
 const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+
     const [isChecked, setIsChecked] = useState(false);
     const [isRecaptchaReady, setIsRecaptchaReady] = useState(false);
 
+    // const [expired, setExpired] = useState(false);
+    const [captchaValue, setCaptchaValue] = useState<string | null | any>(null);
+    const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+
     // ✅ Hàm xử lý khi xác minh reCAPTCHA thành công
-    const handleVerify = (token: string | null) => {
-        if (token) {
-            console.log("✅ Token từ reCAPTCHA:", token);
-            setIsChecked(true); // Đánh dấu checkbox
-            onVerify(token);
-        } else {
-            console.warn("⚠️ Token reCAPTCHA không hợp lệ hoặc chưa được xác minh.");
+    const handleVerify = (token: string | null | any) => {
+        console.log("✅ Captcha Token:", token);
+        setCaptchaValue(token);
+        onVerify(token);
+        if (token === null) {
+            console.log('no token');
+
+            // setExpired(true);
         }
     };
-
-    // ✅ Khi component mount, kiểm tra nếu reCAPTCHA đã sẵn sàng
+    // ✅ Kiểm tra nếu reCAPTCHA đã load thành công
     useEffect(() => {
-        if (!siteKey) {
-            console.error("🚨 NEXT_PUBLIC_RECAPTCHA_SITE_KEY chưa được cấu hình!");
+        if (recaptchaRef.current) {
+            console.log("✅ reCAPTCHA đã mount 1!");
+            setIsRecaptchaReady(true);
         }
-
-        const checkRecaptchaReady = setInterval(() => {
-            if (recaptchaRef.current) {
-                console.log("✅ reCAPTCHA đã sẵn sàng!");
-                setIsRecaptchaReady(true);
-                clearInterval(checkRecaptchaReady);
-            }
-        }, 500);
-
-        return () => clearInterval(checkRecaptchaReady);
     }, [siteKey]);
 
-    // ✅ Hàm kích hoạt reCAPTCHA khi click vào checkbox
-    const handleCustomButtonClick = () => {
-        if (isRecaptchaReady && recaptchaRef.current) {
-            console.log("🔄 Đang kích hoạt reCAPTCHA...");
-            recaptchaRef.current.execute();
-        } else {
-            console.error("🚨 reCAPTCHA chưa sẵn sàng hoặc phương thức execute() không tồn tại!");
+    // ✅ Khi reCAPTCHA script được tải hoàn toàn
+    const asyncScriptOnLoad = () => {
+        console.log("✅ Google reCAPTCHA script đã load 1!");
+        setRecaptchaLoaded(true);
+    };
+
+    // ✅ Hàm kích hoạt reCAPTCHA khi bấm nút submit
+    const handleSubmit = async () => {
+        if (!recaptchaRef.current || !recaptchaLoaded) {
+            console.error("🚨 reCAPTCHA chưa sẵn sàng hoặc chưa được mount!");
+            return;
+        }
+
+        console.log("🔄 Đang kích hoạt reCAPTCHA...");
+
+        try {
+            console.log("✅ check 1");
+            const token = await recaptchaRef.current.executeAsync();
+
+
+            // if (!token) {
+            //     console.error("🚨 Lỗi: reCAPTCHA không trả về token!");
+            //     return;
+            // }
+
+            console.log("✅ Token nhận được:", token);
+            console.log("✅ check 2");
+            setCaptchaValue(token);
+            handleVerify(token);
+        } catch (err) {
+            console.error("❌ Lỗi khi gọi executeAsync():");
         }
     };
+
+
+    console.log('captchaValue', captchaValue);
+    console.log('isRecaptchaReady', isRecaptchaReady);
+    console.log('recaptchaRef', recaptchaRef.current);
+
 
     if (!siteKey) {
         return <p className="text-red-500">Lỗi: Chưa có reCAPTCHA Site Key</p>;
@@ -56,11 +82,21 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
 
     return (
         <div className="flex justify-center">
+            {/* 🔍 reCAPTCHA Invisible */}
+            <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={siteKey}
+                onChange={handleVerify}
+                size="invisible"
+                asyncScriptOnLoad={asyncScriptOnLoad}
+            />
+
             {/* 🔘 Nút custom */}
             <button
                 type="button"
-                onClick={handleCustomButtonClick}
-                className="relative flex items-center justify-between w-[320px] h-[90px] border border-[#1b365d] rounded-lg overflow-hidden shadow-md bg-white hover:bg-gray-100 transition-all p-2"
+                onClick={handleSubmit}
+                disabled={!recaptchaLoaded}
+                className="relative flex items-center justify-between w-[320px] h-[90px] border border-[#1b365d] rounded-lg overflow-hidden shadow-md bg-white hover:bg-gray-100 transition-all p-4"
             >
                 {/* 🔲 Custom Checkbox */}
                 <div className="flex items-center gap-2">
@@ -89,13 +125,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                     </div>
                 </div>
 
-                {/* 🔍 reCAPTCHA Invisible */}
-                <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={siteKey}
-                    onChange={handleVerify}
-                    size="invisible"
-                />
+
             </button>
         </div>
     );

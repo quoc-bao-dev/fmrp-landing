@@ -5,6 +5,7 @@ import React, { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image';
 import SalyAnimation from '@/components/common/animations/common/SalyAnimation';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type Props = {}
 
@@ -14,55 +15,50 @@ const breadcrumbItems = [
 ];
 
 const IntroContactSection = (props: Props) => {
+    const { isVisibleTablet } = useResizeStore()
 
     const heroPerTitle1 = useMemo(
         () => "Liên hệ".split("").map((letter, index) => ({ id: index, letter })),
         []
     );
     return (
-        <div className='custom-padding-section lg:h-[50vh] h-[50svh] relative'>
-            {/* Hình nền trái - Tối ưu lazy loading */}
-            <div className='absolute lg:top-1/2 top-[80%] left-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[270px] xl:h-[250px] lg:h-[200px] md:h-[300px] h-[200px] aspect-square pointer-events-none'>
-                <Image
-                    alt="Logo Left"
-                    width={330}
-                    height={400}
-                    src="/background/ui/contact/intro/hand-left.webp"
-                    loading="lazy"
-                    className="size-full object-contain"
-                    sizes="(max-width: 1024px) 200px, 270px" // Responsive sizes
-                />
-            </div>
+        <div className='custom-padding-section lg:h-full h-svh relative'>
+            {
+                !isVisibleTablet &&
+                <React.Fragment>
+                    {/* Hình nền trái - Tối ưu lazy loading */}
+                    <div className='absolute lg:top-1/2 top-[80%] left-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[270px] xl:h-[250px] lg:h-[200px] md:h-[300px] h-[200px] aspect-square pointer-events-none'>
+                        <Image
+                            alt="Logo Left"
+                            width={330}
+                            height={400}
+                            src="/background/ui/contact/intro/hand-left.webp"
+                            loading="lazy"
+                            className="size-full object-contain"
+                            sizes="(max-width: 1024px) 200px, 270px" // Responsive sizes
+                        />
+                    </div>
 
-            {/* Hình nền phải - Tối ưu lazy loading */}
-            <div className='absolute lg:top-1/2 top-[80%] -right-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[250px] xl:h-[220px] lg:h-[170px] md:h-[270px] h-[170px] aspect-0.78/1 pointer-events-none'>
-                <Image
-                    alt="Logo Right"
-                    width={300}
-                    height={350}
-                    src="/background/ui/contact/intro/hand-right.webp"
-                    className="size-full object-contain"
-                    loading="lazy"
-                    sizes="(max-width: 1024px) 150px, 195px"
-                />
-            </div>
-
-            {/* <SalyAnimation className='absolute lg:top-1/2 top-[80%] -right-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[250px] xl:h-[220px] lg:h-[170px] md:h-[270px] h-[170px] aspect-0.78/1 pointer-events-none'>
-                <Image
-                    alt="Logo Right"
-                    width={300}
-                    height={350}
-                    src="/background/ui/contact/intro/hand-right.webp"
-                    className="size-full object-contain"
-                    loading="lazy"
-                    sizes="(max-width: 1024px) 150px, 195px"
-                />
-            </SalyAnimation> */}
-
+                    {/* Hình nền phải - Tối ưu lazy loading */}
+                    <div className='absolute lg:top-1/2 top-[80%] -right-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[250px] xl:h-[220px] lg:h-[170px] md:h-[270px] h-[170px] aspect-0.78/1 pointer-events-none'>
+                        <Image
+                            alt="Logo Right"
+                            width={300}
+                            height={350}
+                            src="/background/ui/contact/intro/hand-right.webp"
+                            className="size-full object-contain"
+                            loading="lazy"
+                            sizes="(max-width: 1024px) 150px, 195px"
+                        />
+                    </div>
+                </React.Fragment>
+            }
 
             {/* Container chính */}
-            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] lg:pt-12 pt-20'>
-                <CustomBreadcrumb items={breadcrumbItems} />
+            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2]'>
+                <div className='lg:pt-12 pt-20 3xl:pb-16 lg:pb-10'>
+                    <CustomBreadcrumb items={breadcrumbItems} />
+                </div>
 
                 {/* Nội dung chính */}
                 <div className="flex flex-col items-center justify-center w-full h-full relative lg:pt-0 md:pt-20 pt-28">
@@ -87,6 +83,18 @@ const IntroContactSection = (props: Props) => {
                     <p className='text-default text-[#33404A] font-medium'>
                         Bạn có thắc mắc hoặc cần tư vấn giải pháp? Hãy trao đổi ngay.
                     </p>
+                    {
+                        isVisibleTablet &&
+                        <SalyAnimation className="w-[200px] h-auto aspect-square pointer-events-none">
+                            <Image
+                                width={400}
+                                height={400}
+                                alt="saly"
+                                src="/background/ui/about-us/saly.webp"
+                                className="size-full object-contain"
+                            />
+                        </SalyAnimation>
+                    }
                 </div>
             </div>
         </div>

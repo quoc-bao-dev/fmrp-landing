@@ -125,7 +125,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
                 initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
                 // initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
                 animate={controls}
-                className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"
+                className="fixed top-0 left-0 w-full z-50 bg-transparent"
                 style={{ willChange: 'transform, opacity' }} // Tối ưu hóa GPU rendering
             >
                 <HeaderContainer />

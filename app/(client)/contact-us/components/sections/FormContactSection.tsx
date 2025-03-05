@@ -26,6 +26,8 @@ import { Textarea } from '@/components/ui/textarea';
 import Captcha from '@/components/common/captcha/Captcha';
 import ButtonAnimation from '@/components/common/button/ButtonAnimation';
 import { GoArrowUpRight } from 'react-icons/go';
+import CaptchaDemo from '@/components/common/captcha/CaptchaDemo';
+import CaptchaOrigin from '@/components/common/captcha/CaptchaOrigin';
 
 type Props = {}
 
@@ -180,7 +182,7 @@ const FormContactSection = (props: Props) => {
     return (
         <div className='custom-padding-section'>
             <div className='custom-container flex flex-col 3xl:gap-12 gap-10'>
-                <h2 className="text-title-section-small font-bold space-x-2 text-center">
+                <h2 className="3xl:text-[36px] 2xl:text-[28px] xxl:text-[28px] xl:text-[26px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] font-bold space-x-2 text-center">
                     <span
                         className="font-extrabold"
                         style={{
@@ -195,7 +197,7 @@ const FormContactSection = (props: Props) => {
                 </h2>
 
                 <div className='grid grid-cols-18 gap-6'>
-                    <div className='col-span-5 space-y-4 w-full'>
+                    <div className='lg:col-span-5 col-span-18 space-y-4 w-full'>
                         {
                             contactData.map((item, index) => (
                                 <React.Fragment key={`contact-${index}`}>
@@ -216,7 +218,7 @@ const FormContactSection = (props: Props) => {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit((data) => onSubmit(data))}
-                            className='col-span-13  gap-6 bg-white w-full rounded-3xl p-5'
+                            className='lg:col-span-13 col-span-18  gap-6 bg-white w-full rounded-3xl p-5'
                             style={{
                                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A"
                             }}
@@ -516,7 +518,9 @@ const FormContactSection = (props: Props) => {
                                 <div className='col-span-4 flex items-center justify-between'>
                                     {/* CAPTCHA */}
                                     <div className='space-y-1 '>
-                                        <Captcha onVerify={(token) => console.log("Captcha Token:", token)} />
+                                        {/* <Captcha onVerify={(token) => console.log("Captcha Token:", token)} />
+                                        <CaptchaDemo onVerify={(token) => console.log("Captcha Token:", token)} /> */}
+                                        <CaptchaOrigin onVerify={(token) => console.log("Captcha Token:", token)} />
 
                                         {/* Thông báo lỗi hoặc thành công */}
                                         {/* {message && <p className="text-red-500">{message}</p>} */}

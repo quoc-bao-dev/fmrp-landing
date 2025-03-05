@@ -51,6 +51,10 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
         map.setOptions({ styles: mapStyles }); // Áp dụng styles custom từ Figma
     }, []);
 
+    console.log('isLoaded', isLoaded);
+    console.log('process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY', process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
+
+
     if (!isLoaded) return <p>Đang tải bản đồ...</p>;
 
     return (

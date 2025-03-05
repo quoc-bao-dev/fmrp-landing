@@ -15,6 +15,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
+import Script from "next/script";
 
 export const metadata = {
     title: "FOSO Tech - Giải pháp công nghệ cho doanh nghiệp",
@@ -64,6 +65,14 @@ export default async function RootLayoutApp({
 
     return (
         <html lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
+            {/* <head>
+                <Script
+                    src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+                    async
+                    defer
+                    // onLoad={() => console.log("✅ Google reCAPTCHA Script đã tải xong!")}
+                />
+            </head> */}
             <body className={`${raleway_sans.className} antialiased`}>
                 <Suspense>
                     <RootLayout data={{ dataLang: "lang", language: "" }}>
