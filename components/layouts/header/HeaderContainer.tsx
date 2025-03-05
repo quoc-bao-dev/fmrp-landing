@@ -29,62 +29,7 @@ import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear
 import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
 import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
 
-// const dataHeader: IMenuHeader[] = [
-//     {
-//         id: uuidv4(),
-//         name: "Về chúng tôi",
-//         link: '/about-us',
-//         children: [],
-//         visible: true,
-//     },
-//     {
-//         id: uuidv4(),
-//         name: "Giải Pháp",
-//         link: 'solution',
-//         children: [
-//             {
-//                 id: "1",
-//                 name: "hello",
-//                 link: "/solutions/a"
-//             },
-//             {
-//                 id: "2",
-//                 name: "hello 2",
-//                 link: "/solutions/b"
-//             },
-//         ],
-//         visible: true,
-//     },
-//     {
-//         id: uuidv4(),
-//         name: "Tài nguyên",
-//         link: 'resource',
-//         children: [
-//             {
-//                 id: "3",
-//                 name: "hello",
-//                 link: "/solutions/a"
-//             },
-//             {
-//                 id: "4",
-//                 name: "hello 2",
-//                 link: "/solutions/b"
-//             },
-//         ],
-//         visible: true,
-//     },
-
-//     {
-//         id: uuidv4(),
-//         name: "Liên hệ",
-//         link: '/contact-us',
-//         children: [],
-//         visible: true,
-//     },
-// ]
-
-
-const dataHeader: any[] = [
+const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Về chúng tôi",
@@ -101,10 +46,8 @@ const dataHeader: any[] = [
         subMenu: {
             tabs: ["Dịch vụ", "Sản phẩm"],
             activeTab: "Dịch vụ",
-            content: [
-                {
-                    id: uuidv4(),
-                    title: "Dịch vụ",
+            content: {
+                "Dịch vụ": {
                     image: "/background/banner/banner1.webp",
                     items: [
                         {
@@ -115,6 +58,13 @@ const dataHeader: any[] = [
                             description: "Bệ phóng thương hiệu"
                         },
                         {
+                            id: "3",
+                            name: "Thiết Kế Mobile App",
+                            link: "/solution/mobile",
+                            icon: <DeviceMobileIconLinear className='size-full' />,
+                            description: "Nâng tầm doanh nghiệp"
+                        },
+                        {
                             id: "2",
                             name: "Thuê IT Outsourcing",
                             link: "/solution/it-outsourcing",
@@ -122,24 +72,15 @@ const dataHeader: any[] = [
                             description: "Giải pháp nhân lực linh hoạt"
                         },
                         {
-                            id: "3",
-                            name: "Thiết Kế App Mobile",
-                            link: "/solution/mobile",
-                            icon: <DeviceMobileIconLinear className='size-full' />,
-                            description: "Nâng tầm doanh nghiệp"
-                        },
-                        {
                             id: "4",
-                            name: "Hạ Tầng Máy Chủ",
+                            name: "Thuê Hosting & Server",
                             link: "/solution/server",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
-                            description: "Hosting & Server bảo mật vận hành"
+                            description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp"
                         }
                     ]
                 },
-                {
-                    id: uuidv4(),
-                    title: "Sản phẩm",
+                "Sản phẩm": {
                     image: "/background/banner/banner2.webp",
                     items: [
                         {
@@ -158,7 +99,7 @@ const dataHeader: any[] = [
                         }
                     ]
                 }
-            ]
+            }
         },
         visible: true,
     },
@@ -171,10 +112,8 @@ const dataHeader: any[] = [
         subMenu: {
             tabs: ["Khách hàng", "Nâng cao"],
             activeTab: "Khách hàng",
-            content: [
-                {
-                    id: uuidv4(),
-                    title: "Khách hàng",
+            content: {
+                "Khách hàng": {
                     image: "/background/banner/banner3.webp",
                     items: [
                         {
@@ -193,9 +132,7 @@ const dataHeader: any[] = [
                         },
                     ]
                 },
-                {
-                    id: uuidv4(),
-                    title: "Nâng cao",
+                "Nâng cao": {
                     image: "/background/banner/banner4.webp",
                     items: [
                         {
@@ -214,7 +151,7 @@ const dataHeader: any[] = [
                         }
                     ]
                 }
-            ]
+            }
         },
         visible: true,
     },

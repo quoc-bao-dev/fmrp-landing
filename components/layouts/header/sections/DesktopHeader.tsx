@@ -56,7 +56,8 @@ import LanguageSelector from '../../../common/translate/LanguageSelector';
 
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useResizeStore } from '@/stores/useResizeStore'
-import CustomTooltipContent from '@/components/common/tooltip/CustomTooltipContent'
+
+import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -285,7 +286,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                             classNameContent="bg-white rounded-3xl p-6"
                                             classNameArrow="fill-white custom-arrow"
                                             label={
-                                                <CustomTooltipContent
+                                                <SubmenuTooltip
                                                     subMenu={item.subMenu}
                                                 />
                                             }
