@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
 
 type Props = {
@@ -16,9 +16,12 @@ type Props = {
     hideTitle?: boolean;
     disabled?: boolean;
     isLoading?: boolean;
+    whileHover?: Variants | { [key: string]: any }; // ✅ Type chính xác
+    onMouseEnter?: (e?: any) => void;
+    onMouseLeave?: (e?: any) => void;
 };
 
-const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
+const ButtonAnimationNew = forwardRef<HTMLButtonElement, Props>(({
     title = "",
     className = "",
     classNameWithIcon = "",
@@ -32,30 +35,35 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
     hideTitle = false,
     disabled = false,
     isLoading = false,
+    whileHover,
+    onMouseEnter = () => { },
+    onMouseLeave = () => { }
 }, ref) => {
     return (
         <motion.button
+            ref={ref}
             initial={false}
             animate="rest"
             whileTap="press"
-            whileHover="hover"
+            whileHover={whileHover || "hover"} // ✅ Nhận động từ props hoặc dùng mặc định
             variants={disabled ? {} : variant}
-            className={`${className} ${icon ? classNameWithIcon : ''} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-gray-500/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto transition-colors duration-300 ease-in-out`}
+            className={`${className} ${icon ? classNameWithIcon : ''} transform-gpu text-nowrap whitespace-nowrap disabled:hover:opacity-100 disabled:bg-gray-500/20 disabled:text-white disabled:border-transparent disabled:cursor-not-allowed disabled:pointer-events-auto transition-colors duration-500 ease-in-out`}
             transition={{
                 backgroundColor: { duration: 0.5, ease: "easeInOut" },
                 color: { duration: 0.5, ease: "easeInOut" }
             }}
             type={type}
-            onClick={onClick}
             style={style}
             disabled={disabled}
-            ref={ref}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter} // ✅ Nhận hàm từ props
+            onMouseLeave={onMouseLeave} // ✅ Nhận hàm từ props
         >
             {isLoading && (
-                <span className={`${classLoading} inline-block min-h-4 min-w-4 h-4 w-4 animate-spin rounded-full border-[3px] border-solid border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`} />
+                <span className={`${classLoading} inline-block size-4 shink animate-spin rounded-full border-[3px] border-solid border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`} />
             )}
 
-            {!reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>}
+            {!reverse && icon && <span className={`${hideTitle ? "max-w-full" : "shink"}`}>{icon}</span>}
 
             {!hideTitle && (
                 <span className='flex items-center w-full text-center'>
@@ -63,9 +71,9 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
                 </span>
             )}
 
-            {reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>}
+            {reverse && icon && <span className={`${hideTitle ? "max-w-full" : "shink"}`}>{icon}</span>}
         </motion.button>
     );
 });
 
-export default ButtonAnimation;
+export default ButtonAnimationNew;

@@ -12,6 +12,7 @@ import { AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import ClientLayout from '../client/ClientLayout'
+import CursorFollower from '../../common/cursor/CursorFollower';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -166,6 +167,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
                     }}
                 >
                     <ClientLayout data={data}>
+                        <CursorFollower />
                         {children}
                         <ToastShadcnUi />
                     </ClientLayout>

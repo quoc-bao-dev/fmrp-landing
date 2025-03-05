@@ -22,7 +22,7 @@ const IntroContactSection = (props: Props) => {
         []
     );
     return (
-        <div className='custom-padding-section lg:h-full h-svh relative'>
+        <div className='custom-padding-section lg:h-full h-[80svh] relative'>
             {
                 !isVisibleTablet &&
                 <React.Fragment>
@@ -80,7 +80,7 @@ const IntroContactSection = (props: Props) => {
                         </span>
                     </h2>
 
-                    <p className='text-default text-[#33404A] font-medium'>
+                    <p className='text-default text-[#33404A] font-medium text-center'>
                         Bạn có thắc mắc hoặc cần tư vấn giải pháp? Hãy trao đổi ngay.
                     </p>
                     {
