@@ -41,3 +41,5 @@ linear-gradient(250.94deg, #134FDB -11.28%, #A969F1 142.77%)`,
 }
 
 export default AboutUs
+
+// animation: pulse 2scubic-bezier(.4,0,.6,1) infinite;

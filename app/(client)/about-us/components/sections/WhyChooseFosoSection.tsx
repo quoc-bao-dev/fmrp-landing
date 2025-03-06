@@ -1,7 +1,9 @@
+import HoverEffect from '@/components/common/animations/hover-button/HoverEffectButton';
 import BlurredBackground from '@/components/common/blur/BlurredBackground';
 import ButtonAnimation from '@/components/common/button/ButtonAnimation';
 import WhyCard from '@/components/common/card/why/WhyCard';
 import { useResizeStore } from '@/stores/useResizeStore';
+import { BookOpen, Cat } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
 
@@ -136,7 +138,7 @@ const WhyChooseFosoSection = () => {
                                     background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
                                     border: "1px solid #A3EED6",
                                     borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
-                                    
+
                                 }}
                                 whileHover={{
                                     background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
@@ -166,6 +168,8 @@ const WhyChooseFosoSection = () => {
                     </div>
                 </div>
 
+              
+
                 {
                     isVisibleTablet &&
                     <ButtonAnimation
@@ -187,7 +191,7 @@ const WhyChooseFosoSection = () => {
                             background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
                             border: "1px solid #A3EED6",
                             borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
-                            
+                            animation: "pulse 2scubic-bezier(.4,0,.6,1) infinite"
                         }}
                         whileHover={{
                             background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
