@@ -89,14 +89,14 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "5",
                             name: "FMRP -Trợ Lý Sản Xuất",
-                            link: "/products/erp",
+                            link: "/products/fmrp",
                             icon: <ChartPieSliceIconLinear className='size-full' />,
                             description: "Quản lý sản xuất tối ưu với FMRP"
                         },
                         {
                             id: "6",
                             name: "FPOS - Trợ Lý Bán Hàng",
-                            link: "/products/crm",
+                            link: "/products/fpos",
                             icon: <StorefrontIconLinear className='size-full' />,
                             description: "Tối ưu vận hành, bứt phá doanh thu"
                         }
