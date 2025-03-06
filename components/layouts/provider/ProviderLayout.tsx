@@ -12,8 +12,17 @@ import { KEY_COOKIES } from '@/constants/Cookie'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 import { dataLanguageOptions } from '../../../data/DataTranslate';
 import { ScrollProvider } from '@/contexts/ScrollContext'
+import ClientLayout from '../client/ClientLayout'
 
-const ProviderLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+
+type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
+
+interface ProviderLayoutProps extends ThemeProviderProps {
+    children: React.ReactNode, data: any
+}
+
+const ProviderLayout = ({ children, data, ...props }: ProviderLayoutProps) => {
     const { setCookie, getCookie } = useCookieStore()
 
     const language = getCookie(KEY_COOKIES.WEBSITE_LANG)
@@ -54,11 +63,15 @@ const ProviderLayout = ({ children, data }: { children: React.ReactNode, data: a
 
 
     return (
-        <TranslateProvider dataLang={data?.dataLang} language={data?.language} loading={false}>
-            <ScrollProvider>
-                {children}
-            </ScrollProvider>
-        </TranslateProvider>
+        <NextThemesProvider {...props}>
+            <TranslateProvider dataLang={data?.dataLang} language={data?.language} loading={false}>
+                <ScrollProvider>
+                    <ClientLayout data={data}>
+                        {children}
+                    </ClientLayout>
+                </ScrollProvider>
+            </TranslateProvider>
+        </NextThemesProvider>
     )
 }
 
