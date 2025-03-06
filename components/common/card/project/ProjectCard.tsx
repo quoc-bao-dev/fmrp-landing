@@ -58,10 +58,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0 blur-md"
                     style={{
-                        background: "linear-gradient(to bottom, rgba(216, 230, 255, 0.9) 0%, rgba(216, 230, 255, 0.1) 50%, rgba(157, 255, 179, 0.5) 100%)",
-                        // background: "background: linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
-
+                        background: "linear-gradient(to bottom, rgba(216, 230, 255, 0.9) 0%, rgba(216, 230, 255, 0.1) 40%, rgba(157, 255, 179, 0.5) 100%)",
                         WebkitMaskImage: "linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 33%, rgba(0, 0, 0, 0) 100%)"
+                        // background: "background: linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
                     }}
                 />
             </div>

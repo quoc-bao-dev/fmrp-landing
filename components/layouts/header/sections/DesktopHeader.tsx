@@ -451,11 +451,17 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                             repeat: Infinity
                         },
                         boxShadow: [
-                            "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
-                            "4px 8px 25px rgba(26, 213, 152, 0.45), inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
-                            "4px 8px 30px rgba(26, 213, 152, 0.35), inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
-                            "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                            "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                            "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
                         ],
+                        // boxShadow: [
+                        //     "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                        //     "4px 8px 25px rgba(26, 213, 152, 0.45), inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                        //     "4px 8px 30px rgba(26, 213, 152, 0.35), inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                        //     "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                        // ],
                     }}
                 />
             </div>
