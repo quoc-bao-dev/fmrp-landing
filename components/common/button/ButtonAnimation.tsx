@@ -37,7 +37,9 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
 }, ref) => {
     return (
         <motion.button
-            initial={false}
+            initial={{
+                boxShadow: "none",
+            }}
             animate="rest"
             whileTap="press"
             whileHover={whileHover || "hover"} // ✅ Nhận động từ props hoặc dùng mặc định

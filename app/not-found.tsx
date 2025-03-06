@@ -2,6 +2,7 @@ import Image from "next/image";
 import ButtonAnimation from '@/components/common/button/ButtonAnimation';
 import { GoArrowUpRight } from 'react-icons/go';
 import Link from 'next/link';
+import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 
 export default function NotFound() {
     return (
@@ -40,13 +41,14 @@ export default function NotFound() {
 
                 <Link
                     href="/"
-                    className="flex items-center justify-between gap-2 xl:!text-base text-sm !tracking-[1%] text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-6 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full">
+                    className="flex items-center justify-between gap-2 xl:!text-base text-sm !tracking-[1%] text-[#10805B] hover:bg-[#A3EED6]/40 hover:text-[#052B1E] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full custom-transition group"
+                >
                     <span>
                         Trở về trang chủ
                     </span>
 
-                    <div className='size-5'>
-                        <GoArrowUpRight className='size-full' />
+                    <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
+                        <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
                     </div>
                 </Link>
             </div>

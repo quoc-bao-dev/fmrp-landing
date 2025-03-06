@@ -91,14 +91,14 @@ const dataHeader: IMenuHeader[] = [
                             name: "FMRP -Trợ Lý Sản Xuất",
                             link: "/products/erp",
                             icon: <ChartPieSliceIconLinear className='size-full' />,
-                            description: "Tối ưu vận hành, bứt phá doanh thu"
+                            description: "Quản lý sản xuất tối ưu với FMRP"
                         },
                         {
                             id: "6",
                             name: "FPOS - Trợ Lý Bán Hàng",
                             link: "/products/crm",
                             icon: <StorefrontIconLinear className='size-full' />,
-                            description: "Quản lý sản xuất tối ưu với FMRP"
+                            description: "Tối ưu vận hành, bứt phá doanh thu"
                         }
                     ]
                 }
@@ -364,16 +364,15 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed top-0 left-0 w-full z-[999] pointer-events-none '>
+        <header className='fixed top-0 left-0 w-full z-50 pointer-events-none '>
             <motion.div
                 initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
                 // initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
                 animate={controls}
-                className='custom-container z-[999]  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[15px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className='custom-container z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
                     willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
                     backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt
-                    WebkitBackdropFilter: "blur(15px)", // Safari
                     boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"
                 }}
             >

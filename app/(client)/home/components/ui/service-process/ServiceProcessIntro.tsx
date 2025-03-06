@@ -35,7 +35,9 @@ const ServiceProcessIntro: React.FC = () => {
                 duration={1}
                 className="text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] 2xl:max-w-[54%] xxl:max-w-[60%] lg:max-w-[64%] md:max-w-[95%] max-w-full"
             >
-                Khát vọng nâng tầm doanh nghiệp nhỏ – FOSO đồng hành cùng SME Việt Nam, giúp họ quản trị hiệu quả, bứt phá kinh doanh. Mỗi giải pháp chúng tôi mang lại là cơ hội để bạn vươn xa hơn. Đồng hành cùng doanh nghiệp Việt.
+                <span>
+                    Khát vọng nâng tầm doanh nghiệp nhỏ – FOSO đồng hành cùng SME Việt Nam, giúp họ quản trị hiệu quả, bứt phá kinh doanh. Mỗi giải pháp chúng tôi mang lại là cơ hội để bạn vươn xa hơn. Đồng hành cùng doanh nghiệp Việt.
+                </span>
             </AnimatedReveal>
         </div>
     );

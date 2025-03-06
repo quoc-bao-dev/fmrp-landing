@@ -12,7 +12,7 @@ const MarqueeColumn = memo(({ feedbacks, direction }: MarqueeColumnProps) => {
     const y = useMotionValue(0); // Lưu vị trí hiện tại
     const marqueeRef = useRef<HTMLDivElement>(null);
     const animationFrame = useRef<number | null>(null);
-    const speed = 300;
+    const speed = 400;
 
     // Hàm chạy marquee, sử dụng useCallback để tránh re-render không cần thiết
     const runMarquee = useCallback(() => {

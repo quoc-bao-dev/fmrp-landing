@@ -58,6 +58,7 @@ import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useResizeStore } from '@/stores/useResizeStore'
 
 import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
+import HoverEffect from '@/components/common/animations/hover-button/HoverEffectButton'
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -300,13 +301,15 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                                     : "text-[#25272A] hover:text-[#1AD598] font-medium"
                                                     } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
-                                                <span>{item.name}</span>
+                                                <span className='relative'>
+                                                    {item.name}
+                                                    {
+                                                        (pathname.includes(item.link) && item.link !== "/") &&
+                                                        <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                    }
+                                                </span>
                                                 <IoIosArrowDown className="size-4" />
 
-                                                {
-                                                    (pathname.includes(item.link) && item.link !== "/") &&
-                                                    <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
-                                                }
                                             </div>
                                         </ActionTooltip>
                                     )
@@ -323,9 +326,30 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                             {item.name}
                                             {
                                                 (pathname.includes(item.link) && item.link !== "/") &&
-                                                <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
                                             }
                                         </Link>
+                                        // <Link
+                                        //     href={item.link}
+                                        //     className={`${pathname.includes(item.link)
+                                        //         ? "text-[#25272A] font-bold"
+                                        //         : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                        //         }  text-sm-default !tracking-[1%] px-2 cursor-pointer custom-transition capitalize relative text-nowrap
+                                        //         bg-red-500  
+                                        //         `}
+                                        // >
+                                        //     <HoverEffect
+                                        //         title={item.name}
+                                        //         hoverTitle={item.name}
+                                        //         icon={
+                                        //             (pathname.includes(item.link) && item.link !== "/") &&
+                                        //             <div className='size-2 rounded-full bg-[#1AD598]' />
+                                        //         }
+                                        //         colorHover="#ffcc00"
+                                        //         reverse={false}
+
+                                        //     />
+                                        // </Link>
                                     )
                             }
                         </React.Fragment>
@@ -409,17 +433,35 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                     }
                     reverse={true}
                     title="Trở thành khách hàng"
-                    className='border-gradient flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
+                    className='border-gradient-button-1 flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                     style={{
                         background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
                         border: "1px solid #A3EED6",
                         borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
-                        
                     }}
                     whileHover={{
-                        background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
-                        border: "1px solid rgba(255, 255, 255, 0.00)",
-                        transition: { duration: 0.5, ease: "easeInOut" }
+                        background: [
+                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)"
+                        ],
+                        transition: {
+                            duration: 1.5,
+                            ease: [0.4, 0, 0.6, 1],
+                            repeat: Infinity
+                        },
+                        boxShadow: [
+                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                            "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                            "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                        ],
+                        // boxShadow: [
+                        //     "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                        //     "4px 8px 25px rgba(26, 213, 152, 0.45), inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                        //     "4px 8px 30px rgba(26, 213, 152, 0.35), inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                        //     "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                        // ],
                     }}
                 />
             </div>

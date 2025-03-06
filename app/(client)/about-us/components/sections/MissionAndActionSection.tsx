@@ -76,17 +76,29 @@ const MissionAndActionSection = (props: Props) => {
                         }
                         reverse={true}
                         title="Hồ sơ năng lực"
-                        className='flex items-center gap-2 text-sm-default text-[#052B1E] border border-[#A3EED6] font-bold capitalize border-none lg:w-fit w-full rounded-full px-4 py-2'
+                        className='overflow-hidden border-gradient-button-1 flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                         style={{
                             background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
                             border: "1px solid #A3EED6",
                             borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
-
                         }}
                         whileHover={{
-                            background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
-                            border: "1px solid rgba(255, 255, 255, 0.00)",
-                            transition: { duration: 0.5, ease: "easeInOut" }
+                            background: [
+                                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+                                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+                                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)"
+                            ],
+                            transition: {
+                                duration: 1.5,
+                                ease: [0.4, 0, 0.6, 1],
+                                repeat: Infinity
+                            },
+                            boxShadow: [
+                                "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                                "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                                "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                                "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                            ],
                         }}
                     />
                 </div>
