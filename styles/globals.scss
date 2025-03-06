@@ -171,6 +171,31 @@ html {
       -webkit-mask-composite: destination-out;
     }
   }
+
+  .border-gradient-button-1 {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-color: rgba(9, 9, 11, 0.2);
+    
+    position: relative;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--border-width);
+      // background: radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      z-index: -1;
+
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+    }
+  }
 }
 
 @layer utilities {

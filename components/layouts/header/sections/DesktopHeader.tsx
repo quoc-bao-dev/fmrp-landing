@@ -301,13 +301,15 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                                     : "text-[#25272A] hover:text-[#1AD598] font-medium"
                                                     } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
-                                                <span>{item.name}</span>
+                                                <span className='relative'>
+                                                    {item.name}
+                                                    {
+                                                        (pathname.includes(item.link) && item.link !== "/") &&
+                                                        <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                    }
+                                                </span>
                                                 <IoIosArrowDown className="size-4" />
 
-                                                {
-                                                    (pathname.includes(item.link) && item.link !== "/") &&
-                                                    <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
-                                                }
                                             </div>
                                         </ActionTooltip>
                                     )
@@ -324,7 +326,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                             {item.name}
                                             {
                                                 (pathname.includes(item.link) && item.link !== "/") &&
-                                                <div className='absolute -bottom-2 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
                                             }
                                         </Link>
                                         // <Link
@@ -431,8 +433,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                     }
                     reverse={true}
                     title="Trở thành khách hàng"
-                    className='border-gradient flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
-                    // className='border-gradient flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 hover:shadow-[-1px_-1px_5px_rgba(255,_255,_255,_0.6),_1px_1px_5px_rgba(0,_0,_0,_0.3),inset_-2px_-2px_5px_rgba(255,_255,_255,_1),inset_2px_2px_4px_rgba(0,_0,_0,_0.3)] transition-colors duration-300 ease-in-out'
+                    className='border-gradient-button-1 flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                     style={{
                         background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
                         border: "1px solid #A3EED6",
@@ -444,7 +445,6 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                             "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
                             "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)"
                         ],
-                        border: "1px solid rgba(255, 255, 255, 0.00)",
                         transition: {
                             duration: 1.5,
                             ease: [0.4, 0, 0.6, 1],
