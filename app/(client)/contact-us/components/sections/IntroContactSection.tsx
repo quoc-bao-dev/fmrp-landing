@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image';
 import SalyAnimation from '@/components/common/animations/common/SalyAnimation';
 import { useResizeStore } from '@/stores/useResizeStore';
+import { useTheme } from 'next-themes';
 
 type Props = {}
 
@@ -21,8 +22,14 @@ const IntroContactSection = (props: Props) => {
         () => "Liên hệ".split("").map((letter, index) => ({ id: index, letter })),
         []
     );
+
+    const { theme, setTheme } = useTheme();
+
     return (
         <div className='custom-padding-section lg:h-full h-[80svh] relative'>
+            {/* <button onClick={() => { setTheme("fmrp") }}>
+                Hello
+            </button> */}
             {
                 !isVisibleTablet &&
                 <React.Fragment>
@@ -33,9 +40,9 @@ const IntroContactSection = (props: Props) => {
                             width={330}
                             height={400}
                             src="/background/ui/contact/intro/hand-left.webp"
-                            loading="lazy"
                             className="size-full object-contain"
                             sizes="(max-width: 1024px) 200px, 270px" // Responsive sizes
+                            priority
                         />
                     </div>
 
@@ -47,8 +54,8 @@ const IntroContactSection = (props: Props) => {
                             height={350}
                             src="/background/ui/contact/intro/hand-right.webp"
                             className="size-full object-contain"
-                            loading="lazy"
                             sizes="(max-width: 1024px) 150px, 195px"
+                            priority
                         />
                     </div>
                 </React.Fragment>

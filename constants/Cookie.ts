@@ -3,5 +3,5 @@ export const KEY_COOKIES = {
     LANGUAGE: "language",
     DEFAULT_LANGUAGE: "vietnam",
     WEBSITE_LANG: "language_foso",
-    THEME: ['light', 'dark'],
+    THEME: ['light', 'dark', 'fmrp'],
 }

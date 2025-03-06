@@ -64,8 +64,8 @@ export default async function RootLayoutApp({
     // const { language, lang } = await getLanguage(); // chạy api dưới sv
 
     return (
-        <html lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
-            <body className={`${raleway_sans.className} antialiased`}>
+        <html suppressHydrationWarning lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
+            <body className={`${raleway_sans.className} antialiased`} >
                 <Suspense>
                     <RootLayout data={{ dataLang: "lang", language: "" }}>
                         {children}

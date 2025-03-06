@@ -21,7 +21,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     const { openAlertDialog } = useAlertDialogStore()
 
     return (
-        <ProviderLayout data={data}>
+        <>
             {/* header */}
             <HeaderContainer />
 
@@ -34,7 +34,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
 
             {/* {openDialogCustom && <DialogCustom />} */}
             {/* {openAlertDialog && <AlertDialogCustom />} */}
-        </ProviderLayout>
+        </>
     )
 }
 
