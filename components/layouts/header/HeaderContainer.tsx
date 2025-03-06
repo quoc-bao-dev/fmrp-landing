@@ -364,12 +364,12 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed top-0 left-0 w-full z-[100] pointer-events-none '>
+        <header className='fixed top-0 left-0 w-full z-50 pointer-events-none '>
             <motion.div
                 initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
                 // initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
                 animate={controls}
-                className='custom-container z-[100]  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className='custom-container z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
                     willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
                     backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt
