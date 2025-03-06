@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+
 import HeroSection from './components/sections/HeroSection'
 import ServicePresentationSection from './components/sections/ServicePresentationSection'
 import CustomerPartnerSection from './components/sections/CustomerPartnerSection'
@@ -15,7 +16,7 @@ type Props = {}
 
 const Home = (props: Props) => {
 
-    
+
     return (
         <main className='overflow-x-hidden'>
             <HeroSection />

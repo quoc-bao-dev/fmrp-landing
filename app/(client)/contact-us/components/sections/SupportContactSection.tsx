@@ -71,10 +71,14 @@ const SupportContactSection = (props: Props) => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid lg:grid-cols-3 grid-cols-1 gap-6">
                     {
                         features.map((feature, index) => (
-                                <FeatureCard key={index} {...feature} />
+                            <FeatureCard
+                                key={index}
+                                className="col-span-1"
+                                {...feature}
+                            />
                         ))
                     }
                 </div>

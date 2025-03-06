@@ -7,10 +7,10 @@ interface InfoSectionProps {
 }
 
 const InfoSection = ({ title, items }: InfoSectionProps) => (
-    <div className="flex flex-col 3xl:gap-6 lg:gap-4 gap-2">
+    <div className="flex flex-col 3xl:gap-8 lg:gap-6 gap-4">
         {title && <div className="text-default font-bold text-[#F1F5F7] uppercase">{title}</div>}
 
-        <div className="text-sm-default space-y-2 text-[#B3C5D4]">
+        <div className="text-sm-default space-y-4 text-[#B3C5D4]">
             {
                 items.map((item, index) => (
                     <div key={index} className="space-x-1">

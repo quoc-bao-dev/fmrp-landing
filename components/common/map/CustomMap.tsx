@@ -58,7 +58,7 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
     if (!isLoaded) return <p>Đang tải bản đồ...</p>;
 
     return (
-        <div ref={mapRef} className="relative w-full h-auto aspect-2/1 rounded-3xl overflow-hidden shadow-lg">
+        <div ref={mapRef} className="relative w-full h-auto lg:aspect-2/1 aspect-1/1.92 rounded-3xl overflow-hidden shadow-lg">
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 center={{ lat, lng }}

@@ -6,9 +6,11 @@ type Props = {}
 
 const MapContactSection = (props: Props) => {
     return (
-        <BgPaddingMarginSection>
-            <CustomMap lat={10.801356} lng={106.714447} />
-        </BgPaddingMarginSection>
+        <div className={`custom-padding-section`}>
+            <div className={`lg:mx-16 md:mx-8 mx-4`}>
+                <CustomMap lat={10.801356} lng={106.714447} />
+            </div>
+        </div>
     )
 }
 
