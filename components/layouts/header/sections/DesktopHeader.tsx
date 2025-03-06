@@ -446,7 +446,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                         ],
                         border: "1px solid rgba(255, 255, 255, 0.00)",
                         transition: {
-                            duration: 2,
+                            duration: 1.5,
                             ease: [0.4, 0, 0.6, 1],
                             repeat: Infinity
                         },
@@ -456,7 +456,6 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                             "4px 8px 30px rgba(26, 213, 152, 0.35), inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
                             "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
                         ],
-                        // boxShadow: "-1px -1px 5px rgba(255, 255, 255, 0.6), 1px 1px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 1), inset 2px 2px 4px rgba(0, 0, 0, 0.3)"
                     }}
                 />
             </div>
