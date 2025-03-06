@@ -41,15 +41,21 @@ const CursorFollower = () => {
     useEffect(() => {
         const handleHover = (e: Event) => {
             const target = e.target as HTMLElement;
-            if (target.closest("header")) {
-                sizeRef.current = 10; // Header - Zoom nhẹ
-                colorRef.current = "rgba(255, 100, 100, 0.9)"; // Đỏ nhạt
-                cursorRef.current?.classList.add("mix-blend-difference");
-            } else if (target.closest("footer")) {
-                sizeRef.current = 60; // Footer - Zoom mạnh
-                colorRef.current = "rgba(255, 255, 255, 0.9)"; // Xanh nhạt
-                cursorRef.current?.classList.add("mix-blend-difference");
-            } else if (target.closest("button") || /^H[1-6]$/i.test(target.tagName) || target.closest("a") || target.closest("p") || target.closest("span")) {
+            // if (target.closest("header")) {
+            //     sizeRef.current = 10; // Header - Zoom nhẹ
+            //     colorRef.current = "rgba(255, 100, 100, 0.9)"; // Đỏ nhạt
+            //     cursorRef.current?.classList.add("mix-blend-difference");
+            // } else if (target.closest("footer")) {
+            //     sizeRef.current = 60; // Footer - Zoom mạnh
+            //     colorRef.current = "rgba(255, 255, 255, 0.9)"; // Xanh nhạt
+            //     cursorRef.current?.classList.add("mix-blend-difference");
+            // } else if (target.closest("button") || /^H[1-6]$/i.test(target.tagName) || target.closest("a") || target.closest("p") || target.closest("span")) {
+            //     sizeRef.current = 60;
+            //     colorRef.current = "rgba(255, 255, 255, 0.9)";
+            //     cursorRef.current?.classList.add("mix-blend-difference");
+            // }
+
+             if (target.closest("footer, footer *")) {
                 sizeRef.current = 60;
                 colorRef.current = "rgba(255, 255, 255, 0.9)";
                 cursorRef.current?.classList.add("mix-blend-difference");
