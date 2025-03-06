@@ -49,7 +49,7 @@ const CursorFollower = () => {
                 sizeRef.current = 60; // Footer - Zoom mạnh
                 colorRef.current = "rgba(255, 255, 255, 0.9)"; // Xanh nhạt
                 cursorRef.current?.classList.add("mix-blend-difference");
-            } else if (target.closest("button") || target.closest("a") || target.closest("p") || target.closest("span")) {
+            } else if (target.closest("button") || /^H[1-6]$/i.test(target.tagName) || target.closest("a") || target.closest("p") || target.closest("span")) {
                 sizeRef.current = 60;
                 colorRef.current = "rgba(255, 255, 255, 0.9)";
                 cursorRef.current?.classList.add("mix-blend-difference");
