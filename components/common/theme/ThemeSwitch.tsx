@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from 'next/navigation';
 
 const ThemeSwitcher = () => {
     const { theme, setTheme } = useTheme();
     const router = useRouter();
+    const pathname = usePathname()
 
     useEffect(() => {
-        if (router.pathname.startsWith("/products/fmrp")) {
+        if (pathname.startsWith("/products/fmrp")) {
             setTheme("fmrp");
         } else {
-            setTheme("default");
+            setTheme("light");
         }
-    }, [router.pathname, setTheme]); // Chỉ re-run khi pathname thay đổi
+    }, [pathname, setTheme]); // Chỉ re-run khi pathname thay đổi
 
     return null; // Không cần render gì cả, chỉ cần chạy useEffect
 };

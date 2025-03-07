@@ -3,78 +3,59 @@ import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 interface CaptchaProps {
-    onVerify: (token: string | null | any) => void;
+    onVerify: (token: string | null) => void;
 }
 
 const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
-    const [isChecked, setIsChecked] = useState(false);
-    const [isRecaptchaReady, setIsRecaptchaReady] = useState(false);
-
-    // const [expired, setExpired] = useState(false);
-    const [captchaValue, setCaptchaValue] = useState<string | null | any>(null);
+    const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
-    // ✅ Hàm xử lý khi xác minh reCAPTCHA thành công
-    const handleVerify = (token: string | null | any) => {
-        console.log("✅ Captcha Token:", token);
-        setCaptchaValue(token);
-        onVerify(token);
-        if (token === null) {
-            console.log('no token');
-
-            // setExpired(true);
-        }
-    };
-    // ✅ Kiểm tra nếu reCAPTCHA đã load thành công
+    // ✅ Xử lý khi reCAPTCHA đã tải
     useEffect(() => {
         if (recaptchaRef.current) {
-            console.log("✅ reCAPTCHA đã mount 1!");
-            setIsRecaptchaReady(true);
+            console.log("✅ reCAPTCHA đã mount!");
+            setRecaptchaLoaded(true);
         }
-    }, [siteKey]);
+    }, [recaptchaRef.current]); // Lắng nghe thay đổi của ref
 
     // ✅ Khi reCAPTCHA script được tải hoàn toàn
     const asyncScriptOnLoad = () => {
-        console.log("✅ Google reCAPTCHA script đã load 1!");
+        console.log("✅ Google reCAPTCHA script đã load 2!");
         setRecaptchaLoaded(true);
     };
 
-    // ✅ Hàm kích hoạt reCAPTCHA khi bấm nút submit
+    // ✅ Khi xác minh thành công
+    const handleVerify = (token: string | null) => {
+        console.log("✅ Captcha Token:", token);
+        setCaptchaValue(token);
+        onVerify(token);
+        setIsChecked(true); // Cập nhật UI khi đã xác thực
+    };
+
+    // ✅ Kích hoạt reCAPTCHA
     const handleSubmit = async () => {
         if (!recaptchaRef.current || !recaptchaLoaded) {
-            console.error("🚨 reCAPTCHA chưa sẵn sàng hoặc chưa được mount!");
+            console.error("🚨 reCAPTCHA chưa sẵn sàng!");
             return;
         }
 
-        console.log("🔄 Đang kích hoạt reCAPTCHA...");
-
+        console.log("🔄 Kích hoạt reCAPTCHA...");
         try {
-            console.log("✅ check 1");
             const token = await recaptchaRef.current.executeAsync();
+            if (!token) {
+                console.error("🚨 Không có token!");
+                throw new Error("🚨 reCAPTCHA không trả về token!");
+            }
 
-
-            // if (!token) {
-            //     console.error("🚨 Lỗi: reCAPTCHA không trả về token!");
-            //     return;
-            // }
-
-            console.log("✅ Token nhận được:", token);
-            console.log("✅ check 2");
-            setCaptchaValue(token);
             handleVerify(token);
         } catch (err) {
-            console.error("❌ Lỗi khi gọi executeAsync():");
+            console.error("❌ Lỗi executeAsync():", err);
         }
     };
-
-
-    console.log('captchaValue', captchaValue);
-    console.log('isRecaptchaReady', isRecaptchaReady);
-    console.log('recaptchaRef', recaptchaRef.current);
-
 
     if (!siteKey) {
         return <p className="text-red-500">Lỗi: Chưa có reCAPTCHA Site Key</p>;
@@ -89,9 +70,10 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                 onChange={handleVerify}
                 size="invisible"
                 asyncScriptOnLoad={asyncScriptOnLoad}
+                nonce={document?.querySelector("meta[name='csp-nonce']")?.getAttribute("content") ?? ''}
             />
 
-            {/* 🔘 Nút custom */}
+            {/* 🔘 Nút Custom */}
             <button
                 type="button"
                 onClick={handleSubmit}
@@ -102,13 +84,11 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                 <div className="flex items-center gap-2">
                     <div
                         className={`w-6 h-6 border-2 rounded-md flex items-center justify-center transition-all
-                            ${isChecked ? "bg-blue-500 border-blue-500 text-white" : "bg-white border-gray-400"}
-                        `}
+                ${isChecked ? "bg-blue-500 border-blue-500 text-white" : "bg-white border-gray-400"}
+            `}
                     >
                         {isChecked && <span className="text-white font-bold">✔</span>}
                     </div>
-
-                    {/* 🔹 Text "Click to Verify" */}
                     <span className="text-gray-700 font-medium">Click to Verify</span>
                 </div>
 
@@ -124,8 +104,6 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                         />
                     </div>
                 </div>
-
-
             </button>
         </div>
     );

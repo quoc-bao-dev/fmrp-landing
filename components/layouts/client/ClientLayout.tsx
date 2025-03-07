@@ -15,10 +15,15 @@ import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
 import ProviderLayout from '../provider/ProviderLayout'
 import HeaderContainer from '@/components/layouts/header/HeaderContainer'
 import FooterContainer from '@/components/layouts/footer/FooterContainer'
+import { useTheme } from 'next-themes';
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const { openDialogCustom } = useDialogStore()
     const { openAlertDialog } = useAlertDialogStore()
+    const { theme } = useTheme()
+
+    console.log('theme theme: ', theme);
+
 
     return (
         <>

@@ -15,6 +15,7 @@ import ClientLayout from '../client/ClientLayout'
 import CursorFollower from '../../common/cursor/CursorFollower';
 import ProviderLayout from '../provider/ProviderLayout'
 import { KEY_COOKIES } from '@/constants/Cookie'
+import ThemeSwitcher from '../../common/theme/ThemeSwitch';
 
 const queryClient = new QueryClient({
     defaultOptions: {

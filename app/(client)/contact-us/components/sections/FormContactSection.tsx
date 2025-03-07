@@ -525,9 +525,9 @@ const FormContactSection = (props: Props) => {
                                 <div className='col-span-4 flex lg:flex-row flex-col lg:gap-2 gap-4 items-center justify-between'>
                                     {/* CAPTCHA */}
                                     <div className='space-y-1 '>
-                                        {/* <Captcha onVerify={(token) => console.log("Captcha Token:", token)} /> */}
+                                        <Captcha onVerify={(token) => console.log("Captcha Token:", token)} />
                                         {/* <CaptchaDemo onVerify={(token) => console.log("Captcha Token:", token)} /> */}
-                                        <CaptchaOrigin onVerify={(token) => console.log("Captcha Token:", token)} />
+                                        {/* <CaptchaOrigin onVerify={(token) => console.log("Captcha Token:", token)} /> */}
 
                                         {/* Thông báo lỗi hoặc thành công */}
                                         {/* {message && <p className="text-red-500">{message}</p>} */}

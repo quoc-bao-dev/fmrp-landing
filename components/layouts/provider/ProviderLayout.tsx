@@ -15,6 +15,7 @@ import { ScrollProvider } from '@/contexts/ScrollContext'
 import ClientLayout from '../client/ClientLayout'
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import ThemeSwitcher from '../../common/theme/ThemeSwitch';
 
 type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
 
@@ -66,6 +67,7 @@ const ProviderLayout = ({ children, data, ...props }: ProviderLayoutProps) => {
         <NextThemesProvider {...props}>
             <TranslateProvider dataLang={data?.dataLang} language={data?.language} loading={false}>
                 <ScrollProvider>
+                    <ThemeSwitcher />
                     <ClientLayout data={data}>
                         {children}
                     </ClientLayout>
