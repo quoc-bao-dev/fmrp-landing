@@ -12,6 +12,10 @@ import { AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import ClientLayout from '../client/ClientLayout'
+import CursorFollower from '../../common/cursor/CursorFollower';
+import ProviderLayout from '../provider/ProviderLayout'
+import { KEY_COOKIES } from '@/constants/Cookie'
+import ThemeSwitcher from '../../common/theme/ThemeSwitch';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -165,10 +169,18 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                     }}
                 >
-                    <ClientLayout data={data}>
+                    <ProviderLayout
+                        data={data}
+                        attribute="class"
+                        defaultTheme="light"
+                        themes={KEY_COOKIES.THEME}
+                        enableSystem={false}
+                        disableTransitionOnChange
+                    >
+                        <CursorFollower />
                         {children}
                         <ToastShadcnUi />
-                    </ClientLayout>
+                    </ProviderLayout>
                 </AnimatePresence>
             </main>
             <ReactQueryDevtools initialIsOpen={true} />

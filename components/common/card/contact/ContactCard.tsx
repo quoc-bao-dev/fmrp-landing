@@ -1,5 +1,6 @@
 import { ICardContactItem } from "@/types/card/ICard";
 import React from "react";
+import { useResizeStore } from '../../../../stores/useResizeStore';
 
 // export type ContactItemType = {
 //     icon: React.ReactNode;
@@ -14,11 +15,13 @@ interface ContactCardProps {
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({ item }) => {
+    const { isVisibleTablet } = useResizeStore()
+
     return (
         <div
             className="p-5 bg-white rounded-3xl flex gap-3"
             style={{
-                boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
+                boxShadow: isVisibleTablet ? "0px 1px 3px 0px rgba(18, 18, 23, 0.10), 0px 1px 2px 0px rgba(18, 18, 23, 0.06)" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
             }}
         >
             <div className="size-6 shrink-0">{item.icon}</div>

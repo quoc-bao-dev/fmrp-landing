@@ -11,8 +11,8 @@ const FosoPartnerSection = (props: Props) => {
     // Memo hóa giá trị background để tránh tính toán lại mỗi lần render
     const backgroundStyle = useMemo(() => ({
         background: isVisibleTablet
-            ? "linear-gradient(180deg, rgba(157, 255, 179, 0.05) -9.88%, rgba(61, 221, 173, 0.45) 94.42%)"
-            : "linear-gradient(to right, rgba(157, 255, 179, 0.1) 8%, rgba(61, 221, 173, 0.45) 73.22%)",
+            ? "linear-gradient(179.98deg, rgba(122, 242, 177, 0.156585) 0.02%, rgba(61, 221, 173, 0.36) 100.06%)"
+            : "linear-gradient(179.98deg, rgba(122, 242, 177, 0.156585) 0.02%, rgba(61, 221, 173, 0.36) 100.06%)",
     }), [isVisibleTablet]);
 
     return (

@@ -29,6 +29,7 @@ canvas {
 }
 
 html {
+  width: 100%;
   height: 100%;
   scroll-behavior: smooth;
 }
@@ -93,7 +94,7 @@ html {
   }
 
   .text-title-section-small {
-    @apply 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%];
+    @apply 3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%];
   }
 
   .text-title {
@@ -105,7 +106,7 @@ html {
   }
 
   .text-default {
-    @apply 3xl:!text-lg xl:!text-base lg:!text-sm !text-lg !tracking-[1%];
+    @apply 3xl:!text-lg xl:!text-base lg:!text-sm !text-base !tracking-[1%];
   }
 
   .text-sm-default {
@@ -167,6 +168,36 @@ html {
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+    }
+  }
+
+  .border-gradient-button-1 {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-color: rgba(9, 9, 11, 0.2);
+    
+    position: relative;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: radial-gradient(circle at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      z-index: -1;
+
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+
+      -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+      // -webkit-mask-composite: xor; /* hoặc destination-out */
       -webkit-mask-composite: destination-out;
     }
   }
@@ -296,6 +327,16 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+// animation
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.hover-pulse:hover {
+  animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
 }
 
 /* Bọc toàn bộ captcha */

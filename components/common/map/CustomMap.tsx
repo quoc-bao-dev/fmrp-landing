@@ -51,10 +51,14 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
         map.setOptions({ styles: mapStyles }); // Áp dụng styles custom từ Figma
     }, []);
 
+    console.log('isLoaded', isLoaded);
+    console.log('process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY', process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
+
+
     if (!isLoaded) return <p>Đang tải bản đồ...</p>;
 
     return (
-        <div ref={mapRef} className="relative w-full h-auto aspect-2/1 rounded-3xl overflow-hidden shadow-lg">
+        <div ref={mapRef} className="relative w-full h-auto lg:aspect-2/1 aspect-1/1.92 rounded-3xl overflow-hidden shadow-lg">
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 center={{ lat, lng }}

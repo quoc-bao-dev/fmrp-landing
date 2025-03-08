@@ -3,11 +3,12 @@ import React from 'react'
 type Props = {
     children: React.ReactNode
     className?: string
+    classNameContainer?: string
 }
 
-const BgPaddingMarginSection = ({ className, children }: Props) => {
+const BgPaddingMarginSection = ({ classNameContainer, className, children }: Props) => {
     return (
-        <div className='custom-padding-section'>
+        <div className={`${classNameContainer} custom-padding-section`}>
             <div className={`${className} custom-container`}>
                 {children}
             </div>

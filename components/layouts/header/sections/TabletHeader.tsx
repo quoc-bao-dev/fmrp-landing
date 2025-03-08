@@ -119,7 +119,7 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
                         animate={{ x: 0 }}      // Trượt vào vị trí hiển thị
                         exit={{ x: '100%' }}    // Trượt ra khi đóng
                         transition={{ duration: 0.5 }} // Tốc độ trượt
-                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 md:-left-8 -left-4 bg-[#E8FBF5]`}
+                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 md:-left-8 -left-4 bg-white`}
                     >
                         <div className='grid grid-cols-12 py-3 items-center justify-center md:px-8 px-6'>
                             <div className='col-span-10 w-full flex items-center justify-start gap-2'>

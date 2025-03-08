@@ -12,7 +12,6 @@ import { useDialogStore } from '@/stores/useDialogStores'
 import { useResizeStore } from '@/stores/useResizeStore'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 // import DesktopHeaderClient from './DesktopHeaderClient'
 // import TabletHeaderClient from './TabletHeaderClient'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
@@ -29,60 +28,9 @@ import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear
 import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
 import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
 
-// const dataHeader: IMenuHeader[] = [
-//     {
-//         id: uuidv4(),
-//         name: "Về chúng tôi",
-//         link: '/about-us',
-//         children: [],
-//         visible: true,
-//     },
-//     {
-//         id: uuidv4(),
-//         name: "Giải Pháp",
-//         link: 'solution',
-//         children: [
-//             {
-//                 id: "1",
-//                 name: "hello",
-//                 link: "/solutions/a"
-//             },
-//             {
-//                 id: "2",
-//                 name: "hello 2",
-//                 link: "/solutions/b"
-//             },
-//         ],
-//         visible: true,
-//     },
-//     {
-//         id: uuidv4(),
-//         name: "Tài nguyên",
-//         link: 'resource',
-//         children: [
-//             {
-//                 id: "3",
-//                 name: "hello",
-//                 link: "/solutions/a"
-//             },
-//             {
-//                 id: "4",
-//                 name: "hello 2",
-//                 link: "/solutions/b"
-//             },
-//         ],
-//         visible: true,
-//     },
+import { motion, useAnimation } from 'framer-motion';
 
-//     {
-//         id: uuidv4(),
-//         name: "Liên hệ",
-//         link: '/contact-us',
-//         children: [],
-//         visible: true,
-//     },
-// ]
-
+import { useEffect, useCallback, useRef } from 'react'
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -113,13 +61,6 @@ const dataHeader: IMenuHeader[] = [
                             description: "Bệ phóng thương hiệu"
                         },
                         {
-                            id: "2",
-                            name: "Thuê IT Outsourcing",
-                            link: "/solution/it-outsourcing",
-                            icon: <CodeIconLinear className='size-full' />,
-                            description: "Giải pháp nhân lực linh hoạt"
-                        },
-                        {
                             id: "3",
                             name: "Thiết Kế App Mobile",
                             link: "/solution/mobile",
@@ -127,11 +68,18 @@ const dataHeader: IMenuHeader[] = [
                             description: "Nâng tầm doanh nghiệp"
                         },
                         {
+                            id: "2",
+                            name: "Thuê IT Outsourcing",
+                            link: "/solution/it-outsourcing",
+                            icon: <CodeIconLinear className='size-full' />,
+                            description: "Giải pháp nhân lực linh hoạt"
+                        },
+                        {
                             id: "4",
-                            name: "Hạ Tầng Máy Chủ",
+                            name: "Thuê Hosting & Server",
                             link: "/solution/server",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
-                            description: "Hosting & Server bảo mật vận hành"
+                            description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp"
                         }
                     ]
                 },
@@ -141,16 +89,16 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "5",
                             name: "FMRP -Trợ Lý Sản Xuất",
-                            link: "/products/erp",
+                            link: "/products/fmrp",
                             icon: <ChartPieSliceIconLinear className='size-full' />,
-                            description: "Tối ưu vận hành, bứt phá doanh thu"
+                            description: "Quản lý sản xuất tối ưu với FMRP"
                         },
                         {
                             id: "6",
                             name: "FPOS - Trợ Lý Bán Hàng",
-                            link: "/products/crm",
+                            link: "/products/fpos",
                             icon: <StorefrontIconLinear className='size-full' />,
-                            description: "Quản lý sản xuất tối ưu với FMRP"
+                            description: "Tối ưu vận hành, bứt phá doanh thu"
                         }
                     ]
                 }
@@ -221,7 +169,7 @@ const dataHeader: IMenuHeader[] = [
 
 const HeaderContainer = () => {
     const router = useRouter()
-    const pathname = usePathname()
+    const pathName = usePathname()
 
     const { dataLang } = useTranslate();
 
@@ -235,6 +183,104 @@ const HeaderContainer = () => {
     // const { onSubmitChangeLanguage, isLoading } = usePostChangeLanguage()
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
+
+
+
+    const lastScrollY = useRef<number>(0); // Stores last known scroll position
+    const lastScrollX = useRef<number>(0); // Lưu vị trí scroll ngang trước đó
+    const ticking = useRef<boolean>(false); // Prevents redundant re-renders
+    const isHeaderVisible = useRef<boolean>(false);
+    const controls = useAnimation(); // Framer Motion controls
+    const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
+    const forceCheckScroll = useRef<boolean>(false); // Flag để kiểm tra hướng cuộn sau khi tự hiện header
+
+    // ✅ Xử lý scroll để kiểm tra hướng cuộn (dùng throttle để tránh lag)
+    const handleScroll = useCallback(() => {
+        const scrollY = window.scrollY;
+        const scrollX = window.scrollX;
+
+        // Nếu chỉ cuộn ngang (scrollX thay đổi mà scrollY không đổi) → Bỏ qua
+        if (scrollX !== lastScrollX.current && scrollY === lastScrollY.current) {
+            lastScrollX.current = scrollX; // Cập nhật scrollX để không xử lý lần sau
+            return;
+        }
+
+        if (!ticking.current) {
+            requestAnimationFrame(() => {
+                let shouldShowHeader = isHeaderVisible.current;
+
+                if (scrollY === 0) {
+                    // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
+                    shouldShowHeader = pathName !== "/";
+                    // shouldShowHeader = false; // Ẩn header khi ở đầu trang
+                } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
+                    shouldShowHeader = false; // Ẩn header khi cuộn xuống
+                    forceCheckScroll.current = false; // Reset flag sau lần đầu tiên kiểm tra
+                } else if (scrollY < lastScrollY.current) {
+                    shouldShowHeader = true; // Hiện header khi cuộn lên
+                }
+
+
+                if (shouldShowHeader !== isHeaderVisible.current) {
+                    isHeaderVisible.current = shouldShowHeader;
+                    controls.start({
+                        y: shouldShowHeader ? 0 : -100,
+                        opacity: shouldShowHeader ? 1 : 0,
+                        transition: {
+                            type: "spring", // 🏆 Mượt hơn với spring easing
+                            stiffness: 250,
+                            damping: 30
+                        },
+                    });
+                }
+
+                lastScrollY.current = scrollY;
+                lastScrollX.current = scrollX; // Cập nhật vị trí scroll ngang
+                ticking.current = false;
+            });
+            ticking.current = true;
+        }
+
+        resetInactivityTimer();
+    }, [controls, pathName]);
+
+    // ✅ Xử lý khi không thao tác để tự hiện header
+    const resetInactivityTimer = useCallback(() => {
+        if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+
+        inactivityTimer.current = setTimeout(() => {
+            isHeaderVisible.current = true;
+            forceCheckScroll.current = true;
+            controls.start({
+                y: 0,
+                opacity: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 18
+                }
+            });
+            inactivityTimer.current = null;
+        }, 1500);
+    }, [controls]);
+
+    useEffect(() => {
+        lastScrollY.current = window.scrollY; // Cập nhật vị trí scroll ngay khi tải trang
+
+        // 🚀 Khi load trang, đảm bảo header HIỆN ra trước
+        isHeaderVisible.current = true; // Đặt lại giá trị ref
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', resetInactivityTimer);
+        window.addEventListener('keydown', resetInactivityTimer);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', resetInactivityTimer);
+            window.removeEventListener('keydown', resetInactivityTimer);
+        };
+    }, [handleScroll, resetInactivityTimer]);
+
 
     useEffect(() => {
         const body = document.body;
@@ -318,24 +364,16 @@ const HeaderContainer = () => {
     }
 
     return (
-        <header className='fixed w-full z-50 pointer-events-none'>
-            <div
-                className='custom-container lg:bg-[#FFFFFF]/80 bg-[#FFFFFF]/50 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+        <header className='fixed top-0 left-0 w-full z-50 pointer-events-none '>
+            <motion.div
+                initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
+                // initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
+                animate={controls}
+                className='custom-container z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
                 style={{
-                    backdropFilter: "blur(25px)",
-                    boxShadow:
-                        isVisibleTablet
-                            ?
-                            `
-                                inset 0px 2px 30px rgba(0, 0, 0, 0.03), /* Bóng bên trong mềm mại */
-                                -9px 20px 60px rgba(0, 0, 0, 0.08), /* Bóng ngoài ở dưới */
-                                9px -20px 60px rgba(0, 0, 0, 0.06), /* 🌟 Thêm bóng phía trên */
-                                0px 0px 10px rgba(0, 0, 0, 0.04), /* Viền nhẹ để không bị chìm */
-                                1px -1px 0px rgba(255, 255, 255, 0.9), /* Điều chỉnh viền sáng */
-                                -1px 1px 0px rgba(240, 240, 240, 0.9) /* Bóng xám mềm */
-                            `
-                            :
-                            "0px 2px 83.99px 0px #00000005 inset, -9px 20px 59.99px -24px #0000000D, 1px -1px 0px rgba(255, 255, 255, 0.9),  -1px 1px 0px rgba(240, 240, 240, 0.9)"
+                    willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
+                    backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt
+                    boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"
                 }}
             >
                 {
@@ -358,7 +396,7 @@ const HeaderContainer = () => {
                             handleValueChange={handleValueChange}
                         />
                 }
-            </div>
+            </motion.div>
         </header >
     )
 }
