@@ -15,7 +15,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
-import Script from "next/script";
 
 export const metadata = {
     title: "FOSO Tech - Giải pháp công nghệ cho doanh nghiệp",
