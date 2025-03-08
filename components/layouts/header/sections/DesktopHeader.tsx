@@ -302,7 +302,17 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                                     } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
                                                 <span className='relative'>
-                                                    {item.name}
+                                                    <HoverEffect
+                                                        title={item.name}
+                                                        hoverTitle={item.name}
+                                                        reverse={false}
+                                                        className={`${pathname.includes(item.link)
+                                                            ? "text-[#25272A] font-bold"
+                                                            : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                            }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
+                                                    w-fit flex flex-col overflow-hidden
+                                                    `}
+                                                    />
                                                     {
                                                         (pathname.includes(item.link) && item.link !== "/") &&
                                                         <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
@@ -317,39 +327,25 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                                     (
                                         <Link
                                             href={item.link}
-                                            className={`${pathname.includes(item.link)
-                                                ? "text-[#25272A] font-bold"
-                                                : "text-[#25272A] hover:text-[#1AD598] font-medium"
-                                                }  text-sm-default !tracking-[1%] px-2 cursor-pointer custom-transition capitalize relative`}
-                                            prefetch={false}
+                                            className='inline-flex relative'
                                         >
-                                            {item.name}
+                                            <HoverEffect
+                                                title={item.name}
+                                                hoverTitle={item.name}
+                                                reverse={false}
+                                                className={`${pathname.includes(item.link)
+                                                    ? "text-[#25272A] font-bold"
+                                                    : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                    }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
+                                                    w-fit flex flex-col overflow-hidden
+                                                    `}
+                                            />
+
                                             {
                                                 (pathname.includes(item.link) && item.link !== "/") &&
                                                 <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
                                             }
                                         </Link>
-                                        // <Link
-                                        //     href={item.link}
-                                        //     className={`${pathname.includes(item.link)
-                                        //         ? "text-[#25272A] font-bold"
-                                        //         : "text-[#25272A] hover:text-[#1AD598] font-medium"
-                                        //         }  text-sm-default !tracking-[1%] px-2 cursor-pointer custom-transition capitalize relative text-nowrap
-                                        //         bg-red-500  
-                                        //         `}
-                                        // >
-                                        //     <HoverEffect
-                                        //         title={item.name}
-                                        //         hoverTitle={item.name}
-                                        //         icon={
-                                        //             (pathname.includes(item.link) && item.link !== "/") &&
-                                        //             <div className='size-2 rounded-full bg-[#1AD598]' />
-                                        //         }
-                                        //         colorHover="#ffcc00"
-                                        //         reverse={false}
-
-                                        //     />
-                                        // </Link>
                                     )
                             }
                         </React.Fragment>

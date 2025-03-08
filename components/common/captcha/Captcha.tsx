@@ -1,6 +1,10 @@
-import Image from "next/image";
+'use client';
+
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import CheckIcon from './../../icons/common/CheckIcon';
 
 interface CaptchaProps {
     onVerify: (token: string | null) => void;
@@ -13,27 +17,23 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [isVerifying, setIsVerifying] = useState(false);
 
     // ✅ Xử lý khi reCAPTCHA đã tải
     useEffect(() => {
         if (recaptchaRef.current) {
-            console.log("✅ reCAPTCHA đã mount!");
             setRecaptchaLoaded(true);
+            console.log("✅ reCAPTCHA đã mount!");
         }
-    }, [recaptchaRef.current]); // Lắng nghe thay đổi của ref
-
-    // ✅ Khi reCAPTCHA script được tải hoàn toàn
-    const asyncScriptOnLoad = () => {
-        console.log("✅ Google reCAPTCHA script đã load 2!");
-        setRecaptchaLoaded(true);
-    };
+    }, []);
 
     // ✅ Khi xác minh thành công
     const handleVerify = (token: string | null) => {
         console.log("✅ Captcha Token:", token);
         setCaptchaValue(token);
         onVerify(token);
-        setIsChecked(true); // Cập nhật UI khi đã xác thực
+        setIsChecked(true);
+        setIsVerifying(false);
     };
 
     // ✅ Kích hoạt reCAPTCHA
@@ -44,6 +44,8 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
         }
 
         console.log("🔄 Kích hoạt reCAPTCHA...");
+        setIsVerifying(true); // Hiển thị trạng thái loading
+
         try {
             const token = await recaptchaRef.current.executeAsync();
             if (!token) {
@@ -54,6 +56,14 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
             handleVerify(token);
         } catch (err) {
             console.error("❌ Lỗi executeAsync():", err);
+            setIsVerifying(false);
+        }
+    };
+
+
+    const handleCheck = () => {
+        if (!isVerifying) {
+            setIsChecked(!isChecked);
         }
     };
 
@@ -67,44 +77,72 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
             <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey={siteKey}
-                onChange={handleVerify}
                 size="invisible"
-                asyncScriptOnLoad={asyncScriptOnLoad}
-                nonce={document?.querySelector("meta[name='csp-nonce']")?.getAttribute("content") ?? ''}
+                // badge="inline"
+                onChange={handleVerify}
             />
 
             {/* 🔘 Nút Custom */}
-            <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={!recaptchaLoaded}
-                className="relative flex items-center justify-between w-[320px] h-[90px] border border-[#1b365d] rounded-lg overflow-hidden shadow-md bg-white hover:bg-gray-100 transition-all p-4"
+            <div
+                className={`p-6 relative flex items-center justify-between w-[360px] h-[90px] border border-[#09224B] rounded-2xl overflow-hidden shadow-md bg-white transition-all  hover:bg-gray-100
+                `}
             >
                 {/* 🔲 Custom Checkbox */}
-                <div className="flex items-center gap-2">
-                    <div
-                        className={`w-6 h-6 border-2 rounded-md flex items-center justify-center transition-all
-                ${isChecked ? "bg-blue-500 border-blue-500 text-white" : "bg-white border-gray-400"}
-            `}
-                    >
-                        {isChecked && <span className="text-white font-bold">✔</span>}
+                <div className="relative flex items-center gap-3">
+                    {/* 🔲 Ô Checkbox (ẨN khi đang loading hoặc đã check thành công) */}
+                    {!isVerifying && !isChecked && (
+                        <motion.div
+                            className={`size-10 border rounded-md flex items-center justify-center transition-all relative
+            bg-white border-[#09224B]/[22%] cursor-pointer hover:border-blue-400`}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{ ease: "easeOut", duration: 0.2 }}
+                            onClick={handleSubmit}
+                        />
+                    )}
+
+                    <div className={`${(isVerifying || !isVerifying && isChecked) ? "size-10" : "hidden"} flex items-center justify-center`}>
+                        {/* 🔄 Loading animation (Hiển thị khi đang xác minh) */}
+                        {isVerifying && (
+                            <motion.div
+                                className="w-6 h-6 border-4 border-gray-300 border-t-green-500 rounded-full animate-spin"
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                            />
+                        )}
+
+                        {/* ✔ Checkmark (Hiển thị khi thành công) */}
+                        {!isVerifying && isChecked && (
+                            <motion.span
+                                className=" font-bold size-8"
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
+                                <CheckIcon className="size-full" color="#22c55e" />
+                            </motion.span>
+                        )}
                     </div>
-                    <span className="text-gray-700 font-medium">Click to Verify</span>
+
+                    {/* 📢 Text hướng dẫn */}
+                    <span className="3xl:text-base text-sm text-[#09224B] font-medium cursor-default    ">
+                        {isVerifying ? "Verifying..." : "Click to Verify"}
+                    </span>
                 </div>
 
                 {/* 🔹 Phần logo reCAPTCHA */}
-                <div className="absolute right-0 w-[90px] h-full bg-[#1b365d] flex items-center justify-center">
-                    <div className="size-16">
+                <div className="absolute right-0 w-[90px] h-full bg-[#09224B] border border-[#09224B] flex items-center justify-center">
+                    <div className="size-14">
                         <Image
-                            width={400}
-                            height={400}
-                            src="/icons/svg/captcha/captcha.svg"
+                            width={100}
+                            height={100}
+                            src="/icons/svg/captcha/captcha.png"
                             alt="Custom reCAPTCHA"
                             className="size-full object-contain"
                         />
                     </div>
                 </div>
-            </button>
+            </div>
         </div>
     );
 };

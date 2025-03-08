@@ -203,7 +203,7 @@ const FormContactSection = (props: Props) => {
                     <span className="text-[#050505] font-extrabold capitalize">- Nơi ý tưởng doanh nghiệp trở thành giải pháp công nghệ thực tiễn!</span>
                 </h2>
 
-                <div className='grid grid-cols-18 lg:space-x-6 lg:space-y-6 space-x-0 space-y-6'>
+                <div className='grid grid-cols-18 lg:gap-x-6 lg:gap-y-6 gap-x-0 gap-y-6'>
                     <div className='lg:col-span-5 col-span-18 space-y-4 w-full'>
                         {
                             contactData.map((item, index) => (

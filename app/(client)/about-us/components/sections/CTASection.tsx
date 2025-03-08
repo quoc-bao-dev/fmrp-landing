@@ -6,6 +6,7 @@ import Image from 'next/image'
 import React from 'react'
 
 import { motion } from 'framer-motion'
+import ArrowLongIcon from '../../../../../components/icons/common/ArrowLongIcon';
 
 type Props = {}
 
@@ -108,7 +109,7 @@ const CTASection = (props: Props) => {
                             {/* Mũi tên với hiệu ứng nhấp nháy */}
                             {!isVisibleTablet ? (
                                 <motion.div
-                                    className='3xl:w-[120px] w-[100px] h-auto aspect-square'
+                                    className='3xl:w-[120px] w-[100px] h-auto aspect-square shrink-0'
                                     animate={{
                                         scale: [1, 1.05, 1], // Giảm biên độ scale để tránh bị gắt
                                         opacity: [1, 0.85, 1], // Làm mờ nhẹ hơn để không bị quá "gắt"
@@ -127,6 +128,7 @@ const CTASection = (props: Props) => {
                                         height={200}
                                         className='size-full object-contain'
                                     />
+                                    {/* <ArrowLongIcon className='size-full' /> */}
                                 </motion.div>
                             ) : (
                                 <motion.div

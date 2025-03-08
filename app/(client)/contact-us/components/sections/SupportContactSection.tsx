@@ -45,7 +45,7 @@ const SupportContactSection = (props: Props) => {
     return (
         <BgPaddingMarginSection classNameContainer="relative overflow-x-hidden" className=''>
             {!isVisibleTablet &&
-                <BlurredBackground className='top-10 -right-[26%] z-[1]' />
+                <BlurredBackground className='top-10 3xl:-right-[20%] -right-[24%] z-[1]' />
             }
             <div className='3xl:max-w-7xl xxl:max-w-6xl mx-auto flex flex-col 3xl:gap-10 gap-8 relative z-[2]'>
                 <div className='flex flex-col items-center justify-center text-center gap-3'>

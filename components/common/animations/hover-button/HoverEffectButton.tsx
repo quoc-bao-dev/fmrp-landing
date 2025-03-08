@@ -11,14 +11,15 @@ interface HoverEffectProps {
     className?: string;
 }
 
+
 const staggeredVariants = {
-    initial: { y: 0, opacity: 1 },
-    hover: { y: -50, opacity: 0 },
+    initial: { y: 0, opacity: 1, scale: 1 },
+    hover: { y: -25, opacity: 0, scale: 0.9 },
 };
 
 const staggeredVariantsHover = {
-    initial: { y: 50, opacity: 0 },
-    hover: { y: 0, opacity: 1 },
+    initial: { y: 25, opacity: 0, scale: 0.9, clipPath: "inset(50% 0 50% 0)" },
+    hover: { y: 0, opacity: 1, scale: 1, clipPath: "inset(0% 0 0% 0)" },
 };
 
 export default function HoverEffect({
@@ -35,22 +36,30 @@ export default function HoverEffect({
             whileHover="hover"
             initial="initial"
             animate="initial"
+            // transition={{
+            //     staggerChildren: 0.05
+            // }}
             variants={{ hover: { backgroundColor: colorHover } }}
         >
             {/* Nội dung ban đầu */}
             <motion.span
-                className="absolute flex items-center gap-2"
                 variants={staggeredVariants}
                 transition={{ duration: 0.4 }}
             >
-                {icon && reverse ? icon : null}
-                {title}
-                {icon && !reverse ? icon : null}
+                <span>
+                    {icon && reverse ? icon : null}
+                </span>
+                <span>
+                    {title}
+                </span>
+                <span>
+                    {icon && !reverse ? icon : null}
+                </span>
             </motion.span>
 
             {/* Nội dung khi hover */}
             <motion.span
-                className="absolute flex items-center gap-2"
+                className='absolute'
                 variants={staggeredVariantsHover}
                 transition={{ duration: 0.4 }}
             >
