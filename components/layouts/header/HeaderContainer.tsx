@@ -31,6 +31,8 @@ import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLi
 import { motion, useAnimation } from 'framer-motion';
 
 import { useEffect, useCallback, useRef } from 'react'
+import FmrpIcon from '../../icons/common/FmrpIcon';
+import FposIcon from '../../icons/common/FposIcon';
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -90,14 +92,15 @@ const dataHeader: IMenuHeader[] = [
                             id: "5",
                             name: "FMRP -Trợ Lý Sản Xuất",
                             link: "/products/fmrp",
-                            icon: <ChartPieSliceIconLinear className='size-full' />,
+                            icon: <FmrpIcon className='size-full' />,
                             description: "Quản lý sản xuất tối ưu với FMRP"
                         },
                         {
                             id: "6",
                             name: "FPOS - Trợ Lý Bán Hàng",
                             link: "/products/fpos",
-                            icon: <StorefrontIconLinear className='size-full' />,
+                            icon: "/icons/svg/linear-gradient/fpos.svg",
+                            // icon: <FposIcon className='size-full' />,
                             description: "Tối ưu vận hành, bứt phá doanh thu"
                         }
                     ]

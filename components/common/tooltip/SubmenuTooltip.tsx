@@ -2,6 +2,7 @@ import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import CaretRightIcon from "@/components/icons/common/CaretRightIcon";
+import Image from 'next/image';
 
 interface SubmenuTooltipProps {
     subMenu: any;
@@ -45,7 +46,24 @@ const SubmenuTooltip = memo(({ subMenu }: SubmenuTooltipProps) => {
                                     >
                                         {/* Icon */}
                                         <div className="2xl:size-12 size-11 flex items-center justify-center">
-                                            <div className="2xl:size-8 size-7">{item.icon}</div>
+                                            <div className="2xl:size-8 size-7">
+                                                {
+                                                    typeof item.icon === "string" ? (
+                                                        <Image
+                                                            src={item.icon}
+                                                            alt="icon"
+                                                            width={200}
+                                                            height={200}
+                                                            className='size-full object-contain'
+                                                        />
+                                                    ) :
+                                                        (
+                                                            <React.Fragment>
+                                                                {item.icon}
+                                                            </React.Fragment>
+                                                        )
+                                                }
+                                            </div>
                                         </div>
 
                                         {/* Nội dung */}
