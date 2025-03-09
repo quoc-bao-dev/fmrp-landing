@@ -19,7 +19,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ item }) => {
 
     return (
         <div
-            className="p-5 bg-white rounded-3xl flex gap-3"
+            className="p-5 bg-white rounded-3xl flex gap-3 hover:!shadow-md custom-transition"
             style={{
                 boxShadow: isVisibleTablet ? "0px 1px 3px 0px rgba(18, 18, 23, 0.10), 0px 1px 2px 0px rgba(18, 18, 23, 0.06)" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
             }}
