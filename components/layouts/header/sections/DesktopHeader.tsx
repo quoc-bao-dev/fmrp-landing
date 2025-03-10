@@ -363,58 +363,6 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                     }}
                 />
 
-                {/* <DropdownMenu
-                    open={isStateClientLayout?.header?.openDropdownProfile}
-                    onOpenChange={(value) => handleDropdownChange(value)}
-                >
-                    <DropdownMenuTrigger className="focus:outline-none focus:ring-0 select-none group">
-                        <div className="flex gap-2 items-center cursor-pointer font-medium text-sm">
-                            <div className="text-[#333538] group-hover:text-[#F78F08]">
-                                {informationUser?.fullname}
-                            </div>
-                            <div className="size-8 min-w-8 min-h-8">
-                                <AvatarCustom
-                                    classNameContainer="w-full h-full shadow"
-                                    avatar={informationUser?.client_image ?? "/avatar/avatar_default.png"}
-                                />
-                            </div>
-                            <ArrowDown2
-                                variant="Bold"
-                                className="size-5 text-[#333538] group-hover:text-[#F78F08] custom-transition"
-                            />
-                        </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                        className="min-w-60 border-none p-4 space-y-2 dark:bg-[#09112B]"
-                        style={{
-                            boxShadow: "0px 4px 4px 0px #0000004D, 0px 8px 12px 6px #00000026",
-                        }}
-                        side="bottom"
-                        sideOffset={10}
-                    >
-                        <div className="flex flex-col items-center justify-center">
-                            <AvatarCustom
-                                avatar={informationUser?.client_image ?? "/avatar/avatar_default.png"}
-                                classNameContainer="size-10"
-                            />
-                            <div className="text-sm-default text-neutral-500 font-semibold">
-                                {informationUser?.fullname}
-                            </div>
-                        </div>
-                        <Separator />
-                        <div
-                            className="flex items-center gap-2 text-red-500 cursor-pointer"
-                            onClick={() => {
-                                setOpenAlertDialog(true, "logout");
-                                handleDropdownChange(false);
-                            }}
-                        >
-                            <Logout className="size-5 custom-transition" />
-                            <div className="text-default">Đăng xuất</div>
-                        </div>
-                    </DropdownMenuContent>
-                </DropdownMenu> */}
-
                 <ButtonAnimation
                     icon={
                         <div className='xl:size-6 size-5 flex-shrink-0'>

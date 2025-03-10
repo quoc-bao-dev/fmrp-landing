@@ -164,9 +164,7 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -176,27 +174,28 @@ html {
     --border-radius: 6px;
     --border-width: 1px;
     --border-color: rgba(9, 9, 11, 0.2);
-    
+
     position: relative;
-    
+
     &::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(circle at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%);
+      background: radial-gradient(
+        circle at 50% 6.25%,
+        #a3eed6 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
       pointer-events: none;
       z-index: -1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
 
-      -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       // -webkit-mask-composite: xor; /* hoặc destination-out */
       -webkit-mask-composite: destination-out;
     }
@@ -276,7 +275,20 @@ html {
 
 .custom-swiper-pagination {
   .swiper-pagination {
-    @apply w-screen text-center bottom-0;
+    @apply w-screen text-center bottom-0 z-50;
+    // @apply md:text-start text-center 3xl:-bottom-[5px] 2xl:bottom-6 xl:bottom-8 lg:bottom-10 bottom-12;
+    .swiper-pagination-bullet {
+      @apply w-12 bg-[#bbc3c9] rounded-sm;
+    }
+    .swiper-pagination-bullet-active {
+      background: linear-gradient(180deg, #9dffb3 0%, #1aa37a 100%);
+      @apply w-12 rounded-sm;
+    }
+  }
+}
+.custom-swiper-pagination2 {
+  .swiper-pagination2 {
+    @apply w-screen text-center bottom-10 z-[9999];
     // @apply md:text-start text-center 3xl:-bottom-[5px] 2xl:bottom-6 xl:bottom-8 lg:bottom-10 bottom-12;
     .swiper-pagination-bullet {
       @apply w-12 bg-[#bbc3c9] rounded-sm;
@@ -331,24 +343,15 @@ html {
 
 // animation
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .hover-pulse:hover {
-  animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
-/* Bọc toàn bộ captcha */
-.custom-recaptcha {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #1b365d; /* Viền xanh đậm */
-  border-radius: 8px;
-  background: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Tùy chỉnh phần hiển thị reCAPTCHA */
-

@@ -17,6 +17,8 @@ import { useRouter } from 'next/navigation'
 import { IoIosArrowDown } from 'react-icons/io'
 import { KEY_COOKIES } from '@/constants/Cookie';
 
+import { motion } from 'framer-motion'
+
 type LanguageProps = {
     classNameTrigger?: string
     styleTrigger?: any
@@ -84,22 +86,30 @@ const LanguageSelector = ({ classNameTrigger, styleTrigger }: LanguageProps) => 
                     {
                         isStateClientLayout.language.selectedLanguage && (
                             <React.Fragment>
-                                <div className='3xl:size-6 size-5 rounded-full aspect-square'>
-                                    <Image
-                                        src={isStateClientLayout.language.selectedLanguage?.flag}
-                                        alt={`${isStateClientLayout.language.selectedLanguage?.country} flag`}
-                                        width={1280}
-                                        height={1280}
-                                        className="size-full object-cover rounded-full"
-                                    />
-                                </div>
-                                <div className='flex items-center gap-1'>
-                                    <div className={`text-sm-default uppercase font-medium`}>
-                                        {isStateClientLayout.language.selectedLanguage?.country}
+                                {/* <motion.div whileHover={{
+                                    background: [
+                                        "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.2) 100%)",
+                                        "linear-gradient(360deg, rgba(9, 9, 11, 0.03) 0%, rgba(9, 9, 11, 0.1) 100%)"
+                                    ],
+                                    transition: { duration: 1.5, ease: "easeInOut", repeat: Infinity }
+                                }}> */}
+                                    <div className='3xl:size-6 size-5 rounded-full aspect-square'>
+                                        <Image
+                                            src={isStateClientLayout.language.selectedLanguage?.flag}
+                                            alt={`${isStateClientLayout.language.selectedLanguage?.country} flag`}
+                                            width={1280}
+                                            height={1280}
+                                            className="size-full object-cover rounded-full"
+                                        />
                                     </div>
+                                    <div className='flex items-center gap-1'>
+                                        <div className={`text-sm-default uppercase font-medium`}>
+                                            {isStateClientLayout.language.selectedLanguage?.country}
+                                        </div>
 
-                                    <IoIosArrowDown className={`3xl:size-5 size-4`} />
-                                </div>
+                                        <IoIosArrowDown className={`3xl:size-5 size-4`} />
+                                    </div>
+                                {/* </motion.div> */}
                             </React.Fragment>
                         )
                     }

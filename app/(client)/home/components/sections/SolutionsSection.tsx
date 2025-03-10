@@ -8,6 +8,7 @@ import { useResizeStore } from '@/stores/useResizeStore';
 import ButtonAnimationNew from '../../../../../components/common/button/ButtonAnimationNew';
 import { motion } from 'framer-motion'
 import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
+import ProjectShowcase2 from '../ui/solutions/ProjectShowcase2';
 
 type Props = {}
 
@@ -41,7 +42,8 @@ const SolutionsSection = (props: Props) => {
                     </span>
                 </AnimatedReveal>
 
-                <ProjectShowcase />
+                {/* <ProjectShowcase /> */}
+                <ProjectShowcase2 />
 
                 <AnimatedReveal
                     // once={false}
