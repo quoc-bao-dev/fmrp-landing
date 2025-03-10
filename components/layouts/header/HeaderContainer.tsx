@@ -60,28 +60,32 @@ const dataHeader: IMenuHeader[] = [
                             name: "Thiết Kế Website",
                             link: "/solution/website",
                             icon: <LaptopIconLinear className='size-full' />,
-                            description: "Bệ phóng thương hiệu"
+                            description: "Bệ phóng thương hiệu",
+                            typeIcon: "default",
                         },
                         {
                             id: "3",
                             name: "Thiết Kế App Mobile",
                             link: "/solution/mobile",
                             icon: <DeviceMobileIconLinear className='size-full' />,
-                            description: "Nâng tầm doanh nghiệp"
+                            description: "Nâng tầm doanh nghiệp",
+                            typeIcon: "default",
                         },
                         {
                             id: "2",
                             name: "Thuê IT Outsourcing",
                             link: "/solution/it-outsourcing",
                             icon: <CodeIconLinear className='size-full' />,
-                            description: "Giải pháp nhân lực linh hoạt"
+                            description: "Giải pháp nhân lực linh hoạt",
+                            typeIcon: "default",
                         },
                         {
                             id: "4",
                             name: "Thuê Hosting & Server",
                             link: "/solution/server",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
-                            description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp"
+                            description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp",
+                            typeIcon: "default",
                         }
                     ]
                 },
@@ -93,7 +97,8 @@ const dataHeader: IMenuHeader[] = [
                             name: "FMRP -Trợ Lý Sản Xuất",
                             link: "/products/fmrp",
                             icon: <FmrpIcon className='size-full' />,
-                            description: "Quản lý sản xuất tối ưu với FMRP"
+                            description: "Quản lý sản xuất tối ưu với FMRP",
+                            typeIcon: "logo",
                         },
                         {
                             id: "6",
@@ -101,7 +106,8 @@ const dataHeader: IMenuHeader[] = [
                             link: "/products/fpos",
                             icon: "/icons/svg/linear-gradient/fpos.svg",
                             // icon: <FposIcon className='size-full' />,
-                            description: "Tối ưu vận hành, bứt phá doanh thu"
+                            description: "Tối ưu vận hành, bứt phá doanh thu",
+                            typeIcon: "logo",
                         }
                     ]
                 }
@@ -127,14 +133,16 @@ const dataHeader: IMenuHeader[] = [
                             name: "Dự án",
                             link: "/solutions/website",
                             icon: <FolderStarIconLinear className='size-full' />,
-                            description: "Các dự án đã triển khai"
+                            description: "Các dự án đã triển khai",
+                            typeIcon: "default",
                         },
                         {
                             id: "9",
                             name: "Câu chuyện khách hàng",
                             link: "/solutions/mobile",
                             icon: <UsersThreeIconLinear className='size-full' />,
-                            description: "Chia sẻ từ khách hàng"
+                            description: "Chia sẻ từ khách hàng",
+                            typeIcon: "default",
                         },
                     ]
                 },
@@ -146,14 +154,16 @@ const dataHeader: IMenuHeader[] = [
                             name: "Diễn đàn",
                             link: "/products/erp",
                             icon: <ChatsTeardropIconLinear className='size-full' />,
-                            description: "Tham gia cộng đồng ngay"
+                            description: "Tham gia cộng đồng ngay",
+                            typeIcon: "default",
                         },
                         {
                             id: "11",
                             name: "Blog",
                             link: "/products/crm",
                             icon: <PencilSimpleLineIconLinear className='size-full' />,
-                            description: "Cập nhật tin tức, kiến thức"
+                            description: "Cập nhật tin tức, kiến thức",
+                            typeIcon: "default",
                         }
                     ]
                 }

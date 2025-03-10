@@ -46,7 +46,7 @@ const SubmenuTooltip = memo(({ subMenu }: SubmenuTooltipProps) => {
                                     >
                                         {/* Icon */}
                                         <div className="2xl:size-12 size-11 flex items-center justify-center">
-                                            <div className="2xl:size-8 size-7">
+                                            <div className={`${item.typeIcon ==="default" ? "2xl:size-8 size-7" : "size-full"}`}>
                                                 {
                                                     typeof item.icon === "string" ? (
                                                         <Image

@@ -298,8 +298,8 @@ const FormContactSection = (props: Props) => {
                                                         name="phone"
                                                         value={value}
                                                         getInputRef={ref}
-                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
-                                                    px-3 py-1 text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-[#15AA7A]`}
+                                                        className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:!ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
+                                                    px-3 py-1 text-[#333538] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`}
                                                         placeholder={"09xxx"}
                                                         thousandSeparator={' '}
                                                         maxLength={12}

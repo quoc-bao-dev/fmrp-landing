@@ -7,6 +7,7 @@ interface SubMenuItem {
     link: string;
     icon: ReactNode;
     description: string;
+    typeIcon: string;
 }
 
 // Type cho từng nội dung trong tab

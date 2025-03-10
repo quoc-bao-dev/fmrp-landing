@@ -2,6 +2,8 @@ import { ICardContactItem } from "@/types/card/ICard";
 import React from "react";
 import { useResizeStore } from '../../../../stores/useResizeStore';
 
+import { motion } from 'framer-motion'
+
 // export type ContactItemType = {
 //     icon: React.ReactNode;
 //     title: string;
@@ -18,11 +20,14 @@ const ContactCard: React.FC<ContactCardProps> = ({ item }) => {
     const { isVisibleTablet } = useResizeStore()
 
     return (
-        <div
-            className="p-5 bg-white rounded-3xl flex gap-3 hover:!shadow-md custom-transition"
-            style={{
-                boxShadow: isVisibleTablet ? "0px 1px 3px 0px rgba(18, 18, 23, 0.10), 0px 1px 2px 0px rgba(18, 18, 23, 0.06)" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
+        <motion.div
+            className="p-5 bg-white rounded-3xl flex gap-3"
+            initial={{ scale: 1, boxShadow: isVisibleTablet ? "0px 1px 3px 0px rgba(18, 18, 23, 0.10), 0px 1px 2px 0px rgba(18, 18, 23, 0.06)" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A" }}
+            whileHover={{
+                scale: 1.02,
+                // boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.02)", // Shadow mạnh hơn khi hover
             }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
         >
             <div className="size-6 shrink-0">{item.icon}</div>
             <div className="space-y-3">
@@ -81,7 +86,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ item }) => {
                     )}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
