@@ -2,15 +2,16 @@ import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb'
 import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
 import React, { memo, useMemo, useRef, useState, useEffect } from 'react'
-import AnimatedTitle from '../../../../../components/common/animations/text/AnimatedTitle';
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 import { motion } from 'framer-motion'
-import AnimatedTitleGradient from '../../../../../components/common/animations/text/AnimatedTitleGradient';
+import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
 
 type Props = {}
 
 const breadcrumbItems = [
     { label: "Trang chủ", href: "/" },
-    { label: "Về chúng tôi" }
+    { label: "Giải pháp", href: "#" },
+    { label: "Sản phẩm" }
 ];
 
 // CSS gradient tái sử dụng
@@ -23,7 +24,7 @@ const gradientStyle = {
     rgba(84, 171, 177, 0) 100%)`,
 };
 
-const SolveSolutionSection = memo((props: Props) => {
+const HeroFmrpSection = memo((props: Props) => {
     const [position, setPosition] = useState({ x: 500, y: 500 });
     const [isDragging, setIsDragging] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -129,65 +130,6 @@ const SolveSolutionSection = memo((props: Props) => {
 
     return (
         <div ref={sectionRef} className='custom-padding-section lg:h-screen h-svh relative'>
-            {/* icon mục tiêu kéo đặt ở mọi nơi */}
-            <div
-                onMouseDown={(e) => {
-                    if (!sectionRef.current) return;
-                    const sectionRect = sectionRef.current.getBoundingClientRect();
-
-                    // 🔥 Khi click, icon ngay lập tức nằm chính giữa con trỏ
-                    setPosition({
-                        x: e.clientX - sectionRect.left,
-                        y: e.clientY - sectionRect.top
-                    });
-
-                    setIsDragging(true);
-                    e.preventDefault();
-                }}
-                style={{
-                    left: `${position.x}px`,
-                    top: `${position.y}px`,
-                    cursor: isDragging ? "grabbing" : "grab",
-                    userSelect: "none",
-                    transform: "translate(-50%, -50%)",
-                }}
-                className='xl:w-[85px] w-16 h-auto aspect-square absolute z-40'
-            >
-                <Image
-                    src="/background/ui/about-us/target-dynamic.webp"
-                    alt="Mission Icon"
-                    width={200}
-                    height={200}
-                    draggable={false}
-                    className="size-full object-contain aspect-square"
-                />
-            </div>
-            {/* Hình nền trái - Tối ưu lazy loading */}
-            <div className='absolute lg:top-1/2 top-[80%] left-0 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[270px] xl:h-[250px] lg:h-[200px] md:h-[300px] h-[200px] aspect-square pointer-events-none'>
-                <Image
-                    alt="Logo Left"
-                    width={270}
-                    height={270}
-                    src="/background/ui/about-us/misstion-left.webp"
-                    loading="lazy"
-                    className="size-full object-contain"
-                    sizes="(max-width: 1024px) 200px, 270px" // Responsive sizes
-                />
-            </div>
-
-            {/* Hình nền phải - Tối ưu lazy loading */}
-            <div className='absolute lg:top-1/2 top-[80%] -right-0.5 lg:-translate-y-1/2 -translate-y-[80%] 3xl:h-[250px] xl:h-[220px] lg:h-[170px] md:h-[270px] h-[170px] aspect-0.78/1 pointer-events-none'>
-                <Image
-                    alt="Logo Right"
-                    width={195}
-                    height={250}
-                    src="/background/ui/about-us/misstion-right.webp"
-                    className="size-full object-contain"
-                    loading="lazy"
-                    sizes="(max-width: 1024px) 150px, 195px"
-                />
-            </div>
-
             {/* Container chính */}
             <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] pt-12'>
                 <CustomBreadcrumb items={breadcrumbItems} />
@@ -285,6 +227,6 @@ const SolveSolutionSection = memo((props: Props) => {
 })
 
 // Đặt displayName để debug dễ hơn
-SolveSolutionSection.displayName = 'SolveSolutionSection';
+HeroFmrpSection.displayName = 'HeroFmrpSection';
 
-export default SolveSolutionSection
+export default HeroFmrpSection

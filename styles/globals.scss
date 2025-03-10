@@ -138,6 +138,12 @@ html {
   }
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .border-gradient {
   .border-gradient-gray {
     --border-radius: 6px;
@@ -164,7 +170,9 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -176,29 +184,118 @@ html {
     --border-color: rgba(9, 9, 11, 0.2);
 
     position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
 
     &::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      padding: var(--border-width);
-      background: radial-gradient(
-        circle at 50% 6.25%,
-        #a3eed6 0%,
-        rgba(255, 255, 255, 0) 100%
-      );
+      padding: 1;
+      background: radial-gradient(circle at 50% 6.25%, #a3eed6 0%, rgba(255, 255, 255, 0) 100%);
       pointer-events: none;
-      z-index: -1;
+      z-index: 1;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
-      // -webkit-mask-composite: xor; /* hoặc destination-out */
-      -webkit-mask-composite: destination-out;
+
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      // -webkit-mask-composite: destination-out;
     }
+  }
+
+  .border-gradient-button-fmrp {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: exclude;
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    &:hover::before {
+      background: conic-gradient(from var(--angle), #c7dffb, rgba(255, 255, 255, 0), #c7dffb);
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+  }
+
+  .border-gradient-login {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
+      pointer-events: none;
+      z-index: 0;
+
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: exclude;
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    &:hover::before {
+      background: conic-gradient(
+        from var(--angle),
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(255, 255, 255, 0),
+        rgba(9, 9, 11, 0.1) 100%
+      );
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+  }
+}
+
+/* Animation hiệu ứng viền chạy */
+@keyframes borderMove {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
   }
 }
 

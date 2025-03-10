@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const CursorFollower = () => {
+    const pathname = usePathname()
     const cursorRef = useRef<HTMLDivElement>(null);
 
     const mouseX = useMotionValue(0);
@@ -55,7 +57,7 @@ const CursorFollower = () => {
             //     cursorRef.current?.classList.add("mix-blend-difference");
             // }
 
-             if (target.closest("footer, footer *")) {
+            if (target.closest("footer, footer *")) {
                 sizeRef.current = 60;
                 colorRef.current = "rgba(255, 255, 255, 0.9)";
                 cursorRef.current?.classList.add("mix-blend-difference");
@@ -64,7 +66,7 @@ const CursorFollower = () => {
 
         const handleLeave = () => {
             sizeRef.current = 16; // Quay về kích thước mặc định khi rời đi
-            colorRef.current = "rgba(26, 213, 152, 1)";
+            colorRef.current = !pathname.includes("/products/fmrp") ? "rgba(26, 213, 152, 1)" : "rgba(3, 117, 243, 1)";
             cursorRef.current?.classList.remove("mix-blend-difference");
         };
 
@@ -87,9 +89,9 @@ const CursorFollower = () => {
                 width: "16px",
                 height: "16px",
                 borderRadius: "50%",
-                backgroundColor: "rgba(26, 213, 152, 1)",
+                backgroundColor: !pathname.includes("/products/fmrp") ? "rgba(26, 213, 152, 1)" : "rgba(3, 117, 243, 1)",
                 transition: "width 0.2s ease-out, height 0.2s ease-out, background-color 0.3s ease-out",
-                boxShadow: "4px 8px 25px 4px rgba(26, 213, 152, 0.45)"
+                boxShadow: !pathname.includes("/products/fmrp") ? "4px 8px 25px 4px rgba(26, 213, 152, 0.45)" : " 4px 8px 25px 4px rgba(3, 117, 243, 0.45)"
             }}
         />
     );

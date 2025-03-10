@@ -13,14 +13,16 @@ import WidgetButton from '@/components/common/button/WidgetButton'
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
 import ProviderLayout from '../provider/ProviderLayout'
-import HeaderContainer from '@/components/layouts/header/HeaderContainer'
+import FosoHeaderContainer from '@/components/layouts/header/header-foso/FosoHeaderContainer'
 import FooterContainer from '@/components/layouts/footer/FooterContainer'
 import { useTheme } from 'next-themes';
+import FmrpHeaderContainer from '../header/header-fmrp/FmrpHeaderContainer'
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const { openDialogCustom } = useDialogStore()
     const { openAlertDialog } = useAlertDialogStore()
     const { theme } = useTheme()
+    const pathname = usePathname()
 
     console.log('theme theme: ', theme);
 
@@ -28,7 +30,8 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     return (
         <>
             {/* header */}
-            <HeaderContainer />
+            {pathname === "/products/fmrp" && <FmrpHeaderContainer />}
+            <FosoHeaderContainer />
 
             {children}
 

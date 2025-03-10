@@ -36,10 +36,7 @@ export default function HoverEffect({
             whileHover="hover"
             initial="initial"
             animate="initial"
-            // transition={{
-            //     staggerChildren: 0.05
-            // }}
-            variants={{ hover: { backgroundColor: colorHover } }}
+            variants={{ hover: { backgroundColor: colorHover ?? "transparent" } }}
         >
             {/* Nội dung ban đầu */}
             <motion.span

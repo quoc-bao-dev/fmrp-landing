@@ -59,7 +59,7 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
                 <span className={`${classLoading} inline-block min-h-4 min-w-4 h-4 w-4 animate-spin rounded-full border-[3px] border-solid border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`} />
             )}
 
-            {!reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>}
+            {!reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[25%]"} shrink`}>{icon}</span>}
 
             {!hideTitle && (
                 <span className='flex items-center w-full text-center'>
@@ -67,7 +67,7 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
                 </span>
             )}
 
-            {reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[20%]"}`}>{icon}</span>}
+            {reverse && icon && <span className={`${hideTitle ? "max-w-full" : "max-w-[25%]"} shrink`}>{icon}</span>}
         </motion.button>
     );
 });

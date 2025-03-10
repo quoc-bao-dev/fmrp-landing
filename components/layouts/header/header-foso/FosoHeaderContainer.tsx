@@ -15,14 +15,13 @@ import { usePathname, useRouter } from 'next/navigation'
 // import DesktopHeaderClient from './DesktopHeaderClient'
 // import TabletHeaderClient from './TabletHeaderClient'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-import DesktopHeader from './sections/DesktopHeader'
-import TabletHeader from './sections/TabletHeader'
+import FosoDesktopHeader from './sections/FosoDesktopHeader'
+import FosoTabletHeader from './sections/FosoTabletHeader'
 import LaptopIconLinear from '@/components/icons/linear/LaptopIconLinear'
 import DeviceMobileIconLinear from '@/components/icons/linear/DeviceMobileIconLinear'
 import CodeIconLinear from '@/components/icons/linear/CodeIconLinear'
 import CloudArrowUpIconLinear from '@/components/icons/linear/CloudArrowUpIconLinear'
-import ChartPieSliceIconLinear from '@/components/icons/linear/ChartPieSliceIconLinear'
-import StorefrontIconLinear from '@/components/icons/linear/StorefrontIconLinear'
+
 import FolderStarIconLinear from '@/components/icons/linear/FolderStarIconLinear'
 import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear'
 import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
@@ -31,8 +30,9 @@ import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLi
 import { motion, useAnimation } from 'framer-motion';
 
 import { useEffect, useCallback, useRef } from 'react'
-import FmrpIcon from '../../icons/common/FmrpIcon';
-import FposIcon from '../../icons/common/FposIcon';
+import FmrpIcon from '../../../icons/common/FmrpIcon';
+import FposIcon from '../../../icons/common/FposIcon';
+import { useTheme } from 'next-themes'
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -96,7 +96,7 @@ const dataHeader: IMenuHeader[] = [
                             id: "5",
                             name: "FMRP -Trợ Lý Sản Xuất",
                             link: "/products/fmrp",
-                            icon: <FmrpIcon className='size-full' />,
+                            icon: <FmrpIcon className='size-full rounded-[10px]' />,
                             description: "Quản lý sản xuất tối ưu với FMRP",
                             typeIcon: "logo",
                         },
@@ -105,7 +105,7 @@ const dataHeader: IMenuHeader[] = [
                             name: "FPOS - Trợ Lý Bán Hàng",
                             link: "/products/fpos",
                             icon: "/icons/svg/linear-gradient/fpos.svg",
-                            // icon: <FposIcon className='size-full' />,
+                            // icon: <FposIcon className='size-full rounded-[10px]' />,
                             description: "Tối ưu vận hành, bứt phá doanh thu",
                             typeIcon: "logo",
                         }
@@ -180,7 +180,8 @@ const dataHeader: IMenuHeader[] = [
     },
 ];
 
-const HeaderContainer = () => {
+const FosoHeaderContainer = () => {
+    // const { theme } = useTheme()
     const router = useRouter()
     const pathName = usePathname()
 
@@ -196,8 +197,6 @@ const HeaderContainer = () => {
     // const { onSubmitChangeLanguage, isLoading } = usePostChangeLanguage()
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
-
-
 
     const lastScrollY = useRef<number>(0); // Stores last known scroll position
     const lastScrollX = useRef<number>(0); // Lưu vị trí scroll ngang trước đó
@@ -222,15 +221,20 @@ const HeaderContainer = () => {
             requestAnimationFrame(() => {
                 let shouldShowHeader = isHeaderVisible.current;
 
-                if (scrollY === 0) {
-                    // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
-                    shouldShowHeader = pathName !== "/";
-                    // shouldShowHeader = false; // Ẩn header khi ở đầu trang
-                } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
-                    shouldShowHeader = false; // Ẩn header khi cuộn xuống
-                    forceCheckScroll.current = false; // Reset flag sau lần đầu tiên kiểm tra
-                } else if (scrollY < lastScrollY.current) {
-                    shouldShowHeader = true; // Hiện header khi cuộn lên
+                if (pathName.includes("/products/fmrp")) {
+                    // Nếu `theme === "fmrp"`, chỉ hiển thị header khi ở đầu trang
+                    shouldShowHeader = scrollY === 0;
+                } else {
+                    if (scrollY === 0) {
+                        // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
+                        shouldShowHeader = pathName !== "/";
+                        // shouldShowHeader = false; // Ẩn header khi ở đầu trang
+                    } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
+                        shouldShowHeader = false; // Ẩn header khi cuộn xuống
+                        forceCheckScroll.current = false; // Reset flag sau lần đầu tiên kiểm tra
+                    } else if (scrollY < lastScrollY.current) {
+                        shouldShowHeader = true; // Hiện header khi cuộn lên
+                    }
                 }
 
 
@@ -254,7 +258,9 @@ const HeaderContainer = () => {
             ticking.current = true;
         }
 
-        resetInactivityTimer();
+        if (pathName !== "/products/fmrp") {
+            resetInactivityTimer();
+        }
     }, [controls, pathName]);
 
     // ✅ Xử lý khi không thao tác để tự hiện header
@@ -284,15 +290,20 @@ const HeaderContainer = () => {
         isHeaderVisible.current = true; // Đặt lại giá trị ref
 
         window.addEventListener('scroll', handleScroll);
-        window.addEventListener('mousemove', resetInactivityTimer);
-        window.addEventListener('keydown', resetInactivityTimer);
+        if (!pathName.includes("/products/fmrp")) {
+            window.addEventListener('mousemove', resetInactivityTimer);
+            window.addEventListener('keydown', resetInactivityTimer);
+        }
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('mousemove', resetInactivityTimer);
-            window.removeEventListener('keydown', resetInactivityTimer);
+
+            if (!pathName.includes("/products/fmrp")) {
+                window.removeEventListener('mousemove', resetInactivityTimer);
+                window.removeEventListener('keydown', resetInactivityTimer);
+            }
         };
-    }, [handleScroll, resetInactivityTimer]);
+    }, [handleScroll, resetInactivityTimer, pathName]);
 
 
     useEffect(() => {
@@ -305,6 +316,7 @@ const HeaderContainer = () => {
     }, [isStateClientLayout?.header?.isShowMenuScreen]);
 
 
+    // bật/tắt menu dưới tablet/mobile
     const handleToggleMenu = (action: string): void => {
         if (action === "on") {
             queryKeyIsStateClientLayout({
@@ -323,6 +335,7 @@ const HeaderContainer = () => {
         }
     }
 
+    // chuyển đổi ngôn ngữ
     const handleChangeLanguage = async (value: string) => {
         const selectedCountry = dataLanguageOptions.find(option => option.code === value)
         if (!selectedCountry) return
@@ -336,18 +349,19 @@ const HeaderContainer = () => {
 
         setCookie(KEY_COOKIES.WEBSITE_LANG, value)
 
-        if (informationUser) {
-            // // const res = await onSubmitChangeLanguage.mutateAsync(value)
-            // // await updateLanguage(value)
-            // await updateLanguage(value)
-            // const [res] = await Promise.all([onSubmitChangeLanguage.mutateAsync(value)])
-            // router.refresh()
-        } else {
-            // await updateLanguage(value)
-            // router.refresh()
-        }
+        // if (informationUser) {
+        //     // const res = await onSubmitChangeLanguage.mutateAsync(value)
+        //     // await updateLanguage(value)
+        //     await updateLanguage(value)
+        //     const [res] = await Promise.all([onSubmitChangeLanguage.mutateAsync(value)])
+        //     router.refresh()
+        // } else {
+        //     await updateLanguage(value)
+        //     router.refresh()
+        // }
     };
 
+    // bật/tắt dialog
     const handleOpenDialog = (status: string, type_device: string) => {
         if (type_device === "desktop") {
             setOpenDialogCustom(true)
@@ -392,7 +406,7 @@ const HeaderContainer = () => {
                 {
                     isVisibleTablet ?
                         // màn hình mobile, tablet
-                        <TabletHeader
+                        <FosoTabletHeader
                             dataHeader={dataHeader}
                             handleToggleMenu={handleToggleMenu}
                             handleChangeLanguage={handleChangeLanguage}
@@ -401,7 +415,7 @@ const HeaderContainer = () => {
                         />
                         :
                         // màn hình desktop
-                        <DesktopHeader
+                        <FosoDesktopHeader
                             dataHeader={dataHeader}
                             handleToggleMenu={handleToggleMenu}
                             handleChangeLanguage={handleChangeLanguage}
@@ -414,4 +428,4 @@ const HeaderContainer = () => {
     )
 }
 
-export default HeaderContainer
+export default FosoHeaderContainer

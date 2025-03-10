@@ -36,7 +36,7 @@ interface TabletHeaderProps {
     handleValueChange: (e?: any) => void
 }
 
-const TabletHeader: React.FC<TabletHeaderProps> = ({
+const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
     dataHeader,
     handleToggleMenu,
     handleChangeLanguage,
@@ -304,4 +304,4 @@ const TabletHeader: React.FC<TabletHeaderProps> = ({
     )
 }
 
-export default TabletHeader
+export default FosoTabletHeader

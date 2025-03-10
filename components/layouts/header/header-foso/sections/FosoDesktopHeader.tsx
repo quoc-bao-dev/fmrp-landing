@@ -52,7 +52,7 @@ import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-import LanguageSelector from '../../../common/translate/LanguageSelector';
+import LanguageSelector from '../../../../common/translate/LanguageSelector';
 
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useResizeStore } from '@/stores/useResizeStore'
@@ -69,7 +69,7 @@ interface DesktopHeaderClientProps {
     handleValueChange: (e?: any) => void
 }
 
-const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
+const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
     const { isVisibleTablet } = useResizeStore()
     const { getCookie } = useCookieStore()
 
@@ -363,7 +363,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
             {/* Nút chuyển ngôn ngữ + CTA */}
             <div className="flex items-center justify-end gap-2 max-w-[30%]">
                 <LanguageSelector
-                    classNameTrigger='text-[#25272A] border border-[#09090B]/[2%]'
+                    classNameTrigger='text-[#25272A] border-none'
                     styleTrigger={{
                         background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
                         boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
@@ -387,8 +387,6 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                     className='border-gradient-button-1 flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                     style={{
                         background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
-                        border: "1px solid #A3EED6",
-                        borderImageSource: "radial-gradient(50% 93.75% at 50% 6.25%, #A3EED6 0%, rgba(255, 255, 255, 0) 100%)",
                     }}
                     whileHover={{
                         background: [
@@ -420,7 +418,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
     )
 }
 
-export default DesktopHeader
+export default FosoDesktopHeader
 
 
 
