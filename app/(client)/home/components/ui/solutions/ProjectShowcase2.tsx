@@ -16,7 +16,7 @@ const categories = [
     { id: 6, title: "FPOS - Trợ lí bán hàng", image: "/example/solution/image2.png" },
 ];
 
-const ProjectShowcase = () => {
+const ProjectShowcase2 = () => {
     const { isVisibleTablet } = useResizeStore()
     const [selectedCategory, setSelectedCategory] = useState(categories[0]); // Mặc định chọn "Thiết kế App Mobile"
 
@@ -173,4 +173,4 @@ const ProjectShowcase = () => {
     );
 };
 
-export default React.memo(ProjectShowcase);
+export default React.memo(ProjectShowcase2);

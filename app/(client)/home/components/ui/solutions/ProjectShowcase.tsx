@@ -29,9 +29,6 @@ const ProjectShowcase = () => {
     const [selectedCategory, setSelectedCategory] = useState<Category>(categories[0])
     const [swiperInstance, setSwiperInstance] = useState<any>(null)
 
-    const menuRef = useRef<HTMLDivElement>(null)
-    const itemRefs = useRef<(HTMLDivElement | null)[]>([])
-
     const handleCategoryChange = (category: Category) => {
         setSelectedCategory(category)
         if (swiperInstance) {
@@ -48,12 +45,6 @@ const ProjectShowcase = () => {
         },
 
     }
-
-    // useEffect(() => {
-    //     if (swiperInstance && swiperInstance.realIndex !== undefined) {
-    //         swiperInstance.slideTo(categories.findIndex(c => c.id === selectedCategory.id))
-    //     }
-    // }, [selectedCategory])
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 py-10 w-full h-full">
@@ -113,7 +104,7 @@ const ProjectShowcase = () => {
                 onSlideChange={(swiper) => setSelectedCategory(categories[swiper.realIndex])}
                 autoplay={false}
                 // autoplay={{ delay: 4000, disableOnInteraction: false }}
-                className="custom-swiper-pagination2 2xl:col-span-10 col-span-full lg:order-2 order-1 w-full lg:h-[580px] h-full aspect-video relative overflow-hidden"
+                className="custom-swiper-pagination 2xl:col-span-10 col-span-full lg:order-2 order-1 w-full lg:h-[580px] h-full aspect-video relative overflow-hidden"
                 style={{ WebkitMaskImage: isVisibleTablet ? "" : "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 20%)" }}
                 loop
                 grabCursor
