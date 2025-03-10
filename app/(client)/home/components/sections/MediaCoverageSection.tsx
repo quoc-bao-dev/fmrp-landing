@@ -164,11 +164,11 @@ const MediaCoverageSection = (props: Props) => {
                             </motion.div>
                         </div>
                     }
-                    // onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
-                    // onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
+                    onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
+                    onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
                     onClick={() => console.log('Button Clicked!')}
                     reverse={true}
-                    className="flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                    className="flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     style={{
                         WebkitBackdropFilter: "blur(15px)", // Safari
                         boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"

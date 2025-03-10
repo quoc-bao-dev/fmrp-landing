@@ -59,6 +59,7 @@ import { useResizeStore } from '@/stores/useResizeStore'
 
 import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
 import HoverEffect from '@/components/common/animations/hover-button/HoverEffectButton'
+import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -177,7 +178,13 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                 className="w-auto 3xl:min-w-[134px] xl:min-w-[110px] min-w-[86px] h-full flex justify-start items-center gap-2"
                 prefetch={false}
             >
-                <div className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px]">
+                <motion.div
+                    initial={false}
+                    animate="rest"
+                    whileTap="press"
+                    variants={variantButtonScaleZoom}
+                    className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px] h-auto"
+                >
                     <Image
                         alt="logo"
                         src="/logo/foso/logo.svg"
@@ -187,7 +194,7 @@ const DesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, han
                         priority
                         className="size-full object-contain"
                     />
-                </div>
+                </motion.div>
             </Link>
 
             {/* Menu Navigation */}

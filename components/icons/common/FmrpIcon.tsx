@@ -26,16 +26,16 @@ const FmrpIcon: React.FC<FmrpIconProps> = ({
             <path d="M23.996 20.093L27.7358 23.8328C28.1789 24.2759 28.1789 25.001 27.7358 25.4441L23.996 29.1839L20.2563 25.4441C19.8132 25.001 19.8132 24.2759 20.2563 23.8328L23.996 20.093Z" fill="url(#paint2_linear_2110_55645)" />
             <defs>
                 <linearGradient id="paint0_linear_2110_55645" x1="16.0723" y1="13.7975" x2="27.3715" y2="43.7546" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#0375F3" />
-                    <stop offset="1" stop-color="#25387A" />
+                    <stop stopColor="#0375F3" />
+                    <stop offset="1" stopColor="#25387A" />
                 </linearGradient>
                 <linearGradient id="paint1_linear_2110_55645" x1="33.4863" y1="23.5395" x2="27.5139" y2="46.0524" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#1FC583" />
-                    <stop offset="1" stop-color="#1F9285" />
+                    <stop stopColor="#1FC583" />
+                    <stop offset="1" stopColor="#1F9285" />
                 </linearGradient>
                 <linearGradient id="paint2_linear_2110_55645" x1="24.0024" y1="19.6028" x2="24.0024" y2="30.4652" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#0375F3" />
-                    <stop offset="1" stop-color="#013DA0" />
+                    <stop stopColor="#0375F3" />
+                    <stop offset="1" stopColor="#013DA0" />
                 </linearGradient>
             </defs>
         </svg>

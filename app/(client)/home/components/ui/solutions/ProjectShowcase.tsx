@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
+import React, { useState, useRef } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import { useResizeStore } from '../../../../../../stores/useResizeStore';
+import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal"
 
 interface Category {
     id: number
@@ -25,17 +25,31 @@ const categories: Category[] = [
 ]
 
 const ProjectShowcase = () => {
+    const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
+
     const { isVisibleTablet } = useResizeStore()
     const [selectedCategory, setSelectedCategory] = useState<Category>(categories[0])
     const [swiperInstance, setSwiperInstance] = useState<any>(null)
 
-    const handleCategoryChange = (category: Category) => {
-        setSelectedCategory(category)
+    const handleCategoryChange = (category: Category, index: number) => {
+        setSelectedCategory(category);
         if (swiperInstance) {
-            const index = categories.findIndex((c) => c.id === category.id)
-            swiperInstance.slideTo(index)
+            swiperInstance.slideToLoop(index);
         }
-    }
+
+        if (isVisibleTablet) {
+            // Xác định nếu danh mục ở nửa đầu → Căn trái, nửa sau → Căn phải
+            const isFirstHalf = index < Math.floor(categories.length / 2);
+
+            if (categoryRefs.current[index]) {
+                categoryRefs.current[index]?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: isFirstHalf ? "nearest" : "nearest"
+                });
+            }
+        }
+    };
 
     const customPagination = {
         el: ".swiper-pagination2",
@@ -43,45 +57,52 @@ const ProjectShowcase = () => {
         renderBullet: function (index: number, className: string) {
             return `<span class=${className}></span>`
         },
-
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 py-10 w-full h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 py-10 w-full h-full overflow-x-hidden relative z-10">
             {/* Danh mục bên trái */}
-            <div className="2xl:col-span-6 col-span-full h-full flex lg:flex-col lg:justify-between 3xl:gap-16 lg:gap-12 gap-8 lg:order-1 order-2 overflow-x-auto">
+            <AnimatedReveal effect="fade" className="xl:col-span-6 lg:col-span-5 col-span-full h-full flex lg:flex-col lg:justify-between lg:gap-8 gap-8 lg:order-1 order-2 overflow-x-auto">
                 {
-                    categories && categories.map((item) => (
+                    categories && categories.map((item, index) => (
                         <motion.div
-                            key={item.id}
-                            className={`relative flex items-center gap-2 cursor-pointer text-title transition-all duration-300 w-fit text-nowrap
-                            ${selectedCategory.id === item.id
+                            key={`category-${item.id}`}
+                            ref={(el) => { categoryRefs.current[index] = el }} // Gán ref cho từng item
+                            className={`relative flex items-center gap-2 cursor-pointer 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-lg !tracking-[2%] transition-all duration-300 w-fit text-nowrap
+                ${selectedCategory.id === item.id
                                     ? "font-semibold text-[#33404A]"
                                     : "text-[#99B2C6] hover:text-[#33404A] font-normal"
                                 }`}
-                            onClick={() => handleCategoryChange(item)}
-                            whileHover={{ scale: 1.04 }}
+                            onMouseEnter={() => {
+                                if (swiperInstance) swiperInstance.slideToLoop(index);
+                                setSelectedCategory(categories[index]);
+                            }}
+
+                            onClick={() => handleCategoryChange(item, index)} // Gọi hàm cuộn vào viewport
                         >
-                            {
-                                selectedCategory.id === item.id && !isVisibleTablet && (
+                            {/* Hiệu ứng trượt từ trái vào của gạch ngang */}
+                            {selectedCategory.id === item.id && !isVisibleTablet && (
+                                <AnimatePresence mode="wait">
                                     <motion.div
-                                        layoutId="underline"
+                                        layout
                                         className="absolute left-0 top-1/2 w-10 h-[3px] bg-black rounded-full z-10"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -50 }}
                                         transition={{ duration: 0.3, ease: "easeOut" }}
                                     />
-                                )
-                            }
+                                </AnimatePresence>
+                            )}
 
+                            {/* Hiệu ứng trượt vào với motion.div */}
                             <motion.div
-                                initial={{ opacity: 0, x: -30 }}
+                                initial={{ opacity: 0, x: -30 }} // Tiêu đề trượt từ ngoài vào
                                 animate={{
                                     opacity: 1,
                                     x: 0,
-                                    paddingLeft: selectedCategory.id === item.id ? "20px" : "0px",
+                                    paddingLeft: selectedCategory.id === item.id && !isVisibleTablet ? "48px" : "0px", // Tăng padding khi active
                                 }}
+                                exit={{ opacity: 0, x: -30 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
                             >
                                 {item.title}
@@ -89,51 +110,71 @@ const ProjectShowcase = () => {
                         </motion.div>
                     ))
                 }
-            </div>
+            </AnimatedReveal>
 
             {/* Swiper dọc với hình active ở giữa và hình tiếp theo lộ ra 200px */}
-            <Swiper
-                modules={[Autoplay, Pagination]}
-                direction="vertical"
-                slidesPerView={isVisibleTablet ? 1 : 1.2} // Hiện một hình đầy đủ + 200px của hình tiếp theo
-                spaceBetween={20}
-                centeredSlides={false}
-                onSwiper={setSwiperInstance}
-                pagination={customPagination}
-                // onSlideChange={(swiper) => setSelectedCategory(categories[swiper.activeIndex])}
-                onSlideChange={(swiper) => setSelectedCategory(categories[swiper.realIndex])}
-                autoplay={false}
-                // autoplay={{ delay: 4000, disableOnInteraction: false }}
-                className="custom-swiper-pagination 2xl:col-span-10 col-span-full lg:order-2 order-1 w-full lg:h-[580px] h-full aspect-video relative overflow-hidden"
-                style={{ WebkitMaskImage: isVisibleTablet ? "" : "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 20%)" }}
-                loop
-                grabCursor
+            <AnimatedReveal
+                effect="fade"
+                className='xl:col-span-10 lg:col-span-11 col-span-full lg:order-2 order-1 w-full h-full aspect-video relative overflow-hidden'
             >
-                {
-                    categories.map((category) => (
-                        <SwiperSlide
-                            key={category.id}
-                            className="w-full h-full flex items-center justify-center aspect-video !rotate-0"
-                        >
-                            <motion.div
-                                initial={{ opacity: 0, y: 100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -100 }}
-                                transition={{ duration: 0.5 }}
-                                className="relative w-full h-full aspect-video"
+                <Swiper
+                    modules={[Autoplay, Pagination]}
+                    direction="vertical"
+                    slidesPerView={isVisibleTablet ? 1 : 1.2} // Hiện một hình đầy đủ + 200px của hình tiếp theo
+                    spaceBetween={20}
+                    centeredSlides={false}
+                    onSwiper={setSwiperInstance}
+                    pagination={customPagination}
+                    onSlideChange={(swiper) => {
+                        const newIndex = swiper.realIndex;
+                        setSelectedCategory(categories[newIndex]);
+
+                        if (isVisibleTablet) {
+                            // Xác định nếu danh mục ở nửa đầu → Căn trái, nửa sau → Căn phải
+                            const isFirstHalf = newIndex < Math.floor(categories.length / 2);
+
+                            // Cuộn đến category đang active trên mobile
+                            if (categoryRefs.current[newIndex]) {
+                                categoryRefs.current[newIndex]?.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "nearest",
+                                    inline: isFirstHalf ? "nearest" : "nearest"
+                                });
+                            }
+                        }
+                    }}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    className="custom-swiper-pagination2 w-full aspect-video"
+                    style={{ WebkitMaskImage: isVisibleTablet ? "" : "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 20%)" }}
+                    loop
+                    grabCursor
+                >
+                    {
+                        categories.map((category) => (
+                            <SwiperSlide
+                                key={`content-${category.id}`}
+                                className="w-full h-full flex items-center justify-center aspect-video"
                             >
-                                <Image
-                                    src={category.image || "/placeholder.svg"}
-                                    alt={category.title}
-                                    width={1920}
-                                    height={1024}
-                                    className="size-full object-cover rounded-3xl aspect-video"
-                                />
-                            </motion.div>
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 100 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -100 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="relative w-full h-full aspect-video"
+                                >
+                                    <Image
+                                        src={category.image || "/placeholder.svg"}
+                                        alt={category.title}
+                                        width={1920}
+                                        height={1024}
+                                        className="size-full object-cover rounded-3xl aspect-video"
+                                    />
+                                </motion.div>
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+            </AnimatedReveal>
         </div>
     )
 }
