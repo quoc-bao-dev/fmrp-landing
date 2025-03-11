@@ -18,6 +18,7 @@ import { IoIosArrowDown } from 'react-icons/io'
 import { KEY_COOKIES } from '@/constants/Cookie';
 
 import { motion } from 'framer-motion'
+import { variantsLinearShadow } from '@/utils/animations/variantsAnimation';
 
 type LanguageProps = {
     classNameTrigger?: string
@@ -77,16 +78,38 @@ const LanguageSelector = ({ classNameTrigger, styleTrigger }: LanguageProps) => 
                 value={isStateClientLayout.language.selectedLanguage?.code}
                 defaultValue={isStateClientLayout.language.selectedLanguage?.code}
             >
-                <SelectTrigger
-                    className={`${classNameTrigger} lg:px-3 lg:py-2 px-3 py-2 flex items-center gap-1 3xl:min-w-[100px] lg:min-w-[90px] min-w-fit lg:w-full w-fit h-full rounded-[40px] focus:outline-none focus:ring-0 focus:ring-offset-0`}
-                    style={{
-                        ...styleTrigger,
+                {/* <motion.div
+                    whileHover={{
+                        background: [
+                                // "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, ##09090B, #09090B)",
+                                // "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #09090B, #09090B)",
+                                // "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #09090B, #09090B)",
+                            "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)"
+                        ],
+                        transition: {
+                            duration: 1.5,
+                            ease: [0.4, 0, 0.6, 1],
+                            repeat: Infinity
+                        },
+                        boxShadow: [
+                            "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                            "4px 8px 25px rgba(26, 213, 152, 0.45), inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                            "4px 8px 30px rgba(26, 213, 152, 0.35), inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                            "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                        ],
                     }}
-                >
-                    {
-                        isStateClientLayout.language.selectedLanguage && (
-                            <React.Fragment>
-                                {/* <motion.div whileHover={{
+                    className="w-fit h-full bg-transparent"
+                > */}
+                    <SelectTrigger
+                        className={`${classNameTrigger} lg:px-3 lg:py-2 px-3 py-2 flex items-center gap-1 3xl:min-w-[100px] lg:min-w-[90px] min-w-fit lg:w-full w-fit h-full rounded-[40px] focus:outline-none focus:ring-0 focus:ring-offset-0`}
+                        style={{
+                            ...styleTrigger,
+                        }}
+                    >
+                        {
+                            isStateClientLayout.language.selectedLanguage && (
+                                <React.Fragment>
+                                    {/* <motion.div whileHover={{
                                     background: [
                                         "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.2) 100%)",
                                         "linear-gradient(360deg, rgba(9, 9, 11, 0.03) 0%, rgba(9, 9, 11, 0.1) 100%)"
@@ -109,11 +132,12 @@ const LanguageSelector = ({ classNameTrigger, styleTrigger }: LanguageProps) => 
 
                                         <IoIosArrowDown className={`3xl:size-5 size-4`} />
                                     </div>
-                                {/* </motion.div> */}
-                            </React.Fragment>
-                        )
-                    }
-                </SelectTrigger>
+                                    {/* </motion.div> */}
+                                </React.Fragment>
+                            )
+                        }
+                    </SelectTrigger>
+                {/* </motion.div> */}
                 <SelectContent>
                     {
                         dataLanguageOptions.map((option: any) => (

@@ -50,6 +50,25 @@ const variantsContent = {
     open: { height: "auto", opacity: 1 },
 };
 
+const variantsLinearShadow = {
+    background: [
+        "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+        "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+        "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)"
+    ],
+    transition: {
+        duration: 1.5,
+        ease: [0.4, 0, 0.6, 1],
+        repeat: Infinity
+    },
+    boxShadow: [
+        "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+        "4px 8px 25px rgba(26, 213, 152, 0.45), inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+        "4px 8px 30px rgba(26, 213, 152, 0.35), inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+        "4px 8px 25px rgba(26, 213, 152, 0.25), inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+    ],
+}
+
 export {
     variantSlideLeft,
     variantSlideRight,
@@ -59,4 +78,5 @@ export {
     variantButtonPressZoom,
     variantButtonScaleZoom,
     variantsContent,
+    variantsLinearShadow
 };
