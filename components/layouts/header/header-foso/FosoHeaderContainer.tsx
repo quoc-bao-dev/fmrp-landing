@@ -308,12 +308,12 @@ const FosoHeaderContainer = () => {
 
     useEffect(() => {
         const body = document.body;
-        if (!isStateClientLayout?.header?.isShowMenuScreen) {
+        if (!isStateClientLayout?.header?.isShowMenuMobileFoso) {
             body.style.overflow = 'auto'; // Cho phép cuộn
         } else {
             body.style.overflow = 'hidden'; // Chặn cuộn
         }
-    }, [isStateClientLayout?.header?.isShowMenuScreen]);
+    }, [isStateClientLayout?.header?.isShowMenuMobileFoso]);
 
 
     // bật/tắt menu dưới tablet/mobile
@@ -322,14 +322,14 @@ const FosoHeaderContainer = () => {
             queryKeyIsStateClientLayout({
                 header: {
                     ...isStateClientLayout?.header,
-                    isShowMenuScreen: true,
+                    isShowMenuMobileFoso: true,
                 }
             })
         } else if (action === "off") {
             queryKeyIsStateClientLayout({
                 header: {
                     ...isStateClientLayout?.header,
-                    isShowMenuScreen: false,
+                    isShowMenuMobileFoso: false,
                 }
             })
         }
@@ -370,7 +370,7 @@ const FosoHeaderContainer = () => {
             queryKeyIsStateClientLayout({
                 header: {
                     ...isStateClientLayout?.header,
-                    isShowMenuScreen: false,
+                    isShowMenuMobileFoso: false,
                 }
             })
             setTimeout(() => {

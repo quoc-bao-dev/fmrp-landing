@@ -27,8 +27,11 @@ canvas {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
+body {
+}
 
 html {
+  background: white !important; /* Kiểm tra trên nền trắng */
   width: 100%;
   height: 100%;
   scroll-behavior: smooth;
@@ -173,7 +176,9 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -191,17 +196,16 @@ html {
       inset: 0;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(
-        50% 93.75% at 50% 6.25%,
-        #a3eed6 0%,
-        rgba(255, 255, 255, 0) 100%
-      );
+      background: radial-gradient(50% 93.75% at 50% 6.25%, #a3eed6 0%, rgba(255, 255, 255, 0) 100%);
       pointer-events: none;
       z-index: 1;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
 
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -209,12 +213,7 @@ html {
     }
 
     &:hover::before {
-      background: conic-gradient(
-        from var(--angle),
-        #a3eed6,
-        rgba(255, 255, 255, 0),
-        #a3eed6
-      );
+      background: conic-gradient(from var(--angle), #a3eed6, rgba(255, 255, 255, 0), #a3eed6);
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -236,13 +235,12 @@ html {
       inset: 0px;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(
-        50% 93.75% at 50% 6.25%,
-        #c7dffb 0%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -251,12 +249,56 @@ html {
     }
 
     &:hover::before {
-      background: conic-gradient(
-        from var(--angle),
-        #c7dffb,
-        rgba(255, 255, 255, 0),
-        #c7dffb
+      background: conic-gradient(from var(--angle), #c7dffb, rgba(255, 255, 255, 0), #c7dffb);
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+  }
+
+  .border-gradient-button-no-bg-fmrp {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: linear-gradient(
+        77.74deg,
+        #0375f3 11.85%,
+        #036eea 20.65%,
+        #0267e1 29.45%,
+        #0261d7 38.25%,
+        #025ace 47.05%,
+        #0254c5 55.84%,
+        #024ebc 64.64%,
+        #0148b3 73.44%,
+        #0142a9 82.24%,
+        #013da0 91.04%
       );
+      // background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    &:hover::before {
+      background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -278,16 +320,15 @@ html {
       inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(
-        360deg,
-        rgba(9, 9, 11, 0.05) 0%,
-        rgba(9, 9, 11, 0.1) 100%
-      );
+      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
       pointer-events: none;
       z-index: 0;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -306,6 +347,7 @@ html {
       animation: borderMove 1.5s linear infinite;
     }
   }
+
   .border-gradient-language {
     --border-width: 1px;
     --border-width-hover: 2px;
@@ -322,16 +364,15 @@ html {
       inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(
-        360deg,
-        rgba(9, 9, 11, 0.05) 0%,
-        rgba(9, 9, 11, 0.1) 100%
-      );
+      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
       pointer-events: none;
       z-index: 0;
 
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -370,7 +411,6 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -397,7 +437,6 @@ html {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;

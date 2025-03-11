@@ -19,7 +19,7 @@ export default function AnimatedTitle({ heroPerTitle, className, delay = 0, styl
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.06, delayChildren: delay }, // ⬅️ Tăng staggerChildren và dùng delay
+            transition: { staggerChildren: 0.05, delayChildren: delay }, // ⬅️ Tăng staggerChildren và dùng delay
         },
     }
 

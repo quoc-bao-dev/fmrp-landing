@@ -5,6 +5,7 @@ import React, { memo, useMemo, useRef, useState, useEffect } from 'react'
 import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 import { motion } from 'framer-motion'
 import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
+import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation';
 
 type Props = {}
 
@@ -16,12 +17,9 @@ const breadcrumbItems = [
 
 // CSS gradient tái sử dụng
 const gradientStyle = {
-    backgroundImage: `linear-gradient(to right, #53B086 0%, #53B086 50%, #85EEB3 100%), 
-    radial-gradient(219.3% 1471.82% at 24.6% -30.56%, 
-    rgba(84, 171, 177, 0) 0%, 
-    rgba(84, 171, 177, 0.409141) 34.37%, 
-    rgba(133, 238, 179, 0.71) 51.52%, 
-    rgba(84, 171, 177, 0) 100%)`,
+    // background: `linear-gradient(to right, #0375F3, #013DA0)`,
+    background: `linear-gradient(107deg, #0375F3 13.08%, #036EEA, #0267E1, #0261D7, #025ACE, #0254C5, #024EBC, #0148B3, #0142A9, #013DA0)`,
+    // background: `linear-gradient(107deg, #0375F3 43.86%, #036EEA 45.1%, #0267E1 46.34%, #0261D7 47.57%, #025ACE 48.81%, #0254C5 50.05%, #024EBC 51.29%, #0148B3 52.52%, #0142A9 53.76%, #013DA0 55%)`
 };
 
 const HeroFmrpSection = memo((props: Props) => {
@@ -92,13 +90,13 @@ const HeroFmrpSection = memo((props: Props) => {
 
     // ✅ Tạo danh sách chữ để hiển thị với hiệu ứng Animation
     const heroPerTitle1 = useMemo(
-        () => "Giải Quyết".split("").map((letter, index) => ({ id: index, letter })),
+        () => "Tối Ưu".split("").map((letter, index) => ({ id: index, letter })),
         []
     );
 
     const heroPerTitle2 = useMemo(
         () =>
-            "Vấn đề"
+            "Sản Xuất, "
                 .split("")
                 .map((letter, index) => ({ id: index + heroPerTitle1.length, letter })),
         [heroPerTitle1]
@@ -106,7 +104,7 @@ const HeroFmrpSection = memo((props: Props) => {
 
     const heroPerTitle3 = useMemo(
         () =>
-            "Và"
+            "Tối Đa"
                 .split("")
                 .map((letter, index) => ({ id: index + heroPerTitle2.length, letter })),
         [heroPerTitle2]
@@ -114,7 +112,7 @@ const HeroFmrpSection = memo((props: Props) => {
 
     const heroPerTitle4 = useMemo(
         () =>
-            "Mang đến"
+            "Năng Suất,"
                 .split("")
                 .map((letter, index) => ({ id: index + heroPerTitle3.length, letter })),
         [heroPerTitle3]
@@ -122,77 +120,103 @@ const HeroFmrpSection = memo((props: Props) => {
 
     const heroPerTitle5 = useMemo(
         () =>
-            "Giải Pháp"
+            "Tối Thiểu"
                 .split("")
                 .map((letter, index) => ({ id: index + heroPerTitle4.length, letter })),
         [heroPerTitle4]
     );
 
+    const heroPerTitle6 = useMemo(
+        () =>
+            "Lãng Phí"
+                .split("")
+                .map((letter, index) => ({ id: index + heroPerTitle4.length, letter })),
+        [heroPerTitle5]
+    );
+
     return (
-        <div ref={sectionRef} className='custom-padding-section lg:h-screen h-svh relative'>
+        <div ref={sectionRef} className='custom-padding-section lg:h-screen h-svh relative bg-transparent'>
             {/* Container chính */}
             <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] pt-12'>
                 <CustomBreadcrumb items={breadcrumbItems} />
 
                 {/* Nội dung chính */}
-                <div className="flex lg:items-center items-start justify-center w-full h-full relative lg:pt-0 md:pt-20 pt-28">
-                    <div className="absolute flex items-center justify-center gap-2 3xl:top-[22%] xl:top-[15%] lg:top-[22%] md:top-0 top-[5%] lg:left-[47%] md:left-[35%] left-[25%] ">
-                        <div className='flex items-center relative top-4'>
-                            {/* Mũi tên và chữ đều có chung hiệu ứng lắc nhẹ theo hướng */}
-                            <motion.div
-                                className='relative xl:w-[50px] w-11 h-auto aspect-1/2 left-4 pointer-events-none'
-                                animate={{
-                                    y: [0, -3, 0], // Nhảy lên xuống nhẹ
-                                    rotate: [-8, 0, -8], // Lắc nhẹ để nhấn mạnh hướng
-                                }}
-                                transition={{
-                                    duration: 1, // Đồng bộ với chữ
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
-                            >
-                                <Image
-                                    src="/background/ui/about-us/arrow-right-down.webp"
-                                    alt="Mission Icon"
-                                    width={200}
-                                    height={200}
-                                    className='size-full object-contain aspect-1/2'
-                                    loading="lazy"
-                                />
-                            </motion.div>
+                <div className="flex flex-col items-center justify-center w-full h-full relative lg:pt-0 md:pt-20 pt-28">
+                    <motion.div
+                        initial={false}
+                        animate="rest"
+                        whileTap="press"
+                        variants={variantButtonScaleZoom}
+                        className="3xl:w-[330px] w-[280px] h-auto aspect-2.57/1 cursor-default"
+                    // onClick={() => { scrollToTop() }}
+                    >
+                        <Image
+                            alt="logo"
+                            src="/logo/fmrp/logo-fmrp.svg"
+                            width={134}
+                            height={55}
+                            quality={100}
+                            priority
+                            className="size-full object-contain"
+                        />
+                    </motion.div>
 
-                            {/* Chữ "sứ mệnh" lắc nhẹ đồng bộ với mũi tên */}
-                            <motion.div
-                                className={`${playwrite_is_sans.className} 3xl:!text-xl xl:!text-lg lg:!text-base md:!text-base !text-base italic font-normal text-[#4D5F6E] -rotate-3 pointer-events-none`}
-                                animate={{
-                                    rotate: [-8, 0, -8], // Lắc cùng hướng với mũi tên
-                                    x: [-2, 0, -2], // Nhẹ nhàng đẩy qua lại
-                                }}
-                                transition={{
-                                    duration: 1, // Đồng bộ với mũi tên
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
-                            >
-                                sứ mệnh
-                            </motion.div>
-                        </div>
-                        {/* <div className='xl:w-[85px] w-16 h-auto aspect-square'>
-                            <Image
-                                src="/background/ui/about-us/target-dynamic.webp"
-                                alt="Mission Icon"
-                                width={150}
-                                height={150}
-                                className='size-full object-contain aspect-square'
-                            />
-                        </div> */}
-                    </div>
+                    <h2 className="text-title-section text-center font-normal align-middle">
+                        <AnimatedTitleGradient
+                            className='font-extrabold pr-3'
+                            heroPerTitle={heroPerTitle1}
+                            delay={0}
+                            style={{
+                                ...gradientStyle,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                display: "inline-block", // Giữ inline nhưng vẫn áp dụng gradient toàn bộ
+                            }}
+                        />
+                        <AnimatedTitle
+                            className='text-[#050505] relative z-10 font-extrabold'
+                            heroPerTitle={heroPerTitle2}
+                            delay={0.4}
+                        />
 
-                    <h2 className="text-title-section font-normal space-x-2">
+                        <AnimatedTitleGradient
+                            className='font-extrabold pr-3'
+                            heroPerTitle={heroPerTitle3}
+                            delay={0.8}
+                            style={{
+                                ...gradientStyle,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                display: "inline-block", // Giữ inline nhưng vẫn áp dụng gradient toàn bộ
+                            }}
+                        />
 
-                        <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle1} delay={0} />
-                        <span className="relative inline-block">
-                            {/* Background trượt từ trái sang phải */}
+                        <AnimatedTitle
+                            className='text-[#050505] relative z-10 font-extrabold'
+                            heroPerTitle={heroPerTitle4}
+                            delay={1.2}
+                        />
+                        <br />
+
+                        <AnimatedTitleGradient
+                            className='font-extrabold pr-3'
+                            heroPerTitle={heroPerTitle5}
+                            delay={1.6}
+                            style={{
+                                ...gradientStyle,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                display: "inline-block", // Giữ inline nhưng vẫn áp dụng gradient toàn bộ
+                            }}
+                        />
+
+                        <AnimatedTitle
+                            className='text-[#050505] relative z-10 font-extrabold'
+                            heroPerTitle={heroPerTitle6}
+                            delay={2}
+                        />
+                        {/* <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle1} delay={0} /> */}
+                        {/* <span className="relative inline-block">
                             <motion.span
                                 className="absolute bottom-[12%] bg-[#A3EED6] rounded-full h-[30%] w-full"
                                 initial={{ clipPath: "inset(0% 100% 0% 0%)", opacity: 0 }} // Bắt đầu ẩn
@@ -205,9 +229,9 @@ const HeroFmrpSection = memo((props: Props) => {
                             />
 
                             <AnimatedTitle className='text-[#050505] relative z-10 font-extrabold' heroPerTitle={heroPerTitle2} delay={0.5} />
-                        </span>
-                        <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle3} delay={1} />
-                        <br />
+                        </span> */}
+                        {/* <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle3} delay={1} />
+
                         <AnimatedTitle className='text-[#050505]' heroPerTitle={heroPerTitle4} delay={1.5} />
                         <AnimatedTitleGradient
                             className='font-extrabold'
@@ -219,6 +243,16 @@ const HeroFmrpSection = memo((props: Props) => {
                                 WebkitTextFillColor: "transparent",
                             }}
                         />
+                        <AnimatedTitleGradient
+                            className='font-extrabold'
+                            heroPerTitle={heroPerTitle6}
+                            delay={1.6}
+                            style={{
+                                ...gradientStyle,
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                            }}
+                        /> */}
                     </h2>
                 </div>
             </div>

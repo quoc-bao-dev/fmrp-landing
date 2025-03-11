@@ -50,11 +50,15 @@ export default function AnimatedTitleGradient({ heroPerTitle, className, delay =
             initial="hidden"
             animate="visible"
             style={{
-                ...style
+                ...style,
+                display: "inline-block", // Giữ inline nhưng vẫn áp dụng gradient toàn bộ
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
             }}
         >
             {heroPerTitle.map((e) => (
-                <motion.span key={e.id.toString()} variants={child}>
+                <motion.span key={e.id.toString()} variants={child} style={{ display: "inline" }}>
                     {e.letter}
                 </motion.span>
             ))}

@@ -36,7 +36,7 @@ const FooterBottom: React.FC<SocialSectionProps> = ({ socialMedia }) => {
             </div>
 
             <div className='xl:col-span-3 lg:col-span-4 col-span-1 flex items-center lg:justify-end lg:order-3 order-2'>
-                <div className='lg:w-[200px] md:w-[2210240px] w-[160px] aspect-8/3'>
+                {/* <div className='lg:w-[200px] md:w-[2210240px] w-[160px] aspect-8/3'>
                     <Image
                         src="/logo/foso/logo-bct.svg"
                         alt="logo"
@@ -44,7 +44,7 @@ const FooterBottom: React.FC<SocialSectionProps> = ({ socialMedia }) => {
                         height={200}
                         className='size-full object-contain cursor-pointer hover:scale-[1.03] custom-transition'
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     )

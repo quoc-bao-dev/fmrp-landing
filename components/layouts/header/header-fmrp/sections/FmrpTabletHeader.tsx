@@ -27,6 +27,8 @@ import LanguageSelector from '@/components/common/translate/LanguageSelector'
 import { useResizeStore } from '@/stores/useResizeStore'
 
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
+import { scrollToTop } from '@/utils/scroll/scrollUtils'
 
 interface TabletHeaderProps {
     dataHeader: IMenuHeader[]
@@ -57,12 +59,12 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
 
 
     const handleToggleSubMenu = (id: string) => {
-        let active = isStateClientLayout?.header?.isActiveSubMenu === id ? null : id
+        let active = isStateClientLayout?.header?.isActiveSubMenuFmrp === id ? null : id
 
         queryKeyIsStateClientLayout({
             header: {
                 ...isStateClientLayout?.header,
-                isActiveSubMenu: active
+                isActiveSubMenuFmrp: active
             }
         })
     };
@@ -71,21 +73,26 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
         <React.Fragment>
             <div className='grid grid-cols-12 items-center justify-center'>
                 <div className='col-span-10 w-full flex items-center justify-start gap-2'>
-                    <Link
-                        href="/"
+                    <motion.div
+                        initial={false}
+                        animate="rest"
+                        whileTap="press"
+                        variants={variantButtonScaleZoom}
                         className='flex items-center justify-start w-fit h-[40px] py-4'
-                        prefetch={false}
-                        onClick={() => handleToggleMenu("off")}
+                        onClick={() => {
+                            handleToggleMenu("off")
+                            scrollToTop()
+                        }}
                     >
                         <Image
                             width={800}
                             height={800}
                             alt="logo"
-                            src="/logo/foso/logo.svg"
+                            src="/logo/fmrp/logo-fmrp.svg"
                             className="w-fit h-[40px] object-contain cursor-pointer"
                             priority
                         />
-                    </Link>
+                    </motion.div>
                 </div>
 
                 <div className="col-span-2 flex items-center justify-end gap-1">
@@ -113,7 +120,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
 
             <AnimatePresence mode="wait">
                 {
-                    isStateClientLayout?.header?.isShowMenuScreen &&
+                    isStateClientLayout?.header?.isShowMenuMobileFmrp &&
                     <motion.div
                         initial={{ x: '100%' }} // Bắt đầu từ ngoài bên phải
                         animate={{ x: 0 }}      // Trượt vào vị trí hiển thị
@@ -121,26 +128,39 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                         transition={{ duration: 0.5 }} // Tốc độ trượt
                         className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 md:-left-8 -left-4 bg-white`}
                     >
-                        <div className='grid grid-cols-12 py-3 items-center justify-center md:px-8 px-6'>
-                            <div className='col-span-10 w-full flex items-center justify-start gap-2'>
-                                <Link
-                                    href="/"
+                        <div className='grid grid-cols-16 py-3 items-center justify-center md:px-8 px-6'>
+                            <div className='col-span-12 w-full flex items-center justify-start gap-2'>
+                                <motion.div
+                                    initial={false}
+                                    animate="rest"
+                                    whileTap="press"
+                                    variants={variantButtonScaleZoom}
                                     className='flex items-center justify-start w-fit h-[40px] py-4'
-                                    prefetch={false}
-                                    onClick={() => handleToggleMenu("off")}
+                                    onClick={() => {
+                                        handleToggleMenu("off")
+                                    }}
                                 >
                                     <Image
                                         width={800}
                                         height={800}
                                         alt="logo"
-                                        src="/logo/foso/logo.svg"
+                                        src="/logo/fmrp/logo-fmrp.svg"
                                         className="w-fit h-[40px] object-contain cursor-pointer"
                                         priority
                                     />
-                                </Link>
+                                </motion.div>
                             </div>
 
-                            <div className="col-span-2 flex items-center justify-end gap-1">
+                            <div className="col-span-4 flex items-center justify-end gap-3">
+                            <LanguageSelector
+                                    classNameTrigger='text-[#25272A] border border-[#09090B]/[2%] !w-full !p-0 bg-white'
+                                    styleTrigger={{
+                                        background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                                        boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
+                                    }}
+                                />
+
+
                                 <motion.div
                                     initial={false}
                                     animate="rest"
@@ -180,7 +200,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                 <span
                                                                     className={`text-lg font-medium transition-all 
                                                                         ${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 font-medium underline underline-offset-[6px] decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'}
-                                                                        ${isStateClientLayout?.header?.isActiveSubMenu === data.id ? "text-[#1AD598]" : "text-[#25272A]"}`}
+                                                                        ${isStateClientLayout?.header?.isActiveSubMenuFmrp === data.id ? "text-[#1AD598]" : "text-[#25272A]"}`}
                                                                 >
                                                                     {data.name}
                                                                 </span>
@@ -188,7 +208,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                 {/* Animated Icon */}
                                                                 <div className="relative w-6 h-6 flex items-center justify-center">
                                                                     <AnimatePresence mode="wait">
-                                                                        {isStateClientLayout?.header?.isActiveSubMenu === data.id ? (
+                                                                        {isStateClientLayout?.header?.isActiveSubMenuFmrp === data.id ? (
                                                                             <motion.span
                                                                                 key="minus"
                                                                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -217,7 +237,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
 
                                                             {/* Submenu Animation */}
                                                             <AnimatePresence>
-                                                                {isStateClientLayout?.header?.isActiveSubMenu === data.id && (
+                                                                {isStateClientLayout?.header?.isActiveSubMenuFmrp === data.id && (
                                                                     <motion.div
                                                                         initial={{ opacity: 0, height: 0 }}
                                                                         animate={{ opacity: 1, height: "auto" }}
@@ -284,16 +304,6 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                         </React.Fragment>
                                     ))
                                 }
-                            </div>
-
-                            <div className='md:px-8 px-6'>
-                                <LanguageSelector
-                                    classNameTrigger='text-[#25272A] border border-[#09090B]/[2%] !w-full bg-white'
-                                    styleTrigger={{
-                                        background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
-                                        boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
-                                    }}
-                                />
                             </div>
                         </div>
                     </motion.div>

@@ -87,6 +87,7 @@ export default {
 				'3/4': '3 / 4',
 				'4/3': '4 / 3',
 				'4/2': '4 / 2',
+				'3.38/1': '3.38 / 1',
 				'3/2': '3 / 2',
 				'3/1': '3 / 1',
 				'2/1': '2 / 1',
@@ -104,6 +105,24 @@ export default {
 				'0.87/1': '0.87 / 1',
 				'0.78/1': '0.78 / 1',
 				'0.715/1': '0.715 / 1'
+			},
+			keyframes: {
+				'accordion-down': {
+					from: {
+						height: '0'
+					},
+					to: {
+						height: 'var(--radix-accordion-content-height)'
+					}
+				},
+				'accordion-up': {
+					from: {
+						height: 'var(--radix-accordion-content-height)'
+					},
+					to: {
+						height: '0'
+					}
+				}
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",

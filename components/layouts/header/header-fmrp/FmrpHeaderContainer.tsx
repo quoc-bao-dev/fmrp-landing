@@ -178,12 +178,12 @@ const FmrpHeaderContainer = () => {
 
     useEffect(() => {
         const body = document.body;
-        if (!isStateClientLayout?.header?.isShowMenuScreen) {
+        if (!isStateClientLayout?.header?.isShowMenuMobileFmrp) {
             body.style.overflow = 'auto'; // Cho phép cuộn
         } else {
             body.style.overflow = 'hidden'; // Chặn cuộn
         }
-    }, [isStateClientLayout?.header?.isShowMenuScreen]);
+    }, [isStateClientLayout?.header?.isShowMenuMobileFmrp]);
 
 
     const handleToggleMenu = (action: string): void => {
@@ -191,14 +191,14 @@ const FmrpHeaderContainer = () => {
             queryKeyIsStateClientLayout({
                 header: {
                     ...isStateClientLayout?.header,
-                    isShowMenuScreen: true,
+                    isShowMenuMobileFmrp: true,
                 }
             })
         } else if (action === "off") {
             queryKeyIsStateClientLayout({
                 header: {
                     ...isStateClientLayout?.header,
-                    isShowMenuScreen: false,
+                    isShowMenuMobileFmrp: false,
                 }
             })
         }
@@ -237,7 +237,7 @@ const FmrpHeaderContainer = () => {
             queryKeyIsStateClientLayout({
                 header: {
                     ...isStateClientLayout?.header,
-                    isShowMenuScreen: false,
+                    isShowMenuMobileFmrp: false,
                 }
             })
             setTimeout(() => {

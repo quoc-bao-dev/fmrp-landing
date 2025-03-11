@@ -103,15 +103,10 @@ function SelectCustomSearch({
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    console.log('open', open);
-
-
     return (
         <Popover
             open={open}
             onOpenChange={(open: any) => {
-                console.log('open change', open);
-
                 onOpen(open);
                 setOpen(open);
             }}

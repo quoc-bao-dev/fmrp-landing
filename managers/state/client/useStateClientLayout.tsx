@@ -4,8 +4,10 @@ interface InitialStateStore {
     isStateClientLayout: {
         header: {
             isVisibleHeader: boolean;
-            isActiveSubMenu: string | null;
-            isShowMenuScreen: boolean;
+            isActiveSubMenuFoso: string | null;
+            isActiveSubMenuFmrp: string | null;
+            isShowMenuMobileFoso: boolean;
+            isShowMenuMobileFmrp: boolean;
             openDropdownProfile: boolean;
         },
         language: {
@@ -19,8 +21,10 @@ export const useStateClientLayout = create<InitialStateStore>((set) => ({
     isStateClientLayout: {
         header: {
             isVisibleHeader: false,         // hiển thị header animation
-            isActiveSubMenu: null,         // hiển thị active sub menu con
-            isShowMenuScreen: false,        // hiển thị menuscreen cho màn tablet
+            isActiveSubMenuFoso: null,         // hiển thị active sub menu con
+            isShowMenuMobileFoso: false,        // hiển thị menuscreen cho màn tablet
+            isActiveSubMenuFmrp: null,         // hiển thị active sub menu con
+            isShowMenuMobileFmrp: false,        // hiển thị menuscreen cho màn tablet
             openDropdownProfile: false,     // Hiển thị dropdown của profile account
         },
         language: {
