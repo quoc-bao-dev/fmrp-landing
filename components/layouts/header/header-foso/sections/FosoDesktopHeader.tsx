@@ -363,10 +363,32 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
             {/* Nút chuyển ngôn ngữ + CTA */}
             <div className="flex items-center justify-end gap-2 max-w-[30%]">
                 <LanguageSelector
-                    classNameTrigger='text-[#25272A] border-none'
+                    classNameTrigger='border-gradient-language text-[#25272A] border-none'
                     styleTrigger={{
                         background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
                         boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
+                    }}
+                    whileHover={{
+                        background: [
+                            // "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, ##09090B, #09090B)",
+                            // "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #09090B, #09090B)",
+                            // "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #09090B, #09090B)",
+                            "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
+                            "linear-gradient(360deg, rgba(9, 9, 11, 0) 0%, rgba(9, 9, 11, 0.2) 100%)",
+                            "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.2) 100%)",
+
+                        ],
+                        transition: {
+                            duration: 1.5,
+                            ease: [0.4, 0, 0.6, 1],
+                            repeat: Infinity
+                        },
+                        boxShadow: [
+                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                            "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                            "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                        ],
                     }}
                 />
 

@@ -245,7 +245,7 @@ html {
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
-      -webkit-mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
       z-index: 0;
       transition: background 0.5s ease-in-out;
     }
@@ -263,9 +263,10 @@ html {
   }
 
   .border-gradient-login {
-    --border-radius: 6px;
     --border-width: 1px;
     --border-width-hover: 2px;
+    --border-inset: 0px;
+    --border-inset-hover: 0px;
     --border-color: rgba(9, 9, 11, 0.2);
 
     position: relative;
@@ -274,7 +275,7 @@ html {
     &::before {
       content: "";
       position: absolute;
-      inset: 0px;
+      inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
       background: linear-gradient(
@@ -289,8 +290,7 @@ html {
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
-      -webkit-mask-composite: exclude;
-      z-index: 0;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
       transition: background 0.5s ease-in-out;
     }
 
@@ -301,6 +301,51 @@ html {
         rgba(255, 255, 255, 0),
         rgba(9, 9, 11, 0.1) 100%
       );
+      inset: var(--border-inset-hover);
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+  }
+  .border-gradient-language {
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-inset: -2px;
+    --border-inset-hover: -2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: var(--border-inset);
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: linear-gradient(
+        360deg,
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(9, 9, 11, 0.1) 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      transition: background 0.5s ease-in-out;
+    }
+
+    &:hover::before {
+      background: conic-gradient(
+        from var(--angle),
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(255, 255, 255, 0),
+        rgba(9, 9, 11, 0.1) 100%
+      );
+      inset: var(--border-inset-hover);
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
