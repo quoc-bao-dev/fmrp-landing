@@ -176,9 +176,7 @@ html {
       pointer-events: none;
       z-index: -1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -196,16 +194,17 @@ html {
       inset: 0;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(50% 93.75% at 50% 6.25%, #a3eed6 0%, rgba(255, 255, 255, 0) 100%);
+      background: radial-gradient(
+        50% 93.75% at 50% 6.25%,
+        #a3eed6 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
       pointer-events: none;
       z-index: 1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
 
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -213,7 +212,12 @@ html {
     }
 
     &:hover::before {
-      background: conic-gradient(from var(--angle), #a3eed6, rgba(255, 255, 255, 0), #a3eed6);
+      background: conic-gradient(
+        from var(--angle),
+        #a3eed6,
+        rgba(255, 255, 255, 0),
+        #a3eed6
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -235,12 +239,13 @@ html {
       inset: 0px;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      background: radial-gradient(
+        50% 93.75% at 50% 6.25%,
+        #c7dffb 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -249,7 +254,12 @@ html {
     }
 
     &:hover::before {
-      background: conic-gradient(from var(--angle), #c7dffb, rgba(255, 255, 255, 0), #c7dffb);
+      background: conic-gradient(
+        from var(--angle),
+        #c7dffb,
+        rgba(255, 255, 255, 0),
+        #c7dffb
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -268,7 +278,7 @@ html {
     &::before {
       content: "";
       position: absolute;
-      inset: 0px;
+      inset: 1;
       border-radius: inherit;
       padding: var(--border-width);
       background: linear-gradient(
@@ -281,15 +291,11 @@ html {
         #0254c5 55.84%,
         #024ebc 64.64%,
         #0148b3 73.44%,
-        #0142a9 82.24%,
-        #013da0 91.04%
+        #0142a9 82.24%
       );
       // background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -298,7 +304,12 @@ html {
     }
 
     &:hover::before {
-      background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
+      background: conic-gradient(
+        from var(--angle),
+        #036eea,
+        rgba(3, 110, 234, 0.2),
+        #0254c5
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -320,15 +331,16 @@ html {
       inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
+      background: linear-gradient(
+        360deg,
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(9, 9, 11, 0.1) 100%
+      );
       pointer-events: none;
       z-index: 0;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -364,15 +376,16 @@ html {
       inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
+      background: linear-gradient(
+        360deg,
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(9, 9, 11, 0.1) 100%
+      );
       pointer-events: none;
       z-index: 0;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */

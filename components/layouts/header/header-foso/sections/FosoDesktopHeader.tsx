@@ -60,6 +60,7 @@ import { useResizeStore } from '@/stores/useResizeStore'
 import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
 import HoverEffect from '@/components/common/animations/hover-button/HoverEffectButton'
 import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
+import { scrollToTop } from '@/utils/scroll/scrollUtils';
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -173,29 +174,28 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
     return (
         <div className="flex items-center justify-between w-full">
             {/* Logo */}
-            <Link
-                href="/"
-                className="w-auto 3xl:min-w-[134px] xl:min-w-[110px] min-w-[86px] h-full flex justify-start items-center gap-2"
-                prefetch={false}
+
+            <motion.div
+                initial={false}
+                animate="rest"
+                whileTap="press"
+                variants={variantButtonScaleZoom}
+                className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px] h-auto"
+                onClick={() => {
+                    router.push("/")
+                    scrollToTop()
+                }}
             >
-                <motion.div
-                    initial={false}
-                    animate="rest"
-                    whileTap="press"
-                    variants={variantButtonScaleZoom}
-                    className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px] h-auto"
-                >
-                    <Image
-                        alt="logo"
-                        src="/logo/foso/logo.svg"
-                        width={134}
-                        height={55}
-                        quality={100}
-                        priority
-                        className="size-full object-contain"
-                    />
-                </motion.div>
-            </Link>
+                <Image
+                    alt="logo"
+                    src="/logo/foso/logo.svg"
+                    width={134}
+                    height={55}
+                    quality={100}
+                    priority
+                    className="size-full object-contain"
+                />
+            </motion.div>
 
             {/* Menu Navigation */}
             {/* <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
