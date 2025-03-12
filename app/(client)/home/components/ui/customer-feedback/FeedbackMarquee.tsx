@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import React, { memo, useMemo } from "react";
 import Image from "next/image";
-import { FeedbackItem } from "../../sections/CustomerFeedbackSection";
 import MarqueeColumn from "@/components/common/marquee/MarqueeColumn";
 import { useResizeStore } from "@/stores/useResizeStore";
+import { FeedbackItem } from '@/types/feedback/IFeedback';
 
 type FeedbackMarqueeProps = {
     feedbacks: FeedbackItem[];
