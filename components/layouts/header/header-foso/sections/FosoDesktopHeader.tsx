@@ -180,7 +180,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                 animate="rest"
                 whileTap="press"
                 variants={variantButtonScaleZoom}
-                className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px] h-auto"
+                className="aspect-2.4/1 3xl:w-[134px] xl:w-[110px] w-[86px] h-auto cursor-pointer"
                 onClick={() => {
                     router.push("/")
                     scrollToTop()
@@ -193,7 +193,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                     height={55}
                     quality={100}
                     priority
-                    className="size-auto object-contain aspect-2.4/1" 
+                    className="size-full object-contain aspect-2.4/1"
                 />
             </motion.div>
 

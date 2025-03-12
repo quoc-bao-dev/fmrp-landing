@@ -17,7 +17,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
 
     return (
         <div
-            className="col-span-1 rounded-2xl group cursor-pointer bg-white transition-all duration-300 ease-out hover:bg-[#F3F4F6]"
+            className="col-span-1 rounded-3xl group cursor-pointer bg-white transition-all duration-300 ease-out hover:bg-[#F3F4F6]"
             style={{
                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
             }}

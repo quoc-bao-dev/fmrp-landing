@@ -189,7 +189,7 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                     width={200}
                     height={100}
                     priority
-                    className="size-auto object-contain aspect-2.4/1"
+                    className="size-full object-contain aspect-2.4/1"
                 />
             </motion.div>
 
