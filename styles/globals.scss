@@ -298,7 +298,7 @@ html {
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
-      -webkit-mask-composite: xor; /* hoặc destination-out */
+      -webkit-mask-composite: destination-out; /* hoặc destination-out */
       z-index: 0;
       transition: background 0.5s ease-in-out;
     }
