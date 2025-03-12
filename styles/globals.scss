@@ -278,7 +278,7 @@ html {
     &::before {
       content: "";
       position: absolute;
-      inset: 1;
+      inset: 0px;
       border-radius: inherit;
       padding: var(--border-width);
       background: linear-gradient(
@@ -293,12 +293,12 @@ html {
         #0148b3 73.44%,
         #0142a9 82.24%
       );
-      // background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
+
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
-      -webkit-mask-composite: destination-out; /* hoặc destination-out */
+      -webkit-mask-composite: xor; /* hoặc destination-out */
       z-index: 0;
       transition: background 0.5s ease-in-out;
     }
