@@ -43,6 +43,12 @@ const variantButtonScaleZoom = {
     hover: { scale: 1.02, transition: { duration: 0.3 } },
 };
 
+const variantCardScaleZoom = {
+    rest: { scale: 1 },
+    press: { scale: 0.95, transition: { duration: 0.3 } },
+    hover: { scale: 1.05, transition: { duration: 0.3 } },
+};
+
 
 // animation đóng mở collapsed
 const variantsContent = {
@@ -77,6 +83,7 @@ export {
     variantSlideZoomOut,
     variantButtonPressZoom,
     variantButtonScaleZoom,
+    variantCardScaleZoom,
     variantsContent,
     variantsLinearShadow
 };

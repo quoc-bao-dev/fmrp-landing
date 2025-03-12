@@ -85,11 +85,11 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                         }}
                     >
                         <Image
-                            width={800}
-                            height={800}
+                            width={200}
+                            height={100}
                             alt="logo"
                             src="/logo/fmrp/logo-fmrp.svg"
-                            className="w-fit h-[40px] object-contain cursor-pointer"
+                            className="w-fit h-[40px] object-contain cursor-pointer aspect-2.57/1"
                             priority
                         />
                     </motion.div>
@@ -145,7 +145,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                         height={800}
                                         alt="logo"
                                         src="/logo/fmrp/logo-fmrp.svg"
-                                        className="w-fit h-[40px] object-contain cursor-pointer"
+                                        className="w-fit h-[40px] object-contain cursor-pointer aspect-2.57/1"
                                         priority
                                     />
                                 </motion.div>

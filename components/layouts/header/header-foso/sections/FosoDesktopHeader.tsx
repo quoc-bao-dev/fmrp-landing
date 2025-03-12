@@ -193,7 +193,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                     height={55}
                     quality={100}
                     priority
-                    className="size-full object-contain"
+                    className="size-auto object-contain aspect-2.4/1" 
                 />
             </motion.div>
 

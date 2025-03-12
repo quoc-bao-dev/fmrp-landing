@@ -157,7 +157,7 @@ const HeroFmrpSection = memo((props: Props) => {
                             height={55}
                             quality={100}
                             priority
-                            className="size-full object-contain"
+                            className="size-full object-contain aspect-2.57/1"
                         />
                     </motion.div>
 

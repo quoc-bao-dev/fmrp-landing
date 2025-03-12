@@ -1,5 +1,6 @@
 import Image from "next/image";
 import moment from "moment";
+import { usePathname } from "next/navigation";
 
 type MediaCardProps = {
     media: {
@@ -12,6 +13,8 @@ type MediaCardProps = {
 };
 
 const MediaCard = ({ media }: MediaCardProps) => {
+    const pathname = usePathname()
+
     return (
         <div
             className="col-span-1 rounded-2xl group cursor-pointer bg-white transition-all duration-300 ease-out hover:bg-[#F3F4F6]"
@@ -19,13 +22,13 @@ const MediaCard = ({ media }: MediaCardProps) => {
                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
             }}
         >
-            <div className="aspect-3/2 w-full overflow-hidden rounded-t-2xl">
+            <div className="aspect-square w-full overflow-hidden rounded-t-2xl">
                 <Image
                     width={500}
-                    height={400}
+                    height={500}
                     alt="img"
                     src={media?.image ?? "/default/default.png"}
-                    className="size-full object-cover rounded-t-2xl group-hover:scale-105 duration-300 transition-all ease-out"
+                    className="size-full object-cover rounded-t-2xl group-hover:scale-105 duration-300 transition-all ease-out aspect-square"
                 />
             </div>
 
@@ -35,7 +38,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
                         {moment(media?.date).format("DD/MM/YYYY")}
                     </div>
 
-                    <div className="text-sm-default text-[#10805B] group-hover:text-[#14A76C] lg:max-w-[60%] max-w-[70%] custom-transition">
+                    <div className={`${pathname.includes("/products/fmrp") ? "text-[#0F4F9E] group-hover:text-[#0F4F9E]/80" : "text-[#10805B] group-hover:text-[#14A76C]" } text-sm-default  lg:max-w-[60%] max-w-[70%] custom-transition`}>
                         {media?.category}
                     </div>
                 </div>

@@ -6,7 +6,7 @@ import { uuidv4 } from '@/lib/uuid'
 import React, { useState } from 'react'
 
 import { motion } from 'framer-motion'
-import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
+import { variantButtonScaleZoom, variantCardScaleZoom } from '@/utils/animations/variantsAnimation'
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
 import { ArrowUpRightIcon } from 'lucide-react'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
@@ -18,31 +18,63 @@ const dataCommunity = [
     {
         id: uuidv4(),
         icon: <FacebookOriginIcon className='size-full text-[#0866FF]' />,
-        name: "Fanpage"
+        name: "Fanpage",
+        bg: "linear-gradient(135deg, #1877F2 0%, #4C8BF5 100%)", // Gradient xanh Facebook hiện đại
     },
     {
         id: uuidv4(),
         icon: <FosoOriginIcon className='size-full' />,
-        name: "Group"
+        name: "Group",
+        bg: "linear-gradient(135deg, #00C6FF 0%, #0072FF 100%)", // Xanh biển nổi bật
     },
     {
         id: uuidv4(),
         icon: <YoutubeOriginIcon className='size-full text-[#E62117]' />,
-        name: "Youtube"
+        name: "Youtube",
+        bg: "linear-gradient(135deg, #FF0000 0%, #FF6347 100%)", // Đỏ Youtube rực rỡ
     },
     {
         id: uuidv4(),
         icon: <TiktokOriginIcon className='size-full text-[#010101]' />,
-        name: "Tiktok"
+        name: "Tiktok",
+        bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam
     },
 ]
+
+// Variants cho nền (trượt lên khi hover)
+const bgVariants = {
+    rest: { top: '100%' },
+    hover: { top: '0%', transition: { duration: 0.5 } },
+};
+
+// Variants cho icon (Xoay 360° + đổi màu khi hover)
+const iconVariants = {
+    rest: (color: any) => ({
+        rotateY: 0,
+        color: color,
+        transition: { duration: 0.6, ease: "easeInOut" }
+    }),
+    hover: {
+        rotateY: 360,
+        color: "#FFFFFF",
+        transition: { duration: 0.6, ease: "easeInOut" }
+    }
+};
+
+
+// Variants cho text (đổi màu khi hover)
+const textVariants = {
+    rest: { color: "#1A2025" },
+    hover: { color: "#FFFFFF", transition: { duration: 0.6 } }
+};
+
 
 const CommunityFmrpSection = (props: Props) => {
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     return (
         <div className='custom-padding-section'>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-8 gap-6'>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8'>
                 <div className='flex flex-col items-center justify-center gap-2'>
                     <div className='space-x-2 font-extrabold'>
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Tham gia cộng đồng cho</span>
@@ -67,32 +99,55 @@ const CommunityFmrpSection = (props: Props) => {
 
                 <div className='grid lg:grid-cols-4 grid-cols-2 3xl:gap-8 gap-6 w-full'>
                     {
-                        dataCommunity && dataCommunity?.map((item, index) => (
-                            <motion.div
-                                initial={false}
-                                whileHover="hover"
-                                whileTap="press"
-                                variants={variantButtonScaleZoom}
-                                key={`community-${item.id}`}
-                                className='col-span-1 flex items-center gap-4 p-6 w-full bg-white border border-[#F3F4FE] hover:!shadow-sm rounded-3xl duration-300 transition-all ease-in-out'
-                                style={{
-                                    boxShadow: "0px 20px 95px 0px #C9CBCC4D"
-                                }}
-                            >
-                                <div className='size-12 shrink-0'>
-                                    {item.icon}
-                                </div>
+                        dataCommunity && dataCommunity?.map((item, index) => {
+                            const defaultColor = item.icon.props.className.match(/text-\[(.*?)\]/)?.[1] || "#1A2025";
 
-                                <div className="3xl:text-xl text-lg text-[#1A2025] font-bold">
-                                    {item.name}
-                                </div>
-                            </motion.div>
-                        ))
+                            return (
+                                <motion.div
+                                    key={`community-${item.id}`}
+                                    initial="rest"
+                                    animate="rest"
+                                    whileHover="hover"
+                                    whileTap="press"
+                                    variants={variantCardScaleZoom}
+                                    transition={{ type: 'spring', stiffness: 200, damping: 10 }}
+                                    className='relative col-span-1 flex items-center gap-4 p-6 w-full bg-white border border-[#F3F4FE] rounded-3xl overflow-hidden group cursor-pointer'
+                                    style={{
+                                        boxShadow: "0px 20px 95px 0px #C9CBCC4D"
+                                    }}
+                                >
+
+                                    {/* Hiệu ứng nền hover */}
+                                    <motion.div
+                                        className='absolute top-0 left-0 inset-0 z-[1] w-full h-full'
+                                        variants={bgVariants}
+                                        style={{ background: item.bg }}
+                                    />
+
+                                    {/* Hiệu ứng icon xoay 360° và đổi màu */}
+                                    <motion.div
+                                        className='size-12 shrink-0 relative z-10'
+                                        custom={defaultColor} // Truyền màu gốc vào variants
+                                        variants={iconVariants}
+                                    >
+                                        {React.cloneElement(item.icon, { className: "size-full" })}
+                                    </motion.div>
+
+                                    {/* Tên cộng đồng - đổi màu khi hover */}
+                                    <motion.div
+                                        className="3xl:text-xl text-lg font-bold relative z-10"
+                                        variants={textVariants}
+                                    >
+                                        {item.name}
+                                    </motion.div>
+                                </motion.div>
+                            )
+                        })
                     }
                 </div>
 
                 <div
-                    className='relative rounded-3xl px-28 py-20 w-full overflow-hidden'
+                    className='relative rounded-3xl px-28 py-20 w-full overflow-hidden mt-6'
                     style={{
                         background: "linear-gradient(77.74deg, #013DA0 11.85%, #0142A9 20.65%, #0148B3 29.45%, #024EBC 38.25%, #0254C5 47.05%, #025ACE 55.84%, #0261D7 64.64%, #0267E1 73.44%, #036EEA 82.24%, #0375F3 91.04%)"
                     }}

@@ -186,11 +186,10 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                 <Image
                     alt="logo"
                     src="/logo/fmrp/logo-fmrp.svg"
-                    width={134}
-                    height={55}
-                    quality={100}
+                    width={200}
+                    height={100}
                     priority
-                    className="size-full object-contain"
+                    className="size-auto object-contain aspect-2.4/1"
                 />
             </motion.div>
 

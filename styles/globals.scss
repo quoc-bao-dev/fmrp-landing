@@ -278,7 +278,7 @@ html {
     &::before {
       content: "";
       position: absolute;
-      inset: 1;
+      inset: -1;
       border-radius: inherit;
       padding: var(--border-width);
       background: linear-gradient(

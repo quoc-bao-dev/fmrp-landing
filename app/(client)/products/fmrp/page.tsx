@@ -10,6 +10,10 @@ import PartnerFmrpSection from './components/sections/PartnerFmrpSection'
 import MediaCoverageFmrpSection from './components/sections/MediaCoverageFmrpSection'
 import QuestionsFmrpSection from './components/sections/QuestionsFmrpSection'
 import CommunityFmrpSection from './components/sections/CommunityFmrpSection'
+import CTAFmrpSection from './components/sections/CTAFmrpSection'
+import VideoFmrpSection from './components/sections/VideoFmrpSection'
+import SystemOverviewFmrpSection from './components/sections/SystemOverviewFmrpSection'
+import AiBomFmrpSection from './components/sections/AiBomFmrpSection'
 
 type Props = {}
 
@@ -20,7 +24,11 @@ const AboutUs = (props: Props) => {
             <div className='relative z-[1] bg-white'>
                 <HeroFmrpSection />
                 <IntroductionFmrpSection />
+                <VideoFmrpSection />
+                <SystemOverviewFmrpSection />
+                <AiBomFmrpSection />
                 <FeedbackFmrpSection />
+                <CTAFmrpSection />
                 <PartnerFmrpSection />
                 <MediaCoverageFmrpSection />
                 <QuestionsFmrpSection />

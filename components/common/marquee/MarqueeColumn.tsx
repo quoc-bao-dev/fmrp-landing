@@ -1,7 +1,7 @@
 import { motion, useMotionValue } from "framer-motion";
 import { memo, useRef, useEffect, useCallback } from "react";
 import AvatarCustom from "../avatar/AvatarCustom";
-import { FeedbackItem } from "@/app/(client)/home/components/sections/CustomerFeedbackSection";
+import { FeedbackItem } from "@/types/feedback/IFeedback";
 
 type MarqueeColumnProps = {
     feedbacks: FeedbackItem[];
