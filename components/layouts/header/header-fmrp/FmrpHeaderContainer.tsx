@@ -127,7 +127,7 @@ const FmrpHeaderContainer = () => {
         }
 
         resetInactivityTimer();
-    }, [controls, pathName]);
+    }, [controls]);
 
     // ✅ Xử lý khi không thao tác để tự hiện header
     const resetInactivityTimer = useCallback(() => {
@@ -151,9 +151,6 @@ const FmrpHeaderContainer = () => {
             }
             inactivityTimer.current = null;
         }, 1500);
-
-        console.log('check');
-
     }, [controls]);
 
     useEffect(() => {
@@ -176,16 +173,12 @@ const FmrpHeaderContainer = () => {
     }, [handleScroll, resetInactivityTimer]);
 
 
+        // 🛠️ Chặn cuộn khi mở menu mobile
     useEffect(() => {
-        const body = document.body;
-        if (!isStateClientLayout?.header?.isShowMenuMobileFmrp) {
-            body.style.overflow = 'auto'; // Cho phép cuộn
-        } else {
-            body.style.overflow = 'hidden'; // Chặn cuộn
-        }
+        document.body.style.overflow = isStateClientLayout?.header?.isShowMenuMobileFmrp ? 'hidden' : 'auto';
     }, [isStateClientLayout?.header?.isShowMenuMobileFmrp]);
 
-
+// 🛠️ Mở/Tắt menu mobile
     const handleToggleMenu = (action: string): void => {
         if (action === "on") {
             queryKeyIsStateClientLayout({

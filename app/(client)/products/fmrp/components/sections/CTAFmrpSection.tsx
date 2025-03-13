@@ -36,48 +36,62 @@ const CTAFmrpSection = (props: Props) => {
     // Khi vào viewport, đảm bảo section luôn ở giữa màn hình
     useEffect(() => {
         if (inView && sectionRef.current) {
-            document.body.style.overflow = "hidden"; // Khoá scroll
-            sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-    }, [inView]);
+            // Kiểm tra nếu phần tử đang ở trung tâm rồi thì không gọi scrollIntoView
+            const rect = sectionRef.current.getBoundingClientRect();
+            const isCentered = Math.abs(rect.top) < window.innerHeight * 0.1;
 
-    // Kiểm soát scroll, ngăn vượt viewport
-    const handleScroll = useDebouncedCallback((event: WheelEvent) => {
-        if (isTransitioning) return; // Ngăn chặn nhiều sự kiện scroll cùng lúc
-        setIsTransitioning(true);
+            if (!isCentered) {
+                sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
 
-        const scrollDirection = event.deltaY > 0 ? "down" : "up";
-
-        if (scrollDirection === "down" && activeIndex < subtitles.length - 1) {
-            setActiveIndex((prev) => prev + 1);
-        } else if (scrollDirection === "up" && activeIndex > 0) {
-            setActiveIndex((prev) => prev - 1);
-        }
-
-        // Kiểm soát khóa/mở scroll
-        if (activeIndex === subtitles.length - 1 && scrollDirection === "down") {
-            setTimeout(() => {
-                document.body.style.overflow = "auto";              // Mở khóa scroll khi highlight xong
-                setIsLocked(false);
-                setIsTransitioning(false);
-            }, 800);
-        } else if (activeIndex === 0 && scrollDirection === "up") {
-            setTimeout(() => {
-                document.body.style.overflow = "auto";
-                setIsLocked(false);
-                setIsTransitioning(false);
-            }, 800);
+            // Chỉ khóa scroll nếu chưa active hết nội dung
+            if (activeIndex < subtitles.length - 1) {
+                document.body.style.overflow = "hidden";
+            }
         } else {
-            document.body.style.overflow = "hidden"; // Giữ khóa khi chưa highlight hết
-            setIsLocked(true);
-            setTimeout(() => setIsTransitioning(false), 400);
+            document.body.style.overflow = "auto"; // Khi thoát khỏi section, mở khóa scroll
         }
-    }, 250); // Giảm debounce xuống 250ms để phản hồi nhanh hơn
+    }, [inView, activeIndex]);
 
+    const handleScroll = (event: WheelEvent | TouchEvent) => {
+        const isTouch = event instanceof TouchEvent;
+        const scrollDirection = isTouch
+            ? (event as TouchEvent).touches[0].clientY < window.innerHeight / 2
+                ? "down"
+                : "up"
+            : (event as WheelEvent).deltaY > 0
+                ? "down"
+                : "up";
+
+        if (isTransitioning) return;
+
+        // Nếu chưa đến chữ cuối cùng, khóa scroll
+        if ((scrollDirection === "down" && activeIndex < subtitles.length - 1) ||
+            (scrollDirection === "up" && activeIndex > 0)) {
+            event.preventDefault(); // Chặn cuộn ngoài ý muốn
+            setIsTransitioning(true);
+
+            setActiveIndex((prev) => prev + (scrollDirection === "down" ? 1 : -1));
+
+            setTimeout(() => {
+                setIsTransitioning(false);
+            }, 400);
+        } else {
+            // Nếu đã đạt chữ đầu hoặc cuối thì mở lại scroll
+            document.body.style.overflow = "auto";
+        }
+    };
+
+    // Lắng nghe sự kiện cuộn khi vào section
     useEffect(() => {
         if (inView) {
-            window.addEventListener("wheel", handleScroll);
-            return () => window.removeEventListener("wheel", handleScroll);
+            window.addEventListener("wheel", handleScroll, { passive: false });
+            window.addEventListener("touchmove", handleScroll, { passive: false });
+
+            return () => {
+                window.removeEventListener("wheel", handleScroll);
+                window.removeEventListener("touchmove", handleScroll);
+            };
         }
     }, [inView, activeIndex, handleScroll]);
 
@@ -103,16 +117,16 @@ const CTAFmrpSection = (props: Props) => {
                             subtitles.map((group, index) => (
                                 <motion.div
                                     key={index}
-                                    className="text-title-section-small font-bold"
+                                    className="text-title-section-small font-extrabold text-[#D9E1E7]"
                                     initial={{ opacity: 0 }}
-                                    animate={index <= activeIndex ? { opacity: 1, y: 0 } : { opacity: 0.2, y: 0 }}
+                                    animate={index <= activeIndex ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5 }}
                                 >
                                     {
                                         group.map((line, i) => (
                                             <span
                                                 key={i}
-                                                className={`transition-all duration-500 ${index === activeIndex ? "text-blue-700 font-bold" : "text-gray-300"}`}
+                                                className={`transition-all duration-500 ${index === activeIndex ? "text-[#1760B9]" : ""}`}
                                             >
                                                 {line}{i !== group.length - 1 && ", "}
                                             </span>

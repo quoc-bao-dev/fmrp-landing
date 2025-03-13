@@ -32,7 +32,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
                 />
             </div>
 
-            <div className="flex flex-col gap-2 p-4 bg-white rounded-b-2xl">
+            <div className="flex flex-col gap-2 p-4 bg-white rounded-b-3xl">
                 <div className="flex items-center justify-between">
                     <div className="text-sm-default text-[#667F93] lg:max-w-[40%] max-w-[30%]">
                         {moment(media?.date).format("DD/MM/YYYY")}
