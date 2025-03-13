@@ -1,7 +1,8 @@
 import Image from "next/image";
 import moment from "moment";
-import { usePathname } from "next/navigation";
+import { usePathname } from 'next/navigation';
 import { memo } from "react";
+import Link from 'next/link';
 
 type MediaCardProps = {
     media: {
@@ -10,6 +11,7 @@ type MediaCardProps = {
         date: string;
         category: string;
         title: string;
+        link?: string;
     };
 };
 
@@ -17,11 +19,13 @@ const MediaCard = ({ media }: MediaCardProps) => {
     const pathname = usePathname()
 
     return (
-        <div
+        <Link
             className="col-span-1 rounded-3xl group cursor-pointer bg-white transition-all duration-300 ease-out hover:bg-[#F3F4F6]"
             style={{
                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
             }}
+            href={media.link ?? "#"}
+            target="_blank"
         >
             <div className="aspect-square w-full overflow-hidden rounded-t-2xl">
                 <Image
@@ -48,7 +52,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
                     {media?.title}
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

@@ -12,10 +12,10 @@ import FooterBottom from './sections/FooterBottom';
 type Props = {}
 
 const socialMedia = [
-    { icon: "/icons/social-media/zalo.svg", link: "#" },
-    { icon: "/icons/social-media/facebook.svg", link: "#" },
-    { icon: "/icons/social-media/tiktok.svg", link: "#" },
-    { icon: "/icons/social-media/youtube.svg", link: "#" },
+    { icon: "/icons/social-media/zalo.svg", link: "https://zalo.me/2281264205827497572" },
+    { icon: "/icons/social-media/facebook.svg", link: "https://www.facebook.com/fososoftware" },
+    { icon: "/icons/social-media/tiktok.svg", link: "https://www.tiktok.com/@fososoftware" },
+    { icon: "/icons/social-media/youtube.svg", link: "https://www.youtube.com/@fososoft" },
 ];
 
 const FooterContainer = (props: Props) => {

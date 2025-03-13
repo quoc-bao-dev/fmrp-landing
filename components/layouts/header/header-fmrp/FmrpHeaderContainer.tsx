@@ -42,7 +42,7 @@ const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Cộng Đồng",
-        link: "https://www.facebook.com/groups/mrpviet",
+        link: "https://www.facebook.com/groups/mrpvn",
         type: "default",
         visible: true,
     },

@@ -12,7 +12,7 @@ const FosoOriginIcon: React.FC<FosoOriginIconProps> = ({ size = 32, color = 'cur
     return (
         <svg
             viewBox="0 0 34 45"
-            fill="none"
+            fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             className={className}
         >

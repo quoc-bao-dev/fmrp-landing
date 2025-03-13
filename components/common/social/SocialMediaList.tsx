@@ -15,6 +15,7 @@ const SocialMediaList: React.FC<SocialMediaListProps> = ({ socialMedia, classNam
                     <div
                         className={`${className} p-3 rounded-2xl custom-transition flex-shrink-0`}
                         style={style}
+                        onClick={() => { window.open(social.link) }}
                     >
                         <Image
                             width={100}

@@ -42,7 +42,7 @@ const AiBomFmrpSection = (props: Props) => {
                             }
                             onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
                             onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                            onClick={() => console.log('Button Clicked!')}
+                            onClick={() => { window.open("https://hub.fmrp.vn/auth/register") }}
                             reverse={true}
                             className="mt-4 border-gradient-button-no-bg-fmrp capitalize flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"
                             style={{
@@ -115,7 +115,7 @@ const AiBomFmrpSection = (props: Props) => {
                             }
                             onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
                             onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                            onClick={() => console.log('Button Clicked!')}
+                            onClick={() => { window.open("https://hub.fmrp.vn/auth/register") }}
                             reverse={true}
                             className="border-gradient-button-no-bg-fmrp capitalize flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"
                             style={{

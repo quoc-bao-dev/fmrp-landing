@@ -147,7 +147,7 @@ const CTAFmrpSection = (props: Props) => {
                         }
                         reverse={true}
                         title="Dùng thử miễn phí"
-                        onClick={() => { }}
+                        onClick={() => { window.open("https://hub.fmrp.vn/auth/register") }}
                         className='border-gradient-button-fmrp flex items-center gap-2 text-sm text-white font-semibold capitalize !shadow-none border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                         style={{
                             background: "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(118.21deg, #0375F3 10.03%, #013DA0 107.74%)",

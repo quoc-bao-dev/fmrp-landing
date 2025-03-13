@@ -12,6 +12,7 @@ import { ArrowUpRightIcon } from 'lucide-react'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
 import Image from 'next/image'
 import { useResizeStore } from '@/stores/useResizeStore'
+import FosoOriginIcon2 from '../../../../../../components/icons/social-media/FosoOriginIcon2';
 
 type Props = {}
 
@@ -21,24 +22,28 @@ const dataCommunity = [
         icon: <FacebookOriginIcon className='size-full text-[#0866FF]' />,
         name: "Fanpage",
         bg: "linear-gradient(135deg, #1877F2 0%, #4C8BF5 100%)", // Gradient xanh Facebook hiện đại
+        link: "https://www.facebook.com/fososoftware",
     },
     {
         id: uuidv4(),
         icon: <FosoOriginIcon className='size-full' />,
         name: "Group",
         bg: "linear-gradient(135deg, #00C6FF 0%, #0072FF 100%)", // Xanh biển nổi bật
+        link: "https://www.facebook.com/groups/mrpvn",
     },
     {
         id: uuidv4(),
         icon: <YoutubeOriginIcon className='size-full text-[#E62117]' />,
         name: "Youtube",
         bg: "linear-gradient(135deg, #FF0000 0%, #FF6347 100%)", // Đỏ Youtube rực rỡ
+        link: "https://www.youtube.com/@fososoft",
     },
     {
         id: uuidv4(),
         icon: <TiktokOriginIcon className='size-full text-[#010101]' />,
         name: "Tiktok",
-        bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam
+        bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam,
+        link: "https://www.tiktok.com/@fososoftware"
     },
 ]
 
@@ -53,11 +58,15 @@ const iconVariants = {
     rest: (color: any) => ({
         rotateY: 0,
         color: color,
+        fill: color, // Giữ nguyên màu gradient
+        // filter: "brightness(1) invert(0)", // Giữ nguyên màu gradient
         transition: { duration: 0.6, ease: "easeInOut" }
     }),
     hover: {
         rotateY: 360,
         color: "#FFFFFF",
+        fill: "#FFFFFF", // Chuyển icon thành màu trắng khi hover
+        // filter: "brightness(0) invert(1)", // Chuyển icon sang trắng
         transition: { duration: 0.6, ease: "easeInOut" }
     }
 };
@@ -117,6 +126,7 @@ const CommunityFmrpSection = (props: Props) => {
                                     style={{
                                         boxShadow: "0px 20px 95px 0px #C9CBCC4D"
                                     }}
+                                    onClick={() => { window.open(item.link) }}
                                 >
                                     {/* Hiệu ứng nền hover */}
                                     <motion.div
@@ -130,9 +140,13 @@ const CommunityFmrpSection = (props: Props) => {
                                         className='lg:size-12 size-10 shrink-0 relative z-10'
                                         custom={defaultColor} // Truyền màu gốc vào variants
                                         variants={iconVariants}
+
+                                        style={{ color: "url(#paint0_linear)" }} // Gradient mặc định
+
                                     >
-                                        {React.cloneElement(item.icon, { className: "size-full" })}
+                                        {React.cloneElement(item.icon, { className: "size-full", fill: "currentColor" })}
                                     </motion.div>
+
 
                                     {/* Tên cộng đồng - đổi màu khi hover */}
                                     <motion.div
@@ -189,7 +203,7 @@ const CommunityFmrpSection = (props: Props) => {
                             }
                             onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
                             onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                            onClick={() => console.log('Button Clicked!')}
+                            onClick={() => { window.open("https://www.facebook.com/groups/mrpvn") }}
                             reverse={true}
                             className="border border-white flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-white hover:!bg-[#FFFFFF]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"
                             style={{

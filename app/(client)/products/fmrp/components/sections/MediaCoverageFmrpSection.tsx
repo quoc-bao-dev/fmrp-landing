@@ -16,6 +16,7 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import { motion } from 'framer-motion'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import { useRouter } from 'next/navigation';
 
 type Props = {}
 
@@ -25,26 +26,30 @@ const mediaList = [
         image: "/example/blog/1.png",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Doanh nhân Sài Gòn online",
-        title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP"
+        title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP",
+        link: "https://doanhnhansaigon.vn/doanh-nghiep-chuyen-doi-so-manh-me-cung-giai-phap-phan-mem-fmrp-304651.html?",
     },
     {
         id: uuidv4(),
         image: "/example/blog/2.png",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Công nghệ đời sống",
-        title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP"
+        title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP",
+        link: "/blogs",
     },
     {
         id: uuidv4(),
         image: "/example/blog/3.png",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Kết nối đầu tư",
-        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất"
+        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất",
+        link: "https://ketnoidautu.net/foso-ra-mat-app-quan-ly-xuong-cai-thien-tien-do-san-xuat-trong-quan-ly-nha-may-a32964.html",
     },
 ]
 
 const MediaCoverageFmrpSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
+    const router = useRouter()
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const { isVisibleTablet } = useResizeStore()
 
@@ -152,7 +157,7 @@ const MediaCoverageFmrpSection = (props: Props) => {
                     }
                     onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
                     onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                    onClick={() => console.log('Button Clicked!')}
+                    onClick={() => { router.push("/blogs") }}
                     reverse={true}
                     className="border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"
                     style={{
