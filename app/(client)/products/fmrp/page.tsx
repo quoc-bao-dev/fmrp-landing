@@ -25,18 +25,18 @@ const AboutUs = (props: Props) => {
             <BlurBackground />
             <div className='relative z-[1] bg-white'>
                 <HeroFmrpSection />
-                {/* <IntroductionFmrpSection /> */}
-                {/* <VideoFmrpSection /> */}
-                {/* <SystemOverviewFmrpSection /> */}
-                {/* <FeatureManagementOverviewSection /> */}
-                {/* <AiBomFmrpSection /> */}
-                <ProcessOptimizationFmrpSection />
-                {/* <FeedbackFmrpSection /> */}
-                {/* <CTAFmrpSection /> */}
-                {/* <PartnerFmrpSection /> */}
-                {/* <MediaCoverageFmrpSection /> */}
-                {/* <QuestionsFmrpSection /> */}
-                {/* <CommunityFmrpSection /> */}
+                <IntroductionFmrpSection />
+                <VideoFmrpSection />
+                <SystemOverviewFmrpSection />
+                <FeatureManagementOverviewSection />
+                <AiBomFmrpSection />
+                {/* <ProcessOptimizationFmrpSection /> */}
+                <FeedbackFmrpSection />
+                <CTAFmrpSection />
+                <PartnerFmrpSection />
+                <MediaCoverageFmrpSection />
+                <QuestionsFmrpSection />
+                <CommunityFmrpSection />
             </div>
         </main>
     )
