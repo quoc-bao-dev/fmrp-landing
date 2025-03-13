@@ -11,6 +11,7 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
 import { ArrowUpRightIcon } from 'lucide-react'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
 import Image from 'next/image'
+import { useResizeStore } from '@/stores/useResizeStore'
 
 type Props = {}
 
@@ -70,6 +71,7 @@ const textVariants = {
 
 
 const CommunityFmrpSection = (props: Props) => {
+    const { isVisibleTablet } = useResizeStore()
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     return (
@@ -97,7 +99,7 @@ const CommunityFmrpSection = (props: Props) => {
                     </div>
                 </div>
 
-                <div className='grid lg:grid-cols-4 grid-cols-2 3xl:gap-8 gap-6 w-full'>
+                <div className='grid lg:grid-cols-4 grid-cols-2 3xl:gap-8 lg:gap-6 gap-2 w-full'>
                     {
                         dataCommunity && dataCommunity?.map((item, index) => {
                             const defaultColor = item.icon.props.className.match(/text-\[(.*?)\]/)?.[1] || "#1A2025";
@@ -111,12 +113,11 @@ const CommunityFmrpSection = (props: Props) => {
                                     whileTap="press"
                                     variants={variantCardScaleZoom}
                                     transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-                                    className='relative col-span-1 flex items-center gap-4 p-6 w-full bg-white border border-[#F3F4FE] rounded-3xl overflow-hidden group cursor-pointer'
+                                    className='relative col-span-1 flex items-center lg:gap-4 gap-2 lg:p-6 p-6 w-full bg-white border border-[#F3F4FE] 2xl:rounded-3xl rounded-2xl overflow-hidden group cursor-pointer'
                                     style={{
                                         boxShadow: "0px 20px 95px 0px #C9CBCC4D"
                                     }}
                                 >
-
                                     {/* Hiệu ứng nền hover */}
                                     <motion.div
                                         className='absolute top-0 left-0 inset-0 z-[1] w-full h-full'
@@ -126,7 +127,7 @@ const CommunityFmrpSection = (props: Props) => {
 
                                     {/* Hiệu ứng icon xoay 360° và đổi màu */}
                                     <motion.div
-                                        className='size-12 shrink-0 relative z-10'
+                                        className='lg:size-12 size-10 shrink-0 relative z-10'
                                         custom={defaultColor} // Truyền màu gốc vào variants
                                         variants={iconVariants}
                                     >
@@ -147,13 +148,28 @@ const CommunityFmrpSection = (props: Props) => {
                 </div>
 
                 <div
-                    className='relative rounded-3xl px-28 py-20 w-full overflow-hidden mt-6'
+                    className='relative rounded-3xl 2xl:px-28 xl:px-24 lg:px-20 lg:py-20 lg:p-12 py-10 w-full overflow-hidden mt-6'
                     style={{
                         background: "linear-gradient(77.74deg, #013DA0 11.85%, #0142A9 20.65%, #0148B3 29.45%, #024EBC 38.25%, #0254C5 47.05%, #025ACE 55.84%, #0261D7 64.64%, #0267E1 73.44%, #036EEA 82.24%, #0375F3 91.04%)"
                     }}
                 >
-                    <div className='flex flex-col 3xl:gap-8 gap-6'>
-                        <div className="xxl:max-w-[50%] md:max-w-[50%] max-w-[70%] 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-bold">
+                    {
+                        isVisibleTablet &&
+                        <div className='flex items-center justify-center'>
+                            <div className='md:w-[460px] w-[520px] h-auto aspect-1.92/1'>
+                                <Image
+                                    alt="community"
+                                    src={"/background/ui/fmrp/bg-community.webp"}
+                                    width={500}
+                                    height={450}
+                                    className='size-full object-contain'
+                                />
+                            </div>
+                        </div>
+                    }
+
+                    <div className='flex flex-col 3xl:gap-8 gap-6 lg:mt-0 mt-6 md:px-0 px-6'>
+                        <div className="2xl:max-w-[50%] xl:max-w-[55%] lg:max-w-[60%] max-w-full 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-bold">
                             Gia nhập cộng đồng FMRP Việt – Kết nối, chia sẻ, cùng phát triển!
                         </div>
 
@@ -183,15 +199,18 @@ const CommunityFmrpSection = (props: Props) => {
                         />
                     </div>
 
-                    <div className='absolute -z-0 right-28 -bottom-20 w-[480px] h-auto aspect-1.92/1'>
-                        <Image
-                            alt="community"
-                            src={"/background/ui/fmrp/bg-community.webp"}
-                            width={500}
-                            height={450}
-                            className='size-full object-contain'
-                        />
-                    </div>
+                    {
+                        !isVisibleTablet &&
+                        <div className='absolute -z-0 2xl:right-28 xl:right-24 right-20 -bottom-20 2xl:w-[480px] xxl:w-[420px] xl:w-[400px] w-[360px] h-auto aspect-1.92/1'>
+                            <Image
+                                alt="community"
+                                src={"/background/ui/fmrp/bg-community.webp"}
+                                width={500}
+                                height={450}
+                                className='size-full object-contain'
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

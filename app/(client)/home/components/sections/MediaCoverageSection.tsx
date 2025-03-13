@@ -18,34 +18,35 @@ import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRigh
 
 type Props = {}
 
+const mediaList = [
+    {
+        id: uuidv4(),
+        image: "/example/blog/example1.svg",
+        date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
+        category: "Doanh nhân Sài Gòn online",
+        title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP"
+    },
+    {
+        id: uuidv4(),
+        image: "/example/blog/example1.svg",
+        date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
+        category: "Công nghệ đời sống",
+        title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP"
+    },
+    {
+        id: uuidv4(),
+        image: "/example/blog/example1.svg",
+        date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
+        category: "Kết nối đầu tư",
+        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất"
+    },
+]
+
 const MediaCoverageSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const { isVisibleTablet } = useResizeStore()
 
-    const mediaList = [
-        {
-            id: uuidv4(),
-            image: "/example/blog/example1.svg",
-            date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
-            category: "Doanh nhân Sài Gòn online",
-            title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP"
-        },
-        {
-            id: uuidv4(),
-            image: "/example/blog/example1.svg",
-            date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
-            category: "Công nghệ đời sống",
-            title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP"
-        },
-        {
-            id: uuidv4(),
-            image: "/example/blog/example1.svg",
-            date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
-            category: "Kết nối đầu tư",
-            title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất"
-        },
-    ]
 
     const customPagination = {
         clickable: true,
@@ -77,7 +78,7 @@ const MediaCoverageSection = (props: Props) => {
                 {
                     isVisibleTablet
                         ?
-                        <div className='w-full '>
+                        <div className='w-full px-2'>
                             <Swiper
                                 slidesPerView={4}
                                 spaceBetween={60}
@@ -111,7 +112,7 @@ const MediaCoverageSection = (props: Props) => {
                                         spaceBetween: 60,
                                     }
                                 }}
-                                className='custom-swiper-pagination md:h-[400px] h-[400px] rounded-2xl'
+                                className='custom-swiper-pagination md:h-[500px] h-[520px] rounded-2xl'
                                 allowTouchMove={true}
                             >
                                 {

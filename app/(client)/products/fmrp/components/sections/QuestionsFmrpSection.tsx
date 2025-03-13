@@ -91,7 +91,7 @@ const QuestionsFmrpSection = (props: Props) => {
                                                 </div>
                                             </AccordionTrigger>
 
-                                            <AccordionContent className='xxl:p-7 p-6 text-[#33404A] 3xl:text-base text-sm font-medium max-w-full'>
+                                            <AccordionContent className='xxl:p-7 p-6 text-[#33404A] 3xl:text-base text-base font-medium max-w-full'>
                                                 {/* <p dangerouslySetInnerHTML={{ __html: item.answer }} /> */}
                                                 <p>{item.answer}</p>
                                             </AccordionContent>

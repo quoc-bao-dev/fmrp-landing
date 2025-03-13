@@ -2,7 +2,7 @@ import React from "react";
 
 const BlurBackground: React.FC = () => {
     return (
-        <div className="fixed w-full h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden !bg-white z-0">
+        <div className="absolute w-full h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden !bg-white z-0">
             {/* Nhóm chứa cả hai gradient */}
             <div className="flex justify-center items-center overflow-hidden">
                 {/* Gradient background bên trái */}

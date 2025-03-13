@@ -1,38 +1,57 @@
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon'
 import Image from 'next/image'
 import { variantButtonPressZoom, variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
+import AnimatedTyping from '@/components/common/animations/text/AnimatedTyping'
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal'
+import { useResizeStore } from '@/stores/useResizeStore'
 
 type Props = {}
 
+const TEXTS = [
+    "Tự động hóa sản xuất – Tiết kiệm thời gian",
+    "Kiểm soát từng công đoạn, tối ưu từng quyết định",
+    "Giám sát quá trình – Vận hành hiệu quả",
+];
+
 const IntroductionFmrpSection = (props: Props) => {
+    const { isVisibleTablet } = useResizeStore()
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     return (
         <div className='custom-padding-section bg-transparent'>
-            <div className='custom-container-no-right flex items-center space-x-28 overflow-x-hidden'>
-                <div className='flex flex-col 3xl:gap-8 gap-6 max-w-[40%]'>
-                    <div className='space-y-2'>
+            <div className='custom-container-no-right flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden'>
+                <div className='flex flex-col lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4 w-full 3xl:max-w-[38%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] max-w-full'>
+                    <div className='xxl:space-y-2 space-y-1'>
                         <h2 className='text-title-section-small text-[#1A2025] font-extrabold capitalize'>
                             Hơn cả một phần mềm
                         </h2>
 
-                        <p
-                            className='text-title capitalize font-extrabold'
-                            style={{
-                                background: 'linear-gradient(78deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)',
-                                backgroundClip: "text",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                            }}
-                        >
-                            Tự động hóa sản xuất – Tiết kiệm thời gian
-                        </p>
+                        <AnimatedTyping
+                            phrases={TEXTS}
+                            className="text-title capitalize font-extrabold"
+                        />
                     </div>
+                    {
+                        isVisibleTablet &&
+                        <div className='w-full 3xl:max-w-[62%] 2xl:max-w-[63%] xxl:max-w-[60%] xl:max-w-[55%] lg:max-w-[52%] max-w-full'>
+                            <AnimatedReveal from="right" className='w-auto 3xl:h-[800px] 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] lg:h-[500px] h-auto aspect-3/2'>
+                                <Image
+                                    src="/background/ui/fmrp/test-fmrp-4.svg"
+                                    alt="bg-fmrp"
+                                    width={1536}
+                                    height={853}
+                                    className='size-full object-contain aspect-3/2'
+                                />
+                            </AnimatedReveal>
+                        </div>
+                    }
+
+
 
                     <ButtonAnimationNew
                         title="Trải Nghiệm Ngay"
@@ -51,7 +70,7 @@ const IntroductionFmrpSection = (props: Props) => {
                         onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
                         onClick={() => console.log('Button Clicked!')}
                         reverse={true}
-                        className="border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
+                        className="lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
                         style={{
 
                             background: "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)",
@@ -63,14 +82,14 @@ const IntroductionFmrpSection = (props: Props) => {
                         }}
                     />
 
-                    <div className='flex items-center gap-4'>
+                    <div className='lg:order-2 order-1 flex items-center gap-4'>
                         <motion.div
                             initial={false}
                             animate="rest"
                             whileTap="press"
                             whileHover="hover"
                             variants={variantButtonScaleZoom}
-                            className='w-[200px] h-auto aspect-3.38/1 cursor-pointer'
+                            className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
                         >
                             <Image
                                 src="/icons/app/appstore.svg"
@@ -87,7 +106,7 @@ const IntroductionFmrpSection = (props: Props) => {
                             whileTap="press"
                             whileHover="hover"
                             variants={variantButtonScaleZoom}
-                            className='w-[200px] h-auto aspect-3.38/1 cursor-pointer'
+                            className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
                         >
                             <Image
                                 src="/icons/app/googleplay.svg"
@@ -100,17 +119,20 @@ const IntroductionFmrpSection = (props: Props) => {
                     </div>
                 </div>
 
-                <div className='max-w-[60%]'>
-                    <div className='w-auto h-[800px] aspect-3/2'>
-                        <Image
-                            src="/background/ui/fmrp/bg-fmrp.webp"
-                            alt="bg-fmrp"
-                            width={1920}
-                            height={1080}
-                            className='size-full object-contain aspect-3.38/1'
-                        />
+                {
+                    !isVisibleTablet &&
+                    <div className='w-full 3xl:max-w-[62%] 2xl:max-w-[63%] xxl:max-w-[60%] xl:max-w-[55%] lg:max-w-[52%] max-w-full'>
+                        <AnimatedReveal from="right" className='w-auto 3xl:h-[800px] 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] h-[500px] aspect-3/2'>
+                            <Image
+                                src="/background/ui/fmrp/test-fmrp-4.svg"
+                                alt="bg-fmrp"
+                                width={1536}
+                                height={853}
+                                className='size-full object-contain aspect-3/2'
+                            />
+                        </AnimatedReveal>
                     </div>
-                </div>
+                }
             </div>
         </div>
     )

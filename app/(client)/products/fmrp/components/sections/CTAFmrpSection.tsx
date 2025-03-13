@@ -21,10 +21,9 @@ const subtitles: string[][] = [
 
 const CTAFmrpSection = (props: Props) => {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const { ref: inViewRef, inView } = useInView({ threshold: 0.5, triggerOnce: false });
+    const { ref: inViewRef, inView } = useInView({ threshold: 0.8, triggerOnce: false });
 
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    const [isLocked, setIsLocked] = useState<boolean>(true);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Ngăn chặn scroll nhanh vượt viewport
 
     // Hợp nhất ref của useInView và useRef để track vị trí section
@@ -95,9 +94,6 @@ const CTAFmrpSection = (props: Props) => {
         }
     }, [inView, activeIndex, handleScroll]);
 
-    console.log('inView', inView);
-    console.log('setRefs', setRefs);
-
     return (
         <section ref={setRefs} className={`custom-padding-section h-screen`}>
             <div className='custom-container h-full flex flex-col items-center justify-center'>
@@ -112,7 +108,7 @@ const CTAFmrpSection = (props: Props) => {
                 </FloatingRotateAnimation>
 
                 <div className="flex flex-col w-full items-center justify-center gap-6">
-                    <div className='flex flex-col lg:items-center lg:justify-center items-start justify-start 3xl:max-w-[54%] lg:max-w-[70%] max-w-full lg:text-center text-start'>
+                    <div className='flex flex-col lg:items-center lg:justify-center items-center justify-center lg:text-center text-center 3xl:max-w-[54%] lg:max-w-[70%] max-w-full'>
                         {
                             subtitles.map((group, index) => (
                                 <motion.div

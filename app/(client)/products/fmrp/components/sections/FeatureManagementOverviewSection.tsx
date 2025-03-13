@@ -9,6 +9,8 @@ import StorefrontIcon from '@/components/icons/fmrp/StorefrontIcon';
 import { useStatePageFmrp } from '../../_state/useStatePageFmrp';
 import React, { useEffect } from 'react';
 import CaretDoubleRightIcon from '@/components/icons/fmrp/CaretDoubleRightIcon';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 type Props = {}
 
@@ -29,29 +31,30 @@ const dataTab = [
         id: "4242424",
         icon: WarehouseIcon,
         name: "Kho Hàng",
-        image: "/background/ui/fmrp/kh1.png"
+        image: "/background/ui/fmrp/kh1.svg"
     },
     {
         id: "42141241",
         icon: PackageIcon,
         name: "Mua Hàng",
-        image: "/background/ui/fmrp/mh.png"
+        image: "/background/ui/fmrp/mh1.png"
     },
     {
         id: "4214",
         icon: NotepadIcon,
         name: "Kế Hoạch",
-        image: "/background/ui/fmrp/kh2.png"
+        image: "/background/ui/fmrp/khsv.svg"
     },
     {
         id: "424243",
         icon: ArchiveBoxIcon,
         name: "Nhập Hàng",
-        image: "/background/ui/fmrp/nh.png"
+        image: "/background/ui/fmrp/nh.svg"
     },
 ];
 
 const FeatureManagementOverviewSection = (props: Props) => {
+    const { isVisibleTablet } = useResizeStore()
     const { isStatePageFmrp, queryKeyIsStatePageFmrp } = useStatePageFmrp()
 
     useEffect(() => {
@@ -60,11 +63,10 @@ const FeatureManagementOverviewSection = (props: Props) => {
         })
     }, [dataTab])
 
-
     return (
-        <div className='custom-padding-section space-y-16'>
-            <div className="custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8">
-                <div className='space-x-2 font-extrabold'>
+        <div className='custom-padding-section 3xl:space-y-12 space-y-8'>
+            <div className="custom-container flex flex-col items-center justify-center 3xl:gap-6 gap-4">
+                <div className='space-x-2 font-extrabold text-center'>
                     <span
                         className='text-title-section-small capitalize'
                         style={{
@@ -78,61 +80,94 @@ const FeatureManagementOverviewSection = (props: Props) => {
                     <span className='text-title-section-small text-[#1A2025] capitalize'>– Kiểm Soát Toàn Diện Quy Trình</span>
                 </div>
 
-                <div className='flex items-center justify-between gap-4 border border-[#09090B]/10 rounded-[40px] p-12 w-full'>
-                    {
-                        dataTab.map((item) => {
-                            const IconComponent = item.icon;
-                            const isActive = item === isStatePageFmrp.isActiveManagement
+                {
+                    isVisibleTablet ?
+                        <ScrollArea type="hover" className={`w-full overflow-auto`}>
+                            <div className='flex items-center gap-2 py-4 w-full'>
+                                {dataTab.map((item) => {
+                                    const isActive = item === isStatePageFmrp.isActiveManagement;
+                                    const IconComponent = item.icon;
 
-                            return (
-                                <div
-                                    key={item.id}
-                                    className={`${isActive ? "border-[#D1D1D1] text-[#1A2025]" : "border-transparent text-[#809FB8]"} 
-                                    flex flex-col items-center gap-2 p-6  rounded-3xl border  hover:shadow-md transition-all duration-300 cursor-pointer`}
-                                    style={{
-                                        background: isActive ? "linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, rgba(204, 204, 204, 0.05) 0%, rgba(161, 161, 161, 0.1) 100.02%)" : "",
-                                        boxShadow: isActive ? "-9px 20px 60px -24px #0000000D, 0px 4px 12px -48px #71717A1F, 0px 2px 80px 0px #00000005 inset, 0px 4px 20px -5px #7772930D, 0px 4px 20px -5px #7772930D" : ""
-                                    }}
-                                    onClick={() => {
-                                        queryKeyIsStatePageFmrp({
-                                            isActiveManagement: item
-                                        })
-                                    }}
-                                >
-                                    <IconComponent
-                                        className={`${isActive ? "" : "text-[#809FB8]"} size-16`}
-                                        // style={{
-                                        //     background: isActive ? "" : "",
-                                        //     WebkitBackgroundClip: "text",
-                                        //     WebkitTextFillColor: "transparent",
-                                        // }}
-                                        style={{
-                                            background: isActive ? "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)" : "", // Fix màu khi không active
-                                            WebkitBackgroundClip: isActive ? "text" : "none",
-                                            WebkitTextFillColor: isActive ? "transparent" : "inherit",
-                                        }}
-                                        color={isActive ? "none" : "#809FB8"} // Đảm bảo có đường viền khi không active
-                                        isActive={isActive}
-                                    />
-                                    <span className="text-[24px] font-medium">
-                                        {item.name}
-                                    </span>
+                                    return (
+                                        <div
+                                            key={item.id}
+                                            className={`w-full flex items-center gap-2 px-2 py-2 cursor-pointer ${isActive ? "border-[#D1D1D1] text-[#1A2025] bg-[#F3F4F6]" : "text-[#809FB8] border-transparent"} border rounded-lg transition-all duration-300 ease-in-out`}
+                                            onClick={() => queryKeyIsStatePageFmrp({ isActiveManagement: item })}
+                                        >
+                                            <IconComponent
+                                                className={`${isActive ? "" : "text-[#809FB8]"} size-5 shrink-0`}
+                                                style={{
+                                                    background: isActive ? "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)" : "", // Fix màu khi không active
+                                                    WebkitBackgroundClip: isActive ? "text" : "none",
+                                                    WebkitTextFillColor: isActive ? "transparent" : "inherit",
+                                                }}
+                                                color={isActive ? "none" : "#809FB8"} // Đảm bảo có đường viền khi không active
+                                                isActive={isActive}
+                                            />
+                                            <span className='text-sm font-medium text-nowrap'>{item.name}</span>
+                                        </div>
+                                    );
+                                })}
+                                {/* Xem thêm */}
+                                <div className="flex items-center gap-2 px-4 py-4 cursor-pointer border-l border-[#09090B]/10 text-[#4D5F6E] hover:text-[#0375F3] transition-all duration-300 ease-in-out group">
+                                    <span className="text-sm font-medium text-nowrap">Xem thêm </span>
+                                    <CaretDoubleRightIcon className="size-5 text-[#4D5F6E] group-hover:text-[#0375F3] transition-all duration-300 ease-in-out" />
                                 </div>
-                            );
-                        })
-                    }
+                            </div>
+                            <ScrollBar orientation='horizontal' />
+                        </ScrollArea>
+                        :
+                        <div className='flex items-center justify-between gap-4 border border-[#09090B]/10 3xl:rounded-[40px] rounded-3xl 3xl:p-12 xl:p-6 p-4 w-full overflow-auto'>
+                            {
+                                dataTab.map((item) => {
+                                    const IconComponent = item.icon;
+                                    const isActive = item === isStatePageFmrp.isActiveManagement
 
-                    {/* Xem thêm */}
-                    <div className="flex items-center gap-2 px-10 py-4 cursor-pointer border-l border-[#09090B]/10 text-[#4D5F6E] hover:text-[#0375F3] transition-all duration-300 ease-in-out group">
-                        <span className="text-button font-medium">Xem thêm </span>
-                        <CaretDoubleRightIcon className="size-8 text-[#4D5F6E] group-hover:text-[#0375F3] transition-all duration-300 ease-in-out" />
-                    </div>
-                </div>
+                                    return (
+                                        <div
+                                            key={item.id}
+                                            className={`${isActive ? "border-[#D1D1D1] text-[#1A2025]" : "border-transparent text-[#809FB8]"} 
+                                    flex flex-col items-center 3xl:gap-2 gap-1 3xl:p-6 p-4  3xl:rounded-3xl rounded-2xl border  hover:shadow-md transition-all duration-300 cursor-pointer`}
+                                            style={{
+                                                background: isActive ? "linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, rgba(204, 204, 204, 0.05) 0%, rgba(161, 161, 161, 0.1) 100.02%)" : "",
+                                                boxShadow: isActive ? "-9px 20px 60px -24px #0000000D, 0px 4px 12px -48px #71717A1F, 0px 2px 80px 0px #00000005 inset, 0px 4px 20px -5px #7772930D, 0px 4px 20px -5px #7772930D" : ""
+                                            }}
+                                            onClick={() => {
+                                                queryKeyIsStatePageFmrp({
+                                                    isActiveManagement: item
+                                                })
+                                            }}
+                                        >
+                                            <IconComponent
+                                                className={`${isActive ? "" : "text-[#809FB8]"} 3xl:size-16 xxl:size-10 size-9`}
+                                                style={{
+                                                    background: isActive ? "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)" : "", // Fix màu khi không active
+                                                    WebkitBackgroundClip: isActive ? "text" : "none",
+                                                    WebkitTextFillColor: isActive ? "transparent" : "inherit",
+                                                }}
+                                                color={isActive ? "none" : "#809FB8"} // Đảm bảo có đường viền khi không active
+                                                isActive={isActive}
+                                            />
+                                            <span className="3xl:text-[24px] xxl:text-[18px] text-base font-medium">
+                                                {item.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })
+                            }
+
+                            {/* Xem thêm */}
+                            <div className="flex items-center gap-2 xxl:px-10 px-6 py-4 cursor-pointer border-l border-[#09090B]/10 text-[#4D5F6E] hover:text-[#0375F3] transition-all duration-300 ease-in-out group">
+                                <span className="text-button font-medium">Xem thêm </span>
+                                <CaretDoubleRightIcon className="3xl:size-8 size-6 text-[#4D5F6E] group-hover:text-[#0375F3] transition-all duration-300 ease-in-out" />
+                            </div>
+                        </div>
+                }
             </div>
 
             {
                 isStatePageFmrp.isActiveManagement &&
-                <div className='mx-12'>
+                <div className='lg:mx-12 mx-4'>
                     <div className='w-full h-auto aspect-1.6/1'>
                         <Image
                             width={1920}
@@ -144,7 +179,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                     </div>
                 </div>
             }
-        </div>
+        </div >
     )
 }
 

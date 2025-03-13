@@ -52,7 +52,6 @@ import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
 import { Skeleton } from '@/components/ui/skeleton';
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-import LanguageSelector from '../../../../common/translate/LanguageSelector';
 
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useResizeStore } from '@/stores/useResizeStore'

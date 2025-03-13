@@ -10,6 +10,7 @@ import { uuidv4 } from '@/lib/uuid';
 import BlurredBackground from '@/components/common/blur/BlurredBackground';
 import AnimatedCircleFmrp from '@/components/common/animations/ui/AnimatedCircleFmrp';
 import ProcessManufacture from './ProcessManufacture';
+import FlowChart from './FlowChart';
 
 type Props = {}
 
@@ -18,15 +19,37 @@ const steps = [
         id: uuidv4(),
         title_gradient: "Tăng trưởng bền vững",
         title_normal: "Tối ưu quy trình sản xuất –",
+        image: "/background/ui/fmrp/process/bg1.svg",
+        hightlight_first: false,
         description: "Trợ lý sản xuất thông minh, giúp doanh nghiệp lập kế hoạch hiệu quả, theo dõi lệnh sản xuất, quản lý nguyên vật liệu (BOM) và giám sát tiến độ theo thời gian thực.",
-        component: ProcessManufacture
+        // component: ProcessManufacture
     },
     {
         id: uuidv4(),
-        title_gradient: "Tăng Tốc Doanh Thu, ",
+        title_gradient: "Tăng Tốc Doanh Thu,",
         title_normal: "Giảm Thiểu Rủi Ro",
+        image: "/background/ui/fmrp/process/bg2.svg",
+        hightlight_first: true,
         description: "Với giao diện trực quan, vận hành linh hoạt, FMRP giúp tối ưu quy trình, giảm lãng phí và nâng cao năng suất, đảm bảo doanh nghiệp vận hành trơn tru và phát triển bền vững.",
-        component: ProcessManufacture
+        // component: ProcessManufacture
+    },
+    {
+        id: uuidv4(),
+        title_gradient: "kiểm soát chặt chẽ",
+        title_normal: "Tối ưu chuỗi cung ứng,",
+        image: "/background/ui/fmrp/process/bg3.svg",
+        hightlight_first: false,
+        description: "Theo dõi nhập kho đến quản lý công nợ. Hệ thống tự động đồng bộ dữ liệu, giúp kiểm soát hàng tồn kho, hạn chế sai sót và tối ưu dòng tiền. Đảm bảo chuỗi cung ứng vận hành hiệu quả.",
+        // component: ProcessManufacture
+    },
+    {
+        id: uuidv4(),
+        title_gradient: "Mọi ngành nghề",
+        title_normal: "Ứng dụng cho",
+        image: "/background/ui/fmrp/process/bg4.svg",
+        hightlight_first: false,
+        description: "Với giao diện trực quan, vận hành linh hoạt, FMRP giúp tối ưu quy trình, giảm lãng phí và nâng cao năng suất, đảm bảo doanh nghiệp vận hành trơn tru và phát triển bền vững.",
+        // component: ProcessManufacture
     },
 ];
 
@@ -62,10 +85,10 @@ const StepsProcess = (props: Props) => {
     }, [handleScroll]);
 
     return (
-        <div className='px-6 py-12 flex flex-col gap-10 w-full relative overflow-x-hidden'>
+        <div className='px-10 py-12 flex flex-col 3xl:gap-8 gap-4 w-full relative overflow-x-hidden'>
             {
                 steps.map((item, index) => {
-                    const ProcessComponent = item.component;
+                    // const ProcessComponent = item.component;
 
                     return (
                         <div
@@ -78,13 +101,13 @@ const StepsProcess = (props: Props) => {
                                 from="left"
                                 effect='fade'
                                 // once={false}
-                                className={`${index !== steps.length - 1 ? "lg:min-h-[100vh] h-full" : " pb-10"}  flex flex-col items-center justify-start gap-10 w-full max-w-full lg:pl-20 pl-8 relative`}
+                                className={`${index !== steps.length - 1 ? "lg:min-h-[100vh] h-full" : "3xl:pb-10 pb-8"} -space-y-10  flex flex-col items-center justify-start gap-10 w-full max-w-full lg:pl-20 pl-8 relative`}
                             >
                                 <div className='flex flex-col items-center justify-center gap-2'>
                                     <div className='flex items-center gap-2 font-extrabold'>
-                                        <span className={`${index % 2 === 0 ? "order-1" : "order-2"} flex text-title-section-small text-[#1A2025] capitalize`}>{item.title_normal}</span>
+                                        <span className={`${item.hightlight_first ? "order-2" : "order-1"} flex text-title-section-small text-[#1A2025] capitalize`}>{item.title_normal}</span>
                                         <span
-                                            className={`${index % 2 === 0 ? "order-2" : "order-1"} flex text-title-section-small capitalize`}
+                                            className={`${item.hightlight_first ? "order-1" : "order-2"} flex text-title-section-small capitalize`}
                                             style={{
                                                 background: "linear-gradient(107.37deg, #0375F3 30.15%, #036EEA 32.4%, #0267E1 34.65%, #0261D7 36.89%, #025ACE 39.14%, #0254C5 41.39%, #024EBC 43.63%, #0148B3 45.88%, #0142A9 48.13%, #013DA0 50.38%)",
                                                 WebkitBackgroundClip: "text",
@@ -95,28 +118,28 @@ const StepsProcess = (props: Props) => {
                                         </span>
                                     </div>
 
-                                    <div className='text-default text-[#33404A] font-medium md:text-center text-start max-w-[65%]'>
+                                    <div className='text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[65%] max-w-[70%]'>
                                         <span>
                                             {item.description}
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className='w-full h-full max-w-full relative'>
+                                {/* <div className='w-full h-full max-w-full relative'>
                                     <ProcessComponent />
-                                </div>
-                                {/* <div className={`w-full 2xl:max-w-[50%] lg:max-w-[45%] max-w-full flex items-center justify-center lg:order-1 order-2`}>
+                                </div> */}
+                                <div className={`w-full max-w-full flex items-center justify-center`}>
                                     <BlurImage
-                                        src={step.image}
-                                        alt={step.title}
+                                        src={item.image}
+                                        alt={"image"}
                                         width={800}
                                         height={600}
-                                        className=" w-full h-auto aspect-square object-contain relativee z-0"
-                                        classNameContainer='w-full h-auto aspect-square relativee z-0'
+                                        className=" w-full h-auto aspect-video object-contain relativee z-0"
+                                        classNameContainer='w-full h-auto aspect-video relativee z-0'
                                         // style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}
                                         loading="lazy"
                                     />
-                                </div> */}
+                                </div>
 
                                 {/* <div className='space-y-2 w-full 2xl:max-w-[50%] lg:max-w-[55%] max-w-full lg:order-2 order-1'>
                                     <div className='relative w-fit '>

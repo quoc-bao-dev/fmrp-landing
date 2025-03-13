@@ -20,7 +20,7 @@ const VideoFmrpSection = (props: Props) => {
     return (
         <div className='custom-padding-section'>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-8 gap-6'>
-                <div className='space-x-2 font-extrabold'>
+                <div className='space-x-2 font-extrabold text-center'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Đón đầu xu hướng sản xuất cùng</span>
                     <span
                         className='text-title-section-small uppercase'
@@ -34,7 +34,7 @@ const VideoFmrpSection = (props: Props) => {
                     </span>
                 </div>
 
-                <div className='relative w-full aspect-1.5/1'>
+                <div className='relative 3xl:w-full lg:w-[75%]w-full aspect-1.5/1'>
                     <Image
                         alt="ipad"
                         src="/background/ui/fmrp/bg-ipad.png"
@@ -52,7 +52,7 @@ const VideoFmrpSection = (props: Props) => {
                     {/* Nút phát video - Luôn nằm giữa */}
                     {/* {!isPlaying && ( */}
                     <motion.button
-                        className="absolute top-[50%] left-[50%] w-[200px] h-[160px] -translate-x-[50%] -translate-y-[50%] bg-[#C7DFFB]/80 hover:bg-[#C7DFFB]/60 border border-[#92BFF7] backdrop-blur-[10px] flex items-center justify-center rounded-3xl custom-transition"
+                        className="absolute top-[50%] left-[50%] 3xl:w-[200px] lg:w-[160px] md:w-[140px] w-[120px] 3xl:h-[160px] lg:h-[120px] md:h-[100px] h-[80px] -translate-x-[50%] -translate-y-[50%] bg-[#C7DFFB]/80 hover:bg-[#C7DFFB]/60 border border-[#92BFF7] backdrop-blur-[10px] flex items-center justify-center md:rounded-3xl rounded-xl custom-transition"
                         onClick={() => setIsPlaying(true)}
                         variants={{
                             // rest: { scale: 1 },
@@ -63,7 +63,7 @@ const VideoFmrpSection = (props: Props) => {
                         whileTap="press"
                     >
                         <motion.div
-                            className="flex items-center justify-center w-16 h-16"
+                            className="flex items-center justify-center 3xl:size-16 lg:size-12 md:size-10 size-8"
                             variants={{
                                 rest: { scale: 1 },
                                 hover: { scale: 1.2 }, // Khi hover vào button, div cũng scale lớn hơn

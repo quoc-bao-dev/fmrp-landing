@@ -152,13 +152,13 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                             </div>
 
                             <div className="col-span-4 flex items-center justify-end gap-3">
-                            <LanguageSelector
+                                {/* <LanguageSelector
                                     classNameTrigger='text-[#25272A] border border-[#09090B]/[2%] !w-full !p-0 bg-white'
                                     styleTrigger={{
                                         background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
                                         boxShadow: isVisibleTablet ? "" : "0 0 0 1px rgba(9, 9, 11, 0.05), 0 0 0 1px rgba(9, 9, 11, 0.1)"
                                     }}
-                                />
+                                /> */}
 
 
                                 <motion.div

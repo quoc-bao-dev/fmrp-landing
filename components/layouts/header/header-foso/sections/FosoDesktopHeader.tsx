@@ -362,7 +362,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
 
             {/* Nút chuyển ngôn ngữ + CTA */}
             <div className="flex items-center justify-end gap-2 max-w-[30%]">
-                <LanguageSelector
+                {/* <LanguageSelector
                     classNameTrigger='border-gradient-language text-[#25272A] border-none'
                     styleTrigger={{
                         background: isVisibleTablet ? "" : "linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%)",
@@ -390,7 +390,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                             "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
                         ],
                     }}
-                />
+                /> */}
 
                 <ButtonAnimation
                     icon={

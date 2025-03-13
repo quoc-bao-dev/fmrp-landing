@@ -17,8 +17,7 @@ const FooterBottom: React.FC<SocialSectionProps> = ({ socialMedia }) => {
 
             {isVisibleTablet && <div className='col-span-2'><SocialMediaList socialMedia={socialMedia} className='bg-[#F2F2F2]/10 hover:bg-[#F2F2F2]/5' /></div>}
             <div className='xl:col-span-3 lg:col-span-4 col-span-1 flex flex-col lg:justify-center lg:items-start items-end lg:gap-0 gap-6 lg:order-1 order-3'>
-
-                <div className='w-fit'>
+                {/* <div className='w-fit'>
                     <LanguageSelector
                         classNameTrigger='text-white border border-[#FFFFFF1A]'
                         styleTrigger={{
@@ -26,7 +25,7 @@ const FooterBottom: React.FC<SocialSectionProps> = ({ socialMedia }) => {
                             boxShadow: "0px 0px 24px 0px #FFFFFF12 inset"
                         }}
                     />
-                </div>
+                </div> */}
             </div>
 
             <div className='xl:col-span-6 lg:col-span-6 col-span-2 flex items-center lg:justify-center lg:order-2 order-1'>

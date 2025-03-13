@@ -23,14 +23,14 @@ const AboutUs = (props: Props) => {
     return (
         <main className='min-h-screen relative'>
             <BlurBackground />
-            <div className='relative z-[1] bg-white'>
+            <div className='relative z-[1] bg-white overflow-x-hidden'>
                 <HeroFmrpSection />
                 <IntroductionFmrpSection />
                 <VideoFmrpSection />
                 <SystemOverviewFmrpSection />
                 <FeatureManagementOverviewSection />
                 <AiBomFmrpSection />
-                {/* <ProcessOptimizationFmrpSection /> */}
+                <ProcessOptimizationFmrpSection />
                 <FeedbackFmrpSection />
                 <CTAFmrpSection />
                 <PartnerFmrpSection />
