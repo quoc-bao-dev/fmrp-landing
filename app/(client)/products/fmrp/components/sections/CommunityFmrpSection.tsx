@@ -58,15 +58,15 @@ const iconVariants = {
     rest: (color: any) => ({
         rotateY: 0,
         color: color,
-        fill: color, // Giữ nguyên màu gradient
-        // filter: "brightness(1) invert(0)", // Giữ nguyên màu gradient
+        // fill: color, // Giữ nguyên màu gradient
+        filter: "brightness(1) invert(0)", // Giữ nguyên màu gradient
         transition: { duration: 0.6, ease: "easeInOut" }
     }),
     hover: {
         rotateY: 360,
         color: "#FFFFFF",
-        fill: "#FFFFFF", // Chuyển icon thành màu trắng khi hover
-        // filter: "brightness(0) invert(1)", // Chuyển icon sang trắng
+        // fill: "#FFFFFF", // Chuyển icon thành màu trắng khi hover
+        filter: "brightness(0) invert(1)", // Chuyển icon sang trắng
         transition: { duration: 0.6, ease: "easeInOut" }
     }
 };

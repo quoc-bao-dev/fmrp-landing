@@ -33,6 +33,7 @@ import { useEffect, useCallback, useRef } from 'react'
 import FmrpIcon from '../../../icons/common/FmrpIcon';
 import FposIcon from '../../../icons/common/FposIcon';
 import { useTheme } from 'next-themes'
+import { useSheetStores } from '../../../../stores/useSheetStores';
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -193,6 +194,7 @@ const FosoHeaderContainer = () => {
     const { isVisibleTablet } = useResizeStore()
 
     const { setOpenDialogCustom, setStatusDialog } = useDialogStore()
+    const { setOpenSheetCustom, setStatusSheet } = useSheetStores()
 
     // const { onSubmitChangeLanguage, isLoading } = usePostChangeLanguage()
 
@@ -380,6 +382,24 @@ const FosoHeaderContainer = () => {
         }
     }
 
+    const handleOpenSheet = (status: string, type_device: string) => {
+        if (type_device === "desktop") {
+            setOpenSheetCustom(true)
+            setStatusSheet(status)
+        } else {
+            queryKeyIsStateClientLayout({
+                header: {
+                    ...isStateClientLayout?.header,
+                    isShowMenuMobileFoso: false,
+                }
+            })
+            setTimeout(() => {
+                setOpenSheetCustom(true)
+                setStatusSheet(status)
+            }, 500);
+        }
+    }
+
     // change input search product
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         queryKeyIsStateClientLayout({
@@ -420,6 +440,7 @@ const FosoHeaderContainer = () => {
                             handleToggleMenu={handleToggleMenu}
                             handleChangeLanguage={handleChangeLanguage}
                             handleOpenDialog={handleOpenDialog}
+                            handleOpenSheet={handleOpenSheet}
                             handleValueChange={handleValueChange}
                         />
                 }

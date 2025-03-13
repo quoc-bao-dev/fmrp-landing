@@ -2,20 +2,21 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 
 import { motion } from 'framer-motion'
-import { Play } from 'iconsax-react'
-
-import YouTube from 'react-youtube';
-import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
 import PlayFmrpIcon from '@/components/icons/play/PlayFmrpIcon'
+import { VideoPopup } from '../ui/video-fmrp/VideoPopup';
 
 type Props = {}
 
 const VideoFmrpSection = (props: Props) => {
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [showVideoPopup, setShowVideoPopup] = useState<boolean>(false)
+
+    const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+    const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+    const handleButtonClick = useCallback(() => window.open("https://hub.fmrp.vn/auth/register"), []);
 
     return (
         <div className='custom-padding-section'>
@@ -34,7 +35,13 @@ const VideoFmrpSection = (props: Props) => {
                     </span>
                 </div>
 
-                <div className='relative 3xl:w-full lg:w-[75%]w-full aspect-1.5/1'>
+                <motion.div
+                    initial="rest"
+                    whileHover="hover"
+                    whileTap="press"
+                    className='relative 3xl:w-full lg:w-[75%]w-full aspect-1.5/1 cursor-pointer'
+                    onClick={() => setShowVideoPopup(true)}
+                >
                     <Image
                         alt="ipad"
                         src="/background/ui/fmrp/bg-ipad.png"
@@ -53,14 +60,11 @@ const VideoFmrpSection = (props: Props) => {
                     {/* {!isPlaying && ( */}
                     <motion.button
                         className="absolute top-[50%] left-[50%] 3xl:w-[200px] lg:w-[160px] md:w-[140px] w-[120px] 3xl:h-[160px] lg:h-[120px] md:h-[100px] h-[80px] -translate-x-[50%] -translate-y-[50%] bg-[#C7DFFB]/80 hover:bg-[#C7DFFB]/60 border border-[#92BFF7] backdrop-blur-[10px] flex items-center justify-center md:rounded-3xl rounded-xl custom-transition"
-                        onClick={() => setIsPlaying(true)}
                         variants={{
                             // rest: { scale: 1 },
                             // hover: { scale: 1 },
                         }}
-                        initial="rest"
-                        whileHover="hover"
-                        whileTap="press"
+
                     >
                         <motion.div
                             className="flex items-center justify-center 3xl:size-16 lg:size-12 md:size-10 size-8"
@@ -74,7 +78,7 @@ const VideoFmrpSection = (props: Props) => {
                         </motion.div>
                     </motion.button>
                     {/* )} */}
-                </div>
+                </motion.div>
 
                 <ButtonAnimationNew
                     title="Trải Nghiệm Ngay"
@@ -89,9 +93,9 @@ const VideoFmrpSection = (props: Props) => {
                             </motion.div>
                         </div>
                     }
-                    onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
-                    onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                    onClick={() => { window.open("https://hub.fmrp.vn/auth/register") }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={handleButtonClick}
                     reverse={true}
                     className="border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
                     style={{
@@ -105,6 +109,14 @@ const VideoFmrpSection = (props: Props) => {
                     }}
                 />
             </div>
+
+            {/* Video Popup */}
+            <VideoPopup
+                open={showVideoPopup}
+                onOpenChange={setShowVideoPopup}
+                videoId={"t6eztmEQBK4"}
+                title="FMRP - Trợ lý sản xuất"
+            />
         </div>
     )
 }

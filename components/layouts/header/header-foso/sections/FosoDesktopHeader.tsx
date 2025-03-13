@@ -67,12 +67,12 @@ interface DesktopHeaderClientProps {
     handleToggleMenu: (action: string) => void
     handleChangeLanguage: (value: string) => void
     handleOpenDialog: (value: string, type_device: string) => void
+    handleOpenSheet: (value: string, type_device: string) => void
     handleValueChange: (e?: any) => void
 }
 
-const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
+const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleOpenSheet, handleValueChange }: DesktopHeaderClientProps) => {
     const { isVisibleTablet } = useResizeStore()
-    const { getCookie } = useCookieStore()
 
     const dropdownRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div cần kiểm tra
 
@@ -406,6 +406,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                     }
                     reverse={true}
                     title="Trở thành khách hàng"
+                    onClick={() => handleOpenSheet("contact", "desktop")}
                     className='border-gradient-button-foso flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                     style={{
                         background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,

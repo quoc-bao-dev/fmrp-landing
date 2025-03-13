@@ -1,11 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import { ImagePreviewPortal } from '../ui/system-overview-fmrp/ImagePreviewPortal';
 
 type Props = {}
 
 const SystemOverviewFmrpSection = (props: Props) => {
     const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false)
+    const imageSrc = "/background/ui/fmrp/system-overview.webp"
 
     useEffect(() => {
         if (isPreviewOpen) {
@@ -22,7 +24,7 @@ const SystemOverviewFmrpSection = (props: Props) => {
 
     return (
         <React.Fragment>
-            <div className='custom-padding-section'>
+            <div className='custom-padding-section relative'>
                 <div className="3xl:mx-12 xl:mx-16 lg:mx-12 mx-4 flex flex-col items-center justify-center 3xl:gap-10 gap-8">
                     <div className='space-x-2 font-extrabold text-center'>
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Quy Trình Tổng Quan Các Phân Hệ</span>
@@ -46,42 +48,14 @@ const SystemOverviewFmrpSection = (props: Props) => {
                     </div>
                 </div>
             </div>
-            {/* Popup Preview */}
-            <AnimatePresence>
-                {isPreviewOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center p-4"
-                        onClick={() => setIsPreviewOpen(false)}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.8 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.8 }}
-                            transition={{ duration: 0.3, type: "spring" }}
-                            className="relative size-full max-w-[90vw] max-h-[90vh] rounded-lg overflow-hidden shadow-xl"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <Image
-                                src="/background/ui/fmrp/system-overview.webp"
-                                alt="preview"
-                                width={1920}
-                                height={1080}
-                                className="object-contain w-full h-full"
-                            />
-                            <button
-                                className="absolute top-3 right-3 size-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition"
-                                onClick={() => setIsPreviewOpen(false)}
-                            >
-                                ✕
-                            </button>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+
+            {/* Image Preview Component */}
+            <ImagePreviewPortal
+                open={isPreviewOpen}
+                onClose={() => setIsPreviewOpen(false)}
+                imageSrc={imageSrc}
+                imageAlt="Quy Trình Tổng Quan Các Phân Hệ"
+            />
         </React.Fragment>
     )
 }

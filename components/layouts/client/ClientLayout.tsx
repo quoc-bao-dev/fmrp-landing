@@ -17,9 +17,12 @@ import FosoHeaderContainer from '@/components/layouts/header/header-foso/FosoHea
 import FooterContainer from '@/components/layouts/footer/FooterContainer'
 import { useTheme } from 'next-themes';
 import FmrpHeaderContainer from '../header/header-fmrp/FmrpHeaderContainer'
+import { DynamicSheet } from '../../common/sheet/DynamicSheet';
+import { useSheetStores } from '../../../stores/useSheetStores';
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const { openDialogCustom } = useDialogStore()
+    const { openSheetCustom } = useSheetStores()
     const { openAlertDialog } = useAlertDialogStore()
     const { theme } = useTheme()
     const pathname = usePathname()
@@ -40,6 +43,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
 
             {/* {!pathName.startsWith("/auth") && <WidgetButton />} */}
 
+            {openSheetCustom && <DynamicSheet />}
             {/* {openDialogCustom && <DialogCustom />} */}
             {/* {openAlertDialog && <AlertDialogCustom />} */}
         </>
