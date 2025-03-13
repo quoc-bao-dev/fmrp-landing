@@ -27,21 +27,21 @@ const MediaCoverageFmrpSection = (props: Props) => {
     const mediaList = [
         {
             id: uuidv4(),
-            image: "/example/blog/example5.svg",
+            image: "/example/blog/example9.svg",
             date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
             category: "Doanh nhân Sài Gòn online",
             title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP"
         },
         {
             id: uuidv4(),
-            image: "/example/blog/example4.svg",
+            image: "/example/blog/example10.svg",
             date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
             category: "Công nghệ đời sống",
             title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP"
         },
         {
             id: uuidv4(),
-            image: "/example/blog/example8.svg",
+            image: "/example/blog/example11.svg",
             date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
             category: "Kết nối đầu tư",
             title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất"

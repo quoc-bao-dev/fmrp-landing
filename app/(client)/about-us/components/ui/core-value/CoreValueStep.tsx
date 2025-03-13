@@ -133,9 +133,7 @@ const CoreValueStep = (props: Props) => {
                             </AnimatedReveal>
 
                             {/* Thanh timeline */}
-                            <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"}
-                             flex flex-col gap-8 h-full absolute top-0 left-0 transform -translate-x-1/2
-                             `}>
+                            <div className={`${index !== steps.length - 1 ? "items-center justify-center" : "items-center justify-start"} flex flex-col gap-8 h-full absolute top-0 left-0 transform -translate-x-1/2`}>
                                 {/* Hình tròn Active */}
                                 <AnimatedCircle active={activeStep === index} />
 

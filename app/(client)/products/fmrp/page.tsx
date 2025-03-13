@@ -15,6 +15,7 @@ import VideoFmrpSection from './components/sections/VideoFmrpSection'
 import SystemOverviewFmrpSection from './components/sections/SystemOverviewFmrpSection'
 import AiBomFmrpSection from './components/sections/AiBomFmrpSection'
 import FeatureManagementOverviewSection from './components/sections/FeatureManagementOverviewSection';
+import ProcessOptimizationFmrpSection from './components/sections/ProcessOptimizationFmrpSection'
 
 type Props = {}
 
@@ -22,19 +23,20 @@ const AboutUs = (props: Props) => {
     return (
         <main className='min-h-screen relative'>
             <BlurBackground />
-            <div className='relative z-[1] '>
+            <div className='relative z-[1] bg-white'>
                 <HeroFmrpSection />
-                <IntroductionFmrpSection />
-                <VideoFmrpSection />
-                <SystemOverviewFmrpSection />
-                <FeatureManagementOverviewSection />
-                <AiBomFmrpSection />
-                <FeedbackFmrpSection />
-                <CTAFmrpSection />
-                <PartnerFmrpSection />
-                <MediaCoverageFmrpSection />
-                <QuestionsFmrpSection />
-                <CommunityFmrpSection />
+                {/* <IntroductionFmrpSection /> */}
+                {/* <VideoFmrpSection /> */}
+                {/* <SystemOverviewFmrpSection /> */}
+                {/* <FeatureManagementOverviewSection /> */}
+                {/* <AiBomFmrpSection /> */}
+                <ProcessOptimizationFmrpSection />
+                {/* <FeedbackFmrpSection /> */}
+                {/* <CTAFmrpSection /> */}
+                {/* <PartnerFmrpSection /> */}
+                {/* <MediaCoverageFmrpSection /> */}
+                {/* <QuestionsFmrpSection /> */}
+                {/* <CommunityFmrpSection /> */}
             </div>
         </main>
     )
