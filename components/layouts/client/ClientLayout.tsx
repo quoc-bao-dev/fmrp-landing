@@ -41,7 +41,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
             {/* footer */}
             <FooterContainer />
 
-            {/* {!pathName.startsWith("/auth") && <WidgetButton />} */}
+           <WidgetButton />
 
             {openSheetCustom && <DynamicSheet />}
             {/* {openDialogCustom && <DialogCustom />} */}

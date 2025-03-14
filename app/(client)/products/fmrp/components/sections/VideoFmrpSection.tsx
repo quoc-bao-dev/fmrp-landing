@@ -39,7 +39,7 @@ const VideoFmrpSection = (props: Props) => {
                     initial="rest"
                     whileHover="hover"
                     whileTap="press"
-                    className='relative 3xl:w-full lg:w-[75%]w-full aspect-1.5/1 cursor-pointer'
+                    className='relative 3xl:w-full lg:w-[75%] w-full aspect-1.5/1 cursor-pointer'
                     onClick={() => setShowVideoPopup(true)}
                 >
                     <Image
@@ -50,14 +50,7 @@ const VideoFmrpSection = (props: Props) => {
                         className='size-full object-contain aspect-1.5/1'
                     />
 
-                    {/* Video */}
-                    {/* <YouTube
-                            className="absolute inset-0 rounded-lg overflow-hidden aspect-1.5/1"
-                            videoId='t6eztmEQBK4'
-                        /> */}
-
                     {/* Nút phát video - Luôn nằm giữa */}
-                    {/* {!isPlaying && ( */}
                     <motion.button
                         className="absolute top-[50%] left-[50%] 3xl:w-[200px] lg:w-[160px] md:w-[140px] w-[120px] 3xl:h-[160px] lg:h-[120px] md:h-[100px] h-[80px] -translate-x-[50%] -translate-y-[50%] bg-[#C7DFFB]/80 hover:bg-[#C7DFFB]/60 border border-[#92BFF7] backdrop-blur-[10px] flex items-center justify-center md:rounded-3xl rounded-xl custom-transition"
                         variants={{
@@ -77,7 +70,6 @@ const VideoFmrpSection = (props: Props) => {
                             <PlayFmrpIcon className="size-full text-[#0F4F9E]" />
                         </motion.div>
                     </motion.button>
-                    {/* )} */}
                 </motion.div>
 
                 <ButtonAnimationNew

@@ -770,8 +770,8 @@ const FposIcon: React.FC<FposIconIconProps> = ({
                     <stop offset="1" stopColor="#10573A" />
                 </linearGradient>
                 <linearGradient id="paint145_linear_2229_7988" x1="20" y1="17.6362" x2="48" y2="49.1362" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#10573B" stop-opacity="0" />
-                    <stop offset="0.449229" stopColor="#10573B" stop-opacity="0.75" />
+                    <stop stopColor="#10573B" stopOpacity="0" />
+                    <stop offset="0.449229" stopColor="#10573B" stopOpacity="0.75" />
                     <stop offset="1" stopColor="#10573B" />
                 </linearGradient>
             </defs>

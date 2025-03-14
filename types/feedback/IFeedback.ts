@@ -4,4 +4,5 @@ export type FeedbackItem = {
     position: string;
     message: string;
     image: string;
+    gender: string;
 };

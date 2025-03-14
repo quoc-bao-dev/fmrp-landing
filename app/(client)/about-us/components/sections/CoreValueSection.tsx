@@ -32,7 +32,7 @@ const CoreValueSection = (props: Props) => {
                     <span className="text-[#050505] font-extrabold capitalize">!</span>
                 </h2>
 
-                <div className='space-x-2 text-default text-[#33404A] text-center'>
+                <div className='space-x-2 3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] text-center'>
                     <span className='font-medium'>
                         Không chỉ là Slogan - đó là
                     </span>

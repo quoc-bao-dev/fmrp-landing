@@ -3,13 +3,14 @@ import { uuidv4 } from '@/lib/uuid'
 import { useResizeStore } from '@/stores/useResizeStore'
 import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Marquee from 'react-fast-marquee'
 
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 type Props = {}
 
@@ -47,6 +48,7 @@ const dataImage = [
 ]
 
 const JourneySection = (props: Props) => {
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
     const swiperRef = useRef<any>(null);
     const [selectedImage, setSelectedImage] = useState<any>(null);
 
@@ -57,9 +59,19 @@ const JourneySection = (props: Props) => {
         },
     }
 
+    useEffect(() => {
+        if (swiperRef.current) {
+            if (inView) {
+                swiperRef.current.autoplay.start();
+            } else {
+                swiperRef.current.autoplay.stop();
+            }
+        }
+    }, [inView]);
+
     return (
         <div className='custom-padding-section'>
-            <div className='custom-container-no-right relative'>
+            <div ref={ref} className='custom-container-no-right relative'>
                 <div className='absolute -top-20 -left-3 flex space-x-2 space-y-8'>
                     <motion.div
                         className='relative xl:w-[50px] w-11 h-auto aspect-1/2 left-4'
@@ -125,12 +137,11 @@ const JourneySection = (props: Props) => {
                     modules={[Pagination, Autoplay]}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
+                        if (!inView) {
+                            swiper.autoplay.stop();
+                        }
                     }}
-                    // loop
-                    autoplay={{
-                        delay: 3000, // Thời gian giữa các lần chuyển slide (tính bằng ms, ở đây là 3 giây)
-                        disableOnInteraction: false, // Giữ autoplay ngay cả khi người dùng tương tác
-                    }}
+                    autoplay={inView ? { delay: 3000, disableOnInteraction: false } : false}
                     speed={1200}
                     pagination={false}
                     breakpoints={{

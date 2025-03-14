@@ -33,6 +33,8 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
         return () => setMounted(false)
     }, [])
 
+    console.log('scaleMotion', scaleMotion);
+
     // Lock body scroll when open
     useEffect(() => {
         if (open) {
@@ -56,18 +58,31 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
         }
     }, [open])
 
+    useEffect(() => {
+        scaleMotion.set(scale);
+    }, [scale]);
+
     const handleZoomIn = () => {
-        setScale((prev) => Math.min(prev + 0.25, 3))
-    }
+        setScale((prev) => {
+            const newScale = Math.min(prev + 0.25, 3);
+            scaleMotion.set(newScale);
+            return newScale;
+        });
+    };
 
     const handleZoomOut = () => {
-        setScale((prev) => Math.max(prev - 0.25, 0.5))
-    }
+        setScale((prev) => {
+            const newScale = Math.max(prev - 0.25, 0.5);
+            scaleMotion.set(newScale);
+            return newScale;
+        });
+    };
 
     const handleReset = () => {
-        setScale(1)
-        setPosition({ x: 0, y: 0 })
-    }
+        setScale(1);
+        scaleMotion.set(1);
+        setPosition({ x: 0, y: 0 });
+    };
 
     const handleDownload = () => {
         const link = document.createElement("a")
@@ -126,10 +141,14 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
                             dragMomentum={false}
                             onDragStart={() => setIsDragging(true)}
                             onDragEnd={() => setIsDragging(false)}
+                            // style={{
+                            //     scale: scaleMotion,
+                            //     x: xMotion,
+                            //     y: yMotion,
+                            //     cursor: scale > 1 ? (isDragging ? "grabbing" : "grab") : "default",
+                            // }}
                             style={{
-                                scale: scaleMotion,
-                                x: xMotion,
-                                y: yMotion,
+                                transform: `scale(${scaleMotion.get()}) translate(${xMotion.get()}px, ${yMotion.get()}px)`,
                                 cursor: scale > 1 ? (isDragging ? "grabbing" : "grab") : "default",
                             }}
                             className="relative size-[90%]"
@@ -170,45 +189,47 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
                         </motion.button>
 
                         {/* Controls */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
-                            transition={{ delay: 0.2 }}
-                            className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 backdrop-blur-md rounded-full p-2"
-                        >
-                            <button
-                                onClick={handleZoomOut}
-                                className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
-                                disabled={scale <= 0.5}
+                        {/* <div className='absolute bottom-6 w-full flex justify-center items-center'>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 20 }}
+                                transition={{ delay: 0.2 }}
+                                className="left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-2 bg-black/50 backdrop-blur-md rounded-full p-2"
                             >
-                                <ZoomOut className="size-5" />
-                            </button>
+                                <button
+                                    onClick={handleZoomOut}
+                                    className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                    disabled={scale <= 0.5}
+                                >
+                                    <ZoomOut className="size-5" />
+                                </button>
 
-                            <div className="text-white px-2 min-w-16 text-center">{Math.round(scale * 100)}%</div>
+                                <div className="text-white px-2 min-w-16 text-center">{Math.round(scale * 100)}%</div>
 
-                            <button
-                                onClick={handleZoomIn}
-                                className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
-                                disabled={scale >= 3}
-                            >
-                                <ZoomIn className="size-5" />
-                            </button>
+                                <button
+                                    onClick={handleZoomIn}
+                                    className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                    disabled={scale >= 3}
+                                >
+                                    <ZoomIn className="size-5" />
+                                </button>
 
-                            <button
-                                onClick={handleReset}
-                                className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
-                            >
-                                <RotateCcw className="size-5" />
-                            </button>
+                                <button
+                                    onClick={handleReset}
+                                    className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                >
+                                    <RotateCcw className="size-5" />
+                                </button>
 
-                            <button
-                                onClick={handleDownload}
-                                className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
-                            >
-                                <Download className="size-5" />
-                            </button>
-                        </motion.div>
+                                <button
+                                    onClick={handleDownload}
+                                    className="size-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                >
+                                    <Download className="size-5" />
+                                </button>
+                            </motion.div>
+                        </div> */}
                     </motion.div>
                 </motion.div>
             )}

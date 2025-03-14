@@ -1,37 +1,41 @@
+import { useStatePageContactUs } from "@/app/(client)/contact-us/_state/useStatePageContactUs";
+import { useStateComponentContact } from "@/managers/state/contact/useStateComponentContact";
 import apiContacts from "@/services/contacts/contacts.services";
 import { useAuthStore } from "@/stores/useAuthStores";
 import { useToastStore } from "@/stores/useToastStore";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const usePostContactFososoft = (form: any) => {
     const { informationUser } = useAuthStore();
+    const queryClient = useQueryClient()
+    const { queryKeyIsStateComponentContact } = useStateComponentContact()
+
+    const queryKey = ['getTypeServicesList'];
+    const serviceData = queryClient.getQueryData<any[]>(queryKey) || []; // Ép kiểu về dạng mảng các service
 
     const { setToast } = useToastStore();
 
     const postContactFososoftMutation = useMutation({
         mutationFn: async (formData: any) => {
-            const { data: r } = await apiContacts.postContactFososoft(formData);
-            return r;
+            const { data } = await apiContacts.postContactFososoft(formData);
+            return data;
         },
-        onSuccess: ({ message, result }) => {
-            if (result) {
-                form.reset();
-                if (informationUser) {
-                    form.resetField("title", "");
-                    form.setValue("file", []);
-                    form.resetField("description", "");
-                    form.setValue("email", informationUser?.email_client ?? "");
-                    form.setValue("name", informationUser?.fullname ?? "");
-                    if (informationUser.phonenumber) {
-                        form.setValue("phone", informationUser?.phonenumber ?? "");
-                    } else {
-                        form.resetField("phone", "");
-                    }
+        onSuccess: (data) => {
+            if (data && data?.result) {
+                form.reset()
+                if (serviceData && serviceData?.length > 0) {
+                    form.setValue("service", serviceData[0]?.id);
                 }
-                setToast(true, "success", message);
+
+                queryKeyIsStateComponentContact({
+                    tokenCaptcha: "",
+                    tokenChecked: false
+                })
+
+                setToast(true, "success", data?.message);
                 return;
             }
-            setToast(true, "error", message);
+            setToast(true, "error", data?.message);
         },
         onError: (error) => {
             throw error;
@@ -40,10 +44,14 @@ export const usePostContactFososoft = (form: any) => {
 
     const onSubmit = async (data: any) => {
         try {
-            console.log('check data:', data);
-
             const dataSubmit = {
-
+                fullname: data?.fullname ?? "",   // họ tên
+                phone: data?.phone ?? "",  // số điện thoại
+                email: data?.email ?? "", // email
+                name_company: data?.name_company ?? "", // tên tổ chức công ty
+                name_role: data?.role?.value, //chức vụ
+                type_service_id: data?.service,  //loại dịch vụ
+                content: data?.description ?? ""  // chia sẻ nhu cầu
             }
 
             postContactFososoftMutation.mutate(dataSubmit);

@@ -72,14 +72,14 @@ const SocialMediaButton = ({
                         {children}
                     </motion.button>
 
-                    <div
+                    {/* <div
                         className="size-10 rounded-full absolute animate-ping z-0"
                         style={{
                             background: background_animation,
                             zIndex: 0,
                             pointerEvents: "none"
                         }}
-                    />
+                    /> */}
                 </motion.div>
             )}
         </AnimatePresence>

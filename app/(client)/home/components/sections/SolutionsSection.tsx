@@ -6,12 +6,16 @@ import { useResizeStore } from '@/stores/useResizeStore';
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import { motion } from 'framer-motion'
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import { useSheetStores } from '@/stores/useSheetStores';
 
 type Props = {}
 
 const SolutionsSection = (props: Props) => {
-    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const { statusSheet,setStatusSheet, setOpenSheetCustom } = useSheetStores()
     const { isVisibleTablet } = useResizeStore()
+
+    console.log('statusSheet', statusSheet);
+
 
     return (
         <div className='custom-padding-section '>
@@ -52,18 +56,23 @@ const SolutionsSection = (props: Props) => {
                             <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
                                 <motion.div
                                     initial={{ x: 0, y: 0 }}
-                                    animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
+                                    variants={{
+                                        rest: { scale: 1 },
+                                        hover: { x: 2, y: -2 }, // Khi hover vào button, div cũng scale lớn hơn
+                                        press: { scale: 0.98 }, // Khi hover vào button, div cũng scale lớn hơn
+                                    }}
                                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
                                 >
                                     <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
                                 </motion.div>
                             </div>
                         }
-                        onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
-                        onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                        onClick={() => console.log('Button Clicked!')}
+                        onClick={() => {
+                            setOpenSheetCustom(true)
+                            setStatusSheet("contact")
+                        }}
                         reverse={true}
-                        className="flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                        className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                         style={{
                             WebkitBackdropFilter: "blur(15px)", // Safari
                             boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"

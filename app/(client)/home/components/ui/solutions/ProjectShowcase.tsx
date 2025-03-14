@@ -16,12 +16,12 @@ interface Category {
 }
 
 const categories: Category[] = [
-    { id: 1, title: "Thiết kế web", image: "/example/solution/image1.png" },
-    { id: 2, title: "Thiết kế App Mobile", image: "/example/solution/image2.png" },
-    { id: 3, title: "Thuê Hosting", image: "/example/solution/image1.png" },
-    { id: 4, title: "Thuê IT Outsourcing", image: "/example/solution/image2.png" },
-    { id: 5, title: "FMRP - Trợ lí sản xuất", image: "/example/solution/image1.png" },
-    { id: 6, title: "FPOS - Trợ lí bán hàng", image: "/example/solution/image2.png" },
+    { id: 1, title: "Thiết kế web", image: "/example/solution/web.webp" },
+    { id: 2, title: "Thiết kế App Mobile", image: "/example/solution/mobile-app.webp" },
+    { id: 3, title: "Thuê Hosting & Server", image: "/example/solution/hosting.webp" },
+    { id: 4, title: "Thuê IT Outsourcing", image: "/example/solution/outsourcing.webp" },
+    { id: 5, title: "FMRP - Trợ lý sản xuất", image: "/example/solution/image2.png" },
+    { id: 6, title: "FPOS - Trợ lý bán hàng", image: "/example/solution/fpos.webp" },
 ]
 
 const ProjectShowcase = () => {
@@ -104,6 +104,7 @@ const ProjectShowcase = () => {
                                 }}
                                 exit={{ opacity: 0, x: -30 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
+                                className="capitalize"
                             >
                                 {item.title}
                             </motion.div>

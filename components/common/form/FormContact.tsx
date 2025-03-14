@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -19,6 +19,10 @@ import { cn } from '../../../lib/utils';
 import { useStatePageContactUs } from '../../../app/(client)/contact-us/_state/useStatePageContactUs';
 import { useSheetStores } from '../../../stores/useSheetStores';
 import { usePostContactFososoft } from '@/managers/api/contact/usePostContactFososoft';
+import { useGetTypeServicesList } from '@/managers/api/services/useGetTypeServicesList';
+import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
+import { useToastStore } from '@/stores/useToastStore';
+import { useStateComponentContact } from '@/managers/state/contact/useStateComponentContact';
 
 interface FormValues {
     email: string;
@@ -41,7 +45,7 @@ const serviceList = [
 
 const roleData = [
     { id: '1', label: 'Quản lý', value: 'Quản lý' },
-    { id: '2', label: 'Admin', value: 'Admin' },
+    { id: '2', label: 'CEO/FOUNDER', value: 'CEO/FOUNDER' },
     { id: '3', label: 'Nhân viên', value: 'Nhân viên' },
     { id: '4', label: 'Khác', value: 'Khác' },
 ];
@@ -63,9 +67,9 @@ type FormContactProps = {
 const FormContact = ({ className }: FormContactProps) => {
     const { isVisibleTablet } = useResizeStore()
     const { statusSheet } = useSheetStores()
+    const { setToast } = useToastStore()
 
-    const [isHovered, setIsHovered] = useState<boolean>(false);
-    const { isStatePageContactUs, queryKeyIsStatePageContactUs } = useStatePageContactUs()
+    const { isStateComponentContact, queryKeyIsStateComponentContact } = useStateComponentContact()
     const form = useForm({
         defaultValues: {
             ...defaultValues,
@@ -73,11 +77,13 @@ const FormContact = ({ className }: FormContactProps) => {
         }
     })
 
+    const { data: dataTypeServicesList, isLoading: isLoadingTypeServicesList } = useGetTypeServicesList()
+
     useEffect(() => {
-        if (!form.getValues("service") && serviceList.length > 0) {
-            form.setValue("service", serviceList[0].id); // Đặt giá trị mặc định
+        if (!form.getValues("service") && dataTypeServicesList?.length > 0) {
+            form.setValue("service", dataTypeServicesList[0].id); // Đặt giá trị mặc định
         }
-    }, [form]);
+    }, [form, dataTypeServicesList]);
 
     // Hàm Chọn riêng lẻ từng item
     const handleSingleSelect = (value: any, field: any, type?: string, item?: any, index?: number) => {
@@ -86,12 +92,47 @@ const FormContact = ({ className }: FormContactProps) => {
         field.onChange(isSameValue ? undefined : value);
     };
 
-    const { onSubmit: onSubmit, isLoading } = usePostContactFososoft(form)
+    const { onSubmit: onSubmit, isLoading: isLoadingContactFososoft } = usePostContactFososoft(form)
+
+
+    const handleClick = useCallback(() => {
+        console.log('Button Clicked!');
+    }, []);
+
+    // giao diện icon button
+    const icon = () => (
+        <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
+            <motion.div
+                initial={{ x: 0, y: 0 }}
+                variants={{
+                    rest: { scale: 1 },
+                    hover: { x: 2, y: -2 }, // Khi hover vào button, div cũng scale lớn hơn
+                    press: { scale: 0.98 }, // Khi hover vào button, div cũng scale lớn hơn
+                }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            >
+                <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
+            </motion.div>
+        </div>
+    );
 
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit((data) => onSubmit(data))}
+                onSubmit={form.handleSubmit((data) => {
+                    if (isStateComponentContact?.tokenCaptcha) {
+                        onSubmit(data)
+                        queryKeyIsStateComponentContact({
+                            tokenChecked: true,
+                            tokenFailed: false
+                        })
+                    } else {
+                        queryKeyIsStateComponentContact({
+                            tokenChecked: false,
+                            tokenFailed: true
+                        })
+                    }
+                })}
                 className={`${className} lg:col-span-13 col-span-18  gap-6 bg-white w-full rounded-3xl lg:p-5`}
                 style={{
                     boxShadow: isVisibleTablet ? "" : "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A"
@@ -274,13 +315,10 @@ const FormContact = ({ className }: FormContactProps) => {
                                         selected={field.value}
                                         options={roleData || []}
                                         onOpen={(e: boolean) => {
-                                            console.log('e', e);
-
-
-                                            queryKeyIsStatePageContactUs({
+                                            queryKeyIsStateComponentContact({
                                                 combobox: {
-                                                    ...isStatePageContactUs?.combobox,
-                                                    variants: {
+                                                    ...isStateComponentContact?.combobox,
+                                                    roles: {
                                                         value: "",
                                                         selected: {},
                                                         open: e,
@@ -291,9 +329,9 @@ const FormContact = ({ className }: FormContactProps) => {
                                         // loading={isLoadingDataCamboquickService}'
                                         mutiValue={false}
                                         title='Chức vụ'
-                                        classNameArrow={`${isStatePageContactUs?.combobox?.variants?.open ? 'rotate-180 text-[#15AA7A] custom-transition' : ''}`}
+                                        classNameArrow={`${isStateComponentContact?.combobox?.roles?.open ? 'rotate-180 text-[#15AA7A] custom-transition' : ''}`}
                                         classNameButtonTrigger={`
-                                        ${isStatePageContactUs?.combobox?.variants?.open ? 'border-[#15AA7A]' : ''}
+                                        ${isStateComponentContact?.combobox?.roles?.open ? 'border-[#15AA7A]' : ''}
                                         ${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"}
                                         bg-white 3xl:text-base lg:text-sm text-base rounded-lg w-full h-full  px-3 py-1 text-[#33404A] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`}
                                         classNameInputSearch='bg-white rounded-none border-t-0 border-x-0 border-b'
@@ -334,17 +372,25 @@ const FormContact = ({ className }: FormContactProps) => {
                                             className="flex flex-wrap gap-3 2xl:max-w-[80%] lg:max-w-[90%] max-w-full"
                                         >
                                             {
-                                                serviceList.map((service) => (
-                                                    <Label
+                                                dataTypeServicesList && dataTypeServicesList.map((service: any) => (
+                                                    <motion.div
                                                         key={`service-form-${service.id}`}
-                                                        className={cn(
-                                                            "text-sm border border-[#D9E1E7] rounded-[8px] p-3 font-medium text-[#33404A] cursor-pointer w-fit flex items-center gap-2 custom-transition",
-                                                            field.value === service.id ? "bg-[#A3EED6] border-[#15AA7A]" : "hover:bg-[#A3EED6] hover:border-[#15AA7A]"
-                                                        )}
+                                                        initial={false}
+                                                        animate="rest"
+                                                        whileTap="press"
+                                                        variants={variantButtonPressZoom}
+                                                        className="w-fit"
                                                     >
-                                                        <RadioGroupItem value={service.id} className="sr-only" />
-                                                        {service.name}
-                                                    </Label>
+                                                        <Label
+                                                            className={cn(
+                                                                "text-sm border border-[#D9E1E7] rounded-[8px] p-3 font-medium text-[#33404A] cursor-pointer w-fit flex items-center gap-2 custom-transition",
+                                                                field.value === service.id ? "bg-[#A3EED6] border-[#15AA7A]" : "hover:bg-[#A3EED6] hover:border-[#15AA7A]"
+                                                            )}
+                                                        >
+                                                            <RadioGroupItem value={service.id} className="sr-only" />
+                                                            {service.name}
+                                                        </Label>
+                                                    </motion.div>
                                                 ))
                                             }
                                         </RadioGroup>
@@ -377,7 +423,7 @@ const FormContact = ({ className }: FormContactProps) => {
                                             id="description"
                                             placeholder="Nhập mô tả"
                                             className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
-                                            ${statusSheet === "contact" ? "lg:h-64 h-52" : "lg:h-28 h-52"}
+                                            ${statusSheet === "contact" ? "lg:h-40 h-52" : "lg:h-28 h-52"}
                                 text-[#333538] bg-transparent text-sm-default w-full  shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
                                             {...field}
                                         />
@@ -392,31 +438,28 @@ const FormContact = ({ className }: FormContactProps) => {
 
                     <div className='col-span-4 flex lg:flex-row flex-col lg:gap-2 gap-4 items-center justify-between'>
                         {/* CAPTCHA */}
-                        <div className='space-y-1 '>
-                            <Captcha onVerify={(token) => console.log("Captcha Token:", token)} />
-                            {/* <CaptchaDemo onVerify={(token) => console.log("Captcha Token:", token)} /> */}
-                            {/* <CaptchaOrigin onVerify={(token) => console.log("Captcha Token:", token)} /> */}
+                        <div className='space-y-2 '>
+                            <Captcha onVerify={(token) => {
+                                if (token) {
+                                    queryKeyIsStateComponentContact({
+                                        tokenCaptcha: token,
+                                        tokenChecked: true,
+                                        tokenFailed: false
+                                    })
+                                    setToast(true, "success", "Xác minh captcha Thành công!")
+                                }
+                            }} />
 
                             {/* Thông báo lỗi hoặc thành công */}
-                            {/* {message && <p className="text-red-500">{message}</p>} */}
+                            {isStateComponentContact?.tokenFailed && <p className="text-sm text-red-500 font-semibold">Vui lòng xác minh Captcha!</p>}
                         </div>
 
                         <ButtonAnimationNew
                             title="Gửi Yêu Cầu"
-                            icon={
-                                <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
-                                    <motion.div
-                                        initial={{ x: 0, y: 0 }}
-                                        animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
-                                        transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                                    >
-                                        <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
-                                    </motion.div>
-                                </div>
-                            }
-                            onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
-                            onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                            onClick={() => console.log('Button Clicked!')}
+                            icon={icon()}
+                            isLoading={isLoadingContactFososoft}
+                            disabled={isLoadingContactFososoft}
+                            onClick={handleClick}
                             reverse={true}
                             className="flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                             style={{

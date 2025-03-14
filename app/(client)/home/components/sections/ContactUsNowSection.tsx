@@ -7,6 +7,10 @@ import React from 'react'
 type Props = {}
 
 const ContactUsNowSection = (props: Props) => {
+    const handleCall = (phoneNumber: any) => {
+        window.location.href = `tel:${phoneNumber}`;
+    };
+
     return (
         <div className="3xl:py-32 lg:py-28 py-16">
             <div className="custom-container grid lg:grid-cols-2 grid-cols-1 items-center lg:gap-8 gap-28">
@@ -63,6 +67,8 @@ const ContactUsNowSection = (props: Props) => {
                                     "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
                                 ],
                             }}
+                            onClick={() => handleCall("0901136968")}
+                            // aria-label={`Gọi tới số ${phoneNumber}`}
                         />
                     </AnimatedReveal>
                 </div>

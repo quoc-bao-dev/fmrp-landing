@@ -17,6 +17,9 @@ const createDefaultInput = (): IInput => ({
 
 interface InitialStateStore {
     isStateComponentContact: {
+        tokenCaptcha: string,
+        tokenChecked: boolean,
+        tokenFailed: boolean,
         combobox: IFilterApplication;
     };
     queryKeyIsStateComponentContact: (key: Partial<InitialStateStore["isStateComponentContact"]>) => void;
@@ -24,6 +27,9 @@ interface InitialStateStore {
 
 export const useStateComponentContact = create<InitialStateStore>((set) => ({
     isStateComponentContact: {
+        tokenCaptcha: "",
+        tokenChecked: false,
+        tokenFailed: false,
         combobox: {
             roles: createDefaultInput(),
         },

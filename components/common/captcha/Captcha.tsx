@@ -5,6 +5,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CheckIcon from './../../icons/common/CheckIcon';
+import { useStatePageContactUs } from "@/app/(client)/contact-us/_state/useStatePageContactUs";
+import { useToastStore } from "@/stores/useToastStore";
+import { useStateComponentContact } from "@/managers/state/contact/useStateComponentContact";
 
 interface CaptchaProps {
     onVerify: (token: string | null) => void;
@@ -16,8 +19,11 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
 
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
+
+    const { setToast } = useToastStore()
+
+    const { isStateComponentContact, queryKeyIsStateComponentContact } = useStateComponentContact()
 
     // ✅ Xử lý khi reCAPTCHA đã tải
     useEffect(() => {
@@ -29,11 +35,23 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
 
     // ✅ Khi xác minh thành công
     const handleVerify = (token: string | null) => {
-        console.log("✅ Captcha Token:", token);
-        setCaptchaValue(token);
-        onVerify(token);
-        setIsChecked(true);
+        if (token) {
+            setCaptchaValue(token);
+            onVerify(token);
+            queryKeyIsStateComponentContact({
+                tokenChecked: true,
+                tokenFailed: false
+            });
+        } else {
+            queryKeyIsStateComponentContact({
+                tokenChecked: false,
+                tokenFailed: true
+            });
+            setToast(true, "error", "Xác minh captcha thất bại!");
+        }
+
         setIsVerifying(false);
+        recaptchaRef.current?.reset();  // Reset trạng thái captcha
     };
 
     // ✅ Kích hoạt reCAPTCHA
@@ -50,20 +68,30 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
             const token = await recaptchaRef.current.executeAsync();
             if (!token) {
                 console.error("🚨 Không có token!");
-                throw new Error("🚨 reCAPTCHA không trả về token!");
+                queryKeyIsStateComponentContact({
+                    tokenChecked: false,
+                    tokenFailed: true
+                })
+                handleVerify(null);
+                return setToast(true, "error", "Xác minh captcha thất bại!")
+                // throw new Error("🚨 reCAPTCHA không trả về token!");
             }
 
             handleVerify(token);
         } catch (err) {
             console.error("❌ Lỗi executeAsync():", err);
             setIsVerifying(false);
+            return setToast(true, "error", "Xác minh captcha thất bại!")
         }
+
     };
 
 
     const handleCheck = () => {
         if (!isVerifying) {
-            setIsChecked(!isChecked);
+            queryKeyIsStateComponentContact({
+                tokenChecked: !isStateComponentContact?.tokenChecked
+            })
         }
     };
 
@@ -84,13 +112,13 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
 
             {/* 🔘 Nút Custom */}
             <div
-                className={`p-6 relative flex items-center justify-between w-[360px] h-[90px] border border-[#09224B] rounded-2xl overflow-hidden shadow-md bg-white transition-all  hover:bg-gray-100
+                className={`${isStateComponentContact?.tokenFailed ? "!border-red-500" : "border-[#09224B]"} p-6 relative flex items-center justify-between w-[360px] h-[90px] border rounded-2xl overflow-hidden shadow-md bg-white transition-all  hover:bg-gray-100
                 `}
             >
                 {/* 🔲 Custom Checkbox */}
                 <div className="relative flex items-center gap-3">
                     {/* 🔲 Ô Checkbox (ẨN khi đang loading hoặc đã check thành công) */}
-                    {!isVerifying && !isChecked && (
+                    {!isVerifying && !isStateComponentContact?.tokenChecked && (
                         <motion.div
                             className={`size-10 border rounded-md flex items-center justify-center transition-all relative
             bg-white border-[#09224B]/[22%] cursor-pointer hover:border-blue-400`}
@@ -100,7 +128,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                         />
                     )}
 
-                    <div className={`${(isVerifying || !isVerifying && isChecked) ? "size-10" : "hidden"} flex items-center justify-center`}>
+                    <div className={`${(isVerifying || !isVerifying && isStateComponentContact?.tokenChecked) ? "size-10" : "hidden"} flex items-center justify-center`}>
                         {/* 🔄 Loading animation (Hiển thị khi đang xác minh) */}
                         {isVerifying && (
                             <motion.div
@@ -112,7 +140,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                         )}
 
                         {/* ✔ Checkmark (Hiển thị khi thành công) */}
-                        {!isVerifying && isChecked && (
+                        {!isVerifying && isStateComponentContact?.tokenChecked && (
                             <motion.span
                                 className=" font-bold size-8"
                                 initial={{ scale: 0, opacity: 0 }}

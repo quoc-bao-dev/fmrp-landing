@@ -35,7 +35,7 @@ const mediaList = [
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Công nghệ đời sống",
         title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP",
-        link: "/blogs",
+        link: "https://congnghedoisong.net/quan-ly-san-xuat-thong-minh-voi-giai-phap-phan-mem-fmrp-a37796.html",
     },
     {
         id: uuidv4(),

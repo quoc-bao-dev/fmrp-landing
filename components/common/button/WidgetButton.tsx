@@ -8,23 +8,25 @@ const socialButtons = [
     {
         icon: "/icons/social-media/zalo2.svg",
         background_animation: "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
-        handleClick: () => console.log("Zalo button clicked!")
+        handleClick: () => { window.open("https://zalo.me/2281264205827497572") }
     },
     {
         icon: "/icons/social-media/messenger.svg",
         background_animation: "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
-        handleClick: () => console.log("Messenger button clicked!")
+        handleClick: () => { window.open("https://m.me/fososoftware") }
     },
     {
         icon: "/icons/social-media/call.svg",
         background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
-        handleClick: () => alert("Calling...")
+        handleClick: () => { window.location.href = `tel:0901136968` }
     },
     {
         icon: "/icons/social-media/gmail.svg",
         background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
         className: "bg-[#53B086]/80",
-        handleClick: () => alert("Opening Gmail...")
+
+        handleClick: () => { window.open("mailto:info@fososoft.com", "_blank") }
+        // handleClick: () => { window.location.href = `mailto:info@fososoft.com` }
     }
 ];
 

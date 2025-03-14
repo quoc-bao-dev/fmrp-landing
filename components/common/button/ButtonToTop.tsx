@@ -49,7 +49,7 @@ const ButtonToTop = () => {
                         <HiOutlineArrowNarrowUp className='text-2xl' />
                     </motion.button>
 
-                    <div className='3xl:size-10 size-8 rounded-full absolute animate-ping bg-[#53B086]/50 z-0' />
+                    {/* <div className='3xl:size-10 size-8 rounded-full absolute animate-ping bg-[#53B086]/50 z-0' /> */}
                 </motion.div>
             )}
         </AnimatePresence>

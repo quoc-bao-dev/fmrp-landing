@@ -82,7 +82,7 @@ const MarqueeColumn = memo(({ feedbacks, direction }: MarqueeColumnProps) => {
                         }}
                     >
                         <div className="flex items-center 3xl:space-x-4 space-x-2">
-                            <AvatarCustom classNameContainer="3xl:size-12 md:size-10 size-8" avatar={feedback?.image} />
+                            <AvatarCustom classNameContainer={`${feedback.gender === "male" ? "bg-[#76E6C1]" : "bg-[#92BFF7]"} 3xl:size-12 md:size-10 size-8 p-1.5`} avatar={feedback?.image} />
                             <div>
                                 <p className="md:text-base text-sm font-bold text-gray-800">{feedback.name}</p>
                                 <p className="md:text-sm text-xs text-[#667F93]">{feedback.position}</p>

@@ -15,36 +15,39 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 import { motion } from 'framer-motion'
 import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
+import { useSheetStores } from '@/stores/useSheetStores';
 
 type Props = {}
 
 const mediaList = [
     {
         id: uuidv4(),
-        image: "/example/blog/example1.svg",
+        image: "/example/blog/example10.svg",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Doanh nhân Sài Gòn online",
-        title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP"
+        title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP",
+        link:"https://doanhnhansaigon.vn/doanh-nghiep-chuyen-doi-so-manh-me-cung-giai-phap-phan-mem-fmrp-304651.html?"
     },
     {
         id: uuidv4(),
-        image: "/example/blog/example1.svg",
+        image: "/example/blog/example11.svg",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Công nghệ đời sống",
-        title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP"
+        title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP",
+        link:"https://congnghedoisong.net/quan-ly-san-xuat-thong-minh-voi-giai-phap-phan-mem-fmrp-a37796.html"
     },
     {
         id: uuidv4(),
-        image: "/example/blog/example1.svg",
+        image: "/example/blog/example9.svg",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Kết nối đầu tư",
-        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất"
+        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất",
+        link:"https://ketnoidautu.net/foso-ra-mat-app-quan-ly-xuong-cai-thien-tien-do-san-xuat-trong-quan-ly-nha-may-a32964.html"
     },
 ]
 
 const MediaCoverageSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
-    const [isHovered, setIsHovered] = useState<boolean>(false);
     const { isVisibleTablet } = useResizeStore()
 
 
@@ -152,24 +155,29 @@ const MediaCoverageSection = (props: Props) => {
                     className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     onClick={() => { }}
                 /> */}
+
                 <ButtonAnimationNew
                     title="Xem tất cả"
                     icon={
                         <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
                             <motion.div
                                 initial={{ x: 0, y: 0 }}
-                                animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
+                                variants={{
+                                    rest: { scale: 1 },
+                                    hover: { x: 2, y: -2 }, // Khi hover vào button, div cũng scale lớn hơn
+                                    press: { scale: 0.98 }, // Khi hover vào button, div cũng scale lớn hơn
+                                }}
                                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
                             >
                                 <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
                             </motion.div>
                         </div>
                     }
-                    onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
-                    onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                    onClick={() => console.log('Button Clicked!')}
+                    onClick={() => {
+                        window.open("https://fososoft.vn/fblog/")
+                    }}
                     reverse={true}
-                    className="flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                    className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     style={{
                         WebkitBackdropFilter: "blur(15px)", // Safari
                         boxShadow: "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)"

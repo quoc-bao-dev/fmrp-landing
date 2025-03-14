@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { ImagePreviewPortal } from '../ui/system-overview-fmrp/ImagePreviewPortal';
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type Props = {}
 
@@ -26,11 +27,13 @@ const SystemOverviewFmrpSection = (props: Props) => {
         <React.Fragment>
             <div className='custom-padding-section relative'>
                 <div className="3xl:mx-12 xl:mx-16 lg:mx-12 mx-4 flex flex-col items-center justify-center 3xl:gap-10 gap-8">
-                    <div className='space-x-2 font-extrabold text-center'>
+                    <AnimatedReveal 
+                    from="bottom"
+                    className='space-x-2 font-extrabold text-center'>
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Quy Trình Tổng Quan Các Phân Hệ</span>
-                    </div>
+                    </AnimatedReveal>
 
-                    <div
+                    <AnimatedReveal
                         className='size-full inset-0 xxl:p-12 lg:p-10 p-2 lg:rounded-[40px] rounded-lg'
                         style={{
                             background: "linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, rgba(204, 204, 204, 0.05) 0%, rgba(161, 161, 161, 0.1) 100.02%)",
@@ -45,7 +48,7 @@ const SystemOverviewFmrpSection = (props: Props) => {
                             height={1080}
                             className='size-full object-contain aspect-1.43/1'
                         />
-                    </div>
+                    </AnimatedReveal>
                 </div>
             </div>
 

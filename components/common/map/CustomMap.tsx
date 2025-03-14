@@ -59,7 +59,7 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
 
     return (
         <div ref={mapRef} className="relative w-full h-auto lg:aspect-2/1 aspect-1/1.92 rounded-3xl overflow-hidden shadow-lg">
-            <GoogleMap
+            {/* <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 center={{ lat, lng }}
                 zoom={14}
@@ -69,9 +69,16 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
                     zoomControl: true, // Bật nút zoom
                 }}
             >
-                {/* Marker với custom logo */}
                 <Marker position={{ lat, lng }} />
-            </GoogleMap>
+            </GoogleMap> */}
+            <iframe
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.107888396599!2d106.71273007586889!3d10.80304825870042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3dcda0d68d%3A0x77064cbbfc3cc22d!2zQ8O0bmcgVHkgVE5ISCBDw7RuZyBOZ2jhu4cgRk9TTw!5e0!3m2!1svi!2s!4v1741932223134!5m2!1svi!2s`}
+                // src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAuEM0-SakklPnXvLx-3aN1QbwEAOXSI4U&q=${data?.contact?.data_place ?? ""}`}
+                className='custom-container-map border-none'
+                width="100%"
+                height="100%"
+                loading="lazy"
+            />
         </div>
     );
 };
