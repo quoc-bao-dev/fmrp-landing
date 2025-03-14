@@ -1,39 +1,13 @@
-import EmailLink from '@/components/common/contact-links/EmailLink';
-import PhoneLink from '@/components/common/contact-links/PhoneLink';
 import SocialMediaList from '@/components/common/social/SocialMediaList';
 import ClockIconLinear from '@/components/icons/linear/ClockIconLinear';
 import EnvelopeSimpleIconLinear from '@/components/icons/linear/EnvelopeSimpleIconLinear';
 import MapPinIconLinear from '@/components/icons/linear/MapPinIconLinear';
 import PhoneIconLinear from '@/components/icons/linear/PhoneIconLinear';
-import { FormatPhoneNumberCountry } from '@/utils/format/FormatNumber';
-import React, { ReactNode, useEffect, useState } from 'react'
-
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
-import { NumericFormatCore } from '@/lib/numericFormat'
-import { regexPatterns } from '../../../../../utils/regex/regexUtils';
-
-import { SelectCustomSearch } from '@/components/common/select/SelectCustomSearch'
-import { useStatePageContactUs } from './../../_state/useStatePageContactUs';
+import React from 'react'
 import { uuidv4 } from '@/lib/uuid';
-import ContactCard from '../../../../../components/common/card/contact/ContactCard';
+import ContactCard from '@/components/common/card/contact/ContactCard';
 import { ICardContactItem } from '@/types/card/ICard';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { cn } from '@/lib/utils';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import Captcha from '@/components/common/captcha/Captcha';
-import ButtonAnimation from '@/components/common/button/ButtonAnimation';
-import { GoArrowUpRight } from 'react-icons/go';
-import CaptchaDemo from '@/components/common/captcha/CaptchaDemo';
-import CaptchaOrigin from '@/components/common/captcha/CaptchaOrigin';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
-
-import { motion } from 'framer-motion'
-import { useResizeStore } from '../../../../../stores/useResizeStore';
-import FormContact from '../../../../../components/common/form/FormContact';
+import FormContact from '@/components/common/form/FormContact';
 
 type Props = {}
 
