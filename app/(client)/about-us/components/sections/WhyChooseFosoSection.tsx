@@ -8,6 +8,7 @@ import Image from 'next/image';
 import React from 'react'
 
 import { variantsLinearShadow } from '@/utils/animations/variantsAnimation'
+import { useSheetStores } from '@/stores/useSheetStores';
 
 type Props = {}
 
@@ -96,6 +97,7 @@ const gradientStyle = {
 
 const WhyChooseFosoSection = () => {
     const { isVisibleTablet, isVisibleMobile } = useResizeStore()
+    const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
 
     return (
         <section className="custom-padding-section">
@@ -135,6 +137,10 @@ const WhyChooseFosoSection = () => {
                                             />
                                         </div>
                                     }
+                                    onClick={() => {
+                                        setOpenSheetCustom(true)
+                                        setStatusSheet("contact")
+                                    }}
                                     reverse={true}
                                     title="Tư vấn ngay"
                                     className='overflow-hidden border-gradient-button-foso flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
@@ -201,6 +207,10 @@ const WhyChooseFosoSection = () => {
                                 />
                             </div>
                         }
+                        onClick={() => {
+                            setOpenSheetCustom(true)
+                            setStatusSheet("contact")
+                        }}
                         reverse={true}
                         title="Tư vấn ngay"
                         className='border-gradient-button-foso flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'

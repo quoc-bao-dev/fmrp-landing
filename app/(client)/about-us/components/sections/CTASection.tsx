@@ -6,12 +6,13 @@ import Image from 'next/image'
 import React from 'react'
 
 import { motion } from 'framer-motion'
-import ArrowLongIcon from '../../../../../components/icons/common/ArrowLongIcon';
+import { useSheetStores } from '@/stores/useSheetStores'
 
 type Props = {}
 
 const CTASection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
+    const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
 
     return (
         <div className='custom-padding-section'>
@@ -52,6 +53,10 @@ const CTASection = (props: Props) => {
                             }
                             reverse={true}
                             title="Đăng ký ngay"
+                            onClick={() => {
+                                setOpenSheetCustom(true)
+                                setStatusSheet("contact")
+                            }}
                             className='overflow-hidden border-gradient-button-foso flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                             style={{
                                 background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
