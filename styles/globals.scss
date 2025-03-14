@@ -56,6 +56,14 @@ html {
   background: linear-gradient(45deg, #2563eb, #4f46e5);
 }
 
+.mask-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 1) 68%);
+  pointer-events: none;
+  z-index: 5;
+}
+
 .custom-tailwind {
   .custom-transition {
     @apply duration-300 transition-all ease-in-out;

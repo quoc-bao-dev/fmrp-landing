@@ -14,66 +14,66 @@ type Props = {}
 const feedbacks: FeedbackItem[] = [
     {
         id: uuidv4(),
-        name: "Mr. Danh",
-        position: "Quản lý KANOW",
-        message: '”Từ lúc hợp tác với FOSO, chúng tôi đã có một trang web hoàn hảo về cả mặt thiết kế lẫn tính năng. Đội ngũ luôn lắng nghe và giải quyết mọi vấn đề một cách nhanh chóng và hiệu quả.”',
+        name: "Mr. Tâm",
+        position: "Quản Lý Nam Việt",
+        message: '“Công việc tôi khá bận khi quản lý dữ liệu trên excel, nên tôi có lên internet tìm cách giúp đỡ, thì gặp được FMRP, sau khi làm việc với FOSO, tôi đã sở hữu được 1 hệ thống giúp cho công việc tôi rất thuận lợi.”',
         image: "/avatar/example/avatar-danh.svg",
-        gender: "male"
-    },
-    {
-        id: uuidv4(),
-        name: "Mrs. Trân",
-        position: "Quản lý MONY",
-        message: '”Trang web mà FOSO thiết kế cho công ty chúng tôi không chỉ đẹp mà còn rất tiện lợi cho người dùng. Tốc độ tải trang nhanh và giao diện thân thiện đã giúp chúng tôi thu hút nhiều khách hàng hơn.”',
-        image: "/avatar/example/avatar-tran.svg",
-        gender: "female"
-    },
-    {
-        id: uuidv4(),
-        name: "Mr. Tuấn",
-        position: "Trưởng bộ phận Website Hải Âu",
-        message: '”FOSO đã mang đến cho chúng tôi một trang web giao diện đẹp mắt và dễ sử dụng. Đội ngũ thiết kế web luôn lắng nghe ý kiến và đáp ứng nhanh chóng yêu cầu của chúng tôi. Cảm ơn FOSO.”',
-        image: "/avatar/example/avatar-tuan.svg",
-        gender: "male"
-    },
-    {
-
-        id: uuidv4(),
-        name: "Mrs. Tâm",
-        position: "Bộ phận IT HYPERSPACE",
-        message: '”Chúng tôi đã sử dụng dịch vụ IT Outsourcing của FOSO cho dự án phát triển phần mềm nội bộ và hoàn toàn hài lòng. Đội ngũ FOSO không chỉ có chuyên môn cao mà còn rất tận tâm trong việc tư vấn và hỗ trợ.”',
-        image: "/avatar/example/avatar-tam.svg",
-        gender: "female"
-    },
-    {
-        id: uuidv4(),
-        name: "Mr. Hoàng",
-        position: "Trưởng bộ phận App Health Land Spa",
-        message: '“Tôi thấy ấn tượng với chất lượng ứng dụng mà FOSO đã thiết kế cho bên tôi. Giao diện trực quan và hiệu suất ứng dụng đều đáp ứng được mong đợi của chúng tôi.”',
-        image: "/avatar/example/avatar-tuan.svg",
         gender: "male"
     },
     {
         id: uuidv4(),
         name: "Mrs. Nguyên",
         position: "Giám Đốc NPCare Việt Nam",
-        message: '“Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án.”',
+        message: '“Do nhu cầu sử dụng khẩu trang tăng cao, khiến công việc sản xuất quá tải đòi hỏi cần phải có phần mềm để quản lý. Chúng tôi đã lựa chọn FMRP sau khi tham khảo qua nhiều nhà cung cấp khác trên thị trường.”',
+        image: "/avatar/example/avatar-tran.svg",
+        gender: "female"
+    },
+    {
+        id: uuidv4(),
+        name: "Mr. Minh",
+        position: "Trưởng phòng Sản xuất Tùng Việt",
+        message: '“Trước đây, việc theo dõi tồn kho thủ công thường xuyên xảy ra sai sót. Từ khi áp dụng FMRP, mọi số liệu đều được cập nhật chính xác theo thời gian thực, giúp giảm thiểu thất thoát nguyên liệu đáng kể.”',
+        image: "/avatar/example/avatar-tuan.svg",
+        gender: "male"
+    },
+    {
+
+        id: uuidv4(),
+        name: "Mrs. Mai",
+        position: "Trưởng Bộ phận Kho hàng Latex",
+        message: '“Chúng tôi đặc biệt hài lòng với tính năng quản lý sản phẩm đa biến thể của FMRP. Việc xử lý đơn hàng theo từng size, màu sắc trở nên dễ dàng và chính xác hơn bao giờ hết.”',
+        image: "/avatar/example/avatar-tam.svg",
+        gender: "female"
+    },
+    {
+        id: uuidv4(),
+        name: "Mr. Tùng",
+        position: "Trưởng Phòng Mua hàng Phương đông",
+        message: '"FMRP không chỉ tối ưu hóa quy trình sản xuất mà còn hỗ trợ quản lý mua hàng, giúp chúng tôi dễ dàng theo dõi nhà cung cấp và tối ưu chi phí nguyên vật liệu.”',
+        image: "/avatar/example/avatar-tuan.svg",
+        gender: "male"
+    },
+    {
+        id: uuidv4(),
+        name: "Mrs. Phương",
+        position: "Trưởng phòng Kế hoạch NTC",
+        message: '“Phần mềm FMRP giúp chúng tôi đồng bộ dữ liệu từ sản xuất đến kho hàng, hạn chế sai sót trong khâu kiểm kê và tiết kiệm đáng kể thời gian báo cáo.”',
         image: "/avatar/example/avatar-nguyen.svg",
         gender: "female"
     },
     {
         id: uuidv4(),
-        name: "Mr. Phúc",
-        position: "Quản lý App Checkin-Care",
-        message: '“Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án.”',
+        name: "Mr. Công",
+        position: "Quản lý sản xuất Sơn Hà",
+        message: '"Từ khi triển khai FMRP, việc theo dõi và đánh giá hiệu suất từng chuyền may trở nên minh bạch hơn, giúp cải thiện năng suất và giảm thiểu sai sót đáng kể.”',
         image: "/avatar/example/avatar-phuc.svg",
         gender: "male"
     },
     {
         id: uuidv4(),
-        name: "Mrs. Hồng",
-        position: "Quản lý Bộ phận Web ECOSPACE",
-        message: '”Chúng tôi hài lòng với dịch vụ thiết kế web của FOSO. FOSO đã tạo ra một trang web chuyên nghiệp, thể hiện đúng phong cách và giá trị của thương hiệu. Chúng tôi cũng được hỗ trợ nhiệt tình trong quá trình vận hành.”',
+        name: "Mrs. Hà",
+        position: "Giám đốc sản xuất Golden",
+        message: '“FMRP giúp chúng tôi tối ưu chi phí vận hành và nâng cao chất lượng quản lý sản xuất. Việc theo dõi từ nguyên liệu đầu vào đến thành phẩm cuối cùng trở nên đơn giản và chính xác hơn rất nhiều.”',
         image: "/avatar/example/avatar-hong.svg",
         gender: "female"
     },

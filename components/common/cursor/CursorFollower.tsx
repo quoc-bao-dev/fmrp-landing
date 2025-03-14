@@ -77,7 +77,7 @@ const CursorFollower = () => {
             document.body.removeEventListener("mouseenter", handleHover, true);
             document.body.removeEventListener("mouseleave", handleLeave, true);
         };
-    }, []);
+    }, [pathname]);
 
     return (
         <motion.div

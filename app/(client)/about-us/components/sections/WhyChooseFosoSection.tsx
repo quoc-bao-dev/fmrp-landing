@@ -5,10 +5,11 @@ import WhyCard from '@/components/common/card/why/WhyCard';
 import { useResizeStore } from '@/stores/useResizeStore';
 import { BookOpen, Cat } from 'lucide-react';
 import Image from 'next/image';
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { variantsLinearShadow } from '@/utils/animations/variantsAnimation'
 import { useSheetStores } from '@/stores/useSheetStores';
+import BlurredBackground2 from '@/components/common/blur/BlurredBackground2';
 
 type Props = {}
 
@@ -96,13 +97,49 @@ const gradientStyle = {
 };
 
 const WhyChooseFosoSection = () => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
     const { isVisibleTablet, isVisibleMobile } = useResizeStore()
     const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!sectionRef.current) return;
+
+        const handleMouseMove = (event: MouseEvent) => {
+            if (!sectionRef.current) return;
+
+            const { left, top, width, height } = sectionRef.current.getBoundingClientRect();
+            const x = event.clientX - left - width / 2; // Căn giữa
+            const y = event.clientY - top - height / 2; // Căn giữa
+
+            setMousePosition({ x, y });
+        };
+
+        const handleMouseLeave = () => {
+            setMousePosition({ x: 0, y: 0 }); // Reset về trung tâm
+        };
+
+        sectionRef.current.addEventListener("mousemove", handleMouseMove);
+        sectionRef.current.addEventListener("mouseleave", handleMouseLeave);
+
+        return () => {
+            sectionRef.current?.removeEventListener("mousemove", handleMouseMove);
+            sectionRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+        };
+    }, []);
+    // Thuy Do
+    // Write note ...
+    // mong muốn cục gradient chuyển động khi di chuyển cursor và scroll xuống thì mới toả ra như section jumbotron CTA (ảnh kế bên) ở link ref này:
+    // https://rootly.com/
+
+    // tham khảo thêm hiệu ứng 4 cards di chuyển như trong link ref này:
+    // https://ai.humbleteam.com/
 
     return (
         <section className="custom-padding-section">
             <div className="custom-container flex lg:flex-row flex-col lg:items-center gap-6 ">
-                <div className='w-full lg:max-w-[40%] max-w-full flex flex-col 3xl:gap-8 gap-6 overflow-hidden'>
+                <div className='w-full lg:max-w-[39%] max-w-full flex flex-col 3xl:gap-8 gap-6 overflow-hidden'>
                     <h2 className="text-title-section-small font-bold space-x-2">
                         <span className="text-[#050505] font-extrabold capitalize">Lý Do Nên Chọn</span>
                         <span
@@ -175,10 +212,23 @@ const WhyChooseFosoSection = () => {
 
 
                 {/* Nội dung các lợi ích */}
-                <div className='w-full lg:max-w-[60%] max-w-full flex flex-col justify-center gap-4 relative'>
-                    {!isVisibleMobile && <BlurredBackground className='3xl:top-10 top-20 right-24' />}
+                <div
+                    ref={sectionRef}
+                    className='w-full lg:max-w-[61%] p-2 max-w-full flex flex-col justify-center gap-4 relative overflow-hidden'
+                // style={{
+                //     WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+                //     maskImage: "radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)"
+                // }}
+                >
+                    {/* Lớp mask overlay để làm mờ viền */}
+                    <div className="absolute inset-0 pointer-events-none mask-overlay"></div>
 
-                    <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto">
+                    {/* Blur sẽ di chuyển theo con chuột */}
+                    {!isVisibleMobile && (
+                        <BlurredBackground2 className="3xl:top-10 top-20 right-24" x={mousePosition.x} y={mousePosition.y} />
+                    )}
+
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto relative z-[999]">
                         {values.map((value, index) => (
                             <div
                                 key={index}
@@ -190,8 +240,6 @@ const WhyChooseFosoSection = () => {
                         ))}
                     </div>
                 </div>
-
-
 
                 {
                     isVisibleTablet &&

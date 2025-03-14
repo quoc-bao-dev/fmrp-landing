@@ -68,7 +68,7 @@ const IntroductionFmrpSection = (props: Props) => {
                         }
                         onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
                         onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-                        onClick={() => { window.open("https://hub.fmrp.vn/auth/register") }}
+                        onClick={() => { window.open("https://bom.so/mrpbeta") }}
                         reverse={true}
                         className="lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
                         style={{
@@ -89,6 +89,7 @@ const IntroductionFmrpSection = (props: Props) => {
                             whileTap="press"
                             whileHover="hover"
                             variants={variantButtonScaleZoom}
+                            onClick={() => { window.open("https://bom.so/mrpbeta") }}
                             className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
                         >
                             <Image
@@ -106,6 +107,7 @@ const IntroductionFmrpSection = (props: Props) => {
                             whileTap="press"
                             whileHover="hover"
                             variants={variantButtonScaleZoom}
+                            onClick={() => { window.open("https://bom.so/mrpbeta") }}
                             className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
                         >
                             <Image

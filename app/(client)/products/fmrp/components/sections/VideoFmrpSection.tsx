@@ -16,7 +16,7 @@ const VideoFmrpSection = (props: Props) => {
 
     const handleMouseEnter = useCallback(() => setIsHovered(true), []);
     const handleMouseLeave = useCallback(() => setIsHovered(false), []);
-    const handleButtonClick = useCallback(() => window.open("https://hub.fmrp.vn/auth/register"), []);
+    const handleButtonClick = useCallback(() => window.open("https://bom.so/mrpbeta"), []);
 
     return (
         <div className='custom-padding-section'>
@@ -39,7 +39,7 @@ const VideoFmrpSection = (props: Props) => {
                     initial="rest"
                     whileHover="hover"
                     whileTap="press"
-                    className='relative 3xl:w-full lg:w-[75%] w-full aspect-1.5/1 cursor-pointer'
+                    className='relative 3xl:w-full lg:w-[80%] w-full aspect-1.5/1 cursor-pointer'
                     onClick={() => setShowVideoPopup(true)}
                 >
                     <Image
@@ -52,7 +52,7 @@ const VideoFmrpSection = (props: Props) => {
 
                     {/* Nút phát video - Luôn nằm giữa */}
                     <motion.button
-                        className="absolute top-[50%] left-[50%] 3xl:w-[200px] lg:w-[160px] md:w-[140px] w-[120px] 3xl:h-[160px] lg:h-[120px] md:h-[100px] h-[80px] -translate-x-[50%] -translate-y-[50%] bg-[#C7DFFB]/80 hover:bg-[#C7DFFB]/60 border border-[#92BFF7] backdrop-blur-[10px] flex items-center justify-center md:rounded-3xl rounded-xl custom-transition"
+                        className="absolute top-[50%] left-[50%] 3xl:w-[200px] 2xl:w-[160px] md:w-[140px] w-[120px] 3xl:h-[160px] 2xl:h-[120px] md:h-[100px] h-[80px] -translate-x-[50%] -translate-y-[50%] bg-[#C7DFFB]/80 hover:bg-[#C7DFFB]/60 border border-[#92BFF7] backdrop-blur-[10px] flex items-center justify-center md:rounded-3xl rounded-xl custom-transition"
                         variants={{
                             // rest: { scale: 1 },
                             // hover: { scale: 1 },
@@ -60,7 +60,7 @@ const VideoFmrpSection = (props: Props) => {
 
                     >
                         <motion.div
-                            className="flex items-center justify-center 3xl:size-16 lg:size-12 md:size-10 size-8"
+                            className="flex items-center justify-center 3xl:size-16 2xl:size-12 md:size-10 size-8"
                             variants={{
                                 rest: { scale: 1 },
                                 hover: { scale: 1.2 }, // Khi hover vào button, div cũng scale lớn hơn

@@ -130,7 +130,7 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
                     {/* Main content container */}
                     <motion.div
                         ref={constraintsRef}
-                        className="relative w-full h-full flex items-center justify-center overflow-hidden"
+                        className="relative w-full h-full flex items-center justify-center text-center overflow-hidden"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Image container with zoom and drag */}

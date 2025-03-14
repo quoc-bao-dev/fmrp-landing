@@ -15,11 +15,13 @@ interface CompanyInfoItem {
 interface ServiceItem {
     name: string;
     link: string;
+    link_type: string;
 }
 
 interface PolicyItem {
     name: string;
     link: string;
+    link_type: string;
 }
 
 const companyInfo: CompanyInfoItem[] = [
@@ -36,18 +38,18 @@ const companyInfo: CompanyInfoItem[] = [
 ];
 
 const services: ServiceItem[] = [
-    { name: "Thiết kế Website", link: "#" },
-    { name: "Thiết kế App Mobile", link: "/services/app-development" },
-    { name: "Thuê Hosting", link: "/services/hosting" },
-    { name: "Thuê IT Outsourcing", link: "/services/it-outsourcing" },
-    { name: "FMRP - Trợ lý sản xuất", link: "#" },
-    { name: "FPOS - Trợ lý bán hàng", link: "#" }
+    { name: "Thiết kế Website", link: "https://thietkewebfoso.com/", link_type: "new_tab" },
+    { name: "Thiết kế App Mobile", link: "https://thietkeappfoso.com/", link_type: "new_tab" },
+    { name: "Thuê Hosting & Server", link: "https://fososoft.vn/bang-gia-server/", link_type: "new_tab" },
+    { name: "Thuê IT Outsourcing", link: "https://fososoft.vn/dich-vu-cho-thue-nhan-su/", link_type: "new_tab" },
+    { name: "FMRP - Trợ lý sản xuất", link: "/products/fmrp", link_type: "normal" },
+    { name: "FPOS - Trợ lý bán hàng", link: "https://fososoft.vn/fpos-banhang/", link_type: "new_tab" }
 ];
 
 const policies: PolicyItem[] = [
-    { name: "Chính sách bảo mật", link: "#" },
-    { name: "Quy định thanh toán", link: "#" },
-    { name: "Chính sách cookie", link: "#" }
+    { name: "Chính sách bảo mật", link: "/policy", link_type: "normal" },
+    { name: "Quy định thanh toán", link: "/policy", link_type: "normal" },
+    { name: "Chính sách cookie", link: "/policy", link_type: "normal" }
 ];
 
 

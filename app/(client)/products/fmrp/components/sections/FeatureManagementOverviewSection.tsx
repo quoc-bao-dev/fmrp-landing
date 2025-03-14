@@ -12,6 +12,8 @@ import CaretDoubleRightIcon from '@/components/icons/fmrp/CaretDoubleRightIcon';
 import { useResizeStore } from '@/stores/useResizeStore';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
+import { motion } from 'framer-motion'
+
 type Props = {}
 
 const dataTab = [
@@ -117,7 +119,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                             <ScrollBar orientation='horizontal' />
                         </ScrollArea>
                         :
-                        <div className='flex items-center justify-between gap-4 border border-[#09090B]/10 3xl:rounded-[40px] rounded-3xl 3xl:p-12 xl:p-6 p-4 w-full overflow-auto'>
+                        <div className='flex items-center justify-between gap-4 border border-[#09090B]/10 3xl:rounded-[40px] rounded-3xl 3xl:p-8 xl:p-6 p-4 w-full overflow-auto'>
                             {
                                 dataTab.map((item) => {
                                     const IconComponent = item.icon;
@@ -139,7 +141,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                                             }}
                                         >
                                             <IconComponent
-                                                className={`${isActive ? "" : "text-[#809FB8]"} 3xl:size-16 xxl:size-10 size-9`}
+                                                className={`${isActive ? "" : "text-[#809FB8]"} 3xl:size-14 xxl:size-10 size-9`}
                                                 style={{
                                                     background: isActive ? "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)" : "", // Fix màu khi không active
                                                     WebkitBackgroundClip: isActive ? "text" : "none",
@@ -148,7 +150,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                                                 color={isActive ? "none" : "#809FB8"} // Đảm bảo có đường viền khi không active
                                                 isActive={isActive}
                                             />
-                                            <span className="3xl:text-[24px] xxl:text-[18px] text-base font-medium">
+                                            <span className="3xl:text-[22px] xxl:text-[18px] text-base font-medium">
                                                 {item.name}
                                             </span>
                                         </div>
@@ -157,7 +159,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                             }
 
                             {/* Xem thêm */}
-                            <div className="flex items-center gap-2 xxl:px-10 px-6 py-4 cursor-pointer border-l border-[#09090B]/10 text-[#4D5F6E] hover:text-[#0375F3] transition-all duration-300 ease-in-out group">
+                            <div onClick={() => window.open("https://bom.so/mrpbeta")} className="flex items-center gap-2 xxl:px-10 px-6 py-4 cursor-pointer border-l border-[#09090B]/10 text-[#4D5F6E] hover:text-[#0375F3] transition-all duration-300 ease-in-out group">
                                 <span className="text-button font-medium">Xem thêm </span>
                                 <CaretDoubleRightIcon className="3xl:size-8 size-6 text-[#4D5F6E] group-hover:text-[#0375F3] transition-all duration-300 ease-in-out" />
                             </div>
@@ -167,8 +169,15 @@ const FeatureManagementOverviewSection = (props: Props) => {
 
             {
                 isStatePageFmrp.isActiveManagement &&
-                <div className='lg:mx-12 mx-4'>
-                    <div className='w-full h-auto aspect-1.6/1'>
+                <div className='3xl:mx-32 lg:mx-12 mx-4'>
+                    <motion.div
+                        key={isStatePageFmrp.isActiveManagement.image} // Đảm bảo Framer Motion biết khi nào ảnh thay đổi
+                        initial={{ opacity: 0, scale: 0.95 }} // Bắt đầu mờ & nhỏ hơn
+                        animate={{ opacity: 1, scale: 1 }} // Dần hiển thị và về kích thước bình thường
+                        exit={{ opacity: 0, scale: 0.95 }} // Biến mất mềm mại
+                        transition={{ duration: 0.5, ease: "easeOut" }} // Mượt hơn
+                        className="w-full h-auto aspect-1.6/1"
+                    >
                         <Image
                             width={1920}
                             height={1080}
@@ -176,10 +185,10 @@ const FeatureManagementOverviewSection = (props: Props) => {
                             src={isStatePageFmrp.isActiveManagement.image}
                             className="size-full object-contain aspect-1.6/1"
                         />
-                    </div>
+                    </motion.div>
                 </div>
             }
-        </div >
+        </div>
     )
 }
 

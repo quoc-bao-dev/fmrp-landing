@@ -18,7 +18,7 @@ const features = [
         title: "Tư vấn giải pháp",
         description:
             "Bạn đang cần tư vấn giải pháp phù hợp cho doanh nghiệp của mình? Hãy gửi thông tin và đội ngũ sẽ tư vấn thêm.",
-        link: "/tu-van",
+        link: "https://zalo.me/2281264205827497572",
         linkText: "Tư vấn",
     },
     {
@@ -26,14 +26,14 @@ const features = [
         title: "Hỗ trợ kỹ thuật",
         description:
             "Bạn cần trợ giúp về các tính năng kỹ thuật trên dự án hiện đang đồng hành cùng FOSO, hãy gửi yêu cầu đến bộ phận kỹ thuật ngay.",
-        link: "/ho-tro",
+        link: "https://zalo.me/2281264205827497572",
         linkText: "Hỗ trợ",
     },
     {
         icon: <HandshakeIconLinear />,
         title: "Hợp tác",
         description: "Bạn muốn trở thành đối tác với FOSO để xây dựng các giải pháp công nghệ mới mang tính biểu tượng cho thời đại mới hãy liên hệ ngay.",
-        link: "/hop-tac",
+        link: "https://zalo.me/2281264205827497572",
         linkText: "Hợp tác",
     },
 ];

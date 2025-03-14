@@ -3,7 +3,7 @@ import Link from "next/link"; // Nếu dùng Next.js, có thể dùng Link
 
 interface InfoSectionProps {
     title?: string;
-    items: { name?: string; label?: string; value?: JSX.Element | string; link?: string }[];
+    items: { name?: string; label?: string; value?: JSX.Element | string; link?: string; link_type?: string }[];
 }
 
 const InfoSection = ({ title, items }: InfoSectionProps) => (
@@ -26,7 +26,11 @@ const InfoSection = ({ title, items }: InfoSectionProps) => (
                                     (
                                         item.link ?
                                             (
-                                                <Link href={item.link} className="hover:text-[#F1F5F7] transition-colors duration-200 ease-in-out cursor-pointer">
+                                                <Link
+                                                    href={item.link}
+                                                    className="hover:text-[#F1F5F7] transition-colors duration-200 ease-in-out cursor-pointer"
+                                                    target={item.link_type === "new_tab" ? "_blank" : "_self"}
+                                                >
                                                     {item.name}
                                                 </Link>
                                             )

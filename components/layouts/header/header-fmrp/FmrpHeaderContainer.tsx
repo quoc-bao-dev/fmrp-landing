@@ -49,7 +49,7 @@ const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Kiến Thức",
-        link: "/blogs",
+        link: "https://fososoft.vn/fblog/",
         type: "default",
         visible: true,
     },

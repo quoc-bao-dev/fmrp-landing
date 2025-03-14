@@ -31,6 +31,7 @@ const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description, link, lin
             href={link}
             onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
             onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
+            target="_blank"
         >
             <div className="space-y-6">
                 {/* Icon */}
@@ -53,19 +54,6 @@ const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description, link, lin
 
 
             {/* CTA Button */}
-            {/* <ButtonAnimation
-                type="button"
-                title={linkText}
-                reverse={true}
-                icon={
-                    <div className='size-5'>
-                        <GoArrowUpRight className='size-full' />
-                    </div>
-                }
-                className="flex items-center gap-2 text-default text-[#10805B] group-hover:bg-[#A3EED6] group-hover:text-[#052B1E] font-medium px-6 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
-                onClick={() => { }}
-            /> */}
-
             <ButtonAnimationNew
                 title={linkText}
                 icon={
