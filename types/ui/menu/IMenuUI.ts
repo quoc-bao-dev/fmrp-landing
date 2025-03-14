@@ -1,19 +1,20 @@
 import { ReactNode } from "react";
 
 // Type cho một mục con trong menu (submenu items)
-interface SubMenuItem {
+interface ISubMenuItem {
     id: string;
     name: string;
     link: string;
     icon: ReactNode;
     description: string;
     typeIcon: string;
+    typeLink?: string;
 }
 
 // Type cho từng nội dung trong tab
 interface SubMenuContent {
     image: string;
-    items: SubMenuItem[];
+    items: ISubMenuItem[];
 }
 
 // Type cho SubMenu
@@ -28,11 +29,11 @@ interface IMenuHeader {
     id: string;
     name: string;
     link: string;
-    type?: "default" | "solution" | "resource";
+    type?: "default" | "products" | "resource";
     description?: string;
     subMenu?: SubMenu;
     visible: boolean;
 }
 
 
-export type { IMenuHeader };
+export type { IMenuHeader, ISubMenuItem };

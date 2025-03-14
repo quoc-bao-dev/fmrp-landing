@@ -4,6 +4,7 @@ import Link from "next/link";
 import CaretRightIcon from "@/components/icons/common/CaretRightIcon";
 import Image from 'next/image';
 import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
+import { ISubMenuItem } from "@/types/ui/menu/IMenuUI";
 
 interface SubmenuTooltipProps {
     subMenu: any;
@@ -37,13 +38,14 @@ const SubmenuTooltip = memo(({ subMenu }: SubmenuTooltipProps) => {
 
                         <div className="space-y-3">
                             {
-                                subMenu.content[category].items.map((item: any) => (
+                                subMenu.content[category].items.map((item: ISubMenuItem) => (
                                     <motion.div key={`submenu-${item.id}`} whileTap={"press"} variants={variantButtonPressZoom} transition={{ duration: 0.2, ease: "easeOut" }}>
                                         <Link
                                             href={item.link}
                                             className="flex items-center 2xl:gap-3 gap-2.5 hover:bg-[#E8FBF5]/80 p-2 rounded-3xl relative custom-transition"
                                             onMouseEnter={() => handleMouseEnter(item.id)}
                                             onMouseLeave={handleMouseLeave}
+                                            target={item.typeLink === "new_tab" ? "_blank" : "_self"}
                                         >
                                             {/* Icon */}
                                             <div className="2xl:size-12 size-11 flex items-center justify-center">

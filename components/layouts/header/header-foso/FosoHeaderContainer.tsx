@@ -46,8 +46,8 @@ const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Giải Pháp",
-        link: "solution",
-        type: "solution",
+        link: "products",
+        type: "products",
         description: "Dịch vụ công nghệ giúp tối ưu vận hành doanh nghiệp.",
         subMenu: {
             tabs: ["Dịch vụ", "Sản phẩm"],
@@ -59,34 +59,38 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "1",
                             name: "Thiết Kế Website",
-                            link: "/solution/website",
+                            link: "https://thietkewebfoso.com/",
                             icon: <LaptopIconLinear className='size-full' />,
                             description: "Bệ phóng thương hiệu",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         },
                         {
                             id: "3",
                             name: "Thiết Kế App Mobile",
-                            link: "/solution/mobile",
+                            link: "https://thietkeappfoso.com/",
                             icon: <DeviceMobileIconLinear className='size-full' />,
                             description: "Nâng tầm doanh nghiệp",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         },
                         {
                             id: "2",
                             name: "Thuê IT Outsourcing",
-                            link: "/solution/it-outsourcing",
+                            link: "https://fososoft.vn/dich-vu-cho-thue-nhan-su/",
                             icon: <CodeIconLinear className='size-full' />,
                             description: "Giải pháp nhân lực linh hoạt",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         },
                         {
                             id: "4",
                             name: "Thuê Hosting & Server",
-                            link: "/solution/server",
+                            link: "https://fososoft.vn/bang-gia-server/",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
                             description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         }
                     ]
                 },
@@ -100,15 +104,17 @@ const dataHeader: IMenuHeader[] = [
                             icon: <FmrpIcon className='size-full rounded-[10px]' />,
                             description: "Quản lý sản xuất tối ưu với FMRP",
                             typeIcon: "logo",
+                            typeLink: "normal",
                         },
                         {
                             id: "6",
                             name: "FPOS - Trợ Lý Bán Hàng",
-                            link: "/products/fpos",
-                            icon: "/icons/svg/linear-gradient/fpos.svg",
-                            // icon: <FposIcon className='size-full rounded-[10px]' />,
+                            link: "https://fososoft.vn/fpos-banhang/",
+                            // icon: "/icons/svg/linear-gradient/fpos.svg",
+                            icon: <FposIcon className='size-full rounded-[10px]' />,
                             description: "Tối ưu vận hành, bứt phá doanh thu",
                             typeIcon: "logo",
+                            typeLink: "new_tab",
                         }
                     ]
                 }
@@ -132,18 +138,20 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "8",
                             name: "Dự án",
-                            link: "/solutions/website",
+                            link: "/resource/projects",
                             icon: <FolderStarIconLinear className='size-full' />,
                             description: "Các dự án đã triển khai",
                             typeIcon: "default",
+                            typeLink: "normal"
                         },
                         {
                             id: "9",
                             name: "Câu chuyện khách hàng",
-                            link: "/solutions/mobile",
+                            link: "https://fososoft.vn/fblog/",
                             icon: <UsersThreeIconLinear className='size-full' />,
                             description: "Chia sẻ từ khách hàng",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         },
                     ]
                 },
@@ -153,18 +161,20 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "10",
                             name: "Diễn đàn",
-                            link: "/products/erp",
+                            link: "https://www.facebook.com/groups/mrpvn",
                             icon: <ChatsTeardropIconLinear className='size-full' />,
                             description: "Tham gia cộng đồng ngay",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         },
                         {
                             id: "11",
                             name: "Blog",
-                            link: "/products/crm",
+                            link: "https://fososoft.vn/fblog/",
                             icon: <PencilSimpleLineIconLinear className='size-full' />,
                             description: "Cập nhật tin tức, kiến thức",
                             typeIcon: "default",
+                            typeLink: "new_tab",
                         }
                     ]
                 }

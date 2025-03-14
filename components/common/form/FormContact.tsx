@@ -18,6 +18,7 @@ import { useResizeStore } from '@/stores/useResizeStore';
 import { cn } from '../../../lib/utils';
 import { useStatePageContactUs } from '../../../app/(client)/contact-us/_state/useStatePageContactUs';
 import { useSheetStores } from '../../../stores/useSheetStores';
+import { usePostContactFososoft } from '@/managers/api/contact/usePostContactFososoft';
 
 interface FormValues {
     email: string;
@@ -85,9 +86,7 @@ const FormContact = ({ className }: FormContactProps) => {
         field.onChange(isSameValue ? undefined : value);
     };
 
-    const onSubmit = (value: any) => {
-
-    }
+    const { onSubmit: onSubmit, isLoading } = usePostContactFososoft(form)
 
     return (
         <Form {...form}>

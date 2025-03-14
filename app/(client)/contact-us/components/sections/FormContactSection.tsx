@@ -148,45 +148,7 @@ const serviceList = [
     },
 ]
 
-const defaultValues: FormValues = {
-    email: "",
-    fullname: "",
-    phone: "",
-    description: "",
-    file: [],
-    name_company: "",
-    service: "",
-    role: ""
-}
-
 const FormContactSection = (props: Props) => {
-    const { isVisibleTablet } = useResizeStore()
-    const [isHovered, setIsHovered] = useState<boolean>(false);
-    const { isStatePageContactUs, queryKeyIsStatePageContactUs } = useStatePageContactUs()
-    const form = useForm({
-        defaultValues: {
-            ...defaultValues,
-            mode: "onChange", // Chế độ validation
-        }
-    })
-
-    useEffect(() => {
-        if (!form.getValues("service") && serviceList.length > 0) {
-            form.setValue("service", serviceList[0].id); // Đặt giá trị mặc định
-        }
-    }, [form]);
-
-    // Hàm Chọn riêng lẻ từng item
-    const handleSingleSelect = (value: any, field: any, type?: string, item?: any, index?: number) => {
-        const isSameValue = JSON.stringify(value) === JSON.stringify(field.value); // So sánh đối tượng
-        // Nếu chọn lại chính nó, đặt thành undefined
-        field.onChange(isSameValue ? undefined : value);
-    };
-
-    const onSubmit = (value: any) => {
-
-    }
-
     return (
         <div className='custom-padding-section'>
             <div className='custom-container flex flex-col 3xl:gap-12 gap-10'>

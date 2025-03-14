@@ -50,16 +50,16 @@ const nextConfig: NextConfig = {
                 destination: '/',
                 permanent: true
             },
-            // {
-            //     source: '/auth/information',
-            //     destination: '/auth/information/profile',
-            //     permanent: true
-            // },
-            // {
-            //     source: '/auth',
-            //     destination: '/auth/information/profile',
-            //     permanent: true
-            // },
+            {
+                source: '/products',
+                destination: '/products/fmrp',
+                permanent: true
+            },
+            {
+                source: '/resource',
+                destination: '/resource/projects',
+                permanent: true
+            },
         ]
     },
 
