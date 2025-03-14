@@ -100,7 +100,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     }
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center z-[9999]">
             {/* 🔍 reCAPTCHA Invisible */}
             <ReCAPTCHA
                 ref={recaptchaRef}

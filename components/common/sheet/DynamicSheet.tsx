@@ -45,7 +45,7 @@ export function DynamicSheet({ }: DynamicSheetProps) {
                 <SheetHeader>
                     <SheetTitle className="sr-only">Form Liên Hệ</SheetTitle>
                 </SheetHeader>
-                <SheetContent overlayClassName={"backdrop-blur-[16px] bg-[#FFFFFF]/5"} className="px-10 py-6 sm:max-w-md md:max-w-lg bg-white lg:max-w-screen-lg overflow-y-auto custom-size-text">
+                <SheetContent overlayClassName={"backdrop-blur-[16px] bg-[#FFFFFF]/5"} className="px-10 py-6 bg-white 3xl:max-w-screen-lg xxl:max-w-screen-md max-w-screen-sm overflow-y-auto custom-size-text">
                     {
                         isAuthStatusSheet && (
                             statusSheet === "contact" &&
