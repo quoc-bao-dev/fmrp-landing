@@ -20,6 +20,7 @@ const steps = [
         title_gradient: "Tăng trưởng bền vững",
         title_normal: "Tối ưu quy trình sản xuất –",
         image: "/background/ui/fmrp/process/bg1.svg",
+        image_mobile: "/background/ui/fmrp/process/bg5.svg",
         hightlight_first: false,
         description: "Trợ lý sản xuất thông minh, giúp doanh nghiệp lập kế hoạch hiệu quả, theo dõi lệnh sản xuất, quản lý nguyên vật liệu (BOM) và giám sát tiến độ theo thời gian thực.",
         // component: ProcessManufacture
@@ -29,6 +30,7 @@ const steps = [
         title_gradient: "Tăng Tốc Doanh Thu,",
         title_normal: "Giảm Thiểu Rủi Ro",
         image: "/background/ui/fmrp/process/bg2.svg",
+        image_mobile: "/background/ui/fmrp/process/bg6.svg",
         hightlight_first: true,
         description: "Với giao diện trực quan, vận hành linh hoạt, FMRP giúp tối ưu quy trình, giảm lãng phí và nâng cao năng suất, đảm bảo doanh nghiệp vận hành trơn tru và phát triển bền vững.",
         // component: ProcessManufacture
@@ -38,6 +40,7 @@ const steps = [
         title_gradient: "kiểm soát chặt chẽ",
         title_normal: "Tối ưu chuỗi cung ứng,",
         image: "/background/ui/fmrp/process/bg3.svg",
+        image_mobile: "/background/ui/fmrp/process/bg7.svg",
         hightlight_first: false,
         description: "Theo dõi nhập kho đến quản lý công nợ. Hệ thống tự động đồng bộ dữ liệu, giúp kiểm soát hàng tồn kho, hạn chế sai sót và tối ưu dòng tiền. Đảm bảo chuỗi cung ứng vận hành hiệu quả.",
         // component: ProcessManufacture
@@ -47,6 +50,7 @@ const steps = [
         title_gradient: "Mọi ngành nghề",
         title_normal: "Ứng dụng cho",
         image: "/background/ui/fmrp/process/bg4.svg",
+        image_mobile: "/background/ui/fmrp/process/bg4.svg",
         hightlight_first: false,
         description: "Với giao diện trực quan, vận hành linh hoạt, FMRP giúp tối ưu quy trình, giảm lãng phí và nâng cao năng suất, đảm bảo doanh nghiệp vận hành trơn tru và phát triển bền vững.",
         // component: ProcessManufacture
@@ -104,21 +108,33 @@ const StepsProcess = (props: Props) => {
                                 className={`${index !== steps.length - 1 ? "lg:min-h-[100vh] h-full" : "3xl:pb-10 pb-8"} -space-y-10  flex flex-col items-center justify-start gap-10 w-full max-w-full lg:pl-20 pl-8 relative`}
                             >
                                 <div className='flex flex-col items-center justify-center gap-2'>
-                                    <div className='flex items-center gap-2 font-extrabold'>
-                                        <span className={`${item.hightlight_first ? "order-2" : "order-1"} flex text-title-section-small text-[#1A2025] capitalize`}>{item.title_normal}</span>
-                                        <span
-                                            className={`${item.hightlight_first ? "order-1" : "order-2"} flex text-title-section-small capitalize`}
-                                            style={{
-                                                background: "linear-gradient(107.37deg, #0375F3 30.15%, #036EEA 32.4%, #0267E1 34.65%, #0261D7 36.89%, #025ACE 39.14%, #0254C5 41.39%, #024EBC 43.63%, #0148B3 45.88%, #0142A9 48.13%, #013DA0 50.38%)",
-                                                WebkitBackgroundClip: "text",
-                                                WebkitTextFillColor: "transparent",
-                                            }}
-                                        >
-                                            {item.title_gradient}
-                                        </span>
-                                    </div>
+                                    <span className="font-extrabold text-title-section-small text-[#1A2025] capitalize space-x-2 text-center">
+                                        {item.hightlight_first ? (
+                                            <>
+                                                <span className="lg:order-2">{item.title_gradient}</span>
+                                                <span className="lg:order-1" style={{
+                                                    background: "linear-gradient(107.37deg, #0375F3 30.15%, #036EEA 32.4%, #0267E1 34.65%, #0261D7 36.89%, #025ACE 39.14%, #0254C5 41.39%, #024EBC 43.63%, #0148B3 45.88%, #0142A9 48.13%, #013DA0 50.38%)",
+                                                    WebkitBackgroundClip: "text",
+                                                    WebkitTextFillColor: "transparent"
+                                                }}>
+                                                    {item.title_normal}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className="lg:order-1">{item.title_normal}</span>
+                                                <span className="lg:order-2" style={{
+                                                    background: "linear-gradient(107.37deg, #0375F3 30.15%, #036EEA 32.4%, #0267E1 34.65%, #0261D7 36.89%, #025ACE 39.14%, #0254C5 41.39%, #024EBC 43.63%, #0148B3 45.88%, #0142A9 48.13%, #013DA0 50.38%)",
+                                                    WebkitBackgroundClip: "text",
+                                                    WebkitTextFillColor: "transparent"
+                                                }}>
+                                                    {item.title_gradient}
+                                                </span>
+                                            </>
+                                        )}
+                                    </span>
 
-                                    <div className='text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[65%] max-w-[70%]'>
+                                    <div className='text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[65%] lg:max-w-[70%]'>
                                         <span>
                                             {item.description}
                                         </span>
@@ -130,7 +146,7 @@ const StepsProcess = (props: Props) => {
                                 </div> */}
                                 <div className={`w-full max-w-full flex items-center justify-center`}>
                                     <BlurImage
-                                        src={item.image}
+                                        src={(isVisibleTablet ? item.image_mobile : item.image) || ""}
                                         alt={"image"}
                                         width={800}
                                         height={600}
