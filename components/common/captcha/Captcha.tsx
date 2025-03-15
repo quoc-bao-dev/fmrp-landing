@@ -8,6 +8,7 @@ import CheckIcon from './../../icons/common/CheckIcon';
 import { useStatePageContactUs } from "@/app/(client)/contact-us/_state/useStatePageContactUs";
 import { useToastStore } from "@/stores/useToastStore";
 import { useStateComponentContact } from "@/managers/state/contact/useStateComponentContact";
+import { useSheetStores } from '../../../stores/useSheetStores';
 
 interface CaptchaProps {
     onVerify: (token: string | null) => void;
@@ -17,11 +18,11 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
-    const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
 
     const { setToast } = useToastStore()
+    const { statusSheet } = useSheetStores()
 
     const { isStateComponentContact, queryKeyIsStateComponentContact } = useStateComponentContact()
 
@@ -36,7 +37,6 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     // ✅ Khi xác minh thành công
     const handleVerify = (token: string | null) => {
         if (token) {
-            setCaptchaValue(token);
             onVerify(token);
             queryKeyIsStateComponentContact({
                 tokenChecked: true,
@@ -66,6 +66,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
 
         try {
             const token = await recaptchaRef.current.executeAsync();
+
             if (!token) {
                 console.error("🚨 Không có token!");
                 queryKeyIsStateComponentContact({
@@ -100,19 +101,20 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
     }
 
     return (
-        <div className="flex justify-center z-[9999]">
+        <div className="flex justify-center pointer-events-auto">
             {/* 🔍 reCAPTCHA Invisible */}
             <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey={siteKey}
                 size="invisible"
-                // badge="inline"
                 onChange={handleVerify}
             />
 
             {/* 🔘 Nút Custom */}
             <div
-                className={`${isStateComponentContact?.tokenFailed ? "!border-red-500" : "border-[#09224B]"} p-6 relative flex items-center justify-between w-[360px] h-[90px] border rounded-2xl overflow-hidden shadow-md bg-white transition-all  hover:bg-gray-100
+                className={`${isStateComponentContact?.tokenFailed ? "!border-red-500" : "border-[#09224B]"}
+                ${statusSheet === "contact" ? "3xl:p-6 p-5 3xl:w-[360px] 3xl:h-[90px] w-[320px] h-[80px]" : "p-6 w-[360px] h-[90px]"}
+                relative flex items-center justify-between  border rounded-2xl overflow-hidden shadow-md bg-white transition-all  hover:bg-gray-100
                 `}
             >
                 {/* 🔲 Custom Checkbox */}
@@ -120,7 +122,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                     {/* 🔲 Ô Checkbox (ẨN khi đang loading hoặc đã check thành công) */}
                     {!isVerifying && !isStateComponentContact?.tokenChecked && (
                         <motion.div
-                            className={`size-10 border rounded-md flex items-center justify-center transition-all relative
+                            className={`${statusSheet === "contact" ? "3xl:size-10 size-9" : "size-10"} border rounded-md flex items-center justify-center transition-all relative
             bg-white border-[#09224B]/[22%] cursor-pointer hover:border-blue-400`}
                             whileTap={{ scale: 0.9 }}
                             transition={{ ease: "easeOut", duration: 0.2 }}
@@ -132,7 +134,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                         {/* 🔄 Loading animation (Hiển thị khi đang xác minh) */}
                         {isVerifying && (
                             <motion.div
-                                className="w-6 h-6 border-4 border-gray-300 border-t-green-500 rounded-full animate-spin"
+                                className={`${statusSheet === "contact" ? "3xl:size-6 size-5" : "size-6"} border-4 border-gray-300 border-t-green-500 rounded-full animate-spin`}
                                 initial={{ opacity: 0, scale: 0 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.3 }}
@@ -142,7 +144,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                         {/* ✔ Checkmark (Hiển thị khi thành công) */}
                         {!isVerifying && isStateComponentContact?.tokenChecked && (
                             <motion.span
-                                className=" font-bold size-8"
+                                className={`${statusSheet === "contact" ? "3xl:size-8 size-7" : "size-8"} font-bold `}
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -153,14 +155,14 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                     </div>
 
                     {/* 📢 Text hướng dẫn */}
-                    <span className="3xl:text-base text-sm text-[#09224B] font-medium cursor-default    ">
+                    <span className="3xl:text-base text-sm text-[#09224B] font-medium cursor-default">
                         {isVerifying ? "Verifying..." : "Click to Verify"}
                     </span>
                 </div>
 
                 {/* 🔹 Phần logo reCAPTCHA */}
-                <div className="absolute right-0 w-[90px] h-full bg-[#09224B] border border-[#09224B] flex items-center justify-center">
-                    <div className="size-14">
+                <div className={` w-[90px] absolute right-0  h-full bg-[#09224B] border border-[#09224B] flex items-center justify-center`}>
+                    <div className={`${statusSheet === "contact" ? "3xl:size-14 size-12" : "size-14"}`}>
                         <Image
                             width={100}
                             height={100}

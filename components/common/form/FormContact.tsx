@@ -333,7 +333,7 @@ const FormContact = ({ className }: FormContactProps) => {
                                         classNameButtonTrigger={`
                                         ${isStateComponentContact?.combobox?.roles?.open ? 'border-[#15AA7A]' : ''}
                                         ${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"}
-                                        bg-white 3xl:text-base lg:text-sm text-base rounded-lg w-full h-full  px-3 py-1 text-[#33404A] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`}
+                                        bg-white 3xl:text-base lg:text-xs text-sm rounded-lg w-full h-full  px-3 py-1 text-[#33404A] bg-transparent text-sm-default w-full h-12 shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`}
                                         classNameInputSearch='bg-white rounded-none border-t-0 border-x-0 border-b'
                                         colorActive='#15AA7A'
                                     />
@@ -362,14 +362,14 @@ const FormContact = ({ className }: FormContactProps) => {
                                     >
                                         Vui lòng chọn dịch vụ bạn quan tâm <span className="text-[#FA3434]">*</span>
                                     </FormLabel>
-                                    <FormControl className='max-w-[80%]'>
+                                    <FormControl className='max-w-full'>
                                         <RadioGroup
                                             onValueChange={(value) => {
                                                 console.log("Selected service:", value)
                                                 field.onChange(value)
                                             }}
                                             value={field.value}
-                                            className="flex flex-wrap gap-3 2xl:max-w-[80%] lg:max-w-[90%] max-w-full"
+                                            className="flex flex-wrap gap-3 max-w-full"
                                         >
                                             {
                                                 dataTypeServicesList && dataTypeServicesList.map((service: any) => (
@@ -382,10 +382,13 @@ const FormContact = ({ className }: FormContactProps) => {
                                                         className="w-fit"
                                                     >
                                                         <Label
-                                                            className={cn(
-                                                                "text-sm border border-[#D9E1E7] rounded-[8px] p-3 font-medium text-[#33404A] cursor-pointer w-fit flex items-center gap-2 custom-transition",
-                                                                field.value === service.id ? "bg-[#A3EED6] border-[#15AA7A]" : "hover:bg-[#A3EED6] hover:border-[#15AA7A]"
+                                                            className={`${cn(
+                                                                "border border-[#D9E1E7] rounded-[8px] p-3 font-medium text-[#33404A] cursor-pointer w-fit flex items-center gap-2 custom-transition",
+                                                                field.value === service.id ? "bg-[#A3EED6] border-[#15AA7A]" : "hover:bg-[#A3EED6] hover:border-[#15AA7A]",
+                                                                statusSheet === "contact" ? "3xl:p-3 p-2.5 3xl:text-sm text-xs" : "p-3 text-sm"
                                                             )}
+                                                            
+                                                            `}
                                                         >
                                                             <RadioGroupItem value={service.id} className="sr-only" />
                                                             {service.name}
@@ -423,7 +426,7 @@ const FormContact = ({ className }: FormContactProps) => {
                                             id="description"
                                             placeholder="Nhập mô tả"
                                             className={`${fieldState?.invalid && fieldState?.error ? "border border-[#F15A5A] focus-visible:ring-[#F15A5A]" : "border border-[#D9E1E7]"} 
-                                            ${statusSheet === "contact" ? "lg:h-40 h-52" : "lg:h-28 h-52"}
+                                            ${statusSheet === "contact" ? "3xl:h-40 lg:h-28 h-52" : "lg:h-28 h-52"}
                                 text-[#333538] bg-transparent text-sm-default w-full  shadow-none rounded-[8px] placeholder:text-[#33404A] placeholder:font-medium focus:ring-none focus:outline-none`}
                                             {...field}
                                         />

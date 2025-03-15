@@ -5,9 +5,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { HiOutlineArrowNarrowUp } from "react-icons/hi";
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollToTop } from '@/utils/scroll/scrollUtils';
+import { usePathname } from 'next/navigation';
 
 const ButtonToTop = () => {
     const [isShow, sIsShow] = useState(false)
+    const pathname = usePathname()
 
     const handleNavigation = useCallback(() => {
         var heightScreen = window.innerHeight;
@@ -44,7 +46,7 @@ const ButtonToTop = () => {
                         onClick={handleClick}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className='relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center bg-[#53B086]'
+                        className={`${pathname === "/products/fmrp" ? "bg-[#0375f3]" : "bg-[#53B086]"} relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center`}
                     >
                         <HiOutlineArrowNarrowUp className='text-2xl' />
                     </motion.button>

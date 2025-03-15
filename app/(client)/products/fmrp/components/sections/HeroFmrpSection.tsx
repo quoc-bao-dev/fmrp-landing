@@ -6,7 +6,6 @@ import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 import { motion } from 'framer-motion'
 import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
 import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation';
-import BlurBackground from '../ui/common/BlurBackgroundFixed';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type Props = {}
@@ -158,8 +157,6 @@ const HeroFmrpSection = memo((props: Props) => {
                     </h2>
                 </div>
             </div>
-
-            <BlurBackground />
         </div >
     )
 })

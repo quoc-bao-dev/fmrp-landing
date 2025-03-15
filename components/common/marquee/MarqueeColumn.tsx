@@ -1,7 +1,8 @@
 import { motion, useMotionValue } from "framer-motion";
-import { memo, useRef, useEffect, useCallback } from "react";
+import React, { memo, useRef, useEffect, useCallback } from "react";
 import AvatarCustom from "../avatar/AvatarCustom";
 import { FeedbackItem } from "@/types/feedback/IFeedback";
+import { usePathname } from 'next/navigation';
 
 type MarqueeColumnProps = {
     feedbacks: FeedbackItem[];
@@ -9,6 +10,7 @@ type MarqueeColumnProps = {
 };
 
 const MarqueeColumn = memo(({ feedbacks, direction }: MarqueeColumnProps) => {
+    const pathname = usePathname()
     const y = useMotionValue(0); // Lưu vị trí hiện tại
     const marqueeRef = useRef<HTMLDivElement>(null);
     const animationFrame = useRef<number | null>(null);
@@ -93,18 +95,38 @@ const MarqueeColumn = memo(({ feedbacks, direction }: MarqueeColumnProps) => {
                 ))}
             </motion.div>
 
-            <div
-                className="absolute bottom-0 left-0 w-full h-20"
-                style={{
-                    background: "linear-gradient(360deg, #fff 24%, hsla(0, 0%, 100%, 0))",
-                }}
-            />
-            <div
-                className="absolute top-0 left-0 w-full h-12"
-                style={{
-                    background: "linear-gradient(180deg, #fff 24%, hsla(0, 0%, 100%, 0))",
-                }}
-            />
+            {
+                pathname !== "/products/fmrp" ?
+                    <React.Fragment>
+                        <div
+                            className="absolute bottom-0 left-0 w-full h-20"
+                            style={{
+                                background: "linear-gradient(360deg, #fff 24%, hsla(0, 0%, 100%, 0))",
+                            }}
+                        />
+                        <div
+                            className="absolute top-0 left-0 w-full h-12"
+                            style={{
+                                background: "linear-gradient(180deg, #fff 24%, hsla(0, 0%, 100%, 0))",
+                            }}
+                        />
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <div
+                            className="absolute bottom-0 left-0 w-full h-20"
+                            style={{
+                                background: "linear-gradient(360deg, #fff 24%, hsla(0, 0%, 100%, 0))",
+                            }}
+                        />
+                        <div
+                            className="absolute top-0 left-0 w-full h-12"
+                            style={{
+                                background: "linear-gradient(180deg, #fff 24%, hsla(0, 0%, 100%, 0))",
+                            }}
+                        />
+                    </React.Fragment>
+            }
         </div>
     );
 });

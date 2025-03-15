@@ -18,6 +18,7 @@ export function DynamicSheet({ }: DynamicSheetProps) {
         setIsMounted(true)
     }, [])
 
+
     const handleCloseDialog = (value: boolean, type?: string) => {
         setOpenSheetCustom(value)
 
@@ -45,7 +46,10 @@ export function DynamicSheet({ }: DynamicSheetProps) {
                 <SheetHeader>
                     <SheetTitle className="sr-only">Form Liên Hệ</SheetTitle>
                 </SheetHeader>
-                <SheetContent overlayClassName={"backdrop-blur-[16px] bg-[#FFFFFF]/5"} className="px-10 py-6 bg-white 3xl:max-w-screen-lg xxl:max-w-screen-md max-w-screen-sm overflow-y-auto custom-size-text">
+                <SheetContent
+                    overlayClassName={"backdrop-blur-[16px] bg-[#FFFFFF]/5"}
+                    className="3xl:px-10 px-6 py-6 bg-white 3xl:max-w-screen-lg xl:max-w-[50%] lg:max-w-[60%] overflow-y-auto custom-size-text"
+                >
                     {
                         isAuthStatusSheet && (
                             statusSheet === "contact" &&
@@ -57,7 +61,7 @@ export function DynamicSheet({ }: DynamicSheetProps) {
                                     transition={{ duration: 0.3 }}
                                     className='h-full flex flex-col justify-between gap-2'
                                 >
-                                    <div className="text-[#1A2025] text-title-section-small font-extrabold">
+                                    <div className="text-[#1A2025] 3xl:text-[36px] 2xl:text-[28px] xxl:text-[24px] xl:text-[24px] md:text-[24px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[38px] xxl:!leading-[34px] xl:!leading-[34px] md:!leading-[34px] !leading-[28px] tracking-[-2%] font-extrabold">
                                         Cơ hội để kết nối với chuyên gia và bứt phá doanh thu – Hãy để lại thông tin ngay!
                                     </div>
 

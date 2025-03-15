@@ -121,7 +121,7 @@ function SelectCustomSearch({
                     role="combobox"
                     aria-expanded={open}
                     style={styleButtonTrigger}
-                    className={`${classNameButtonTrigger} 3xl:px-4 px-2 flex text-start justify-between gap-0 disabled:cursor-not-allowed`}
+                    className={`${classNameButtonTrigger} 3xl:px-4 px-3 flex text-start justify-between gap-0 disabled:cursor-not-allowed`}
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -141,20 +141,20 @@ function SelectCustomSearch({
                                                 selected?.map((item: any, index: number) => (
                                                     <span
                                                         key={item.value}
-                                                        className="3xl:text-base text-sm capitalize font-medium w-full"
+                                                        className="3xl:text-base xl:text-sm text-[13px] capitalize font-medium w-full"
                                                     >
                                                         {item?.label || item?.name}{selected?.length - 1 !== index && ","}
                                                     </span>
                                                 ))}
                                         </div>
                                         :
-                                        <div className={`3xl:text-base text-sm font-medium truncate ${classNameTitle}`}>
+                                        <div className={`3xl:text-base xl:text-sm text-[13px] font-medium truncate ${classNameTitle}`}>
                                             {selected?.label || selected?.name}
                                         </div>
                                 )
                                 :
                                 (
-                                    <span className={`3xl:text-base text-sm font-normal caret-transparent ${classNameTitle}`}>
+                                    <span className={`3xl:text-base xl:text-sm text-[13px] font-normal caret-transparent ${classNameTitle}`}>
                                         {title}
                                     </span>
                                 )
@@ -266,7 +266,7 @@ function SelectCustomSearch({
                                                                         // show active ra khi chọn nhiều (multi value)
                                                                         <div className={cn("flex items-center justify-between gap-2 w-full")}>
                                                                             <h1
-                                                                                className={`${isActive(option.value) ? option?.color ? "" : "text-[#F78F08]" : ""} 3xl:text-base text-sm text-wrap font-medium space-x-1 max-w-[80%]`}
+                                                                                className={`${isActive(option.value) ? option?.color ? "" : "text-[#F78F08]" : ""} 3xl:text-base xl:text-sm text-[13px] text-wrap font-medium space-x-1 max-w-[80%]`}
                                                                                 style={{ color: isActive(option.value) ? option?.color ? "" : colorActive : "" }} // Truyền màu động
                                                                             >
                                                                                 {option?.label}{option?.label === option?.label && <span className='hidden'>{index}</span>}
@@ -282,7 +282,7 @@ function SelectCustomSearch({
                                                                         <div
                                                                             className={cn("flex items-center justify-between gap-2 w-full")}>
                                                                             <h1
-                                                                                className={`3xl:text-base text-sm text-wrap font-medium space-x-1 max-w-[80%]`}
+                                                                                className={`3xl:text-base xl:text-sm text-[13px] text-wrap font-medium space-x-1 max-w-[80%]`}
                                                                                 style={{ color: option.value === selected?.value ? option?.color ? "" : colorActive : "" }} // Truyền màu động
                                                                             >
                                                                                 {option?.label}

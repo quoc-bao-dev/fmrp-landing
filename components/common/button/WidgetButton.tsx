@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import ButtonToTop from "./ButtonToTop";
 import SocialMediaButton from "./SocialMediaButton";
+import { usePathname } from 'next/navigation';
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
@@ -32,6 +33,7 @@ const socialButtons = [
 
 // Component WidgetButton
 const WidgetButton: React.FC = () => {
+    const pathname = usePathname()
     return (
         <div className="flex flex-col gap-4 fixed bottom-8 lg:right-8 right-5 z-[999]">
             {socialButtons.map((button, index) => (
@@ -42,7 +44,7 @@ const WidgetButton: React.FC = () => {
                     handleClick={button.handleClick} // ✅ Truyền `handleClick` riêng cho từng button
                 >
                     <div
-                        className="bg-white hover:bg-[#53B086]/80 p-3 rounded-full custom-transition"
+                        className={`${pathname ==="/products/fmrp" ? "hover:bg-[#0375f3]/80":"hover:bg-[#53B086]/80"} bg-white  p-3 rounded-full custom-transition`}
                         style={{
                             boxShadow: "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A"
                         }}

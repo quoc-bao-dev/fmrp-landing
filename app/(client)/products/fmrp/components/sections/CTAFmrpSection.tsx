@@ -95,7 +95,7 @@ const CTAFmrpSection = (props: Props) => {
     }, [inView, activeIndex, handleScroll]);
 
     return (
-        <section ref={setRefs} className={`custom-padding-section h-screen`}>
+        <section ref={setRefs} className={`custom-padding-section h-screen relative z-10`}>
             <div className='custom-container h-full flex flex-col items-center justify-center'>
                 <FloatingRotateAnimation className="w-[200px] h-auto aspect-square">
                     <Image
@@ -113,7 +113,7 @@ const CTAFmrpSection = (props: Props) => {
                             subtitles.map((group, index) => (
                                 <motion.div
                                     key={index}
-                                    className="text-title-section-small font-extrabold text-[#D9E1E7]"
+                                    className="text-title-section-small font-extrabold text-gray-400"
                                     initial={{ opacity: 0 }}
                                     animate={index <= activeIndex ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5 }}

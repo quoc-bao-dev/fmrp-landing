@@ -1,9 +1,7 @@
 'use client'
 
 import React from 'react'
-import HeroSection from './components/sections/HeroFmrpSection'
 import HeroFmrpSection from './components/sections/HeroFmrpSection'
-import BlurBackground from './components/ui/common/BlurBackgroundFixed'
 import IntroductionFmrpSection from './components/sections/IntroductionFmrpSection'
 import FeedbackFmrpSection from './components/sections/FeedbackFmrpSection'
 import PartnerFmrpSection from './components/sections/PartnerFmrpSection'
@@ -16,14 +14,15 @@ import SystemOverviewFmrpSection from './components/sections/SystemOverviewFmrpS
 import AiBomFmrpSection from './components/sections/AiBomFmrpSection'
 import FeatureManagementOverviewSection from './components/sections/FeatureManagementOverviewSection';
 import ProcessOptimizationFmrpSection from './components/sections/ProcessOptimizationFmrpSection'
+import BlurBackgroundFixed from './components/ui/common/BlurBackgroundFixed';
 
 type Props = {}
 
 const AboutUs = (props: Props) => {
     return (
         <main className='min-h-screen relative'>
-            <BlurBackground />
-            <div className='relative z-[1] bg-white overflow-x-hidden'>
+            <BlurBackgroundFixed />
+            <div className='relative z-[1] overflow-x-hidden'>
                 <HeroFmrpSection />
                 <IntroductionFmrpSection />
                 <VideoFmrpSection />
