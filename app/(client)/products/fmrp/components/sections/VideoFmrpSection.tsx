@@ -24,11 +24,13 @@ const VideoFmrpSection = (props: Props) => {
                 <div className='space-x-2 font-extrabold text-center'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Đón đầu xu hướng sản xuất cùng</span>
                     <span
-                        className='text-title-section-small uppercase'
+                        className='text-title-section-small uppercase w-fit'
                         style={{
-                            background: "linear-gradient(107.4deg, #0375F3 80.08%, #0142A9 89.56%, #013DA0 90.75%)",
+                            background: "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
+                            backgroundClip: "text",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
+                            imageRendering: "crisp-edges",
                         }}
                     >
                         Fmrp

@@ -69,7 +69,7 @@ const ServicePresentationSection = (props: Props) => {
     return (
         <div className='relative custom-padding-section '>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1] h-full'>
-                <div className='space-x-2 font-extrabold 3xl:max-w-[49%] 2xl:max-w-[55%] xl:max-w-[58%] lg:max-w-[60%] max-w-full' >
+                <div className='space-x-2 font-extrabold 4xl:max-w-[60%] 3xl:max-w-[49%] 2xl:max-w-[55%] xxl:max-w-[55%] xl:max-w-[58%] lg:max-w-[60%] max-w-full text-center' >
                     <span className='text-title-section-small text-[#1A2025] capitalize'>
                         AI tiên tiến cho giải pháp thông minh – Giải pháp công nghệ đột phá từ
                     </span>
