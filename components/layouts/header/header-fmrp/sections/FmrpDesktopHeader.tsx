@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,51 +9,24 @@ import { useTranslate } from '@/contexts/TranslateContext'
 import { useAuthStore } from '@/stores/useAuthStores'
 import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
 
-import { dataLanguageOptions } from '@/data/DataTranslate'
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger
-} from '@/components/ui/select'
-
 import { IoIosArrowDown } from 'react-icons/io'
-import { HiOutlineShoppingBag } from 'react-icons/hi'
+
 import {
-    ArrowDown2,
-    ArrowRight2,
-    ArrowUp2,
     Heart,
     Location,
     Lock,
-    Logout,
     MessageQuestion,
     Note,
-    Tag,
-    User,
     UserSquare
 } from 'iconsax-react'
 
 import { motion } from 'framer-motion'
 import useCookieStore from '@/stores/useCookieStore'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-// import { useDebounce } from 'use-debounce'
-import { Separator } from '@/components/ui/separator'
 import { ActionTooltip } from '@/components/common/tooltip/ActionTooltip'
-import AvatarCustom from '@/components/common/avatar/AvatarCustom'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
-import { Skeleton } from '@/components/ui/skeleton';
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 
-import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useResizeStore } from '@/stores/useResizeStore'
 
 import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
@@ -217,7 +190,7 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                             <div
                                                 className={`${pathname.includes(item.link)
                                                     ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] hover:text-[#0375F3] font-medium"
+                                                    : "text-[#25272A] hover:text-[#0F4F9E] font-medium hover:font-bold"
                                                     } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
                                                 <span className='relative'>
@@ -227,7 +200,7 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                                         reverse={false}
                                                         className={`${pathname.includes(item.link)
                                                             ? "text-[#25272A] font-bold"
-                                                            : "text-[#25272A] hover:text-[#0375F3] font-medium"
+                                                            : "text-[#25272A] hover:text-[#0F4F9E] font-medium hover:font-bold"
                                                             }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
                                                     w-fit flex flex-col overflow-hidden
                                                     `}
@@ -255,7 +228,7 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                                 reverse={false}
                                                 className={`${pathname.includes(item.link)
                                                     ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] hover:text-[#0375F3] font-medium"
+                                                    : "text-[#25272A] hover:text-[#0F4F9E] font-medium hover:font-bold"
                                                     }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
                                                     w-fit flex flex-col overflow-hidden
                                                     `}

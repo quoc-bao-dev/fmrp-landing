@@ -26,7 +26,7 @@ const IntroductionFmrpSection = (props: Props) => {
 
     return (
         <div className='custom-padding-section bg-transparent'>
-            <div className='custom-container-no-right flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden'>
+            <div className='3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 lg:mr-0 md:mx-8 mx-4 4xl:px-[10%] flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden'>
                 <div className='flex flex-col lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4 w-full 3xl:max-w-[38%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] max-w-full'>
                     <div className='xxl:space-y-2 space-y-1'>
                         <h2 className='text-title-section-small text-[#1A2025] font-extrabold capitalize'>
@@ -56,13 +56,17 @@ const IntroductionFmrpSection = (props: Props) => {
                     <ButtonAnimationNew
                         title="Trải Nghiệm Ngay"
                         icon={
-                            <div className="2xl:size-12 md:size-10 size-9 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
+                            <div className="2xl:size-12 md:size-10 size-8 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
                                 <motion.div
                                     initial={{ x: 0, y: 0 }}
                                     animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
                                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
                                 >
-                                    {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />}
+                                    {/* {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />} */}
+
+                                    {/* Dùng Tailwind để đổi icon khi hover mà không cần state */}
+                                    <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
+                                    <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 group-hover:hidden" />
                                 </motion.div>
                             </div>
                         }
@@ -70,7 +74,7 @@ const IntroductionFmrpSection = (props: Props) => {
                         onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
                         onClick={() => { window.open("https://bom.so/mrpbeta") }}
                         reverse={true}
-                        className="lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
+                        className="lg:mr-0 mr-1 lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
                         style={{
 
                             background: "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)",

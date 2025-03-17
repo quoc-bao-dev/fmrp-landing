@@ -36,7 +36,8 @@ const AiBomFmrpSection = (props: Props) => {
                                         animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
                                         transition={{ type: "spring", stiffness: 200, damping: 10 }}
                                     >
-                                        {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />}
+                                        <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
+                                        <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 group-hover:hidden" />
                                     </motion.div>
                                 </div>
                             }
@@ -63,7 +64,8 @@ const AiBomFmrpSection = (props: Props) => {
                         <span
                             className='text-title-section-small uppercase'
                             style={{
-                                background: "linear-gradient(79.09deg, #0375F3 13.36%, #036EEA 14.68%, #0267E1 15.99%, #0261D7 17.31%, #025ACE 18.62%, #0254C5 19.93%, #024EBC 21.25%, #0148B3 22.56%, #0142A9 23.88%, #013DA0 25.19%)",
+                                background: "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
+                                // background: "linear-gradient(79.09deg, #0375F3 13.36%, #036EEA 14.68%, #0267E1 15.99%, #0261D7 17.31%, #025ACE 18.62%, #0254C5 19.93%, #024EBC 21.25%, #0148B3 22.56%, #0142A9 23.88%, #013DA0 25.19%)",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                             }}
@@ -106,15 +108,17 @@ const AiBomFmrpSection = (props: Props) => {
                                 <div className="2xl:size-12 md:size-10 size-9 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
                                     <motion.div
                                         initial={{ x: 0, y: 0 }}
-                                        animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
+                                        animate={{ x: 2, y: -2 }} // Bay chéo lên phải và xuống lại
                                         transition={{ type: "spring", stiffness: 200, damping: 10 }}
                                     >
-                                        {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />}
+                                        <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
+                                        <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 group-hover:hidden" />
+                                        {/* {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />} */}
                                     </motion.div>
                                 </div>
                             }
-                            onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
-                            onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
+                            // onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
+                            // onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
                             onClick={() => { window.open("https://bom.so/mrpbeta") }}
                             reverse={true}
                             className="border-gradient-button-no-bg-fmrp capitalize flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"

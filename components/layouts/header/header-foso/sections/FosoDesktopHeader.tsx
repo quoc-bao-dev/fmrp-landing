@@ -305,7 +305,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                             <div
                                                 className={`${pathname.includes(item.link)
                                                     ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                    : "text-[#25272A] font-medium hover:text-[#10805B] hover:font-bold"
                                                     } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
                                             >
                                                 <span className='relative'>
@@ -315,7 +315,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                                         reverse={false}
                                                         className={`${pathname.includes(item.link)
                                                             ? "text-[#25272A] font-bold"
-                                                            : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                            : "text-[#25272A] hover:text-[#10805B] font-medium hover:font-bold"
                                                             }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
                                                     w-fit flex flex-col overflow-hidden
                                                     `}
@@ -342,7 +342,7 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                                 reverse={false}
                                                 className={`${pathname.includes(item.link)
                                                     ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] hover:text-[#1AD598] font-medium"
+                                                    : "text-[#25272A] hover:text-[#10805B] font-medium hover:font-bold"
                                                     }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
                                                     w-fit flex flex-col overflow-hidden
                                                     `}

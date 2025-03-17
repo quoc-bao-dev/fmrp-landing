@@ -21,7 +21,7 @@ const PartnerFmrpSection = (props: Props) => {
     ];
 
     return (
-        <div className='custom-padding-section '>
+        <div className='custom-padding-section bg-white'>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
                 <div className='space-x-2 font-extrabold' >
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Khách hàng và đối tác</span>

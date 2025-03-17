@@ -28,7 +28,8 @@ const dataCommunity = [
         id: uuidv4(),
         icon: <FosoOriginIcon className='size-full' />,
         name: "Group",
-        bg: "linear-gradient(135deg, #00C6FF 0%, #0072FF 100%)", // Xanh biển nổi bật
+        bg: "linear-gradient(90.1deg, #0375F3 0.09%, #119DBB 50%, #1FC583 99.92%)", // Xanh biển nổi bật
+        // bg: "linear-gradient(135deg, #00C6FF 0%, #0072FF 100%)", // Xanh biển nổi bật
         link: "https://www.facebook.com/groups/mrpvn",
     },
     {
@@ -42,7 +43,8 @@ const dataCommunity = [
         id: uuidv4(),
         icon: <TiktokOriginIcon className='size-full text-[#010101]' />,
         name: "Tiktok",
-        bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam,
+        bg: "linear-gradient(95.03deg, #03EFE5 2.2%, #E41B5F 97.4%)", // Hiệu ứng gradient tím-hồng-cam,
+        // bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam,
         link: "https://www.tiktok.com/@fososoftware"
     },
 ]
@@ -92,7 +94,8 @@ const CommunityFmrpSection = (props: Props) => {
                         <span
                             className='text-title-section-small capitalize'
                             style={{
-                                background: "linear-gradient(107.4deg, #0375F3 65.02%, #036EEA 67.88%, #0267E1 70.73%, #0261D7 73.59%, #025ACE 76.45%, #0254C5 79.31%, #024EBC 82.17%, #0148B3 85.03%, #0142A9 87.89%, #013DA0 90.75%)",
+                                background: "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
+                                // background: "linear-gradient(107.4deg, #0375F3 65.02%, #036EEA 67.88%, #0267E1 70.73%, #0261D7 73.59%, #025ACE 76.45%, #0254C5 79.31%, #024EBC 82.17%, #0148B3 85.03%, #0142A9 87.89%, #013DA0 90.75%)",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                             }}
@@ -190,7 +193,7 @@ const CommunityFmrpSection = (props: Props) => {
                         <ButtonAnimationNew
                             title="Tham Gia Ngay"
                             icon={
-                                <div className="2xl:size-12 md:size-10 size-9 rounded-full capitalize flex items-center justify-center group-hover:bg-white group-hover:text-white duration-500 transition-colors">
+                                <div className="2xl:size-12 md:size-10 size-9 rounded-full capitalize flex items-center justify-center group-hover:bg-white group-hover:text-gray-400 duration-500 transition-colors">
                                     <motion.div
                                         initial={{ x: 0, y: 0 }}
                                         animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại

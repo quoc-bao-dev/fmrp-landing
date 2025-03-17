@@ -107,13 +107,14 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                 ref={recaptchaRef}
                 sitekey={siteKey}
                 size="invisible"
+                
                 onChange={handleVerify}
             />
 
             {/* 🔘 Nút Custom */}
             <div
                 className={`${isStateComponentContact?.tokenFailed ? "!border-red-500" : "border-[#09224B]"}
-                ${statusSheet === "contact" ? "3xl:p-6 p-5 3xl:w-[360px] 3xl:h-[90px] w-[320px] h-[80px]" : "p-6 w-[360px] h-[90px]"}
+                ${statusSheet === "contact" ? "3xl:p-6 p-5 3xl:w-[360px] 3xl:h-[90px] md:w-[320px] w-[260px] h-[70px]" : "p-6 w-[360px] h-[90px]"}
                 relative flex items-center justify-between  border rounded-2xl overflow-hidden shadow-md bg-white transition-all  hover:bg-gray-100
                 `}
             >
@@ -122,7 +123,7 @@ const Captcha: React.FC<CaptchaProps> = ({ onVerify }) => {
                     {/* 🔲 Ô Checkbox (ẨN khi đang loading hoặc đã check thành công) */}
                     {!isVerifying && !isStateComponentContact?.tokenChecked && (
                         <motion.div
-                            className={`${statusSheet === "contact" ? "3xl:size-10 size-9" : "size-10"} border rounded-md flex items-center justify-center transition-all relative
+                            className={`${statusSheet === "contact" ? "3xl:size-10 md:size-9 size-8" : "size-10"} border rounded-md flex items-center justify-center transition-all relative
             bg-white border-[#09224B]/[22%] cursor-pointer hover:border-blue-400`}
                             whileTap={{ scale: 0.9 }}
                             transition={{ ease: "easeOut", duration: 0.2 }}

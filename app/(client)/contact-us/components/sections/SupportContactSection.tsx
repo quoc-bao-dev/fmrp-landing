@@ -50,7 +50,7 @@ const SupportContactSection = (props: Props) => {
             <div className='3xl:max-w-7xl xxl:max-w-6xl mx-auto flex flex-col 3xl:gap-10 gap-8 relative z-[2]'>
                 <div className='flex flex-col items-center justify-center text-center gap-3'>
                     <h2 className="text-title-section-small font-bold space-x-2 text-center">
-                        <GradientGreenText>
+                        <GradientGreenText className='uppercase'>
                             Foso
                         </GradientGreenText>
                         {/* <span

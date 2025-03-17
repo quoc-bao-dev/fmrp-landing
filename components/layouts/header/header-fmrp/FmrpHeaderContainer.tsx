@@ -17,15 +17,6 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 import DesktopHeader from './sections/FmrpDesktopHeader'
 import TabletHeader from './sections/FmrpTabletHeader'
-import LaptopIconLinear from '@/components/icons/linear/LaptopIconLinear'
-import DeviceMobileIconLinear from '@/components/icons/linear/DeviceMobileIconLinear'
-import CodeIconLinear from '@/components/icons/linear/CodeIconLinear'
-import CloudArrowUpIconLinear from '@/components/icons/linear/CloudArrowUpIconLinear'
-
-import FolderStarIconLinear from '@/components/icons/linear/FolderStarIconLinear'
-import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear'
-import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
-import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
 
 import { motion, useAnimation } from 'framer-motion';
 

@@ -1,29 +1,18 @@
 'use client'
 
-import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import { useTranslate } from '@/contexts/TranslateContext'
-import { dataLanguageOptions } from '@/data/DataTranslate'
 import { useAuthStore } from '@/stores/useAuthStores'
 import useCookieStore from '@/stores/useCookieStore'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import React, { useEffect, useRef } from 'react'
-import { HiOutlineShoppingBag } from 'react-icons/hi'
-import { IoIosArrowDown } from 'react-icons/io'
+import React, { useRef } from 'react'
 import { IoCloseSharp } from "react-icons/io5"
-import { ArrowRight2 } from 'iconsax-react'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 
 import { TbMenu3 } from "react-icons/tb";
-import ButtonAnimation from '@/components/common/button/ButtonAnimation'
-import AvatarCustom from '@/components/common/avatar/AvatarCustom'
-import LanguageSelector from '@/components/common/translate/LanguageSelector'
 import { useResizeStore } from '@/stores/useResizeStore'
 
 import { FiMinus, FiPlus } from "react-icons/fi";
@@ -187,7 +176,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                             >
                                                                 <span
                                                                     className={`text-lg font-medium transition-all 
-                                                                        ${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 font-medium underline underline-offset-[6px] decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'}
+                                                                        ${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#10805B] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'}
                                                                         ${isStateClientLayout?.header?.isActiveSubMenuFoso === data.id ? "text-[#1AD598]" : "text-[#25272A]"}`}
                                                                 >
                                                                     {data.name}
@@ -293,7 +282,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                         <Link
                                                             key={data.id}
                                                             href={data.link}
-                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#25272A]/90 font-medium underline underline-offset-[6px] decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-lg w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
+                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#10805B] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-lg w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
                                                             onClick={() => {
 
                                                                 handleToggleMenu("off")

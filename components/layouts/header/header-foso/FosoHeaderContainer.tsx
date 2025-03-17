@@ -32,7 +32,6 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useCallback, useRef } from 'react'
 import FmrpIcon from '../../../icons/common/FmrpIcon';
 import FposIcon from '../../../icons/common/FposIcon';
-import { useTheme } from 'next-themes'
 import { useSheetStores } from '../../../../stores/useSheetStores';
 
 const dataHeader: IMenuHeader[] = [

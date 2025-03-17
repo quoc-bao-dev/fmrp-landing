@@ -11,11 +11,8 @@ import { useSheetStores } from '@/stores/useSheetStores';
 type Props = {}
 
 const SolutionsSection = (props: Props) => {
-    const { statusSheet,setStatusSheet, setOpenSheetCustom } = useSheetStores()
+    const { statusSheet, setStatusSheet, setOpenSheetCustom } = useSheetStores()
     const { isVisibleTablet } = useResizeStore()
-
-    console.log('statusSheet', statusSheet);
-
 
     return (
         <div className='custom-padding-section '>

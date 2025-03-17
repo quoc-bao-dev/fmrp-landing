@@ -7,7 +7,7 @@ import PackageIcon from '@/components/icons/fmrp/PackageIcon';
 import NotepadIcon from '@/components/icons/fmrp/NotepadIcon';
 import StorefrontIcon from '@/components/icons/fmrp/StorefrontIcon';
 import { useStatePageFmrp } from '../../_state/useStatePageFmrp';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import CaretDoubleRightIcon from '@/components/icons/fmrp/CaretDoubleRightIcon';
 import { useResizeStore } from '@/stores/useResizeStore';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -58,12 +58,30 @@ const dataTab = [
 const FeatureManagementOverviewSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     const { isStatePageFmrp, queryKeyIsStatePageFmrp } = useStatePageFmrp()
+    const cursorRef = useRef<HTMLDivElement | null>(null);
+    const isHoverRef = useRef<boolean>(false);
 
     useEffect(() => {
         queryKeyIsStatePageFmrp({
             isActiveManagement: dataTab[0]
         })
     }, [dataTab])
+
+
+    useEffect(() => {
+        const moveCursor = (e: MouseEvent) => {
+            if (cursorRef.current && isHoverRef.current) {
+                requestAnimationFrame(() => {
+                    cursorRef.current!.style.left = `${e.clientX - 48}px`;
+                    cursorRef.current!.style.top = `${e.clientY - 48}px`;
+                });
+            }
+        };
+
+        document.addEventListener("mousemove", moveCursor);
+        return () => document.removeEventListener("mousemove", moveCursor);
+    }, []);
+
 
     return (
         <div className='custom-padding-section 3xl:space-y-12 space-y-8'>
@@ -72,7 +90,8 @@ const FeatureManagementOverviewSection = (props: Props) => {
                     <span
                         className='text-title-section-small capitalize'
                         style={{
-                            background: "linear-gradient(79.84deg, #0375F3 6.37%, #036EEA 10.8%, #0267E1 15.24%, #0261D7 19.67%, #025ACE 24.11%, #0254C5 28.54%, #024EBC 32.98%, #0148B3 37.41%, #0142A9 41.85%, #013DA0 46.28%)",
+                            // background: "linear-gradient(79.84deg, #0375F3 6.37%, #036EEA 10.8%, #0267E1 15.24%, #0261D7 19.67%, #025ACE 24.11%, #0254C5 28.54%, #024EBC 32.98%, #0148B3 37.41%, #0142A9 41.85%, #013DA0 46.28%)",
+                            background: "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                         }}
@@ -132,7 +151,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                                     flex flex-col items-center 3xl:gap-2 gap-1 3xl:p-6 p-4  3xl:rounded-3xl rounded-2xl border  hover:shadow-md transition-all duration-300 cursor-pointer`}
                                             style={{
                                                 background: isActive ? "linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, rgba(204, 204, 204, 0.05) 0%, rgba(161, 161, 161, 0.1) 100.02%)" : "",
-                                                boxShadow: isActive ? "-9px 20px 60px -24px #0000000D, 0px 4px 12px -48px #71717A1F, 0px 2px 80px 0px #00000005 inset, 0px 4px 20px -5px #7772930D, 0px 4px 20px -5px #7772930D" : ""
+                                                boxShadow: isActive ? "-9px 20px 60px -24px #0000000D, 0px 4px 12px -48px #71717A1F, 0px -2.5px 0px 0px #D1D1D1 inset, 0px 2px 80px 0px #00000005 inset, 0px 4px 20px -5px #7772930D" : ""
                                             }}
                                             onClick={() => {
                                                 queryKeyIsStatePageFmrp({
@@ -169,7 +188,22 @@ const FeatureManagementOverviewSection = (props: Props) => {
 
             {
                 isStatePageFmrp.isActiveManagement &&
-                <div className='3xl:mx-32 lg:mx-12 mx-4'>
+                <div
+                    className='relative group h-auto aspect-1.6/1 cursor-none 3xl:mx-32 lg:mx-12 mx-4'
+                    onMouseEnter={() => {
+                        isHoverRef.current = true;
+                        if (cursorRef.current) {
+                            cursorRef.current.style.opacity = "1"; // Hiện con trỏ khi hover
+                        }
+                    }}
+                    onMouseLeave={() => {
+                        isHoverRef.current = false;
+                        if (cursorRef.current) {
+                            cursorRef.current.style.opacity = "0"; // Ẩn con trỏ khi rời khỏi
+                        }
+                    }}
+                    onClick={() => window.open("https://bom.so/mrpbeta")}
+                >
                     <motion.div
                         key={isStatePageFmrp.isActiveManagement.image} // Đảm bảo Framer Motion biết khi nào ảnh thay đổi
                         initial={{ opacity: 0, scale: 0.95 }} // Bắt đầu mờ & nhỏ hơn
@@ -186,6 +220,18 @@ const FeatureManagementOverviewSection = (props: Props) => {
                             className="size-full object-contain aspect-1.6/1"
                         />
                     </motion.div>
+
+
+                    {/* Con trỏ tùy chỉnh */}
+                    <div
+                        ref={cursorRef}
+                        className="fixed 3xl:size-32 size-28 rounded-full bg-[#C7DFFB]/[65%] flex items-center justify-center 
+                            text-[#025ACE] font-bold 3xl:text-lg size-base shadow-lg border border-[#92BFF7] pointer-events-none 
+                            transition-opacity duration-300 opacity-0 backdrop-blur-[10px]"
+                        style={{ position: "fixed", top: 0, left: 0, transform: "translate(-50%, -50%)" }}
+                    >
+                        Xem chi tiết
+                    </div>
                 </div>
             }
         </div>

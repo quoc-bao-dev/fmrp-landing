@@ -69,7 +69,8 @@ const MediaCoverageFmrpSection = (props: Props) => {
                     <span
                         className='text-title-section-small uppercase'
                         style={{
-                            background: "linear-gradient(107.4deg, #0375F3 80.08%, #013DA0 90.75%)",
+                            background: "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
+                            // background: "linear-gradient(107.4deg, #0375F3 80.08%, #013DA0 90.75%)",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                         }}

@@ -84,7 +84,7 @@ const FeedbackFmrpSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
 
     return (
-        <div className='custom-padding-section overflow-hidden'>
+        <div className='custom-padding-section overflow-hidden bg-white'>
             <div className='custom-container flex lg:flex-row flex-col lg:items-center 3xl:gap-16 gap-14 relative z-[10]'>
                 <AnimatedReveal
                     from='center'

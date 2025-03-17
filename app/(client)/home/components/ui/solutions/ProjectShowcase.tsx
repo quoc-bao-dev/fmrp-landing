@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -8,6 +8,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 import { useResizeStore } from '../../../../../../stores/useResizeStore';
 import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal"
+import { useInView } from "react-intersection-observer"
 
 interface Category {
     id: number
@@ -26,10 +27,12 @@ const categories: Category[] = [
 
 const ProjectShowcase = () => {
     const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
+    // Theo dõi khi component xuất hiện trong viewport
 
     const { isVisibleTablet } = useResizeStore()
     const [selectedCategory, setSelectedCategory] = useState<Category>(categories[0])
     const [swiperInstance, setSwiperInstance] = useState<any>(null)
+
 
     const handleCategoryChange = (category: Category, index: number) => {
         setSelectedCategory(category);
@@ -116,65 +119,71 @@ const ProjectShowcase = () => {
             {/* Swiper dọc với hình active ở giữa và hình tiếp theo lộ ra 200px */}
             <AnimatedReveal
                 effect="fade"
-                className='xl:col-span-10 lg:col-span-11 col-span-full lg:order-2 order-1 w-full h-full aspect-video relative overflow-hidden'
+                className='xl:col-span-10 lg:col-span-11 col-span-full lg:order-2 order-1 w-full lg:h-full h-fit aspect-video relative overflow-hidden'
             >
-                <Swiper
-                    modules={[Autoplay, Pagination]}
-                    direction="vertical"
-                    slidesPerView={isVisibleTablet ? 1 : 1.2} // Hiện một hình đầy đủ + 200px của hình tiếp theo
-                    spaceBetween={20}
-                    centeredSlides={false}
-                    onSwiper={setSwiperInstance}
-                    pagination={customPagination}
-                    onSlideChange={(swiper) => {
-                        const newIndex = swiper.realIndex;
-                        setSelectedCategory(categories[newIndex]);
+                <div >
+                    <Swiper
+                        modules={[Autoplay, Pagination]}
+                        direction={isVisibleTablet ? "horizontal" : "vertical"}
+                        slidesPerView={isVisibleTablet ? 1 : 1.2} // Hiện một hình đầy đủ + 200px của hình tiếp theo
+                        spaceBetween={20}
+                        centeredSlides={false}
+                        onSwiper={(swiper) => {
+                            setSwiperInstance(swiper)
+                        }}
+                        pagination={customPagination}
+                        onSlideChange={(swiper) => {
+                            const newIndex = swiper.realIndex;
+                            setSelectedCategory(categories[newIndex]);
 
-                        if (isVisibleTablet) {
-                            // Xác định nếu danh mục ở nửa đầu → Căn trái, nửa sau → Căn phải
-                            const isFirstHalf = newIndex < Math.floor(categories.length / 2);
+                            if (swiper.activeIndex === 0) return; // ⛔ CHẶN `scrollIntoView` KHI MỚI LOAD
 
-                            // Cuộn đến category đang active trên mobile
-                            if (categoryRefs.current[newIndex]) {
-                                categoryRefs.current[newIndex]?.scrollIntoView({
-                                    behavior: "smooth",
-                                    block: "nearest",
-                                    inline: isFirstHalf ? "nearest" : "nearest"
-                                });
+                            if (isVisibleTablet) {
+                                // Xác định nếu danh mục ở nửa đầu → Căn trái, nửa sau → Căn phải
+                                const isFirstHalf = newIndex < Math.floor(categories.length / 2);
+
+                                // Cuộn đến category đang active trên mobile
+                                if (categoryRefs.current[newIndex]) {
+                                    categoryRefs.current[newIndex]?.scrollIntoView({
+                                        behavior: "smooth",
+                                        block: "nearest",
+                                        inline: isFirstHalf ? "nearest" : "nearest"
+                                    });
+                                }
                             }
-                        }
-                    }}
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
-                    className="custom-swiper-pagination2 w-full aspect-video"
-                    style={{ WebkitMaskImage: isVisibleTablet ? "" : "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 20%)" }}
-                    loop
-                    grabCursor
-                >
-                    {
-                        categories.map((category) => (
-                            <SwiperSlide
-                                key={`content-${category.id}`}
-                                className="w-full h-full flex items-center justify-center aspect-video"
-                            >
-                                <motion.div
-                                    initial={{ opacity: 0, y: 100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -100 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="relative w-full h-full aspect-video"
+                        }}
+                        autoplay={!isVisibleTablet ? { delay: 4000, disableOnInteraction: false } : false}
+                        className="custom-swiper-pagination2 w-full aspect-video"
+                        style={{ WebkitMaskImage: isVisibleTablet ? "" : "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 20%)" }}
+                        loop
+                        grabCursor
+                    >
+                        {
+                            categories.map((category) => (
+                                <SwiperSlide
+                                    key={`content-${category.id}`}
+                                    className="w-full h-full flex items-center justify-center aspect-video"
                                 >
-                                    <Image
-                                        src={category.image || "/placeholder.svg"}
-                                        alt={category.title}
-                                        width={1920}
-                                        height={1024}
-                                        className="size-full object-cover rounded-3xl aspect-video"
-                                    />
-                                </motion.div>
-                            </SwiperSlide>
-                        ))
-                    }
-                </Swiper>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 100 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -100 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="relative w-full h-full aspect-video"
+                                    >
+                                        <Image
+                                            src={category.image || "/placeholder.svg"}
+                                            alt={category.title}
+                                            width={1920}
+                                            height={1024}
+                                            className="size-full object-cover rounded-3xl aspect-video"
+                                        />
+                                    </motion.div>
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+                </div>
             </AnimatedReveal>
         </div>
     )
