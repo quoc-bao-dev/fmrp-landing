@@ -4,23 +4,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 type SocialMediaProps = {
-    icon: React.ReactNode;
-    info: React.ReactNode; // Nội dung hiển thị khi hover
+    children: React.ReactNode;
     handleClick?: () => void;
     className?: string;
+    background_animation: string;
 };
 
-const SocialMediaButton = ({
-    icon,
-    info,
+const SocialMediaButton1 = ({
+    children,
     handleClick,
-    className
+    className,
+    background_animation
 }: SocialMediaProps) => {
     const [isShow, setIsShow] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-    const lastScrollY = useRef<number>(0);
-    const ticking = useRef<boolean>(false);
+    const lastScrollY = useRef<number>(0); // Lưu vị trí cuộn cuối cùng
+    const ticking = useRef<boolean>(false); // Ngăn cập nhật state liên tục
 
+    // Hàm xử lý cuộn
     const handleNavigation = useCallback(() => {
         const scrollY = window.scrollY;
         const heightScreen = window.innerHeight;
@@ -48,6 +48,9 @@ const SocialMediaButton = ({
         };
     }, [handleNavigation]);
 
+    console.log('check baby');
+
+
     return (
         <AnimatePresence>
             {isShow && (
@@ -57,43 +60,30 @@ const SocialMediaButton = ({
                     exit={{ x: "100%" }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="relative flex flex-col justify-center items-center"
+                    style={{ willChange: "transform, opacity" }} // Tối ưu hiệu suất
                 >
-                    {/* Nút chính */}
                     <motion.button
                         type="button"
                         onClick={handleClick}
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
                         className={`${className} relative z-[1] size-12 rounded-full text-white flex flex-col justify-center items-center shadow-2xl`}
                     >
-                        {icon}
+                        {children}
                     </motion.button>
 
-                    {/* Tooltip hiển thị bên trái */}
-                    <AnimatePresence>
-                        {isHovered && (
-                            <motion.div
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 10 }}
-                                transition={{ duration: 0.2 }}
-                                onMouseEnter={() => setIsHovered(true)}
-                                onMouseLeave={() => setIsHovered(false)}
-                                className="absolute left-[-160px] top-1/2 -translate-y-1/2 bg-white text-black p-3 rounded-lg shadow-md w-40 flex items-center"
-                            >
-                                {/* Mũi tên */}
-                                <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-l-white border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
-
-                                {info}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    {/* <div
+                        className="size-10 rounded-full absolute animate-ping z-0"
+                        style={{
+                            background: background_animation,
+                            zIndex: 0,
+                            pointerEvents: "none"
+                        }}
+                    /> */}
                 </motion.div>
             )}
         </AnimatePresence>
     );
 };
 
-export default SocialMediaButton;
+export default SocialMediaButton1;
