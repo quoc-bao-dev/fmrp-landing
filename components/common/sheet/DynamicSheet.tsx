@@ -48,7 +48,7 @@ export function DynamicSheet({ }: DynamicSheetProps) {
                 </SheetHeader>
                 <SheetContent
                     overlayClassName={"backdrop-blur-[16px] bg-[#FFFFFF]/5"}
-                    className="3xl:px-10 px-6 py-6 bg-white 3xl:max-w-screen-lg xl:max-w-[50%] lg:max-w-[60%] md:max-w-[95%] sm:!max-w-[95%] !max-w-[95%]  overflow-y-auto custom-size-text"
+                    className="3xl:px-10 px-6 py-6 bg-white 3xl:!max-w-screen-lg xl:!max-w-[50%] lg:!max-w-[60%] md:!max-w-[90%] sm:!max-w-[90%] !max-w-[90%] lg:w-1/2 w-full overflow-y-auto custom-size-text"
                 >
                     {
                         isAuthStatusSheet && (
@@ -59,7 +59,7 @@ export function DynamicSheet({ }: DynamicSheetProps) {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3 }}
-                                    className='h-full flex flex-col 3xl:gap-10 gap-8'
+                                    className='h-full flex flex-col gap-3'
                                 >
                                     <div className="text-[#1A2025] 3xl:text-[36px] 2xl:text-[28px] xxl:text-[24px] xl:text-[24px] md:text-[24px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[38px] xxl:!leading-[34px] xl:!leading-[34px] md:!leading-[34px] !leading-[28px] tracking-[-2%] font-extrabold">
                                         Cơ hội để kết nối với chuyên gia và bứt phá doanh thu – Hãy để lại thông tin ngay!

@@ -37,23 +37,25 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  max-width: 100%; /* Tránh layout mở rộng quá khung nhìn */
+  box-sizing: border-box; /* Đảm bảo padding/margin không làm bành trướng width */
+}
+
 ::-webkit-scrollbar {
-  @apply size-0;
+  @apply w-4 h-0;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-400 rounded-lg;
+  @apply bg-[#F1F5F7];
 }
 
 ::-webkit-scrollbar-thumb {
-  // @apply bg-[#2FB9BD] rounded-lg;
-  background: linear-gradient(45deg, #3b82f6, #6366f1);
-  border-radius: 10px;
+  background: var(--scrollbar-thumb-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  // background-color: #555;
-  background: linear-gradient(45deg, #2563eb, #4f46e5);
+  background: var(--scrollbar-thumb-color);
 }
 
 .mask-overlay {
@@ -70,8 +72,8 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   position: fixed !important;
 }
 
-.grecaptcha-badge { 
-  visibility: hidden; 
+.grecaptcha-badge {
+  visibility: hidden;
   opacity: 0;
 }
 
@@ -112,7 +114,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
 .custom-size-text {
   // chỉ sử dụng cho section nổi bật
   .text-title-section {
-    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[104px] 2xl:!leading-[94px] xxl:!leading-[90px] xl:!leading-[88px] lg:!leading-[70px] md:!leading-[60px] !leading-[46px] tracking-normal;
+    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[90px] xl:!leading-[88px] lg:!leading-[70px] md:!leading-[60px] !leading-[46px] tracking-normal;
   }
 
   .text-title-section-small {
@@ -628,4 +630,24 @@ iframe[title="recaptcha challenge expires in two minutes"] {
 
 .hover-pulse:hover {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// gradient animation
+.textGradientToBottomRight {
+  background: url(/public/example/gradient/textGradient.jpg) no-repeat;
+  background-size: 200% 200% !important;
+  background-position: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradientToLeft 5s ease-in-out infinite alternate;
+}
+
+/* Animation mượt hơn */
+@keyframes textGradientToLeft {
+  0% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }

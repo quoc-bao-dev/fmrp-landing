@@ -84,7 +84,27 @@ const FeedbackFmrpSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
 
     return (
-        <div className='custom-padding-section overflow-hidden bg-white'>
+        <div
+            className='custom-padding-section overflow-hidden bg-white relative'
+        // style={{
+        //     WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 10%)"
+        // }}
+        >
+            {/* <React.Fragment>
+                <div
+                    className="absolute bottom-0 left-0 w-full h-12"
+                    style={{
+                        background: "linear-gradient(to bottom, #fff 24%, hsla(0, 0%, 100%, 0))",
+                    }}
+                />
+                <div
+                    className="absolute top-0 left-0 w-full h-12"
+                    style={{
+                        background: "linear-gradient(180deg, #fff 24%, hsla(0, 0%, 100%, 0))",
+                    }}
+                />
+            </React.Fragment> */}
+
             <div className='custom-container flex lg:flex-row flex-col lg:items-center 3xl:gap-16 gap-14 relative z-[10]'>
                 <AnimatedReveal
                     from='center'

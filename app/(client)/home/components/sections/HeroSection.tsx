@@ -29,8 +29,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     );
 
     // ✅ Tạo hàm handleScroll với `useCallback` để tránh tạo lại hàm mỗi lần render
+    // const handleScroll = useCallback((type: "enable" | "disable") => {
+    //     document.body.style.overflow = type === "disable" ? "hidden" : "";
+    // }, []);
+
+    const preventScroll = (e: Event) => {
+        e.preventDefault();
+    };
+    
     const handleScroll = useCallback((type: "enable" | "disable") => {
-        document.body.style.overflow = type === "disable" ? "hidden" : "";
+        if (type === "disable") {
+            document.body.style.overflowY = "scroll"; // Hiển thị scrollbar
+            window.addEventListener("wheel", preventScroll, { passive: false });
+            window.addEventListener("touchmove", preventScroll, { passive: false });
+        } else {
+            document.body.style.overflowY = "";
+            window.removeEventListener("wheel", preventScroll);
+            window.removeEventListener("touchmove", preventScroll);
+        }
     }, []);
 
     // ✅ Tạo danh sách chữ để hiển thị với hiệu ứng Animation

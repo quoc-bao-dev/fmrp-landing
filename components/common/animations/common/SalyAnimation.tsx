@@ -8,7 +8,7 @@ interface SalyProps {
     className?: string
 }
 
-const SalyAnimation: React.FC<SalyProps> = ({ children, className }) => {
+const SalyAnimation: React.FC<SalyProps> = ({ children, className, ...props }) => {
     return (
         <motion.div
             className={className}
@@ -17,6 +17,7 @@ const SalyAnimation: React.FC<SalyProps> = ({ children, className }) => {
             transition={{ duration: 1, ease: "easeOut" }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            {...props}
         >
             <motion.div
                 animate={{

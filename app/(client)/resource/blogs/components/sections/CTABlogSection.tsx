@@ -10,7 +10,7 @@ import { useSheetStores } from '@/stores/useSheetStores'
 
 type Props = {}
 
-const CTASection = (props: Props) => {
+const CTABlogSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
     const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
 
@@ -19,23 +19,19 @@ const CTASection = (props: Props) => {
             <div className='custom-container flex lg:flex-row flex-col items-center gap-10'>
                 <div className='3xl:space-y-8 space-y-6 w-full lg:max-w-[45%] max-w-full'>
                     <h2 className="text-title-section-small font-bold lg:text-start text-center">
-                        <span className="text-[#050505] font-extrabold capitalize">Bạn tập trung kinh doanh</span>
-
-                        {!isVisibleTablet && <br />}
+                        <span className="text-[#050505] font-extrabold capitalize">Đưa doanh Nghiệp của bạn lên tầm cao mới – Kết nối với</span>
 
                         <span
-                            className="font-extrabold capitalize lg:pl-0 pl-2"
+                            className="font-extrabold capitalize px-2 textGradientToBottomRight"
                             style={{
-                                backgroundImage: `
-                                linear-gradient(90deg, #85EEB3 0%, #53B086 100%),
-                                radial-gradient(20.78% 106.02% at 55% 32.91%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)`,
+                                backgroundImage: `radial-gradient(20.78% 106.02% at 55% 32.91%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%), linear-gradient(90deg, #85EEB3 0%, #53B086 100%)`,
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                             }}
                         >
                             FOSO
                         </span>
-                        <span className="text-[#050505] font-extrabold capitalize pl-2">Lo công nghệ!</span>
+                        <span className="text-[#050505] font-extrabold capitalize">Ngay!</span>
                     </h2>
 
                     <div className='relative flex lg:justify-start justify-center'>
@@ -83,54 +79,58 @@ const CTASection = (props: Props) => {
                             }}
                         />
 
-                        <div className='absolute 3xl:-top-12 xl:-top-10 lg:-top-11 -top-6 3xl:left-44 xl:left-40 lg:left-36 md:left-[62%] left-[70%] flex flex-col lg:-space-y-4 space-y-2 -space-x-0'>
-                            {/* Mũi tên với hiệu ứng nhấp nháy */}
-                            {!isVisibleTablet ? (
-                                <motion.div
-                                    className='3xl:w-[120px] w-[100px] h-auto aspect-square shrink-0'
-                                    animate={{
-                                        scale: [1, 1.05, 1], // Giảm biên độ scale để tránh bị gắt
-                                        opacity: [1, 0.85, 1], // Làm mờ nhẹ hơn để không bị quá "gắt"
-                                    }}
-                                    transition={{
-                                        duration: 1.2, // Kéo dài thời gian để mềm mại hơn
-                                        repeat: Infinity, // Lặp vô hạn
-                                        repeatType: "mirror", // Chuyển động mượt mà hơn khi lặp lại
-                                        ease: [0.25, 1, 0.5, 1] // Bezier curve giúp animation mềm mại hơn
-                                    }}
-                                >
-                                    <Image
-                                        src="/icons/common/arrow/arrow-long.webp"
-                                        alt="icon"
-                                        width={200}
-                                        height={200}
-                                        className='size-full object-contain'
-                                    />
-                                    {/* <ArrowLongIcon className='size-full' /> */}
-                                </motion.div>
-                            ) : (
-                                <motion.div
-                                    className='w-[60px] h-auto'
-                                    animate={{
-                                        y: [0, -5, 0], // Nhảy lên xuống nhẹ
-                                    }}
-                                    transition={{
-                                        duration: 0.8,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }}
-                                >
-                                    <Image
-                                        src="/icons/common/arrow/arrow-long2.svg"
-                                        alt="icon"
-                                        width={200}
-                                        height={200}
-                                        className='size-full object-contain'
-                                    />
-                                </motion.div>
-                            )}
+                        {/* <div className='absolute 3xl:-top-12 xl:-top-10 lg:-top-11 -top-6 3xl:left-44 xl:left-40 lg:left-36 md:left-[62%] left-[70%] flex flex-col lg:-space-y-4 space-y-2 -space-x-0'>
+                            Mũi tên với hiệu ứng nhấp nháy
+                            {
+                                !isVisibleTablet ?
+                                    (
+                                        <motion.div
+                                            className='3xl:w-[120px] w-[100px] h-auto aspect-square shrink-0'
+                                            animate={{
+                                                scale: [1, 1.05, 1], // Giảm biên độ scale để tránh bị gắt
+                                                opacity: [1, 0.85, 1], // Làm mờ nhẹ hơn để không bị quá "gắt"
+                                            }}
+                                            transition={{
+                                                duration: 1.2, // Kéo dài thời gian để mềm mại hơn
+                                                repeat: Infinity, // Lặp vô hạn
+                                                repeatType: "mirror", // Chuyển động mượt mà hơn khi lặp lại
+                                                ease: [0.25, 1, 0.5, 1] // Bezier curve giúp animation mềm mại hơn
+                                            }}
+                                        >
+                                            <Image
+                                                src="/icons/common/arrow/arrow-long.webp"
+                                                alt="icon"
+                                                width={200}
+                                                height={200}
+                                                className='size-full object-contain'
+                                            />
+                                        </motion.div>
+                                    )
+                                    :
+                                    (
+                                        <motion.div
+                                            className='w-[60px] h-auto'
+                                            animate={{
+                                                y: [0, -5, 0], // Nhảy lên xuống nhẹ
+                                            }}
+                                            transition={{
+                                                duration: 0.8,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            <Image
+                                                src="/icons/common/arrow/arrow-long2.svg"
+                                                alt="icon"
+                                                width={200}
+                                                height={200}
+                                                className='size-full object-contain'
+                                            />
+                                        </motion.div>
+                                    )
+                            }
 
-                            {/* Chữ có hiệu ứng rung nhẹ */}
+                            Chữ có hiệu ứng rung nhẹ
                             <motion.div
                                 className={`${playwrite_is_sans.className} -rotate-[5deg] 3xl:!text-lg xl:!text-base lg:!text-sm !text-sm !tracking-[1%] text-[#4D5F6E] font-normal`}
                                 animate={{
@@ -144,7 +144,7 @@ const CTASection = (props: Props) => {
                             >
                                 để phát triển vượt trội
                             </motion.div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='w-full lg:max-w-[50%] max-w-full'>
@@ -164,4 +164,4 @@ const CTASection = (props: Props) => {
     )
 }
 
-export default CTASection
+export default CTABlogSection

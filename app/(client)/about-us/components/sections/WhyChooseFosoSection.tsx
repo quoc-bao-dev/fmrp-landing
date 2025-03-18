@@ -228,7 +228,7 @@ const WhyChooseFosoSection = () => {
                         <BlurredBackground2 className="3xl:top-10 top-20 right-24" x={mousePosition.x} y={mousePosition.y} />
                     )}
 
-                    <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto relative z-[999]">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto relative z-[10]">
                         {values.map((value, index) => (
                             <div
                                 key={index}

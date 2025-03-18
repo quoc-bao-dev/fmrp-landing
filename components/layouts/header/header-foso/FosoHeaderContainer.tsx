@@ -169,11 +169,12 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "11",
                             name: "Blog",
-                            link: "https://fososoft.vn/fblog/",
+                            link: "/resource/blogs",
+                            // link: "https://fososoft.vn/fblog/",
                             icon: <PencilSimpleLineIconLinear className='size-full' />,
                             description: "Cập nhật tin tức, kiến thức",
                             typeIcon: "default",
-                            typeLink: "new_tab",
+                            typeLink: "normal",
                         }
                     ]
                 }

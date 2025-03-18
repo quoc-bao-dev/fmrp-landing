@@ -64,7 +64,7 @@ export default async function RootLayoutApp({
 
     return (
         <html suppressHydrationWarning lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
-            <body className={`${raleway_sans.className} antialiased`} >
+            <body className={`${raleway_sans.className} antialiased relative`} >
                 <Suspense>
                     <RootLayout data={{ dataLang: "lang", language: "" }}>
                         {children}

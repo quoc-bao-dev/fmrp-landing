@@ -11,11 +11,11 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import ClientLayout from '../client/ClientLayout'
 import CursorFollower from '../../common/cursor/CursorFollower';
 import ProviderLayout from '../provider/ProviderLayout'
 import { KEY_COOKIES } from '@/constants/Cookie'
-import ThemeSwitcher from '../../common/theme/ThemeSwitch';
+import ScrollbarStyle from '@/components/common/scroll/ScrollbarStyle'
+import { LenisProvider } from '@/contexts/LenisContext'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -159,31 +159,34 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
     if (!isMounted) return null;
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <main className='bg-white w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient'>
-                <AnimatePresence
-                    mode="wait"
-                    onExitComplete={() => {
-                        if (typeof window == 'undefined') return;
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-                    }}
-                >
-                    <ProviderLayout
-                        data={data}
-                        attribute="class"
-                        defaultTheme="light"
-                        themes={KEY_COOKIES.THEME}
-                        enableSystem={false}
-                        disableTransitionOnChange
+        <LenisProvider>
+            <QueryClientProvider client={queryClient}>
+                <main className='bg-white w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-custom'>
+                    <AnimatePresence
+                        mode="wait"
+                        onExitComplete={() => {
+                            if (typeof window == 'undefined') return;
+                            window.scrollTo({ top: 0, behavior: 'smooth' })
+                        }}
                     >
-                        <CursorFollower />
-                        {children}
-                        <ToastShadcnUi />
-                    </ProviderLayout>
-                </AnimatePresence>
-            </main>
-            <ReactQueryDevtools initialIsOpen={true} />
-        </QueryClientProvider>
+                        <ProviderLayout
+                            data={data}
+                            attribute="class"
+                            defaultTheme="light"
+                            themes={KEY_COOKIES.THEME}
+                            enableSystem={false}
+                            disableTransitionOnChange
+                        >
+                            <ScrollbarStyle />
+                            <CursorFollower />
+                            {children}
+                            <ToastShadcnUi />
+                        </ProviderLayout>
+                    </AnimatePresence>
+                </main>
+                <ReactQueryDevtools initialIsOpen={true} />
+            </QueryClientProvider>
+        </LenisProvider>
     )
 }
 
