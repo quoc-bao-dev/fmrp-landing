@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { motion } from 'framer-motion'
 import React, { useState, useCallback, useEffect } from 'react';
 
-import { HiArrowUpRight } from "react-icons/hi2";
 import BlurImage from '../../blur/BlurImage';
 import { useResizeStore } from '@/stores/useResizeStore';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import { HiArrowUpRight } from 'react-icons/hi2';
 
 type ProjectCardProps = {
     project: {
@@ -99,10 +99,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     <motion.div
                         animate={{ rotate: rotation }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="flex items-center 3xl:max-w-12 max-w-10"
+                        className="flex items-center 3xl:max-w-12 max-w-10 w-full relative text-white"
                     >
-                        <div className="bg-[#000000] 3xl:p-3.5 p-3 rounded-full">
-                            <HiArrowUpRight className='3xl:size-5 size-[18px] text-white' />
+                        <div className="bg-[#000000] 3xl:p-3.5 p-3 rounded-full shrink-0">
+                            <HiArrowUpRight className='3xl:size-5 size-[18px] ' /> 
                         </div>
                     </motion.div>
                 </div>

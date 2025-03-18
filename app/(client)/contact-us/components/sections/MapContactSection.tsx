@@ -5,13 +5,6 @@ import React, { useEffect } from 'react'
 type Props = {}
 
 const MapContactSection = (props: Props) => {
-    const { lenis } = useLenis(); // Sử dụng Lenis từ Context
-
-    useEffect(() => {
-        if (lenis) {
-            setTimeout(() => lenis.start(), 200); // Chờ 200ms trước khi restart Lenis
-        }
-    }, [lenis]);
 
     return (
         <div className={`custom-padding-section lg:mx-16 md:mx-8 mx-4`}>

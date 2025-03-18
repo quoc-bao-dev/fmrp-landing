@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import { motion, AnimatePresence, useSpring } from "framer-motion"
 import { ZoomIn, ZoomOut, X, RotateCcw, Download } from "lucide-react"
 import Image from "next/image"
+import { useModalContext } from '../../../../../../../contexts/ModalContext';
 
 interface ImagePreviewPortalProps {
     open: boolean
@@ -18,6 +19,8 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
     const [scale, setScale] = useState(1)
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [isDragging, setIsDragging] = useState(false)
+
+    const { openModal, closeModal } = useModalContext()
 
     const constraintsRef = useRef(null)
 
@@ -37,24 +40,24 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
 
     // Lock body scroll when open
     useEffect(() => {
-        if (open) {
-            document.body.style.overflow = "hidden"
-        } else {
-            document.body.style.overflow = "auto"
-        }
-
-        return () => {
-            document.body.style.overflow = "auto"
-        }
-    }, [open])
-
-    // Reset position and scale when closing
-    useEffect(() => {
         if (!open) {
             setTimeout(() => {
                 setScale(1)
                 setPosition({ x: 0, y: 0 })
             }, 300)
+        }
+
+        if (open) {
+            document.body.style.overflow = "hidden"
+            openModal()
+        } else {
+            document.body.style.overflow = "auto"
+            closeModal()
+        }
+
+        return () => {
+            document.body.style.overflow = "auto"
+            closeModal()
         }
     }, [open])
 

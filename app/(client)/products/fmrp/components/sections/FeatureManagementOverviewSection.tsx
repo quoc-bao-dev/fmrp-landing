@@ -186,10 +186,11 @@ const FeatureManagementOverviewSection = (props: Props) => {
                 }
             </div>
 
+            {/* Image */}
             {
                 isStatePageFmrp.isActiveManagement &&
                 <div
-                    className='relative group h-auto aspect-1.6/1 cursor-none 3xl:mx-32 lg:mx-12 mx-4'
+                    className='relative group h-auto aspect-1.6/1 3xl:mx-32 lg:mx-12 mx-4 cursor-none'
                     onMouseEnter={() => {
                         isHoverRef.current = true;
                         if (cursorRef.current) {
@@ -222,7 +223,7 @@ const FeatureManagementOverviewSection = (props: Props) => {
                     </motion.div>
 
 
-                    {/* Con trỏ tùy chỉnh */}
+                    {/* Con trỏ tùy chỉnh (cursor xem chi tiết) */}
                     <div
                         ref={cursorRef}
                         className="fixed 3xl:size-32 size-28 rounded-full bg-[#C7DFFB]/[65%] flex items-center justify-center 

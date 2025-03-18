@@ -34,7 +34,7 @@ const SystemOverviewFmrpSection = (props: Props) => {
                     </AnimatedReveal>
 
                     <AnimatedReveal
-                        className='size-full inset-0 xxl:p-12 lg:p-10 p-2 lg:rounded-[40px] rounded-lg'
+                        className='size-full inset-0 xxl:p-12 lg:p-10 p-2 lg:rounded-[40px] rounded-lg cursor-pointer'
                         style={{
                             background: "linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(180deg, rgba(204, 204, 204, 0.05) 0%, rgba(161, 161, 161, 0.1) 100.02%)",
                             boxShadow: "0px 1px 2px 0px #1018280D, 5.11px 5.11px 76.61px 0px #6C718080"

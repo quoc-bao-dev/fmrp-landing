@@ -16,6 +16,7 @@ import ProviderLayout from '../provider/ProviderLayout'
 import { KEY_COOKIES } from '@/constants/Cookie'
 import ScrollbarStyle from '@/components/common/scroll/ScrollbarStyle'
 import { LenisProvider } from '@/contexts/LenisContext'
+import { ModalProvider } from '@/contexts/ModalContext';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -58,6 +59,9 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
         // Fix lỗi Hydration failed
         if (typeof window !== "undefined") {
             document.documentElement.removeAttribute("cz-shortcut-listen");
+
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.documentElement.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
         }
     }, [])
 
@@ -161,7 +165,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
     return (
         <LenisProvider>
             <QueryClientProvider client={queryClient}>
-                <main className='bg-white w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-custom'>
+                <main id="scroll-container" className='bg-white min-w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-container'>
                     <AnimatePresence
                         mode="wait"
                         onExitComplete={() => {
@@ -169,24 +173,26 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
                             window.scrollTo({ top: 0, behavior: 'smooth' })
                         }}
                     >
-                        <ProviderLayout
-                            data={data}
-                            attribute="class"
-                            defaultTheme="light"
-                            themes={KEY_COOKIES.THEME}
-                            enableSystem={false}
-                            disableTransitionOnChange
-                        >
-                            <ScrollbarStyle />
-                            <CursorFollower />
-                            {children}
-                            <ToastShadcnUi />
-                        </ProviderLayout>
+                        <ModalProvider>
+                            <ProviderLayout
+                                data={data}
+                                attribute="class"
+                                defaultTheme="light"
+                                themes={KEY_COOKIES.THEME}
+                                enableSystem={false}
+                                disableTransitionOnChange
+                            >
+                                <ScrollbarStyle />
+                                <CursorFollower />
+                                {children}
+                                <ToastShadcnUi />
+                            </ProviderLayout>
+                        </ModalProvider>
                     </AnimatePresence>
                 </main>
                 <ReactQueryDevtools initialIsOpen={true} />
             </QueryClientProvider>
-        </LenisProvider>
+        </LenisProvider >
     )
 }
 

@@ -3,6 +3,8 @@ import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet"
 import YouTube from "react-youtube"
 import { X } from "lucide-react"
+import { useEffect } from 'react';
+import { useModalContext } from '@/contexts/ModalContext';
 
 interface VideoPopupProps {
     open: boolean
@@ -12,6 +14,16 @@ interface VideoPopupProps {
 }
 
 export function VideoPopup({ open, onOpenChange, videoId, title }: VideoPopupProps) {
+    const { openModal, closeModal } = useModalContext();
+    // Tắt scroll khi mở popup
+    useEffect(() => {
+        if (open) {
+            openModal()
+        } else {
+            closeModal()
+        }
+    }, [open])
+
     // YouTube player options
     const opts = {
         height: "100%",
@@ -22,6 +34,8 @@ export function VideoPopup({ open, onOpenChange, videoId, title }: VideoPopupPro
             rel: 0,
         },
     }
+
+    console.log(document.body.classList.contains("overflow-hidden"));
 
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
