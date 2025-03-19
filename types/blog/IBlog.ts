@@ -15,4 +15,10 @@ interface IBlogItem {
     time_read: string; // Thời gian đọc
 }
 
-export type { IBlogItem, IBlogTag }
+interface IFilterBlog {
+    id: string,
+    name: string,
+    quantity: number
+}
+
+export type { IBlogItem, IBlogTag, IFilterBlog }
