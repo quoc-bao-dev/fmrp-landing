@@ -109,7 +109,7 @@ const BannerVerticalBlog = (props: Props) => {
                         Gia nhập cộng đồng{" "}
                     </motion.span>
                     <motion.span
-                        className=" text-[#53B086]"
+                        className=""
                         initial={{ y: "100%" }}
                         animate={{ y: "0%" }}
                         transition={{

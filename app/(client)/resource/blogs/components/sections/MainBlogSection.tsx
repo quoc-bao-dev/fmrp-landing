@@ -254,11 +254,11 @@ const MainBlogSection = (props: Props) => {
                                                 className={`${dataFilterBlog?.length - 1 === index ? "border-transparent" : "border-[#F1F5F7]"} flex justify-between pb-2 border-b `}
                                                 onClick={() => handleFilterBlog(item)}
                                             >
-                                                <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086]" : ""} hover:text-[#53B086] cursor-pointer custom-transition`}>
+                                                <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] font-semibold" : ""} hover:text-[#53B086] cursor-pointer custom-transition`}>
                                                     {item.name}
                                                 </span>
 
-                                                <span className="text-default text-[#667F93] font-medium">
+                                                <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] rounded-full font-semibold" : "text-[#667F93] font-medium"} text-default`}>
                                                     {item.quantity}
                                                 </span>
                                             </div>

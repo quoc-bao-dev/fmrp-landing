@@ -55,7 +55,7 @@ const CommunityJoinSection = () => {
                         Gia nhập cộng đồng{" "}
                     </motion.span>
                     <motion.span
-                        className="3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] leading-tight tracking-[-2%] text-[#53B086]"
+                        className="3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] leading-tight tracking-[-2%]"
                         initial={{ y: "100%" }}
                         animate={{ y: "0%" }}
                         transition={{
