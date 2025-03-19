@@ -21,6 +21,7 @@ import TabletHeader from './sections/FmrpTabletHeader'
 import { motion, useAnimation } from 'framer-motion';
 
 import { useEffect, useCallback, useRef } from 'react'
+import { useModalContext } from '@/contexts/ModalContext'
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -70,6 +71,8 @@ const FmrpHeaderContainer = () => {
     const controls = useAnimation(); // Framer Motion controls
     const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
     const forceCheckScroll = useRef<boolean>(false); // Flag để kiểm tra hướng cuộn sau khi tự hiện header
+
+    const { openModal, closeModal } = useModalContext()
 
     // ✅ Xử lý scroll để kiểm tra hướng cuộn (dùng throttle để tránh lag)
     const handleScroll = useCallback(() => {
@@ -164,12 +167,22 @@ const FmrpHeaderContainer = () => {
     }, [handleScroll, resetInactivityTimer]);
 
 
-        // 🛠️ Chặn cuộn khi mở menu mobile
+    // 🛠️ Chặn cuộn khi mở menu mobile
     useEffect(() => {
-        document.body.style.overflow = isStateClientLayout?.header?.isShowMenuMobileFmrp ? 'hidden' : 'auto';
+        const body = document.body;
+        if (!isStateClientLayout?.header?.isShowMenuMobileFmrp) {
+            body.style.overflow = 'auto'; // Cho phép cuộn
+            closeModal()
+        } else {
+            body.style.overflow = 'hidden'; // Chặn cuộn
+            openModal()
+        }
     }, [isStateClientLayout?.header?.isShowMenuMobileFmrp]);
+    // useEffect(() => {
+    //     document.body.style.overflow = isStateClientLayout?.header?.isShowMenuMobileFmrp ? 'hidden' : 'auto';
+    // }, [isStateClientLayout?.header?.isShowMenuMobileFmrp]);
 
-// 🛠️ Mở/Tắt menu mobile
+    // 🛠️ Mở/Tắt menu mobile
     const handleToggleMenu = (action: string): void => {
         if (action === "on") {
             queryKeyIsStateClientLayout({
@@ -250,7 +263,7 @@ const FmrpHeaderContainer = () => {
                     opacity: pathName.includes("/products/fmrp") ? 0 : 1
                 }}
                 animate={controls}
-                className='custom-container !z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className={`${isStateClientLayout?.header?.isShowMenuMobileFmrp ? "mx-0" : "md:mx-8 mx-4"} 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] !z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl`}
                 style={{
                     willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
                     backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt

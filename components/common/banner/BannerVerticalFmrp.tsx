@@ -16,7 +16,7 @@ const BannerVerticalFmrp = (props: Props) => {
 
     return (
         <div
-            className="relative rounded-[40px] 2xl:py-12 xl:py-12 lg:py-8 py-8 3xl:space-y-8 space-y-6 w-full overflow-hidden"
+            className="relative rounded-3xl 2xl:py-14 xl:py-12 lg:py-8 py-8 3xl:space-y-8 space-y-6 w-full overflow-hidden"
             style={{
                 background: "linear-gradient(36.82deg, #013DA0 2.16%, #0142A9 12.83%, #0148B3 23.51%, #024EBC 34.18%, #0254C5 44.85%, #025ACE 55.53%, #0261D7 66.2%, #0267E1 76.87%, #036EEA 87.55%, #0375F3 98.22%)"
             }}

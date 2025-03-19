@@ -17,7 +17,7 @@ const CTABlogSection = (props: Props) => {
     return (
         <div className='custom-padding-section'>
             <div className='custom-container flex lg:flex-row flex-col items-center gap-10'>
-                <div className='3xl:space-y-8 space-y-6 w-full lg:max-w-[45%] max-w-full'>
+                <div className='3xl:space-y-8 space-y-6 w-full 3xl:max-w-[45%] xl:max-w-[50%] lg:max-w-[55%] max-w-full'>
                     <h2 className="text-title-section-small font-bold lg:text-start text-center">
                         <span className="text-[#050505] font-extrabold capitalize">Đưa doanh Nghiệp của bạn lên tầm cao mới – Kết nối với</span>
 
@@ -147,7 +147,7 @@ const CTABlogSection = (props: Props) => {
                         </div> */}
                     </div>
                 </div>
-                <div className='w-full lg:max-w-[50%] max-w-full'>
+                <div className='w-full 3xl:max-w-[50%] xl:max-w-[45%] lg:max-w-[40%] max-w-full'>
                     <BlurImage
                         src={"/background/ui/about-us/jumbotron.webp"}
                         alt={"CEO FOSO"}

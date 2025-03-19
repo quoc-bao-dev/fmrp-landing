@@ -27,12 +27,17 @@ import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear
 import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
 import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
 
-import { motion, useAnimation } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 
-import { useEffect, useCallback, useRef } from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import FmrpIcon from '../../../icons/common/FmrpIcon';
 import FposIcon from '../../../icons/common/FposIcon';
 import { useSheetStores } from '../../../../stores/useSheetStores';
+import { useModalContext } from '@/contexts/ModalContext'
+import Link from 'next/link'
+import Image from 'next/image'
+import { IoCloseSharp } from 'react-icons/io5'
+import { FiMinus, FiPlus } from 'react-icons/fi'
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -194,7 +199,7 @@ const dataHeader: IMenuHeader[] = [
 const FosoHeaderContainer = () => {
     // const { theme } = useTheme()
     const router = useRouter()
-    const pathName = usePathname()
+    const pathname = usePathname()
 
     const { dataLang } = useTranslate();
 
@@ -218,6 +223,8 @@ const FosoHeaderContainer = () => {
     const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
     const forceCheckScroll = useRef<boolean>(false); // Flag để kiểm tra hướng cuộn sau khi tự hiện header
 
+    const { openModal, closeModal } = useModalContext()
+
     // ✅ Xử lý scroll để kiểm tra hướng cuộn (dùng throttle để tránh lag)
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
@@ -233,13 +240,13 @@ const FosoHeaderContainer = () => {
             requestAnimationFrame(() => {
                 let shouldShowHeader = isHeaderVisible.current;
 
-                if (pathName.includes("/products/fmrp")) {
+                if (pathname.includes("/products/fmrp")) {
                     // Nếu `theme === "fmrp"`, chỉ hiển thị header khi ở đầu trang
                     shouldShowHeader = scrollY === 0;
                 } else {
                     if (scrollY === 0) {
                         // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
-                        shouldShowHeader = pathName !== "/";
+                        shouldShowHeader = pathname !== "/";
                         // shouldShowHeader = false; // Ẩn header khi ở đầu trang
                     } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
                         shouldShowHeader = false; // Ẩn header khi cuộn xuống
@@ -270,10 +277,10 @@ const FosoHeaderContainer = () => {
             ticking.current = true;
         }
 
-        if (pathName !== "/products/fmrp") {
+        if (pathname !== "/products/fmrp") {
             resetInactivityTimer();
         }
-    }, [controls, pathName]);
+    }, [controls, pathname]);
 
     // ✅ Xử lý khi không thao tác để tự hiện header
     const resetInactivityTimer = useCallback(() => {
@@ -302,7 +309,7 @@ const FosoHeaderContainer = () => {
         isHeaderVisible.current = true; // Đặt lại giá trị ref
 
         window.addEventListener('scroll', handleScroll);
-        if (!pathName.includes("/products/fmrp")) {
+        if (!pathname.includes("/products/fmrp")) {
             window.addEventListener('mousemove', resetInactivityTimer);
             window.addEventListener('keydown', resetInactivityTimer);
         }
@@ -310,20 +317,22 @@ const FosoHeaderContainer = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
 
-            if (!pathName.includes("/products/fmrp")) {
+            if (!pathname.includes("/products/fmrp")) {
                 window.removeEventListener('mousemove', resetInactivityTimer);
                 window.removeEventListener('keydown', resetInactivityTimer);
             }
         };
-    }, [handleScroll, resetInactivityTimer, pathName]);
+    }, [handleScroll, resetInactivityTimer, pathname]);
 
 
     useEffect(() => {
         const body = document.body;
         if (!isStateClientLayout?.header?.isShowMenuMobileFoso) {
             body.style.overflow = 'auto'; // Cho phép cuộn
+            closeModal()
         } else {
             body.style.overflow = 'hidden'; // Chặn cuộn
+            openModal()
         }
     }, [isStateClientLayout?.header?.isShowMenuMobileFoso]);
 
@@ -420,13 +429,24 @@ const FosoHeaderContainer = () => {
         })
     }
 
+    const handleToggleSubMenu = (id: string) => {
+        let active = isStateClientLayout?.header?.isActiveSubMenuFoso === id ? null : id
+
+        queryKeyIsStateClientLayout({
+            header: {
+                ...isStateClientLayout?.header,
+                isActiveSubMenuFoso: active
+            }
+        })
+    };
+
     return (
-        <header className='fixed top-0 left-0 w-full z-50 pointer-events-none '>
+        <header className='fixed top-0 left-0 w-full z-50 pointer-events-none'>
             <motion.div
                 initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
-                // initial={{ y: pathName === "/" ? -100 : 0, opacity: pathName === "/" ? 0 : 1 }}
+                // initial={{ y: pathname === "/" ? -100 : 0, opacity: pathname === "/" ? 0 : 1 }}
                 animate={controls}
-                className='custom-container z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl'
+                className={`${isStateClientLayout?.header?.isShowMenuMobileFoso ? "mx-0" : "md:mx-8 mx-4"} 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl custom-transition`}
                 style={{
                     willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
                     backgroundColor: "rgba(255, 255, 255, 0.5)", // Đảm bảo nền trong suốt
@@ -455,6 +475,9 @@ const FosoHeaderContainer = () => {
                         />
                 }
             </motion.div>
+
+
+
         </header >
     )
 }

@@ -114,7 +114,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
 .custom-size-text {
   // chỉ sử dụng cho section nổi bật
   .text-title-section {
-    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[90px] xl:!leading-[88px] lg:!leading-[70px] md:!leading-[60px] !leading-[46px] tracking-normal;
+    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[36px] tracking-normal;
   }
 
   .text-title-section-small {

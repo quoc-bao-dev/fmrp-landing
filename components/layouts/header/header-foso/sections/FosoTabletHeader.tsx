@@ -16,6 +16,7 @@ import { TbMenu3 } from "react-icons/tb";
 import { useResizeStore } from '@/stores/useResizeStore'
 
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { useModalContext } from '@/contexts/ModalContext'
 
 interface TabletHeaderProps {
     dataHeader: IMenuHeader[]
@@ -43,7 +44,6 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
     const { informationUser } = useAuthStore()
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
-
 
     const handleToggleSubMenu = (id: string) => {
         let active = isStateClientLayout?.header?.isActiveSubMenuFoso === id ? null : id
@@ -108,7 +108,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                         animate={{ x: 0 }}      // Trượt vào vị trí hiển thị
                         exit={{ x: '100%' }}    // Trượt ra khi đóng
                         transition={{ duration: 0.5 }} // Tốc độ trượt
-                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 md:-left-8 -left-4 bg-white`}
+                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 -left-0 bg-white`}
                     >
                         <div className='grid grid-cols-16 py-3 items-center justify-center md:px-8 px-6'>
                             <div className='col-span-12 w-full flex items-center justify-start gap-2'>
@@ -160,7 +160,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                             </div>
                         </div>
 
-                        <div className='flex flex-col gap-6 py-4 h-[calc(100dvh_-_68px)]'>
+                        <div className='flex flex-col gap-6 py-4 h-[calc(100dvh_-_68px)] w-full'>
                             <div className="relative flex flex-col gap-4 overflow-y-auto">
                                 {
                                     dataHeader.map((data) => (

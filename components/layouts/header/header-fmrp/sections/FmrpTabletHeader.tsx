@@ -115,7 +115,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                         animate={{ x: 0 }}      // Trượt vào vị trí hiển thị
                         exit={{ x: '100%' }}    // Trượt ra khi đóng
                         transition={{ duration: 0.5 }} // Tốc độ trượt
-                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 md:-left-8 -left-4 bg-white`}
+                        className={`flex flex-col justify-between z-[999] absolute w-screen h-[calc(100svh_+_16px)] pt-4 -top-2 -left-0 bg-white`}
                     >
                         <div className='grid grid-cols-16 py-3 items-center justify-center md:px-8 px-6'>
                             <div className='col-span-12 w-full flex items-center justify-start gap-2'>

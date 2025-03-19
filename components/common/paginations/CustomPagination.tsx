@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination"
 import BasicArrowLeftIcon from "@/components/icons/common/BasicArrowLeftIcon"
+import { useResizeStore } from "@/stores/useResizeStore"
 
 interface CustomPaginationProps extends React.ComponentProps<typeof Pagination> {
     totalPages: number
@@ -24,6 +25,7 @@ export function CustomPagination({
     className,
     ...props
 }: CustomPaginationProps) {
+    const { isVisibleTablet } = useResizeStore()
     const handlePageChange = (page: number) => {
         if (page < 1 || page > totalPages) return
         onPageChange?.(page)
@@ -34,6 +36,7 @@ export function CustomPagination({
 
         // Always show first page
         pageNumbers.push(1)
+
 
         let startPage = Math.max(2, currentPage - Math.floor(maxVisiblePages / 2))
         let endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 3)
@@ -111,7 +114,7 @@ export function CustomPagination({
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                     className={cn(
-                        "flex items-center gap-3 3xl:text-base text-sm",
+                        "flex items-center gap-3 3xl:text-base text-sm shrink-0",
                         currentPage === 1
                             ? "text-[#B3C5D4] font-medium cursor-not-allowed"
                             : "text-[#4D5F6E] font-semibold hover:text-foreground",
@@ -119,10 +122,13 @@ export function CustomPagination({
                     whileHover={currentPage !== 1 ? { x: -2 } : {}}
                     whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
                 >
-                    <BasicArrowLeftIcon className='size-4 rotate-180' />
-                    <span>
-                        Trang trước
-                    </span>
+                    <BasicArrowLeftIcon className='size-4 rotate-180 shrink-0' />
+                    {
+                        !isVisibleTablet &&
+                        <span>
+                            Trang trước
+                        </span>
+                    }
                 </motion.button>
 
                 <div className="flex items-center space-x-1">{renderPageNumbers()}</div>
@@ -131,7 +137,7 @@ export function CustomPagination({
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
                     className={cn(
-                        "flex items-center gap-3 3xl:text-base text-sm",
+                        "flex items-center gap-3 3xl:text-base text-sm shrink-0",
                         currentPage === totalPages
                             ? "text-[#B3C5D4] font-medium cursor-not-allowed"
                             : "text-[#4D5F6E] font-semibold hover:text-foreground",
@@ -139,10 +145,13 @@ export function CustomPagination({
                     whileHover={currentPage !== totalPages ? { x: 2 } : {}}
                     whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
                 >
-                    <span>
-                        Trang kế tiếp
-                    </span>
-                    <BasicArrowLeftIcon className='size-4' />
+                    {
+                        !isVisibleTablet &&
+                        <span>
+                            Trang kế tiếp
+                        </span>
+                    }
+                    <BasicArrowLeftIcon className='size-4 shrink-0' />
                 </motion.button>
             </PaginationContent>
         </Pagination>

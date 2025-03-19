@@ -30,7 +30,7 @@ const gradientStyle = {
 };
 
 const IntroBlogSection = (props: Props) => {
-    const { isVisibleTablet } = useResizeStore()
+    const { isVisibleTablet, isVisibleMobile } = useResizeStore()
 
     const { lenis } = useLenis(); // ✅ Lấy Lenis từ context
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -82,7 +82,6 @@ const IntroBlogSection = (props: Props) => {
         [heroPerTitle3]
     );
 
-
     return (
         <div ref={sectionRef} className='custom-padding-section lg:h-full h-[80svh] relative'>
             {
@@ -126,15 +125,18 @@ const IntroBlogSection = (props: Props) => {
                 </React.Fragment>
             }
 
-            <div className='absolute w-[500px] h-auto aspect-square rounded-[40px] -translate-x-[40%] -bottom-72 pointer-events-none'>
-                <Image
-                    width={500}
-                    height={500}
-                    alt="green-blur"
-                    src="/background/blur/bg-green-v2.svg"
-                    className="size-full object-contain"
-                />
-            </div>
+            {
+                !isVisibleTablet &&
+                <div className='absolute w-[500px] h-auto aspect-square rounded-[40px] 2xl:-translate-x-[40%] -translate-x-[60%] -bottom-72 pointer-events-none'>
+                    <Image
+                        width={500}
+                        height={500}
+                        alt="green-blur"
+                        src="/background/blur/bg-green-v2.svg"
+                        className="size-full object-contain"
+                    />
+                </div>
+            }
 
             {/* Container chính */}
             <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2]'>
@@ -143,8 +145,8 @@ const IntroBlogSection = (props: Props) => {
                 </div>
 
                 {/* Nội dung chính */}
-                <div className="flex flex-col items-center justify-center w-full h-full relative lg:pt-0 md:pt-20 pt-28">
-                    <h2 className="text-title-section text-center font-normal space-x-2 ">
+                <div className="flex flex-col items-center justify-center gap-4 w-full h-full relative lg:pt-0 md:pt-20 pt-28">
+                    <h2 className="3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[27px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[40px] tracking-normal text-center font-normal space-x-2 capitalize md:max-w-full max-w-[85%]">
                         <span className='space-x-2'>
                             <AnimatedTitle className='text-[#050505] font-normal' heroPerTitle={heroPerTitle1} />
                             <AnimatedTitleGradient
@@ -160,7 +162,10 @@ const IntroBlogSection = (props: Props) => {
                             <span>–</span>
                         </span>
 
-                        <br />
+                        {
+                            !isVisibleMobile &&
+                            <br />
+                        }
 
                         <span className='space-x-2'>
                             <AnimatedTitle className='text-[#050505] font-normal' heroPerTitle={heroPerTitle3} />
@@ -168,7 +173,7 @@ const IntroBlogSection = (props: Props) => {
                             <span className="relative">
                                 {/* Background trượt từ trái sang phải */}
                                 <motion.span
-                                    className="absolute bottom-[6%] left-[1%] bg-[#A3EED6] rounded-full h-[24px] w-full"
+                                    className="absolute lg:bottom-[6%] md:bottom-[2%] bottom-0 left-[1%] bg-[#A3EED6] rounded-full lg:h-[24px] md:h-[20px] h-[16px] w-full"
                                     initial={{ clipPath: "inset(0% 100% 0% 0%)", opacity: 0 }} // Bắt đầu ẩn
                                     animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }} // Hiện dần ra
                                     transition={{
@@ -183,20 +188,36 @@ const IntroBlogSection = (props: Props) => {
                         </span>
                     </h2>
 
-                    <p className='text-default text-[#33404A] font-medium text-center'>
+                    <p className='3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base !text-sm !tracking-[1%] text-[#33404A] font-medium text-center'>
                         Cùng FOSO khám phá kiến thức, xu hướng công nghệ và sản xuất ngay!
                     </p>
+
                     {
                         isVisibleTablet &&
-                        <SalyAnimation className="w-[200px] h-auto aspect-square pointer-events-none">
-                            <Image
-                                width={400}
-                                height={400}
-                                alt="saly"
-                                src="/background/ui/about-us/saly.webp"
-                                className="size-full object-contain"
-                            />
-                        </SalyAnimation>
+                        <div className='flex items-center gap-2 mt-10'>
+                            <SalyAnimation className="w-[135px] h-auto aspect-square pointer-events-none">
+                                <Image
+                                    width={400}
+                                    height={400}
+                                    alt="saly"
+                                    src="/background/ui/blogs/saly-calendar.png"
+                                    className="size-full object-contain"
+                                />
+                            </SalyAnimation>
+
+                            {
+                                isVisibleTablet &&
+                                <SalyAnimation className="w-[135px] h-auto aspect-square pointer-events-none">
+                                    <Image
+                                        width={400}
+                                        height={400}
+                                        alt="saly"
+                                        src="/background/ui/blogs/saly-hand-1.png"
+                                        className="size-full object-contain"
+                                    />
+                                </SalyAnimation>
+                            }
+                        </div>
                     }
                 </div>
             </div>

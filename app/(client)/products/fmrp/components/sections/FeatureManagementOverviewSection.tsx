@@ -105,30 +105,32 @@ const FeatureManagementOverviewSection = (props: Props) => {
                     isVisibleTablet ?
                         <ScrollArea type="hover" className={`w-full overflow-auto`}>
                             <div className='flex items-center gap-2 py-4 w-full'>
-                                {dataTab.map((item) => {
-                                    const isActive = item === isStatePageFmrp.isActiveManagement;
-                                    const IconComponent = item.icon;
+                                {
+                                    dataTab.map((item) => {
+                                        const isActive = item === isStatePageFmrp.isActiveManagement;
+                                        const IconComponent = item.icon;
 
-                                    return (
-                                        <div
-                                            key={item.id}
-                                            className={`w-full flex items-center gap-2 px-2 py-2 cursor-pointer ${isActive ? "border-[#D1D1D1] text-[#1A2025] bg-[#F3F4F6]" : "text-[#809FB8] border-transparent"} border rounded-lg transition-all duration-300 ease-in-out`}
-                                            onClick={() => queryKeyIsStatePageFmrp({ isActiveManagement: item })}
-                                        >
-                                            <IconComponent
-                                                className={`${isActive ? "" : "text-[#809FB8]"} size-5 shrink-0`}
-                                                style={{
-                                                    background: isActive ? "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)" : "", // Fix màu khi không active
-                                                    WebkitBackgroundClip: isActive ? "text" : "none",
-                                                    WebkitTextFillColor: isActive ? "transparent" : "inherit",
-                                                }}
-                                                color={isActive ? "none" : "#809FB8"} // Đảm bảo có đường viền khi không active
-                                                isActive={isActive}
-                                            />
-                                            <span className='text-sm font-medium text-nowrap'>{item.name}</span>
-                                        </div>
-                                    );
-                                })}
+                                        return (
+                                            <div
+                                                key={item.id}
+                                                className={`!min-w-fit w-fit flex items-center gap-2 px-2 py-2 cursor-pointer ${isActive ? "border-[#D1D1D1] text-[#1A2025] bg-[#F3F4F6]" : "text-[#809FB8] border-transparent"} border rounded-lg transition-all duration-300 ease-in-out`}
+                                                onClick={() => queryKeyIsStatePageFmrp({ isActiveManagement: item })}
+                                            >
+                                                <IconComponent
+                                                    className={`${isActive ? "" : "text-[#809FB8]"} size-5 shrink-0`}
+                                                    style={{
+                                                        background: isActive ? "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)" : "", // Fix màu khi không active
+                                                        WebkitBackgroundClip: isActive ? "text" : "none",
+                                                        WebkitTextFillColor: isActive ? "transparent" : "inherit",
+                                                    }}
+                                                    color={isActive ? "none" : "#809FB8"} // Đảm bảo có đường viền khi không active
+                                                    isActive={isActive}
+                                                />
+                                                <span className='text-sm font-medium text-nowrap w-full'>{item.name}</span>
+                                            </div>
+                                        );
+                                    })
+                                }
                                 {/* Xem thêm */}
                                 <div className="flex items-center gap-2 px-4 py-4 cursor-pointer border-l border-[#09090B]/10 text-[#4D5F6E] hover:text-[#0375F3] transition-all duration-300 ease-in-out group">
                                     <span className="text-sm font-medium text-nowrap">Xem thêm </span>

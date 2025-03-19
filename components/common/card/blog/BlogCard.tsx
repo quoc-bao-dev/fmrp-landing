@@ -93,12 +93,12 @@ const BlogCard = ({ blog }: Props) => {
             <div className="mt-2 space-y-4">
                 <div className='flex flex-wrap items-center gap-2'>
                     {
-                        blog && blog?.tag?.map((item: IBlogTag) => (
+                        blog && blog?.type_blog?.map((item: IBlogTag) => (
                             <div
                                 key={`tag-${item.id}`}
                                 className='px-3 py-2 3xl:text-[13px] text-xs text-white font-semibold rounded-lg capitalize'
                                 style={{
-                                    background: item.bg
+                                    background: item.color
                                 }}
                             >
                                 {item?.name ?? ""}

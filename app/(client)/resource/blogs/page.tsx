@@ -8,10 +8,10 @@ import CTABlogSection from './components/sections/CTABlogSection'
 type Props = {}
 
 const Fpos = (props: Props) => {
+
     return (
         <main className='min-h-screen'>
             <IntroBlogSection />
-
             <MainBlogSection />
             <CTABlogSection />
         </main >

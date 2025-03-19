@@ -15,7 +15,7 @@ const BannerVerticalBlog = (props: Props) => {
 
     return (
         <div
-            className="relative rounded-[40px] 2xl:py-12 xl:py-12 lg:py-8 py-8 3xl:space-y-8 space-y-6 w-full overflow-hidden"
+            className="relative rounded-3xl 2xl:py-14 xl:py-12 lg:py-8 py-8 3xl:space-y-8 space-y-6 w-full overflow-hidden"
             style={{
                 background: "linear-gradient(357.92deg, #013DA0 2.23%, #0142A9 12.81%, #0148B3 23.39%, #024EBC 33.96%, #0254C5 44.54%, #025ACE 55.12%, #0261D7 65.7%, #0267E1 76.28%, #036EEA 86.86%, #0375F3 97.44%)"
             }}
@@ -23,7 +23,7 @@ const BannerVerticalBlog = (props: Props) => {
             {/* Ảnh hiển thị trên Tablet */}
             <div className="flex items-center justify-center">
                 <motion.div
-                    className="w-auto 3xl:h-[400px] h-[400px] aspect-1.92/1 relative"
+                    className="w-auto 3xl:h-[400px] lg:h-[400px] h-[360px] aspect-1.92/1 relative"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}
@@ -43,13 +43,13 @@ const BannerVerticalBlog = (props: Props) => {
                         animate={{
                             opacity: 1,
                             scale: 1,
-                            x: ["0%", "-10%", "10%", "0%"], // Di chuyển qua lại
+                            x: ["0%", "-5%", "5%", "0%"], // Di chuyển qua lại
                         }}
                         transition={{
                             duration: 6, // Tổng thời gian cho một chu kỳ
-                            ease: "easeInOut",
+                            ease: "linear",
                             repeat: Infinity, // Lặp vô hạn
-                            repeatType: "reverse", // Đảo chiều khi lặp
+                            repeatType: "mirror", // Đảo chiều khi lặp
                         }}
                     >
                         <Image
@@ -68,13 +68,13 @@ const BannerVerticalBlog = (props: Props) => {
                         animate={{
                             opacity: 1,
                             scale: 1,
-                            y: ["0%", "-10%", "10%", "0%"], // Di chuyển qua lại
+                            y: ["0%", "-5%", "5%", "0%"], // Di chuyển qua lại
                         }}
                         transition={{
                             duration: 6, // Tổng thời gian cho một chu kỳ
-                            ease: "easeInOut",
+                            ease: "linear",
                             repeat: Infinity, // Lặp vô hạn
-                            repeatType: "reverse", // Đảo chiều khi lặp
+                            repeatType: "mirror", // Đảo chiều để không bị reset animation
                         }}
                     >
                         <Image
