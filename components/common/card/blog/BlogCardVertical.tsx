@@ -7,6 +7,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import CalendarBlankIcon from '@/components/icons/common/CalendarBlankIcon'
 import ClockIcon from '@/components/icons/common/ClockIcon'
+import Link from 'next/link'
 
 type Props = {
     blog: IBlogItem
@@ -58,88 +59,92 @@ const hoverVariants = {
 
 const BlogCardVertical = ({ blog, className }: Props) => {
     return (
-        <motion.div
-            className={`${className} flex flex-col gap-2 cursor-pointer group`}
-            initial="rest"
-            animate="rest"
-            whileHover="hover"
-            whileTap="press"
+        <Link
+            href={`/resource/blogs/${blog.id}`}
         >
-            {/* Hình ảnh chính */}
-            <div className='relative w-full h-auto aspect-square rounded-3xl overflow-hidden'>
-                <Image
-                    src={blog.image}
-                    alt="BOM là gì?"
-                    width={1000}
-                    height={1000}
-                    className="size-full object-cover aspect-square rounded-3xl group-hover:scale-105 custom-transition"
-                />
-                {/* Overlay - Hiện dần khi hover */}
-                <motion.div
-                    className="absolute inset-0 bg-[#0F4F9E]/40 rounded-3xl"
-                    variants={fadeVariants}
-                />
+            <motion.div
+                className={`${className} flex flex-col gap-2 cursor-pointer group`}
+                initial="rest"
+                animate="rest"
+                whileHover="hover"
+                whileTap="press"
+            >
+                {/* Hình ảnh chính */}
+                <div className='relative w-full h-auto aspect-square rounded-3xl overflow-hidden'>
+                    <Image
+                        src={blog.image}
+                        alt="BOM là gì?"
+                        width={1000}
+                        height={1000}
+                        className="size-full object-cover aspect-square rounded-3xl group-hover:scale-105 custom-transition"
+                    />
+                    {/* Overlay - Hiện dần khi hover */}
+                    <motion.div
+                        className="absolute inset-0 bg-[#0F4F9E]/40 rounded-3xl"
+                        variants={fadeVariants}
+                    />
 
-                {/* Nút "Xem thêm" */}
-                <motion.div
-                    className="absolute inset-0 flex items-center justify-center"
-                    variants={hoverVariants}
-                >
-                    <div className="flex items-center justify-center p-4  aspect-square 3xl:text-base text-sm rounded-full bg-[#15AA7A] text-white font-semibold shadow-lg capitalize">
-                        Xem chi tiết
-                    </div>
-                </motion.div>
-            </div>
-
-            <div className="mt-2 space-y-4">
-                <div className='flex flex-wrap items-center gap-2'>
-                    {
-                        blog && blog?.type_blog?.map((item: IBlogTag) => (
-                            <div
-                                key={`tag-${item.id}`}
-                                className='px-3 py-2 3xl:text-[13px] text-xs text-white font-semibold rounded-lg capitalize'
-                                style={{
-                                    background: item.color
-                                }}
-                            >
-                                {item?.name ?? ""}
-                            </div>
-                        ))
-                    }
+                    {/* Nút "Xem thêm" */}
+                    <motion.div
+                        className="absolute inset-0 flex items-center justify-center"
+                        variants={hoverVariants}
+                    >
+                        <div className="flex items-center justify-center p-4  aspect-square 3xl:text-base text-sm rounded-full bg-[#15AA7A] text-white font-semibold shadow-lg capitalize">
+                            Xem chi tiết
+                        </div>
+                    </motion.div>
                 </div>
 
-                <h3 className="text-title font-extrabold text-[#33404A] group-hover:text-[#15AA7A] custom-transition min-h-[56px]">
-                    {blog?.title ?? ""}
-                </h3>
+                <div className="mt-2 space-y-4">
+                    <div className='flex flex-wrap items-center gap-2'>
+                        {
+                            blog && blog?.type_blog?.map((item: IBlogTag) => (
+                                <div
+                                    key={`tag-${item.id}`}
+                                    className='px-3 py-2 3xl:text-[13px] text-xs text-white font-semibold rounded-lg capitalize'
+                                    style={{
+                                        background: item.color
+                                    }}
+                                >
+                                    {item?.name ?? ""}
+                                </div>
+                            ))
+                        }
+                    </div>
 
-                <div className="mt-2 flex items-center gap-4 3xl:text-base text-sm  font-medium">
-                    <div className="flex items-center gap-1 text-[#667F93] pr-4 border-r">
-                        <CalendarBlankIcon className="mr-1 size-5" />
-                        <span>
-                            17/11/2022
+                    <h3 className="text-title font-extrabold text-[#33404A] group-hover:text-[#15AA7A] custom-transition min-h-[56px]">
+                        {blog?.title ?? ""}
+                    </h3>
+
+                    <div className="mt-2 flex items-center gap-4 3xl:text-base text-sm  font-medium">
+                        <div className="flex items-center gap-1 text-[#667F93] pr-4 border-r">
+                            <CalendarBlankIcon className="mr-1 size-5" />
+                            <span>
+                                17/11/2022
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-1 text-[#667F93]">
+                            <ClockIcon className="mr-1 size-5" />
+
+                            <span>
+                                10 phút đọc
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className='flex items-center gap-2'>
+                        <span className='text-[#667F93] 3xl:text-lg text-base group-hover:text-[#667F93]/80 font-semibold custom-transition'>
+                            Khám phá ngay
                         </span>
-                    </div>
 
-                    <div className="flex items-center gap-1 text-[#667F93]">
-                        <ClockIcon className="mr-1 size-5" />
-
-                        <span>
-                            10 phút đọc
-                        </span>
+                        <div className='text-[#667F93] group-hover:text-white group-hover:translate-x-1 group-hover:bg-[#15AA7A]  p-3 rounded-full custom-transition'>
+                            <BasicArrowLeftIcon className='size-4' />
+                        </div>
                     </div>
                 </div>
-
-                <div className='flex items-center gap-2'>
-                    <span className='text-[#667F93] 3xl:text-lg text-base group-hover:text-[#667F93]/80 font-semibold custom-transition'>
-                        Khám phá ngay
-                    </span>
-
-                    <div className='text-[#667F93] group-hover:text-white group-hover:translate-x-1 group-hover:bg-[#15AA7A]  p-3 rounded-full custom-transition'>
-                        <BasicArrowLeftIcon className='size-4' />
-                    </div>
-                </div>
-            </div>
-        </motion.div>
+            </motion.div>
+        </Link>
     )
 }
 

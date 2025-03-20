@@ -9,6 +9,7 @@ import { useResizeStore } from '@/stores/useResizeStore';
 import { useTheme } from 'next-themes';
 import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
 import { useLenis } from '@/contexts/LenisContext';
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 
 type Props = {}
 
@@ -152,14 +153,30 @@ const IntroBlogSection = (props: Props) => {
                             <AnimatedTitleGradient
                                 className='relative z-10 font-extrabold textGradientToBottomRight'
                                 heroPerTitle={heroPerTitle2}
-                                delay={0.4}
+                                // delay={0.1}
                                 style={{
                                     ...gradientStyle,
                                     WebkitBackgroundClip: "text",
                                     WebkitTextFillColor: "transparent",
                                 }}
                             />
-                            <span>–</span>
+                            <motion.span
+                                variants={{
+                                    hidden: {
+                                        opacity: 0.01  // ⬅️ Đảm bảo fade có độ mờ ban đầu
+                                    },
+                                    visible: {
+                                        opacity: 1,
+                                        transition: {
+                                            duration: 0.4,
+                                            ease: [0.42, 0, 0.58, 1], // ⬅️ Làm hiệu ứng mềm mại hơn
+                                        },
+                                    },
+                                }}
+                            >
+                                –
+                            </motion.span>
+
                         </span>
 
                         {
@@ -168,7 +185,7 @@ const IntroBlogSection = (props: Props) => {
                         }
 
                         <span className='space-x-2'>
-                            <AnimatedTitle className='text-[#050505] font-normal' heroPerTitle={heroPerTitle3} />
+                            <AnimatedTitle delay={1} className='text-[#050505] font-normal' heroPerTitle={heroPerTitle3} />
 
                             <span className="relative">
                                 {/* Background trượt từ trái sang phải */}
@@ -178,12 +195,16 @@ const IntroBlogSection = (props: Props) => {
                                     animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }} // Hiện dần ra
                                     transition={{
                                         duration: 2, // Làm chậm hiệu ứng để mượt hơn
-                                        delay: 0.4, // Đồng bộ với chữ nhưng bắt đầu mượt hơn
+                                        delay: 2, // Đồng bộ với chữ nhưng bắt đầu mượt hơn
                                         ease: [0.25, 1, 0.5, 1], // Bezier Curve giúp chạy tự nhiên hơn
                                     }}
                                 />
 
-                                <AnimatedTitle className='text-[#050505] relative z-10 font-extrabold' heroPerTitle={heroPerTitle4} />
+                                <AnimatedTitle
+                                    className='text-[#050505] relative z-10 font-extrabold'
+                                    heroPerTitle={heroPerTitle4}
+                                    delay={2}
+                                />
                             </span>
                         </span>
                     </h2>
