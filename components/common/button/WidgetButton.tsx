@@ -37,7 +37,8 @@ const WidgetButton: React.FC = () => {
     const pathname = usePathname()
     return (
         <div className="flex flex-col gap-4 fixed bottom-8 lg:right-8 right-5 z-[999]">
-            {socialButtons.map((button, index) => (
+
+            {!pathname.startsWith("/resource/blogs/") && socialButtons.map((button, index) => (
                 <SocialMediaButton1
                     key={index}
                     className={button.className || ""}

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 import CommunityJoinSection from '../ui/CommunityJonbinSection'
 import { uuidv4 } from '@/lib/uuid'
-import BlogCard from '@/components/common/card/blog/BlogCard'
+import BlogCardVertical from '@/components/common/card/blog/BlogCardVertical'
 import { IBlogItem, IFilterBlog } from '@/types/blog/IBlog'
 import { CustomPagination } from '@/components/common/paginations/CustomPagination'
 import { Input } from '@/components/ui/input';
@@ -270,6 +270,9 @@ const MainBlogSection = (props: Props) => {
     //     },
     // ]
 
+    console.log('dataBlogsList', dataBlogsList);
+
+
     return (
         <div className='custom-padding-section'>
             <div className='custom-container flex flex-col 3xl:gap-6 gap-6 relative z-[2]'>
@@ -277,28 +280,27 @@ const MainBlogSection = (props: Props) => {
                     {/* Main Content Area */}
                     <div className="3xl:w-[74%] xxl:w-[70%] lg:w-[68%] w-full flex flex-col 3xl:gap-8 gap-6 lg:order-1 order-2">
                         <h1 className="text-title-section-small font-extrabold align-middle">Tất Cả Bài Viết</h1>
+                        {/* Hero Banner */}
                         {
                             !isVisibleTablet &&
                             <React.Fragment>
-                                {/* Hero Banner */}
                                 <CommunityJoinSection />
                             </React.Fragment>
                         }
-
 
                         {/* Article Grid */}
                         <div className="grid grid-cols-1 3xl:gap-8 gap-6 md:grid-cols-2 mt-4">
                             {
                                 dataBlog && dataBlog?.map((blog: any) => (
                                     <React.Fragment key={`blog-${blog.id}`}>
-                                        <BlogCard blog={blog} />
+                                        <BlogCardVertical blog={blog} />
                                     </React.Fragment>
                                 ))
                             }
                             {/* {
                                 dataBlogsList && dataBlogsList?.data?.map((blog: any) => (
                                     <React.Fragment key={`blog-${blog.id}`}>
-                                        <BlogCard blog={blog} />
+                                        <BlogCardVertical blog={blog} />
                                     </React.Fragment>
                                 ))
                             } */}
@@ -307,7 +309,7 @@ const MainBlogSection = (props: Props) => {
 
                     {/* Sidebar - Sticky */}
                     <div className="3xl:w-[26%] xxl:w-[30%] lg:w-[32%] w-full lg:order-2 order-1">
-                        <div className="sticky top-32 3xl:space-y-8 space-y-6 z-[2]">
+                        <div className="sticky top-28 3xl:space-y-8 space-y-6 z-[2]">
                             <InputSearchComponent />
 
                             {/* Categories Section */}
@@ -406,7 +408,7 @@ const MainBlogSection = (props: Props) => {
                 </div>
 
                 <CustomPagination
-                    className='w-full mt-10'
+                    className='w-full lg:mt-10 mt-2'
                     totalPages={totalPages}
                     currentPage={currentPage}
                     onPageChange={handlePageChange}

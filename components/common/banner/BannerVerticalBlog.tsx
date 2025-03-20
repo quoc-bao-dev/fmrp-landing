@@ -23,7 +23,7 @@ const BannerVerticalBlog = (props: Props) => {
             {/* Ảnh hiển thị trên Tablet */}
             <div className="flex items-center justify-center">
                 <motion.div
-                    className="w-auto 3xl:h-[400px] lg:h-[400px] h-[360px] aspect-1.92/1 relative"
+                    className="w-auto lg:h-[400px] md:h-[312px] h-[360px] aspect-1.92/1 relative"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}

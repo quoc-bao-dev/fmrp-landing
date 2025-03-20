@@ -10,6 +10,7 @@ import ClockIcon from '@/components/icons/common/ClockIcon'
 
 type Props = {
     blog: IBlogItem
+    className?: string
 }
 
 const dataBackgroundColor = [
@@ -55,17 +56,17 @@ const hoverVariants = {
     hover: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
 };
 
-const BlogCard = ({ blog }: Props) => {
+const BlogCardHorizontal = ({ blog, className }: Props) => {
     return (
         <motion.div
-            className="flex flex-col gap-2 cursor-pointer group"
+            className={`${className} flex flex-row  gap-2 cursor-pointer group`}
             initial="rest"
             animate="rest"
             whileHover="hover"
             whileTap="press"
         >
             {/* Hình ảnh chính */}
-            <div className='relative w-full h-auto aspect-square rounded-3xl overflow-hidden'>
+            <div className='max-w-[30%] relative w-full aspect-square rounded-3xl overflow-hidden shrink-0'>
                 <Image
                     src={blog.image}
                     alt="BOM là gì?"
@@ -73,24 +74,9 @@ const BlogCard = ({ blog }: Props) => {
                     height={1000}
                     className="size-full object-cover aspect-square rounded-3xl group-hover:scale-105 custom-transition"
                 />
-                {/* Overlay - Hiện dần khi hover */}
-                <motion.div
-                    className="absolute inset-0 bg-[#0F4F9E]/40 rounded-3xl"
-                    variants={fadeVariants}
-                />
-
-                {/* Nút "Xem thêm" */}
-                <motion.div
-                    className="absolute inset-0 flex items-center justify-center"
-                    variants={hoverVariants}
-                >
-                    <div className="flex items-center justify-center p-4  aspect-square 3xl:text-base text-sm rounded-full bg-[#15AA7A] text-white font-semibold shadow-lg capitalize">
-                        Xem chi tiết
-                    </div>
-                </motion.div>
             </div>
 
-            <div className="mt-2 space-y-4">
+            <div className="max-w-[70%] mt-2 space-y-4">
                 <div className='flex flex-wrap items-center gap-2'>
                     {
                         blog && blog?.type_blog?.map((item: IBlogTag) => (
@@ -107,7 +93,7 @@ const BlogCard = ({ blog }: Props) => {
                     }
                 </div>
 
-                <h3 className="text-title font-extrabold text-[#33404A] group-hover:text-[#15AA7A] custom-transition">
+                <h3 className="text-title font-extrabold text-[#33404A] group-hover:text-[#15AA7A] custom-transition min-h-[56px]">
                     {blog?.title ?? ""}
                 </h3>
 
@@ -127,19 +113,9 @@ const BlogCard = ({ blog }: Props) => {
                         </span>
                     </div>
                 </div>
-
-                <div className='flex items-center gap-2'>
-                    <span className='text-[#667F93] 3xl:text-lg text-base group-hover:text-[#667F93]/80 font-semibold custom-transition'>
-                        Khám phá ngay
-                    </span>
-
-                    <div className='text-[#667F93] group-hover:text-white group-hover:translate-x-1 group-hover:bg-[#15AA7A]  p-3 rounded-full custom-transition'>
-                        <BasicArrowLeftIcon className='size-4' />
-                    </div>
-                </div>
             </div>
         </motion.div>
     )
 }
 
-export default BlogCard
+export default BlogCardHorizontal

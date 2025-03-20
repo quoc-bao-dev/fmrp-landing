@@ -4,10 +4,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type Props = {
     classNameContainer?: string
+    classImage?: string
+    classFallback?: string
     avatar?: string
 }
 
-const AvatarCustom = ({ classNameContainer, avatar }: Props) => {
+const AvatarCustom = ({ classNameContainer, classImage, classFallback, avatar }: Props) => {
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     return (
@@ -17,7 +19,7 @@ const AvatarCustom = ({ classNameContainer, avatar }: Props) => {
                 height={200}
                 src={avatar}
                 alt="@avatar"
-                className={`object-cover size-full rounded-full`}
+                className={`${classImage} object-cover size-full rounded-full aspect-square`}
             />
             <AvatarFallback >
                 <Image
@@ -26,7 +28,7 @@ const AvatarCustom = ({ classNameContainer, avatar }: Props) => {
                     // src='/avatar/avatar_default.png'
                     src={avatar || '/avatar/avatar_default.png'}
                     alt="@avatar"
-                    className={`${isLoaded ? 'blur-0' : 'blur-md'}  object-cover size-full rounded-full`}
+                    className={`${classFallback} ${isLoaded ? 'blur-0' : 'blur-md'}  object-cover size-full rounded-full`}
                     onLoad={() => setIsLoaded(true)}
                 />
             </AvatarFallback>

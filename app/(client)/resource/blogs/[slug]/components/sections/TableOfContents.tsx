@@ -97,12 +97,12 @@ export default function AutoTableOfContents() {
     }
 
     return (
-        <div className="bg-white ">
+        <div className="bg-white space-y-2">
             <div
-                className="flex items-center justify-between p-4 cursor-pointer"
+                className="flex items-center justify-between cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <p className="text-title font-extrabold mb-2">
+                <p className="text-title font-extrabold">
                     Nội dung bài viết
                 </p>
 
@@ -120,7 +120,7 @@ export default function AutoTableOfContents() {
 
             {
                 isOpen && (
-                    <div className="p-4 pt-0">
+                    <div className="py-2">
                         {
                             tocItems.length > 0 ?
                                 (

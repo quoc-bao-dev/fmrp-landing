@@ -23,12 +23,13 @@ const variantSlideZoomOut = {
     visible: {
         opacity: 1,
         scale: 1,
-        // transition: {
-        //     duration: 0.5, // Tăng thời gian của transition
-        //     delayChildren: 0.3, // Độ trễ trước khi con bắt đầu animation
-        //     staggerChildren: 0.2, // Thời gian giữa các hoạt ảnh của con
-        // },
     },
+};
+
+const variantButtonBasic = {
+    rest: { scale: 1 },
+    press: { scale: 0.95, transition: { duration: 0.3 } },
+    hover: { scale: 1.05, transition: { duration: 0.3 } },
 };
 
 const variantButtonPressZoom = {
@@ -85,5 +86,6 @@ export {
     variantButtonScaleZoom,
     variantCardScaleZoom,
     variantsContent,
-    variantsLinearShadow
+    variantsLinearShadow,
+    variantButtonBasic
 };
