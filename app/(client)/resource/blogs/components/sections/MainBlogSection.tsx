@@ -196,7 +196,7 @@ const MainBlogSection = (props: Props) => {
 
     const { data: dataTypeBlogsList, isLoading: isLoadingDataTypeBlogsList } = useGetTypeBlogsList()
 
-    const { data: dataBlogsList, isLoading: isLoadingBlogsList } = useBlogsList({ page: currentPage, limit: itemsPerPage, typeBlog: isStatePageBlogs?.isSelectedCategory, search: isStatePageBlogs?.searchBlog })
+    const { data: dataBlogsList, isLoading: isLoadingBlogsList } = useBlogsList({ page: currentPage, limit: itemsPerPage, typeBlog: isStatePageBlogs?.isSelectedCategory, search: isStatePageBlogs?.searchBlog, enabled: true })
 
     useEffect(() => {
         if (dataTypeBlogsList && !isStatePageBlogs?.isSelectedCategory) {

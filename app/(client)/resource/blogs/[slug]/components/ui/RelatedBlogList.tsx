@@ -10,7 +10,7 @@ type Props = {
     dataBlogList: IBlogItem[]
 }
 
-const RelatedBlogList = ({ dataBlogList }: Props) => {
+const RelatedBlogList = ({ dataBlogList = [] }: Props) => {
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
 

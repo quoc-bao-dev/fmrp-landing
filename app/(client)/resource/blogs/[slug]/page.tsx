@@ -105,11 +105,13 @@ const DetailBlog = () => {
 
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
-    const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } = useBlogsList({ page: 1, limit: 3, idBlog: idBlog?.slug })
     const { data: dataBlogDetail } = useGetDataDetailBlog({ slug: idBlog?.slug })
+
+    const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } = useBlogsList({ page: 1, limit: 3, idBlog: dataBlogDetail?.id, enabled: !!dataBlogDetail?.id })
 
     console.log('dataBlogsRelatedList', dataBlogsRelatedList);
     console.log('dataBlogDetail', dataBlogDetail);
+    console.log('idBlog?.slug', idBlog?.slug);
 
 
     const customPagination = {
@@ -221,8 +223,19 @@ const DetailBlog = () => {
 
                             <div className="article-content">
                                 <p
-                                    className="text-[#33404A] font-medium"
+                                    className="text-[#33404A] font-medium
+                                    [&_img]:mx-auto [&_figure]:flex [&_figure]:justify-center
+                                    "
                                     dangerouslySetInnerHTML={{ __html: `${addIdsToHeadings(dataBlogDetail?.content ?? '')}` }}
+                                //     className="
+                                //     mt-6 text-justify
+                                //     [&_a_has-[img]]:bg-contain [&_a:has(img)]:w-full [&_a:not(:has(img))]:w-fit 
+                                //     [&_img]:mx-auto [&_figure]:flex [&_figure]:justify-center
+                                //     [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-gray-300
+                                //   [&_th]:bg-gray-100 [&_th]:border [&_th]:border-gray-300 [&_th]:p-1 [&_th]:text-left
+                                //     [&_td]:border [&_td]:border-gray-300 [&_td]:p-1
+                                //       [&_strong]:inline [&_span]:inline [&_p]:inline
+                                //     "
                                 />
                             </div>
                         </div>
@@ -242,15 +255,15 @@ const DetailBlog = () => {
                         <div className='3xl:w-[26%] xxl:w-[30%] lg:w-[32%] w-full'>
                             <div className='sticky top-28 space-y-8'>
                                 {/* <TableOfContents /> */}
-                                <AutoTableOfContents /> 
-                                <BannerVerticalFmrp />
-                                <BannerVerticalBlog />
+                                <AutoTableOfContents />
+                                {/* <BannerVerticalFmrp />
+                                <BannerVerticalBlog /> */}
                             </div>
                         </div>
                     }
                 </div>
 
-                <RelatedBlogList dataBlogList={dataBlogList} />
+                <RelatedBlogList dataBlogList={dataBlogsRelatedList?.data || []} />
 
                 {
                     isVisibleTablet &&

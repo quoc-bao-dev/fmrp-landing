@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import Link from 'next/link'
+import { animate } from 'framer-motion'
 
 interface TocItem {
     id: string
@@ -70,6 +71,7 @@ export default function AutoTableOfContents() {
 
             addIndexes(items)
             setTocItems(items)
+            setIsOpen(true)
         }
 
         // Theo dõi sự thay đổi DOM để chỉ build TOC khi content có
@@ -83,44 +85,60 @@ export default function AutoTableOfContents() {
         return () => observer.disconnect()
     }, [])
 
-    // ScrollSpy
     // useEffect(() => {
-    //     const headings = document.querySelectorAll('.article-content h1, h2, h3, h4, h5, h6')
+    //     if (tocItems.length === 0) return;
+
+    //     const headingElements = tocItems.map(item => document.getElementById(item.id)).filter(Boolean) as HTMLElement[];
+
+    //     if (headingElements.length === 0) return;
+
     //     const observer = new IntersectionObserver((entries) => {
-    //         entries.forEach(entry => {
-    //             if (entry.isIntersecting) {
-    //                 setActiveId(entry.target.id)
-    //             }
-    //         })
+    //         const visible = entries
+    //             .filter(entry => entry.isIntersecting)
+    //             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+    //         if (visible.length > 0) {
+    //             setActiveId(visible[0].target.id);
+    //         }
     //     }, {
     //         rootMargin: '0px 0px -70% 0px',
     //         threshold: 0.1
-    //     })
+    //     });
 
-    //     headings.forEach(heading => observer.observe(heading))
-    //     return () => headings.forEach(heading => observer.unobserve(heading))
-    // }, [])
+    //     headingElements.forEach(el => observer.observe(el));
+
+    //     return () => {
+    //         headingElements.forEach(el => observer.unobserve(el));
+    //     };
+    // }, [tocItems]);
 
     useEffect(() => {
-        const headingElements = Array.from(document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3'));
+        if (tocItems.length === 0) return;
+
+        // Lấy toàn bộ tocItems bao gồm cả children
+        const flattenToc = (items: TocItem[]): TocItem[] =>
+            items.reduce<TocItem[]>((acc, item) => {
+                acc.push(item);
+                if (item.children?.length) acc.push(...flattenToc(item.children));
+                return acc;
+            }, []);
+
+        const allTocItems = flattenToc(tocItems);
+        const headingElements = allTocItems.map(item => document.getElementById(item.id)).filter(Boolean) as HTMLElement[];
 
         if (headingElements.length === 0) return;
 
-        const callback = (entries: IntersectionObserverEntry[]) => {
-            const visibleHeadings = entries.filter(entry => entry.isIntersecting);
+        const observer = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
-            if (visibleHeadings.length > 0) {
-                const topMost = visibleHeadings.reduce((prev, curr) => {
-                    return prev.boundingClientRect.top < curr.boundingClientRect.top ? prev : curr;
-                });
-
-                setActiveId(topMost.target.id);
+            if (visible.length > 0) {
+                setActiveId(visible[0].target.id);
             }
-        };
-
-        const observer = new IntersectionObserver(callback, {
-            rootMargin: '0px 0px -70% 0px',
-            threshold: 0.1
+        }, {
+            rootMargin: '0px 0px -65% 0px', // hơi cao hơn để active sớm
+            threshold: 0.4
         });
 
         headingElements.forEach(el => observer.observe(el));
@@ -128,22 +146,51 @@ export default function AutoTableOfContents() {
         return () => {
             headingElements.forEach(el => observer.unobserve(el));
         };
-    }, []);
+    }, [tocItems]);
 
     const renderTocItem = (item: TocItem) => {
-        const isLevel2 = item.level === 2
-        const isLevel3 = item.level === 3
-        const isLevel4 = item.level === 4
+        const isActive = item.id === activeId;
+        const isLevel2 = item.level === 2;
+        const isLevel3 = item.level === 3;
+        const isLevel4 = item.level === 4;
 
-        const padding = isLevel3 ? "pl-4" : isLevel4 ? "pl-8" : ""
-        const fontStyle = item.id === activeId ? "text-[#15AA7A] font-bold" : isLevel2 ? "text-[#15AA7A] font-semibold" : "text-gray-800"
-        const textSize = isLevel2 ? "text-[16px]" : "text-[15px]"
+        const padding = isLevel3 ? "pl-4" : isLevel4 ? "pl-8" : "";
+        const textSize = isLevel2 ? "text-[16px]" : "text-[15px]";
+        const activeStyle = isActive ? "!text-[#15AA7A] font-bold" : "";
+
+        console.log('isActive', isActive);
+
 
         return (
             <div key={item.id}>
-                <Link href={`#${item.id}`} className={`block py-1 ${padding} ${fontStyle} ${textSize} hover:text-[#15AA7A] transition-all`}>
+                {/* <Link
+                    href={`#${item.id}`}
+                    className={`block py-1 ${padding} ${textSize}  ${activeStyle} hover:text-[#15AA7A] transition-all`}
+                >
                     {item.text}
-                </Link>
+                </Link> */}
+
+                <div
+                    key={item.id}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById(item.id);
+                        if (el) {
+                            const yOffset = -80; // offset để không bị che bởi header
+                            const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+
+                            animate(window.scrollY, y, {
+                                duration: 0.6,
+                                onUpdate: (latest) => window.scrollTo(0, latest),
+                                ease: [0.25, 0.1, 0.25, 1]
+                            });
+                        }
+
+                    }}
+                    className={`block py-1 cursor-pointer ${padding} ${textSize} ${activeStyle} hover:text-[#15AA7A] transition-all`}
+                >
+                    {item.text}
+                </div>
 
                 {item.children.length > 0 && (
                     <div className="space-y-1 mt-1">
@@ -151,8 +198,10 @@ export default function AutoTableOfContents() {
                     </div>
                 )}
             </div>
-        )
-    }
+        );
+    };
+
+    console.log("activeId:", activeId);
 
     return (
         <div className="bg-white space-y-2">
@@ -163,7 +212,7 @@ export default function AutoTableOfContents() {
 
             {isOpen && (
                 <div className="py-2">
-                    {tocItems.length > 0 ? (
+                    {tocItems && tocItems.length > 0 ? (
                         <ul className="space-y-2">{tocItems.map(renderTocItem)}</ul>
                     ) : (
                         <p className="text-gray-500">Đang tải mục lục...</p>

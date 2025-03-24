@@ -8,31 +8,38 @@ type BlogsListProps = {
     typeBlog?: any,
     search?: string
     idBlog?: string | any | number
+    enabled?: boolean
 }
 
-export const useBlogsList = ({ limit, page, typeBlog, search, idBlog }: BlogsListProps) => {
+export const useBlogsList = ({ limit, page, typeBlog, search, idBlog, enabled = false }: BlogsListProps) => {
+    console.log('check idBlog: ', idBlog);
+
     const { getListBlogs } = useBlogsQueryKeys();
     const { key, options } = getListBlogs.list({ page, typeBlog, search, idBlog });
 
     const fetchBlogsList = async () => {
         try {
             const dataSubmit: any = {}; // hoặc cụ thể kiểu nếu muốn
+            console.log('check0');
 
-            if (typeBlog.id !== 0) {
+            if (typeBlog && typeBlog.id !== 0) {
                 dataSubmit.type_blog = [typeBlog.id];
             }
+            console.log('check1');
 
             if (search) {
                 dataSubmit.search = search;
             }
+            console.log('check2');
 
             if (idBlog) {
                 dataSubmit.id = idBlog;
             }
+            console.log('check3');
 
             const { data } = await apiBlogs.getListBlogs(page, limit, dataSubmit);
 
-            console.log('data',data);
+            console.log('data', data);
 
 
             return data
@@ -46,6 +53,7 @@ export const useBlogsList = ({ limit, page, typeBlog, search, idBlog }: BlogsLis
         queryFn: fetchBlogsList,
         retry: 3,
         gcTime: 5000,
+        enabled: enabled,
         ...options, // Dùng options chung từ `queryKeys`
     });
 };
