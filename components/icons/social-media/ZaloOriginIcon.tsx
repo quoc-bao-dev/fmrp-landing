@@ -17,7 +17,7 @@ const ZaloOriginIcon: React.FC<ZaloOriginIconProps> = ({ size = 32, color = 'cur
             xmlns="http://www.w3.org/2000/svg"
             className={className}
         >
-            <g clip-path="url(#clip0_2086_54583)">
+            <g clipPath="url(#clip0_2086_54583)">
                 <path
                     fillRule="evenodd"
                     clipRule="evenodd"

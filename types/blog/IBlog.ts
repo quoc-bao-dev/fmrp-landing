@@ -13,6 +13,10 @@ interface IBlogItem {
     type_blog: IBlogTag[]; // Mảng các tag
     created_date: string; // Ngày tạo bài viết (định dạng dd/mm/yyyy)
     time_read: string; // Thời gian đọc
+    slug?: string;
+    content?: string;
+    content_no_html?: string;
+    created_at?: string;
 }
 
 interface IFilterBlog {
@@ -21,8 +25,6 @@ interface IFilterBlog {
     active: number,
     created_at: null,
     countBlog: number
-
-
 }
 
 export type { IBlogItem, IBlogTag, IFilterBlog }

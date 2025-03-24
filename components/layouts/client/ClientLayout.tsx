@@ -9,6 +9,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 // import FooterContainer from '../footer/FooterContainer'
 
 import WidgetButton from '@/components/common/button/WidgetButton'
+import WidgetButton1 from '@/components/common/button/WidgetButton1'
 
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
@@ -41,7 +42,8 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
             {/* footer */}
             <FooterContainer />
 
-           <WidgetButton />
+            {/* <WidgetButton /> */}
+            <WidgetButton1 />
 
             {openSheetCustom && <DynamicSheet />}
             {/* {openDialogCustom && <DialogCustom />} */}

@@ -20,7 +20,7 @@ const SystemNodata = ({ type, className, classNameTitle }: { type: string, class
             // case 'no-address':
             //     quertyState({ title: dataLang?.no_data_no_address ?? "no_data_no_address", image: '/background/system/no-data.svg' })
             //     break;
-            case 'history':
+            case 'blog-list':
                 quertyState({ title: '', image: '/background/system/upload-no-data.svg' })
                 break;
             default:

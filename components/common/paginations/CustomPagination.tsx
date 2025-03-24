@@ -67,9 +67,6 @@ export function CustomPagination({
             pageNumbers.push(totalPages)
         }
 
-        console.log('pageNumbers', pageNumbers);
-
-
         return pageNumbers.map((page, index) => {
             if (page === "ellipsis1" || page === "ellipsis2") {
                 return (

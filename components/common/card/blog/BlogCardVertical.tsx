@@ -60,7 +60,7 @@ const hoverVariants = {
 const BlogCardVertical = ({ blog, className }: Props) => {
     return (
         <Link
-            href={`/resource/blogs/${blog.id}`}
+            href={`/resource/blogs/${blog.slug}`}
         >
             <motion.div
                 className={`${className} flex flex-col gap-2 cursor-pointer group`}

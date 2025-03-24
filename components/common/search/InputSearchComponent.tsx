@@ -1,12 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ButtonAnimationNew from "../button/ButtonAnimationNew";
+import { useDebounce } from 'use-debounce';
 
-const InputSearchComponent = () => {
-    const [searchText, setSearchText] = useState("");
+type InputSearchProps = {
+    value?: string
+    handleChangeInputSearch?: (value: string) => void
+}
+
+const InputSearchComponent: React.FC<InputSearchProps> = ({
+    value = "",
+    handleChangeInputSearch = () => { }
+}) => {
+    const [searchText, setSearchText] = useState<string>(value);
+    const [debouncedValue] = useDebounce(searchText, 500);
+
+    // Sync value từ props nếu cần
+    useEffect(() => {
+        setSearchText(value);
+    }, [value]);
+
+    // Gọi callback mỗi khi debouncedValue thay đổi
+    useEffect(() => {
+        handleChangeInputSearch(debouncedValue);
+    }, [debouncedValue]);
+
+    const handleClear = () => {
+        setSearchText("");
+    };
 
     return (
         <div>

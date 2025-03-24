@@ -1,19 +1,11 @@
-import { Search } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 import CommunityJoinSection from '../ui/CommunityJonbinSection'
 import { uuidv4 } from '@/lib/uuid'
 import BlogCardVertical from '@/components/common/card/blog/BlogCardVertical'
 import { IBlogItem, IFilterBlog } from '@/types/blog/IBlog'
 import { CustomPagination } from '@/components/common/paginations/CustomPagination'
-import { Input } from '@/components/ui/input';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import { useResizeStore } from '@/stores/useResizeStore';
 
-import { motion } from 'framer-motion'
-import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
 import InputSearchComponent from '@/components/common/search/InputSearchComponent'
 import { useStatePageBlogs } from '../../_state/useStatePageBlogs'
 import BannerVerticalBlog from '@/components/common/banner/BannerVerticalBlog'
@@ -22,8 +14,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { useGetTypeBlogsList } from '@/managers/api/blogs/useGetTypeBlogsList'
-import SkeletonTypeBlogsList from '@/components/common/skeleton/blogs/SkeletonTypeBlogsList'
 import { useBlogsList } from '@/managers/api/blogs/useBlogsList'
+import BlogTypeSkeleton from '@/components/common/skeleton/blogs/BlogTypeSkeleton';
+import BlogCardSkeletonVertical from '../../../../../../components/common/skeleton/blogs/BlogCardSkeletonVertical';
+import SystemNodataNew from '../../../../../../components/common/system/SystemNodataNew';
 
 type Props = {}
 
@@ -190,6 +184,8 @@ const dataFilterBlog: any[] = [
     },
 ]
 
+const itemsPerPage = 6 // Set your desired items per page here
+
 const MainBlogSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
 
@@ -200,31 +196,20 @@ const MainBlogSection = (props: Props) => {
 
     const { data: dataTypeBlogsList, isLoading: isLoadingDataTypeBlogsList } = useGetTypeBlogsList()
 
-    const { data: dataBlogsList, isLoading: isLoadingBlogsList } = useBlogsList({ page: currentPage, limit: 10 })
+    const { data: dataBlogsList, isLoading: isLoadingBlogsList } = useBlogsList({ page: currentPage, limit: itemsPerPage, typeBlog: isStatePageBlogs?.isSelectedCategory, search: isStatePageBlogs?.searchBlog })
 
     useEffect(() => {
-        if (dataFilterBlog) {
-            queryKeyIsStatePageBlogs({
-                isSelectedCategory: dataFilterBlog[0]
-            })
+        if (dataTypeBlogsList && !isStatePageBlogs?.isSelectedCategory) {
+            queryKeyIsStatePageBlogs({ isSelectedCategory: dataTypeBlogsList[0] });
         }
-    }, [dataFilterBlog])
-
-    // useEffect(() => {
-    //     if (dataTypeBlogsList) {
-    //         queryKeyIsStatePageBlogs({
-    //             isSelectedCategory: dataTypeBlogsList[0]
-    //         })
-    //     }
-    // }, [dataTypeBlogsList])
+    }, [dataTypeBlogsList]);
 
     const handleFilterBlog = (value: IFilterBlog) => {
         queryKeyIsStatePageBlogs({
             isSelectedCategory: value
         })
+        setCurrentPage(1)
     }
-
-    const totalPages = 20
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
@@ -237,6 +222,13 @@ const MainBlogSection = (props: Props) => {
             return `<span class=${className}></span>`
         },
 
+    }
+
+    const handleChangeInputSearch = (value: string) => {
+        queryKeyIsStatePageBlogs({
+            searchBlog: value
+        })
+        setCurrentPage(1)
     }
 
     // const dataBackgroundColor = [
@@ -270,7 +262,7 @@ const MainBlogSection = (props: Props) => {
     //     },
     // ]
 
-    console.log('dataBlogsList', dataBlogsList);
+    console.log('dataBlogsList: ', dataBlogsList);
 
 
     return (
@@ -289,28 +281,41 @@ const MainBlogSection = (props: Props) => {
                         }
 
                         {/* Article Grid */}
-                        <div className="grid grid-cols-1 3xl:gap-8 gap-6 md:grid-cols-2 mt-4">
-                            {
+                        <div className={`${dataBlogsList?.data?.length > 0 ? "" : " "} grid md:grid-cols-2 grid-cols-1 3xl:gap-8 gap-6 mt-4`}>
+                            {/* {
                                 dataBlog && dataBlog?.map((blog: any) => (
                                     <React.Fragment key={`blog-${blog.id}`}>
                                         <BlogCardVertical blog={blog} />
                                     </React.Fragment>
                                 ))
-                            }
-                            {/* {
-                                dataBlogsList && dataBlogsList?.data?.map((blog: any) => (
-                                    <React.Fragment key={`blog-${blog.id}`}>
-                                        <BlogCardVertical blog={blog} />
-                                    </React.Fragment>
-                                ))
                             } */}
+                            {
+                                isLoadingBlogsList ?
+                                    (
+                                        [...Array(6)].map((_, index) => (
+                                            <BlogCardSkeletonVertical key={`skeleton-${index}`} />
+                                        ))
+                                    )
+                                    :
+                                    dataBlogsList && dataBlogsList?.data?.length > 0
+                                        ? dataBlogsList?.data?.map((blog: any) => (
+                                            <React.Fragment key={`blog-${blog.id}`}>
+                                                <BlogCardVertical blog={blog} />
+                                            </React.Fragment>
+                                        ))
+                                        :
+                                        <SystemNodataNew type='blog-list' className='md:col-span-2 col-span-1 h-full w-full' />
+                            }
                         </div>
                     </div>
 
                     {/* Sidebar - Sticky */}
                     <div className="3xl:w-[26%] xxl:w-[30%] lg:w-[32%] w-full lg:order-2 order-1">
                         <div className="sticky top-28 3xl:space-y-8 space-y-6 z-[2]">
-                            <InputSearchComponent />
+                            <InputSearchComponent
+                                value={isStatePageBlogs?.searchBlog}
+                                handleChangeInputSearch={handleChangeInputSearch}
+                            />
 
                             {/* Categories Section */}
                             <div className="flex flex-col gap-2">
@@ -325,40 +330,50 @@ const MainBlogSection = (props: Props) => {
                                         <ScrollArea type="hover" className={`w-full overflow-auto pb-3`}>
                                             <div className='flex items-center gap-4 border-b border-[#B3C5D4] pt-4 w-full'>
                                                 {
-                                                    dataFilterBlog && dataFilterBlog?.map((item: IFilterBlog, index: number) => (
-                                                        <div
-                                                            key={`tab-filter-${item.id}`}
-                                                            className={`${isStatePageBlogs?.isSelectedCategory === item ? "border-[#53B086] border-b-[3px]" : "border-transparent"} flex justify-between pb-1`}
-                                                            onClick={() => handleFilterBlog(item)}
-                                                        >
-                                                            <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] font-semibold" : ""} hover:text-[#53B086] cursor-pointer custom-transition text-nowrap`}>
-                                                                {item.name}
-                                                            </span>
+                                                    isLoadingDataTypeBlogsList
+                                                        ?
+                                                        (
+                                                            Array.from({ length: 7 }).map((_, index) => (
+                                                                <React.Fragment key={`type-categories-${index}`}>
+                                                                    <BlogTypeSkeleton />
+                                                                </React.Fragment>
+                                                            ))
+                                                        )
+                                                        :
+                                                        dataFilterBlog && dataFilterBlog?.map((item: IFilterBlog, index: number) => (
+                                                            <div
+                                                                key={`tab-filter-${item.id}`}
+                                                                className={`${isStatePageBlogs?.isSelectedCategory === item ? "border-[#53B086] border-b-[3px]" : "border-transparent"} flex justify-between pb-1`}
+                                                                onClick={() => handleFilterBlog(item)}
+                                                            >
+                                                                <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] font-semibold" : ""} hover:text-[#53B086] cursor-pointer custom-transition text-nowrap`}>
+                                                                    {item.name}
+                                                                </span>
 
-                                                        </div>
-                                                    ))
+                                                            </div>
+                                                        ))
                                                 }
                                             </div>
                                             <ScrollBar orientation='horizontal' />
                                         </ScrollArea>
                                         :
                                         <div className="space-y-2">
-                                            {/* {
+                                            {
                                                 isLoadingDataTypeBlogsList
                                                     ?
                                                     (
                                                         Array.from({ length: 7 }).map((_, index) => (
                                                             <React.Fragment key={`type-categories-${index}`}>
-                                                                <SkeletonTypeBlogsList />
+                                                                <BlogTypeSkeleton />
                                                             </React.Fragment>
                                                         ))
                                                     )
                                                     :
                                                     (
-                                                        dataFilterBlog && dataFilterBlog?.map((item: IFilterBlog, index: number) => (
+                                                        dataTypeBlogsList && dataTypeBlogsList?.map((item: IFilterBlog, index: number) => (
                                                             <div
                                                                 key={`tab-filter-${item.id}`}
-                                                                className={`${dataFilterBlog?.length - 1 === index ? "border-transparent" : "border-[#F1F5F7]"} flex justify-between pb-2 border-b cursor-pointer group`}
+                                                                className={`${dataTypeBlogsList?.length - 1 === index ? "border-transparent" : "border-[#F1F5F7]"} flex justify-between pb-2 border-b cursor-pointer group`}
                                                                 onClick={() => handleFilterBlog(item)}
                                                             >
                                                                 <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] font-semibold" : ""} group-hover:text-[#53B086] custom-transition`}>
@@ -371,8 +386,8 @@ const MainBlogSection = (props: Props) => {
                                                             </div>
                                                         ))
                                                     )
-                                            } */}
-                                            {
+                                            }
+                                            {/* {
                                                 dataFilterBlog && dataFilterBlog?.map((item: IFilterBlog, index: number) => (
                                                     <div
                                                         key={`tab-filter-${item.id}`}
@@ -388,7 +403,7 @@ const MainBlogSection = (props: Props) => {
                                                         </span>
                                                     </div>
                                                 ))
-                                            }
+                                            } */}
                                         </div>
                                 }
                             </div>
@@ -407,12 +422,16 @@ const MainBlogSection = (props: Props) => {
                     </div>
                 </div>
 
-                <CustomPagination
-                    className='w-full lg:mt-10 mt-2'
-                    totalPages={totalPages}
-                    currentPage={currentPage}
-                    onPageChange={handlePageChange}
-                />
+                {
+                    dataBlogsList && dataBlogsList?.data?.length > 0 &&
+                    <CustomPagination
+                        className='w-full lg:mt-10 mt-2'
+                        // totalPages={dataBlogsList?.total || 0}
+                        totalPages={Math.ceil((dataBlogsList?.meta?.total || 0) / itemsPerPage)}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
+                }
 
                 {
                     isVisibleTablet &&

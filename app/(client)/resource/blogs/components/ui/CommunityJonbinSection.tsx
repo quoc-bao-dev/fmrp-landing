@@ -13,7 +13,7 @@ const CommunityJoinSection = () => {
 
     return (
         <div
-            className="relative rounded-[40px] 3xl:p-16 xl:p-12 lg:p-8 py-8 w-full overflow-hidden"
+            className="relative rounded-[40px] 3xl:p-16 xl:p-12 lg:p-8 py-8 w-full h-auto overflow-hidden"
             style={{
                 background:
                     "linear-gradient(77.74deg, #013DA0 11.85%, #0142A9 20.65%, #0148B3 29.45%, #024EBC 38.25%, #0254C5 47.05%, #025ACE 55.84%, #0261D7 64.64%, #0267E1 73.44%, #036EEA 82.24%, #0375F3 91.04%)",
@@ -30,6 +30,7 @@ const CommunityJoinSection = () => {
                                 width={500}
                                 height={450}
                                 className="size-full object-contain"
+                                placeholder="blur"
                             />
                         </div>
                     </div>

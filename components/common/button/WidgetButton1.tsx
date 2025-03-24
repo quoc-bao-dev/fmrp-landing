@@ -35,8 +35,8 @@ const socialButtons = [
     }
 ];
 
-// Component WidgetButton
-const WidgetButton: React.FC = () => {
+// Component WidgetButton1
+const WidgetButton1: React.FC = () => {
     const pathname = usePathname()
     return (
         <div className="flex flex-col gap-4 fixed bottom-8 lg:right-8 right-5 z-[999]">
@@ -71,4 +71,4 @@ const WidgetButton: React.FC = () => {
     );
 }
 
-export default React.memo(WidgetButton);
+export default React.memo(WidgetButton1);

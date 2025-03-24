@@ -13,7 +13,7 @@ interface TocItem {
 }
 
 export default function AutoTableOfContents() {
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const [tocItems, setTocItems] = useState<TocItem[]>([])
 
     useEffect(() => {
@@ -72,29 +72,42 @@ export default function AutoTableOfContents() {
             })
         }
 
+        console.log('items', items);
+
+
         addIndexes(items)
         setTocItems(items)
-    }, [])
+    }, [isOpen])
+
+    console.log('tocItems', tocItems);
 
     // Render TOC item và các children của nó
     const renderTocItem = (item: TocItem) => {
+        const isLevel2 = item.level === 2;
+        const isLevel3 = item.level === 3;
+        const isLevel4 = item.level === 4;
+
+        const padding = isLevel3 ? "pl-4" : isLevel4 ? "pl-8" : "";
+        const fontStyle = isLevel2 ? "text-[#15AA7A] font-semibold" : "text-gray-800";
+        const textSize = isLevel2 ? "text-[16px]" : "text-[15px]";
+
         return (
-            <li key={item.id}>
+            <div key={item.id}>
                 <Link
                     href={`#${item.id}`}
-                    className="text-blue-600 hover:text-blue-800 block py-1"
+                    className={`block py-1 ${padding} ${fontStyle} ${textSize} hover:text-[#15AA7A] transition-all`}
                 >
-                    {item.index}. {item.text}
+                    {item.text}
                 </Link>
 
                 {item.children.length > 0 && (
-                    <ul className="pl-4 space-y-1 mt-1">
+                    <p className="space-y-1 mt-1">
                         {item.children.map(renderTocItem)}
-                    </ul>
+                    </p>
                 )}
-            </li>
-        )
-    }
+            </div>
+        );
+    };
 
     return (
         <div className="bg-white space-y-2">
@@ -122,7 +135,7 @@ export default function AutoTableOfContents() {
                 isOpen && (
                     <div className="py-2">
                         {
-                            tocItems.length > 0 ?
+                            tocItems && tocItems.length > 0 ?
                                 (
                                     <ul className="space-y-2">
                                         {tocItems.map(renderTocItem)}

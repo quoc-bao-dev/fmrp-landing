@@ -1,4 +1,5 @@
 import { instanceDefault } from "@/utils/axios/AxiosCustomize";;
+import { AxiosRequestConfig } from "axios";
 
 const apiBlogs = {
     // get type category
@@ -7,12 +8,17 @@ const apiBlogs = {
     },
 
     // get list blog
-    async getListBlogs(page: string | number = 1, limit: string | number = 10): Promise<any> {
-        return await instanceDefault.get(`/blog/getListBlog?current_page=${page}&per_page=${limit}`);
+    async getListBlogs(page: string | number = 1, limit: string | number = 10, param?: any): Promise<any> {
+        let config: AxiosRequestConfig = {
+            params: {
+                ...param,
+            },
+        };
+        return await instanceDefault.get(`/blog/getListBlog?current_page=${page}&per_page=${limit}`, config);
     },
 
     // get detail blog
-    async getDetailBlog(id: string, data: any): Promise<any> {
+    async getDetailBlog(id: string | any, data?: any): Promise<any> {
         return await instanceDefault.get(`/blog/getDetail/${id}`, data);
     },
 };
