@@ -138,7 +138,7 @@ const DetailBlog = () => {
     return (
         <main className='custom-padding-section'>
             <div className='custom-container 3xl:space-y-14 space-y-10'>
-                <div className='lg:pt-8 pt-8'>
+                <div className='lg:pt-8 pt-16'>
                     <CustomBreadcrumb items={breadcrumbItems} />
                 </div>
 
@@ -170,8 +170,8 @@ const DetailBlog = () => {
                                     <div className='flex items-center 3xl:gap-4 gap-2'>
                                         <AvatarCustom
                                             classNameContainer='size-16 border border-[#F1F5F7] flex items-center justify-center shadow-md'
-                                            classImage='!size-8 !rounded-none'
-                                            avatar='/avatar/common/avatar-foso.png'
+                                            classImage='!size-full !rounded-none object-cover'
+                                            avatar={dataBlogDetail?.created?.avatar || '/avatar/common/avatar-foso.png'}
                                         />
 
                                         <div className='space-y-0.5'>
@@ -179,25 +179,25 @@ const DetailBlog = () => {
                                                 Tác giả
                                             </div>
 
-                                            <div className="2xl:text-base lg:text-sm text-base font-bold">
-                                                FOSO Creator
+                                            <div className="2xl:text-base lg:text-sm text-base font-bold capitalize">
+                                                {dataBlogDetail?.created?.name} Creator
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="mt-2 flex items-center md:gap-8 gap-4 2xl:text-base text-sm  font-medium">
-                                        <div className="flex items-center gap-1 text-[#667F93] md:pr-8 pr-4 border-r">
-                                            <CalendarBlankIcon className="mr-1 size-6" />
+                                    <div className="mt-2 flex items-center lg:gap-8 gap-2 2xl:text-base text-sm  font-medium">
+                                        <div className="flex items-center gap-1 text-[#667F93] lg:pr-8 pr-2 border-r">
+                                            <CalendarBlankIcon className="mr-1 3xl:size-6 size-5" />
                                             <span>
-                                                Cập nhật vào: {moment(dataBlogDetail?.created_at)?.format(FORMAT_DATE?.DATE_SLASH_LONG)}
+                                                Cập nhật vào: {moment(dataBlogDetail?.updated_at)?.format(FORMAT_DATE?.DATE_TIME_SLASH_SHORT)}
                                             </span>
                                         </div>
 
                                         <div className="flex items-center gap-1 text-[#667F93]">
-                                            <ClockIcon className="mr-1 size-6" />
+                                            <ClockIcon className="mr-1 3xl:size-6 size-5" />
 
                                             <span>
-                                                10 phút đọc
+                                                {dataBlogDetail?.number_read ?? 10} phút đọc
                                             </span>
                                         </div>
                                     </div>

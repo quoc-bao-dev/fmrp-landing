@@ -189,7 +189,7 @@ const SolveSolutionSection = memo((props: Props) => {
             </div>
 
             {/* Container chính */}
-            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] pt-12'>
+            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] lg:pt-12 pt-16'>
                 <CustomBreadcrumb items={breadcrumbItems} />
 
                 {/* Nội dung chính */}

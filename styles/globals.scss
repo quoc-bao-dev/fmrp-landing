@@ -654,5 +654,5 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   content: "";
   background-image: url("/icons/blog/quote-left.svg");
   background-position: center;
-  @apply absolute -top-2 left-0 w-[52px] h-[52px] bg-contain bg-no-repeat z-[1];
+  @apply absolute -top-2 left-0 xl:w-[52px] xl:h-[52px] size-10 bg-contain bg-no-repeat z-[1];
 }

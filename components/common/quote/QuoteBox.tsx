@@ -5,7 +5,7 @@ type QuoteBoxProps = {
 
 const QuoteBox: React.FC<QuoteBoxProps> = ({ content }) => {
     return (
-        <div className="relative px-16 py-8 rounded-lg text-center custom-box-content">
+        <div className="relative 3xl:px-16 xl:px-12 lg:p-6 p-0 py-8 rounded-lg text-center custom-box-content">
             {/* <p className="italic text-[#33404A] 3xl:text-xl text-lg font-medium">
                 {content}
             </p> */}
