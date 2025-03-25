@@ -17,6 +17,8 @@ interface IBlogItem {
     content?: string;
     content_no_html?: string;
     created_at?: string;
+    number_read?: string | number
+    updated_at?: string | number
 }
 
 interface IFilterBlog {

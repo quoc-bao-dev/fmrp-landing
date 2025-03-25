@@ -8,6 +8,8 @@ import { motion } from 'framer-motion'
 import CalendarBlankIcon from '@/components/icons/common/CalendarBlankIcon'
 import ClockIcon from '@/components/icons/common/ClockIcon'
 import Link from 'next/link'
+import { FORMAT_DATE } from '../../../../constants/FormatDate';
+import moment from 'moment';
 
 type Props = {
     blog: IBlogItem
@@ -58,6 +60,8 @@ const hoverVariants = {
 };
 
 const BlogCardVertical = ({ blog, className }: Props) => {
+    console.log('blog', blog);
+
     return (
         <Link
             href={`/resource/blogs/${blog.slug}`}
@@ -120,7 +124,7 @@ const BlogCardVertical = ({ blog, className }: Props) => {
                         <div className="flex items-center gap-1 text-[#667F93] pr-4 border-r">
                             <CalendarBlankIcon className="mr-1 size-5" />
                             <span>
-                                17/11/2022
+                                {moment(blog?.updated_at)?.format(FORMAT_DATE?.DATE_TIME_SLASH_SHORT)}
                             </span>
                         </div>
 
@@ -128,7 +132,7 @@ const BlogCardVertical = ({ blog, className }: Props) => {
                             <ClockIcon className="mr-1 size-5" />
 
                             <span>
-                                10 phút đọc
+                                {blog.number_read ?? "20"} phút đọc
                             </span>
                         </div>
                     </div>

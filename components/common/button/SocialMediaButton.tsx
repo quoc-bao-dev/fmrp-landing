@@ -3,18 +3,23 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+
+type TooltipPosition = "left" | "right" | "top" | "bottom";
+
 type SocialMediaProps = {
     icon: React.ReactNode;
     info: React.ReactNode; // Nội dung hiển thị khi hover
     handleClick?: () => void;
     className?: string;
+    tooltipPosition?: TooltipPosition; // <--- mới
 };
 
 const SocialMediaButton = ({
     icon,
     info,
     handleClick,
-    className
+    className,
+    tooltipPosition = "left" // mặc định là left
 }: SocialMediaProps) => {
     const [isShow, setIsShow] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -48,6 +53,40 @@ const SocialMediaButton = ({
         };
     }, [handleNavigation]);
 
+    // ----------------------------
+    // Xử lý vị trí tooltip
+    // ----------------------------
+    const getTooltipStyle = () => {
+        switch (tooltipPosition) {
+            case "left":
+                return "right-[80px] top-1/2 -translate-y-1/2";
+            case "right":
+                return "left-[80px] top-1/2 -translate-y-1/2";
+            case "top":
+                return "bottom-[80px] left-1/2 -translate-x-1/2";
+            case "bottom":
+                return "top-[80px] left-1/2 -translate-x-1/2";
+            default:
+                return "right-[80px] top-1/2 -translate-y-1/2";
+        }
+    };
+
+    const getArrowStyle = () => {
+        switch (tooltipPosition) {
+            case "left":
+                return "absolute right-[-6px] top-1/2 -translate-y-1/2";
+            case "right":
+                return "absolute left-[-6px] top-1/2 -translate-y-1/2";
+            case "top":
+                return "absolute bottom-[-6px] left-1/2 -translate-x-1/2";
+            case "bottom":
+                return "absolute top-[-6px] left-1/2 -translate-x-1/2";
+            default:
+                return "absolute right-[-6px] top-1/2 -translate-y-1/2";
+        }
+    };
+
+
     return (
         <AnimatePresence>
             {isShow && (
@@ -75,17 +114,16 @@ const SocialMediaButton = ({
                     <AnimatePresence>
                         {isHovered && (
                             <motion.div
-                                initial={{ opacity: 0, x: 10 }}
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 10 }}
+                                exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.2 }}
                                 onMouseEnter={() => setIsHovered(true)}
                                 onMouseLeave={() => setIsHovered(false)}
-                                className="absolute left-[-160px] top-1/2 -translate-y-1/2 bg-white text-black p-3 rounded-lg shadow-md w-40 flex items-center"
+                                className="absolute right-[76px] z-50 bg-white text-black px-4 py-3 rounded-xl shadow-xl flex flex-col gap-2 min-w-fit max-w-[400px]"
                             >
                                 {/* Mũi tên */}
-                                <div className="absolute right-[-10px] top-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-l-white border-t-8 border-t-transparent border-b-8 border-b-transparent"></div>
-
+                                <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white rotate-45 shadow-md"></div>
                                 {info}
                             </motion.div>
                         )}

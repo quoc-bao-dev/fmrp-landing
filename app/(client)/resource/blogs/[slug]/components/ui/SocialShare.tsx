@@ -19,7 +19,7 @@ const platforms = [
         id: uuidv4(),
         key: "zalo",
         name: "Zalo",
-        url: "https://zalo.me/share",
+        url: "https://zalo.me/2281264205827497572",
         width: 600,
         height: 600,
         icon: ZaloOriginIcon
@@ -97,26 +97,34 @@ export default function SocialShare({ classNameContainer, classNameSocial, isVis
                                 className="flex size-12 items-center justify-center rounded-2xl border border-[#15AA7A] text-[#15AA7A] hover:bg-[#15AA7A]/20 backdrop-blur-lg transition-colors"
                                 onClick={() => setIsOpen(!isOpen)}
                             >
-                                <img src="/icons/share.svg" alt="Share" className="size-6" />
+                                <img
+                                    src="/icons/share.svg"
+                                    alt="Share"
+                                    className="size-6"
+                                />
                             </button>
-                            {isOpen && (
-                                <div className="absolute left-0 top-14 flex flex-col items-center gap-3 bg-white shadow-lg rounded-xl p-3">
-                                    {platforms.map((item) => (
-                                        <ButtonAnimationNew
-                                            key={item.id}
-                                            icon={
-                                                <div className="size-6 object-contain">
-                                                    <item.icon />
-                                                </div>
-                                            }
-                                            hideTitle={true}
-                                            className='flex size-12 items-center justify-center rounded-2xl border border-[#15AA7A] text-[#15AA7A] hover:bg-[#15AA7A]/20 backdrop-blur-lg transition-colors'
-                                            onClick={() => handleShare(item.id)}
-                                            variant={variantButtonBasic}
-                                        />
-                                    ))}
-                                </div>
-                            )}
+                            {
+                                isOpen && (
+                                    <div className="absolute left-0 top-14 flex flex-col items-center gap-3 bg-white shadow-lg rounded-xl p-3">
+                                        {
+                                            platforms.map((item) => (
+                                                <ButtonAnimationNew
+                                                    key={item.id}
+                                                    icon={
+                                                        <div className="size-6 object-contain">
+                                                            <item.icon />
+                                                        </div>
+                                                    }
+                                                    hideTitle={true}
+                                                    className='flex size-12 items-center justify-center rounded-2xl border border-[#15AA7A] text-[#15AA7A] hover:bg-[#15AA7A]/20 backdrop-blur-lg transition-colors'
+                                                    onClick={() => handleShare(item.id)}
+                                                    variant={variantButtonBasic}
+                                                />
+                                            ))
+                                        }
+                                    </div>
+                                )
+                            }
                         </div>
                     )
                     :

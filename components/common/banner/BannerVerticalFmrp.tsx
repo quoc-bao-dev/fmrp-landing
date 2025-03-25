@@ -61,9 +61,20 @@ const BannerVerticalFmrp = (props: Props) => {
                     </SalyAnimation>
 
                     <div className="flex flex-col items-center justify-center gap-0.5">
-                        <span className='text-default text-white font-bold'>
+                        <motion.span
+                            animate={{
+                                x: [0, -2, 0],   // Trôi lên xuống
+                                rotate: [-4, 2, -4,] // Lắc đều trái phải
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className='text-default text-white font-bold'
+                        >
                             Miễn phí dùng thử
-                        </span>
+                        </motion.span>
 
                         <motion.div
                             className="w-[150px] h-auto aspect-3/1 relative shrink"

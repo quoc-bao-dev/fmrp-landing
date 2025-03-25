@@ -3,32 +3,85 @@ import Image from "next/image";
 import ButtonToTop from "./ButtonToTop";
 import SocialMediaButton from "./SocialMediaButton";
 import { usePathname } from 'next/navigation';
+import PhoneLink from '../contact-links/PhoneLink';
+import EmailLink from '../contact-links/EmailLink';
+import Link from 'next/link';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
     {
         icon: "/icons/social-media/zalo2.svg",
         background_animation: "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
-        info: <p className="text-sm">Nhắn tin qua Messenger</p>,
+        info: (
+            <div className="flex flex-col items-center gap-2">
+                <p className="text-sm text-nowrap">Quét mã QR Zalo: </p>
+                <div className="3xl:size-24 size-20 flex items-center justify-center">
+                    <Image
+                        width={400}
+                        height={400}
+                        src="/icons/qr/zalo-qr.png"
+                        alt="Zalo QR"
+                        className="size-full object-cover rounded aspect-square"
+                    />
+                </div>
+            </div>
+        ),
         handleClick: () => { window.open("https://zalo.me/2281264205827497572") }
     },
     {
         icon: "/icons/social-media/messenger.svg",
         background_animation: "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
-        info: <p className="text-sm">Nhắn tin qua Messenger</p>,
+        info: (
+            <p className="flex flex-col items-center justify-center text-center text-sm text-nowrap space-y-1 text-gray-500">
+                <span>Nhắn tin qua Messenger:</span>
+                <ButtonAnimationNew
+                    icon={
+                        <div className='size-4 aspect-square shrink-0'>
+                            <Image
+                                width={100}
+                                height={100}
+                                alt="icon"
+                                src="/icons/social-media/live-chat.png"
+                                className="size-full object-contain aspect-square"
+                            />
+                        </div>
+                    }
+                    onClick={() => {
+                        window.open("https://m.me/fososoftware")
+                    }}
+                    title="Chat Ngay!"
+                    className="flex items-center gap-2 border rounded-lg px-2 py-1"
+                />
+            </p>
+        ),
         handleClick: () => { window.open("https://m.me/fososoftware") }
     },
     {
         icon: "/icons/social-media/call.svg",
         background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
-        info: <p className="text-sm">Nhắn tin qua Messenger</p>,
+        info: (
+            <p className="text-sm text-nowrap space-x-1 text-gray-500">
+                <span>Gọi ngay:</span>
+                <PhoneLink phoneNumber="0901136968" className="text-gray-500 font-semibold">
+                    0901 136 968
+                </PhoneLink>
+            </p>
+        ),
         handleClick: () => { window.location.href = `tel:0901136968` }
     },
     {
         icon: "/icons/social-media/gmail.svg",
         background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
         className: "bg-[#53B086]/80",
-        info: <p className="text-sm">Nhắn tin qua Messenger</p>,
+        info: (
+            <p className="text-sm text-nowrap space-x-1 text-gray-500">
+                <span>Email:</span>
+                <EmailLink email="info@fososoft.com" className="text-gray-500 font-semibold">
+                    info@fososoft.com
+                </EmailLink>
+            </p>
+        ),
         handleClick: () => { window.open("https://m.me/yourpage", "_blank") },
         // handleClick: () => { window.open("mailto:info@fososoft.com", "_blank") }
         // handleClick: () => { window.location.href = `mailto:info@fososoft.com` }
