@@ -256,8 +256,8 @@ const DetailBlog = () => {
                             <div className='sticky top-28 space-y-8'>
                                 {/* <TableOfContents /> */}
                                 <AutoTableOfContents />
-                                {/* <BannerVerticalFmrp />
-                                <BannerVerticalBlog /> */}
+                                <BannerVerticalFmrp />
+                                <BannerVerticalBlog />
                             </div>
                         </div>
                     }
