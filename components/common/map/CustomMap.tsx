@@ -32,24 +32,24 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
-    const { lenis } = useLenis(); // Sử dụng Lenis Context
+    // const { lenis } = useLenis(); // Sử dụng Lenis Context
 
     // 🛠 Ngăn Lenis xử lý cuộn khi người dùng thực sự tương tác với bản đồ
-    useEffect(() => {
-        const handleWheel = (event: WheelEvent) => {
-            if (mapRef.current && mapRef.current.contains(event.target as Node)) {
-                lenis?.stop(); // 🛑 Tạm dừng update scroll của Lenis
-            } else {
-                lenis?.start(); // ▶️ Khi ra ngoài map, bật lại Lenis
-            }
-        };
+    // useEffect(() => {
+    //     const handleWheel = (event: WheelEvent) => {
+    //         if (mapRef.current && mapRef.current.contains(event.target as Node)) {
+    //             lenis?.stop(); // 🛑 Tạm dừng update scroll của Lenis
+    //         } else {
+    //             lenis?.start(); // ▶️ Khi ra ngoài map, bật lại Lenis
+    //         }
+    //     };
 
-        window.addEventListener("wheel", handleWheel, { passive: false });
+    //     window.addEventListener("wheel", handleWheel, { passive: false });
 
-        return () => {
-            window.removeEventListener("wheel", handleWheel);
-        };
-    }, [lenis]);
+    //     return () => {
+    //         window.removeEventListener("wheel", handleWheel);
+    //     };
+    // }, [lenis]);
 
     const toggleFullscreen = () => {
         if (!mapRef.current) return;

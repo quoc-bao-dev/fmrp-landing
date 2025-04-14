@@ -21,10 +21,10 @@ const breadcrumbItems = [
 
 // CSS gradient tái sử dụng
 const gradientStyle = {
-    // backgroundImage: `linear-gradient(to right, #53B086 0%, #53B086 50%, #85EEB3 100%), 
+    // backgroundImage: `linear-gradient(to right #53B086 0%, #53B086 50%, #85EEB3 100%), 
     // radial-gradient(219.3% 1471.82% at 24.6% -30.56%, 
     // rgba(84, 171, 177, 0) 0%, 
-    // rgba(84, 171, 177, 0.409141) 34.37%, 
+    // rgba(84, 171, 177, 0.409141) 34.37%,, 
     // rgba(133, 238, 179, 0.71) 51.52%, 
     // rgba(84, 171, 177, 0) 100%)`,
     background: "radial-gradient(17.7% 241.79% at 46.95% 25.05%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.38%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%), linear-gradient(90deg, #53B086 0%, rgba(83, 176, 134, 0.99) 27.5%)"
@@ -33,7 +33,7 @@ const gradientStyle = {
 const IntroBlogSection = (props: Props) => {
     const { isVisibleTablet, isVisibleMobile } = useResizeStore()
 
-    const { lenis } = useLenis(); // ✅ Lấy Lenis từ context
+    // const { lenis } = useLenis(); // ✅ Lấy Lenis từ context
     const sectionRef = useRef<HTMLDivElement>(null);
 
     // ✅ Dùng `useMotionValue` để tránh re-render
@@ -42,17 +42,17 @@ const IntroBlogSection = (props: Props) => {
     const yRight = useTransform(scrollY, [0, 500], [0, 100]);
 
     // ✅ Theo dõi scroll bằng requestAnimationFrame
-    useEffect(() => {
-        if (!lenis) return;
+    // useEffect(() => {
+    //     if (!lenis) return;
 
-        const updateScroll = () => {
-            scrollY.set(lenis.scroll);
-            requestAnimationFrame(updateScroll);
-        };
+    //     const updateScroll = () => {
+    //         scrollY.set(lenis.scroll);
+    //         requestAnimationFrame(updateScroll);
+    //     };
 
-        requestAnimationFrame(updateScroll);
-        return () => lenis.off("scroll", updateScroll);
-    }, [lenis, scrollY]);
+    //     requestAnimationFrame(updateScroll);
+    //     return () => lenis.off("scroll", updateScroll);
+    // }, [lenis, scrollY]);
 
     const heroPerTitle1 = useMemo(
         () => "Blog".split("").map((letter, index) => ({ id: index, letter })),

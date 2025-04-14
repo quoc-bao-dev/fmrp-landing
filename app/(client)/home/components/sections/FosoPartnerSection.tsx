@@ -88,7 +88,7 @@ const FosoPartnerSection = (props: Props) => {
                             className='aspect-1.08/1 3xl:h-[584px] 2xl:h-[480px] lg:h-[424px] h-[300px]'
                         >
                             <Image
-                                src="/background/team/be-team-1.png"
+                                src="/background/team/team-1.png"
                                 alt="Foso Team"
                                 fill
                                 className="size-full object-cover rounded-xl"

@@ -1,6 +1,5 @@
 import CustomMap from '@/components/common/map/CustomMap'
-import { useLenis } from '@/contexts/LenisContext';
-import React, { useEffect } from 'react'
+import React from 'react'
 
 type Props = {}
 

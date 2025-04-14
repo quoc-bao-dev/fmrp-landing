@@ -15,6 +15,7 @@ interface ScrollRevealProps {
     fadeOpacity?: number; // Độ mờ ban đầu
     className?: string;
     style?: React.CSSProperties;
+    enabled?: boolean; // prop mới
     onClick?: () => void; // Sự kiện khi người dùng click vào phần tử
     onMouseEnter?: () => void; // Sự kiện khi di chuột vào
     onMouseLeave?: () => void; // Sự kiện khi rời chuột khỏi phần tử
@@ -32,6 +33,7 @@ const AnimatedReveal: React.FC<ScrollRevealProps> = ({
     fadeOpacity = 0.01, // ⬅️ Tăng độ mờ mạnh hơn
     className = "",
     style,
+    enabled,
     onClick,
     onMouseEnter,
     onMouseLeave
@@ -79,7 +81,8 @@ const AnimatedReveal: React.FC<ScrollRevealProps> = ({
         <motion.div
             ref={ref}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            // animate={isInView ? "visible" : "hidden"}
+            animate={enabled === false ? "hidden" : isInView ? "visible" : "hidden"}
             variants={variants}
             className={className}
             style={style}

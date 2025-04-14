@@ -1,4 +1,4 @@
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useRef, useEffect } from "react";
 import Image from "next/image";
 
 type BlurImageProps = {
@@ -12,7 +12,8 @@ type BlurImageProps = {
     priority?: boolean;
     loading?: "eager" | "lazy";
     style?: any;
-    onClick?: () => void
+    onClick?: () => void;
+    onLoad?: () => void; // ✅ Callback khi ảnh đã load
 };
 
 const BlurImage: React.FC<BlurImageProps> = ({
@@ -26,12 +27,31 @@ const BlurImage: React.FC<BlurImageProps> = ({
     priority = false,
     loading,
     style,
+    onLoad, // ✅ Nhận callback
 }) => {
+    const loadedRef = useRef<Record<string, boolean>>({});
     const [loaded, setLoaded] = useState(false);
 
     // Callback giúp tránh re-render không cần thiết
-    const handleLoad = useCallback(() => setLoaded(true), []);
-    const handleError = useCallback(() => setLoaded(true), []); // Nếu lỗi cũng tránh re-render
+    // const handleLoad = useCallback(() => setLoaded(true), []);
+    // const handleError = useCallback(() => setLoaded(true), []); // Nếu lỗi cũng tránh re-render
+
+    const handleLoad = useCallback(() => {
+        loadedRef.current[src] = true; // ✅ Ghi nhận ảnh này đã load
+        setLoaded(true);
+        onLoad?.(); // ✅ Gọi hàm callback từ cha
+    }, [onLoad]);
+
+    const handleError = useCallback(() => {
+        loadedRef.current[src] = true;
+        setLoaded(true);
+        onLoad?.(); // ✅ Gọi luôn khi lỗi (tránh treo)
+    }, [onLoad]);
+
+    // Nếu ảnh đã load trước đó → đảm bảo trạng thái đúng (trường hợp src không đổi)
+    useEffect(() => {
+        if (loadedRef.current[src]) setLoaded(true);
+    }, [src]);
 
     return (
         <div className={`relative overflow-hidden ${classNameContainer}`}>
@@ -39,6 +59,7 @@ const BlurImage: React.FC<BlurImageProps> = ({
             {!loaded && <div className="absolute inset-0 bg-gray-300 animate-pulse size-full" />}
 
             <Image
+                key={src} // 🔑 Quan trọng nếu dùng trong list
                 src={src}
                 alt={alt}
                 width={width}

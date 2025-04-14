@@ -149,7 +149,7 @@ const CTASection = (props: Props) => {
                 </div>
                 <div className='w-full lg:max-w-[50%] max-w-full'>
                     <BlurImage
-                        src={"/background/ui/about-us/jumbotron.webp"}
+                        src={"/background/ui/about-us/jumbotron1.png"}
                         alt={"CEO FOSO"}
                         width={1920}
                         height={1080}

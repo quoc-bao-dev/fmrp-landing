@@ -1,3 +1,4 @@
+import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal'
 import BlurImage from '@/components/common/blur/BlurImage'
 import React from 'react'
 
@@ -30,9 +31,13 @@ const AboutVisionSection = (props: Props) => {
                         </p>
                     </div>
 
-                    <div className={`lg:w-[42%] lg:max-w-[42%] w-full max-w-full flex relative`}>
+                    <AnimatedReveal
+                        // from="left"
+                        effect='fade'
+                        className={`lg:w-[42%] lg:max-w-[42%] w-full max-w-full flex relative`}
+                    >
                         <BlurImage
-                            src={"/background/ui/about-us/ceo-foso.webp"}
+                            src={"/background/ui/about-us/ceo-foso1.webp"}
                             alt={"CEO FOSO"}
                             width={1920}
                             height={1080}
@@ -65,7 +70,7 @@ const AboutVisionSection = (props: Props) => {
                                 CEO & Co-founder FOSO
                             </div>
                         </div>
-                    </div>
+                    </AnimatedReveal>
                 </div>
             </div>
         </div>

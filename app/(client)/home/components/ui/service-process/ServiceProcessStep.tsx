@@ -15,28 +15,28 @@ const steps = [
         title: "Tiếp nhận sâu sắc và thấu hiểu",
         description:
             "Lắng nghe sâu sắc, thấu hiểu trọn vẹn, biến mong muốn thành khởi nguồn cho giải pháp hoàn hảo.",
-        image: "/background/foso/foso-step1.webp",
+        image: "/background/foso/step-chibi-1.webp",
     },
     {
         id: 2,
         title: "Đề xuất giải pháp tối ưu",
         description:
             "Đánh giá toàn diện, chắt lọc tinh tuý để kiến tạo giải pháp tối ưu, mở lối cho hiệu quả bền vững.",
-        image: "/background/foso/foso-step2.webp",
+        image: "/background/foso/step-chibi-2.webp",
     },
     {
         id: 3,
         title: "Định phí, vạch thời gian",
         description:
             "Định hình ngân sách, ấn định lộ trình thời gian, giúp khách hàng nắm bắt rõ ràng bức tranh dự án.",
-        image: "/background/foso/foso-step3.webp",
+        image: "/background/foso/step-chibi-3.webp",
     },
     {
         id: 4,
         title: "Quản lý dự án trọn vẹn",
         description:
             "Điều phối dự án từ đàm phán ký kết hợp đồng, triển khai thực thi đến vận hành và bảo trì bền vững.",
-        image: "/background/foso/foso-step4.webp",
+        image: "/background/foso/step-chibi-4.webp",
     },
 ];
 
@@ -100,10 +100,9 @@ const ServiceProcessStep = (props: Props) => {
                         {
                             !isVisibleTablet &&
                             <AnimatedReveal
-                                from={index % 2 === 0 ? "left" : "right"}
+                                // from={index % 2 === 0 ? "left" : "right"}
                                 effect='fade'
-                                // once={false}
-                                className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex`}
+                                className={`${index % 2 === 0 ? "justify-end" : "justify-start"} w-1/2 max-w-[50%] flex md:pl-10 pl-6`}
                             >
                                 {/* <div className="3xl:w-full xxl:w-[90%] xl:w-[85%] w-[90%] aspect-square relativee z-0">
                                     <StepImage src={step.image} alt={step.title} />
@@ -123,9 +122,8 @@ const ServiceProcessStep = (props: Props) => {
 
                         {/* Nội dung */}
                         <AnimatedReveal
-                            from={index % 2 === 0 ? "right" : "left"}
+                            // from={index % 2 === 0 ? "right" : "left"}
                             effect='fade'
-                            // once={false}
                             className={`lg:w-1/2 w-full lg:max-w-[50%] max-w-full md:pl-10 pl-6 space-y-2`}
                         >
 

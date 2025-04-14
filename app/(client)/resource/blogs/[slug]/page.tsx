@@ -224,7 +224,7 @@ const DetailBlog = () => {
                             <div className="article-content">
                                 <p
                                     className="text-[#33404A] font-medium
-                                    [&_img]:mx-auto [&_figure]:flex [&_figure]:justify-center
+                                    [&_img]:mx-auto [&_figure]:flex [&_figure]:justify-center text-sm-default
                                     "
                                     dangerouslySetInnerHTML={{ __html: `${addIdsToHeadings(dataBlogDetail?.content ?? '')}` }}
                                 //     className="

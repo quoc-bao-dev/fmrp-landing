@@ -219,7 +219,7 @@ const JourneySection = (props: Props) => {
                                 alt="Preview"
                                 width={1920}
                                 height={1080}
-                                className="size-full max-w-[90%] max-h-[90%] object-contain"
+                                className="size-auto max-w-[90%] max-h-[90%] object-contain"
                             />
                         </div>
                     )

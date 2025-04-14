@@ -10,6 +10,8 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import { variantButtonBasic } from '@/utils/animations/variantsAnimation';
 import { useResizeStore } from '../../../../../../../stores/useResizeStore';
 import { uuidv4 } from '@/lib/uuid';
+import { FaYoutube } from 'react-icons/fa';
+import YoutubeOriginIcon from '@/components/icons/social-media/YoutubeOriginIcon';
 
 type SocialPlatform = "zalo" | "facebook" | "twitter" | "linkedin" | "reddit"
 
@@ -19,47 +21,51 @@ const platforms = [
         id: uuidv4(),
         key: "zalo",
         name: "Zalo",
-        url: "https://zalo.me/2281264205827497572",
+        url: "https://id.zalo.me/account?continue=http%3A%2F%2Fzalo.me%2Ffososoft",
         width: 600,
         height: 600,
-        icon: ZaloOriginIcon
+        icon: ZaloOriginIcon,
+        appendUrl: true,
     },
     {
         id: uuidv4(),
         key: "facebook",
         name: "Facebook",
-        url: "https://www.facebook.com/sharer/sharer.php?u=",
+        url: "https://www.facebook.com/fososoftware",
         width: 670,
         height: 340,
         icon: FacebookOriginIcon,
+        appendUrl: false,
     },
     {
         id: uuidv4(),
-        key: "twitter",
-        name: "X",
-        url: "https://twitter.com/intent/tweet?url=",
+        key: "youtube",
+        name: "Youtube",
+        url: "https://www.youtube.com/@fososoft",
         width: 550,
         height: 420,
-        icon: XOriginIcon,
+        icon: YoutubeOriginIcon,
+        appendUrl: false,
     },
     {
         id: uuidv4(),
         key: "linkedin",
         name: "LinkedIn",
-        url: "https://www.linkedin.com/sharing/share-offsite/?url=",
+        url: "https://www.linkedin.com/company/fososoft/",
         width: 550,
         height: 450,
         icon: LinkedOriginIcon,
+        appendUrl: false,
     },
-    {
-        id: uuidv4(),
-        key: "reddit",
-        name: "Reddit",
-        url: "https://www.reddit.com/submit?url=",
-        width: 600,
-        height: 600,
-        icon: RedditOriginIcon,
-    }
+    // {
+    //     id: uuidv4(),
+    //     key: "reddit",
+    //     name: "Reddit",
+    //     url: "https://www.reddit.com/submit?url=",
+    //     width: 600,
+    //     height: 600,
+    //     icon: RedditOriginIcon,
+    // }
 ];
 
 type SocialShareProps = {
@@ -79,8 +85,18 @@ export default function SocialShare({ classNameContainer, classNameSocial, isVis
         const left = window.screen.width / 2 - info.width / 2;
         const top = window.screen.height / 2 - info.height / 2;
 
+        // 🧠 Chỉ append URL nếu nền tảng yêu cầu
+        const shouldAppendUrl = ["zalo", "reddit", "twitter"].includes(platform);
+        const finalUrl = shouldAppendUrl ? `${info.url}${encodeURIComponent(currentUrl)}` : info.url;
+
+        // window.open(
+        //     `${info.url}${encodeURIComponent(currentUrl)}`,
+        //     `share_${platform}`,
+        //     `width=${info.width},height=${info.height},left=${left},top=${top},toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1`
+        // );
+
         window.open(
-            `${info.url}${encodeURIComponent(currentUrl)}`,
+            finalUrl,
             `share_${platform}`,
             `width=${info.width},height=${info.height},left=${left},top=${top},toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1`
         );

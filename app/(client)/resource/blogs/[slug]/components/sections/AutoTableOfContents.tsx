@@ -187,7 +187,7 @@ export default function AutoTableOfContents() {
                         }
 
                     }}
-                    className={`block py-1 cursor-pointer ${padding} ${textSize} ${activeStyle} hover:text-[#15AA7A] transition-all`}
+                    className={`text-sm-default block py-1 cursor-pointer ${padding} ${textSize} ${activeStyle} hover:text-[#15AA7A] transition-all`}
                 >
                     {item.text}
                 </div>
@@ -213,7 +213,7 @@ export default function AutoTableOfContents() {
             {isOpen && (
                 <div className="py-2">
                     {tocItems && tocItems.length > 0 ? (
-                        <ul className="space-y-2">{tocItems.map(renderTocItem)}</ul>
+                        <ul className="space-y-2 text-sm-default">{tocItems.map(renderTocItem)}</ul>
                     ) : (
                         <p className="text-gray-500">Đang tải mục lục...</p>
                     )}

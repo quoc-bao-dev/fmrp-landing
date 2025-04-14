@@ -246,7 +246,7 @@ const FosoHeaderContainer = () => {
                 } else {
                     if (scrollY === 0) {
                         // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
-                        shouldShowHeader = pathname !== "/";
+                        // shouldShowHeader = pathname !== "/";
                         // shouldShowHeader = false; // Ẩn header khi ở đầu trang
                     } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
                         shouldShowHeader = false; // Ẩn header khi cuộn xuống
@@ -262,11 +262,7 @@ const FosoHeaderContainer = () => {
                     controls.start({
                         y: shouldShowHeader ? 0 : -100,
                         opacity: shouldShowHeader ? 1 : 0,
-                        transition: {
-                            type: "spring", // 🏆 Mượt hơn với spring easing
-                            stiffness: 250,
-                            damping: 30
-                        },
+                        transition: { duration: 0.3 }
                     });
                 }
 
@@ -277,9 +273,7 @@ const FosoHeaderContainer = () => {
             ticking.current = true;
         }
 
-        if (pathname !== "/products/fmrp") {
-            resetInactivityTimer();
-        }
+        if (pathname !== "/products/fmrp") resetInactivityTimer();
     }, [controls, pathname]);
 
     // ✅ Xử lý khi không thao tác để tự hiện header
@@ -287,43 +281,47 @@ const FosoHeaderContainer = () => {
         if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
 
         inactivityTimer.current = setTimeout(() => {
-            isHeaderVisible.current = true;
-            forceCheckScroll.current = true;
-            controls.start({
-                y: 0,
-                opacity: 1,
-                transition: {
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 18
-                }
-            });
+            if (!isHeaderVisible.current) {
+                isHeaderVisible.current = true;
+                forceCheckScroll.current = true;
+                controls.start({
+                    y: 0,
+                    opacity: 1,
+                    transition: { duration: 0.3 }
+                });
+            }
             inactivityTimer.current = null;
-        }, 1500);
+        }, 500);
     }, [controls]);
 
     useEffect(() => {
         lastScrollY.current = window.scrollY; // Cập nhật vị trí scroll ngay khi tải trang
-
         // 🚀 Khi load trang, đảm bảo header HIỆN ra trước
         isHeaderVisible.current = true; // Đặt lại giá trị ref
 
+
         window.addEventListener('scroll', handleScroll);
+
+        const interactionEvents = ['mousemove', 'keydown'];
+
         if (!pathname.includes("/products/fmrp")) {
-            window.addEventListener('mousemove', resetInactivityTimer);
-            window.addEventListener('keydown', resetInactivityTimer);
+            // window.addEventListener('mousemove', resetInactivityTimer);
+            // window.addEventListener('keydown', resetInactivityTimer);
+
+            interactionEvents.forEach(evt => window.addEventListener(evt, resetInactivityTimer));
         }
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
 
             if (!pathname.includes("/products/fmrp")) {
-                window.removeEventListener('mousemove', resetInactivityTimer);
-                window.removeEventListener('keydown', resetInactivityTimer);
+                // window.removeEventListener('mousemove', resetInactivityTimer);
+                // window.removeEventListener('keydown', resetInactivityTimer);
+
+                interactionEvents.forEach(evt => window.removeEventListener(evt, resetInactivityTimer));
             }
         };
     }, [handleScroll, resetInactivityTimer, pathname]);
-
 
     useEffect(() => {
         const body = document.body;
@@ -335,7 +333,6 @@ const FosoHeaderContainer = () => {
             openModal()
         }
     }, [isStateClientLayout?.header?.isShowMenuMobileFoso]);
-
 
     // bật/tắt menu dưới tablet/mobile
     const handleToggleMenu = (action: string): void => {
@@ -401,6 +398,7 @@ const FosoHeaderContainer = () => {
         }
     }
 
+    // bật/tắt sheet 
     const handleOpenSheet = (status: string, type_device: string) => {
         if (type_device === "desktop") {
             setOpenSheetCustom(true)

@@ -3,12 +3,13 @@ import PulseGlowAnimation from '@/components/common/animations/common/PulseGlowA
 import SalyAnimation from '@/components/common/animations/common/SalyAnimation'
 import SwingBobAnimation from '@/components/common/animations/common/SwingBobAnimation'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useDebouncedCallback } from 'use-debounce';
 
 import { motion } from 'framer-motion'
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
+import { useLenis } from '@/contexts/LenisContext'
 
 type Props = {}
 
@@ -22,66 +23,106 @@ const subtitles: string[][] = [
 const CTAFmrpSection = (props: Props) => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const { ref: inViewRef, inView } = useInView({ threshold: 0.8, triggerOnce: false });
+    // const { pauseLenis, resumeLenis } = useLenis(); // ✅ Gọi Lenis từ context
 
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Ngăn chặn scroll nhanh vượt viewport
 
-    // Hợp nhất ref của useInView và useRef để track vị trí section
-    const setRefs = (node: HTMLDivElement | null) => {
+    const [isFirstTime, setIsFirstTime] = useState<boolean>(true); // Kiểm tra lần đầu vào section
+
+    // ✅ Gộp ref của useInView và useRef
+    const setRefs = useCallback((node: HTMLDivElement | null) => {
         sectionRef.current = node;
         inViewRef(node);
-    };
+    }, [inViewRef]);
 
-    // Khi vào viewport, đảm bảo section luôn ở giữa màn hình
+    // ✅ Khi vào viewport, tự động cuộn vào giữa section
+    // useEffect(() => {
+    //     if (inView && sectionRef.current) {
+    //         pauseLenis();
+    //         setTimeout(() => {
+    //             sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    //             if (isFirstTime) {
+    //                 // ✅ Nếu vào lần đầu, xác định activeIndex
+    //                 const rect = sectionRef?.current?.getBoundingClientRect();
+    //                 if (rect && rect.top > 0) {
+    //                     setActiveIndex(0); // Cuộn từ trên xuống → Active phần tử đầu tiên
+    //                 } else {
+    //                     setActiveIndex(subtitles.length - 1); // Cuộn từ dưới lên → Active phần tử cuối
+    //                 }
+    //                 setIsFirstTime(false);
+    //             }
+    //         }, 300);
+    //     } 
+    //     else {
+    //         resumeLenis();
+    //     }
+    // }, [inView, pauseLenis, resumeLenis, isFirstTime]);
+
     useEffect(() => {
         if (inView && sectionRef.current) {
-            // Kiểm tra nếu phần tử đang ở trung tâm rồi thì không gọi scrollIntoView
-            const rect = sectionRef.current.getBoundingClientRect();
-            const isCentered = Math.abs(rect.top) < window.innerHeight * 0.1;
+            setTimeout(() => {
+                sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
 
-            if (!isCentered) {
-                sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-
-            // Chỉ khóa scroll nếu chưa active hết nội dung
-            if (activeIndex < subtitles.length - 1) {
-                document.body.style.overflow = "hidden";
-            }
-        } else {
-            document.body.style.overflow = "auto"; // Khi thoát khỏi section, mở khóa scroll
+                if (isFirstTime) {
+                    // ✅ Nếu vào lần đầu, xác định activeIndex
+                    const rect = sectionRef?.current?.getBoundingClientRect();
+                    if (rect && rect.top > 0) {
+                        setActiveIndex(0); // Cuộn từ trên xuống → Active phần tử đầu tiên
+                    } else {
+                        setActiveIndex(subtitles.length - 1); // Cuộn từ dưới lên → Active phần tử cuối
+                    }
+                    setIsFirstTime(false);
+                }
+            }, 300);
         }
-    }, [inView, activeIndex]);
+    }, [inView, isFirstTime]);
 
-    const handleScroll = (event: WheelEvent | TouchEvent) => {
-        const isTouch = event instanceof TouchEvent;
-        const scrollDirection = isTouch
-            ? (event as TouchEvent).touches[0].clientY < window.innerHeight / 2
-                ? "down"
-                : "up"
-            : (event as WheelEvent).deltaY > 0
-                ? "down"
-                : "up";
+    // ✅ Xử lý cuộn lên/xuống từng bước
+    const handleScroll = useCallback(
+        (event: WheelEvent | TouchEvent) => {
+            event.preventDefault();
+            // if (isTransitioning) return;
 
-        if (isTransitioning) return;
+            const isTouch = event instanceof TouchEvent;
+            const scrollDirection = isTouch
+                ? (event as TouchEvent).touches[0].clientY < window.innerHeight / 2
+                    ? "down"
+                    : "up"
+                : (event as WheelEvent).deltaY > 0
+                    ? "down"
+                    : "up";
 
-        // Nếu chưa đến chữ cuối cùng, khóa scroll
-        if ((scrollDirection === "down" && activeIndex < subtitles.length - 1) ||
-            (scrollDirection === "up" && activeIndex > 0)) {
-            event.preventDefault(); // Chặn cuộn ngoài ý muốn
             setIsTransitioning(true);
 
-            setActiveIndex((prev) => prev + (scrollDirection === "down" ? 1 : -1));
+            setActiveIndex((prevIndex) => {
+                if (scrollDirection === "down") {
+                    if (prevIndex < subtitles.length - 1) {
+                        return prevIndex + 1; // ✅ Nếu chưa đến cuối → Active phần tử tiếp theo
+                    } else {
+                        // resumeLenis(); // ✅ Nếu đã ở cuối → Cho phép cuộn tiếp ra ngoài
+                        return prevIndex;
+                    }
+                } else {
+                    if (prevIndex > 0) {
+                        return prevIndex - 1; // ✅ Nếu chưa đến đầu → Active phần tử trước đó
+                    } else {
+                        // resumeLenis(); // ✅ Nếu đã ở đầu → Cho phép cuộn tiếp ra ngoài
+                        return prevIndex;
+                    }
+                }
+            });
 
             setTimeout(() => {
                 setIsTransitioning(false);
             }, 400);
-        } else {
-            // Nếu đã đạt chữ đầu hoặc cuối thì mở lại scroll
-            document.body.style.overflow = "auto";
-        }
-    };
+        },
+        [subtitles.length, isTransitioning]
+    );
 
-    // Lắng nghe sự kiện cuộn khi vào section
+
+    // ✅ Lắng nghe sự kiện cuộn khi vào section (chỉ chạy khi inView)
     useEffect(() => {
         if (inView) {
             window.addEventListener("wheel", handleScroll, { passive: false });
@@ -92,7 +133,7 @@ const CTAFmrpSection = (props: Props) => {
                 window.removeEventListener("touchmove", handleScroll);
             };
         }
-    }, [inView, activeIndex, handleScroll]);
+    }, [inView, handleScroll]);
 
     return (
         <section ref={setRefs} className={`custom-padding-section h-screen relative z-10`}>

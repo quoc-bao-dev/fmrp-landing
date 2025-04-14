@@ -15,7 +15,7 @@ import CursorFollower from '../../common/cursor/CursorFollower';
 import ProviderLayout from '../provider/ProviderLayout'
 import { KEY_COOKIES } from '@/constants/Cookie'
 import ScrollbarStyle from '@/components/common/scroll/ScrollbarStyle'
-import { LenisProvider } from '@/contexts/LenisContext'
+// import { LenisProvider } from '@/contexts/LenisContext'
 import { ModalProvider } from '@/contexts/ModalContext';
 
 const queryClient = new QueryClient({
@@ -151,6 +151,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
             )
         });
     };
+
     useEffect(() => {
         if (openToast && type && message) {
             setTimeout(() => {
@@ -163,36 +164,36 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
     if (!isMounted) return null;
 
     return (
-        <LenisProvider>
-            <QueryClientProvider client={queryClient}>
-                <main id="scroll-container" className='bg-white min-w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-container'>
-                    <AnimatePresence
-                        mode="wait"
-                        onExitComplete={() => {
-                            if (typeof window == 'undefined') return;
-                            window.scrollTo({ top: 0, behavior: 'smooth' })
-                        }}
-                    >
-                        <ModalProvider>
-                            <ProviderLayout
-                                data={data}
-                                attribute="class"
-                                defaultTheme="light"
-                                themes={KEY_COOKIES.THEME}
-                                enableSystem={false}
-                                disableTransitionOnChange
-                            >
-                                <ScrollbarStyle />
-                                <CursorFollower />
-                                {children}
-                                <ToastShadcnUi />
-                            </ProviderLayout>
-                        </ModalProvider>
-                    </AnimatePresence>
-                </main>
-                <ReactQueryDevtools initialIsOpen={true} />
-            </QueryClientProvider>
-        </LenisProvider >
+        // <LenisProvider>
+        <QueryClientProvider client={queryClient}>
+            <main id="scroll-container" className='bg-white min-w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-container'>
+                <AnimatePresence
+                    mode="wait"
+                    onExitComplete={() => {
+                        if (typeof window == 'undefined') return;
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }}
+                >
+                    <ModalProvider>
+                        <ProviderLayout
+                            data={data}
+                            attribute="class"
+                            defaultTheme="light"
+                            themes={KEY_COOKIES.THEME}
+                            enableSystem={false}
+                            disableTransitionOnChange
+                        >
+                            <ScrollbarStyle />
+                            {!isVisibleTablet && <CursorFollower />}
+                            {children}
+                            <ToastShadcnUi />
+                        </ProviderLayout>
+                    </ModalProvider>
+                </AnimatePresence>
+            </main>
+            <ReactQueryDevtools initialIsOpen={true} />
+        </QueryClientProvider>
+        // </LenisProvider >
     )
 }
 

@@ -9,25 +9,51 @@ type LogoMarqueeProps = {
 const LogoMarquee: React.FC<LogoMarqueeProps> = ({ logos }) => {
     const firstRowItems = logos.slice(0, 7);
     const secondRowItems = logos.slice(7, 14);
-    const thirdRowItems = logos.slice(14, 20);
+    const thirdRowItems = logos.slice(14, logos?.length);
 
     return (
-        <div className="space-y-4" onMouseEnter={() => document.querySelectorAll('.marquee').forEach(m => (m as any).stop())} onMouseLeave={() => document.querySelectorAll('.marquee').forEach(m => (m as any).start())}>
-            <Marquee speed={30} pauseOnHover autoFill gradient={true} gradientWidth={200}>
+        <div className="space-y-4 overflow-hidden">
+            <Marquee speed={30} pauseOnHover gradient={true} direction='right' gradientWidth={200} className='w-fit overflow-hidden'>
                 {firstRowItems.map((logo, index) => (
-                    <div key={`logo-1-${index}`} className="w-fit aspect-1.36/1 mx-4 flex items-center">
+                    <div key={`logo-1-${index}`} className="3xl:w-[150px] w-[130px] 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
                         <Image
                             src={logo}
                             alt={`logo-1-${index}`}
                             width={150}
                             height={120}
-                            className="3xl:w-[150px] w-[130px] h-auto aspect-1.36/1 object-contain"
+                            className="size-full object-contain "
+                        />
+                    </div>
+                ))}
+            </Marquee>
+            <Marquee speed={30} pauseOnHover gradient={true} direction='left' gradientWidth={200} className='w-fit overflow-hidden'>
+                {secondRowItems.map((logo, index) => (
+                    <div key={`logo-2-${index}`} className="3xl:w-[150px] w-[130px] 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
+                        <Image
+                            src={logo}
+                            alt={`logo-2-${index}`}
+                            width={150}
+                            height={120}
+                            className="size-full object-contain"
+                        />
+                    </div>
+                ))}
+            </Marquee>
+            <Marquee speed={30} pauseOnHover gradient={true} direction='right' gradientWidth={200} className='w-fit overflow-hidden'>
+                {thirdRowItems.map((logo, index) => (
+                    <div key={`logo-3-${index}`} className="3xl:w-[150px] w-[130px] 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
+                        <Image
+                            src={logo}
+                            alt={`logo-3-${index}`}
+                            width={150}
+                            height={120}
+                            className="size-full object-contain"
                         />
                     </div>
                 ))}
             </Marquee>
 
-            <Marquee speed={30} pauseOnHover direction='right' autoFill gradient={true} gradientWidth={200}>
+            {/* <Marquee speed={30} pauseOnHover direction='right' autoFill gradient={true} gradientWidth={200}>
                 {secondRowItems.map((logo, index) => (
                     <div key={`logo-2-${index}`} className="w-fit mx-4 flex items-center">
                         <Image
@@ -53,7 +79,7 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ logos }) => {
                         />
                     </div>
                 ))}
-            </Marquee>
+            </Marquee> */}
         </div>
     );
 };

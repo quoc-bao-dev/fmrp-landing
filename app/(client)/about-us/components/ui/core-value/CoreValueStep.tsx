@@ -16,28 +16,28 @@ const steps = [
         id: uuidv4(),
         title: "Giải quyết",
         description: "Lắng nghe sâu sắc, thấu hiểu trọn vẹn, biến mong muốn thành khởi nguồn cho giải pháp hoàn hảo.",
-        image: "/background/ui/about-us/step/core-value.webp",
+        image: "/background/ui/about-us/step/illustration1.webp",
         word: "solve"
     },
     {
         id: uuidv4(),
         title: "Giải pháp",
         description: "Mỗi cá nhân đến từ FOSO luôn trau dồi học hỏi và tìm kiếm tri thức mới để mang đến giải pháp tối ưu hóa nhất cho khách hàng.",
-        image: "/background/ui/about-us/step/solution.webp",
+        image: "/background/ui/about-us/step/illustration2.webp",
         word: "solution"
     },
     {
         id: uuidv4(),
         title: "Cộng đồng",
         description: "Mỗi cá nhân đến từ FOSO luôn đặt trọng tâm các dự án phải mang tinh thần tập thể vì một tương lai Việt Nam phát triển, bền vững và đoàn kết.",
-        image: "/background/ui/about-us/step/socially.webp",
+        image: "/background/ui/about-us/step/illustration3.webp",
         word: "socially"
     },
     {
         id: uuidv4(),
         title: "Tâm hồn",
         description: "Mỗi cá nhân đến từ FOSO luôn coi trọng đạo đức nghề nghiệp, đạo đức xã hội ở tiêu chuẩn cao nhất.",
-        image: "/background/ui/about-us/step/soul.webp",
+        image: "/background/ui/about-us/step/illustration4.webp",
         word: "soul"
     },
 ];
@@ -85,7 +85,7 @@ const CoreValueStep = (props: Props) => {
                         >
                             {/* Nội dung */}
                             <AnimatedReveal
-                                from="left"
+                                // from="left"
                                 effect='fade'
                                 // once={false}
                                 className={`${index !== steps.length - 1 ? "3xl:pt-20 lg:pt-10 pt-12 lg:h-[80vh]" : " pb-10"}  flex lg:flex-row flex-col lg:items-start xl:gap-20 gap-16 w-full max-w-full lg:pl-20 pl-8 relative`}
@@ -108,7 +108,7 @@ const CoreValueStep = (props: Props) => {
                                 </div>
 
                                 <div className='space-y-2 w-full 2xl:max-w-[50%] lg:max-w-[55%] max-w-full lg:order-2 order-1'>
-                                    <div className='relative w-fit '>
+                                    <div className='relative '>
                                         <h3 className="3xl:!text-2xl xl:!text-2xl lg:!text-xl !text-2xl font-extrabold text-[#33404A] relative z-[1]">
                                             {step.title}
                                         </h3>
