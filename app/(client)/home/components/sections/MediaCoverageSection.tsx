@@ -16,6 +16,7 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import { motion } from 'framer-motion'
 import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
 import { useSheetStores } from '@/stores/useSheetStores';
+import { useRouter } from 'next/navigation';
 
 type Props = {}
 
@@ -26,7 +27,7 @@ const mediaList = [
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Doanh nhân Sài Gòn online",
         title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP",
-        link:"https://doanhnhansaigon.vn/doanh-nghiep-chuyen-doi-so-manh-me-cung-giai-phap-phan-mem-fmrp-304651.html?"
+        link: "https://doanhnhansaigon.vn/doanh-nghiep-chuyen-doi-so-manh-me-cung-giai-phap-phan-mem-fmrp-304651.html?"
     },
     {
         id: uuidv4(),
@@ -34,7 +35,7 @@ const mediaList = [
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Công nghệ đời sống",
         title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP",
-        link:"https://congnghedoisong.net/quan-ly-san-xuat-thong-minh-voi-giai-phap-phan-mem-fmrp-a37796.html"
+        link: "https://congnghedoisong.net/quan-ly-san-xuat-thong-minh-voi-giai-phap-phan-mem-fmrp-a37796.html"
     },
     {
         id: uuidv4(),
@@ -42,11 +43,12 @@ const mediaList = [
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Kết nối đầu tư",
         title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất",
-        link:"https://ketnoidautu.net/foso-ra-mat-app-quan-ly-xuong-cai-thien-tien-do-san-xuat-trong-quan-ly-nha-may-a32964.html"
+        link: "https://ketnoidautu.net/foso-ra-mat-app-quan-ly-xuong-cai-thien-tien-do-san-xuat-trong-quan-ly-nha-may-a32964.html"
     },
 ]
 
 const MediaCoverageSection = (props: Props) => {
+    const router = useRouter()
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
 
@@ -174,7 +176,8 @@ const MediaCoverageSection = (props: Props) => {
                         </div>
                     }
                     onClick={() => {
-                        window.open("https://fososoft.vn/fblog/")
+                        router.push("/resource/blogs")
+                        // window.open("https://fososoft.vn/fblog/")
                     }}
                     reverse={true}
                     className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"

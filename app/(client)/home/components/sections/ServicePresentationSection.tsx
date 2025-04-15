@@ -11,6 +11,7 @@ import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 import { motion } from 'framer-motion'
 import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
+import { useRouter } from 'next/navigation'
 
 type Props = {}
 
@@ -54,6 +55,8 @@ const projectList = [
 ]
 
 const ServicePresentationSection = (props: Props) => {
+    const router = useRouter()
+
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
 
@@ -171,7 +174,10 @@ const ServicePresentationSection = (props: Props) => {
                             </motion.div>
                         </div>
                     }
-                    onClick={() => window.open("https://fososoft.vn/fblog/")}
+                    onClick={() => {
+                        router.push("/resource/blogs")
+                        // window.open("https://fososoft.vn/fblog/")
+                    }}
                     reverse={true}
                     className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     style={{

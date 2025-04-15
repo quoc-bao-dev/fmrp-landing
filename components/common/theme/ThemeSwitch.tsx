@@ -8,7 +8,7 @@ const ThemeSwitcher = () => {
     const pathname = usePathname()
 
     useEffect(() => {
-        if (pathname.startsWith("/products/fmrp")) {
+        if (pathname.startsWith("/products/phan-mem-quan-ly-san-xuat-fmrp")) {
             setTheme("fmrp");
         } else {
             setTheme("light");

@@ -96,7 +96,7 @@ const MarqueeColumn = memo(({ feedbacks, direction }: MarqueeColumnProps) => {
             </motion.div>
 
             {
-                pathname !== "/products/fmrp" ?
+                pathname !== "/products/phan-mem-quan-ly-san-xuat-fmrp" ?
                     <React.Fragment>
                         <div
                             className="absolute bottom-0 left-0 w-full h-20"

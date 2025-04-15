@@ -46,7 +46,7 @@ const ButtonToTop = () => {
                         onClick={handleClick}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className={`${pathname === "/products/fmrp" ? "bg-[#0375f3]" : "bg-[#53B086]"} relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center`}
+                        className={`${pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp" ? "bg-[#0375f3]" : "bg-[#53B086]"} relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center`}
                     >
                         <HiOutlineArrowNarrowUp className='text-2xl' />
                     </motion.button>

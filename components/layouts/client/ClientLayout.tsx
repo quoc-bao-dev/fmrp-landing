@@ -34,7 +34,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     return (
         <>
             {/* header */}
-            {pathname === "/products/fmrp" && <FmrpHeaderContainer />}
+            {pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp" && <FmrpHeaderContainer />}
             <FosoHeaderContainer />
 
             {children}

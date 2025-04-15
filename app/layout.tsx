@@ -16,6 +16,7 @@ import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
 import GoogleAnalytics from "@/components/script/GoogleAnalytics";
+import Script from "next/script";
 
 export const metadata = {
     title: "FOSO Tech - Giải pháp công nghệ cho doanh nghiệp",
@@ -65,7 +66,29 @@ export default async function RootLayoutApp({
 
     return (
         <html suppressHydrationWarning lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
+            <head>
+                {/* Google Tag Manager */}
+                <Script id="gtm-head" strategy="afterInteractive">
+                    {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-M7HZ95L2');`}
+                </Script>
+            </head>
+
             <body className={`${raleway_sans.className} antialiased relative`} >
+                {/* Google Tag Manager (noscript) */}
+                <noscript>
+                    <iframe
+                        src="https://www.googletagmanager.com/ns.html?id=GTM-M7HZ95L2"
+                        height="0"
+                        width="0"
+                        style={{ display: 'none', visibility: 'hidden' }}
+                    ></iframe>
+                </noscript>
+                {/* End Google Tag Manager (noscript) */}
+
                 <Suspense>
                     <RootLayout data={{ dataLang: "lang", language: "" }}>
                         {children}

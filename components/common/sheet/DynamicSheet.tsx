@@ -35,14 +35,13 @@ export function DynamicSheet({ }: DynamicSheetProps) {
     }
 
     return (
-
         <Sheet
             open={openSheetCustom}
             onOpenChange={(value: boolean) => {
                 handleCloseDialog(value)
             }}
         >
-            <SheetPortal>
+            <SheetPortal forceMount>
                 <SheetHeader>
                     <SheetTitle className="sr-only">Form Liên Hệ</SheetTitle>
                 </SheetHeader>
@@ -50,10 +49,10 @@ export function DynamicSheet({ }: DynamicSheetProps) {
                     overlayClassName={"backdrop-blur-[16px] bg-[#FFFFFF]/5"}
                     className="3xl:px-10 px-6 py-6 bg-white 3xl:!max-w-screen-lg xl:!max-w-[50%] lg:!max-w-[60%] md:!max-w-[90%] sm:!max-w-[90%] !max-w-[90%] lg:w-1/2 w-full overflow-y-auto custom-size-text"
                 >
-                    {
-                        isAuthStatusSheet && (
-                            statusSheet === "contact" &&
-                            <AnimatePresence>
+                    <AnimatePresence>
+                        {
+                            isAuthStatusSheet && (
+                                statusSheet === "contact" &&
                                 <motion.div
                                     key="sheet-container"
                                     initial={{ opacity: 0, y: 10 }}
@@ -67,9 +66,9 @@ export function DynamicSheet({ }: DynamicSheetProps) {
 
                                     <FormContact className="lg:!p-0 !shadow-none" />
                                 </motion.div>
-                            </AnimatePresence>
-                        )
-                    }
+                            )
+                        }
+                    </AnimatePresence>
                 </SheetContent>
             </SheetPortal>
         </Sheet>

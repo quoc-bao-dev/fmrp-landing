@@ -46,7 +46,7 @@ const WidgetButton: React.FC = () => {
                     handleClick={button.handleClick} // ✅ Truyền `handleClick` riêng cho từng button
                 >
                     <div
-                        className={`${pathname === "/products/fmrp" ? "hover:bg-[#0375f3]/80" : "hover:bg-[#53B086]/80"} bg-white  p-3 rounded-full custom-transition`}
+                        className={`${pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp" ? "hover:bg-[#0375f3]/80" : "hover:bg-[#53B086]/80"} bg-white  p-3 rounded-full custom-transition`}
                         style={{
                             boxShadow: "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A"
                         }}

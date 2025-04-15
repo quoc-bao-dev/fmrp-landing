@@ -8,7 +8,7 @@ const ScrollbarStyle = () => {
 
     useEffect(() => {
         const root = document.documentElement;
-        if (pathname === "/products/fmrp") {
+        if (pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp") {
             root.style.setProperty("--scrollbar-thumb-color", "#5599EC");
         } else {
             root.style.setProperty("--scrollbar-thumb-color", "#48DDAD");

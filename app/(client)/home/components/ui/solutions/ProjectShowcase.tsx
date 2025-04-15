@@ -13,14 +13,35 @@ import { useInView } from "react-intersection-observer"
 interface Category {
     id: number
     title: string
-    image: string
+    image: string,
+    description: string
 }
 
 const categories: Category[] = [
-    { id: 5, title: "FMRP - Quản Lý Xưởng Online", image: "/example/solution/image2.png" },
-    { id: 1, title: "Thiết kế web", image: "/example/solution/web.webp" },
-    { id: 2, title: "Thiết kế App Mobile", image: "/example/solution/mobile-app.webp" },
-    { id: 3, title: "Thuê Hosting & Server", image: "/example/solution/hosting.webp" },
+    {
+        id: 5,
+        title: "FMRP - Quản Lý Xưởng Online",
+        image: "/example/solution/fmrp.webp",
+        description: "Phần mềm giúp quản lý toàn bộ xưởng sản xuất từ đơn hàng, nguyên vật liệu đến tiến độ công đoạn. Thiết kế riêng cho nhà xưởng nhỏ, dễ dùng, triển khai nhanh.",
+    },
+    {
+        id: 1,
+        title: "Thiết Kế Web",
+        image: "/example/solution/web.webp",
+        description: "Website chuẩn SEO, giao diện hiện đại theo nhận diện thương hiệu. Tối ưu tốc độ, dễ quản trị và sẵn sàng mở rộng theo từng giai đoạn kinh doanh.",
+    },
+    {
+        id: 2,
+        title: "Thiết Kế App Mobile",
+        image: "/example/solution/mobile-app.webp",
+        description: "Từ bán hàng, đặt lịch, đến quản lý kho và sản xuất – FOSO thiết kế ứng dụng mobile theo đúng bài toán thực tế của bạn. App mượt mà, giao diện thân thiện, dễ dùng trên cả iOS và Android.",
+    },
+    {
+        id: 3,
+        title: "Thuê Hosting & Server",
+        image: "/example/solution/hosting.webp",
+        description: "Hạ tầng máy chủ chuyên dụng cho phần mềm sản xuất và hệ thống doanh nghiệp. Ổn định, bảo mật cao và hỗ trợ kỹ thuật nhanh chóng khi cần",
+    },
     // { id: 4, title: "Thuê IT Outsourcing", image: "/example/solution/outsourcing.webp" },
     // { id: 6, title: "FPOS - Trợ lý bán hàng", image: "/example/solution/fpos.webp" },
 ]
@@ -71,8 +92,8 @@ const ProjectShowcase = () => {
                         <motion.div
                             key={`category-${item.id}`}
                             ref={(el) => { categoryRefs.current[index] = el }} // Gán ref cho từng item
-                            className={`relative flex items-center gap-2 cursor-pointer 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-lg !tracking-[2%] transition-all duration-300 w-fit text-nowrap
-                ${selectedCategory.id === item.id
+                            className={`relative flex items-center gap-2 cursor-pointer px-2 pt-2 pb-4 3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] transition-all duration-300 w-fit text-nowrap
+                                    ${selectedCategory.id === item.id
                                     ? "font-semibold text-[#33404A]"
                                     : "text-[#99B2C6] hover:text-[#33404A] font-normal"
                                 }`}
@@ -84,7 +105,7 @@ const ProjectShowcase = () => {
                             onClick={() => handleCategoryChange(item, index)} // Gọi hàm cuộn vào viewport
                         >
                             {/* Hiệu ứng trượt từ trái vào của gạch ngang */}
-                            {selectedCategory.id === item.id && !isVisibleTablet && (
+                            {/* {selectedCategory.id === item.id && !isVisibleTablet && (
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         layout
@@ -95,7 +116,7 @@ const ProjectShowcase = () => {
                                         transition={{ duration: 0.3, ease: "easeOut" }}
                                     />
                                 </AnimatePresence>
-                            )}
+                            )} */}
 
                             {/* Hiệu ứng trượt vào với motion.div */}
                             <motion.div
@@ -103,13 +124,25 @@ const ProjectShowcase = () => {
                                 animate={{
                                     opacity: 1,
                                     x: 0,
-                                    paddingLeft: selectedCategory.id === item.id && !isVisibleTablet ? "48px" : "0px", // Tăng padding khi active
+                                    // paddingLeft: selectedCategory.id === item.id && !isVisibleTablet ? "48px" : "0px", // Tăng padding khi active
                                 }}
                                 exit={{ opacity: 0, x: -30 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="capitalize"
+                                className={`${selectedCategory.id === item.id ? "bg-white" : ""} capitalize rounded-xl flex flex-col !p-4 space-y-2`}
+                                style={{
+                                    boxShadow: selectedCategory.id === item.id ? "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714" : ""
+                                }}
                             >
-                                {item.title}
+                                <div className='3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] text-[#33404A] font-semibold'>
+                                    {item.title}
+                                </div>
+
+                                {
+                                    selectedCategory.id === item.id &&
+                                    <div className='text-sm-default text-[#667F93] font-medium text-wrap'>
+                                        {item.description}
+                                    </div>
+                                }
                             </motion.div>
                         </motion.div>
                     ))

@@ -213,7 +213,7 @@ const DetailBlog = () => {
                                             width={1200}
                                             height={900}
                                             alt="Quy trình 5S là gì?"
-                                            className="rounded-xl w-full aspect-3/2 hover:scale-[1.02] custom-transition"
+                                            className="rounded-xl size-full aspect-3/2 hover:scale-[1.02] custom-transition"
                                         />
                                     </div>
                                 </div>
