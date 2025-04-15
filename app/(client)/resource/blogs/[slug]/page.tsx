@@ -204,17 +204,20 @@ const DetailBlog = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-8">
-                                <div className='w-full h-auto aspect-3/2 rounded-xl overflow-hidden'>
-                                    <Image
-                                        src="/example/blog/example12.png"
-                                        width={1200}
-                                        height={900}
-                                        alt="Quy trình 5S là gì?"
-                                        className="rounded-xl w-full aspect-3/2 hover:scale-[1.02] custom-transition"
-                                    />
+                            {
+                                dataBlogDetail?.image &&
+                                <div className="mt-8">
+                                    <div className='w-full h-auto aspect-3/2 rounded-xl overflow-hidden'>
+                                        <Image
+                                            src={`${dataBlogDetail?.image}`}
+                                            width={1200}
+                                            height={900}
+                                            alt="Quy trình 5S là gì?"
+                                            className="rounded-xl w-full aspect-3/2 hover:scale-[1.02] custom-transition"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
 
                         <div className='space-y-2'>
@@ -223,19 +226,26 @@ const DetailBlog = () => {
 
                             <div className="article-content">
                                 <p
-                                    className="text-[#33404A] font-medium
-                                    [&_img]:mx-auto [&_figure]:flex [&_figure]:justify-center text-sm-default
-                                    "
+                                    className="
+                                    text-[#33404A] font-medium text-justify
+                                    [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4
+                                    [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3
+                                    [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:mt-5 [&_h3]:mb-2
+                                    [&_h4]:text-xl [&_h4]:font-medium [&_h4]:mt-4 [&_h4]:mb-1
+                                    [&_h5]:text-lg [&_h5]:font-medium [&_h5]:mt-3 [&_h5]:mb-1.5
+                                    [&_h6]:text-base [&_h6]:font-medium [&_h6]:mt-2 [&_h6]:mb-1
+                                    3xl:[&_p]:text-lg [&_p]:text-base [&_p]:font-normal [&_p]:mt-2 [&_p]:mb-1 [&_p]:!leading-7
+                                    [&_img]:mx-auto [&_img]:rounded-md [&_img]:my-6
+                                    [&_figure]:flex [&_figure]:justify-center [&_figure]:my-6
+                                    [&_a:has(img)]:w-full [&_a:has(img)]:inline-block
+                                  [&_a:not(:has(img))]:text-blue-600 [&_a:not(:has(img))]:underline
+                                    [&_table]:w-full [&_table]:border-collapse [&_table]:my-6 [&_table]:text-sm
+                                    [&_table]:border [&_table]:border-gray-300
+                                  [&_th]:bg-gray-100 [&_th]:border [&_th]:border-gray-300 [&_th]:p-2 [&_th]:text-left
+                                    [&_td]:border [&_td]:border-gray-300 [&_td]:p-2
+                                    [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-4
+                                "
                                     dangerouslySetInnerHTML={{ __html: `${addIdsToHeadings(dataBlogDetail?.content ?? '')}` }}
-                                //     className="
-                                //     mt-6 text-justify
-                                //     [&_a_has-[img]]:bg-contain [&_a:has(img)]:w-full [&_a:not(:has(img))]:w-fit 
-                                //     [&_img]:mx-auto [&_figure]:flex [&_figure]:justify-center
-                                //     [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-gray-300
-                                //   [&_th]:bg-gray-100 [&_th]:border [&_th]:border-gray-300 [&_th]:p-1 [&_th]:text-left
-                                //     [&_td]:border [&_td]:border-gray-300 [&_td]:p-1
-                                //       [&_strong]:inline [&_span]:inline [&_p]:inline
-                                //     "
                                 />
                             </div>
                         </div>

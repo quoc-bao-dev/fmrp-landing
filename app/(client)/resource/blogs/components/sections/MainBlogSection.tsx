@@ -184,7 +184,7 @@ const dataFilterBlog: any[] = [
     },
 ]
 
-const itemsPerPage = 6 // Set your desired items per page here
+const itemsPerPage = 8 // Set your desired items per page here
 
 const MainBlogSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
@@ -273,22 +273,16 @@ const MainBlogSection = (props: Props) => {
                     <div className="3xl:w-[74%] xxl:w-[70%] lg:w-[68%] w-full flex flex-col 3xl:gap-8 gap-6 lg:order-1 order-2">
                         <h1 className="text-title-section-small font-extrabold align-middle">Tất Cả Bài Viết</h1>
                         {/* Hero Banner */}
-                        {
-                            !isVisibleTablet &&
+
+                        {/* {
+                            !isVisibleTablet && dataBlogsList?.data?.length > 0 &&
                             <React.Fragment>
                                 <CommunityJoinSection />
                             </React.Fragment>
-                        }
+                        } */}
 
                         {/* Article Grid */}
                         <div className={`${dataBlogsList?.data?.length > 0 ? "" : " "} grid md:grid-cols-2 grid-cols-1 3xl:gap-8 gap-6 mt-4`}>
-                            {/* {
-                                dataBlog && dataBlog?.map((blog: any) => (
-                                    <React.Fragment key={`blog-${blog.id}`}>
-                                        <BlogCardVertical blog={blog} />
-                                    </React.Fragment>
-                                ))
-                            } */}
                             {
                                 isLoadingBlogsList ?
                                     (
@@ -304,7 +298,22 @@ const MainBlogSection = (props: Props) => {
                                             </React.Fragment>
                                         ))
                                         :
-                                        <SystemNodataNew type='blog-list' className='md:col-span-2 col-span-1 h-full w-full' />
+                                        (
+                                            isStatePageBlogs?.searchBlog ?
+                                                <SystemNodataNew
+                                                    type='no-search'
+                                                    searchValue={isStatePageBlogs?.searchBlog}
+                                                    className='md:col-span-2 col-span-1 h-full w-full'
+                                                    classNameTitle='3xl:text-lg text-base font-normal !text-[#33404A]'
+                                                    classNameDescription="3xl:text-2xl text-xl font-semibold !text-[#050505]"
+                                                />
+                                                :
+                                                <SystemNodataNew
+                                                    type='blog-list'
+                                                    className='md:col-span-2 col-span-1 h-full w-full'
+                                                    classNameTitle='3xl:text-2xl text-xl font-semibold !text-[#050505]'
+                                                />
+                                        )
                             }
                         </div>
                     </div>

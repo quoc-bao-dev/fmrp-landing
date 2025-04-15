@@ -30,15 +30,16 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     return (
         <Link
             href="#"
-            className='col-span-1 flex items-end relative aspect-0.87/1 w-full rounded-3xl group'
+            className='col-span-1 flex items-end relative w-full rounded-3xl group'
             style={{
+                aspectRatio: '0.87 / 1' ,
                 boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A"
             }}
             onMouseEnter={() => handleHover(true)}
             onMouseLeave={() => handleHover(false)}
         >
 
-            <div className='absolute w-full aspect-0.87/1 rounded-3xl z-0 overflow-hidden'>
+            <div className='absolute inset-0 rounded-3xl z-0 overflow-hidden'>
                 {/* Skeleton Loading */}
                 <BlurImage
                     src={project?.image ?? "/default/default.png"}
@@ -56,7 +57,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     animate={{ opacity: isHovered ? 1 : 0 }}
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute inset-0 blur-md"
+                    className="absolute blur-md"
                     style={{
                         background: "linear-gradient(to bottom, rgba(216, 230, 255, 0.9) 0%, rgba(216, 230, 255, 0.1) 40%, rgba(157, 255, 179, 0.5) 100%)",
                         WebkitMaskImage: "linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 33%, rgba(0, 0, 0, 0) 100%)"

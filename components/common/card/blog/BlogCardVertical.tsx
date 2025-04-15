@@ -10,6 +10,7 @@ import ClockIcon from '@/components/icons/common/ClockIcon'
 import Link from 'next/link'
 import { FORMAT_DATE } from '../../../../constants/FormatDate';
 import moment from 'moment';
+import BlurImage from '../../blur/BlurImage'
 
 type Props = {
     blog: IBlogItem
@@ -74,29 +75,38 @@ const BlogCardVertical = ({ blog, className }: Props) => {
                 whileTap="press"
             >
                 {/* Hình ảnh chính */}
-                <div className='relative w-full h-auto aspect-square rounded-3xl overflow-hidden'>
-                    <Image
+                <div className='relative w-full h-auto aspect-3/2 rounded-3xl overflow-hidden'>
+                    {/* <Image
                         src={blog.image}
                         alt="BOM là gì?"
                         width={1000}
                         height={1000}
-                        className="size-full object-cover aspect-square rounded-3xl group-hover:scale-105 custom-transition"
+                        className="size-full object-cover aspect-3/2 rounded-3xl group-hover:scale-105 custom-transition"
+                    /> */}
+                    <BlurImage
+                        src={blog.image}
+                        alt="BOM là gì?"
+                        width={900}
+                        height={600}
+                        className="size-full object-cover aspect-3/2 rounded-3xl group-hover:scale-105 custom-transition"
+                        classNameContainer='w-full aspect-3/2'
+                        loading="lazy"
                     />
                     {/* Overlay - Hiện dần khi hover */}
-                    <motion.div
+                    {/* <motion.div
                         className="absolute inset-0 bg-[#0F4F9E]/40 rounded-3xl"
                         variants={fadeVariants}
-                    />
+                    /> */}
 
                     {/* Nút "Xem thêm" */}
-                    <motion.div
+                    {/* <motion.div
                         className="absolute inset-0 flex items-center justify-center"
                         variants={hoverVariants}
                     >
                         <div className="flex items-center justify-center p-4  aspect-square 3xl:text-base text-sm rounded-full bg-[#15AA7A] text-white font-semibold shadow-lg capitalize">
                             Xem chi tiết
                         </div>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
 
                 <div className="mt-2 space-y-4">

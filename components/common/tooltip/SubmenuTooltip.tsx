@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import CaretRightIcon from "@/components/icons/common/CaretRightIcon";
 import Image from 'next/image';
-import { variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
+import { variantButtonBasic, variantButtonPressZoom } from '@/utils/animations/variantsAnimation';
 import { ISubMenuItem } from "@/types/ui/menu/IMenuUI";
+import ButtonAnimationNew from "../button/ButtonAnimationNew";
 
 interface SubmenuTooltipProps {
     subMenu: any;
@@ -30,11 +31,12 @@ const SubmenuTooltip = memo(({ subMenu }: SubmenuTooltipProps) => {
     }, []);
 
     return (
-        <div className="grid grid-cols-2 gap-4 w-full 2xl:min-w-[880px] xl:min-w-[780px] min-w-[680px]">
+        <div className="grid grid-cols-1 gap-4 w-full min-w-fit">
+            {/* <div className="grid grid-cols-1 gap-4 w-full 2xl:min-w-[880px] xl:min-w-[780px] min-w-[680px]"> */}
             {
-                Object.keys(subMenu.content).map((category) => (
-                    <div key={category} className="col-span-1 space-y-3">
-                        <h3 className="2xl:text-lg text-base font-normal text-[#667F93]">{category}</h3>
+                Object.keys(subMenu.content).map((category, index) => (
+                    <div key={category} className={`${Object.keys(subMenu.content)?.length - 1 !== index ? "border-[#F1F5F7]" : "border-transparent"} col-span-1 space-y-3 pb-2 border-b`}>
+                        <h3 className="2xl:text-base text-sm font-normal text-[#667F93]">{category}</h3>
 
                         <div className="space-y-3">
                             {
@@ -49,28 +51,37 @@ const SubmenuTooltip = memo(({ subMenu }: SubmenuTooltipProps) => {
                                         >
                                             {/* Icon */}
                                             <div className="2xl:size-12 size-11 flex items-center justify-center">
-                                                <div className={`${item.typeIcon === "default" ? "2xl:size-8 size-7" : "size-full"}`}>
-                                                    {
-                                                        typeof item.icon === "string" ? (
-                                                            <Image
-                                                                src={item.icon}
-                                                                alt="icon"
-                                                                width={200}
-                                                                height={200}
-                                                                className='size-full object-contain'
-                                                            />
-                                                        ) :
-                                                            (
-                                                                <React.Fragment>
-                                                                    {item.icon}
-                                                                </React.Fragment>
-                                                            )
+                                                <ButtonAnimationNew
+                                                    key={item.id}
+                                                    icon={
+                                                        <div className={`${item.typeIcon === "default" ? "2xl:size-8 size-7" : "size-full"}`}>
+                                                            {
+                                                                typeof item.icon === "string" ? (
+                                                                    <Image
+                                                                        src={item.icon}
+                                                                        alt="icon"
+                                                                        width={200}
+                                                                        height={200}
+                                                                        className='size-full object-contain'
+                                                                    />
+                                                                ) :
+                                                                    (
+                                                                        <React.Fragment>
+                                                                            {item.icon}
+                                                                        </React.Fragment>
+                                                                    )
+                                                            }
+                                                        </div>
                                                     }
-                                                </div>
+                                                    hideTitle={true}
+                                                    className='flex size-12 items-center justify-center rounded-xl border border-[#15AA7A] text-[#15AA7A] hover:bg-[#15AA7A]/20 backdrop-blur-lg transition-colors'
+                                                    // onClick={() => handleShare(item.id)}
+                                                    variant={variantButtonBasic}
+                                                />
                                             </div>
 
                                             {/* Nội dung */}
-                                            <div className="2xl:space-y-2 space-y-1.5 pr-8">
+                                            <div className="2xl:space-y-1.5 space-y-1 pr-8">
                                                 <h4 className="2xl:text-lg text-base text-[#33404A] font-bold">{item.name}</h4>
                                                 <p className="text-sm text-[#667F93] font-normal text-wrap">{item.description}</p>
                                             </div>

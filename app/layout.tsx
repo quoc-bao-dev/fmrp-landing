@@ -15,6 +15,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
+import GoogleAnalytics from "@/components/script/GoogleAnalytics";
 
 export const metadata = {
     title: "FOSO Tech - Giải pháp công nghệ cho doanh nghiệp",
@@ -70,6 +71,8 @@ export default async function RootLayoutApp({
                         {children}
                     </RootLayout>
                 </Suspense>
+
+                <GoogleAnalytics gtag='AW-11487033920' />
             </body>
         </html>
     );

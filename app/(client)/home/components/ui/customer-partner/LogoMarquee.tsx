@@ -13,9 +13,9 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ logos }) => {
 
     return (
         <div className="space-y-4 overflow-hidden">
-            <Marquee speed={30} pauseOnHover gradient={true} direction='right' gradientWidth={200} className='w-fit overflow-hidden'>
+            <Marquee speed={30} pauseOnHover gradient={true} autoFill direction='right' gradientWidth={200} className='w-fit overflow-hidden'>
                 {firstRowItems.map((logo, index) => (
-                    <div key={`logo-1-${index}`} className="3xl:w-[150px] w-[130px] 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
+                    <div key={`logo-1-${index}`} className="w-auto 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
                         <Image
                             src={logo}
                             alt={`logo-1-${index}`}
@@ -26,9 +26,9 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ logos }) => {
                     </div>
                 ))}
             </Marquee>
-            <Marquee speed={30} pauseOnHover gradient={true} direction='left' gradientWidth={200} className='w-fit overflow-hidden'>
+            <Marquee speed={30} pauseOnHover gradient={true} autoFill direction='left' gradientWidth={200} className='w-fit overflow-hidden'>
                 {secondRowItems.map((logo, index) => (
-                    <div key={`logo-2-${index}`} className="3xl:w-[150px] w-[130px] 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
+                    <div key={`logo-2-${index}`} className="w-auto 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
                         <Image
                             src={logo}
                             alt={`logo-2-${index}`}
@@ -39,9 +39,9 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ logos }) => {
                     </div>
                 ))}
             </Marquee>
-            <Marquee speed={30} pauseOnHover gradient={true} direction='right' gradientWidth={200} className='w-fit overflow-hidden'>
+            <Marquee speed={30} pauseOnHover gradient={true} autoFill direction='right' gradientWidth={200} className='w-fit overflow-hidden'>
                 {thirdRowItems.map((logo, index) => (
-                    <div key={`logo-3-${index}`} className="3xl:w-[150px] w-[130px] 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
+                    <div key={`logo-3-${index}`} className="w-auto 3xl:h-[120px] h-[110px] shrink-0 mx-6 flex items-center overflow-hidden">
                         <Image
                             src={logo}
                             alt={`logo-3-${index}`}

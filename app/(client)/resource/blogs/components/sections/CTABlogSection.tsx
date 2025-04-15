@@ -149,7 +149,7 @@ const CTABlogSection = (props: Props) => {
                 </div>
                 <div className='w-full 3xl:max-w-[50%] xl:max-w-[45%] lg:max-w-[40%] max-w-full'>
                     <BlurImage
-                        src={"/background/ui/about-us/jumbotron.webp"}
+                        src={"/background/ui/about-us/jumbotron1.png"}
                         alt={"CEO FOSO"}
                         width={1920}
                         height={1080}

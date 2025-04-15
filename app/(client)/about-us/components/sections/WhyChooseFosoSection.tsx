@@ -30,7 +30,7 @@ const values = [
             </defs>
         </svg>,
         title: 'Công ty nhiều năm kinh nghiệm',
-        description: 'Hơn 8 năm kinh nghiệm, FOSO tự tin đáp ứng mọi nhu cầu doanh nghiệp!',
+        description: 'Hơn 9 năm kinh nghiệm, FOSO tự tin đáp ứng mọi nhu cầu doanh nghiệp!',
     },
     {
         icon: <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">

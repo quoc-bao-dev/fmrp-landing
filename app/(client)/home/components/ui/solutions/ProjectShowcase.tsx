@@ -17,12 +17,12 @@ interface Category {
 }
 
 const categories: Category[] = [
+    { id: 5, title: "FMRP - Quản Lý Xưởng Online", image: "/example/solution/image2.png" },
     { id: 1, title: "Thiết kế web", image: "/example/solution/web.webp" },
     { id: 2, title: "Thiết kế App Mobile", image: "/example/solution/mobile-app.webp" },
     { id: 3, title: "Thuê Hosting & Server", image: "/example/solution/hosting.webp" },
-    { id: 4, title: "Thuê IT Outsourcing", image: "/example/solution/outsourcing.webp" },
-    { id: 5, title: "FMRP - Trợ lý sản xuất", image: "/example/solution/image2.png" },
-    { id: 6, title: "FPOS - Trợ lý bán hàng", image: "/example/solution/fpos.webp" },
+    // { id: 4, title: "Thuê IT Outsourcing", image: "/example/solution/outsourcing.webp" },
+    // { id: 6, title: "FPOS - Trợ lý bán hàng", image: "/example/solution/fpos.webp" },
 ]
 
 const ProjectShowcase = () => {
@@ -65,7 +65,7 @@ const ProjectShowcase = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 py-10 w-full h-full overflow-x-hidden relative z-10">
             {/* Danh mục bên trái */}
-            <AnimatedReveal effect="fade" className="xl:col-span-6 lg:col-span-5 col-span-full h-full flex lg:flex-col lg:justify-between lg:gap-8 gap-8 lg:order-1 order-2 overflow-x-auto">
+            <AnimatedReveal effect="fade" className="xl:col-span-6 lg:col-span-5 col-span-full h-full flex lg:flex-col lg:justify-center     lg:gap-8 gap-8 lg:order-1 order-2 overflow-x-auto">
                 {
                     categories && categories.map((item, index) => (
                         <motion.div

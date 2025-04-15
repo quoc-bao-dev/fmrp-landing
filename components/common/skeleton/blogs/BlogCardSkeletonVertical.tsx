@@ -4,7 +4,7 @@ const BlogCardSkeletonVertical = ({ className = "" }: { className?: string }) =>
     return (
         <div className={`${className} flex flex-col gap-2`}>
             {/* Image skeleton */}
-            <Skeleton className="w-full aspect-square rounded-3xl" />
+            <Skeleton className="w-full aspect-3/2 rounded-3xl" />
 
             <div className="mt-2 space-y-4">
                 {/* Tags skeleton */}

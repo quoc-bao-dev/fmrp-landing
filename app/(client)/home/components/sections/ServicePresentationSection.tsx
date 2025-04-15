@@ -85,70 +85,74 @@ const ServicePresentationSection = (props: Props) => {
                     </span>
                 </div>
 
-                {
-                    isVisibleTablet
-                        ?
-                        <div className='w-full '>
-                            <Swiper
-                                slidesPerView={4}
-                                spaceBetween={60}
-                                modules={[Pagination, Autoplay]}
-                                onSwiper={(swiper) => {
-                                    swiperRef.current = swiper;
-                                }}
-                                autoplay={true}
-                                speed={1000}
-                                loop
-                                pagination={customPagination}
-                                breakpoints={{
-                                    320: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 30
-                                    },
-                                    640: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 30
-                                    },
-                                    768: {
-                                        slidesPerView: 2,
-                                        spaceBetween: 30
-                                    },
-                                    1024: {
-                                        slidesPerView: 4,
-                                        spaceBetween: 30
-                                    },
-                                    1920: {
-                                        slidesPerView: 4,
-                                        spaceBetween: 60,
+
+
+                <div className='h-full min-h-[600px]'>
+                    {
+                        isVisibleTablet
+                            ?
+                            <div className='w-full '>
+                                <Swiper
+                                    slidesPerView={4}
+                                    spaceBetween={60}
+                                    modules={[Pagination, Autoplay]}
+                                    onSwiper={(swiper) => {
+                                        swiperRef.current = swiper;
+                                    }}
+                                    autoplay={true}
+                                    speed={1000}
+                                    loop
+                                    pagination={customPagination}
+                                    breakpoints={{
+                                        320: {
+                                            slidesPerView: 1,
+                                            spaceBetween: 30
+                                        },
+                                        640: {
+                                            slidesPerView: 1,
+                                            spaceBetween: 30
+                                        },
+                                        768: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 30
+                                        },
+                                        1024: {
+                                            slidesPerView: 4,
+                                            spaceBetween: 30
+                                        },
+                                        1920: {
+                                            slidesPerView: 4,
+                                            spaceBetween: 60,
+                                        }
+                                    }}
+                                    className='custom-swiper-pagination md:h-[440px] h-[460px] rounded-3xl'
+                                    allowTouchMove={true}
+                                >
+                                    {
+                                        projectList && projectList?.map((project) => (
+                                            <SwiperSlide
+                                                key={`project-${project?.id}`}
+                                            // className='h-full relative cursor-pointer group'
+                                            >
+                                                <ProjectCard project={project} />
+                                            </SwiperSlide>
+                                        ))
                                     }
-                                }}
-                                className='custom-swiper-pagination md:h-[440px] h-[460px] rounded-3xl'
-                                allowTouchMove={true}
-                            >
+                                </Swiper>
+                            </div>
+                            :
+                            <div className='grid grid-cols-3 gap-6 w-full h-full min-h-0'>
                                 {
-                                    projectList && projectList?.map((project) => (
-                                        <SwiperSlide
-                                            key={`project-${project?.id}`}
-                                        // className='h-full relative cursor-pointer group'
-                                        >
+                                    projectList && projectList?.map((project, index) => (
+                                        <React.Fragment key={`project-${project?.id}`}>
                                             <ProjectCard project={project} />
-                                        </SwiperSlide>
+                                        </React.Fragment>
+
                                     ))
                                 }
-                            </Swiper>
-                        </div>
-                        :
-                        <div className='grid grid-cols-3 gap-6 w-full h-full'>
-                            {
-                                projectList && projectList?.map((project, index) => (
-                                    <React.Fragment key={`project-${project?.id}`}>
-                                        <ProjectCard project={project} />
-                                    </React.Fragment>
-
-                                ))
-                            }
-                        </div>
-                }
+                            </div>
+                    }
+                </div>
 
                 <ButtonAnimationNew
                     title="Xem tất cả"

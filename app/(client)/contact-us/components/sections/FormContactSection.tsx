@@ -114,7 +114,7 @@ const serviceList = [
     },
     {
         id: "8989892143",
-        name: "FMRP - Trợ lý sản xuất"
+        name: "FMRP - Quản lý xưởng online"
     },
     {
         id: "89898921321",

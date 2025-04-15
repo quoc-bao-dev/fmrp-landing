@@ -111,7 +111,7 @@ const VideoFmrpSection = (props: Props) => {
                 open={showVideoPopup}
                 onOpenChange={setShowVideoPopup}
                 videoId={"t6eztmEQBK4"}
-                title="FMRP - Trợ lý sản xuất"
+                title="FMRP - Quản lý xưởng online"
             />
         </div>
     )

@@ -39,7 +39,7 @@ const serviceList = [
     { id: '2', name: 'Thiết kế App Mobile' },
     { id: '3', name: 'Thuê Hosting & Server' },
     { id: '4', name: 'Thuê IT OutSourcing' },
-    { id: '5', name: 'FMRP - Trợ lý sản xuất' },
+    { id: '5', name: 'FMRP - Quản lý xưởng online' },
     { id: '6', name: 'FPOS - Trợ lý bán hàng' },
 ];
 

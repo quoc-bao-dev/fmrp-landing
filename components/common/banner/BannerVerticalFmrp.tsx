@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
 import { ArrowUpRightIcon } from 'lucide-react';
 import SalyAnimation from '../animations/common/SalyAnimation';
+import StickerHighlight from '../animations/common/StickerHighlight';
 
 type Props = {}
 
@@ -16,7 +17,7 @@ const BannerVerticalFmrp = (props: Props) => {
 
     return (
         <div
-            className="relative rounded-3xl 2xl:py-14 xl:py-12 lg:py-8 py-8 3xl:space-y-8 space-y-6 w-full overflow-hidden"
+            className="relative rounded-3xl 2xl:pb-14 xl:pb-12 lg:pb-8 pb-8 pt-4 3xl:space-y-4 space-y-4 w-full overflow-hidden"
             style={{
                 background: "linear-gradient(36.82deg, #013DA0 2.16%, #0142A9 12.83%, #0148B3 23.51%, #024EBC 34.18%, #0254C5 44.85%, #025ACE 55.53%, #0261D7 66.2%, #0267E1 76.87%, #036EEA 87.55%, #0375F3 98.22%)"
             }}
@@ -31,9 +32,9 @@ const BannerVerticalFmrp = (props: Props) => {
                 >
                     <Image
                         alt="community"
-                        src="/background/banner/laptop-mobile-fmrp.png"
-                        width={1000}
-                        height={800}
+                        src="/background/banner/mockup1.png"
+                        width={625}
+                        height={336}
                         className="size-full object-contain relative z-[3]"
                     />
                 </motion.div>
@@ -50,7 +51,7 @@ const BannerVerticalFmrp = (props: Props) => {
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                     </motion.div> */}
-                    <SalyAnimation className="w-[136px] h-auto aspect-square relative shrink">
+                    <StickerHighlight className="w-[126px] h-auto aspect-square relative shrink">
                         <Image
                             alt="community"
                             src="/background/banner/ai-robot-2.svg"
@@ -58,10 +59,10 @@ const BannerVerticalFmrp = (props: Props) => {
                             height={450}
                             className="size-full object-contain relative z-[3]"
                         />
-                    </SalyAnimation>
+                    </StickerHighlight>
 
-                    <div className="flex flex-col items-center justify-center gap-0.5">
-                        <motion.span
+                    <div className="flex flex-col items-end justify-center gap-0.5">
+                        {/* <motion.span
                             animate={{
                                 x: [0, -2, 0],   // Trôi lên xuống
                                 rotate: [-4, 2, -4,] // Lắc đều trái phải
@@ -74,7 +75,7 @@ const BannerVerticalFmrp = (props: Props) => {
                             className='text-default text-white font-bold'
                         >
                             Miễn phí dùng thử
-                        </motion.span>
+                        </motion.span> */}
 
                         <motion.div
                             className="w-[150px] h-auto aspect-3/1 relative shrink"
@@ -84,12 +85,27 @@ const BannerVerticalFmrp = (props: Props) => {
                         >
                             <Image
                                 alt="community"
-                                src="/logo/fmrp/logo-fmrp-beta.svg"
+                                src="/logo/fmrp/logo-fmrp-new.svg"
                                 width={500}
                                 height={450}
                                 className="size-full object-contain relative z-[3]"
                             />
                         </motion.div>
+
+                        <motion.span
+                            // animate={{
+                            //     x: [0, -2, 0],   // Trôi lên xuống
+                            //     rotate: [-4, 2, -4,] // Lắc đều trái phải
+                            // }}
+                            // transition={{
+                            //     duration: 2,
+                            //     repeat: Infinity,
+                            //     ease: "easeInOut"
+                            // }}
+                            className='text-sm-default text-white font-medium capitalize'
+                        >
+                            Quản Lý Xưởng Online
+                        </motion.span>
                     </div>
                 </div>
 
@@ -111,7 +127,7 @@ const BannerVerticalFmrp = (props: Props) => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     onClick={() => {
-                        window.open("https://www.facebook.com/groups/mrpvn");
+                        window.open("https://hub.fmrp.vn/auth/register");
                     }}
                     reverse={true}
                     className="border border-white flex items-center gap-2 xl:!text-base lg:!text-sm md:!text-base text-sm tracking-[1%] group text-white hover:!bg-[#FFFFFF]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] w-full"

@@ -34,10 +34,7 @@ import FmrpIcon from '../../../icons/common/FmrpIcon';
 import FposIcon from '../../../icons/common/FposIcon';
 import { useSheetStores } from '../../../../stores/useSheetStores';
 import { useModalContext } from '@/contexts/ModalContext'
-import Link from 'next/link'
-import Image from 'next/image'
-import { IoCloseSharp } from 'react-icons/io5'
-import { FiMinus, FiPlus } from 'react-icons/fi'
+import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -52,76 +49,76 @@ const dataHeader: IMenuHeader[] = [
         name: "Giải Pháp",
         link: "products",
         type: "products",
+        // type: ["products", "services"],
         description: "Dịch vụ công nghệ giúp tối ưu vận hành doanh nghiệp.",
         subMenu: {
             tabs: ["Dịch vụ", "Sản phẩm"],
             activeTab: "Dịch vụ",
             content: {
+                "Sản phẩm": {
+                    image: "/background/banner/banner2.webp",
+                    items: [
+                        {
+                            id: "5",
+                            name: "FMRP - Quản lý xưởng online",
+                            link: "/products/phan-mem-quan-ly-san-xuat-fmrp",
+                            icon: <FosoOriginIcon className='size-full rounded-[10px]' />,
+                            description: "Quản lý sản xuất tối ưu với FMRP",
+                            typeIcon: "default",
+                            typeLink: "normal",
+                        },
+                        // {
+                        //     id: "6",
+                        //     name: "FPOS - Trợ Lý Bán Hàng",
+                        //     link: "https://fososoft.vn/fpos-banhang/",
+                        //     icon: <FposIcon className='size-full rounded-[10px]' />,
+                        //     description: "Tối ưu vận hành, bứt phá doanh thu",
+                        //     typeIcon: "logo",
+                        //     typeLink: "new_tab",
+                        // }
+                    ]
+                },
                 "Dịch vụ": {
                     image: "/background/banner/banner1.webp",
                     items: [
                         {
                             id: "1",
                             name: "Thiết Kế Website",
-                            link: "https://thietkewebfoso.com/",
+                            link: "/products/thiet-ke-website",
                             icon: <LaptopIconLinear className='size-full' />,
                             description: "Bệ phóng thương hiệu",
                             typeIcon: "default",
-                            typeLink: "new_tab",
+                            typeLink: "normal",
                         },
                         {
                             id: "3",
                             name: "Thiết Kế App Mobile",
-                            link: "https://thietkeappfoso.com/",
+                            link: "/products/thiet-ke-app-mobile",
                             icon: <DeviceMobileIconLinear className='size-full' />,
                             description: "Nâng tầm doanh nghiệp",
                             typeIcon: "default",
-                            typeLink: "new_tab",
+                            typeLink: "normal",
                         },
-                        {
-                            id: "2",
-                            name: "Thuê IT Outsourcing",
-                            link: "https://fososoft.vn/dich-vu-cho-thue-nhan-su/",
-                            icon: <CodeIconLinear className='size-full' />,
-                            description: "Giải pháp nhân lực linh hoạt",
-                            typeIcon: "default",
-                            typeLink: "new_tab",
-                        },
+                        // {
+                        //     id: "2",
+                        //     name: "Thuê IT Outsourcing",
+                        //     link: "https://fososoft.vn/dich-vu-cho-thue-nhan-su/",
+                        //     icon: <CodeIconLinear className='size-full' />,
+                        //     description: "Giải pháp nhân lực linh hoạt",
+                        //     typeIcon: "default",
+                        //     typeLink: "new_tab",
+                        // },
                         {
                             id: "4",
                             name: "Thuê Hosting & Server",
-                            link: "https://fososoft.vn/bang-gia-server/",
+                            link: "/products/thue-hosting-server",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
                             description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp",
                             typeIcon: "default",
-                            typeLink: "new_tab",
+                            typeLink: "normal",
                         }
                     ]
                 },
-                "Sản phẩm": {
-                    image: "/background/banner/banner2.webp",
-                    items: [
-                        {
-                            id: "5",
-                            name: "FMRP -Trợ Lý Sản Xuất",
-                            link: "/products/fmrp",
-                            icon: <FmrpIcon className='size-full rounded-[10px]' />,
-                            description: "Quản lý sản xuất tối ưu với FMRP",
-                            typeIcon: "logo",
-                            typeLink: "normal",
-                        },
-                        {
-                            id: "6",
-                            name: "FPOS - Trợ Lý Bán Hàng",
-                            link: "https://fososoft.vn/fpos-banhang/",
-                            // icon: "/icons/svg/linear-gradient/fpos.svg",
-                            icon: <FposIcon className='size-full rounded-[10px]' />,
-                            description: "Tối ưu vận hành, bứt phá doanh thu",
-                            typeIcon: "logo",
-                            typeLink: "new_tab",
-                        }
-                    ]
-                }
             }
         },
         visible: true,
@@ -142,7 +139,7 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "8",
                             name: "Dự án",
-                            link: "/resource/projects",
+                            link: "/resource/du-an",
                             icon: <FolderStarIconLinear className='size-full' />,
                             description: "Các dự án đã triển khai",
                             typeIcon: "default",
@@ -151,11 +148,11 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "9",
                             name: "Câu chuyện khách hàng",
-                            link: "https://fososoft.vn/fblog/",
+                            link: "/resource/cau-chuyen-khach-hang",
                             icon: <UsersThreeIconLinear className='size-full' />,
                             description: "Chia sẻ từ khách hàng",
                             typeIcon: "default",
-                            typeLink: "new_tab",
+                            typeLink: "normal",
                         },
                     ]
                 },

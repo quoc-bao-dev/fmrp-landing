@@ -171,10 +171,17 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
         })
     }
 
+    // const checkIsActive = (pathname: string, link: string | string[]) => {
+    //     if (Array.isArray(link)) {
+    //         return link.some((sub) => pathname.includes(sub));
+    //     }
+    //     return pathname.includes(link);
+    // };
+    
+
     return (
         <div className="flex items-center justify-between w-full">
             {/* Logo */}
-
             <motion.div
                 initial={false}
                 animate="rest"
