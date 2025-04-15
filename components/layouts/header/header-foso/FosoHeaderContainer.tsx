@@ -60,10 +60,10 @@ const dataHeader: IMenuHeader[] = [
                     items: [
                         {
                             id: "5",
-                            name: "FMRP - Quản lý xưởng online",
+                            name: "FMRP - Quản Lý Xưởng Online",
                             link: "/products/phan-mem-quan-ly-san-xuat-fmrp",
                             icon: <FosoOriginIcon className='size-full rounded-[10px]' />,
-                            description: "Quản lý sản xuất tối ưu với FMRP",
+                            description: "Phần Mềm Sản Xuất Tối Ưu Tinh Gọn & Thông Minh",
                             typeIcon: "default",
                             typeLink: "normal",
                         },

@@ -38,11 +38,11 @@ const companyInfo: CompanyInfoItem[] = [
 ];
 
 const services: ServiceItem[] = [
+    { name: "FMRP - Quản lý xưởng online", link: "/products/phan-mem-quan-ly-san-xuat-fmrp", link_type: "normal" },
     { name: "Thiết kế Website", link: "/products/thiet-ke-website", link_type: "normal" },
     { name: "Thiết kế App Mobile", link: "/products/thiet-ke-app-mobile", link_type: "normal" },
     { name: "Thuê Hosting & Server", link: "/products/thue-hosting-server", link_type: "normal" },
     // { name: "Thuê IT Outsourcing", link: "https://fososoft.vn/dich-vu-cho-thue-nhan-su/", link_type: "new_tab" },
-    { name: "FMRP - Quản lý xưởng online", link: "/products/phan-mem-quan-ly-san-xuat-fmrp", link_type: "normal" },
     // { name: "FPOS - Trợ lý bán hàng", link: "https://fososoft.vn/fpos-banhang/", link_type: "new_tab" }
 ];
 

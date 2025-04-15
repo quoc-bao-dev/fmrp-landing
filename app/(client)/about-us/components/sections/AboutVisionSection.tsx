@@ -67,7 +67,7 @@ const AboutVisionSection = (props: Props) => {
                             </div>
 
                             <div className='text-default text-[#667F93] font-normal'>
-                                Founder & SEO
+                                Founder CEO FOSO
                             </div>
                         </div>
                     </AnimatedReveal>

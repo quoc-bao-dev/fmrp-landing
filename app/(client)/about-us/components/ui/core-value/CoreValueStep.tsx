@@ -37,7 +37,7 @@ const steps = [
         id: uuidv4(),
         title: "Tâm hồn",
         description: "Mỗi cá nhân đến từ FOSO luôn coi trọng đạo đức nghề nghiệp, đạo đức xã hội ở tiêu chuẩn cao nhất.",
-        image: "/background/ui/about-us/step/illustration4.webp",
+        image: "/background/ui/about-us/step/illustration5.webp",
         word: "soul"
     },
 ];
