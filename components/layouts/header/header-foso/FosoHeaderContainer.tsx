@@ -35,6 +35,7 @@ import FposIcon from '../../../icons/common/FposIcon';
 import { useSheetStores } from '../../../../stores/useSheetStores';
 import { useModalContext } from '@/contexts/ModalContext'
 import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
+import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
 
 const dataHeader: IMenuHeader[] = [
     {
@@ -195,6 +196,8 @@ const dataHeader: IMenuHeader[] = [
     },
 ];
 
+
+
 const FosoHeaderContainer = () => {
     // const { theme } = useTheme()
     const router = useRouter()
@@ -239,7 +242,7 @@ const FosoHeaderContainer = () => {
             requestAnimationFrame(() => {
                 let shouldShowHeader = isHeaderVisible.current;
 
-                if (pathname.includes("/products/phan-mem-quan-ly-san-xuat-fmrp")) {
+                if (dataFmrpPages.includes(pathname)) {
                     // Nếu `theme === "fmrp"`, chỉ hiển thị header khi ở đầu trang
                     shouldShowHeader = scrollY === 0;
                 } else {
@@ -272,7 +275,8 @@ const FosoHeaderContainer = () => {
             ticking.current = true;
         }
 
-        if (pathname !== "/products/phan-mem-quan-ly-san-xuat-fmrp") resetInactivityTimer();
+        // if (pathname !== "/products/phan-mem-quan-ly-san-xuat-fmrp") resetInactivityTimer();
+        if (!dataFmrpPages.includes(pathname)) resetInactivityTimer();
     }, [controls, pathname]);
 
     // ✅ Xử lý khi không thao tác để tự hiện header
@@ -303,7 +307,7 @@ const FosoHeaderContainer = () => {
 
         const interactionEvents = ['mousemove', 'keydown'];
 
-        if (!pathname.includes("/products/phan-mem-quan-ly-san-xuat-fmrp")) {
+        if (!dataFmrpPages.includes(pathname)) {
             // window.addEventListener('mousemove', resetInactivityTimer);
             // window.addEventListener('keydown', resetInactivityTimer);
 
@@ -313,7 +317,7 @@ const FosoHeaderContainer = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
 
-            if (!pathname.includes("/products/phan-mem-quan-ly-san-xuat-fmrp")) {
+            if (!dataFmrpPages.includes(pathname)) {
                 // window.removeEventListener('mousemove', resetInactivityTimer);
                 // window.removeEventListener('keydown', resetInactivityTimer);
 
@@ -397,7 +401,7 @@ const FosoHeaderContainer = () => {
         }
     }
 
-    // bật/tắt sheet 
+    // bật/tắt sheet
     const handleOpenSheet = (status: string, type_device: string) => {
         if (type_device === "desktop") {
             setOpenSheetCustom(true)
@@ -472,9 +476,6 @@ const FosoHeaderContainer = () => {
                         />
                 }
             </motion.div>
-
-
-
         </header >
     )
 }

@@ -146,7 +146,6 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
     return (
         <div className="flex items-center justify-between w-full">
             {/* Logo */}
-
             <motion.div
                 initial={false}
                 animate="rest"
@@ -220,7 +219,7 @@ const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                                         <Link
                                             href={item.link}
                                             className='inline-flex relative'
-                                            target='_blank'
+                                            target={item.typeLink === "new_tab" ? '_blank' : '_self'}
                                         >
                                             <HoverEffect
                                                 title={item.name}

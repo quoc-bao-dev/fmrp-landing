@@ -18,6 +18,7 @@ import { useBlogsList } from '@/managers/api/blogs/useBlogsList'
 import BlogTypeSkeleton from '@/components/common/skeleton/blogs/BlogTypeSkeleton';
 import BlogCardSkeletonVertical from '../../../../../../components/common/skeleton/blogs/BlogCardSkeletonVertical';
 import SystemNodataNew from '../../../../../../components/common/system/SystemNodataNew';
+import { smoothScrollTo } from '@/utils/scroll/scrollUtils'
 
 type Props = {}
 
@@ -188,6 +189,7 @@ const itemsPerPage = 8 // Set your desired items per page here
 
 const MainBlogSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null)
 
     const { isVisibleTablet } = useResizeStore()
     const [currentPage, setCurrentPage] = useState<number>(1)
@@ -214,6 +216,14 @@ const MainBlogSection = (props: Props) => {
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
         console.log(`Page changed to: ${page}`)
+
+        setTimeout(() => {
+            if (titleRef.current) {
+                const targetY = titleRef.current.getBoundingClientRect().top + window.scrollY - 100
+
+                smoothScrollTo(targetY,500)
+            }
+        }, 100);
     }
 
     const customPagination = {
@@ -271,7 +281,7 @@ const MainBlogSection = (props: Props) => {
                 <div className='w-full flex lg:flex-row flex-col 3xl:gap-8 gap-6'>
                     {/* Main Content Area */}
                     <div className="3xl:w-[74%] xxl:w-[70%] lg:w-[68%] w-full flex flex-col 3xl:gap-8 gap-6 lg:order-1 order-2">
-                        <h1 className="text-title-section-small font-extrabold align-middle">Tất Cả Bài Viết</h1>
+                        <h1 ref={titleRef} className="text-title-section-small font-extrabold align-middle">Tất Cả Bài Viết</h1>
                         {/* Hero Banner */}
 
                         {/* {

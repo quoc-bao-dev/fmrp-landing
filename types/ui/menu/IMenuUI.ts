@@ -30,6 +30,7 @@ interface IMenuHeader {
     name: string;
     link: string;
     type?: "default" | "products" | "resource" ;
+    typeLink?: string,
     description?: string;
     subMenu?: SubMenu;
     visible: boolean;

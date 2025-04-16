@@ -3,11 +3,17 @@
 import { motion } from "framer-motion";
 
 interface StickerHighlightProps {
-    children: React.ReactNode
-    className?: string
+    children: React.ReactNode;
+    className?: string;
+    shadowColor?: string; // Màu ánh sáng của boxShadow (mặc định là xanh)
 }
 
-const StickerHighlight: React.FC<StickerHighlightProps> = ({ children, className, ...props }) => {
+const StickerHighlight: React.FC<StickerHighlightProps> = ({
+    children,
+    className,
+    shadowColor = "rgba(21, 170, 122, 0.4)", // Default FMRP green
+    ...props
+}) => {
     return (
         <motion.div
             className={className}
@@ -23,7 +29,7 @@ const StickerHighlight: React.FC<StickerHighlightProps> = ({ children, className
                     scale: [1, 1.05, 1],
                     boxShadow: [
                         "0 0 0px rgba(255, 255, 255, 0)",
-                        "0 0 10px rgba(21, 170, 122, 0.4)",
+                        `0 0 10px ${shadowColor}`,
                         "0 0 0px rgba(255, 255, 255, 0)"
                     ]
                 }}

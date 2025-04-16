@@ -20,6 +20,7 @@ import { useTheme } from 'next-themes';
 import FmrpHeaderContainer from '../header/header-fmrp/FmrpHeaderContainer'
 import { DynamicSheet } from '../../common/sheet/DynamicSheet';
 import { useSheetStores } from '../../../stores/useSheetStores';
+import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const { openDialogCustom } = useDialogStore()
@@ -34,7 +35,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     return (
         <>
             {/* header */}
-            {pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp" && <FmrpHeaderContainer />}
+            {dataFmrpPages.includes(pathname) && <FmrpHeaderContainer />}
             <FosoHeaderContainer />
 
             {children}

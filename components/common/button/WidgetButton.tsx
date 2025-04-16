@@ -4,6 +4,7 @@ import ButtonToTop from "./ButtonToTop";
 import SocialMediaButton from "./SocialMediaButton";
 import { usePathname } from 'next/navigation';
 import SocialMediaButton1 from './SocialMediaButton1';
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
@@ -46,7 +47,7 @@ const WidgetButton: React.FC = () => {
                     handleClick={button.handleClick} // ✅ Truyền `handleClick` riêng cho từng button
                 >
                     <div
-                        className={`${pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp" ? "hover:bg-[#0375f3]/80" : "hover:bg-[#53B086]/80"} bg-white  p-3 rounded-full custom-transition`}
+                        className={`${dataFmrpPages.includes(pathname) ? "hover:bg-[#0375f3]/80" : "hover:bg-[#53B086]/80"} bg-white  p-3 rounded-full custom-transition`}
                         style={{
                             boxShadow: "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A"
                         }}

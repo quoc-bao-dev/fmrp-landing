@@ -180,7 +180,7 @@ const DetailBlog = () => {
                                             </div>
 
                                             <div className="2xl:text-base lg:text-sm text-base font-bold capitalize">
-                                                {dataBlogDetail?.created?.name} Creator
+                                                {dataBlogDetail?.created?.name}
                                             </div>
                                         </div>
                                     </div>

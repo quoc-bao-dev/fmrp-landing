@@ -3,6 +3,7 @@ import moment from "moment";
 import { usePathname } from 'next/navigation';
 import { memo } from "react";
 import Link from 'next/link';
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 type MediaCardProps = {
     media: {
@@ -43,7 +44,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
                         {moment(media?.date).format("DD/MM/YYYY")}
                     </div>
 
-                    <div className={`${pathname.includes("/products/phan-mem-quan-ly-san-xuat-fmrp") ? "text-[#0F4F9E] group-hover:text-[#0F4F9E]/80" : "text-[#10805B] group-hover:text-[#14A76C]"} text-sm-default  lg:max-w-[60%] max-w-[70%] custom-transition`}>
+                    <div className={`${dataFmrpPages.includes(pathname) ? "text-[#0F4F9E] group-hover:text-[#0F4F9E]/80" : "text-[#10805B] group-hover:text-[#14A76C]"} text-sm-default  lg:max-w-[60%] max-w-[70%] custom-transition`}>
                         {media?.category}
                     </div>
                 </div>

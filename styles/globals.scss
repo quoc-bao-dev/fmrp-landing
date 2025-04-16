@@ -355,12 +355,6 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       transition: background 0.5s ease-in-out;
     }
 
-    &:hover::before {
-      background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
-      padding: var(--border-width-hover);
-      animation: borderMove 1.5s linear infinite;
-    }
-
     /* Background khi hover */
     &::after {
       content: "";
@@ -374,9 +368,28 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       z-index: 1; /* Đặt dưới border */
     }
 
-    &:hover::after {
-      opacity: 1; /* Hiển thị nền khi hover */
+    // &:hover::before {
+    //   background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
+    //   padding: var(--border-width-hover);
+    //   animation: borderMove 1.5s linear infinite;
+    // }
+
+    // 💥 Hover từ chính button hoặc từ cha group đều hoạt động
+    &:hover::before,
+    .group:hover &::before {
+      background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
     }
+
+    &:hover::after,
+    .group:hover &::after {
+      opacity: 1;
+    }
+
+    // &:hover::after {
+    //   opacity: 1; /* Hiển thị nền khi hover */
+    // }
   }
 
   .border-gradient-login {
@@ -464,6 +477,69 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       inset: var(--border-inset-hover);
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
+    }
+  }
+
+  .border-gradient-freemium-price-list {
+    --border-radius: 16px;
+    --border-width: 3px;
+    --border-width-hover: 2px;
+
+    position: relative;
+    border-radius: var(--border-radius);
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: linear-gradient(
+        270deg,
+        rgba(228, 233, 238, 0) 0%,
+        #e4e9ee 32%,
+        #e4e9ee 61.5%,
+        rgba(228, 233, 238, 0) 100%
+      );
+
+      /* 👇 Mask chỉ để hiện viền trên */
+      mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
+      -webkit-mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
+
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+  }
+  .border-gradient-professional-price-list {
+    --border-radius: 16px;
+    --border-width: 3px;
+    --border-width-hover: 2px;
+
+    position: relative;
+    border-radius: var(--border-radius);
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: linear-gradient(270deg, rgba(1, 61, 160, 0) 0%, #013da0 32%, #013da0 61.5%, rgba(1, 61, 160, 0) 100%);
+
+      /* 👇 Mask chỉ để hiện viền trên */
+      mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
+      -webkit-mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
+
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
     }
   }
 }
@@ -560,6 +636,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
   }
 }
+
 .custom-swiper-pagination2 {
   .swiper-pagination2 {
     @apply w-screen text-center bottom-10 z-[9999];
@@ -582,13 +659,16 @@ iframe[title="recaptcha challenge expires in two minutes"] {
 .custom-arrow:hover {
   transform: scale(1.1);
 }
+
 .TooltipContent {
   animation-duration: 0.6s;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .TooltipContent[data-side="top"] {
   animation-name: slideUp;
 }
+
 .TooltipContent[data-side="bottom"] {
   animation-name: slideDown;
 }

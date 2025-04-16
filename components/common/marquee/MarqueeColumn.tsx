@@ -3,6 +3,7 @@ import React, { memo, useRef, useEffect, useCallback } from "react";
 import AvatarCustom from "../avatar/AvatarCustom";
 import { FeedbackItem } from "@/types/feedback/IFeedback";
 import { usePathname } from 'next/navigation';
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 type MarqueeColumnProps = {
     feedbacks: FeedbackItem[];
@@ -96,7 +97,7 @@ const MarqueeColumn = memo(({ feedbacks, direction }: MarqueeColumnProps) => {
             </motion.div>
 
             {
-                pathname !== "/products/phan-mem-quan-ly-san-xuat-fmrp" ?
+                !dataFmrpPages.includes(pathname) ?
                     <React.Fragment>
                         <div
                             className="absolute bottom-0 left-0 w-full h-20"

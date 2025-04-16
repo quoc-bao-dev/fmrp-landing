@@ -16,6 +16,7 @@ const scrollToTop = () => {
 };
 
 
+// scroll đến section có id phù hợp
 const scrollToSection = (idSection: number | string) => {
     const element = document.getElementById(String(idSection));
     if (element) {
@@ -34,7 +35,32 @@ const scrollToSection = (idSection: number | string) => {
     }
 };
 
+
+// scroll đến ref đã được chọn
+const smoothScrollTo = (targetY: number, duration: number) => {
+    const startY = window.scrollY
+    const distance = targetY - startY
+    const startTime = performance.now()
+
+    const easeInOutQuad = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+
+    const step = (currentTime: number) => {
+        const timeElapsed = currentTime - startTime
+        const progress = Math.min(timeElapsed / duration, 1)
+        const easedProgress = easeInOutQuad(progress)
+
+        window.scrollTo(0, startY + distance * easedProgress)
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(step)
+        }
+    }
+
+    requestAnimationFrame(step)
+}
+
 export {
     scrollToTop,
     scrollToSection,
+    smoothScrollTo
 }

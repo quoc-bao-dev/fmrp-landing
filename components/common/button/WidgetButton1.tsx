@@ -7,6 +7,7 @@ import PhoneLink from '../contact-links/PhoneLink';
 import EmailLink from '../contact-links/EmailLink';
 import Link from 'next/link';
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
@@ -102,7 +103,7 @@ const WidgetButton1: React.FC = () => {
                     handleClick={button.handleClick} // ✅ Truyền `handleClick` riêng cho từng button
                     icon={
                         <div
-                            className={`${pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp" ? "hover:bg-[#0375f3]/80" : "hover:scale-[1.04]"} bg-white  p-3 rounded-full custom-transition`}
+                            className={`${dataFmrpPages.includes(pathname) ? "hover:bg-[#0375f3]/80" : "hover:scale-[1.04]"} bg-white  p-3 rounded-full custom-transition`}
                             style={{
                                 boxShadow: "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A"
                             }}

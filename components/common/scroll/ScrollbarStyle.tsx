@@ -1,5 +1,6 @@
 "use client";
 
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
@@ -8,7 +9,7 @@ const ScrollbarStyle = () => {
 
     useEffect(() => {
         const root = document.documentElement;
-        if (pathname === "/products/phan-mem-quan-ly-san-xuat-fmrp") {
+        if (dataFmrpPages.includes(pathname)) {
             root.style.setProperty("--scrollbar-thumb-color", "#5599EC");
         } else {
             root.style.setProperty("--scrollbar-thumb-color", "#48DDAD");

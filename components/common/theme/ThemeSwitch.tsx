@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { useRouter, usePathname } from 'next/navigation';
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 const ThemeSwitcher = () => {
     const { theme, setTheme } = useTheme();
@@ -8,7 +9,7 @@ const ThemeSwitcher = () => {
     const pathname = usePathname()
 
     useEffect(() => {
-        if (pathname.startsWith("/products/phan-mem-quan-ly-san-xuat-fmrp")) {
+        if (dataFmrpPages.includes(pathname)) {
             setTheme("fmrp");
         } else {
             setTheme("light");

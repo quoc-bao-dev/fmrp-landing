@@ -41,11 +41,16 @@ const nextConfig: NextConfig = {
                 destination: '/home',
             },
             {
-                // source: '/products/fmrp',
-                // destination: '/products/phan-mem-quan-ly-san-xuat-fmrp',
-
                 source: '/products/phan-mem-quan-ly-san-xuat-fmrp',
                 destination: '/products/fmrp',
+            },
+            {
+                source: '/gioi-thieu',
+                destination: '/about-us',
+            },
+            {
+                source: '/lien-he',
+                destination: '/contact-us',
             },
         ]
     },
