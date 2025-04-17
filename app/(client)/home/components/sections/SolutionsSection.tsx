@@ -16,7 +16,7 @@ const SolutionsSection = (props: Props) => {
 
     return (
         <div className='custom-padding-section '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-10'>
+            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 lg:gap-8 gap-4 relative z-10'>
                 {!isVisibleTablet && <BlurredBackground className='top-[20%] -left-[40%] z-[1]' />}
 
                 <AnimatedReveal

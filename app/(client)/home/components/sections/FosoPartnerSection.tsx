@@ -90,7 +90,8 @@ const FosoPartnerSection = (props: Props) => {
                             <Image
                                 src="/background/team/team-1.png"
                                 alt="Foso Team"
-                                fill
+                                width={1920}
+                                height={1080}
                                 className="size-full object-cover rounded-xl"
                                 priority={false}
                                 loading="lazy"

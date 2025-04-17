@@ -10,6 +10,7 @@ import { FormatNumberToCommanDecimal } from "@/utils/format/FormatNumber";
 import React from "react";
 
 import { motion } from 'framer-motion'
+import LockIcon from '../../../../../../components/icons/fmrp/LockIcon';
 
 const features = [
     {
@@ -118,7 +119,8 @@ const features = [
 
 const PlanCard = ({ className, title, price, popular, brand, support, type, features, buttonText, variant, expirationDate }: any) => (
     <Card
-        className={`${cn(`w-full 3xl:max-w-xl max-w-lg rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`, className)}`}
+        className={`${cn(`w-full max-w-full rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`, className)}`}
+        // className={`${cn(`w-full 3xl:max-w-xl max-w-lg rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`, className)}`}
         // className={`${cn(`w-full max-w-lg rounded-2xl ${popular ? "border-gradient-professional-price-list" : "border-gradient-freemium-price-list"}`, className)}`}
         style={{
             boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
@@ -171,15 +173,15 @@ const PlanCard = ({ className, title, price, popular, brand, support, type, feat
                 <ul className="space-y-2 text-sm">
                     {
                         features.map((f: any) => (
-                            <li key={f.key} className="flex items-start gap-2">
+                            <li key={f.key} className="flex items-center gap-2">
                                 <div className='size-4'>
                                     {
                                         f[variant] ? (
-                                            <CheckIconLinear className="size-full mt-0.5" />
+                                            <CheckIconLinear className="size-full" />
                                         )
                                             :
                                             (
-                                                <CloseIconLinear className=" size-full mt-0.5" />
+                                                <LockIcon className="text-[#B3C5D4] size-full" />
                                             )
                                     }
                                 </div>
@@ -307,7 +309,7 @@ const MembershipPlansSection = () => {
                     <PlanCard
                         title="Professional"
                         price={86000}
-                        expirationDate="/1 user / tháng (Mua tối thiểu 5 users x 6 tháng)"
+                        expirationDate="/1 user / tháng"
                         popular
                         brand="1 chi nhánh"
                         support="đội ngũ chuyên gia"

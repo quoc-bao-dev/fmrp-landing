@@ -90,7 +90,7 @@ const ServicePresentationSection = (props: Props) => {
 
 
 
-                <div className='h-full min-h-[600px]'>
+                <div className='h-full lg:min-h-[600px] md:min-h-[440px] min-h-[460px]'>
                     {
                         isVisibleTablet
                             ?

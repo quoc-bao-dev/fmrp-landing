@@ -273,6 +273,7 @@ const MainBlogSection = (props: Props) => {
     // ]
 
     console.log('dataBlogsList: ', dataBlogsList);
+    console.log('isStatePageBlogs?.isSelectedCategory: ', isStatePageBlogs?.isSelectedCategory);
 
 
     return (
@@ -359,7 +360,7 @@ const MainBlogSection = (props: Props) => {
                                                             ))
                                                         )
                                                         :
-                                                        dataFilterBlog && dataFilterBlog?.map((item: IFilterBlog, index: number) => (
+                                                        dataTypeBlogsList && dataTypeBlogsList?.map((item: IFilterBlog, index: number) => (
                                                             <div
                                                                 key={`tab-filter-${item.id}`}
                                                                 className={`${isStatePageBlogs?.isSelectedCategory === item ? "border-[#53B086] border-b-[3px]" : "border-transparent"} flex justify-between pb-1`}

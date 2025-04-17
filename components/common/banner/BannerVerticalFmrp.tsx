@@ -25,7 +25,7 @@ const BannerVerticalFmrp = (props: Props) => {
             {/* Ảnh hiển thị trên Tablet */}
             <div className="flex items-center justify-end translate-x-6">
                 <motion.div
-                    className="w-[425px] h-auto relative"
+                    className="lg:w-[425px] w-[290px] h-auto relative"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}

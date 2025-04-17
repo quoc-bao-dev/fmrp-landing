@@ -84,7 +84,7 @@ const ProjectShowcase = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 py-10 w-full h-full overflow-x-hidden relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 xl:py-10 py-4 w-full h-full overflow-x-hidden relative z-10">
             {/* Danh mục bên trái */}
             <AnimatedReveal effect="fade" className="xl:col-span-6 lg:col-span-5 col-span-full h-full flex lg:flex-col lg:justify-center     lg:gap-8 gap-8 lg:order-1 order-2 overflow-x-auto">
                 {
@@ -128,17 +128,17 @@ const ProjectShowcase = () => {
                                 }}
                                 exit={{ opacity: 0, x: -30 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className={`${selectedCategory.id === item.id ? "bg-white" : ""} capitalize rounded-xl flex flex-col !p-4 space-y-2`}
+                                className={`${!isVisibleTablet && selectedCategory.id === item.id ? "bg-white !p-4" : ""} capitalize rounded-xl flex flex-col space-y-2`}
                                 style={{
-                                    boxShadow: selectedCategory.id === item.id ? "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714" : ""
+                                    boxShadow: !isVisibleTablet && selectedCategory.id === item.id ? "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714" : ""
                                 }}
                             >
-                                <div className='3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] text-[#33404A] font-semibold'>
+                                <div className={`${selectedCategory.id === item.id ? "text-[#33404A]" : "text-[#99B2C6]"} 3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] font-semibold`}>
                                     {item.title}
                                 </div>
 
                                 {
-                                    selectedCategory.id === item.id &&
+                                    !isVisibleTablet && selectedCategory.id === item.id &&
                                     <div className='text-sm-default text-[#667F93] font-medium text-wrap'>
                                         {item.description}
                                     </div>
@@ -176,13 +176,13 @@ const ProjectShowcase = () => {
                                 const isFirstHalf = newIndex < Math.floor(categories.length / 2);
 
                                 // Cuộn đến category đang active trên mobile
-                                if (categoryRefs.current[newIndex]) {
-                                    categoryRefs.current[newIndex]?.scrollIntoView({
-                                        behavior: "smooth",
-                                        block: "nearest",
-                                        inline: isFirstHalf ? "nearest" : "nearest"
-                                    });
-                                }
+                                // if (categoryRefs.current[newIndex]) {
+                                //     categoryRefs.current[newIndex]?.scrollIntoView({
+                                //         behavior: "smooth",
+                                //         block: "nearest",
+                                //         inline: isFirstHalf ? "nearest" : "nearest"
+                                //     });
+                                // }
                             }
                         }}
                         autoplay={!isVisibleTablet ? { delay: 4000, disableOnInteraction: false } : false}
@@ -222,4 +222,4 @@ const ProjectShowcase = () => {
     )
 }
 
-export default React.memo(ProjectShowcase)
+    export default React.memo(ProjectShowcase)

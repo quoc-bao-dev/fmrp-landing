@@ -62,7 +62,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                 <div className='col-span-12 w-full flex items-center justify-start gap-2'>
                     <Link
                         href="/"
-                        className='flex items-center justify-start w-fit h-[40px] py-4'
+                        className='flex items-center justify-start w-fit h-[40px] shrink-0 py-4'
                         prefetch={false}
                         onClick={() => handleToggleMenu("off")}
                     >
@@ -71,7 +71,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                             height={800}
                             alt="logo"
                             src="/logo/foso/logo.svg"
-                            className="w-fit h-[40px] object-contain cursor-pointer"
+                            className="w-fit h-[40px] object-contain cursor-pointer shrink-0"
                             priority
                         />
                     </Link>
@@ -224,7 +224,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                     >
                                                                         {/* Dịch vụ & Sản phẩm */}
                                                                         {
-                                                                            data.subMenu.tabs.map((tab) => (
+                                                                            data.subMenu.tabs && data.subMenu.tabs.map((tab) => (
                                                                                 <React.Fragment key={`submenu-${tab}`}>
                                                                                     <span className="text-base font-normal text-[#667F93] mb-1 block">
                                                                                         {tab}
@@ -238,18 +238,20 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                                                     className="flex items-center gap-2 text-[#33404A] hover:text-[#1AD598] transition-all"
                                                                                                     onClick={() => handleToggleMenu("off")}
                                                                                                 >
-                                                                                                    <div className={`${item.typeIcon === "default" ? "border-[#99B2C6]" : "border-transparent"} size-10 flex items-center justify-center border  rounded-xl`}>
-                                                                                                        <div className={`${item.typeIcon === "default" ? "size-6" : "size-full"}`}>
+                                                                                                    <div className={`${item.typeIcon === "default" ? "border-[#15AA7A]" : "border-transparent"} size-12 flex items-center justify-center border  rounded-xl`}>
+                                                                                                        <div className={`${item.typeIcon === "default" ? "size-8" : "size-full"}`}>
                                                                                                             {
-                                                                                                                typeof item.icon === "string" ? (
-                                                                                                                    <Image
-                                                                                                                        src={item.icon}
-                                                                                                                        alt="icon"
-                                                                                                                        width={200}
-                                                                                                                        height={200}
-                                                                                                                        className='size-full object-contain'
-                                                                                                                    />
-                                                                                                                ) :
+                                                                                                                typeof item.icon === "string" ?
+                                                                                                                    (
+                                                                                                                        <Image
+                                                                                                                            src={item.icon}
+                                                                                                                            alt="icon"
+                                                                                                                            width={200}
+                                                                                                                            height={200}
+                                                                                                                            className='size-full object-contain'
+                                                                                                                        />
+                                                                                                                    )
+                                                                                                                    :
                                                                                                                     (
                                                                                                                         <React.Fragment>
                                                                                                                             {item.icon}
@@ -258,9 +260,9 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                                                             }
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                    <div>
-                                                                                                        <h4 className="font-semibold">{item.name}</h4>
-                                                                                                        <p className="text-sm text-[#667F93]">
+                                                                                                    <div className='space-y-1'>
+                                                                                                        <h4 className="text-lg font-bold text-[#33404A]">{item.name}</h4>
+                                                                                                        <p className="text-sm-default font-normal text-[#667F93]">
                                                                                                             {item.description}
                                                                                                         </p>
                                                                                                     </div>
