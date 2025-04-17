@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { FormatNumberToCommanDecimal } from "@/utils/format/FormatNumber";
-import React from "react";
+import React, { useRef } from "react";
 
 import { motion } from 'framer-motion'
 import LockIcon from '../../../../../../components/icons/fmrp/LockIcon';
+import { useResizeStore } from '../../../../../../stores/useResizeStore';
+import { Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const features = [
     {
@@ -114,6 +117,35 @@ const features = [
         key: "discussion",
         freemium: true,
         pro: true
+    }
+];
+
+const planList = [
+    {
+        title: "Freemium",
+        price: 0,
+        expirationDate: "/1 user",
+        brand: "1 chi nhánh",
+        support: "Cộng đồng FMRP & Gitbook",
+        type: "Cơ bản",
+        features: features,
+        buttonText: "Đăng ký ngay",
+        variant: "freemium",
+        className: "col-span-1 w-full",
+        popular: false
+    },
+    {
+        title: "Professional",
+        price: 86000,
+        expirationDate: "/1 user / tháng",
+        brand: "1 chi nhánh",
+        support: "đội ngũ chuyên gia",
+        type: "Chuyên sâu",
+        features: features,
+        buttonText: "Liên hệ",
+        variant: "pro",
+        className: "col-span-1 w-full",
+        popular: true
     }
 ];
 
@@ -284,7 +316,20 @@ const PlanCard = ({ className, title, price, popular, brand, support, type, feat
     </Card>
 );
 
+
 const MembershipPlansSection = () => {
+    const swiperRef = useRef<any>(null);
+    const { isVisibleTablet } = useResizeStore()
+
+
+    const customPagination = {
+        clickable: true,
+        renderBullet: function (index: number, className: string) {
+            return `<span class=${className}></span>`
+        },
+
+    }
+
     return (
         <div className="w-full custom-padding-section lg:px-4">
             <div className="custom-container">
@@ -293,33 +338,96 @@ const MembershipPlansSection = () => {
                 </h1>
 
                 {/* <div className="grid grid-cols-2 gap-6"> */}
-                <div className="flex flex-col lg:flex-row justify-center items-stretch gap-5">
-                    <PlanCard
-                        title="Freemium"
-                        price={0}
-                        expirationDate="/1 user"
-                        brand="1 chi nhánh"
-                        support="Cộng đồng FMRP & Gitbook"
-                        type="Cơ bản"
-                        features={features}
-                        buttonText="Đăng ký ngay"
-                        variant="freemium"
-                        className="col-span-1 w-full"
-                    />
-                    <PlanCard
-                        title="Professional"
-                        price={86000}
-                        expirationDate="/1 user / tháng"
-                        popular
-                        brand="1 chi nhánh"
-                        support="đội ngũ chuyên gia"
-                        type="Chuyên sâu"
-                        features={features}
-                        buttonText="Liên hệ"
-                        variant="pro"
-                        className='col-span-1 w-full'
-                    />
-                </div>
+                {
+                    isVisibleTablet
+                        ?
+                        <div className='w-full'>
+                            <Swiper
+                                slidesPerView={4}
+                                spaceBetween={60}
+                                modules={[Pagination, Autoplay]}
+                                onSwiper={(swiper) => {
+                                    swiperRef.current = swiper;
+                                }}
+                                // loop
+                                autoplay={true}
+                                speed={1000}
+                                pagination={customPagination}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 30
+                                    },
+                                    640: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 30
+                                    },
+                                    768: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 30
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 30
+                                    },
+                                    1920: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 60,
+                                    }
+                                }}
+                                className='custom-swiper-pagination h-[840px] rounded-2xl  !px-2'
+                                allowTouchMove={true}
+                            >
+                                {
+                                    planList && planList?.map((plan, index) => (
+                                        <SwiperSlide
+                                            key={`member-plan-${index}`}
+                                        // className='h-full relative cursor-pointer group'
+                                        >
+                                            <PlanCard
+                                                key={`plan-${index}`}
+                                                {...plan}
+                                            />
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                        </div>
+                        :
+                        <div className="flex flex-col lg:flex-row justify-center items-stretch gap-5">
+                            {planList.map((plan, index) => (
+                                <PlanCard
+                                    key={`plan-${index}`}
+                                    {...plan}
+                                />
+                            ))}
+                            {/* <PlanCard
+                                title="Freemium"
+                                price={0}
+                                expirationDate="/1 user"
+                                brand="1 chi nhánh"
+                                support="Cộng đồng FMRP & Gitbook"
+                                type="Cơ bản"
+                                features={features}
+                                buttonText="Đăng ký ngay"
+                                variant="freemium"
+                                className="col-span-1 w-full"
+                            />
+                            <PlanCard
+                                title="Professional"
+                                price={86000}
+                                expirationDate="/1 user / tháng"
+                                popular
+                                brand="1 chi nhánh"
+                                support="đội ngũ chuyên gia"
+                                type="Chuyên sâu"
+                                features={features}
+                                buttonText="Liên hệ"
+                                variant="pro"
+                                className='col-span-1 w-full'
+                            /> */}
+                        </div>
+                }
             </div>
         </div>
     );

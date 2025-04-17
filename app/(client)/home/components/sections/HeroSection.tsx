@@ -86,7 +86,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 />
             </div>
 
-            <div className='3xl:mx-[128px] 2xl:mx-[98px] xl:mx-[88px] md:mx-[60px] mx-8 flex lg:flex-row flex-col-reverse items-center lg:justify-between justify-center gap-2 h-full relative z-[2]'>
+            <div className='3xl:mx-[128px] 2xl:mx-[98px] xl:mx-[88px] md:mx-[60px] flex lg:flex-row flex-col-reverse items-center lg:justify-between justify-center gap-2 h-full relative z-[2]'>
                 {/* button arrow */}
 
                 <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
