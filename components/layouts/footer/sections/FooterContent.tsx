@@ -47,9 +47,9 @@ const services: ServiceItem[] = [
 ];
 
 const policies: PolicyItem[] = [
-    { name: "Chính sách bảo mật", link: "/policy", link_type: "normal" },
-    { name: "Quy định thanh toán", link: "/policy", link_type: "normal" },
-    { name: "Chính sách cookie", link: "/policy", link_type: "normal" }
+    { name: "Chính sách bảo mật", link: "/chinh-sach-bao-mat", link_type: "normal" },
+    { name: "Quy định thanh toán", link: "/chinh-sach-bao-mat", link_type: "normal" },
+    { name: "Chính sách cookie", link: "/chinh-sach-bao-mat", link_type: "normal" }
 ];
 
 

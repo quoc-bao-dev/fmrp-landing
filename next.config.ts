@@ -52,6 +52,10 @@ const nextConfig: NextConfig = {
                 source: '/lien-he',
                 destination: '/contact-us',
             },
+            {
+                source: '/chinh-sach-bao-mat',
+                destination: '/resource/blogs/chinh-sach-bao-mat',
+            },
         ]
     },
 
