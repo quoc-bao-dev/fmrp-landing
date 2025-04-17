@@ -69,7 +69,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 className='absolute top-0 left-0 size-full blur-[772.7864379882812px]'
                 style={{
                     background: "linear-gradient(95.16deg, #E0FFCC 12.93%, #CCFFEC 65.56%)",
-                    filter: "blur(386.3932189941406px)"
+                    filter: "blur(386.3932189941406px)",
+                    WebkitFilter: "blur(386px)", // 🧠 Safari-specific prefix
+                    willChange: 'filter',
                 }}
             />
 

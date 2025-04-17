@@ -286,7 +286,7 @@ const PlanCard = ({ className, title, price, popular, brand, support, type, feat
 
 const MembershipPlansSection = () => {
     return (
-        <div className="w-full custom-padding-section px-4">
+        <div className="w-full custom-padding-section lg:px-4">
             <div className="custom-container">
                 <h1 className="text-center text-title-section-small font-extrabold text-[#1A2025] mb-6">
                     Gói Thành Viên

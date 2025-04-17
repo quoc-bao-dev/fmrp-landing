@@ -70,7 +70,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                             width={800}
                             height={800}
                             alt="logo"
-                            src="/logo/foso/logo.svg"
+                            src="/logo/foso/logo-final.png"
                             className="w-auto h-[40px] object-contain cursor-pointer shrink-0"
                             priority
                         />
@@ -122,7 +122,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                         width={800}
                                         height={800}
                                         alt="logo"
-                                        src="/logo/foso/logo.svg"
+                                        src="/logo/foso/logo-final.png"
                                         className="w-fit h-[40px] object-contain cursor-pointer"
                                         priority
                                     />

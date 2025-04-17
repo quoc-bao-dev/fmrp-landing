@@ -67,38 +67,6 @@ const IntroPricingFmrpSection = (props: Props) => {
                             priority
                         />
                     </StickerHighlight>
-                    {/* <motion.div
-                        className="absolute lg:top-1/4 top-[80%] left-6 lg:-translate-y-1/4 -translate-y-[80%] 3xl:h-[250px] xl:h-[220px] lg:h-[170px] md:h-[270px] h-[170px] aspect-0.78/1 pointer-events-none z-[1]"
-                        style={{ y: yLeft }} // ✅ Gán giá trị y từ `useTransform`
-                        transition={{ type: "tween", ease: "easeOut", duration: 0.5 }}
-                    >
-                        <Image
-                            alt="Logo Left"
-                            width={600}
-                            height={400}
-                            src="/background/ui/blogs/saly-calendar.png"
-                            className="size-full object-contain"
-                            sizes="(max-width: 1024px) 200px, 270px" // Responsive sizes
-                            priority
-                        />
-                    </motion.div> */}
-
-                    {/* Hình nền phải - Tối ưu lazy loading */}
-                    {/* <motion.div
-                        className="absolute lg:top-1/4 top-[80%] right-6 lg:-translate-y-1/4 -translate-y-[80%] 3xl:h-[250px] xl:h-[220px] lg:h-[170px] md:h-[270px] h-[170px] aspect-0.78/1 pointer-events-none z-[1]"
-                        style={{ y: yRight }} // ✅ Gán giá trị y từ `useTransform`
-                        transition={{ type: "tween", ease: "easeOut", duration: 0.5 }}
-                    >
-                        <Image
-                            alt="Logo Right"
-                            width={600}
-                            height={400}
-                            src="/background/ui/blogs/saly-hand-1.png"
-                            className="size-full object-contain"
-                            sizes="(max-width: 1024px) 150px, 195px"
-                            priority
-                        />
-                    </motion.div> */}
                 </React.Fragment>
             }
 
@@ -146,15 +114,18 @@ const IntroPricingFmrpSection = (props: Props) => {
                     </p>
                     {
                         isVisibleTablet &&
-                        <SalyAnimation className="w-[200px] h-auto aspect-square pointer-events-none">
+                        <StickerHighlight
+                            className="w-full h-auto aspect-square pointer-events-none"
+                            shadowColor='rgba(3, 117, 243, 0.01)'
+                        >
                             <Image
                                 width={400}
                                 height={400}
                                 alt="saly"
-                                src="/background/ui/about-us/saly.webp"
+                                src="/background/ui/fmrp/pricing/intro-3.png"
                                 className="size-full object-contain"
                             />
-                        </SalyAnimation>
+                        </StickerHighlight>
                     }
                 </div>
             </div>
