@@ -16,7 +16,7 @@ const MissionAndActionSection = (props: Props) => {
 
     return (
         <div className='custom-padding-section'>
-            <div className='custom-container flex flex-col lg:items-center lg:justify-center items-start justify-start relative'>
+            <div className='custom-container flex flex-col lg:items-center lg:justify-center items-center justify-center relative'>
                 {/* blur */}
                 {!isVisibleTablet && <BlurredBackground className='top-[20%] -left-[40%] z-[1]' />}
 
@@ -40,7 +40,7 @@ const MissionAndActionSection = (props: Props) => {
                     />
                 </SalyAnimation>
 
-                <div className='flex flex-col lg:items-center lg:justify-center items-start justify-start 3xl:gap-6 gap-4 3xl:max-w-[54%] lg:max-w-[70%] max-w-full lg:text-center text-start'>
+                <div className='flex flex-col lg:items-center lg:justify-center items-center justify-center 3xl:gap-6 gap-4 3xl:max-w-[54%] lg:max-w-[70%] max-w-full lg:text-center text-start'>
                     <h2 className="text-title-section-small font-bold space-x-2">
                         <span className="text-[#050505] font-extrabold capitalize">Tôn chỉ và</span>
                         <span
