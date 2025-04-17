@@ -62,7 +62,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                 <div className='col-span-12 w-full flex items-center justify-start gap-2'>
                     <Link
                         href="/"
-                        className='flex items-center justify-start w-fit h-[40px] shrink-0 py-4'
+                        className='flex items-center justify-start w-auto h-[40px] shrink-0 py-4'
                         prefetch={false}
                         onClick={() => handleToggleMenu("off")}
                     >
@@ -71,7 +71,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                             height={800}
                             alt="logo"
                             src="/logo/foso/logo.svg"
-                            className="w-fit h-[40px] object-contain cursor-pointer shrink-0"
+                            className="w-auto h-[40px] object-contain cursor-pointer shrink-0"
                             priority
                         />
                     </Link>
@@ -238,7 +238,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                                                     className="flex items-center gap-2 text-[#33404A] hover:text-[#1AD598] transition-all"
                                                                                                     onClick={() => handleToggleMenu("off")}
                                                                                                 >
-                                                                                                    <div className={`${item.typeIcon === "default" ? "border-[#15AA7A]" : "border-transparent"} size-12 flex items-center justify-center border  rounded-xl`}>
+                                                                                                    <div className={`${item.typeIcon === "default" ? "border-[#15AA7A]" : "border-transparent"} size-12 flex items-center justify-center border  rounded-xl shrink-0`}>
                                                                                                         <div className={`${item.typeIcon === "default" ? "size-8" : "size-full"}`}>
                                                                                                             {
                                                                                                                 typeof item.icon === "string" ?

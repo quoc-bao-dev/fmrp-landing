@@ -64,7 +64,7 @@ const dataHeader: IMenuHeader[] = [
                             name: "FMRP - Quản Lý Xưởng Online",
                             link: "/products/phan-mem-quan-ly-san-xuat-fmrp",
                             icon: <FosoOriginIcon className='size-full rounded-[10px]' />,
-                            description: "Sản Xuất Tối Ưu Tinh Gọn & Thông Minh",
+                            description: "Phần Mềm Sản Xuất Tối Ưu Tinh Gọn & Thông Minh",
                             typeIcon: "default",
                             typeLink: "normal",
                         },

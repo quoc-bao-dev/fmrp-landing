@@ -67,7 +67,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                         animate="rest"
                         whileTap="press"
                         variants={variantButtonScaleZoom}
-                        className='flex items-center justify-start w-fit h-[40px] py-4 shrink-0'
+                        className='flex items-center justify-start w-auto h-[40px] py-4 shrink-0'
                         onClick={() => {
                             handleToggleMenu("off")
                             scrollToTop()
@@ -78,7 +78,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                             height={100}
                             alt="logo"
                             src="/logo/fmrp/logo-fmrp.svg"
-                            className="w-fit h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
+                            className="w-auto h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
                             priority
                         />
                     </motion.div>
@@ -124,7 +124,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                     animate="rest"
                                     whileTap="press"
                                     variants={variantButtonScaleZoom}
-                                    className='flex items-center justify-start w-fit h-[40px] py-4'
+                                    className='flex items-center justify-start w-auto h-[40px] py-4 shrink-0'
                                     onClick={() => {
                                         handleToggleMenu("off")
                                     }}
@@ -134,7 +134,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                         height={800}
                                         alt="logo"
                                         src="/logo/fmrp/logo-fmrp.svg"
-                                        className="w-fit h-[40px] object-contain cursor-pointer aspect-2.57/1"
+                                        className="w-auto h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
                                         priority
                                     />
                                 </motion.div>
@@ -256,7 +256,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                                                         className="flex items-center gap-2 text-[#33404A] hover:text-[#1AD598] transition-all"
                                                                                                         onClick={() => handleToggleMenu("off")}
                                                                                                     >
-                                                                                                        <div className="size-10 flex items-center justify-center border border-[#99B2C6] rounded-xl">
+                                                                                                        <div className="size-10 flex items-center justify-center border border-[#99B2C6] rounded-xl shrink-0">
                                                                                                             <div className='size-6'>
                                                                                                                 {item.icon}
                                                                                                             </div>
