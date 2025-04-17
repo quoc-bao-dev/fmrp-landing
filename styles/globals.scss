@@ -637,6 +637,20 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 }
 
+.custom-swiper-pagination-fmrp {
+  .swiper-pagination {
+    @apply w-screen text-center bottom-0 z-50;
+    // @apply md:text-start text-center 3xl:-bottom-[5px] 2xl:bottom-6 xl:bottom-8 lg:bottom-10 bottom-12;
+    .swiper-pagination-bullet {
+      @apply w-12 bg-[#bbc3c9] rounded-sm;
+    }
+    .swiper-pagination-bullet-active {
+      background: linear-gradient(180deg, #0375F3 0%, #013DA0 100%);
+      @apply w-12 rounded-sm;
+    }
+  }
+}
+
 .custom-swiper-pagination2 {
   .swiper-pagination2 {
     @apply w-screen text-center bottom-10 z-[9999];

@@ -375,7 +375,7 @@ const MembershipPlansSection = () => {
                                         spaceBetween: 60,
                                     }
                                 }}
-                                className='custom-swiper-pagination h-[840px] rounded-2xl  !px-2'
+                                className='custom-swiper-pagination-fmrp h-[840px] rounded-2xl  !px-2'
                                 allowTouchMove={true}
                             >
                                 {

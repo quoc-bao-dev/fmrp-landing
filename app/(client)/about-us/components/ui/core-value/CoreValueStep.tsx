@@ -16,28 +16,28 @@ const steps = [
         id: uuidv4(),
         title: "Giải quyết",
         description: "Lắng nghe sâu sắc, thấu hiểu trọn vẹn, biến mong muốn thành khởi nguồn cho giải pháp hoàn hảo.",
-        image: "/background/ui/about-us/step/illustration1.webp",
+        image: "/background/ui/mascot/about1.webp",
         word: "solve"
     },
     {
         id: uuidv4(),
         title: "Giải pháp",
         description: "Mỗi cá nhân đến từ FOSO luôn trau dồi học hỏi và tìm kiếm tri thức mới để mang đến giải pháp tối ưu hóa nhất cho khách hàng.",
-        image: "/background/ui/about-us/step/illustration2.webp",
+        image: "/background/ui/mascot/about2.webp",
         word: "solution"
     },
     {
         id: uuidv4(),
         title: "Cộng đồng",
         description: "Mỗi cá nhân đến từ FOSO luôn đặt trọng tâm các dự án phải mang tinh thần tập thể vì một tương lai Việt Nam phát triển, bền vững và đoàn kết.",
-        image: "/background/ui/about-us/step/illustration3.webp",
+        image: "/background/ui/mascot/about3.webp",
         word: "socially"
     },
     {
         id: uuidv4(),
         title: "Tâm hồn",
         description: "Mỗi cá nhân đến từ FOSO luôn coi trọng đạo đức nghề nghiệp, đạo đức xã hội ở tiêu chuẩn cao nhất.",
-        image: "/background/ui/about-us/step/illustration5.webp",
+        image: "/background/ui/mascot/about4.webp",
         word: "soul"
     },
 ];

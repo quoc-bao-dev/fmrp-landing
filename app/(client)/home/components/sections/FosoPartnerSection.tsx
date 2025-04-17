@@ -88,7 +88,7 @@ const FosoPartnerSection = (props: Props) => {
                             className='aspect-1.08/1 3xl:h-[584px] 2xl:h-[480px] lg:h-[424px] h-[300px]'
                         >
                             <Image
-                                src="/background/team/team-1.png"
+                                src="/background/ui/mascot/home5.webp"
                                 alt="Foso Team"
                                 width={1920}
                                 height={1080}

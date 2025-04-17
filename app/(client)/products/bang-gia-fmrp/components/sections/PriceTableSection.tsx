@@ -15,13 +15,13 @@ const PriceTableSection = (props: Props) => {
     const pricingData = [
         {
             title: "Training online",
-            freemium: "1,000,000 đ/buổi/đơn",
-            professional: "850,000 đ/buổi/đơn",
+            freemium: "1,000,000 đ/buổi/60p",
+            professional: "860,000 đ/buổi/60p",
         },
         {
             title: "Training trực tiếp",
-            freemium: "2,000,000 đ/buổi/đơn + phí đi chuyển",
-            professional: "1,650,000 đ/buổi/đơn + phí đi chuyển",
+            freemium: "2,000,000 đ/buổi/90p + phí di chuyển",
+            professional: "1,680,000 đ/buổi/90p + phí di chuyển",
         },
         {
             title: "Tham gia nhóm",
@@ -31,7 +31,7 @@ const PriceTableSection = (props: Props) => {
     ]
 
     return (
-        <div className="custom-padding-section w-full px-4">
+        <div className="3xl:py-24 xl:py-20 lg:py-16 py-4 w-full lg:px-4">
             <div className='custom-container'>
                 <h1 className="text-center text-title-section-small font-extrabold text-[#1A2025] mb-6">
                     Dịch Vụ Add-On
@@ -159,42 +159,151 @@ const PriceTableSection = (props: Props) => {
 
                 {/* Mobile version */}
                 <div className="md:hidden space-y-6">
-                    <Card className="border rounded-xl shadow-sm">
-                        <CardContent className="p-4">
-                            <h3 className="text-center font-medium mb-4">Freemium</h3>
-                            <div className="space-y-3">
+                    <Card
+                        className="border rounded-3xl shadow-sm"
+                        style={{
+                            boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
+                            background: "#FFFFFF"
+                        }}
+                    >
+                        <div className={`border-gradient-freemium-price-list h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`} />
+
+                        <CardContent className="px-4 pb-4 pt-2">
+                            <h2 className="text-start text-title font-bold pb-3 border-b border-dashed text-[#33404A]">
+                                Freemium
+                            </h2>
+                            <div className="space-y-3 pt-4">
                                 {pricingData.map((item, index) => (
-                                    <div key={index} className="flex justify-between text-sm">
-                                        <span>{item.title}</span>
-                                        <span className="font-medium">{item.freemium}</span>
+                                    <div key={index} className="space-x-2 text-default text-[#33404A]">
+                                        <span className='font-semibold'>{item.title}:</span>
+                                        <span className="font-extrabold">{item.freemium}</span>
                                     </div>
                                 ))}
                             </div>
                             <div className="mt-6 flex justify-center">
-                                <Button variant="outline" className="rounded-full px-6 py-2 h-auto text-sm">
-                                    Liên hệ
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
+                                <ButtonAnimationNew
+                                    title={"Liên hệ"}
+                                    icon={
+                                        <div className="2xl:size-10 md:size-8 size-8 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
+                                            <motion.div
+                                                variants={{
+                                                    rest: { x: 0, y: 0 },
+                                                    hover: { x: 4, y: -4 },
+                                                }}
+                                                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                                            >
+                                                {/* Dùng Tailwind để đổi icon khi hover mà không cần state */}
+                                                <ArrowUpRightIcon className="2xl:size-5 md:size-4 size-4" />
+                                                {/* <ArrowUpRightIcon className="2xl:size-5 md:size-5 size-4 hidden group-hover:block" />
+                                        <ArrowUpRightLinearBlueIcon className="2xl:size-5 md:size-5 size-4 group-hover:hidden" /> */}
+                                            </motion.div>
+                                        </div>
+                                    }
+                                    onClick={() => { window.open("https://id.zalo.me/account?continue=http%3A%2F%2Fzalo.me%2Ffososoft") }}
+                                    reverse={true}
+                                    className="lg:mr-0 mr-1 lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-base xl:!text-sm lg:!text-sm md:!text-base text-sm !tracking-[1%] text-white group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] w-full"
+                                    style={{
+                                        // background: "linear-gradient(180deg, #0375F3 0%, #0B69D2 100%)",
+                                        background: "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #0375F3 0%, #0B69D2 100%)",
+                                        // background: "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(118.21deg, #0375F3 10.03%, #013DA0 107.74%)",
+                                        // WebkitBackgroundClip: "text",
+                                        // WebkitTextFillColor: "transparent",
+                                        boxShadow: "0px 1px 2px 0px #FFFFFF7D inset",
+                                        WebkitBackdropFilter: "blur(15px)", // Safari
+                                    }}
+                                    whileHover={{
+                                        background: [
+                                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)"
+                                        ],
+                                        transition: {
+                                            duration: 1.5,
+                                            ease: [0.4, 0, 0.6, 1],
+                                            repeat: Infinity
+                                        },
+                                        boxShadow: [
+                                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                                            "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                                            "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                                        ],
+                                    }}
+                                />
                             </div>
                         </CardContent>
                     </Card>
+                    <Card
+                        className="border rounded-3xl shadow-sm"
+                        style={{
+                            boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
+                            background: "#FFFFFF"
+                        }}
+                    >
+                        <div className={`border-gradient-professional-price-list h-2 rounded-2xl border-3 absolute top-0 left-0 w-[92%] mx-auto`} />
 
-                    <Card className="border rounded-xl shadow-sm">
-                        <CardContent className="p-4">
-                            <h3 className="text-center font-medium mb-4">Professional</h3>
-                            <div className="space-y-3">
+                        <CardContent className="px-4 pb-4 pt-2">
+                            <h2 className="text-start text-title font-bold pb-3 border-b border-dashed text-[#33404A]">
+                                Professional
+                            </h2>
+                            <div className="space-y-3 pt-4">
                                 {pricingData.map((item, index) => (
-                                    <div key={index} className="flex justify-between text-sm">
-                                        <span>{item.title}</span>
-                                        <span className="font-medium">{item.professional}</span>
+                                    <div key={index} className="space-x-2 text-default text-[#33404A]">
+                                        <span className='font-semibold'>{item.title}:</span>
+                                        <span className="font-extrabold">{item.professional}</span>
                                     </div>
                                 ))}
                             </div>
                             <div className="mt-6 flex justify-center">
-                                <Button className="rounded-full px-6 py-2 h-auto text-sm bg-blue-600 hover:bg-blue-700">
-                                    Liên hệ
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
+                                <ButtonAnimationNew
+                                    title={"Liên hệ"}
+                                    icon={
+                                        <div className="2xl:size-10 md:size-8 size-8 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
+                                            <motion.div
+                                                variants={{
+                                                    rest: { x: 0, y: 0 },
+                                                    hover: { x: 4, y: -4 },
+                                                }}
+                                                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                                            >
+                                                {/* Dùng Tailwind để đổi icon khi hover mà không cần state */}
+                                                <ArrowUpRightIcon className="2xl:size-5 md:size-4 size-4" />
+                                                {/* <ArrowUpRightIcon className="2xl:size-5 md:size-5 size-4 hidden group-hover:block" />
+                                        <ArrowUpRightLinearBlueIcon className="2xl:size-5 md:size-5 size-4 group-hover:hidden" /> */}
+                                            </motion.div>
+                                        </div>
+                                    }
+                                    onClick={() => { window.open("https://id.zalo.me/account?continue=http%3A%2F%2Fzalo.me%2Ffososoft") }}
+                                    reverse={true}
+                                    className="lg:mr-0 mr-1 lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-base xl:!text-sm lg:!text-sm md:!text-base text-sm !tracking-[1%] text-white group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] w-full"
+                                    style={{
+                                        // background: "linear-gradient(180deg, #0375F3 0%, #0B69D2 100%)",
+                                        background: "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #0375F3 0%, #0B69D2 100%)",
+                                        // background: "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(118.21deg, #0375F3 10.03%, #013DA0 107.74%)",
+                                        // WebkitBackgroundClip: "text",
+                                        // WebkitTextFillColor: "transparent",
+                                        boxShadow: "0px 1px 2px 0px #FFFFFF7D inset",
+                                        WebkitBackdropFilter: "blur(15px)", // Safari
+                                    }}
+                                    whileHover={{
+                                        background: [
+                                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                                            "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)"
+                                        ],
+                                        transition: {
+                                            duration: 1.5,
+                                            ease: [0.4, 0, 0.6, 1],
+                                            repeat: Infinity
+                                        },
+                                        boxShadow: [
+                                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                                            "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                                            "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                                            "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
+                                        ],
+                                    }}
+                                />
                             </div>
                         </CardContent>
                     </Card>
