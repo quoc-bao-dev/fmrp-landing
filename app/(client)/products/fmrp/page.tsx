@@ -15,27 +15,31 @@ import AiBomFmrpSection from './components/sections/AiBomFmrpSection'
 import FeatureManagementOverviewSection from './components/sections/FeatureManagementOverviewSection';
 import ProcessOptimizationFmrpSection from './components/sections/ProcessOptimizationFmrpSection'
 import BlurBackgroundFixed from './components/ui/common/BlurBackgroundFixed';
+import PackageFmrpSection from './components/sections/PackageFmrpSection'
 
 type Props = {}
 
 const AboutUs = (props: Props) => {
     return (
         <main className='min-h-screen relative'>
-            <BlurBackgroundFixed />
+
             <div className='relative z-[1] overflow-x-hidden'>
                 <HeroFmrpSection />
-                <IntroductionFmrpSection />
-                <VideoFmrpSection />
-                <SystemOverviewFmrpSection />
-                <FeatureManagementOverviewSection />
-                <AiBomFmrpSection />
-                <ProcessOptimizationFmrpSection />
+                <PackageFmrpSection />
                 <FeedbackFmrpSection />
                 <CTAFmrpSection />
                 <PartnerFmrpSection />
                 <MediaCoverageFmrpSection />
                 <QuestionsFmrpSection />
                 <CommunityFmrpSection />
+                <IntroductionFmrpSection />
+                {/* <VideoFmrpSection /> */}
+                {/* <SystemOverviewFmrpSection /> */}
+                {/* <FeatureManagementOverviewSection /> */}
+                {/* <AiBomFmrpSection /> */}
+                {/* <ProcessOptimizationFmrpSection /> */}
+
+
             </div>
         </main>
     )

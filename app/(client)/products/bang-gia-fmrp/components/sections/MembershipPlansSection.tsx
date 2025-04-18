@@ -14,6 +14,7 @@ import LockIcon from '../../../../../../components/icons/fmrp/LockIcon';
 import { useResizeStore } from '../../../../../../stores/useResizeStore';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import FireIcon from "@/components/icons/fmrp/FireIcon";
 
 const features = [
     {
@@ -169,8 +170,8 @@ const PlanCard = ({ className, title, price, popular, brand, support, type, feat
                     </h2>
                     {
                         popular &&
-                        <span className="text-sxs-default text-[#64511E] bg-[#FACA4A] font-semibold rounded-full px-2.5 py-[3px]">
-                            🔥 Phổ biến
+                        <span className="flex items-center gap-1 text-sxs-default text-[#64511E] bg-[#FACA4A] font-semibold rounded-full pl-1 pr-2.5 py-[3px]">
+                            <FireIcon className='size-4' /> Phổ biến
                         </span>
                     }
                 </div>

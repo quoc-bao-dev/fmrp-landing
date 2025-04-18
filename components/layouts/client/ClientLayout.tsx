@@ -8,9 +8,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 // import HeaderContainerClient from '../header/HeaderContainerClient'
 // import FooterContainer from '../footer/FooterContainer'
 
-import WidgetButton from '@/components/common/button/WidgetButton'
-import WidgetButton1 from '@/components/common/button/WidgetButton1'
-
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
 import ProviderLayout from '../provider/ProviderLayout'
@@ -21,6 +18,7 @@ import FmrpHeaderContainer from '../header/header-fmrp/FmrpHeaderContainer'
 import { DynamicSheet } from '../../common/sheet/DynamicSheet';
 import { useSheetStores } from '../../../stores/useSheetStores';
 import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
+import WidgetButton from '@/components/common/button/WidgetButton'
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
     const { openDialogCustom } = useDialogStore()
@@ -43,8 +41,7 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
             {/* footer */}
             <FooterContainer />
 
-            {/* <WidgetButton /> */}
-            <WidgetButton1 />
+            <WidgetButton />
 
             {openSheetCustom && <DynamicSheet />}
             {/* {openDialogCustom && <DialogCustom />} */}
