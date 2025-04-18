@@ -62,7 +62,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                 <div className='col-span-12 w-full flex items-center justify-start gap-2'>
                     <Link
                         href="/"
-                        className='flex items-center justify-start w-auto h-[40px] shrink-0 py-4'
+                        className='flex items-center justify-start w-auto h-[55px] shrink-0 py-4'
                         prefetch={false}
                         onClick={() => handleToggleMenu("off")}
                     >
@@ -71,7 +71,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                             height={800}
                             alt="logo"
                             src="/logo/foso/logo-final.png"
-                            className="w-auto h-[40px] object-contain cursor-pointer shrink-0"
+                            className="w-auto h-[55px] object-contain cursor-pointer shrink-0"
                             priority
                         />
                     </Link>
@@ -114,7 +114,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                             <div className='col-span-12 w-full flex items-center justify-start gap-2'>
                                 <Link
                                     href="/"
-                                    className='flex items-center justify-start w-fit h-[40px] py-4'
+                                    className='flex items-center justify-start w-auto h-[55px] py-4'
                                     prefetch={false}
                                     onClick={() => handleToggleMenu("off")}
                                 >
@@ -123,7 +123,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                         height={800}
                                         alt="logo"
                                         src="/logo/foso/logo-final.png"
-                                        className="w-fit h-[40px] object-contain cursor-pointer"
+                                        className="w-auto h-[55px] object-contain cursor-pointer"
                                         priority
                                     />
                                 </Link>
@@ -175,7 +175,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                 onClick={() => handleToggleSubMenu(data.id)}
                                                             >
                                                                 <span
-                                                                    className={`text-lg font-medium transition-all 
+                                                                    className={`text-2xl font-medium transition-all 
                                                                         ${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#10805B] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'}
                                                                         ${isStateClientLayout?.header?.isActiveSubMenuFoso === data.id ? "text-[#1AD598]" : "text-[#25272A]"}`}
                                                                 >
@@ -185,96 +185,106 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                 {/* Animated Icon */}
                                                                 <div className="relative w-6 h-6 flex items-center justify-center">
                                                                     <AnimatePresence mode="wait">
-                                                                        {isStateClientLayout?.header?.isActiveSubMenuFoso === data.id ? (
-                                                                            <motion.span
-                                                                                key="minus"
-                                                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                                                animate={{ opacity: 1, scale: 1 }}
-                                                                                exit={{ opacity: 0, scale: 0.8 }}
-                                                                                transition={{ duration: 0.2 }}
-                                                                                className="absolute"
-                                                                            >
-                                                                                <FiMinus className="text-[#1AD598] size-6" />
-                                                                            </motion.span>
-                                                                        ) : (
-                                                                            <motion.span
-                                                                                key="plus"
-                                                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                                                animate={{ opacity: 1, scale: 1 }}
-                                                                                exit={{ opacity: 0, scale: 0.8 }}
-                                                                                transition={{ duration: 0.2 }}
-                                                                                className="absolute"
-                                                                            >
-                                                                                <FiPlus className="text-[#25272A] size-6" />
-                                                                            </motion.span>
-                                                                        )}
+                                                                        {
+                                                                            isStateClientLayout?.header?.isActiveSubMenuFoso === data.id ?
+                                                                                (
+                                                                                    <motion.span
+                                                                                        key="minus"
+                                                                                        initial={{ opacity: 0, scale: 0.8 }}
+                                                                                        animate={{ opacity: 1, scale: 1 }}
+                                                                                        exit={{ opacity: 0, scale: 0.8 }}
+                                                                                        transition={{ duration: 0.2 }}
+                                                                                        className="absolute"
+                                                                                    >
+                                                                                        <FiMinus className="text-[#1AD598] size-6" />
+                                                                                    </motion.span>
+                                                                                )
+                                                                                :
+                                                                                (
+                                                                                    <motion.span
+                                                                                        key="plus"
+                                                                                        initial={{ opacity: 0, scale: 0.8 }}
+                                                                                        animate={{ opacity: 1, scale: 1 }}
+                                                                                        exit={{ opacity: 0, scale: 0.8 }}
+                                                                                        transition={{ duration: 0.2 }}
+                                                                                        className="absolute"
+                                                                                    >
+                                                                                        <FiPlus className="text-[#25272A] size-6" />
+                                                                                    </motion.span>
+                                                                                )
+                                                                        }
                                                                     </AnimatePresence>
                                                                 </div>
                                                             </div>
 
                                                             {/* Submenu Animation */}
                                                             <AnimatePresence>
-                                                                {isStateClientLayout?.header?.isActiveSubMenuFoso === data.id && (
-                                                                    <motion.div
-                                                                        initial={{ opacity: 0, height: 0 }}
-                                                                        animate={{ opacity: 1, height: "auto" }}
-                                                                        exit={{ opacity: 0, height: 0 }}
-                                                                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                                                                        className="md:px-6 px-4 flex flex-col gap-2"
-                                                                    >
-                                                                        {/* Dịch vụ & Sản phẩm */}
-                                                                        {
-                                                                            data.subMenu.tabs && data.subMenu.tabs.map((tab) => (
-                                                                                <React.Fragment key={`submenu-${tab}`}>
-                                                                                    <span className="text-base font-normal text-[#667F93] mb-1 block">
-                                                                                        {tab}
-                                                                                    </span>
-                                                                                    <div className="flex flex-col gap-2">
-                                                                                        {
-                                                                                            data.subMenu?.content[tab]?.items.map((item) => (
-                                                                                                <Link
-                                                                                                    key={item.id}
-                                                                                                    href={item.link}
-                                                                                                    className="flex items-center gap-2 text-[#33404A] hover:text-[#1AD598] transition-all"
-                                                                                                    onClick={() => handleToggleMenu("off")}
-                                                                                                >
-                                                                                                    <div className={`${item.typeIcon === "default" ? "border-[#15AA7A]" : "border-transparent"} size-12 flex items-center justify-center border  rounded-xl shrink-0`}>
-                                                                                                        <div className={`${item.typeIcon === "default" ? "size-8" : "size-full"}`}>
-                                                                                                            {
-                                                                                                                typeof item.icon === "string" ?
-                                                                                                                    (
-                                                                                                                        <Image
-                                                                                                                            src={item.icon}
-                                                                                                                            alt="icon"
-                                                                                                                            width={200}
-                                                                                                                            height={200}
-                                                                                                                            className='size-full object-contain'
-                                                                                                                        />
-                                                                                                                    )
-                                                                                                                    :
-                                                                                                                    (
-                                                                                                                        <React.Fragment>
-                                                                                                                            {item.icon}
-                                                                                                                        </React.Fragment>
-                                                                                                                    )
-                                                                                                            }
+                                                                {
+                                                                    isStateClientLayout?.header?.isActiveSubMenuFoso === data.id &&
+                                                                    (
+                                                                        <motion.div
+                                                                            initial={{ opacity: 0, height: 0 }}
+                                                                            animate={{ opacity: 1, height: "auto" }}
+                                                                            exit={{ opacity: 0, height: 0 }}
+                                                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                                            className="md:px-6 px-4 flex flex-col gap-2"
+                                                                        >
+                                                                            {/* Dịch vụ & Sản phẩm */}
+                                                                            {
+                                                                                data?.subMenu?.tabs && data?.subMenu?.tabs?.map((tab) => (
+                                                                                    <React.Fragment key={`submenu-${tab}`}>
+                                                                                        <span className="text-base font-normal text-[#667F93] mb-1 block">
+                                                                                            {tab}
+                                                                                        </span>
+                                                                                        <div className="flex flex-col gap-2">
+                                                                                            {
+                                                                                                data?.subMenu?.content[tab]?.items?.map((item) => (
+                                                                                                    <Link
+                                                                                                        key={item.id}
+                                                                                                        href={item.link}
+                                                                                                        className="flex items-center gap-2 text-[#33404A] hover:text-[#1AD598] transition-all"
+                                                                                                        onClick={() => handleToggleMenu("off")}
+                                                                                                    >
+                                                                                                        <div className={`${item.typeIcon === "default" ? "border-[#15AA7A]" : "border-transparent"} size-12 flex items-center justify-center border  rounded-xl shrink-0`}>
+                                                                                                            <div className={`${item.typeIcon === "default" ? "size-8" : "size-full"}`}>
+                                                                                                                {
+                                                                                                                    typeof item.icon === "string" ?
+                                                                                                                        (
+                                                                                                                            <Image
+                                                                                                                                src={item.icon}
+                                                                                                                                alt="icon"
+                                                                                                                                width={200}
+                                                                                                                                height={200}
+                                                                                                                                className='size-full object-contain'
+                                                                                                                            />
+                                                                                                                        )
+                                                                                                                        :
+                                                                                                                        (
+                                                                                                                            <React.Fragment>
+                                                                                                                                {item.icon}
+                                                                                                                            </React.Fragment>
+                                                                                                                        )
+                                                                                                                }
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                    <div className='space-y-1'>
-                                                                                                        <h4 className="text-lg font-bold text-[#33404A]">{item.name}</h4>
-                                                                                                        <p className="text-sm-default font-normal text-[#667F93]">
-                                                                                                            {item.description}
-                                                                                                        </p>
-                                                                                                    </div>
-                                                                                                </Link>
-                                                                                            ))
-                                                                                        }
-                                                                                    </div>
-                                                                                </React.Fragment>
-                                                                            ))
-                                                                        }
-                                                                    </motion.div>
-                                                                )}
+                                                                                                        <div className='space-y-1'>
+                                                                                                            <h4 className="text-lg font-bold text-[#33404A]">
+                                                                                                                {item?.name ?? ""}
+                                                                                                            </h4>
+                                                                                                            <p className="text-sm-default font-normal text-[#667F93]">
+                                                                                                                {item?.description ?? ""}
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </Link>
+                                                                                                ))
+                                                                                            }
+                                                                                        </div>
+                                                                                    </React.Fragment>
+                                                                                ))
+                                                                            }
+                                                                        </motion.div>
+                                                                    )
+                                                                }
                                                             </AnimatePresence>
                                                         </React.Fragment>
                                                     )
@@ -284,7 +294,7 @@ const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
                                                         <Link
                                                             key={data.id}
                                                             href={data.link}
-                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#10805B] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-lg w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
+                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#10805B] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-2xl w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
                                                             onClick={() => {
 
                                                                 handleToggleMenu("off")

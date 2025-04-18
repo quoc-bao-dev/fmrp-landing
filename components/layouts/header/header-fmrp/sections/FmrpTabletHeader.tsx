@@ -67,7 +67,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                         animate="rest"
                         whileTap="press"
                         variants={variantButtonScaleZoom}
-                        className='flex items-center justify-start w-auto h-[40px] py-4 shrink-0'
+                        className='flex items-center justify-start w-auto h-[55px] py-4 shrink-0'
                         onClick={() => {
                             handleToggleMenu("off")
                             scrollToTop()
@@ -78,7 +78,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                             height={100}
                             alt="logo"
                             src="/logo/fmrp/logo-fmrp.svg"
-                            className="w-auto h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
+                            className="w-auto h-[55px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
                             priority
                         />
                     </motion.div>
@@ -124,7 +124,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                     animate="rest"
                                     whileTap="press"
                                     variants={variantButtonScaleZoom}
-                                    className='flex items-center justify-start w-auto h-[40px] py-4 shrink-0'
+                                    className='flex items-center justify-start w-auto h-[55px] py-4 shrink-0'
                                     onClick={() => {
                                         handleToggleMenu("off")
                                     }}
@@ -134,7 +134,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                         height={800}
                                         alt="logo"
                                         src="/logo/fmrp/logo-fmrp.svg"
-                                        className="w-auto h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
+                                        className="w-auto h-[55px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
                                         priority
                                     />
                                 </motion.div>
@@ -187,7 +187,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                                                 onClick={() => handleToggleSubMenu(data.id)}
                                                             >
                                                                 <span
-                                                                    className={`text-lg font-medium transition-all 
+                                                                    className={`text-2xl font-medium transition-all 
                                                                         ${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#0F4F9E] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'}
                                                                         ${isStateClientLayout?.header?.isActiveSubMenuFmrp === data.id ? "text-[#1AD598]" : "text-[#25272A]"}`}
                                                                 >
@@ -286,7 +286,7 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
                                                         <Link
                                                             key={data.id}
                                                             href={data.link}
-                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#0F4F9E] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-lg w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
+                                                            className={`${(data.link === '/' && pathname === '/') || (pathname.includes(data.link) && data.link !== '/') ? 'text-[#0F4F9E] font-medium decoration-[3px] decoration-[#25272A]/90' : 'text-[#25272A]'} text-2xl w-fit duration-300 transition ease-in-out flex items-center font-medium md:px-8 px-6`}
                                                             onClick={() => {
 
                                                                 handleToggleMenu("off")

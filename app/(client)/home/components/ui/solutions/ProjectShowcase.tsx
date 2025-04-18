@@ -128,12 +128,12 @@ const ProjectShowcase = () => {
                                 }}
                                 exit={{ opacity: 0, x: -30 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className={`${!isVisibleTablet && selectedCategory.id === item.id ? "bg-white !p-4" : ""} capitalize rounded-xl flex flex-col space-y-2`}
+                                className={`${!isVisibleTablet && selectedCategory.id === item.id ? "bg-white !p-4" : ""}  rounded-xl flex flex-col space-y-2`}
                                 style={{
                                     boxShadow: !isVisibleTablet && selectedCategory.id === item.id ? "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714" : ""
                                 }}
                             >
-                                <div className={`${selectedCategory.id === item.id ? "text-[#33404A]" : "text-[#99B2C6]"} 3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] font-semibold`}>
+                                <div className={`${selectedCategory.id === item.id ? "text-[#33404A] font-semibold" : "text-[#667F93] font-normal"} capitalize 3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] `}>
                                     {item.title}
                                 </div>
 

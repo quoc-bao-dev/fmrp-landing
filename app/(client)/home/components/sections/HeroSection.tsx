@@ -36,7 +36,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     const preventScroll = (e: Event) => {
         e.preventDefault();
     };
-    
+
     const handleScroll = useCallback((type: "enable" | "disable") => {
         if (type === "disable") {
             document.body.style.overflowY = "scroll"; // Hiển thị scrollbar
@@ -92,23 +92,26 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
 
                 {/* contetn left */}
-                <div className='xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-start'>
-                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
+                <div className='space-y-4 xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-start'>
+                    <div className='w-full mb-2.5'>
+                        <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle1} delay={0.5} />
 
-                    <FadeInZoomSpan
-                        delay={0.7} // ⬅️ Xuất hiện sau heroPerTitle1
-                        className="3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] 
+                        <FadeInZoomSpan
+                            delay={0.7} // ⬅️ Xuất hiện sau heroPerTitle1
+                            className="3xl:text-[56px] 2xl:text-[46px] xxl:text-[44px] xl:text-[40px] 
                         lg:text-[36px] md:text-[32px] text-[20px] font-extrabold 
                         text-white md:px-6 px-4 py-2 rounded-full uppercase xl:ml-4 ml-2"
-                        style={{
-                            background: "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
-                        }}
-                    >
-                        Foso
-                    </FadeInZoomSpan>
-                    <br />
+                            style={{
+                                background: "linear-gradient(180deg, #9DFFB3 0%, #1AA37A 100%)"
+                            }}
+                        >
+                            Foso
+                        </FadeInZoomSpan>
+                    </div>
 
-                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold' heroPerTitle={heroPerTitle2} delay={2} />
+                    {/* <br /> */}
+
+                    <AnimatedTitle className='text-[#050505] text-title-section font-extrabold !leading-10' heroPerTitle={heroPerTitle2} delay={2} />
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
