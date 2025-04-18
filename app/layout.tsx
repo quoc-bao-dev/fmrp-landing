@@ -59,7 +59,7 @@ import { getMetadata } from "@/components/seo/DefaultMetadata";
 // };
 
 export const metadata = getMetadata({
-    title: "Giới thiệu FOSO - Đội ngũ và sứ mệnh",
+    title: "FOSO - Đội ngũ và sứ mệnh",
     description: "Tìm hiểu về đội ngũ phát triển và tầm nhìn của FOSO.",
     ogImage: "/opengraph-image.png",
     url: "https://fososoft.com/about",
