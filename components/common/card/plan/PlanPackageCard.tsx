@@ -1,6 +1,4 @@
-import CheckIconLinear from "@/components/icons/fmrp/CheckIconLinear";
 import FireIcon from "@/components/icons/fmrp/FireIcon";
-import LockIcon from "@/components/icons/fmrp/LockIcon";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { FormatNumberToCommanDecimal } from "@/utils/format/FormatNumber";
@@ -9,15 +7,14 @@ import Image from "next/image";
 import { motion } from 'framer-motion'
 import { playwrite_is_sans } from "@/utils/fonts/fontUtils";
 
-
-const PlanPackageCard = ({ className, title, price, popular, brand, description, type, features, buttonText, variant, expirationDate }: any) => (
+const PlanPackageCard = ({ className, title, price, popular, description, expirationDate, blurImageColor, linearImageColor }: any) => (
     <Card
-        className={`${cn(`w-full max-w-full rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`, className)}`}
-        // className={`${cn(`w-full 3xl:max-w-xl max-w-lg rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`, className)}`}
-        // className={`${cn(`w-full max-w-lg rounded-2xl ${popular ? "border-gradient-professional-price-list" : "border-gradient-freemium-price-list"}`, className)}`}
+        className={`${cn(`w-full max-w-full rounded-2xl relative border-none group 
+            shadow-[0px_4px_6px_-2px_#1212170D,0px_10px_15px_-3px_#12121714] 
+            hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] 
+            custom-transition`, className)}`}
         style={{
-            boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
-            background: popular ? "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)" : "#FFFFFF"
+            background: popular ? "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 33.55%), linear-gradient(0deg, #FFFFFF, #FFFFFF)" : "#FFFFFF"
         }}
     >
         <div className={`${popular ? "border-gradient-professional-price-list" : "border-gradient-freemium-price-list"} h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`} />
@@ -101,6 +98,11 @@ const PlanPackageCard = ({ className, title, price, popular, brand, description,
                 {description}
             </p>
         </CardContent>
+
+        {/* <HoverUnderlineEffect
+            blurImageColor={blurImageColor}
+            linearImageColor={linearImageColor}
+        /> */}
     </Card>
 );
 

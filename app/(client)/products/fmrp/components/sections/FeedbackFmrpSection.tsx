@@ -8,7 +8,7 @@ import { FeedbackItem } from '@/types/feedback/IFeedback';
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer';
-import UnderlineLinearSvg from '@/components/icons/underline/UnderlineLinearSvg';
+import UnderlineCurveLinearSvg from '@/components/icons/underline/UnderlineCurveLinearSvg';
 
 type Props = {}
 
@@ -139,7 +139,7 @@ const FeedbackFmrpSection = (props: Props) => {
                                     ease: [0.25, 1, 0.5, 1], // Bezier Curve giúp chạy tự nhiên hơn
                                 }}
                             /> */}
-                            <UnderlineLinearSvg
+                            <UnderlineCurveLinearSvg
                                 inView={inView}
                                 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[205px] h-[14px] pointer-events-none"
                             />

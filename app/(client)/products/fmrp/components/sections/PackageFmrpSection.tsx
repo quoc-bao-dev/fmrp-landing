@@ -92,7 +92,9 @@ const dataPackage = [
         buttonText: "Đăng ký ngay",
         variant: "freemium",
         className: "col-span-1 w-full",
-        popular: false
+        popular: false,
+        blurImageColor: "/background/blur/blur-orange.png",
+        linearImageColor: "linear-gradient(to right, rgba(255, 214, 102, 0), rgba(255, 214, 102, 0.6), rgba(255, 214, 102, 0))"
     },
     {
         title: "Professional",
@@ -104,7 +106,9 @@ const dataPackage = [
         buttonText: "Liên hệ",
         variant: "pro",
         className: "col-span-1 w-full",
-        popular: true
+        popular: true,
+        blurImageColor: "/background/blur/blur-blue.png",
+        linearImageColor: "linear-gradient(to right, rgba(22, 119, 247, 0), rgba(22, 119, 247, 0.6), rgba(22, 119, 247, 0))"
     }
 ]
 
@@ -140,12 +144,14 @@ const PackageFmrpSection = (props: Props) => {
 
 
                 <div className="grid grid-cols-2 w-[65%] gap-5">
-                    {dataPackage.map((plan, index) => (
-                        <PlanPackageCard
-                            key={`plan-${index}`}
-                            {...plan}
-                        />
-                    ))}
+                    {
+                        dataPackage && dataPackage?.map((plan, index) => (
+                            <PlanPackageCard
+                                key={`plan-${index}`}
+                                {...plan}
+                            />
+                        ))
+                    }
                 </div>
 
 

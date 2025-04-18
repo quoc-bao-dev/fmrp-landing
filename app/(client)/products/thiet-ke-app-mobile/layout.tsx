@@ -1,48 +1,17 @@
 // import { createMetadata } from "@/managers/api-management/server/createMetadata";
 
+import { getMetadata } from "@/components/seo/DefaultMetadata";
 import { Metadata } from "next";
 
 // export const generateMetadata = async () => createMetadata('home');
 
-export const metadata = {
-    title: "FOSO - Giải pháp công nghệ cho doanh nghiệp",
-    description: "Cung cấp các dịch vụ thiết kế website, app, phần mềm chuyên nghiệp cho doanh nghiệp vừa và nhỏ.",
-    keywords: "FOSO, thiết kế website, phát triển phần mềm, công nghệ cho SME",
-    openGraph: {
-        title: "FOSO",
-        description: "Giải pháp công nghệ cho doanh nghiệp vừa và nhỏ",
-        url: "https://fososoft.vn/",
-        siteName: "FOSO",
-        images: [
-            {
-                url: "/opengraph-image.png",
-                width: 1200,
-                height: 630,
-                alt: "FOSO Logo",
-            },
-        ],
-        locale: "vi_VN",
-        type: "website",
-    },
-    // content: "telephone=no, date=no, email=no, address=no",
-    twitter: {
-        card: "summary_large_image",
-        site: "@fosotech",
-        creator: "@fosotech",
-        title: "FOSO - Giải pháp công nghệ",
-        description: "Giải pháp công nghệ hàng đầu cho doanh nghiệp vừa và nhỏ.",
-        images: [
-            {
-                url: "/opengraph-image.png",
-                alt: "FOSO Logo",
-            },
-        ],
-    },
-    robots: "index, follow",
-    icons: {
-        icon: "/favicon.ico",
-    },
-};
+export const metadata = getMetadata({
+    title: "FOSO - Dịch Vụ Thiết Kế App Mobile Tận Tâm - Viết  App Theo Nhu Cầu",
+    description: "Thiết kế app mobile tại FOSO mang đến giải pháp app mobile hiệu quả, phù hợp với từng nhu cầu doanh nghiệp với giao diện thân thiện, đẹp mắt.",
+    ogImage: "/opengraph-image.png",
+    url: "https://fososoft.com/products/thiet-ke-app-mobile",
+});
+
 export default function AppMobileLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return children
 }

@@ -16,6 +16,7 @@ import FeatureManagementOverviewSection from './components/sections/FeatureManag
 import ProcessOptimizationFmrpSection from './components/sections/ProcessOptimizationFmrpSection'
 import BlurBackgroundFixed from './components/ui/common/BlurBackgroundFixed';
 import PackageFmrpSection from './components/sections/PackageFmrpSection'
+import FmrpBenefitsSection from './components/sections/FmrpBenefitsSection'
 
 type Props = {}
 
@@ -25,6 +26,7 @@ const AboutUs = (props: Props) => {
 
             <div className='relative z-[1] overflow-x-hidden'>
                 <HeroFmrpSection />
+                <FmrpBenefitsSection />
                 <PackageFmrpSection />
                 <FeedbackFmrpSection />
                 <CTAFmrpSection />
@@ -38,8 +40,6 @@ const AboutUs = (props: Props) => {
                 {/* <FeatureManagementOverviewSection /> */}
                 {/* <AiBomFmrpSection /> */}
                 {/* <ProcessOptimizationFmrpSection /> */}
-
-
             </div>
         </main>
     )

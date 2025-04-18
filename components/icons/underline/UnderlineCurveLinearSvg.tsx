@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-interface UnderlineSvgProps {
+interface UnderlineCurveLinearSvgProps {
     className?: string;
     inView: boolean;
 }
 
-const UnderlineLinearSvg: React.FC<UnderlineSvgProps> = ({ className = "", inView }) => {
+const UnderlineCurveLinearSvg: React.FC<UnderlineCurveLinearSvgProps> = ({ className = "", inView }) => {
     return (
         <motion.svg
             className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[205px] h-[14px] pointer-events-none ${className}`}
@@ -38,4 +38,4 @@ const UnderlineLinearSvg: React.FC<UnderlineSvgProps> = ({ className = "", inVie
     );
 };
 
-export default UnderlineLinearSvg;
+export default UnderlineCurveLinearSvg;
