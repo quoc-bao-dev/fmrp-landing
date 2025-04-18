@@ -18,6 +18,14 @@ export const getMetadata = ({
     title,
     description,
     keywords,
+    metadataBase: new URL("https://fososoft.com"), // 👈 base URL cho tất cả metadata
+    alternates: {
+        canonical: url, // 👈 canonical URL
+        languages: {
+            "vi-VN": "/vi",
+            "en-US": "/en",
+        },
+    },
     openGraph: {
         title,
         description,
@@ -47,7 +55,22 @@ export const getMetadata = ({
             },
         ],
     },
-    robots: "index, follow",
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            noimageindex: false,
+            // maxSnippet: -1,
+            // maxImagePreview: "large",
+            // maxVideoPreview: -1,
+        },
+    },
+    other: {
+        "googlebot": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    },
     icons: {
         icon: [
             { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
@@ -57,4 +80,12 @@ export const getMetadata = ({
         shortcut: "/favicon.ico",
         apple: "/apple-touch-icon.png",
     },
+    viewport: {
+        width: "device-width",
+        initialScale: 1,
+        maximumScale: 5,
+    },
+    category: "technology",
+    applicationName: "FOSO",
+    generator: "Next.js 15",
 });
