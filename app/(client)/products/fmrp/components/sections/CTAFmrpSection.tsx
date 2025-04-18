@@ -33,24 +33,24 @@ const CTAFmrpSection = (props: Props) => {
     };
 
     // Khi vào viewport, đảm bảo section luôn ở giữa màn hình
-    useEffect(() => {
-        if (inView && sectionRef.current) {
-            // Kiểm tra nếu phần tử đang ở trung tâm rồi thì không gọi scrollIntoView
-            const rect = sectionRef.current.getBoundingClientRect();
-            const isCentered = Math.abs(rect.top) < window.innerHeight * 0.1;
+    // useEffect(() => {
+    //     if (inView && sectionRef.current) {
+    //         // Kiểm tra nếu phần tử đang ở trung tâm rồi thì không gọi scrollIntoView
+    //         const rect = sectionRef.current.getBoundingClientRect();
+    //         const isCentered = Math.abs(rect.top) < window.innerHeight * 0.1;
 
-            if (!isCentered) {
-                sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
+    //         if (!isCentered) {
+    //             sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    //         }
 
-            // Chỉ khóa scroll nếu chưa active hết nội dung
-            if (activeIndex < subtitles.length - 1) {
-                document.body.style.overflow = "hidden";
-            }
-        } else {
-            document.body.style.overflow = "auto"; // Khi thoát khỏi section, mở khóa scroll
-        }
-    }, [inView, activeIndex]);
+    //         // Chỉ khóa scroll nếu chưa active hết nội dung
+    //         if (activeIndex < subtitles.length - 1) {
+    //             document.body.style.overflow = "hidden";
+    //         }
+    //     } else {
+    //         document.body.style.overflow = "auto"; // Khi thoát khỏi section, mở khóa scroll
+    //     }
+    // }, [inView, activeIndex]);
 
     const handleScroll = (event: WheelEvent | TouchEvent) => {
         const isTouch = event instanceof TouchEvent;
@@ -64,10 +64,32 @@ const CTAFmrpSection = (props: Props) => {
 
         if (isTransitioning) return;
 
-        // Nếu chưa đến chữ cuối cùng, khóa scroll
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+
+        const sectionTop = rect.top;
+        const sectionBottom = rect.bottom;
+
+        const viewportHeight = window.innerHeight;
+
+        // ⛳ Nếu scroll xuống và toàn bộ section nằm trên viewport => active dòng cuối
+        if (scrollDirection === "down" && sectionBottom < 0) {
+            setActiveIndex(subtitles.length - 1);
+            return;
+        }
+
+        // ⛳ Nếu scroll lên và toàn bộ section nằm dưới viewport => active dòng đầu
+        if (scrollDirection === "up" && sectionTop > viewportHeight) {
+            setActiveIndex(0);
+            return;
+        }
+        
+        // ✅ Nếu đang trong viewport thì xử lý bình thường
         if ((scrollDirection === "down" && activeIndex < subtitles.length - 1) ||
             (scrollDirection === "up" && activeIndex > 0)) {
-            event.preventDefault(); // Chặn cuộn ngoài ý muốn
+            event.preventDefault();
             setIsTransitioning(true);
 
             setActiveIndex((prev) => prev + (scrollDirection === "down" ? 1 : -1));
@@ -75,9 +97,6 @@ const CTAFmrpSection = (props: Props) => {
             setTimeout(() => {
                 setIsTransitioning(false);
             }, 400);
-        } else {
-            // Nếu đã đạt chữ đầu hoặc cuối thì mở lại scroll
-            document.body.style.overflow = "auto";
         }
     };
 
@@ -113,7 +132,7 @@ const CTAFmrpSection = (props: Props) => {
                             subtitles.map((group, index) => (
                                 <motion.div
                                     key={index}
-                                    className="text-title-section-small font-extrabold text-gray-400"
+                                    className="text-title-section-small font-extrabold text-[#D9E1E7]"
                                     initial={{ opacity: 0 }}
                                     animate={index <= activeIndex ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5 }}

@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
 import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import BlurBackgroundFixed from '../ui/common/BlurBackgroundFixed';
 
 type Props = {}
 
@@ -73,6 +74,8 @@ const HeroFmrpSection = memo((props: Props) => {
 
     return (
         <div ref={sectionRef} className='custom-padding-section lg:h-screen h-svh relative bg-transparent'>
+            <BlurBackgroundFixed />
+
             {/* Container chính */}
             <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2] lg:pt-12 pt-20'>
                 <CustomBreadcrumb items={breadcrumbItems} />

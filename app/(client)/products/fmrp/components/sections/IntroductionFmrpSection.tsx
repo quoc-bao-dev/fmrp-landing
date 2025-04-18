@@ -10,6 +10,7 @@ import AnimatedTyping from '@/components/common/animations/text/AnimatedTyping'
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal'
 import { useResizeStore } from '@/stores/useResizeStore'
 import { useRouter } from 'next/navigation';
+import BlurImage from '@/components/common/blur/BlurImage'
 
 type Props = {}
 
@@ -25,9 +26,14 @@ const IntroductionFmrpSection = (props: Props) => {
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     return (
-        <div className='custom-padding-section bg-transparent'>
-            <div className='3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 lg:mr-0 md:mx-8 mx-4 4xl:px-[10%] flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden'>
-                <div className='flex flex-col lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4 w-full 3xl:max-w-[38%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] max-w-full'>
+        <div
+            className='3xl:pt-24 xl:pt-20 lg:pt-16 py-8 bg-transparent'
+            style={{
+                background: "linear-gradient(180deg, #FFFFFF 0%, #F0F8FF 12.04%, #F0F8FF 86.67%, #FFFFFF 100%)"
+            }}
+        >
+            <div className='3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 lg:mr-0 md:mx-8 mx-4 4xl:px-[10%] -space-x-10 flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden'>
+                <div className='w-full 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] max-w-full flex flex-col shrink-0 lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4'>
                     <div className='xxl:space-y-2 space-y-1'>
                         <h2 className='text-title-section-small text-[#1A2025] font-extrabold capitalize'>
                             Hơn cả một phần mềm
@@ -35,19 +41,28 @@ const IntroductionFmrpSection = (props: Props) => {
 
                         <AnimatedTyping
                             phrases={TEXTS}
-                            className="text-title capitalize font-extrabold"
+                            className="text-title capitalize font-extrabold lg:min-h-0 min-h-[56px]"
                         />
                     </div>
                     {
                         isVisibleTablet &&
-                        <div className='w-full 3xl:max-w-[62%] 2xl:max-w-[63%] xxl:max-w-[60%] xl:max-w-[55%] lg:max-w-[52%] max-w-full'>
-                            <AnimatedReveal from="right" className='w-auto 3xl:h-[800px] 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] lg:h-[500px] h-auto aspect-3/2'>
-                                <Image
-                                    src="/background/ui/fmrp/test-fmrp-4.svg"
+                        <div className='w-full 3xl:max-w-[63%] 2xl:max-w-[63%] xxl:max-w-[60%] xl:max-w-[55%] lg:max-w-[52%] max-w-full'>
+                            <AnimatedReveal from="right" className='w-auto 3xl:h-[10px] 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] lg:h-[500px] h-auto aspect-3/2'>
+                                <BlurImage
+                                    src="/background/ui/fmrp/bg-fmrp3.png"
                                     alt="bg-fmrp"
                                     width={1536}
                                     height={853}
-                                    className='size-full object-contain aspect-3/2'
+                                    className='size-full object-contain aspect-1.6/1 relative'
+                                    classNameContainer='w-full object-contain aspect-1.6/1 relative'
+                                    loading="lazy"
+                                />
+                                {/* Mask Gradient chỉ nằm vùng 180px cuối */}
+                                <div
+                                    className="absolute z-30 xxl:bottom-8 xl:bottom-4 bottom-0 xxl:-right-32 lg:-right-20 right-0 w-full xxl:h-[180px] lg:h-[160px] h-[100px] pointer-events-none blur-xl"
+                                    style={{
+                                        background: "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 40%)"
+                                    }}
                                 />
                             </AnimatedReveal>
                         </div>
@@ -86,55 +101,85 @@ const IntroductionFmrpSection = (props: Props) => {
                         }}
                     />
 
-                    <div className='lg:order-2 order-1 flex items-center gap-4'>
-                        <motion.div
-                            initial={false}
-                            animate="rest"
-                            whileTap="press"
-                            whileHover="hover"
-                            variants={variantButtonScaleZoom}
-                            onClick={() => { window.open("https://bom.so/mrpbeta") }}
-                            className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
-                        >
-                            <Image
-                                src="/icons/app/appstore.svg"
-                                alt="appstore"
-                                width={300}
-                                height={100}
-                                className='size-full object-contain aspect-3.38/1'
-                            />
-                        </motion.div>
+                    <div className='lg:order-2 order-1 flex items-center gap-4 mt-4'>
+                        <div className='flex lg:flex-col flex-row gap-2'>
+                            <motion.div
+                                initial={false}
+                                animate="rest"
+                                whileTap="press"
+                                whileHover="hover"
+                                variants={variantButtonScaleZoom}
+                                onClick={() => { window.open("https://bom.so/mrpbeta") }}
+                                className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
+                            >
+                                <Image
+                                    src="/icons/app/appstore.svg"
+                                    alt="appstore"
+                                    width={300}
+                                    height={100}
+                                    className='size-full object-contain aspect-3.38/1'
+                                />
+                            </motion.div>
 
-                        <motion.div
-                            initial={false}
-                            animate="rest"
-                            whileTap="press"
-                            whileHover="hover"
-                            variants={variantButtonScaleZoom}
-                            onClick={() => { window.open("https://bom.so/mrpbeta") }}
-                            className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
-                        >
-                            <Image
-                                src="/icons/app/googleplay.svg"
-                                alt="googleplay"
-                                width={300}
-                                height={100}
-                                className='size-full object-contain aspect-3.38/1'
+                            <motion.div
+                                initial={false}
+                                animate="rest"
+                                whileTap="press"
+                                whileHover="hover"
+                                variants={variantButtonScaleZoom}
+                                onClick={() => { window.open("https://bom.so/mrpbeta") }}
+                                className='3xl:w-[200px] xxl:w-[180px] w-[160px] h-auto aspect-3.38/1 cursor-pointer'
+                            >
+                                <Image
+                                    src="/icons/app/googleplay.svg"
+                                    alt="googleplay"
+                                    width={300}
+                                    height={100}
+                                    className='size-full object-contain aspect-3.38/1'
+                                />
+                            </motion.div>
+                        </div>
+
+                        {
+                            !isVisibleTablet &&
+                            <BlurImage
+                                src="/icons/qr/qr_code_fmrp.svg"
+                                alt="qr code"
+                                width={1536}
+                                height={853}
+                                className='size-full object-contain aspect-square relative'
+                                classNameContainer='3xl:w-[125px] xxl:w-[114px] w-[102px] object-contain aspect-square relative shadow-lg rounded-lg'
+                                loading="lazy"
                             />
-                        </motion.div>
+                        }
                     </div>
                 </div>
 
                 {
                     !isVisibleTablet &&
-                    <div className='w-full 3xl:max-w-[62%] 2xl:max-w-[63%] xxl:max-w-[60%] xl:max-w-[55%] lg:max-w-[52%] max-w-full'>
-                        <AnimatedReveal from="right" className='w-auto 3xl:h-[800px] 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] h-[500px] aspect-3/2'>
-                            <Image
-                                src="/background/ui/fmrp/test-fmrp-4.svg"
+                    <div className='w-full max-w-full pointer-events-none select-none relative'>
+                        {/* <div
+                            className='absolute z-10 bottom-0 right-0 h-[180px] w-full'
+                            style={{
+                                WebkitMaskImage: "linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 85.5%)",
+                            }}
+                        /> */}
+                        <AnimatedReveal from="right" className=' w-auto 3xl:h-[800px] 2xl:h-[760px] xxl:h-[720px] xl:h-[540px] h-[500px] aspect-1.6/1 relative'>
+                            <BlurImage
+                                src="/background/ui/fmrp/bg-fmrp3.png"
                                 alt="bg-fmrp"
                                 width={1536}
                                 height={853}
-                                className='size-full object-contain aspect-3/2'
+                                className='size-full object-contain aspect-1.6/1 relative'
+                                classNameContainer='w-full object-contain aspect-1.6/1 relative'
+                                loading="lazy"
+                            />
+                            {/* Mask Gradient chỉ nằm vùng 180px cuối */}
+                            <div
+                                className="absolute z-[999] xxl:bottom-8 xl:bottom-4 bottom-0 xxl:-right-32 -right-20 w-full xxl:h-[180px] h-[160px] pointer-events-none blur-xl"
+                                style={{
+                                    background: "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 40%)"
+                                }}
                             />
                         </AnimatedReveal>
                     </div>

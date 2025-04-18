@@ -68,35 +68,30 @@ const QuestionsFmrpSection = (props: Props) => {
                                 const isActive = isStatePageFmrp.isOpenAccordion === item.value;
 
                                 return (
-                                    <AnimateOnScroll
+                                    <AccordionItem
                                         key={`accordion-${item.value}`}
-                                        index={index}
-                                        className="w-full"
+                                        value={item.value}
+                                        className='w-full border border-[#F3F4FE] rounded-xl transition-shadow duration-500 ease-in-out'
+                                        style={{
+                                            boxShadow: "0px 20px 95px 0px #C9CBCC4D"
+                                        }}
                                     >
-                                        <AccordionItem
-                                            value={item.value}
-                                            className='w-full border border-[#F3F4FE] rounded-xl transition-shadow duration-500 ease-in-out'
-                                            style={{
-                                                boxShadow: "0px 20px 95px 0px #C9CBCC4D"
-                                            }}
-                                        >
-                                            <AccordionTrigger className={`${isActive ? "bg-[#11315B] text-white rounded-t-xl" : "bg-white text-[#1A2025] hover:bg-[#11315B] hover:text-white rounded-xl"} focus-visible:outline-none w-full xxl:px-7 xxl:py-6 px-6 py-5 hover:no-underline custom-transition`}>
-                                                <div className='flex items-center gap-4 justify-between w-full group transition-all duration-150 ease-linear'>
-                                                    <div className={`3xl:text-lg text-base transition-all duration-150 ease-linear font-bold text-start`}>
-                                                        {item.question}
-                                                    </div>
-                                                    <div className={`${isActive ? "bg-[#0F4F9E] text-[#EBF5FF]" : "bg-[#EBF5FF] text-[#0F4F9E]"} size-11 p-3.5 shrink-0 flex items-center justify-center rounded-[10px] custom-transition`}>
-                                                        <CaretUpIcon className={`${isActive ? "" : "rotate-180"} size-full shrink-0 transition-transform duration-500`} />
-                                                    </div>
+                                        <AccordionTrigger className={`${isActive ? "bg-[#11315B] text-white rounded-t-xl" : "bg-white text-[#1A2025] hover:bg-[#11315B] hover:text-white rounded-xl"} focus-visible:outline-none w-full xxl:px-7 xxl:py-6 px-6 py-5 hover:no-underline custom-transition`}>
+                                            <div className='flex items-center gap-4 justify-between w-full group transition-all duration-150 ease-linear'>
+                                                <div className={`3xl:text-lg text-base transition-all duration-150 ease-linear font-bold text-start`}>
+                                                    {item.question}
                                                 </div>
-                                            </AccordionTrigger>
+                                                <div className={`${isActive ? "bg-[#0F4F9E] text-[#EBF5FF]" : "bg-[#EBF5FF] text-[#0F4F9E]"} size-11 p-3.5 shrink-0 flex items-center justify-center rounded-[10px] custom-transition`}>
+                                                    <CaretUpIcon className={`${isActive ? "" : "rotate-180"} size-full shrink-0 transition-transform duration-500`} />
+                                                </div>
+                                            </div>
+                                        </AccordionTrigger>
 
-                                            <AccordionContent className='xxl:p-7 p-6 text-[#33404A] 3xl:text-base text-base font-medium max-w-full'>
-                                                {/* <p dangerouslySetInnerHTML={{ __html: item.answer }} /> */}
-                                                <p>{item.answer}</p>
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                    </AnimateOnScroll>
+                                        <AccordionContent className='xxl:p-7 p-6 text-[#33404A] 3xl:text-base text-base font-medium max-w-full'>
+                                            {/* <p dangerouslySetInnerHTML={{ __html: item.answer }} /> */}
+                                            <p>{item.answer}</p>
+                                        </AccordionContent>
+                                    </AccordionItem>
                                 )
                             })
                         }

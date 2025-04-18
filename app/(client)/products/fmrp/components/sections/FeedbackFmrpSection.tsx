@@ -8,6 +8,7 @@ import { FeedbackItem } from '@/types/feedback/IFeedback';
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer';
+import UnderlineLinearSvg from '@/components/icons/underline/UnderlineLinearSvg';
 
 type Props = {}
 
@@ -128,7 +129,7 @@ const FeedbackFmrpSection = (props: Props) => {
                         </span>
                         <span ref={ref} className="relative inline-block">
                             {/* Background trượt từ trái sang phải */}
-                            <motion.span
+                            {/* <motion.span
                                 className="absolute bottom-[12%] bg-[#92BFF7] rounded-full h-[30%] w-full"
                                 initial={{ clipPath: "inset(0% 100% 0% 0%)", opacity: 0 }} // Bắt đầu ẩn
                                 animate={inView ? { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 } : {}} // Chỉ chạy khi inView
@@ -137,6 +138,10 @@ const FeedbackFmrpSection = (props: Props) => {
                                     delay: 0.4, // Đồng bộ với chữ nhưng bắt đầu mượt hơn
                                     ease: [0.25, 1, 0.5, 1], // Bezier Curve giúp chạy tự nhiên hơn
                                 }}
+                            /> */}
+                            <UnderlineLinearSvg
+                                inView={inView}
+                                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[205px] h-[14px] pointer-events-none"
                             />
 
                             <div className='text-[#050505] relative z-10 font-extrabold' >
