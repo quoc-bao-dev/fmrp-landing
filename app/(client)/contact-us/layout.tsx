@@ -8,7 +8,7 @@ import { Metadata } from "next";
 export const metadata = getMetadata({
     title: "FOSO - Liên Hệ",
     description: "Liên hệ FOSO ngay hôm nay để được tư vấn miễn phí giải pháp phần mềm, thiết kế app, website cho doanh nghiệp của bạn ngay.",
-    ogImage: "/(client)/contact-us/opengraph-image.png",
+    ogImage: "/seo/img/contact-us.png",
     url: "https://fososoft.com/about-us",
 });
 

@@ -8,7 +8,7 @@ import { Metadata } from "next";
 export const metadata = getMetadata({
     title: "FOSO - Giới Thiệu",
     description: "Khám phá tầm nhìn, giá trị cốt lõi và hành trình hình thành nên FOSO – nơi khởi nguồn những giải pháp công nghệ đồng hành cùng sự phát triển của doanh nghiệp.",
-    ogImage: "/(client)/about-us/opengraph-image.png",
+    ogImage: "/seo/img/about-us.png",
     url: "https://fososoft.com/about-us",
 });
 

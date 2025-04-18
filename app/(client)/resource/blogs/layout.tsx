@@ -8,7 +8,7 @@ import { Metadata } from "next";
 export const metadata = getMetadata({
     title: "FOSO - Blog - Tin Tức",
     description: "Cập nhật tin tức, câu chuyện khách hàng và những bài viết thực tế từ FOSO – nơi chia sẻ kinh nghiệm công nghệ, quản lý xưởng và giải pháp số cho doanh nghiệp.",
-    ogImage: "/(client)/resource/blogs/opengraph-image.png",
+    ogImage: "/seo/img/blogs.png",
     url: "https://fososoft.com/resource/blogs",
 });
 
