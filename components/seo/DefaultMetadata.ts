@@ -48,7 +48,5 @@ export const getMetadata = ({
         ],
     },
     robots: "index, follow",
-    icons: {
-        icon: "/favicon.ico",
-    },
+    icons: "/favicon.ico",
 });
