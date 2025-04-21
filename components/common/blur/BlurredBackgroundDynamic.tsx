@@ -19,9 +19,9 @@ const BlurredBackgroundDynamic: React.FC<BlurredBackground2Props> = ({
 }) => {
     return (
         <div
-            className={`3xl:w-[500px] lg:w-[400px] w-[320px] absolute -z-0 ${className}`}
+            className={`3xl:w-[500px] lg:w-[400px] w-[320px] absolute aspect-square -z-0 ${className}`}
             style={{
-                background,
+                background: background,
                 filter: "blur(100px)",
                 backdropFilter: "blur(100px)",
                 WebkitBackdropFilter: "blur(100px)",

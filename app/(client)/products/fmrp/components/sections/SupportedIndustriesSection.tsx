@@ -40,7 +40,7 @@ const SupportedIndustriesSection = (props: Props) => {
                                    </div> */}
                     <div className={`w-full max-w-full flex items-center justify-center`}>
                         <BlurImage
-                            src={(isVisibleTablet ? "/background/ui/fmrp/process/bg4.svg" : "/background/ui/fmrp/process/bg4.svg")}
+                            src={(isVisibleTablet ? "/background/ui/fmrp/process/bg-8.png" : "/background/ui/fmrp/process/bg-8.png")}
                             alt={"image"}
                             width={800}
                             height={600}

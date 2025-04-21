@@ -7,7 +7,7 @@ const BlurBackgroundFixed: React.FC = () => {
             {/* Nhóm chứa cả hai gradient */}
             <div className="flex justify-center items-center overflow-hidden">
                 {/* Gradient background bên trái */}
-                <div className='absolute w-[500px] h-[500px] aspect-square rounded-[40px] blur-[155px] -translate-x-1/2 pointer-events-none'>
+                <div className='absolute 3xl:size-[500px] size-[420px] aspect-square rounded-[40px] blur-[155px] -translate-x-1/2 pointer-events-none'>
                     <Image
                         width={500}
                         height={500}
@@ -17,14 +17,14 @@ const BlurBackgroundFixed: React.FC = () => {
                     />
                 </div>
                 {/* <div
-                    className="absolute w-[500px] h-[500px] aspect-square rounded-[40px] backdrop-filter blur-[267px] -translate-x-1/2"
+                    className="absolute 3xl:size-[500px] size-[420px] aspect-square rounded-[40px] backdrop-filter blur-[267px] -translate-x-1/2"
                     style={{
                         background: "linear-gradient(180deg, rgba(157, 255, 179, 0.3) 100%, rgba(26, 163, 122, 0.3) 0% , rgba(157, 255, 179, 0.3) 100%)",
                     }}
                 /> */}
 
                 {/* Gradient background bên phải */}
-                <div className='absolute w-[500px] h-[500px] aspect-square rounded-[40px] blur-[155px] translate-x-1/2 pointer-events-none'>
+                <div className='absolute 3xl:size-[500px] size-[420px] aspect-square rounded-[40px] blur-[155px] translate-x-1/2 pointer-events-none'>
                     <Image
                         width={500}
                         height={500}

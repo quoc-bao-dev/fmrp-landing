@@ -17,7 +17,7 @@ import StarLinearIcon from '@/components/icons/fmrp/StarLinearIcon';
 import ChatsTeardropLinearIcon from '@/components/icons/fmrp/ChatsTeardropLinearIcon';
 import ChartLineUpLinearIcon from '@/components/icons/fmrp/ChartLineUpLinearIcon';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
-import BlurredBackgroundDynamic from '@/components/common/blur/BlurredBackgroundDynamic';
+import BlurredBackgroundDynamic from '../../../../../../components/common/blur/BlurredBackgroundDynamic';
 
 type Props = {}
 

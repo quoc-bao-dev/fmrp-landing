@@ -33,7 +33,7 @@ const ModelSection = (props: Props) => {
                         className={`w-full max-w-full flex items-center justify-center`}
                     >
                         <BlurImage
-                            src={(isVisibleTablet ? "/background/ui/fmrp/model.svg" : "/background/ui/fmrp/model.svg")}
+                            src={(isVisibleTablet ? "/background/ui/fmrp/isometric.png" : "/background/ui/fmrp/isometric.png")}
                             alt={"image"}
                             width={1920}
                             height={1080}
