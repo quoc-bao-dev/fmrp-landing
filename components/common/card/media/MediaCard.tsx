@@ -49,7 +49,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
                     </div>
                 </div>
 
-                <div className="text-default text-[#273552] group-hover:text-[#2C3E50] font-medium line-clamp-2 custom-transition">
+                <div className="text-base-default text-[#273552] group-hover:text-[#2C3E50] font-medium line-clamp-2 custom-transition">
                     {media?.title}
                 </div>
             </div>

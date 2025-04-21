@@ -128,7 +128,7 @@ const CustomerFeedbackSection = (props: Props) => {
                         </span>
                     </h3>
 
-                    <p className='text-default text-[#33404A] font-normal'>
+                    <p className='text-base-default text-[#33404A] font-normal'>
                         Cùng lắng nghe những phản hồi tích cực đến từ những khách hàng đang đồng hành cùng FOSO
                     </p>
                 </AnimatedReveal>

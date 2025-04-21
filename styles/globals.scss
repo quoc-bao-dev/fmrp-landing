@@ -119,15 +119,26 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%];
   }
 
+  .text-title-section-feature {
+    @apply 3xl:text-[32px] 2xl:text-[28px] xxl:text-[28px] xl:text-[26px] md:text-[24px] text-[20px] 3xl:!leading-[42px] 2xl:!leading-[38px] xxl:!leading-[38px] xl:!leading-[36px] md:!leading-[36px] !leading-[34px] tracking-[-2%];
+  }
+
   .text-title {
     @apply 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-xl !tracking-[2%];
+  }
+
+  .text-title-feature {
+    @apply 3xl:!text-xl lg:!text-base !text-lg !tracking-[1%];
+  }
+  .text-base-default-feature {
+    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm !text-base !tracking-[1%];
   }
 
   .text-button {
     @apply 3xl:!text-xl xl:!text-lg lg:!text-base !text-xl !tracking-[1%];
   }
 
-  .text-default {
+  .text-base-default {
     @apply 3xl:!text-lg xl:!text-base lg:!text-sm !text-base !tracking-[1%];
   }
 
@@ -645,7 +656,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       @apply w-12 bg-[#bbc3c9] rounded-sm;
     }
     .swiper-pagination-bullet-active {
-      background: linear-gradient(180deg, #0375F3 0%, #013DA0 100%);
+      background: linear-gradient(180deg, #0375f3 0%, #013da0 100%);
       @apply w-12 rounded-sm;
     }
   }

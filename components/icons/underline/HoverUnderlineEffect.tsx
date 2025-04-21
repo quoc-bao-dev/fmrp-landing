@@ -9,9 +9,9 @@ type Props = {
 const HoverUnderlineEffect = ({ blurImageColor, linearImageColor, className = "" }: Props) => {
     return (
         <div
-            className={`group-hover:opacity-100 opacity-0 absolute z-50 bottom-0 left-0 w-full h-2/3 custom-transition ${className}`}
+            className={`group-hover:opacity-100 opacity-0 absolute z-10 bottom-0 left-0 w-full h-2/3 custom-transition ${className}`}
         >
-            <div className="size-full aspect-square blur-[10px] pointer-events-none">
+            <div className="size-full aspect-square blur-0 pointer-events-none">
                 <Image
                     width={500}
                     height={500}

@@ -75,26 +75,26 @@ const AiBomFmrpSection = (props: Props) => {
                         <span className='text-title-section-small text-[#1A2025] capitalize'>– Nâng Tầm Quản Lý Sản Xuất Hiệu Quả Với AI Trong Thiết Kế Định Mức BOM</span>
                     </p>
 
-                    <p className='text-default text-[#33404A] font-medium xxl:max-w-[95%] max-w-full'>
+                    <p className='text-base-default text-[#33404A] font-medium xxl:max-w-[95%] max-w-full'>
                         FMRP tích hợp AI giúp tự động hóa quá trình thiết kế định mức nguyên vật liệu (BOM) giúp doanh nghiệp giảm sai sót, tiết kiệm chi phí và tăng hiệu suất sản xuất.
                     </p>
 
                     <div className='flex flex-col gap-2'>
                         <div className='flex items-center gap-2'>
                             <SparkleIcon className='3xl:size-6 size-[18px] text-[#5599EC]' />
-                            <span className='text-default text-[#33404A] font-medium'>
+                            <span className='text-base-default text-[#33404A] font-medium'>
                                 Tính toán BOM chính xác
                             </span>
                         </div>
                         <div className='flex items-center gap-2'>
                             <SparkleIcon className='3xl:size-6 size-[18px] text-[#5599EC]' />
-                            <span className='text-default text-[#33404A] font-medium'>
+                            <span className='text-base-default text-[#33404A] font-medium'>
                                 Giảm hao hụt nguyên vật liệu
                             </span>
                         </div>
                         <div className='flex items-center gap-2'>
                             <SparkleIcon className='3xl:size-6 size-[18px] text-[#5599EC]' />
-                            <span className='text-default text-[#33404A] font-medium'>
+                            <span className='text-base-default text-[#33404A] font-medium'>
                                 Quyết định nhanh chóng
                             </span>
                         </div>

@@ -154,7 +154,7 @@ const MediaCoverageSection = (props: Props) => {
                             <GoArrowUpRight className='size-full' />
                         </div>
                     }
-                    className="flex items-center gap-2 text-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
+                    className="flex items-center gap-2 text-base-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
                     onClick={() => { }}
                 /> */}
 

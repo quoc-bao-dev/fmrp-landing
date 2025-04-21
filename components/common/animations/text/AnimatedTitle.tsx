@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer';
 
 interface Letter {
     id: number
@@ -15,6 +16,12 @@ interface AnimatedTitleProps {
 }
 
 export default function AnimatedTitle({ heroPerTitle, className, delay = 0, style }: AnimatedTitleProps) {
+    const { ref, inView } = useInView({
+        triggerOnce: true, // chỉ animate 1 lần
+        rootMargin: '-20% 0px', // cho phép xuất hiện sớm hơn khi gần tới viewport
+    })
+
+
     const container = {
         hidden: { opacity: 0 },
         visible: {
@@ -46,10 +53,11 @@ export default function AnimatedTitle({ heroPerTitle, className, delay = 0, styl
 
     return (
         <motion.span
+            ref={ref}
             className={className}
             variants={container}
             initial="hidden"
-            animate="visible"
+            animate={inView ? "visible" : "hidden"}
             style={{
                 ...style
             }}

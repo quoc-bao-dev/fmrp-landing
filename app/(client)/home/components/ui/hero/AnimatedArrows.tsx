@@ -44,7 +44,7 @@ const AnimatedArrows: React.FC<AnimatedArrowsProps> = ({ onClick, iconArrow }) =
             </div>
 
             {/* Văn bản */}
-            <div className="text-default font-medium text-[#17181A] group-hover:text-[#17181A]/80 custom-transition">
+            <div className="text-base-default font-medium text-[#17181A] group-hover:text-[#17181A]/80 custom-transition">
                 Khám phá
             </div>
         </AnimatedReveal>

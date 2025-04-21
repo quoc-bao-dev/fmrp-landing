@@ -400,7 +400,7 @@ const MainBlogSection = (props: Props) => {
                                                                     {item.name}
                                                                 </span>
 
-                                                                <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] rounded-full font-semibold" : "text-[#667F93] font-medium"} text-default`}>
+                                                                <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] rounded-full font-semibold" : "text-[#667F93] font-medium"} text-base-default`}>
                                                                     {item.countBlog}
                                                                 </span>
                                                             </div>
@@ -418,7 +418,7 @@ const MainBlogSection = (props: Props) => {
                                                             {item.name}
                                                         </span>
 
-                                                        <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] rounded-full font-semibold" : "text-[#667F93] font-medium"} text-default`}>
+                                                        <span className={`${isStatePageBlogs?.isSelectedCategory === item ? "text-[#53B086] rounded-full font-semibold" : "text-[#667F93] font-medium"} text-base-default`}>
                                                             {item.countBlog}
                                                         </span>
                                                     </div>

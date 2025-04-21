@@ -174,7 +174,7 @@ const PriceTableSection = (props: Props) => {
                             </h2>
                             <div className="space-y-3 pt-4">
                                 {pricingData.map((item, index) => (
-                                    <div key={index} className="space-x-2 text-default text-[#33404A]">
+                                    <div key={index} className="space-x-2 text-base-default text-[#33404A]">
                                         <span className='font-semibold'>{item.title}:</span>
                                         <span className="font-extrabold">{item.freemium}</span>
                                     </div>
@@ -248,7 +248,7 @@ const PriceTableSection = (props: Props) => {
                             </h2>
                             <div className="space-y-3 pt-4">
                                 {pricingData.map((item, index) => (
-                                    <div key={index} className="space-x-2 text-default text-[#33404A]">
+                                    <div key={index} className="space-x-2 text-base-default text-[#33404A]">
                                         <span className='font-semibold'>{item.title}:</span>
                                         <span className="font-extrabold">{item.professional}</span>
                                     </div>

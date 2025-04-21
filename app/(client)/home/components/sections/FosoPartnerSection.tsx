@@ -70,11 +70,11 @@ const FosoPartnerSection = (props: Props) => {
                             effect='fade'
                             // once={false}
                             delay={0.1}
-                            className='text-default text-[#33404A] font-medium lg:max-w-[90%] max-w-full'
+                            className='text-base-default text-[#33404A] font-medium lg:max-w-[90%] max-w-full'
                         >
                             Nếu mỗi doanh nghiệp là sự kiến tạo thành công của chính mình, FOSO mong muốn trở thành cầu nối công nghệ giúp bạn đạt được mục tiêu chuyển đổi số, tối ưu hóa quản lý và thúc đẩy tăng trưởng doanh thu.
                         </AnimatedReveal> */}
-                        <div className='text-default text-[#33404A] font-medium lg:max-w-[90%] max-w-full'>
+                        <div className='text-base-default text-[#33404A] font-medium lg:max-w-[90%] max-w-full'>
                             Nếu mỗi doanh nghiệp là sự kiến tạo thành công của chính mình, FOSO mong muốn trở thành cầu nối công nghệ giúp bạn đạt được mục tiêu chuyển đổi số, tối ưu hóa quản lý và thúc đẩy tăng trưởng doanh thu.
                         </div>
                     </div>

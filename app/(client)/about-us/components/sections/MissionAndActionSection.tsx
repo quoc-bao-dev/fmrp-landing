@@ -57,12 +57,12 @@ const MissionAndActionSection = (props: Props) => {
                         </span>
                     </h2>
 
-                    <p className='text-default font-normal text-[#33404A]'>
+                    <p className='text-base-default font-normal text-[#33404A]'>
                         Xây dựng văn hóa kinh doanh dựa trên phương châm “Lấy khách hàng làm trọng tâm”, mọi hoạt động của Công ty và nhân viên đều hướng tới mục tiêu cao nhất là đáp ứng nhu cầu của khách hàng, luôn đặt mình vào vị trí của khách hàng để thấu hiểu và giải quyết mọi vấn đề.
                     </p>
 
                     <ButtonAnimation
-                        onClick={() => window.open("https://drive.google.com/file/d/1P8QvtBg86RtHE5bW0UZ8GSHJd0bO4crt/view", "_blank")}
+                        onClick={() => window.open("https://drive.google.com/file/d/1OyCXhXv44M5BdbTXaUwruJ0KJEwofk6Z/view?usp=sharing", "_blank")}
                         icon={
                             <div className='xl:size-6 size-5 flex-shrink-0'>
                                 <Image

@@ -87,7 +87,7 @@ const IntroContactSection = (props: Props) => {
                         </span>
                     </h2>
 
-                    <p className='text-default text-[#33404A] font-medium text-center'>
+                    <p className='text-base-default text-[#33404A] font-medium text-center'>
                         Bạn có thắc mắc hoặc cần tư vấn giải pháp? Hãy trao đổi ngay.
                     </p>
                     {

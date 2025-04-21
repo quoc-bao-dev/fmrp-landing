@@ -8,7 +8,7 @@ interface InfoSectionProps {
 
 const InfoSection = ({ title, items }: InfoSectionProps) => (
     <div className="flex flex-col 3xl:gap-8 lg:gap-6 gap-4">
-        {title && <h1 className="text-default font-bold text-[#F1F5F7] uppercase w-fit">{title}</h1>}
+        {title && <h1 className="text-base-default font-bold text-[#F1F5F7] uppercase w-fit">{title}</h1>}
 
         <div className="text-sm-default space-y-4 text-[#B3C5D4]">
             {

@@ -104,7 +104,7 @@ const CommunityFmrpSection = (props: Props) => {
                         </span>
                     </div>
 
-                    <div className='text-default text-[#33404A] font-medium md:text-center text-start max-w-full'>
+                    <div className='text-base-default text-[#33404A] font-medium md:text-center text-start max-w-full'>
                         <span>
                             Kết nối với các chuyên gia và doanh nghiệp sử dụng FMRP để trao đổi kinh nghiệm, bí quyết tối ưu quy trình sản xuất ngay!
                         </span>

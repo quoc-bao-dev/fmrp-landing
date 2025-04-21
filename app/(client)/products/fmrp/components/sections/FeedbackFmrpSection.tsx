@@ -153,7 +153,7 @@ const FeedbackFmrpSection = (props: Props) => {
                         Phản hồi từ Khách hàng
                     </h3> */}
 
-                    <p className='text-default text-[#33404A] font-medium'>
+                    <p className='text-base-default text-[#33404A] font-medium'>
                         Cùng lắng nghe những phản hồi tích cực đến từ những khách hàng đang đồng hành cùng FOSO
                     </p>
                 </AnimatedReveal>

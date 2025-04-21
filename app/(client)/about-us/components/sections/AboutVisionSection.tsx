@@ -26,7 +26,7 @@ const AboutVisionSection = (props: Props) => {
                             </span>
                         </h2>
 
-                        <p className="text-default text-[#33404A] font-medium max-w-full">
+                        <p className="text-base-default text-[#33404A] font-medium max-w-full">
                             FOSO định hướng phát triển trở thành đơn vị hàng đầu trong khu vực, cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu quy trình, nâng cao hiệu suất và phát triển bền vững.
                         </p>
                     </div>
@@ -66,7 +66,7 @@ const AboutVisionSection = (props: Props) => {
                                 Mr. An
                             </div>
 
-                            <div className='text-default text-[#667F93] font-normal'>
+                            <div className='text-base-default text-[#667F93] font-normal'>
                                 CEO & Founder
                             </div>
                         </div>

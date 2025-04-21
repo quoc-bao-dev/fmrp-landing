@@ -46,7 +46,7 @@ const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description, link, lin
                     </h3>
 
                     {/* Description */}
-                    <p className="text-default text-[#33404A] font-medium line-clamp-4">
+                    <p className="text-base-default text-[#33404A] font-medium line-clamp-4">
                         {description}
                     </p>
                 </div>

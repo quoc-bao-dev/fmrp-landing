@@ -7,7 +7,18 @@ import Image from "next/image";
 import { motion } from 'framer-motion'
 import { playwrite_is_sans } from "@/utils/fonts/fontUtils";
 
-const PlanPackageCard = ({ className, title, price, popular, description, expirationDate, blurImageColor, linearImageColor }: any) => (
+type Props = {
+    className?: string
+    title: string
+    price: number
+    popular: boolean
+    description: string
+    expirationDate: string
+    blurImageColor: string
+    linearImageColor: string
+}
+
+const PlanPackageCard = ({ className = "", title, price, popular, description, expirationDate, blurImageColor, linearImageColor }: Props) => (
     <Card
         className={`${cn(`w-full max-w-full rounded-2xl relative border-none group 
             shadow-[0px_4px_6px_-2px_#1212170D,0px_10px_15px_-3px_#12121714] 
@@ -19,8 +30,8 @@ const PlanPackageCard = ({ className, title, price, popular, description, expira
     >
         <div className={`${popular ? "border-gradient-professional-price-list" : "border-gradient-freemium-price-list"} h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`} />
 
-        <CardContent className="px-4 pb-4 pt-2 flex flex-col gap-4">
-            <div className='space-y-2'>
+        <CardContent className="px-4 pb-4 pt-2 flex flex-col gap-6">
+            <div className='3xl:space-y-2 lg:space-y-4'>
                 <div className="flex items-center gap-3">
                     <h2 className="text-title font-bold text-[#33404A]">
                         {title}
@@ -33,12 +44,12 @@ const PlanPackageCard = ({ className, title, price, popular, description, expira
                     }
                 </div>
 
-                <div className="space-x-2 relative w-full">
-                    <span className='text-title-section-small text-[#003DA0] font-bold'>
+                <div className={` space-x-2 relative w-full lg:mt-0 mt-8`}>
+                    <span className='3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[32px] text-[32px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-[#003DA0] font-bold'>
                         {FormatNumberToCommanDecimal(price, 3)}
                     </span>
 
-                    <span className='text-title-section-small text-[#003DA0] font-bold underline decoration-2 underline-offset-4'>
+                    <span className='3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[32px] text-[32px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-[#003DA0] font-bold underline decoration-2 underline-offset-4'>
                         đ
                     </span>
 
@@ -94,7 +105,7 @@ const PlanPackageCard = ({ className, title, price, popular, description, expira
                 </div>
             </div>
 
-            <p className='text-default text-[#33404A] font-medium align-middle'>
+            <p className='text-base-default text-[#33404A] font-medium align-middle'>
                 {description}
             </p>
         </CardContent>

@@ -105,7 +105,7 @@ export default function ReactionBox() {
                                 />
                             </motion.div>
                             <div className='flex flex-col gap-0.5'>
-                                <span className={`${selected === reaction.id ? "text-[#10805B]" : "text-[#33404A]"} text-default font-bold`}>
+                                <span className={`${selected === reaction.id ? "text-[#10805B]" : "text-[#33404A]"} text-base-default font-bold`}>
                                     {counts[reaction.id]}
                                 </span>
                                 <span className={`${selected === reaction.id ? "text-[#10805B]" : "text-[#33404A]"} text-sm font-medium md:text-nowrap`}>

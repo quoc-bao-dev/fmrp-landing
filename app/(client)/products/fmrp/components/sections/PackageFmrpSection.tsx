@@ -91,7 +91,7 @@ const dataPackage = [
         type: "Cơ bản",
         buttonText: "Đăng ký ngay",
         variant: "freemium",
-        className: "col-span-1 w-full",
+        className: "lg:col-span-1 col-span-2",
         popular: false,
         blurImageColor: "/background/blur/blur-orange.png",
         linearImageColor: "linear-gradient(to right, rgba(255, 214, 102, 0), rgba(255, 214, 102, 0.6), rgba(255, 214, 102, 0))"
@@ -105,7 +105,7 @@ const dataPackage = [
         type: "Chuyên sâu",
         buttonText: "Liên hệ",
         variant: "pro",
-        className: "col-span-1 w-full",
+        className: "lg:col-span-1 col-span-2",
         popular: true,
         blurImageColor: "/background/blur/blur-blue.png",
         linearImageColor: "linear-gradient(to right, rgba(22, 119, 247, 0), rgba(22, 119, 247, 0.6), rgba(22, 119, 247, 0))"
@@ -119,7 +119,7 @@ const PackageFmrpSection = (props: Props) => {
     return (
         <div className='custom-padding-section'>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8'>
-                <div className='flex flex-col items-center justify-center gap-2'>
+                <div className='flex flex-col lg:items-center items-start justify-center gap-2'>
                     <div className='space-x-2 font-extrabold'>
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Khám phá ngay</span>
                         <span
@@ -135,7 +135,7 @@ const PackageFmrpSection = (props: Props) => {
                         </span>
                     </div>
 
-                    <div className='text-default text-[#33404A] font-medium md:text-center text-start max-w-full'>
+                    <div className='text-base-default text-[#33404A] font-medium text-center lg:text-start max-w-full'>
                         <span>
                             Phí dịch vụ tốt nhất thị trường, dễ dàng đáp ứng mọi nhu cầu của xưởng
                         </span>
@@ -143,7 +143,7 @@ const PackageFmrpSection = (props: Props) => {
                 </div>
 
 
-                <div className="grid grid-cols-2 w-[65%] gap-5">
+                <div className="grid grid-cols-2 2xl:w-[65%] lg:w-[80%] w-full gap-5">
                     {
                         dataPackage && dataPackage?.map((plan, index) => (
                             <PlanPackageCard

@@ -134,7 +134,7 @@ const StepsProcess = (props: Props) => {
                                         )}
                                     </span>
 
-                                    <div className='text-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[65%] lg:max-w-[70%]'>
+                                    <div className='text-base-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[65%] lg:max-w-[70%]'>
                                         <span>
                                             {item.description}
                                         </span>

@@ -72,7 +72,7 @@ const BannerVerticalFmrp = (props: Props) => {
                                 repeat: Infinity,
                                 ease: "easeInOut"
                             }}
-                            className='text-default text-white font-bold'
+                            className='text-base-default text-white font-bold'
                         >
                             Miễn phí dùng thử
                         </motion.span> */}

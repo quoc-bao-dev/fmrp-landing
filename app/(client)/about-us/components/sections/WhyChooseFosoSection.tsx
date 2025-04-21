@@ -9,7 +9,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { variantsLinearShadow } from '@/utils/animations/variantsAnimation'
 import { useSheetStores } from '@/stores/useSheetStores';
-import BlurredBackground2 from '@/components/common/blur/BlurredBackground2';
+import BlurredBackgroundDynamic from '@/components/common/blur/BlurredBackgroundDynamic';
 
 type Props = {}
 
@@ -155,7 +155,7 @@ const WhyChooseFosoSection = () => {
                     </h2>
 
                     <div className='3xl:space-y-6 space-y-4'>
-                        <p className="text-default text-[#33404A] font-medium 3xl:max-w-[65%] lg:max-w-[75%] max-w-full">
+                        <p className="text-base-default text-[#33404A] font-medium 3xl:max-w-[65%] lg:max-w-[75%] max-w-full">
                             Công nghệ hiện đại - Hỗ trợ chuyên sâu - Thành công bền vững với FOSO
                         </p>
 
@@ -225,7 +225,7 @@ const WhyChooseFosoSection = () => {
 
                     {/* Blur sẽ di chuyển theo con chuột */}
                     {!isVisibleMobile && (
-                        <BlurredBackground2 className="3xl:top-10 top-20 right-24" x={mousePosition.x} y={mousePosition.y} />
+                        <BlurredBackgroundDynamic className="3xl:top-10 top-20 right-24" x={mousePosition.x} y={mousePosition.y} />
                     )}
 
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 3xl:gap-x-8 xl:gap-x-6 md:gap-x-4 md:gap-y-0 gap-4 auto-rows-auto relative z-[10]">
@@ -235,7 +235,11 @@ const WhyChooseFosoSection = () => {
                                 className={`relative ${index % 2 !== 1 ? "3xl:mt-8 xl:mt-6 md:mt-4" : "3xl:mb-8 xl:mb-6 md:mb-4" // Đẩy cột 2 xuống
                                     }`}
                             >
-                                <WhyCard {...value} />
+                                <WhyCard
+                                //  linearImageColor={"linear-gradient(270deg, #9DFFB3 0%, #1AA37A 100%)"}
+                                    linearImageColor={"linear-gradient(270deg, #9DFFB3 0%, #1AA37A 32%, #1AA37A 61.5%, #9DFFB3 100%)"}
+                                    {...value}
+                                />
                             </div>
                         ))}
                     </div>

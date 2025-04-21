@@ -109,7 +109,7 @@ const IntroPricingFmrpSection = (props: Props) => {
                         </span>
                     </h2>
 
-                    <p className='text-default text-[#33404A] font-medium text-center'>
+                    <p className='text-base-default text-[#33404A] font-medium text-center'>
                         Chọn gói phù hợp với quy mô doanh nghiệp của bạn
                     </p>
                     {

@@ -104,7 +104,7 @@ export default function SocialShare({ classNameContainer, classNameSocial, isVis
 
     return (
         <div className={classNameContainer}>
-            <h3 className="text-default font-extrabold text-[#33404A]">Chia sẻ</h3>
+            <h3 className="text-base-default font-extrabold text-[#33404A]">Chia sẻ</h3>
             {
                 isVisibleTablet ?
                     (

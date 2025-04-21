@@ -17,6 +17,9 @@ import ProcessOptimizationFmrpSection from './components/sections/ProcessOptimiz
 import BlurBackgroundFixed from './components/ui/common/BlurBackgroundFixed';
 import PackageFmrpSection from './components/sections/PackageFmrpSection'
 import FmrpBenefitsSection from './components/sections/FmrpBenefitsSection'
+import SupportedIndustriesSection from './components/sections/SupportedIndustriesSection';
+import ModelSection from './components/sections/ModelSection';
+import FeaturePageSection from './components/sections/FeaturePageSection';
 
 type Props = {}
 
@@ -26,6 +29,9 @@ const AboutUs = (props: Props) => {
 
             <div className='relative z-[1] overflow-x-hidden'>
                 <HeroFmrpSection />
+                <ModelSection />
+                <FeaturePageSection />
+                <SupportedIndustriesSection />
                 <FmrpBenefitsSection />
                 <PackageFmrpSection />
                 <FeedbackFmrpSection />
