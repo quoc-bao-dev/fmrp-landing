@@ -3,8 +3,12 @@
 import { GenerateMetadataFromData } from "@/components/seo/GenerateMetadataFromData";
 import apiBlogs from "@/services/blogs/blogs.services";
 import { Metadata, ResolvingMetadata } from "next";
+import { ReactNode } from "react";
 
-// export const generateMetadata = async () => createMetadata('home');
+interface LayoutProps {
+    children: ReactNode;
+    params: { slug: string }; // Thêm params nếu cần
+}
 
 export async function generateMetadata({ params }: { params: { slug: any } }, parent: ResolvingMetadata): Promise<Metadata> {
     try {
@@ -22,6 +26,10 @@ export async function generateMetadata({ params }: { params: { slug: any } }, pa
     }
 }
 
-export default function BlogDetailLayout({ children }: { children: React.ReactNode }) {
+// export default function BlogDetailLayout({ children }: { children: React.ReactNode }) {
+//     return children
+// }
+
+export default async function BlogDetailLayout({ children, params }: LayoutProps) {
     return children
 }
