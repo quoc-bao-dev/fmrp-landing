@@ -6,7 +6,7 @@ import { Metadata, ResolvingMetadata } from "next";
 
 // export const generateMetadata = async () => createMetadata('home');
 
-export async function generateMetadata({ params }: { params: { slug: string } }, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: any } }, parent: ResolvingMetadata): Promise<Metadata> {
     try {
         const { data } = await apiBlogs.getDetailBlog(params.slug);
 
