@@ -2,12 +2,13 @@
 
 import { GenerateMetadataFromData } from "@/components/seo/GenerateMetadataFromData";
 import apiBlogs from "@/services/blogs/blogs.services";
-import { Metadata, ResolvingMetadata } from 'next'
 import { ReactNode } from "react";
 
 export async function generateMetadata({ params }: any) {
     try {
         const { id } = await params
+
+        console.log('id', id);
 
         const { data } = await apiBlogs.getDetailBlog(id);
 

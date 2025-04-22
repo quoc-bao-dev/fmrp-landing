@@ -79,11 +79,11 @@ export function GenerateMetadataFromData(data: any, slug: string) {
             shortcut: '/favicon.ico',
             apple: '/apple-touch-icon.png',
         },
-        viewport: {
-            width: 'device-width',
-            initialScale: 1,
-            maximumScale: 5,
-        },
+        // viewport: {
+        //     width: 'device-width',
+        //     initialScale: 1,
+        //     maximumScale: 5,
+        // },
         category: 'technology',
         applicationName: 'FOSO',
         generator: 'Next.js 15',
