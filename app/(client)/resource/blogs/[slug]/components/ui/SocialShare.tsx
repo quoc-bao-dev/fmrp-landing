@@ -15,59 +15,6 @@ import YoutubeOriginIcon from '@/components/icons/social-media/YoutubeOriginIcon
 
 type SocialPlatform = "zalo" | "facebook" | "twitter" | "linkedin" | "reddit"
 
-// Chuyển từ object thành mảng
-const platforms = [
-    {
-        id: uuidv4(),
-        key: "zalo",
-        name: "Zalo",
-        url: "https://id.zalo.me/account?continue=http%3A%2F%2Fzalo.me%2Ffososoft",
-        width: 600,
-        height: 600,
-        icon: ZaloOriginIcon,
-        appendUrl: true,
-    },
-    {
-        id: uuidv4(),
-        key: "facebook",
-        name: "Facebook",
-        url: "https://www.facebook.com/fososoftware",
-        width: 670,
-        height: 340,
-        icon: FacebookOriginIcon,
-        appendUrl: false,
-    },
-    {
-        id: uuidv4(),
-        key: "youtube",
-        name: "Youtube",
-        url: "https://www.youtube.com/@fososoft",
-        width: 550,
-        height: 420,
-        icon: YoutubeOriginIcon,
-        appendUrl: false,
-    },
-    {
-        id: uuidv4(),
-        key: "linkedin",
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/company/fososoft/",
-        width: 550,
-        height: 450,
-        icon: LinkedOriginIcon,
-        appendUrl: false,
-    },
-    // {
-    //     id: uuidv4(),
-    //     key: "reddit",
-    //     name: "Reddit",
-    //     url: "https://www.reddit.com/submit?url=",
-    //     width: 600,
-    //     height: 600,
-    //     icon: RedditOriginIcon,
-    // }
-];
-
 type SocialShareProps = {
     classNameContainer?: string
     classNameSocial?: string
@@ -75,6 +22,50 @@ type SocialShareProps = {
 }
 
 export default function SocialShare({ classNameContainer, classNameSocial, isVisibleTablet }: SocialShareProps) {
+    const platforms = [
+        {
+            id: uuidv4(),
+            key: "zalo",
+            name: "Zalo",
+            url: "https://zalo.me/share?url=",
+            width: 600,
+            height: 600,
+            icon: ZaloOriginIcon,
+            appendUrl: true,
+        },
+        {
+            id: uuidv4(),
+            key: "facebook",
+            name: "Facebook",
+            url: "https://www.facebook.com/sharer/sharer.php?u=",
+            // url: "https://www.facebook.com/fososoftware",
+            width: 670,
+            height: 340,
+            icon: FacebookOriginIcon,
+            appendUrl: false,
+        },
+        // {
+        //     id: uuidv4(),
+        //     key: "youtube",
+        //     name: "Youtube",
+        //     url: "https://www.youtube.com/@fososoft",
+        //     width: 550,
+        //     height: 420,
+        //     icon: YoutubeOriginIcon,
+        //     appendUrl: false,
+        // },
+        {
+            id: uuidv4(),
+            key: "linkedin",
+            name: "LinkedIn",
+            url: "https://www.linkedin.com/shareArticle?mini=true&url=",
+            width: 550,
+            height: 450,
+            icon: LinkedOriginIcon,
+            appendUrl: false,
+        },
+    ];
+
     const [isOpen, setIsOpen] = React.useState(false);
 
     const handleShare = (platform: SocialPlatform | string) => {
@@ -86,14 +77,15 @@ export default function SocialShare({ classNameContainer, classNameSocial, isVis
         const top = window.screen.height / 2 - info.height / 2;
 
         // 🧠 Chỉ append URL nếu nền tảng yêu cầu
-        const shouldAppendUrl = ["zalo", "reddit", "twitter"].includes(platform);
+        const shouldAppendUrl = ["zalo", "reddit", "twitter", "facebook", "linkedin"].includes(platform);
         const finalUrl = shouldAppendUrl ? `${info.url}${encodeURIComponent(currentUrl)}` : info.url;
 
-        // window.open(
-        //     `${info.url}${encodeURIComponent(currentUrl)}`,
-        //     `share_${platform}`,
-        //     `width=${info.width},height=${info.height},left=${left},top=${top},toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1`
-        // );
+        console.log('platform', platform);
+        console.log('finalUrl', finalUrl);
+
+
+        // const shouldAppendUrl = ["zalo", "reddit", "twitter"].includes(platform);
+        // const finalUrl = shouldAppendUrl ? `${info.url}${encodeURIComponent(currentUrl)}` : info.url;
 
         window.open(
             finalUrl,

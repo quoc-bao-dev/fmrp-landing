@@ -18,7 +18,7 @@ const UnderlineCurveLinearSvg2: React.FC<UnderlineCurveLinearSvgProps> = ({ clas
             animate={inView ? { pathLength: 1, opacity: 1 } : {}}
             transition={{
                 duration: 4,
-                delay: 0.4,
+                delay: delay,
                 ease: [0.25, 1, 0.5, 1],
             }}
         >

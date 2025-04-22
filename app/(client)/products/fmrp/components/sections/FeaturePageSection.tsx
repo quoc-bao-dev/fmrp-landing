@@ -78,7 +78,7 @@ const FeaturePageSection = () => {
 
                 {/* Footer */}
                 <div className="flex lg:flex-row flex-col lg:items-start items-center justify-center gap-2 !mt-8 mb-8">
-                    <p className="3xl:text-[48px] 2xl:text-[36px] xxl:text-[32px] xl:text-[32px] md:text-[24px] text-[24px] 3xl:!leading-[58px] 2xl:!leading-[54px] xxl:!leading-[50px] xl:!leading-[50px] md:!leading-[46px] !leading-[38px] tracking-[-2%] text-[#33404A]">
+                    <div className="3xl:text-[48px] 2xl:text-[36px] xxl:text-[32px] xl:text-[32px] md:text-[24px] text-[24px] 3xl:!leading-[58px] 2xl:!leading-[54px] xxl:!leading-[50px] xl:!leading-[50px] md:!leading-[46px] !leading-[38px] tracking-[-2%] text-[#33404A]">
                         <AnimatedTitle
                             className=''
                             heroPerTitle={heroPerTitle1}
@@ -105,7 +105,7 @@ const FeaturePageSection = () => {
                                 delay={1.2}
                             />
                         }
-                    </p>
+                    </div>
 
                     {
                         isVisibleTablet &&

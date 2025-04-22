@@ -223,12 +223,10 @@ const DetailBlog = () => {
                         <div className='space-y-2'>
                             <QuoteBox content={dataBlogDetail?.descption} />
 
-
                             <div className="article-content">
                                 <p
                                     className="
                                     text-[#33404A] font-medium
-                                    
                                     [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4
                                     [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3
                                     [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:mt-5 [&_h3]:mb-2
@@ -251,7 +249,8 @@ const DetailBlog = () => {
                             </div>
                         </div>
 
-                        {isVisibleTablet &&
+                        {
+                            isVisibleTablet &&
                             <SocialShare
                                 classNameContainer={"flex flex-col items-center justify-center gap-4 z-40"}
                                 classNameSocial={"flex items-center justify-center gap-2"}
@@ -331,6 +330,7 @@ const DetailBlog = () => {
                 <SocialShare
                     classNameContainer={"fixed 3xl:left-24 xxl:left-12 xl:left-8 left-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-4 z-40"}
                     classNameSocial={"flex flex-col items-center justify-center gap-4"}
+
                 />
             }
         </main>
