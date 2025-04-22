@@ -9,14 +9,18 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:@typescript-eslint/recommended",),
+export default [
+  ...compat.extends(
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ),
   {
     rules: {
-      "@typescript-eslint/no-explicit-any": "off", // ✅ Tắt rule này
-      "@typescript-eslint/no-unused-vars": "off", // ✅ Tắt rule này
+      // 🧠 Tắt những rule gây khó khăn trong quá trình dev
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }], // chỉ cảnh báo
+      "prefer-const": "warn", // chỉ cảnh báo
+      "react-hooks/exhaustive-deps": "warn",
     },
   },
 ];
-
-export default eslintConfig;
