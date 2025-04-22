@@ -24,6 +24,9 @@ import { FORMAT_DATE } from '../../../../../constants/FormatDate';
 import moment from 'moment';
 import QuoteBox from '../../../../../components/common/quote/QuoteBox';
 import AutoTableOfContents from './components/sections/AutoTableOfContents';
+import { Skeleton } from '@/components/ui/skeleton';
+import BlogContentSkeleton from '@/components/common/skeleton/blogs/BlogContentSkeleton';
+import BlurImage from '@/components/common/blur/BlurImage';
 
 type Props = {}
 
@@ -99,20 +102,13 @@ const dataBlogList: IBlogItem[] = [
 ]
 
 const DetailBlog = () => {
-
     const idBlog = useParams()
-    console.log('idBlog slug params', idBlog);
 
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
-    const { data: dataBlogDetail } = useGetDataDetailBlog({ slug: idBlog?.slug })
+    const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } = useGetDataDetailBlog({ slug: idBlog?.slug })
 
     const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } = useBlogsList({ page: 1, limit: 3, idBlog: dataBlogDetail?.id, enabled: !!dataBlogDetail?.id })
-
-    console.log('dataBlogsRelatedList', dataBlogsRelatedList);
-    console.log('dataBlogDetail', dataBlogDetail);
-    console.log('idBlog?.slug', idBlog?.slug);
-
 
     const customPagination = {
         clickable: true,
@@ -144,88 +140,95 @@ const DetailBlog = () => {
 
                 <div className='flex lg:flex-row flex-col 3xl:gap-8 gap-6'>
                     <div className='3xl:w-[74%] xxl:w-[70%] lg:w-[68%] w-full shrink-0 flex flex-col lg:gap-8 gap-4'>
-                        <div className="rounded-lg">
-                            <div className="flex flex-col gap-4">
-                                <div className='flex flex-wrap items-center gap-2'>
-                                    {
-                                        dataBlogDetail?.type_blog && dataBlogDetail?.type_blog?.map((item: any) => (
-                                            <div
-                                                key={`tag-${item.id}`}
-                                                className='px-3 py-2 3xl:text-[13px] text-xs text-white font-semibold rounded-lg capitalize'
-                                                style={{
-                                                    background: item.color
-                                                }}
-                                            >
-                                                {item?.name ?? ""}
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-
-                                <h1 className="text-title-section-small font-extrabold mb-2">
-                                    {dataBlogDetail?.title}
-                                </h1>
-
-                                <div className='flex md:flex-row flex-col md:items-center md:justify-between md:gap-2 gap-4'>
-                                    <div className='flex items-center 3xl:gap-4 gap-2'>
-                                        <AvatarCustom
-                                            classNameContainer='size-16 border border-[#F1F5F7] flex items-center justify-center shadow-md'
-                                            classImage='!size-full !rounded-none object-cover'
-                                            avatar={dataBlogDetail?.created?.avatar || '/avatar/common/avatar-foso.png'}
-                                        />
-
-                                        <div className='space-y-0.5'>
-                                            <div className='text-sm text-[#667F93] font-medium'>
-                                                Tác giả
+                        {
+                            isLoadingBlogDetail ?
+                                <BlogContentSkeleton />
+                                :
+                                <React.Fragment>
+                                    <div className="rounded-lg">
+                                        <div className="flex flex-col gap-4">
+                                            <div className='flex flex-wrap items-center gap-2'>
+                                                {
+                                                    dataBlogDetail?.type_blog && dataBlogDetail?.type_blog?.map((item: any) => (
+                                                        <div
+                                                            key={`tag-${item.id}`}
+                                                            className='px-3 py-2 3xl:text-[13px] text-xs text-white font-semibold rounded-lg capitalize'
+                                                            style={{
+                                                                background: item.color
+                                                            }}
+                                                        >
+                                                            {item?.name ?? ""}
+                                                        </div>
+                                                    ))
+                                                }
                                             </div>
 
-                                            <div className="2xl:text-base lg:text-sm text-base font-bold capitalize">
-                                                {dataBlogDetail?.created?.name}
+                                            <h1 className="text-title-section-small font-extrabold mb-2">
+                                                {dataBlogDetail?.title}
+                                            </h1>
+
+                                            <div className='flex md:flex-row flex-col md:items-center md:justify-between md:gap-2 gap-4'>
+                                                <div className='flex items-center 3xl:gap-4 gap-2'>
+                                                    <AvatarCustom
+                                                        classNameContainer='size-16 border border-[#F1F5F7] flex items-center justify-center shadow-md'
+                                                        classImage='!size-full !rounded-none object-cover'
+                                                        avatar={dataBlogDetail?.created?.avatar || '/avatar/common/avatar-foso.png'}
+                                                    />
+
+                                                    <div className='space-y-0.5'>
+                                                        <div className='text-sm text-[#667F93] font-medium'>
+                                                            Tác giả
+                                                        </div>
+
+                                                        <div className="2xl:text-base lg:text-sm text-base font-bold capitalize">
+                                                            {dataBlogDetail?.created?.name}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-2 flex items-center lg:gap-8 gap-2 2xl:text-base text-sm  font-medium">
+                                                    <div className="flex items-center gap-1 text-[#667F93] lg:pr-8 pr-2 border-r">
+                                                        <CalendarBlankIcon className="mr-1 3xl:size-6 size-5" />
+                                                        <span>
+                                                            Cập nhật vào: {moment(dataBlogDetail?.updated_at)?.format(FORMAT_DATE?.DATE_TIME_SLASH_SHORT)}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="flex items-center gap-1 text-[#667F93]">
+                                                        <ClockIcon className="mr-1 3xl:size-6 size-5" />
+
+                                                        <span>
+                                                            {dataBlogDetail?.number_read ?? 10} phút đọc
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+                                        {
+                                            dataBlogDetail?.image &&
+                                            <div className="mt-8">
+                                                <div className='w-full h-auto aspect-3/2 rounded-xl overflow-hidden'>
+                                                    <BlurImage
+                                                        src={`${dataBlogDetail?.image}`}
+                                                        alt={"CEO FOSO"}
+                                                        width={1920}
+                                                        height={1080}
+                                                        className="w-full h-auto aspect-3/2 object-contain"
+                                                        classNameContainer="rounded-xl size-full aspect-3/2 hover:scale-[1.02] custom-transition"
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
 
-                                    <div className="mt-2 flex items-center lg:gap-8 gap-2 2xl:text-base text-sm  font-medium">
-                                        <div className="flex items-center gap-1 text-[#667F93] lg:pr-8 pr-2 border-r">
-                                            <CalendarBlankIcon className="mr-1 3xl:size-6 size-5" />
-                                            <span>
-                                                Cập nhật vào: {moment(dataBlogDetail?.updated_at)?.format(FORMAT_DATE?.DATE_TIME_SLASH_SHORT)}
-                                            </span>
-                                        </div>
+                                    <div className='space-y-2'>
+                                        <QuoteBox content={dataBlogDetail?.descption} />
 
-                                        <div className="flex items-center gap-1 text-[#667F93]">
-                                            <ClockIcon className="mr-1 3xl:size-6 size-5" />
-
-                                            <span>
-                                                {dataBlogDetail?.number_read ?? 10} phút đọc
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {
-                                dataBlogDetail?.image &&
-                                <div className="mt-8">
-                                    <div className='w-full h-auto aspect-3/2 rounded-xl overflow-hidden'>
-                                        <Image
-                                            src={`${dataBlogDetail?.image}`}
-                                            width={1200}
-                                            height={900}
-                                            alt="Quy trình 5S là gì?"
-                                            className="rounded-xl size-full aspect-3/2 hover:scale-[1.02] custom-transition"
-                                        />
-                                    </div>
-                                </div>
-                            }
-                        </div>
-
-                        <div className='space-y-2'>
-                            <QuoteBox content={dataBlogDetail?.descption} />
-
-                            <div className="article-content">
-                                <p
-                                    className="
+                                        <div className="article-content">
+                                            <p
+                                                className="
                                     text-[#33404A] font-medium
                                     [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4
                                     [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3
@@ -244,28 +247,60 @@ const DetailBlog = () => {
                                     [&_td]:border [&_td]:border-gray-300 [&_td]:p-2
                                     [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-4
                                 "
-                                    dangerouslySetInnerHTML={{ __html: `${addIdsToHeadings(dataBlogDetail?.content ?? '')}` }}
-                                />
-                            </div>
-                        </div>
+                                                dangerouslySetInnerHTML={{ __html: `${addIdsToHeadings(dataBlogDetail?.content ?? '')}` }}
+                                            />
+                                        </div>
+                                    </div>
 
-                        {
-                            isVisibleTablet &&
-                            <SocialShare
-                                classNameContainer={"flex flex-col items-center justify-center gap-4 z-40"}
-                                classNameSocial={"flex items-center justify-center gap-2"}
-                            />
+                                    {
+                                        isVisibleTablet &&
+                                        <SocialShare
+                                            classNameContainer={"flex flex-col items-center justify-center gap-4 z-40"}
+                                            classNameSocial={"flex items-center justify-center gap-2"}
+                                        />
+                                    }
+
+                                    <ReactionBox />
+                                </React.Fragment>
                         }
-
-                        <ReactionBox />
                     </div>
 
                     {
                         !isVisibleTablet &&
                         <div className='3xl:w-[26%] xxl:w-[30%] lg:w-[32%] w-full'>
                             <div className='sticky top-28 space-y-8'>
-                                {/* <TableOfContents /> */}
-                                <AutoTableOfContents />
+                                {
+                                    isLoadingBlogDetail
+                                        ?
+                                        <div className='space-y-3'>
+                                            <div className='space-y-2'>
+                                                <Skeleton className='w-full h-8' />
+                                                <div className='flex flex-col justify-end pl-8 space-y-1'>
+                                                    <Skeleton className='w-full h-5' />
+                                                    <Skeleton className='w-full h-5' />
+                                                    <Skeleton className='w-full h-5' />
+                                                </div>
+                                            </div>
+                                            <div className='space-y-2'>
+                                                <Skeleton className='w-full h-8' />
+                                                <div className='flex flex-col justify-end pl-8 space-y-1'>
+                                                    <Skeleton className='w-full h-5' />
+                                                    <Skeleton className='w-full h-5' />
+                                                </div>
+                                            </div>
+                                            <div className='space-y-2'>
+                                                <Skeleton className='w-full h-8' />
+                                                <div className='flex flex-col justify-end pl-8 space-y-1'>
+                                                    <Skeleton className='w-full h-5' />
+                                                    <Skeleton className='w-full h-5' />
+                                                    <Skeleton className='w-full h-5' />
+                                                    <Skeleton className='w-full h-5' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        :
+                                        <AutoTableOfContents isLoadingBlogDetail={isLoadingBlogDetail} />
+                                }
                                 <BannerVerticalFmrp />
                                 <BannerVerticalBlog />
                             </div>

@@ -35,8 +35,6 @@ export function VideoPopup({ open, onOpenChange, videoId, title }: VideoPopupPro
         },
     }
 
-    console.log(document.body.classList.contains("overflow-hidden"));
-
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
             <SheetContent side="bottom" className="h-[92vh] sm:max-w-full p-0 bg-transparent border-none">

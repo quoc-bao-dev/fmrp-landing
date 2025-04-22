@@ -99,7 +99,7 @@ const FmrpBenefitsSection = () => {
         <section className="custom-padding-section">
             <div className="custom-container flex lg:flex-row flex-col lg:items-center 3xl:gap-16 gap-12 ">
                 <div className='w-full lg:max-w-[35%] max-w-full flex flex-col 3xl:gap-8 gap-6 overflow-hidden'>
-                    <h2 className='space-x-2 font-extrabold'>
+                    <h2 className='space-x-2 font-extrabold lg:text-start text-center'>
                         <span
                             className='text-title-section-small capitalize'
                             style={{

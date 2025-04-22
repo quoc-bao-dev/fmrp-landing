@@ -1,8 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 import { animate } from 'framer-motion'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface TocItem {
     id: string
@@ -12,7 +13,11 @@ interface TocItem {
     children: TocItem[]
 }
 
-export default function AutoTableOfContents() {
+type Props = {
+    isLoadingBlogDetail: boolean
+}
+
+export default function AutoTableOfContents({ isLoadingBlogDetail }: Props) {
     const [isOpen, setIsOpen] = useState(false)
     const [tocItems, setTocItems] = useState<TocItem[]>([])
     const [activeId, setActiveId] = useState<string | null>(null)
@@ -83,34 +88,7 @@ export default function AutoTableOfContents() {
         buildToc() // lần đầu
 
         return () => observer.disconnect()
-    }, [])
-
-    // useEffect(() => {
-    //     if (tocItems.length === 0) return;
-
-    //     const headingElements = tocItems.map(item => document.getElementById(item.id)).filter(Boolean) as HTMLElement[];
-
-    //     if (headingElements.length === 0) return;
-
-    //     const observer = new IntersectionObserver((entries) => {
-    //         const visible = entries
-    //             .filter(entry => entry.isIntersecting)
-    //             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-    //         if (visible.length > 0) {
-    //             setActiveId(visible[0].target.id);
-    //         }
-    //     }, {
-    //         rootMargin: '0px 0px -70% 0px',
-    //         threshold: 0.1
-    //     });
-
-    //     headingElements.forEach(el => observer.observe(el));
-
-    //     return () => {
-    //         headingElements.forEach(el => observer.unobserve(el));
-    //     };
-    // }, [tocItems]);
+    }, [isLoadingBlogDetail])
 
     useEffect(() => {
         if (tocItems.length === 0) return;
@@ -146,7 +124,7 @@ export default function AutoTableOfContents() {
         return () => {
             headingElements.forEach(el => observer.unobserve(el));
         };
-    }, [tocItems]);
+    }, [tocItems, isLoadingBlogDetail]);
 
     const renderTocItem = (item: TocItem) => {
         const isActive = item.id === activeId;
@@ -157,9 +135,6 @@ export default function AutoTableOfContents() {
         const padding = isLevel3 ? "pl-4" : isLevel4 ? "pl-8" : "";
         const textSize = isLevel2 ? "text-[16px]" : "text-[15px]";
         const activeStyle = isActive ? "!text-[#15AA7A] font-bold" : "";
-
-        console.log('isActive', isActive);
-
 
         return (
             <div key={item.id}>
@@ -201,8 +176,6 @@ export default function AutoTableOfContents() {
         );
     };
 
-    console.log("activeId:", activeId);
-
     return (
         <div className="bg-white space-y-2">
             <div className="flex items-center justify-between cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
@@ -212,11 +185,16 @@ export default function AutoTableOfContents() {
 
             {isOpen && (
                 <div className="py-2">
-                    {tocItems && tocItems.length > 0 ? (
-                        <ul className="space-y-2 text-sm-default">{tocItems.map(renderTocItem)}</ul>
-                    ) : (
-                        <p className="text-gray-500">Đang tải mục lục...</p>
-                    )}
+                    {
+                        tocItems && tocItems.length > 0 ?
+                            (
+                                <ul className="space-y-2 text-sm-default">{tocItems.map(renderTocItem)}</ul>
+                            )
+                            :
+                            (
+                                <p className="text-gray-500">Đang tải mục lục...</p>
+                            )
+                    }
                 </div>
             )}
         </div>

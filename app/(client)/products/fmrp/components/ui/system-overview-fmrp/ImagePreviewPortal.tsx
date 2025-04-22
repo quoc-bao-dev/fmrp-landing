@@ -36,8 +36,6 @@ export function ImagePreviewPortal({ open, onClose, imageSrc, imageAlt = "Previe
         return () => setMounted(false)
     }, [])
 
-    console.log('scaleMotion', scaleMotion);
-
     // Lock body scroll when open
     useEffect(() => {
         if (!open) {

@@ -121,7 +121,7 @@ const PackageFmrpSection = (props: Props) => {
         <div className='custom-padding-section'>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8'>
                 <div className='flex flex-col lg:items-center items-start justify-center gap-2'>
-                    <div className='space-x-2 font-extrabold'>
+                    <div className='space-x-2 font-extrabold lg:text-start text-center w-full'>
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Khám phá ngay</span>
                         <span
                             className='text-title-section-small capitalize'

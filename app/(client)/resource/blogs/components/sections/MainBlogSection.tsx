@@ -215,7 +215,6 @@ const MainBlogSection = (props: Props) => {
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
-        console.log(`Page changed to: ${page}`)
 
         setTimeout(() => {
             if (titleRef.current) {
@@ -271,10 +270,6 @@ const MainBlogSection = (props: Props) => {
     //         bg: "#FACA4A"
     //     },
     // ]
-
-    console.log('dataBlogsList: ', dataBlogsList);
-    console.log('isStatePageBlogs?.isSelectedCategory: ', isStatePageBlogs?.isSelectedCategory);
-
 
     return (
         <div className='custom-padding-section'>

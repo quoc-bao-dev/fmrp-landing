@@ -123,7 +123,7 @@ const FeedbackFmrpSection = (props: Props) => {
                     effect='fade'
                     className='w-full lg:max-w-[40%] max-w-full flex flex-col justify-center gap-4 lg:order-2 order-1'
                 >
-                    <h3 className='text-title-section-small text-[#1A2025] capitalize font-extrabold space-x-2'>
+                    <h3 className='lg:text-start text-center text-title-section-small text-[#1A2025] capitalize font-extrabold space-x-2'>
                         <span>
                             Phản hồi từ
                         </span>
@@ -153,7 +153,7 @@ const FeedbackFmrpSection = (props: Props) => {
                         Phản hồi từ Khách hàng
                     </h3> */}
 
-                    <p className='text-base-default text-[#33404A] font-medium'>
+                    <p className='lg:text-start text-center text-base-default text-[#33404A] font-medium'>
                         Cùng lắng nghe những phản hồi tích cực đến từ những khách hàng đang đồng hành cùng FOSO
                     </p>
                 </AnimatedReveal>

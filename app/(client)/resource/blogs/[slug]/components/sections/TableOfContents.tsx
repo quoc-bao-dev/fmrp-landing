@@ -72,14 +72,9 @@ export default function AutoTableOfContents() {
             })
         }
 
-        console.log('items', items);
-
-
         addIndexes(items)
         setTocItems(items)
     }, [isOpen])
-
-    console.log('tocItems', tocItems);
 
     // Render TOC item và các children của nó
     const renderTocItem = (item: TocItem) => {

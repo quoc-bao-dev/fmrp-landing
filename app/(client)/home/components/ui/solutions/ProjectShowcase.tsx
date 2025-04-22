@@ -84,9 +84,6 @@ const ProjectShowcase = () => {
         },
     }
 
-    console.log('inView', inView);
-
-
     return (
         <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 xl:py-10 py-4 w-full h-full overflow-x-hidden relative z-10">
             {/* Danh mục bên trái */}

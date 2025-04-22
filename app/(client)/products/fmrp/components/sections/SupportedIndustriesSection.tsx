@@ -16,7 +16,7 @@ const SupportedIndustriesSection = (props: Props) => {
                     className={`lg:min-h-[100vh] h-full -space-y-10  flex flex-col items-center justify-start gap-10 w-full max-w-full relative`}
                 >
                     <div className='flex flex-col lg:items-center items-start justify-center gap-2'>
-                        <span className="font-extrabold text-title-section-small text-[#1A2025] capitalize space-x-2 lg:text-center text-start">
+                        <span className="font-extrabold text-title-section-small text-[#1A2025] capitalize space-x-2 lg:text-center text-center">
                             <span className="lg:order-1">Ứng dụng cho</span>
                             <span className="lg:order-2" style={{
                                 background: "linear-gradient(107.37deg, #0375F3 30.15%, #036EEA 32.4%, #0267E1 34.65%, #0261D7 36.89%, #025ACE 39.14%, #0254C5 41.39%, #024EBC 43.63%, #0148B3 45.88%, #0142A9 48.13%, #013DA0 50.38%)",
@@ -27,10 +27,9 @@ const SupportedIndustriesSection = (props: Props) => {
                             </span>
                         </span>
 
-                        <div className='text-base-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] lg:max-w-[70%]'>
+                        <div className='text-base-default text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] lg:max-w-[70%] max-w-full'>
                             <span>
-                                Giải pháp toàn diện, phù hợp với nhiều lĩnh vực khác nhau như sản xuất,
-                                bán lẻ, thương mại điện tử, dược phẩm, may mặc, thực phẩm & đồ uống,...
+                                Giải pháp toàn diện, phù hợp với nhiều lĩnh vực khác nhau như sản xuất, bán lẻ, thương mại điện tử, dược phẩm, may mặc, thực phẩm & đồ uống,...
                             </span>
                         </div>
                     </div>

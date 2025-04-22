@@ -15,7 +15,7 @@ const FeatureSecond = (props: Props) => {
         <div className="grid md:grid-cols-2 3xl:gap-24 2xl:gap-20 lg:gap-16 gap-8 lg:mt-0 !mt-8 items-center h-full">
             {
                 isVisibleTablet &&
-                <h2 className="col-span-2 text-title-section-feature font-extrabold text-[#25387A]">Định mức BOM & Kế hoạch NVL</h2>
+                <h2 className="col-span-2 text-title-section-feature font-extrabold text-[#25387A] text-center">Định mức BOM & Kế hoạch NVL</h2>
             }
             <div className="relative w-full h-full md:col-span-1 col-span-2">
                 <AnimatedReveal

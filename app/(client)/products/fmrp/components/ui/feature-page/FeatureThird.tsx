@@ -15,7 +15,7 @@ const FeatureThird = (props: Props) => {
         <div className="flex lg:flex-row flex-col lg:items-center 3xl:gap-24 2xl:gap-20 lg:gap-16 gap-8 lg:mt-0 !mt-8 h-full">
             {
                 isVisibleTablet &&
-                <h2 className="text-title-section-feature font-extrabold text-[#25387A]">Lệnh Sản Xuất & In Lệnh Trực Tiếp</h2>
+                <h2 className="text-title-section-feature font-extrabold text-[#25387A] text-center">Lệnh Sản Xuất & In Lệnh Trực Tiếp</h2>
             }
 
             <AnimatedReveal

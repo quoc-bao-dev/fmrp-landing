@@ -27,9 +27,6 @@ const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any
     const { theme } = useTheme()
     const pathname = usePathname()
 
-    console.log('theme theme: ', theme);
-
-
     return (
         <>
             {/* header */}

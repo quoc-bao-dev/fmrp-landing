@@ -61,8 +61,6 @@ const hoverVariants = {
 };
 
 const BlogCardVertical = ({ blog, className }: Props) => {
-    console.log('blog', blog);
-
     return (
         <Link
             href={`/resource/blogs/${blog.slug}`}

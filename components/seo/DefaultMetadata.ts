@@ -63,9 +63,6 @@ export const getMetadata = ({
             index: true,
             follow: true,
             noimageindex: false,
-            // maxSnippet: -1,
-            // maxImagePreview: "large",
-            // maxVideoPreview: -1,
         },
     },
     other: {
