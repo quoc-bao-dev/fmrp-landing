@@ -17,32 +17,32 @@ type Props = {}
 const dataImage = [
     {
         id: uuidv4(),
-        image: "/background/ui/about-us/example/example-1.png",
+        image: "/background/ui/about-us/example/foso-1.webp",
         year: "2016"
     },
     {
         id: uuidv4(),
-        image: "/background/ui/about-us/example/example-2.png",
+        image: "/background/ui/about-us/example/foso-2.png",
         year: "2019"
     },
     {
         id: uuidv4(),
-        image: "/background/ui/about-us/example/example-6.webp",
+        image: "/background/ui/about-us/example/foso-6.webp",
         year: "Hiện tại"
     },
     {
         id: uuidv4(),
-        image: "/background/ui/about-us/example/example-4.png",
+        image: "/background/ui/about-us/example/foso-4.webp",
         year: "Hiện tại"
     },
     {
         id: uuidv4(),
-        image: "/background/ui/about-us/example/example-5.png",
+        image: "/background/ui/about-us/example/foso-5.webp",
         year: "Hiện tại"
     },
     {
         id: uuidv4(),
-        image: "/background/ui/about-us/example/example-3.png",
+        image: "/background/ui/about-us/example/foso-3.webp",
         year: "Hiện tại"
     },
 ]
@@ -174,7 +174,7 @@ const JourneySection = (props: Props) => {
                         dataImage.map((item, index) => (
                             <SwiperSlide
                                 key={`item-${index}`}
-                                onClick={() => setSelectedImage(item.image)}
+                                // onClick={() => setSelectedImage(item.image)}
                                 className='w-full h-auto flex items-center rounded-2xl relative group aspect-3/2'
                             >
                                 <Image

@@ -69,7 +69,7 @@ const FooterContent: React.FC<SocialSectionProps> = ({ socialMedia }) => {
 
             <div className="grid grid-cols-4 2xl:gap-20 md:gap-10 gap-4 justify-end lg:max-w-[40%] max-w-full">
                 <div className='md:col-span-2 col-span-4'>
-                    <InfoSection title="Dịch vụ" items={services} />
+                    <InfoSection title="Giải pháp" items={services} />
                 </div>
                 <div className='md:col-span-2 col-span-4'>
                     <InfoSection title="Chính sách" items={policies} />

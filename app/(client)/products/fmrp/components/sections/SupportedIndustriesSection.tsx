@@ -15,7 +15,7 @@ const SupportedIndustriesSection = (props: Props) => {
                     effect='fade'
                     className={`lg:min-h-[100vh] h-full -space-y-10  flex flex-col items-center justify-start gap-10 w-full max-w-full relative`}
                 >
-                    <div className='flex flex-col items-center justify-center gap-2'>
+                    <div className='flex flex-col lg:items-center items-start justify-center gap-2'>
                         <span className="font-extrabold text-title-section-small text-[#1A2025] capitalize space-x-2 lg:text-center text-start">
                             <span className="lg:order-1">Ứng dụng cho</span>
                             <span className="lg:order-2" style={{
@@ -40,10 +40,10 @@ const SupportedIndustriesSection = (props: Props) => {
                                    </div> */}
                     <div className={`w-full max-w-full flex items-center justify-center`}>
                         <BlurImage
-                            src={(isVisibleTablet ? "/background/ui/fmrp/process/bg-8.png" : "/background/ui/fmrp/process/bg-8.png")}
+                            src={(isVisibleTablet ? "/background/ui/fmrp/process/bg-9.webp" : "/background/ui/fmrp/process/bg-9.webp")}
                             alt={"image"}
-                            width={800}
-                            height={600}
+                            width={1920}
+                            height={1080}
                             className=" w-full h-auto aspect-video object-contain relativee z-0"
                             classNameContainer='w-full h-auto aspect-video relativee z-0'
                             // style={{ WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 10%, #F9FBFC 30%)" }}

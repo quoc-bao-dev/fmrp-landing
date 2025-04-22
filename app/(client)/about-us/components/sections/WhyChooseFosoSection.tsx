@@ -48,7 +48,7 @@ const values = [
             </defs>
         </svg>,
         title: 'Chi phí hợp lý',
-        description: '"FOSO thấu hiểu nhu cầu doanh nghiệp, cung cấp giải pháp tiết kiệm nhất!"',
+        description: 'FOSO thấu hiểu nhu cầu doanh nghiệp, cung cấp giải pháp tiết kiệm nhất!',
     },
     {
         icon: <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -128,19 +128,12 @@ const WhyChooseFosoSection = () => {
             sectionRef.current?.removeEventListener("mouseleave", handleMouseLeave);
         };
     }, []);
-    // Thuy Do
-    // Write note ...
-    // mong muốn cục gradient chuyển động khi di chuyển cursor và scroll xuống thì mới toả ra như section jumbotron CTA (ảnh kế bên) ở link ref này:
-    // https://rootly.com/
-
-    // tham khảo thêm hiệu ứng 4 cards di chuyển như trong link ref này:
-    // https://ai.humbleteam.com/
 
     return (
         <section className="custom-padding-section">
-            <div className="custom-container flex lg:flex-row flex-col lg:items-center gap-6 ">
+            <div className="custom-container flex lg:flex-row flex-col items-center gap-6 ">
                 <div className='w-full lg:max-w-[39%] max-w-full flex flex-col 3xl:gap-8 gap-6 overflow-hidden'>
-                    <h2 className="text-title-section-small font-bold space-x-2">
+                    <h2 className="text-title-section-small font-bold space-x-2 lg:text-start text-center">
                         <span className="text-[#050505] font-extrabold capitalize">Lý Do Nên Chọn</span>
                         <span
                             className="font-extrabold"
@@ -155,13 +148,13 @@ const WhyChooseFosoSection = () => {
                     </h2>
 
                     <div className='3xl:space-y-6 space-y-4'>
-                        <p className="text-base-default text-[#33404A] font-medium 3xl:max-w-[65%] lg:max-w-[75%] max-w-full">
+                        <p className="text-base-default text-[#33404A] font-medium 3xl:max-w-[65%] lg:max-w-[75%] max-w-full lg:text-start text-center">
                             Công nghệ hiện đại - Hỗ trợ chuyên sâu - Thành công bền vững với FOSO
                         </p>
 
-                        <div className='pb-10'>
-                            {
-                                !isVisibleTablet &&
+                        {
+                            !isVisibleTablet &&
+                            <div className='pb-10'>
                                 <ButtonAnimation
                                     icon={
                                         <div className='xl:size-6 size-5 flex-shrink-0'>
@@ -205,11 +198,10 @@ const WhyChooseFosoSection = () => {
                                         ],
                                     }}
                                 />
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
                 </div>
-
 
                 {/* Nội dung các lợi ích */}
                 <div
@@ -236,7 +228,7 @@ const WhyChooseFosoSection = () => {
                                     }`}
                             >
                                 <WhyCard
-                                //  linearImageColor={"linear-gradient(270deg, #9DFFB3 0%, #1AA37A 100%)"}
+                                    //  linearImageColor={"linear-gradient(270deg, #9DFFB3 0%, #1AA37A 100%)"}
                                     linearImageColor={"linear-gradient(270deg, #9DFFB3 0%, #1AA37A 32%, #1AA37A 61.5%, #9DFFB3 100%)"}
                                     {...value}
                                 />

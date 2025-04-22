@@ -25,8 +25,8 @@ const FeatureSecond = (props: Props) => {
                     <Image
                         src="/background/ui/fmrp/features/test-4.png"
                         alt="Đa Biến Thể & LOT - DATE"
-                        width={700}
-                        height={650}
+                        width={1920}
+                        height={1080}
                         className="size-full object-contain [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
                     />
                 </AnimatedReveal>
@@ -59,7 +59,7 @@ const FeatureSecond = (props: Props) => {
                             </p>
 
                             <Link
-                                href="#"
+                                href="https://bom.so/mrp"
                                 className="inline-flex items-center justify-between gap-2 text-base-default-feature text-[#0375F3] max-w-full hover:text-[#0375F3]/80 custom-transition"
                             >
                                 <div className='font-semibold lg:max-w-[85%] max-w-full'>
@@ -88,7 +88,7 @@ const FeatureSecond = (props: Props) => {
                             </p>
 
                             <Link
-                                href="#"
+                                href="https://bom.so/mrp"
                                 className="inline-flex items-center gap-2 text-base-default-feature text-[#0375F3] hover:text-[#0375F3]/80 custom-transition"
                             >
                                 <div className='font-semibold lg:max-w-[85%] max-w-full'>

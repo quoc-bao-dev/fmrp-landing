@@ -18,6 +18,7 @@ const AvatarCustom = ({ classNameContainer, classImage, classFallback, avatar }:
                 width={200}
                 height={200}
                 src={avatar}
+                loading='lazy'
                 alt="@avatar"
                 className={`${classImage} object-cover size-full rounded-full aspect-square`}
             />
@@ -28,6 +29,7 @@ const AvatarCustom = ({ classNameContainer, classImage, classFallback, avatar }:
                     // src='/avatar/avatar_default.png'
                     src={avatar || '/avatar/avatar_default.png'}
                     alt="@avatar"
+                    loading='lazy'
                     className={`${classFallback} ${isLoaded ? 'blur-0' : 'blur-md'}  object-cover size-full rounded-full`}
                     onLoad={() => setIsLoaded(true)}
                 />

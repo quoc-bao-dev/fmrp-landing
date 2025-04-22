@@ -128,7 +128,7 @@ const ServicePresentationSection = (props: Props) => {
                                             spaceBetween: 60,
                                         }
                                     }}
-                                    className='custom-swiper-pagination md:h-[440px] h-[460px] rounded-3xl'
+                                    className='custom-swiper-pagination md:h-[440px] h-[480px] rounded-3xl'
                                     allowTouchMove={true}
                                 >
                                     {

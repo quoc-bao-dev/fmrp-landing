@@ -33,8 +33,8 @@ const FeatureFour = (props: Props) => {
                     <Image
                         src="/background/ui/fmrp/features/test-6.png"
                         alt="Đa Biến Thể & LOT - DATE"
-                        width={700}
-                        height={650}
+                        width={1920}
+                        height={1080}
                         className="size-full object-contain [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.3))]"
                     />
                 </AnimatedReveal>
@@ -49,7 +49,7 @@ const FeatureFour = (props: Props) => {
                     <h2 className="text-title-section-feature font-extrabold text-[#25387A]">Thảo Luận & Truy Xuất Lịch Sử</h2>
                 }
 
-                <div className='grid grid-cols-2 3xl:gap-14 gap-10'>
+                <div className='grid grid-cols-2 3xl:gap-10 gap-8'>
                     <div className="flex items-start gap-2 lg:col-span-1 col-span-2">
                         <div className="flex-shrink-0 mt-1">
                             <span className="inline-flex items-center justify-center 3xl:size-6 size-5 text-[#10805B] rounded-sm">
@@ -67,7 +67,7 @@ const FeatureFour = (props: Props) => {
                             </p>
 
                             <Link
-                                href="#"
+                                href="https://bom.so/mrp"
                                 className="inline-flex items-center justify-between gap-2 text-base-default-feature text-[#0375F3] max-w-full hover:text-[#0375F3]/80 custom-transition"
                             >
                                 <div className='font-semibold lg:max-w-[85%] max-w-full'>
@@ -96,7 +96,7 @@ const FeatureFour = (props: Props) => {
                             </p>
 
                             <Link
-                                href="#"
+                                href="https://bom.so/mrp"
                                 className="inline-flex items-center gap-2 text-base-default-feature text-[#0375F3] hover:text-[#0375F3]/80 custom-transition"
                             >
                                 <div className='font-semibold lg:max-w-[85%] max-w-full'>

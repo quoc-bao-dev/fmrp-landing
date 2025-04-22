@@ -9,7 +9,7 @@ const AboutVisionSection = (props: Props) => {
         <div className='custom-padding-section'>
             <div className='custom-container'>
                 <div className='xl:max-w-5xl lg:max-w-4xl mx-auto flex lg:flex-row flex-col lg:items-center 3xl:gap-16 gap-14 lg:px-6 '>
-                    <div className='flex flex-col 3xl:gap-8 gap-6 lg:w-[45%] w-full'>
+                    <div className='flex flex-col lg:items-start items-center 3xl:gap-8 gap-6 lg:w-[45%] w-full'>
                         <h2 className="text-title-section-small font-bold space-x-2">
                             <span className="text-[#050505] font-extrabold capitalize">Tầm nhìn</span>
                             <span
@@ -26,7 +26,7 @@ const AboutVisionSection = (props: Props) => {
                             </span>
                         </h2>
 
-                        <p className="text-base-default text-[#33404A] font-medium max-w-full">
+                        <p className="lg:text-start text-center text-base-default text-[#33404A] font-medium max-w-full">
                             FOSO định hướng phát triển trở thành đơn vị hàng đầu trong khu vực, cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu quy trình, nâng cao hiệu suất và phát triển bền vững.
                         </p>
                     </div>

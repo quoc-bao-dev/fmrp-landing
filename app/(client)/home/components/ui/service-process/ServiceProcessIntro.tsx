@@ -25,7 +25,7 @@ const ServiceProcessIntro: React.FC = () => {
                     Foso
                 </span>
                 <span className="text-title-section-small text-[#1A2025] capitalize">
-                    vận hành tối ưu
+                    Vận hành tối ưu
                 </span>
             </AnimatedReveal>
 
@@ -33,10 +33,10 @@ const ServiceProcessIntro: React.FC = () => {
                 from={"bottom"}
                 effect="fade"
                 duration={1}
-                className="3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] 2xl:max-w-[54%] xxl:max-w-[60%] lg:max-w-[64%] md:max-w-[95%] max-w-full"
+                className="3xl:!text-xl xl:!text-lg lg:!text-base !text-base text-[#33404A] font-medium md:text-center text-start 3xl:max-w-[52%] 2xl:max-w-[54%] xxl:max-w-[60%] lg:max-w-[66%] md:max-w-[95%] max-w-full"
             >
                 <span>
-                    Khát vọng nâng tầm doanh nghiệp nhỏ – FOSO đồng hành cùng SME Việt Nam, Giúp bạn quản trị hiệu quả, bứt phá kinh doanh. Mỗi giải pháp chúng tôi mang lại là cơ hội để bạn vươn xa hơn. Đồng hành cùng doanh nghiệp Việt.
+                    Khát vọng nâng tầm doanh nghiệp nhỏ – FOSO đồng hành cùng SME Việt Nam. Giúp bạn quản trị hiệu quả, bứt phá kinh doanh. Mỗi giải pháp chúng tôi mang lại là cơ hội để bạn vươn xa hơn. Đồng hành cùng doanh nghiệp Việt.
                 </span>
             </AnimatedReveal>
         </div>

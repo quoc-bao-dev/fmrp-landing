@@ -62,7 +62,7 @@ const FeatureThird = (props: Props) => {
                 </div>
 
                 <Link
-                    href="#"
+                    href="https://bom.so/mrp"
                     className="inline-flex items-center gap-2 text-base-default text-[#0375F3] hover:text-[#0375F3]/80 custom-transition pl-[26px]"
                 >
                     <div className='font-semibold'>
@@ -87,8 +87,8 @@ const FeatureThird = (props: Props) => {
                     <Image
                         src="/background/ui/fmrp/features/test-5.png"
                         alt="Lệnh Sản Xuất & In Lệnh Trực Tiếp"
-                        width={700}
-                        height={650}
+                        width={1920}
+                        height={1080}
                         className="size-full object-contain drop-shadow-2xl"
                     />
                 </AnimatedReveal>

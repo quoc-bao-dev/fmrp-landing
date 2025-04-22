@@ -8,9 +8,9 @@ type Props = {}
 const CoreValueSection = (props: Props) => {
 
     return (
-        <div className='custom-padding-section'>
+        <div className='custom-padding-section relative'>
             <div
-                className='custom-container sticky top-0 z-10 2xl:pt-32 pt-28 3xl:pb-10 pb-8 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'
+                className='custom-container sticky top-0 z-10 2xl:pt-32 lg:pt-28 3xl:pb-10 pb-8 bg-white flex flex-col items-center justify-center 3xl:gap-6 gap-4'
                 style={{
                     WebkitMaskImage: "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 10%)"
                 }}

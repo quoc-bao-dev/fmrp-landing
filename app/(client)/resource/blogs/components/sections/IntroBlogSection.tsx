@@ -146,7 +146,7 @@ const IntroBlogSection = (props: Props) => {
                 </div>
 
                 {/* Nội dung chính */}
-                <div className="flex flex-col items-center justify-center gap-4 w-full h-full relative lg:pt-0 md:pt-20 pt-28">
+                <div className="flex flex-col items-center justify-center gap-4 w-full h-full relative lg:pt-0 md:pt-20 pt-10">
                     <h2 className="3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[27px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[40px] tracking-normal text-center font-normal space-x-2 capitalize md:max-w-full max-w-[85%]">
                         <span className='space-x-2'>
                             <AnimatedTitle className='text-[#050505] font-normal' heroPerTitle={heroPerTitle1} />

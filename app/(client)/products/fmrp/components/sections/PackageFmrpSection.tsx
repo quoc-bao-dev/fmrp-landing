@@ -14,6 +14,7 @@ import Image from 'next/image'
 import { useResizeStore } from '@/stores/useResizeStore'
 import FosoOriginIcon2 from '../../../../../../components/icons/social-media/FosoOriginIcon2';
 import PlanPackageCard from '@/components/common/card/plan/PlanPackageCard'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -146,10 +147,12 @@ const PackageFmrpSection = (props: Props) => {
                 <div className="grid grid-cols-2 2xl:w-[65%] lg:w-[80%] w-full gap-5">
                     {
                         dataPackage && dataPackage?.map((plan, index) => (
-                            <PlanPackageCard
+                            <Link
                                 key={`plan-${index}`}
-                                {...plan}
-                            />
+                                href="/products/bang-gia-fmrp"
+                            >
+                                <PlanPackageCard {...plan} />
+                            </Link>
                         ))
                     }
                 </div>

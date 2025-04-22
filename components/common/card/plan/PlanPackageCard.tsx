@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import { motion } from 'framer-motion'
 import { playwrite_is_sans } from "@/utils/fonts/fontUtils";
+import { useRouter } from "next/navigation";
 
 type Props = {
     className?: string

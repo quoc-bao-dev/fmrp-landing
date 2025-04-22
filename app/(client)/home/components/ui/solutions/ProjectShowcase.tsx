@@ -47,6 +47,7 @@ const categories: Category[] = [
 ]
 
 const ProjectShowcase = () => {
+    const { ref, inView } = useInView({ triggerOnce: false, threshold: 1 });
     const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
     // Theo dõi khi component xuất hiện trong viewport
 
@@ -83,16 +84,19 @@ const ProjectShowcase = () => {
         },
     }
 
+    console.log('inView', inView);
+
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 xl:py-10 py-4 w-full h-full overflow-x-hidden relative z-10">
             {/* Danh mục bên trái */}
-            <AnimatedReveal effect="fade" className="xl:col-span-6 lg:col-span-5 col-span-full h-full flex lg:flex-col lg:justify-center     lg:gap-8 gap-8 lg:order-1 order-2 overflow-x-auto">
+            <AnimatedReveal effect="fade" className="xl:col-span-6 lg:col-span-5 col-span-full h-full flex lg:flex-col lg:justify-center lg:gap-8 gap-8 lg:order-1 order-2 overflow-x-auto scroll-smooth snap-x snap-mandatory">
                 {
                     categories && categories.map((item, index) => (
                         <motion.div
                             key={`category-${item.id}`}
                             ref={(el) => { categoryRefs.current[index] = el }} // Gán ref cho từng item
-                            className={`relative flex items-center gap-2 cursor-pointer px-2 pt-2 pb-4 3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] transition-all duration-300 w-fit text-nowrap
+                            className={`snap-start w-fit relative flex items-center gap-2 cursor-pointer px-2 pt-2 pb-4 3xl:text-2xl xl:text-xl lg:text-lg text-lg !tracking-[2%] transition-all duration-300 text-nowrap
                                     ${selectedCategory.id === item.id
                                     ? "font-semibold text-[#33404A]"
                                     : "text-[#99B2C6] hover:text-[#33404A] font-normal"
@@ -154,8 +158,9 @@ const ProjectShowcase = () => {
                 effect="fade"
                 className='xl:col-span-10 lg:col-span-11 col-span-full lg:order-2 order-1 w-full lg:h-full h-fit aspect-video relative overflow-hidden'
             >
-                <div >
+                <div ref={ref} >
                     <Swiper
+
                         modules={[Autoplay, Pagination]}
                         direction={isVisibleTablet ? "horizontal" : "vertical"}
                         slidesPerView={isVisibleTablet ? 1 : 1.2} // Hiện một hình đầy đủ + 200px của hình tiếp theo
@@ -176,17 +181,18 @@ const ProjectShowcase = () => {
                                 const isFirstHalf = newIndex < Math.floor(categories.length / 2);
 
                                 // Cuộn đến category đang active trên mobile
-                                // if (categoryRefs.current[newIndex]) {
-                                //     categoryRefs.current[newIndex]?.scrollIntoView({
-                                //         behavior: "smooth",
-                                //         block: "nearest",
-                                //         inline: isFirstHalf ? "nearest" : "nearest"
-                                //     });
-                                // }
+                                if (inView && categoryRefs.current[newIndex]) {
+                                    categoryRefs.current[newIndex]?.scrollIntoView({
+                                        behavior: "smooth",
+                                        block: "nearest",
+                                        inline: isFirstHalf ? "nearest" : "nearest"
+                                    });
+                                }
                             }
                         }}
-                        autoplay={!isVisibleTablet ? { delay: 4000, disableOnInteraction: false } : false}
-                        className="custom-swiper-pagination2 w-full aspect-video"
+                        autoplay={!isVisibleTablet ? { delay: 4000, disableOnInteraction: false } : true}
+                        // autoplay={!isVisibleTablet ? { delay: 4000, disableOnInteraction: false } : false}
+                        className="custom-swiper-pagination w-full aspect-video"
                         style={{ WebkitMaskImage: isVisibleTablet ? "" : "linear-gradient(0deg, rgba(249, 251, 252, 0.00) 1%, #F9FBFC 20%)" }}
                         loop
                         grabCursor
@@ -222,4 +228,4 @@ const ProjectShowcase = () => {
     )
 }
 
-    export default React.memo(ProjectShowcase)
+export default React.memo(ProjectShowcase)

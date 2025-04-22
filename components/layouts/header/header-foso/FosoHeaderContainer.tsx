@@ -250,6 +250,7 @@ const FosoHeaderContainer = () => {
                         // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
                         // shouldShowHeader = pathname !== "/";
                         // shouldShowHeader = false; // Ẩn header khi ở đầu trang
+                        shouldShowHeader = true;
                     } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
                         shouldShowHeader = false; // Ẩn header khi cuộn xuống
                         forceCheckScroll.current = false; // Reset flag sau lần đầu tiên kiểm tra
@@ -325,6 +326,17 @@ const FosoHeaderContainer = () => {
             }
         };
     }, [handleScroll, resetInactivityTimer, pathname]);
+
+    // ✨ BỔ SUNG THÊM EFFECT DƯỚI ĐÂY
+    useEffect(() => {
+        isHeaderVisible.current = true;
+        controls.start({
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.3 }
+        });
+    }, [pathname]);
+
 
     useEffect(() => {
         const body = document.body;

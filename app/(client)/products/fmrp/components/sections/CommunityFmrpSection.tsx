@@ -187,7 +187,7 @@ const CommunityFmrpSection = (props: Props) => {
 
                     <div className='flex flex-col 3xl:gap-8 gap-6 lg:mt-0 mt-6 md:px-0 px-6'>
                         <div className="2xl:max-w-[50%] xl:max-w-[55%] lg:max-w-[60%] max-w-full 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-bold">
-                            Gia nhập cộng đồng FMRP Việt – Kết nối, chia sẻ, cùng phát triển!
+                            Gia nhập cộng đồng FMRP Online – Kết nối, chia sẻ, cùng phát triển!
                         </div>
 
                         <ButtonAnimationNew

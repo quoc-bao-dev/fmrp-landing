@@ -59,7 +59,7 @@ const contactData: ICardContactItem[] = [
         title: "Địa chỉ",
         content: [
             { label: "Trụ sở đăng ký:", value: "68 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM" },
-            { label: "Văn phòng làm việc:", value: "VCC Building, số 69/1-3 Nguyễn Gia Trí, Phường 25, Quận Bình Thạnh, TP.HCM" },
+            { label: "Văn phòng làm việc:", value: "VCC Building, số 69/1/3 Nguyễn Gia Trí, Phường 25, Quận Bình Thạnh, TP.HCM" },
         ],
         type: "address"
     },
@@ -124,7 +124,7 @@ const serviceList = [
 
 const FormContactSection = (props: Props) => {
     return (
-        <div className='custom-padding-section'>
+        <div className='3xl:py-24 xl:py-20 lg:py-16 pb-8'>
             <div className='custom-container flex flex-col 3xl:gap-12 gap-10'>
                 <h2 className="3xl:text-[36px] 2xl:text-[28px] xxl:text-[28px] xl:text-[26px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] font-bold space-x-2 text-center">
                     <span

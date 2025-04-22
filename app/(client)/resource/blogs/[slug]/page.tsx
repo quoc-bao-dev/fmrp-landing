@@ -227,17 +227,18 @@ const DetailBlog = () => {
                             <div className="article-content">
                                 <p
                                     className="
-                                    text-[#33404A] font-medium text-justify
+                                    text-[#33404A] font-medium
+                                    
                                     [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4
                                     [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3
                                     [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:mt-5 [&_h3]:mb-2
                                     [&_h4]:text-xl [&_h4]:font-medium [&_h4]:mt-4 [&_h4]:mb-1
                                     [&_h5]:text-lg [&_h5]:font-medium [&_h5]:mt-3 [&_h5]:mb-1.5
                                     [&_h6]:text-base [&_h6]:font-medium [&_h6]:mt-2 [&_h6]:mb-1
-                                    3xl:[&_p]:text-lg [&_p]:text-base [&_p]:font-normal [&_p]:mt-2 [&_p]:mb-1 [&_p]:!leading-7
+                                    3xl:[&_p]:text-lg [&_p]:text-base [&_p]:font-normal [&_p]:mt-2 [&_p]:mb-1 
                                     [&_img]:mx-auto [&_img]:rounded-md [&_img]:my-6
                                     [&_figure]:flex [&_figure]:justify-center [&_figure]:my-6
-                                    [&_a:has(img)]:w-full [&_a:has(img)]:inline-block
+                                    [&_a]:w-fit [&_a:has(img)]:w-full [&_a:has(img)]:inline-block
                                   [&_a:not(:has(img))]:text-blue-600 [&_a:not(:has(img))]:underline
                                     [&_table]:w-full [&_table]:border-collapse [&_table]:my-6 [&_table]:text-sm
                                     [&_table]:border [&_table]:border-gray-300

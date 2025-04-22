@@ -39,11 +39,11 @@ const questions: any[] = [
         question: "Dữ liệu được bảo mật như thế nào?",
         answer: "Mã hóa dữ liệu được sử dụng để giữ cho dữ liệu an toàn trong khi sử dụng phần mềm."
     },
-    {
-        value: "item-7",
-        question: "FMRP có thể tuỳ chỉnh được hay không?",
-        answer: "FMRP có thể được tuỳ chỉnh và mở rộng cho phù hợp với tính năng đặc thù cho từng doanh nghiệp."
-    },
+    // {
+    //     value: "item-7",
+    //     question: "FMRP có thể tuỳ chỉnh được hay không?",
+    //     answer: "FMRP có thể được tuỳ chỉnh và mở rộng cho phù hợp với tính năng đặc thù cho từng doanh nghiệp."
+    // },
 ];
 
 const QuestionsFmrpSection = (props: Props) => {

@@ -26,7 +26,7 @@ const IntroContactSection = (props: Props) => {
     const { theme, setTheme } = useTheme();
 
     return (
-        <div className='custom-padding-section lg:h-full h-[80svh] relative'>
+        <div className='3xl:py-24 xl:py-20 lg:py-16 pt-8 lg:h-full h-[75svh] relative'>
             {/* <button onClick={() => { setTheme("fmrp") }}>
                 Hello
             </button> */}
@@ -62,18 +62,18 @@ const IntroContactSection = (props: Props) => {
             }
 
             {/* Container chính */}
-            <div className='custom-container flex flex-col items-center justify-between gap-2 h-full relative z-[2]'>
+            <div className='custom-container flex flex-col items-center lg:justify-between gap-2 h-full relative z-[2]'>
                 <div className='lg:pt-12 pt-20 3xl:pb-16 lg:pb-10'>
                     <CustomBreadcrumb items={breadcrumbItems} />
                 </div>
 
                 {/* Nội dung chính */}
-                <div className="flex flex-col items-center justify-center w-full h-full relative lg:pt-0 md:pt-20 pt-28">
+                <div className="flex flex-col items-center justify-center w-full h-full relative lg:pt-0 md:pt-20">
                     <h2 className="text-title-section font-normal space-x-2">
                         <span className="relative flex justify-center">
                             {/* Background trượt từ trái sang phải */}
                             <motion.span
-                                className="absolute bottom-[16%] bg-[#A3EED6] rounded-full h-[26%] w-[95%]"
+                                className="absolute lg:bottom-[16%] bottom-[10%] bg-[#A3EED6] rounded-full h-[26%] lg:w-[95%] w-[98%]"
                                 initial={{ clipPath: "inset(0% 100% 0% 0%)", opacity: 0 }} // Bắt đầu ẩn
                                 animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }} // Hiện dần ra
                                 transition={{

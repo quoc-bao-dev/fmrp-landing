@@ -14,7 +14,7 @@ type Props = {}
 const breadcrumbItems = [
     { label: "Trang chủ", href: "/" },
     { label: "...", href: "/" },
-    { label: "FMRP", href: "/" },
+    { label: "FMRP", href: "/products/phan-mem-quan-ly-san-xuat-fmrp" },
     { label: "Bảng giá" }
 ];
 

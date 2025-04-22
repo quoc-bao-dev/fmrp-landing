@@ -114,7 +114,6 @@ const FmrpBenefitsSection = () => {
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Có Thể Giúp Gì Cho Các Nhà Sản Xuất?</span>
                     </h2>
                 </div>
-
                 {/* Nội dung các lợi ích */}
                 <div
                     ref={sectionRef}
@@ -128,7 +127,7 @@ const FmrpBenefitsSection = () => {
                         <BlurredBackgroundDynamic
                             x={mousePosition.x}
                             y={mousePosition.y}
-                            className="3xl:top-10 top-20 right-24"
+                            className=" 3xl:top-10 top-20 right-24"
                             background='linear-gradient(90deg, #CCFFEC 0%, #CCE5FF 100%)'
                         />
                     )}

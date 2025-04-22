@@ -91,7 +91,7 @@ const CoreValueStep = (props: Props) => {
                                 className={`${index !== steps.length - 1 ? "3xl:pt-20 lg:pt-10 pt-12 lg:h-[80vh]" : " pb-10"}  flex lg:flex-row flex-col lg:items-start xl:gap-20 gap-16 w-full max-w-full lg:pl-20 pl-8 relative`}
                             >
                                 {!isVisibleTablet && (index !== steps.length - 1) &&
-                                    <BlurredBackground className='top-0 -right-[90%] z-[1]' />
+                                    <BlurredBackground className='top-20 -right-[90%] z-40' />
                                 }
 
                                 <div className={`w-full 2xl:max-w-[50%] lg:max-w-[45%] max-w-full flex items-center justify-center lg:order-1 order-2`}>

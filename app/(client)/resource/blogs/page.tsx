@@ -7,7 +7,7 @@ import CTABlogSection from './components/sections/CTABlogSection'
 
 type Props = {}
 
-const Fpos = (props: Props) => {
+const Blogs = (props: Props) => {
 
     return (
         <main className='min-h-screen'>
@@ -18,4 +18,4 @@ const Fpos = (props: Props) => {
     )
 }
 
-export default Fpos
+export default Blogs
