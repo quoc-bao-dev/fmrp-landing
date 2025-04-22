@@ -73,12 +73,18 @@ export default function SocialShare({ classNameContainer, classNameSocial, isVis
         if (!info) return;
 
         const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
+        console.log('currentUrl',currentUrl);
+        
         const left = window.screen.width / 2 - info.width / 2;
         const top = window.screen.height / 2 - info.height / 2;
 
         // 🧠 Chỉ append URL nếu nền tảng yêu cầu
         const shouldAppendUrl = ["zalo", "reddit", "twitter", "facebook", "linkedin"].includes(platform);
         const finalUrl = shouldAppendUrl ? `${info.url}${encodeURIComponent(currentUrl)}` : info.url;
+
+        console.log('finalUrl', finalUrl);
+
 
         // const shouldAppendUrl = ["zalo", "reddit", "twitter"].includes(platform);
         // const finalUrl = shouldAppendUrl ? `${info.url}${encodeURIComponent(currentUrl)}` : info.url;
