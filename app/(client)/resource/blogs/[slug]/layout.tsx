@@ -6,27 +6,6 @@ import { Metadata, ResolvingMetadata } from "next";
 
 // export const generateMetadata = async () => createMetadata('home');
 
-export async function generateMetadata(
-    { params }: { params: { slug: string } },
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-    console.log('params', params.slug);
-    try {
-        const { data } = await apiBlogs.getDetailBlog(params.slug);
-        console.log('data', data);
-
-        const canonicalUrl = `${process.env.NEXT_PUBLIC_URL_WEBSITE}/resource/blogs/${params.slug}`;
-
-        return GenerateMetadataFromData(data?.data, canonicalUrl);
-    } catch (error) {
-        console.error('generateMetadata error:', error);
-        return {
-            title: 'Không tìm thấy',
-            description: 'Bài viết bạn yêu cầu không tồn tại.',
-        };
-    }
-}
-
 export default function BlogDetailLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return children
 }
