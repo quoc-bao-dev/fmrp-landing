@@ -1,8 +1,8 @@
 // lib/generateBlogMetadata.ts
 import he from 'he';
-import type { Metadata } from 'next';
+// import type { Metadata } from 'next';
 
-export function GenerateMetadataFromData(data: any, canonicalUrl: string): Metadata {
+export function GenerateMetadataFromData(data: any, canonicalUrl: string) {
     console.log('data', data);
 
     const title = he.decode(data?.title || 'Bài viết blog');
