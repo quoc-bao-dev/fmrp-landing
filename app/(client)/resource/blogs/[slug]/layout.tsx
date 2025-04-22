@@ -10,7 +10,7 @@ interface LayoutProps {
     params: { slug: string }; // Thêm params nếu cần
 }
 
-export async function generateMetadata({ params }: { params: { slug: any } }, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }, parent: ResolvingMetadata): Promise<Metadata> {
     try {
         const { data } = await apiBlogs.getDetailBlog(params.slug);
 
