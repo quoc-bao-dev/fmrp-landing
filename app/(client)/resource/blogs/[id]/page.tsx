@@ -106,7 +106,7 @@ const DetailBlog = () => {
 
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
-    const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } = useGetDataDetailBlog({ slug: idBlog?.slug })
+    const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } = useGetDataDetailBlog({ slug: idBlog?.id })
 
     const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } = useBlogsList({ page: 1, limit: 3, idBlog: dataBlogDetail?.id, enabled: !!dataBlogDetail?.id })
 
