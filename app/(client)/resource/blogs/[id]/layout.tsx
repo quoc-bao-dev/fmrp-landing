@@ -5,11 +5,6 @@ import apiBlogs from "@/services/blogs/blogs.services";
 import { Metadata, ResolvingMetadata } from 'next'
 import { ReactNode } from "react";
 
-interface LayoutProps {
-    children: ReactNode;
-    params: { id: string }; // Thêm params nếu cần
-}
-
 export async function generateMetadata({ params }: any) {
     try {
         const { id } = await params
@@ -27,7 +22,6 @@ export async function generateMetadata({ params }: any) {
         };
     }
 }
-
 
 export default function BlogDetailLayout({
     children,
