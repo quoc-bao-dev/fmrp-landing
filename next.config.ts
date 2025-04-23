@@ -45,8 +45,8 @@ const nextConfig: NextConfig = {
                 destination: '/home',
             },
             {
-                source: '/products/phan-mem-quan-ly-san-xuat-fmrp',
-                destination: '/products/fmrp',
+                source: '/bang-gia-fmrp',
+                destination: '/products/bang-gia-fmrp',
             },
             {
                 source: '/phan-mem-quan-ly-san-xuat-fmrp', // vietsublink
@@ -57,7 +57,23 @@ const nextConfig: NextConfig = {
                 destination: '/products/fmrp',
             },
             {
-                source: '/hosting-server-rental-services', // vietsublink
+                source: '/fpos', // ensublink
+                destination: '/products/fpos',
+            },
+            {
+                source: '/thiet-ke-app-mobile', // ensublink
+                destination: '/products/thiet-ke-app-mobile',
+            },
+            {
+                source: '/thiet-ke-website', // ensublink
+                destination: '/products/thiet-ke-website',
+            },
+            {
+                source: '/hosting-server-rental-services', // ensublink
+                destination: '/products/thue-hosting-server',
+            },
+            {
+                source: '/thue-hosting-server', // ensublink
                 destination: '/products/thue-hosting-server',
             },
             {
@@ -81,6 +97,14 @@ const nextConfig: NextConfig = {
                 destination: '/resource/cau-chuyen-khach-hang',
             },
             {
+                source: '/blogs',
+                destination: '/resource/blogs',
+            },
+            {
+                source: '/blogs/:slug',
+                destination: '/resource/blogs/:slug',
+            },
+            {
                 source: '/lien-he',
                 destination: '/contact-us',
             },
@@ -100,12 +124,57 @@ const nextConfig: NextConfig = {
             },
             {
                 source: '/products',
-                destination: '/products/phan-mem-quan-ly-san-xuat-fmrp',
+                destination: '/phan-mem-quan-ly-san-xuat-fmrp',
+                permanent: true
+            },
+            {
+                source: '/products/fmrp',
+                destination: '/phan-mem-quan-ly-san-xuat-fmrp',
+                permanent: true
+            },
+            {
+                source: '/products/bang-gia-fmrp',
+                destination: '/bang-gia-fmrp',
+                permanent: true
+            },
+            {
+                source: '/products/fpos',
+                destination: '/fpos',
+                permanent: true
+            },
+            {
+                source: '/products/thiet-ke-app-mobile',
+                destination: '/thiet-ke-app-mobile',
+                permanent: true
+            },
+            {
+                source: '/products/thiet-ke-website',
+                destination: '/thiet-ke-website',
+                permanent: true
+            },
+            {
+                source: '/products/thue-hosting-server',
+                destination: '/thue-hosting-server',
                 permanent: true
             },
             {
                 source: '/resource',
-                destination: '/resource/projects',
+                destination: '/du-an',
+                permanent: true
+            },
+            {
+                source: '/resource/du-an',
+                destination: '/du-an',
+                permanent: true
+            },
+            {
+                source: '/resource/cau-chuyen-khach-hang',
+                destination: '/cau-chuyen-khach-hang',
+                permanent: true
+            },
+            {
+                source: '/resource/blogs',
+                destination: '/blogs',
                 permanent: true
             },
         ]

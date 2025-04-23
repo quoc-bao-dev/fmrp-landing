@@ -41,7 +41,8 @@ const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Về chúng tôi",
-        link: "/about-us",
+        link: "/ve-chung-toi",
+        active: ['about-us', 've-chung-toi'],
         type: "default",
         visible: true,
     },
@@ -50,7 +51,7 @@ const dataHeader: IMenuHeader[] = [
         name: "Giải Pháp",
         link: "products",
         type: "products",
-        // type: ["products", "services"],
+        active: ['thue-hosting-server', 'bang-gia-fmrp', 'phan-mem-quan-ly-san-xuat-fmrp'],
         description: "Dịch vụ công nghệ giúp tối ưu vận hành doanh nghiệp.",
         subMenu: {
             tabs: ["Sản phẩm", "Dịch vụ"],
@@ -62,7 +63,7 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "5",
                             name: "FMRP - Quản Lý Xưởng Online",
-                            link: "/products/phan-mem-quan-ly-san-xuat-fmrp",
+                            link: "/phan-mem-quan-ly-san-xuat-fmrp",
                             icon: <FosoOriginIcon className='size-full rounded-[10px]' />,
                             description: "Phần Mềm Sản Xuất Tối Ưu Tinh Gọn & Thông Minh",
                             typeIcon: "default",
@@ -114,7 +115,7 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "4",
                             name: "Thuê Hosting & Server",
-                            link: "/products/thue-hosting-server",
+                            link: "/thue-hosting-server",
                             icon: <CloudArrowUpIconLinear className='size-full' />,
                             description: "Lưu trữ, sao lưu, bảo mật dữ liệu doanh nghiệp",
                             typeIcon: "default",
@@ -132,6 +133,7 @@ const dataHeader: IMenuHeader[] = [
         link: "resource",
         type: "resource",
         description: "Thông tin và tài liệu hữu ích từ khách hàng.",
+        active: ['du-an','projects', 'cau-chuyen-khach-hang','customer-stories', 'blogs'],
         subMenu: {
             tabs: ["Khách hàng", "Nâng cao"],
             activeTab: "Khách hàng",
@@ -142,7 +144,7 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "8",
                             name: "Dự án",
-                            link: "/resource/du-an",
+                            link: "/du-an",
                             icon: <FolderStarIconLinear className='size-full' />,
                             description: "Các dự án đã triển khai",
                             typeIcon: "default",
@@ -151,7 +153,7 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "9",
                             name: "Câu chuyện khách hàng",
-                            link: "/resource/cau-chuyen-khach-hang",
+                            link: "/cau-chuyen-khach-hang",
                             icon: <UsersThreeIconLinear className='size-full' />,
                             description: "Chia sẻ từ khách hàng",
                             typeIcon: "default",
@@ -174,7 +176,7 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "11",
                             name: "Blog",
-                            link: "/resource/blogs",
+                            link: "/blogs",
                             // link: "https://fososoft.vn/fblog/",
                             icon: <PencilSimpleLineIconLinear className='size-full' />,
                             description: "Cập nhật tin tức, kiến thức",
@@ -190,7 +192,8 @@ const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Liên hệ",
-        link: "/contact-us",
+        link: "/lien-he",
+        active: ['contact-us', 'lien-he'],
         type: "default",
         visible: true,
     },

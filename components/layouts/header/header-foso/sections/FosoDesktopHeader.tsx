@@ -177,7 +177,13 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
     //     }
     //     return pathname.includes(link);
     // };
-    
+
+    const checkIsActive = (pathname: string, keywords: string | string[]): boolean => {
+        if (Array.isArray(keywords)) {
+            return keywords.some(keyword => pathname.includes(keyword));
+        }
+        return pathname.includes(keywords);
+    };
 
     return (
         <div className="flex items-center justify-between w-full">
@@ -204,83 +210,88 @@ const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage,
                 />
             </motion.div>
 
-            
+
             <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
                 {
-                    dataHeader.map((item) => (
-                        <React.Fragment key={item.id}>
-                            {
-                                item.subMenu ?
-                                    (
-                                        <ActionTooltip
-                                            side="bottom"
-                                            align="center"
-                                            classNameContent="bg-white rounded-3xl xl:p-6 p-4"
-                                            classNameArrow="fill-white custom-arrow"
-                                            label={
-                                                <SubmenuTooltip
-                                                    subMenu={item.subMenu}
-                                                />
-                                            }
-                                            styleContent={{
-                                                boxShadow: "0px 1px 1px 2px #1018280D",
-                                            }}
-                                        >
-                                            <div
-                                                className={`${pathname.includes(item.link)
-                                                    ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] font-medium hover:text-[#10805B] hover:font-bold"
-                                                    } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
-                                            >
-                                                <span className='relative'>
-                                                    <HoverEffect
-                                                        title={item.name}
-                                                        hoverTitle={item.name}
-                                                        reverse={false}
-                                                        className={`${pathname.includes(item.link)
-                                                            ? "text-[#25272A] font-bold"
-                                                            : "text-[#25272A] hover:text-[#10805B] font-medium hover:font-bold"
-                                                            }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
-                                                    w-fit flex flex-col overflow-hidden
-                                                    `}
+                    dataHeader.map((item) => {
+                        console.log('checkIsActive(pathname, item.link): ', checkIsActive(pathname, item.active));
+
+
+                        return (
+                            <React.Fragment key={item.id}>
+                                {
+                                    item.subMenu ?
+                                        (
+                                            <ActionTooltip
+                                                side="bottom"
+                                                align="center"
+                                                classNameContent="bg-white rounded-3xl xl:p-6 p-4"
+                                                classNameArrow="fill-white custom-arrow"
+                                                label={
+                                                    <SubmenuTooltip
+                                                        subMenu={item.subMenu}
                                                     />
-                                                    {
-                                                        (pathname.includes(item.link) && item.link !== "/") &&
-                                                        <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
-                                                    }
-                                                </span>
-                                                <IoIosArrowDown className="size-4" />
-
-                                            </div>
-                                        </ActionTooltip>
-                                    )
-                                    :
-                                    (
-                                        <Link
-                                            href={item.link}
-                                            className='inline-flex relative'
-                                        >
-                                            <HoverEffect
-                                                title={item.name}
-                                                hoverTitle={item.name}
-                                                reverse={false}
-                                                className={`${pathname.includes(item.link)
-                                                    ? "text-[#25272A] font-bold"
-                                                    : "text-[#25272A] hover:text-[#10805B] font-medium hover:font-bold"
-                                                    }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
+                                                }
+                                                styleContent={{
+                                                    boxShadow: "0px 1px 1px 2px #1018280D",
+                                                }}
+                                            >
+                                                <div
+                                                    className={`${checkIsActive(pathname, item.active)
+                                                        ? "text-[#25272A] font-bold"
+                                                        : "text-[#25272A] font-medium hover:text-[#10805B] hover:font-bold"
+                                                        } flex items-center text-sm-default gap-2 px-2 cursor-pointer custom-transition relative`}
+                                                >
+                                                    <span className='relative'>
+                                                        <HoverEffect
+                                                            title={item.name}
+                                                            hoverTitle={item.name}
+                                                            reverse={false}
+                                                            className={`${checkIsActive(pathname, item.active)
+                                                                ? "text-[#25272A] font-bold"
+                                                                : "text-[#25272A] hover:text-[#10805B] font-medium hover:font-bold"
+                                                                }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
                                                     w-fit flex flex-col overflow-hidden
                                                     `}
-                                            />
+                                                        />
+                                                        {
+                                                            (checkIsActive(pathname, item.active) && item.link !== "/") &&
+                                                            <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                        }
+                                                    </span>
+                                                    <IoIosArrowDown className="size-4" />
 
-                                            {
-                                                (pathname.includes(item.link) && item.link !== "/") &&
-                                                <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
-                                            }
-                                        </Link>
-                                    )
-                            }
-                        </React.Fragment>
-                    ))
+                                                </div>
+                                            </ActionTooltip>
+                                        )
+                                        :
+                                        (
+                                            <Link
+                                                href={item.link}
+                                                className='inline-flex relative'
+                                            >
+                                                <HoverEffect
+                                                    title={item.name}
+                                                    hoverTitle={item.name}
+                                                    reverse={false}
+                                                    className={`${checkIsActive(pathname, item.active)
+                                                        ? "text-[#25272A] font-bold"
+                                                        : "text-[#25272A] hover:text-[#10805B] font-medium hover:font-bold"
+                                                        }  text-sm-default !tracking-[1%] px-2 py-1 cursor-pointer custom-transition capitalize relative text-nowrap
+                                                    w-fit flex flex-col overflow-hidden
+                                                    `}
+                                                />
+
+                                                {
+                                                    (checkIsActive(pathname, item.active) && item.link !== "/") &&
+                                                    <div className='absolute -bottom-2.5 left-1/2 -translate-x-1/2 size-2 rounded-full bg-[#1AD598] z-[999]' />
+                                                }
+                                            </Link>
+                                        )
+                                }
+                            </React.Fragment>
+                        )
+                    })
                 }
             </div>
 

@@ -29,7 +29,8 @@ interface IMenuHeader {
     id: string;
     name: string;
     link: string;
-    type?: "default" | "products" | "resource" ;
+    active: string[];
+    type?: "default" | "products" | "resource";
     typeLink?: string,
     description?: string;
     subMenu?: SubMenu;

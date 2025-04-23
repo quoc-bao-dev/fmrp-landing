@@ -28,7 +28,7 @@ const dataHeader: IMenuHeader[] = [
     {
         id: uuidv4(),
         name: "Bảng giá",
-        link: "/products/bang-gia-fmrp",
+        link: "/bang-gia-fmrp",
         type: "default",
         typeLink: "default",
         visible: true,
