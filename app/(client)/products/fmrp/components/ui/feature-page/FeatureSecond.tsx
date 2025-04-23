@@ -60,6 +60,7 @@ const FeatureSecond = (props: Props) => {
 
                             <Link
                                 href="https://bom.so/mrp"
+                                target='_blank'
                                 className="inline-flex items-center justify-between gap-2 text-base-default-feature text-[#0375F3] max-w-full hover:text-[#0375F3]/80 custom-transition"
                             >
                                 <div className='font-semibold lg:max-w-[85%] max-w-full'>
@@ -89,6 +90,7 @@ const FeatureSecond = (props: Props) => {
 
                             <Link
                                 href="https://bom.so/mrp"
+                                target='_blank'
                                 className="inline-flex items-center gap-2 text-base-default-feature text-[#0375F3] hover:text-[#0375F3]/80 custom-transition"
                             >
                                 <div className='font-semibold lg:max-w-[85%] max-w-full'>

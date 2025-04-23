@@ -49,8 +49,36 @@ const nextConfig: NextConfig = {
                 destination: '/products/fmrp',
             },
             {
+                source: '/phan-mem-quan-ly-san-xuat-fmrp', // vietsublink
+                destination: '/products/fmrp',
+            },
+            {
+                source: '/production-management-software-fmrp', // ensublink
+                destination: '/products/fmrp',
+            },
+            {
+                source: '/hosting-server-rental-services', // vietsublink
+                destination: '/products/thue-hosting-server',
+            },
+            {
                 source: '/gioi-thieu',
                 destination: '/about-us',
+            },
+            {
+                source: '/du-an',
+                destination: '/resource/du-an',
+            },
+            {
+                source: '/projects',
+                destination: '/resource/du-an',
+            },
+            {
+                source: '/cau-chuyen-khach-hang',
+                destination: '/resource/cau-chuyen-khach-hang',
+            },
+            {
+                source: '/customer-stories',
+                destination: '/resource/cau-chuyen-khach-hang',
             },
             {
                 source: '/lien-he',

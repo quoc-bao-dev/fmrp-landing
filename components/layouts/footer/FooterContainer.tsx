@@ -30,8 +30,8 @@ const FooterContainer = (props: Props) => {
             <div className="custom-container flex flex-col 3xl:gap-8 gap-6 pt-16 pb-12">
                 {/* Phần Logo & Slogan */}
                 <div className="flex items-center justify-between">
-                    <div className="2xl:max-w-[45%] xxl:max-w-[50%] md:max-w-[50%] max-w-[70%] 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-semibold">
-                        Bạn có ý tưởng, FOSO có Giải pháp. Hãy cùng nhau tạo nên thành công!
+                    <div className="3xl:max-w-[45%] xxl:max-w-[50%] md:max-w-[55%] max-w-[70%] 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-semibold">
+                        Bạn có ý tưởng, FOSO viết giải pháp. Hãy cùng nhau tạo nên thành công!
                     </div>
                     <FooterLogo />
                 </div>

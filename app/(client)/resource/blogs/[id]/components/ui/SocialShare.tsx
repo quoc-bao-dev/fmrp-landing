@@ -83,6 +83,7 @@ export default function SocialShare({ classNameContainer, classNameSocial, isVis
         const shouldAppendUrl = ["zalo", "reddit", "twitter", "facebook", "linkedin"].includes(platform);
         const finalUrl = shouldAppendUrl ? `${info.url}${encodeURIComponent(currentUrl)}` : info.url;
 
+        console.log('shouldAppendUrl', shouldAppendUrl);
         console.log('finalUrl', finalUrl);
 
 

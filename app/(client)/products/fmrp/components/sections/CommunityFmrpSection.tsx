@@ -165,7 +165,7 @@ const CommunityFmrpSection = (props: Props) => {
                 </div>
 
                 <div
-                    className='relative rounded-3xl 2xl:px-28 xl:px-24 lg:px-20 lg:py-20 lg:p-12 py-10 w-full overflow-hidden mt-6'
+                    className='relative rounded-3xl 2xl:px-28 xl:px-24 lg:px-16 lg:py-20 lg:p-12 py-10 w-full overflow-hidden mt-6'
                     style={{
                         background: "linear-gradient(77.74deg, #013DA0 11.85%, #0142A9 20.65%, #0148B3 29.45%, #024EBC 38.25%, #0254C5 47.05%, #025ACE 55.84%, #0261D7 64.64%, #0267E1 73.44%, #036EEA 82.24%, #0375F3 91.04%)"
                     }}
@@ -186,7 +186,7 @@ const CommunityFmrpSection = (props: Props) => {
                     }
 
                     <div className='flex flex-col 3xl:gap-8 gap-6 lg:mt-0 mt-6 md:px-0 px-6'>
-                        <div className="2xl:max-w-[50%] xl:max-w-[55%] lg:max-w-[60%] max-w-full 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-bold">
+                        <div className="3xl:max-w-[50%] 2xl:max-w-[52%] xl:max-w-[56%] lg:max-w-[58%] max-w-full 3xl:text-[36px] 2xl:text-[32px] xxl:text-[32px] xl:text-[28px] md:text-[28px] text-[20px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-white font-bold">
                             Gia nhập cộng đồng FMRP Online – Kết nối, chia sẻ, cùng phát triển!
                         </div>
 

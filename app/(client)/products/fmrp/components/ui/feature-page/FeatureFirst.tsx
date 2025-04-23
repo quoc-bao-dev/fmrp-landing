@@ -63,6 +63,7 @@ const FeatureFirst = (props: Props) => {
 
                 <Link
                     href="https://bom.so/mrp"
+                    target='_blank'
                     className="inline-flex items-center gap-2 text-base-default-feature text-[#0375F3] hover:text-[#0375F3]/80 custom-transition lg:pl-0 pl-[26px]"
                 >
                     <div className='font-semibold'>

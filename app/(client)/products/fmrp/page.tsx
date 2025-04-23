@@ -26,7 +26,6 @@ type Props = {}
 const AboutUs = (props: Props) => {
     return (
         <main className='min-h-screen relative'>
-
             <div className='relative z-[1] overflow-x-hidden'>
                 <HeroFmrpSection />
                 <ModelSection />
