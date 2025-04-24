@@ -1,8 +1,10 @@
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal'
 import BlurredBackground from '@/components/common/blur/BlurredBackground'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import React from 'react'
+
+const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}
 

@@ -1,22 +1,19 @@
-import BlurredBackground from '@/components/common/blur/BlurredBackground'
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef } from 'react'
 
 import { uuidv4 } from '@/lib/uuid';
-import MediaCard from '@/components/common/card/media/MediaCard';
-import ButtonAnimation from '@/components/common/button/ButtonAnimation';
 
-import { GoArrowUpRight } from "react-icons/go";
 import { useResizeStore } from '@/stores/useResizeStore';
 
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 import { motion } from 'framer-motion'
-import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
-import { useSheetStores } from '@/stores/useSheetStores';
 import { useRouter } from 'next/navigation';
+
+import MediaCard from '@/components/common/card/media/MediaCard';
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import BlurredBackground from '@/components/common/blur/BlurredBackground'
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 type Props = {}
 
@@ -53,13 +50,12 @@ const MediaCoverageSection = (props: Props) => {
     const { isVisibleTablet } = useResizeStore()
 
 
-    const customPagination = {
+    const customPagination = useMemo(() => ({
         clickable: true,
         renderBullet: function (index: number, className: string) {
             return `<span class=${className}></span>`
         },
-
-    }
+    }), [])
 
     return (
         <div className='relative custom-padding-section '>
@@ -144,20 +140,6 @@ const MediaCoverageSection = (props: Props) => {
                         </div>
                 }
 
-
-                {/* <ButtonAnimation
-                    type="button"
-                    title="Xem tất cả"
-                    reverse={true}
-                    icon={
-                        <div className='size-5'>
-                            <GoArrowUpRight className='size-full' />
-                        </div>
-                    }
-                    className="flex items-center gap-2 text-base-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
-                    onClick={() => { }}
-                /> */}
-
                 <ButtonAnimationNew
                     title="Xem tất cả"
                     icon={
@@ -177,7 +159,6 @@ const MediaCoverageSection = (props: Props) => {
                     }
                     onClick={() => {
                         router.push("/resource/blogs")
-                        // window.open("https://fososoft.vn/fblog/")
                     }}
                     reverse={true}
                     className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
@@ -187,7 +168,6 @@ const MediaCoverageSection = (props: Props) => {
                     }}
                 />
             </div>
-
         </div>
     )
 }

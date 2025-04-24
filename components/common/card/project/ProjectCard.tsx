@@ -1,11 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion'
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import BlurImage from '../../blur/BlurImage';
 import { useResizeStore } from '@/stores/useResizeStore';
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
 import { HiArrowUpRight } from 'react-icons/hi2';
 
 type ProjectCardProps = {

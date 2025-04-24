@@ -1,7 +1,7 @@
 import Image from "next/image";
 import moment from "moment";
 import { usePathname } from 'next/navigation';
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import Link from 'next/link';
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
@@ -18,6 +18,15 @@ type MediaCardProps = {
 
 const MediaCard = ({ media }: MediaCardProps) => {
     const pathname = usePathname()
+
+    const formattedDate = useMemo(() => moment(media.date).format("DD/MM/YYYY"), [media.date])
+
+    const categoryColorClass = useMemo(() => {
+        return dataFmrpPages.includes(pathname)
+            ? "text-[#0F4F9E] group-hover:text-[#0F4F9E]/80"
+            : "text-[#10805B] group-hover:text-[#14A76C]"
+    }, [pathname])
+
 
     return (
         <Link
@@ -40,11 +49,11 @@ const MediaCard = ({ media }: MediaCardProps) => {
 
             <div className="flex flex-col gap-2 p-4 bg-white rounded-b-3xl">
                 <div className="flex items-center justify-between">
-                    <div className="text-sm-default text-[#667F93] lg:max-w-[40%] max-w-[30%]">
-                        {moment(media?.date).format("DD/MM/YYYY")}
+                    <div className="text-sm-default text-[#667F93] lg:max-w-[40%] max-w-[30%] truncate">
+                    {formattedDate}
                     </div>
 
-                    <div className={`${dataFmrpPages.includes(pathname) ? "text-[#0F4F9E] group-hover:text-[#0F4F9E]/80" : "text-[#10805B] group-hover:text-[#14A76C]"} text-sm-default  lg:max-w-[60%] max-w-[70%] custom-transition`}>
+                    <div className={`${categoryColorClass} text-sm-default lg:max-w-[60%] max-w-[70%] custom-transition`}>
                         {media?.category}
                     </div>
                 </div>

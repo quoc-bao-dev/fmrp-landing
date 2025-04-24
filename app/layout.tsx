@@ -8,7 +8,6 @@ import GoogleAnalytics from "@/components/script/GoogleAnalytics";
 import Script from "next/script";
 import { getMetadata } from "@/components/seo/DefaultMetadata";
 
-import "@/styles/globals.scss";
 import '@smastrom/react-rating/style.css';
 import "@babylonjs/loaders";
 import "swiper/css";
@@ -19,6 +18,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
+import "@/styles/globals.scss";
 
 export const metadata = getMetadata({
     title: "FOSO - Đội ngũ và sứ mệnh",
@@ -37,6 +37,8 @@ export default async function RootLayoutApp({
     return (
         <html suppressHydrationWarning lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
             <head>
+                {/* ✅ Preload Font */}
+                <link rel="preload" as="font" href="/fonts/raleway.woff2" type="font/woff2" crossOrigin="anonymous" />
                 {/* Google Tag Manager */}
                 <Script id="gtm-head" strategy="afterInteractive">
                     {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,7 +50,7 @@ export default async function RootLayoutApp({
             </head>
 
             <body className={`${raleway_sans.className} antialiased relative`} >
-                {/* Google Tag Manager (noscript) */}
+                {/* GTM noscript fallback */}
                 <noscript>
                     <iframe
                         src="https://www.googletagmanager.com/ns.html?id=GTM-M7HZ95L2"
@@ -57,14 +59,15 @@ export default async function RootLayoutApp({
                         style={{ display: 'none', visibility: 'hidden' }}
                     ></iframe>
                 </noscript>
-                {/* End Google Tag Manager (noscript) */}
 
+                {/* ✅ App Wrapper */}
                 <Suspense>
                     <RootLayout data={{ dataLang: "lang", language: "" }}>
                         {children}
                     </RootLayout>
                 </Suspense>
 
+                {/* ✅ Analytics Script */}
                 <GoogleAnalytics gtag='AW-11487033920' />
             </body>
         </html>

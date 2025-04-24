@@ -78,9 +78,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                     alt="logo"
                     width={640}
                     height={608}
+                    loading="eager" // ✅ force preload nếu cần
+                    decoding="async"
                     src="/logo/foso/logo-pattern.webp"
                     className="size-full object-contain opacity-15"
-                    priority
                 />
             </div>
 

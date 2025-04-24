@@ -1,17 +1,16 @@
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal'
-import ButtonAnimation from '@/components/common/button/ButtonAnimation'
-import ProjectCard from '@/components/common/card/project/ProjectCard'
 import { uuidv4 } from '@/lib/uuid'
 import { useResizeStore } from '@/stores/useResizeStore'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 import { motion } from 'framer-motion'
-import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
 import { useRouter } from 'next/navigation'
+
+import ProjectCard from '@/components/common/card/project/ProjectCard'
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 type Props = {}
 
@@ -60,13 +59,11 @@ const ServicePresentationSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
 
-
     const customPagination = {
         clickable: true,
         renderBullet: function (index: number, className: string) {
             return `<span class=${className}></span>`
         },
-
     }
 
     return (
@@ -87,8 +84,6 @@ const ServicePresentationSection = (props: Props) => {
                         Foso
                     </span>
                 </div>
-
-
 
                 <div className='h-full lg:min-h-[600px] md:min-h-[440px] min-h-[460px]'>
                     {
@@ -176,7 +171,6 @@ const ServicePresentationSection = (props: Props) => {
                     }
                     onClick={() => {
                         router.push("/resource/blogs")
-                        // window.open("https://fososoft.vn/fblog/")
                     }}
                     reverse={true}
                     className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
@@ -186,7 +180,6 @@ const ServicePresentationSection = (props: Props) => {
                     }}
                 />
             </div>
-
         </div>
     )
 }

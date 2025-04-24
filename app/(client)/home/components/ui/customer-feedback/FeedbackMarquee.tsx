@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
-import React, { memo, useMemo } from "react";
-import Image from "next/image";
+import React from "react";
 import MarqueeColumn from "@/components/common/marquee/MarqueeColumn";
 import { useResizeStore } from "@/stores/useResizeStore";
 import { FeedbackItem } from '@/types/feedback/IFeedback';
@@ -10,7 +8,6 @@ type FeedbackMarqueeProps = {
 };
 
 const FeedbackMarquee: React.FC<FeedbackMarqueeProps> = ({ feedbacks }) => {
-    const { isVisibleTablet } = useResizeStore()
     // Chia danh sách thành 2 phần
     const firstColumn = feedbacks.slice(0, Math.ceil(feedbacks.length / 2));
     const secondColumn = feedbacks.slice(Math.ceil(feedbacks.length / 2));

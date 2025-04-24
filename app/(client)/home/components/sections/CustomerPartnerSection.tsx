@@ -1,19 +1,17 @@
 
 import LogoMarquee from '../ui/customer-partner/LogoMarquee';
-import ButtonAnimation from '@/components/common/button/ButtonAnimation';
-import { GoArrowUpRight } from 'react-icons/go';
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 
 import { motion } from 'framer-motion'
 import React, { useState } from 'react';
-import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
+
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+
 import { useSheetStores } from '@/stores/useSheetStores';
 
 type Props = {}
 
 const CustomerPartnerSection = (props: Props) => {
-    const [isHovered, setIsHovered] = useState<boolean>(false);
     const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
 
     const logos = [
