@@ -74,7 +74,7 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 onError={handleError}
                 style={{
                     opacity: loaded ? 1 : 0,
-                    filter: loaded ? "blur(0px)" : "blur(10px)",
+                    filter: loaded ? "blur(0px)" : "blur(4px)",
                     ...style,
                 }}
             />

@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
         // Tắt ESLint trong quá trình build
         ignoreDuringBuilds: true,
     },
+    experimental: {
+        // Giảm JS ban đầu
+        optimizeCss: true,
+        scrollRestoration: true
+    },      
     images: {
         // unoptimized: true,
         dangerouslyAllowSVG: true,

@@ -4,6 +4,10 @@ import { KEY_COOKIES } from "@/constants/Cookie";
 
 import RootLayout from "@/components/layouts/root/RootLayout";
 import { raleway_sans } from "@/utils/fonts/fontUtils";
+import GoogleAnalytics from "@/components/script/GoogleAnalytics";
+import Script from "next/script";
+import { getMetadata } from "@/components/seo/DefaultMetadata";
+
 import "@/styles/globals.scss";
 import '@smastrom/react-rating/style.css';
 import "@babylonjs/loaders";
@@ -15,48 +19,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
-import GoogleAnalytics from "@/components/script/GoogleAnalytics";
-import Script from "next/script";
-import { getMetadata } from "@/components/seo/DefaultMetadata";
-
-// export const metadata = {
-//     title: "FOSO - Giải pháp công nghệ cho doanh nghiệp",
-//     description: "FOSO cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu vận hành, từ giải pháp phần mềm đến thiết kế app mobile và website theo yêu cầu.",
-//     keywords: "FOSO, thiết kế website, phát triển phần mềm, công nghệ cho SME",
-//     openGraph: {
-//         title: "FOSO",
-//         description: "Giải pháp công nghệ cho doanh nghiệp vừa và nhỏ",
-//         url: "https://fososoft.com",
-//         siteName: "FOSO",
-//         images: [
-//             {
-//                 url: "/opengraph-image.png",
-//                 width: 1200,
-//                 height: 630,
-//                 alt: "FOSO Logo",
-//             },
-//         ],
-//         locale: "vi_VN",
-//         type: "website",
-//     },
-//     twitter: {
-//         card: "summary_large_image",
-//         site: "@fosotech",
-//         creator: "@fosotech",
-//         title: "FOSO - Giải pháp công nghệ",
-//         description: "Giải pháp công nghệ hàng đầu cho doanh nghiệp vừa và nhỏ.",
-//         images: [
-//             {
-//                 url: "/opengraph-image.png",
-//                 alt: "FOSO Logo",
-//             },
-//         ],
-//     },
-//     robots: "index, follow",
-//     icons: {
-//         icon: "/favicon.ico",
-//     },
-// };
 
 export const metadata = getMetadata({
     title: "FOSO - Đội ngũ và sứ mệnh",

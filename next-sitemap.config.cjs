@@ -32,9 +32,6 @@ const config = {
         ]
       },
     ],
-    additionalSitemaps: [
-      'https://fososoft.com/sitemap.xml', // Có thể thêm nhiều sitemap nếu muốn
-    ],
   },
 
   transform: async (config, path) => {

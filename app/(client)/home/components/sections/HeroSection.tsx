@@ -1,21 +1,27 @@
 
-import BabylonViewer from '@/components/common/3D/BabylonViewer';
 import Image from 'next/image';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { uuidv4 } from '@/lib/uuid';
 import { useScrollContext } from '@/contexts/ScrollContext';
-import AnimatedArrows from '../ui/hero/AnimatedArrows';
-import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
-
-import FadeInZoomSpan from '@/components/common/animations/fade/FadeInZoomSpan';
-import FadeInZoomDiv from '@/components/common/animations/fade/FadeInZoomDiv';
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import dynamic from 'next/dynamic';
+import { useInView } from 'react-intersection-observer';
 
 type HeroSectionProps = {
 }
 
+const BabylonViewer = dynamic(() => import('@/components/common/3D/BabylonViewer'), {
+    ssr: false,
+    // loading: () => <div className="h-[300px] bg-gray-100 animate-pulse" />
+});
+
+const AnimatedArrows = dynamic(() => import('../ui/hero/AnimatedArrows'), { ssr: false });
+const AnimatedTitle = dynamic(() => import('@/components/common/animations/text/AnimatedTitle'), { ssr: false });
+const FadeInZoomSpan = dynamic(() => import('@/components/common/animations/fade/FadeInZoomSpan'), { ssr: false });
+const FadeInZoomDiv = dynamic(() => import('@/components/common/animations/fade/FadeInZoomDiv'), { ssr: false });
+
 const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
     const { scrollToElementRef } = useScrollContext();
 
     // ✅ Tạo danh sách mũi tên với `useMemo` để tránh tạo lại mảng mỗi lần render
@@ -63,7 +69,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     );
 
     return (
-        <div className='custom-padding-section lg:h-screen h-svh relative'>
+        <div ref={ref} className='custom-padding-section lg:h-screen h-svh relative'>
             {/* background color linear */}
             <div
                 className='absolute top-0 left-0 size-full blur-[772.7864379882812px]'
@@ -79,18 +85,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
             <div className='absolute xxl:-top-8 lg:-top-4 xl:-right-[12%] lg:-right-[15%] md:-right-[4%] -right-[18%]  3xl:h-[840px] 2xl:h-[680px] xxl:h-[640px] xl:h-[580px] lg:h-[500px] md:h-[550px] h-[360px] aspect-3/2'>
                 <Image
                     alt="logo"
-                    width={900}
-                    height={900}
+                    width={640}
+                    height={608}
                     src="/logo/foso/logo-pattern.webp"
                     className="size-full object-contain opacity-15"
+                    priority
                 />
             </div>
 
             <div className='3xl:mx-[128px] 2xl:mx-[98px] xl:mx-[88px] md:mx-[60px] flex lg:flex-row flex-col-reverse items-center lg:justify-between justify-center gap-2 h-full relative z-[2]'>
                 {/* button arrow */}
 
-                <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
-
+                {inView &&
+                    <AnimatedArrows onClick={() => scrollToElementRef("serviceProcess")} iconArrow={iconArrow} />
+                }
                 {/* contetn left */}
                 <div className='space-y-4 xxl:max-w-[55%] xl:max-w-[60%] lg:max-w-[70%] max-w-full text-start'>
                     <div className='w-full mb-2.5'>
@@ -108,7 +116,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                             Foso
                         </FadeInZoomSpan>
                     </div>
-
                     {/* <br /> */}
 
                     <AnimatedTitle className='text-[#050505] text-title-section font-extrabold !leading-10' heroPerTitle={heroPerTitle2} delay={2} />
@@ -116,15 +123,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
 
                 {/* Phần mô hình 3D bên phải */}
                 <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
-                    <FadeInZoomDiv
-                        delay={0.1}
-                        duration={0.7}
-                        className="relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square"
-                        onMouseEnter={() => handleScroll("disable")} // ✅ Chặn scroll khi hover vào
-                        onMouseLeave={() => handleScroll("enable")} // ✅ Bật lại scroll khi rời chuột
-                    >
-                        <BabylonViewer />
-                    </FadeInZoomDiv>
+                    {
+                        inView &&
+                        <FadeInZoomDiv
+                            delay={0.1}
+                            duration={0.7}
+                            className="relative cursor-pointer rounded-xl 3xl:h-[600px] xxl:h-[480px] xl:h-[420px] lg:h-[340px] md:h-[300px] h-[350px] aspect-square"
+                            onMouseEnter={() => handleScroll("disable")} // ✅ Chặn scroll khi hover vào
+                            onMouseLeave={() => handleScroll("enable")} // ✅ Bật lại scroll khi rời chuột
+                        >
+                            <BabylonViewer />
+                        </FadeInZoomDiv>
+                    }
                 </div>
             </div>
 
