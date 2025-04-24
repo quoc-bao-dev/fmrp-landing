@@ -110,7 +110,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                 </div>
 
                 {/* Phần mô hình 3D bên phải */}
-                <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center">
+                <div className="xxl:max-w-[40%] xl:max-w-[38%] md:max-w-[30%] max-w-full w-full flex flex-col justify-center lg:items-end items-center overflow-hidden">
                     {
                         inView &&
                         <FadeInZoomDiv
@@ -125,7 +125,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                     }
                 </div>
             </div>
-
         </div>
     )
 }

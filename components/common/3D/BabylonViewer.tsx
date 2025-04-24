@@ -13,6 +13,8 @@ const BabylonViewer = () => {
     useEffect(() => {
         if (!canvasRef.current) return;
 
+        const canvas = canvasRef.current;
+
         // 🏎️ **Khởi tạo Babylon Engine**
         const engine = new BABYLON.Engine(canvasRef.current, true, {
             disableWebGL2Support: true, // ⚠ nếu không cần WebGL2
@@ -40,13 +42,16 @@ const BabylonViewer = () => {
         camera.upperRadiusLimit = 20;
         camera.panningSensibility = 0;
 
+        // 👇 Gán lại sau khi attachControl (vì Babylon sẽ tự đổi nó thành 1)
+        // ✅ SEO default
+        canvas.setAttribute("tabindex", "-1");
+        
         // 💡 **Thêm ánh sáng**
         const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
         light.intensity = 1.2;
 
         // 🚀 **Tải HDR & EnvironmentTexture song song**
         console.log("🔄 Đang load HDR...");
-        const hdrTexture = new BABYLON.HDRCubeTexture("/hdr/test4.hdr", scene, 128);
         const envTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
             "https://assets.babylonjs.com/environments/environmentSpecular.env",
             scene
@@ -55,7 +60,6 @@ const BabylonViewer = () => {
         // ⏳ **Chờ cả HDR và EnvironmentTexture load xong**
         Promise.all([
             new Promise((resolve) => envTexture.onLoadObservable.addOnce(() => resolve("✅ CubeTexture Loaded!"))),
-            new Promise((resolve) => hdrTexture.onLoadObservable.addOnce(() => resolve("✅ HDR Loaded!"))),
         ]).then((messages) => {
             console.log(...messages);
             console.log("✅ HDR đã load xong, bắt đầu load robot...");
@@ -64,12 +68,12 @@ const BabylonViewer = () => {
 
             // 📌 **Tải mô hình GLB**
             BABYLON.SceneLoader.ImportMesh("", "/models/", "robot.glb", scene, (meshes) => {
+                if (meshes.length === 0) return;
+
                 if (meshes.length > 0) {
                     console.log("✅ Robot đã load thành công!");
 
-                    if (rootRef.current) {
-                        rootRef.current.dispose();
-                    }
+                    if (rootRef.current) rootRef.current.dispose();
 
                     const root = new BABYLON.TransformNode("root", scene);
                     rootRef.current = root;
@@ -162,8 +166,8 @@ const BabylonViewer = () => {
                                     pbr.roughness = 0.01; // Giữ nguyên độ mịn
 
                                     // 🚀 Tăng cường phản chiếu HDR
-                                    let hdrTexture = new BABYLON.HDRCubeTexture("/hdr/test4.hdr", scene, 128);
-                                    pbr.reflectionTexture = hdrTexture;
+                                    // let hdrTexture = new BABYLON.HDRCubeTexture("/hdr/glass1.hdr", scene, 128);
+                                    pbr.reflectionTexture = envTexture;
                                     pbr.reflectionTexture.level = 1; // Tăng độ phản chiếu để rõ ràng hơn
                                     break;
                             }

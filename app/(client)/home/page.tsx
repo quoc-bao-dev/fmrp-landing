@@ -16,7 +16,7 @@ type Props = {}
 
 const Home = (props: Props) => {
     return (
-        <main className='overflow-x-hidden'>
+        <main className='overflow-hidden'>
             <HeroSection />
             <ServiceProcessSection />
             <FosoPartnerSection />
