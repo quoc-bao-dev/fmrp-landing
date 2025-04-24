@@ -1,7 +1,7 @@
 import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { IoIosArrowDown } from "react-icons/io";
+
 type AnimatedArrowsProps = {
     onClick: () => void;
     iconArrow: { id: string; icon: string }[]; // Mảng icon truyền từ parent

@@ -1,14 +1,15 @@
 "use client";
 
-import * as BABYLON from "@babylonjs/core";
+// import * as BABYLON from "@babylonjs/core";
+import { Engine, Scene, ArcRotateCamera, TransformNode, Color4, Color3, Vector3, HemisphericLight, CubeTexture, SceneLoader, Quaternion, Axis, PBRMaterial } from '@babylonjs/core';
 import React, { useEffect, useRef } from "react";
 import "@babylonjs/loaders";
 
 const BabylonViewer = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const engineRef = useRef<BABYLON.Engine | null>(null);
-    const sceneRef = useRef<BABYLON.Scene | null>(null);
-    const rootRef = useRef<BABYLON.TransformNode | null>(null);
+    const engineRef = useRef<Engine | null>(null);
+    const sceneRef = useRef<Scene | null>(null);
+    const rootRef = useRef<TransformNode | null>(null);
 
     useEffect(() => {
         if (!canvasRef.current) return;
@@ -16,7 +17,7 @@ const BabylonViewer = () => {
         const canvas = canvasRef.current;
 
         // 🏎️ **Khởi tạo Babylon Engine**
-        const engine = new BABYLON.Engine(canvasRef.current, true, {
+        const engine = new Engine(canvasRef.current, true, {
             disableWebGL2Support: true, // ⚠ nếu không cần WebGL2
             preserveDrawingBuffer: true,
             stencil: true,
@@ -24,17 +25,17 @@ const BabylonViewer = () => {
         engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
         engineRef.current = engine;
 
-        const scene = new BABYLON.Scene(engine);
+        const scene = new Scene(engine);
         sceneRef.current = scene;
-        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+        scene.clearColor = new Color4(0, 0, 0, 0);
 
         // 📸 **Tạo Camera**
-        const camera = new BABYLON.ArcRotateCamera(
+        const camera = new ArcRotateCamera(
             "camera",
             Math.PI / 4,
             Math.PI / 2,
             3.5,
-            new BABYLON.Vector3(0, 1, 0),
+            new Vector3(0, 1, 0),
             scene
         );
         camera.attachControl(canvasRef.current, true);
@@ -45,14 +46,14 @@ const BabylonViewer = () => {
         // 👇 Gán lại sau khi attachControl (vì Babylon sẽ tự đổi nó thành 1)
         // ✅ SEO default
         canvas.setAttribute("tabindex", "-1");
-        
+
         // 💡 **Thêm ánh sáng**
-        const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+        const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
         light.intensity = 1.2;
 
         // 🚀 **Tải HDR & EnvironmentTexture song song**
         console.log("🔄 Đang load HDR...");
-        const envTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
+        const envTexture = CubeTexture.CreateFromPrefilteredData(
             "https://assets.babylonjs.com/environments/environmentSpecular.env",
             scene
         );
@@ -67,7 +68,7 @@ const BabylonViewer = () => {
             scene.environmentTexture = envTexture;
 
             // 📌 **Tải mô hình GLB**
-            BABYLON.SceneLoader.ImportMesh("", "/models/", "robot.glb", scene, (meshes) => {
+            SceneLoader.ImportMesh("", "/models/", "robot.glb", scene, (meshes) => {
                 if (meshes.length === 0) return;
 
                 if (meshes.length > 0) {
@@ -75,18 +76,18 @@ const BabylonViewer = () => {
 
                     if (rootRef.current) rootRef.current.dispose();
 
-                    const root = new BABYLON.TransformNode("root", scene);
+                    const root = new TransformNode("root", scene);
                     rootRef.current = root;
                     meshes.forEach((mesh) => mesh.setParent(root));
 
                     // 🏗️ **Tính toán kích thước Bounding Box**
-                    let min = BABYLON.Vector3.Zero();
-                    let max = BABYLON.Vector3.Zero();
+                    let min = Vector3.Zero();
+                    let max = Vector3.Zero();
                     meshes.forEach((mesh) => {
                         if (mesh.getBoundingInfo) {
                             const bbox = mesh.getBoundingInfo().boundingBox;
-                            min = BABYLON.Vector3.Minimize(min, bbox.minimumWorld);
-                            max = BABYLON.Vector3.Maximize(max, bbox.maximumWorld);
+                            min = Vector3.Minimize(min, bbox.minimumWorld);
+                            max = Vector3.Maximize(max, bbox.maximumWorld);
                         }
                     });
 
@@ -94,9 +95,9 @@ const BabylonViewer = () => {
                     const size = max.subtract(min);
                     const center = min.add(size.scale(0.5));
                     const scaleFactor = 2 / Math.max(size.x, size.y, size.z);
-                    root.scaling = new BABYLON.Vector3(scaleFactor, scaleFactor, scaleFactor);
-                    root.position = new BABYLON.Vector3(-center.x * scaleFactor, -min.y * scaleFactor, -center.z * scaleFactor);
-                    root.rotationQuaternion = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, Math.PI / 2);
+                    root.scaling = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+                    root.position = new Vector3(-center.x * scaleFactor, -min.y * scaleFactor, -center.z * scaleFactor);
+                    root.rotationQuaternion = Quaternion.RotationAxis(Axis.Y, Math.PI / 2);
 
                     // 🌟 **Thêm hiệu ứng phản chiếu vật liệu**
                     scene.blockMaterialDirtyMechanism = true; // 🚀 Giảm số lần cập nhật vật liệu
@@ -104,7 +105,7 @@ const BabylonViewer = () => {
                     // 🌟 OPTION 2
                     meshes.forEach((mesh) => {
                         if (mesh.material) {
-                            const pbr = mesh.material as BABYLON.PBRMaterial;
+                            const pbr = mesh.material as PBRMaterial;
 
                             // 🌟 Kích hoạt phản chiếu môi trường
                             pbr.reflectionTexture = scene.environmentTexture;
@@ -116,14 +117,14 @@ const BabylonViewer = () => {
 
                             switch (true) {
                                 case materialName.includes("lambert4"): // 🔹 Các đường viền trên lưng
-                                    pbr.albedoColor = new BABYLON.Color3(0.5, 1, 0);
+                                    pbr.albedoColor = new Color3(0.5, 1, 0);
                                     pbr.metallic = 0.15;  // Tăng nhẹ độ kim loại
                                     pbr.roughness = 0.9;  // Giảm độ phản chiếu để trông tự nhiên hơn
 
                                     break;
 
                                 case materialName.includes("metalshiny"): // 🔹 Phần cổ (xám bạc bóng)
-                                    pbr.albedoColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+                                    pbr.albedoColor = new Color3(0.2, 0.2, 0.2);
                                     pbr.metallic = 1;
                                     pbr.roughness = 0.02; // Giảm roughness để tăng độ bóng mượt
                                     pbr.clearCoat.isEnabled = true;
@@ -132,20 +133,20 @@ const BabylonViewer = () => {
                                     break;
 
                                 case materialName.includes("rubber"): // 🔹 Bàn chân (xám đậm)
-                                    pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                                    pbr.albedoColor = new Color3(0.05, 0.05, 0.05);
                                     pbr.metallic = 0.2;
                                     pbr.roughness = 0.6; // Giảm độ bóng để mô phỏng cao su tốt hơn
 
                                     break;
 
                                 case materialName.includes("metal"): // 🔹 Phần thân gần cổ (xám kim loại)
-                                    pbr.albedoColor = new BABYLON.Color3(0.08, 0.08, 0.08);
+                                    pbr.albedoColor = new Color3(0.08, 0.08, 0.08);
                                     pbr.metallic = 0.5;  // Tăng độ kim loại để tạo cảm giác cứng cáp hơn
                                     pbr.roughness = 0.3; // Giảm độ nhám để phản chiếu nhẹ hơn
                                     break;
 
                                 case materialName.includes("lambert1"): // 🔹 Thân chính chứa cả chân
-                                    pbr.albedoColor = new BABYLON.Color3(0.65, 0.65, 0.65);
+                                    pbr.albedoColor = new Color3(0.65, 0.65, 0.65);
                                     pbr.metallic = 0.1;
                                     pbr.roughness = 0.65;
                                     pbr.clearCoat.isEnabled = true;
@@ -154,14 +155,14 @@ const BabylonViewer = () => {
                                     break;
 
                                 case materialName.includes("pasted_eyes"): // 🔹 Mắt robot (vàng phát sáng)
-                                    pbr.emissiveColor = new BABYLON.Color3(1, 1, 0); // Chuyển sang màu vàng sáng hơn
+                                    pbr.emissiveColor = new Color3(1, 1, 0); // Chuyển sang màu vàng sáng hơn
                                     pbr.emissiveIntensity = 10; // Tăng độ sáng hơn nữa để rõ ràng
 
                                     console.log("🔆 Đã chỉnh màu mắt:", materialName);
                                     break;
 
                                 case materialName.includes("blackglass"): // 🔹 Mặt kính (đen bóng)
-                                    pbr.albedoColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+                                    pbr.albedoColor = new Color3(0.05, 0.05, 0.05);
                                     pbr.metallic = 1;
                                     pbr.roughness = 0.01; // Giữ nguyên độ mịn
 
