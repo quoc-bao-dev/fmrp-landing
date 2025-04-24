@@ -17,7 +17,6 @@ import { KEY_COOKIES } from '@/constants/Cookie'
 import ScrollbarStyle from '@/components/common/scroll/ScrollbarStyle'
 // import { LenisProvider } from '@/contexts/LenisContext'
 import { ModalProvider } from '@/contexts/ModalContext';
-import { useDebouncedCallback } from 'use-debounce'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -74,43 +73,43 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
         }
     }, [sectionId]);
 
-    // Kiểm tra kích thước màn hình và cập nhật trạng thái isVisible 
-    const handleResize = useDebouncedCallback(() => {
-        if (window.innerWidth < 768) {
-            // khi đến màn 768 thì bắt đầu thực hiện function
-            onResizeMobile();
-        } else {
-            onCloseResizeMobile()
-        }
-
-        if (window.innerWidth < 1024) {
-            onResizeTablet()
-        } else {
-            onCloseResizeTablet()
-        }
-
-        if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
-            onResizeDesktopLG()
-        } else {
-            onCloseResizeDesktopLG()
-        }
-
-        if (window.innerWidth >= 1280 && window.innerWidth < 1440) {
-            onResizeDesktopXL()
-        } else {
-            onCloseResizeDesktopXL()
-        }
-
-        if (window.innerWidth >= 1440 && window.innerWidth < 1536) {
-            onResizeDesktopXXL()
-        } else {
-            onCloseResizeDesktopXXL()
-        }
-
-    }, 200)
-
     // ẩn/hiện khi chuyển qua màn hình nhỏ khi không dùng chung div để tránh xung đột 
     useEffect(() => {
+        // Kiểm tra kích thước màn hình và cập nhật trạng thái isVisible 
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                // khi đến màn 768 thì bắt đầu thực hiện function
+                onResizeMobile();
+            } else {
+                onCloseResizeMobile()
+            }
+
+            if (window.innerWidth < 1024) {
+                onResizeTablet()
+            } else {
+                onCloseResizeTablet()
+            }
+
+            if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
+                onResizeDesktopLG()
+            } else {
+                onCloseResizeDesktopLG()
+            }
+
+            if (window.innerWidth >= 1280 && window.innerWidth < 1440) {
+                onResizeDesktopXL()
+            } else {
+                onCloseResizeDesktopXL()
+            }
+
+            if (window.innerWidth >= 1440 && window.innerWidth < 1536) {
+                onResizeDesktopXXL()
+            } else {
+                onCloseResizeDesktopXXL()
+            }
+
+        };
+
         // Gọi hàm handleResize khi kích thước màn hình thay đổi
         window.addEventListener('resize', handleResize);
 
@@ -120,7 +119,6 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
         // Hủy lắng nghe sự kiện resize khi component bị unmount
         return () => {
             window.removeEventListener('resize', handleResize);
-            handleResize.cancel(); // 💥 cancel debounce khi unmount
         };
     }, [
         isVisibleMobile,

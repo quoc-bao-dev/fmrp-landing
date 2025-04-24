@@ -3,15 +3,12 @@
 import * as BABYLON from "@babylonjs/core";
 import React, { useEffect, useRef } from "react";
 import "@babylonjs/loaders";
-import { useInView } from "react-intersection-observer";
 
 const BabylonViewer = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const engineRef = useRef<BABYLON.Engine | null>(null);
     const sceneRef = useRef<BABYLON.Scene | null>(null);
     const rootRef = useRef<BABYLON.TransformNode | null>(null);
-
-    const { ref: inViewRef, inView } = useInView({ threshold: 0.1, triggerOnce: false });
 
     useEffect(() => {
         if (!canvasRef.current) return;
@@ -67,8 +64,6 @@ const BabylonViewer = () => {
 
             // 📌 **Tải mô hình GLB**
             BABYLON.SceneLoader.ImportMesh("", "/models/", "robot.glb", scene, (meshes) => {
-                if (meshes.length === 0) return;
-                
                 if (meshes.length > 0) {
                     console.log("✅ Robot đã load thành công!");
 
@@ -84,8 +79,8 @@ const BabylonViewer = () => {
                     let min = BABYLON.Vector3.Zero();
                     let max = BABYLON.Vector3.Zero();
                     meshes.forEach((mesh) => {
-                        const bbox = mesh.getBoundingInfo?.().boundingBox;
-                        if (bbox) {
+                        if (mesh.getBoundingInfo) {
+                            const bbox = mesh.getBoundingInfo().boundingBox;
                             min = BABYLON.Vector3.Minimize(min, bbox.minimumWorld);
                             max = BABYLON.Vector3.Maximize(max, bbox.maximumWorld);
                         }
@@ -106,7 +101,6 @@ const BabylonViewer = () => {
                     meshes.forEach((mesh) => {
                         if (mesh.material) {
                             const pbr = mesh.material as BABYLON.PBRMaterial;
-                            if (!pbr) return;
 
                             // 🌟 Kích hoạt phản chiếu môi trường
                             pbr.reflectionTexture = scene.environmentTexture;
@@ -193,8 +187,6 @@ const BabylonViewer = () => {
         // 🔚 **Dọn dẹp khi component unmount**
         return () => {
             console.log("🧹 Cleaning up Babylon scene...");
-            engine.stopRenderLoop();
-
             if (rootRef.current) rootRef.current.dispose();
             if (sceneRef.current) sceneRef.current.dispose();
             if (engineRef.current) engineRef.current.dispose();
@@ -204,20 +196,10 @@ const BabylonViewer = () => {
         };
     }, []);
 
-    useEffect(() => {
-        if (engineRef.current && sceneRef.current) {
-            if (inView) {
-                engineRef.current.runRenderLoop(() => sceneRef.current?.render());
-            } else {
-                engineRef.current.stopRenderLoop();
-            }
-        }
-    }, [inView]);
-
     return (
-        <div ref={inViewRef} className="w-full h-full">
+        <React.Fragment>
             <canvas ref={canvasRef} tabIndex={-1} className="w-full h-full flex justify-center items-center rounded-xl" />
-        </div>
+        </React.Fragment>
     );
 };
 

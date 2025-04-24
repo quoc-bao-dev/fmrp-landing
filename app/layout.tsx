@@ -37,8 +37,6 @@ export default async function RootLayoutApp({
     return (
         <html suppressHydrationWarning lang={KEY_COOKIES.DEFAULT_LANGUAGE}>
             <head>
-                {/* ✅ Preload Font */}
-                <link rel="preload" as="font" href="/fonts/raleway.woff2" type="font/woff2" crossOrigin="anonymous" />
                 {/* Google Tag Manager */}
                 <Script id="gtm-head" strategy="afterInteractive">
                     {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

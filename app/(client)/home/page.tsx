@@ -15,8 +15,6 @@ import FosoPartnerSection from './components/sections/FosoPartnerSection'
 type Props = {}
 
 const Home = (props: Props) => {
-
-
     return (
         <main className='overflow-x-hidden'>
             <HeroSection />

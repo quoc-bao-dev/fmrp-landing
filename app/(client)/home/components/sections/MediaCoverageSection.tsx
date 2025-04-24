@@ -49,7 +49,6 @@ const MediaCoverageSection = (props: Props) => {
     const swiperRef = useRef<any>(null);
     const { isVisibleTablet } = useResizeStore()
 
-
     const customPagination = useMemo(() => ({
         clickable: true,
         renderBullet: function (index: number, className: string) {
@@ -118,10 +117,7 @@ const MediaCoverageSection = (props: Props) => {
                             >
                                 {
                                     mediaList && mediaList?.map((media) => (
-                                        <SwiperSlide
-                                            key={`media-${media?.id}`}
-                                        // className='h-full relative cursor-pointer group'
-                                        >
+                                        <SwiperSlide key={`media-${media?.id}`}>
                                             <MediaCard media={media} />
                                         </SwiperSlide>
                                     ))

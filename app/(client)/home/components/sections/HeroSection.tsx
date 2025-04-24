@@ -21,14 +21,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
     const { scrollToElementRef } = useScrollContext();
 
     // ✅ Tạo danh sách mũi tên với `useMemo` để tránh tạo lại mảng mỗi lần render
-    const iconArrow = useMemo(
-        () => [
-            { id: uuidv4(), icon: "/icons/common/arrow/arrow-1.svg" },
-            { id: uuidv4(), icon: "/icons/common/arrow/arrow-2.svg" },
-            { id: uuidv4(), icon: "/icons/common/arrow/arrow-3.svg" },
-        ],
-        []
-    );
+    const iconArrow = useMemo(() => [
+        { id: uuidv4(), icon: "/icons/common/arrow/arrow-1.svg" },
+        { id: uuidv4(), icon: "/icons/common/arrow/arrow-2.svg" },
+        { id: uuidv4(), icon: "/icons/common/arrow/arrow-3.svg" },
+    ], []);
 
     const preventScroll = (e: Event) => {
         e.preventDefault();
@@ -78,8 +75,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
                     alt="logo"
                     width={640}
                     height={608}
-                    loading="eager" // ✅ force preload nếu cần
-                    decoding="async"
+                    priority
                     src="/logo/foso/logo-pattern.webp"
                     className="size-full object-contain opacity-15"
                 />

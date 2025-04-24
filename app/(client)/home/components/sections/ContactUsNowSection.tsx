@@ -2,16 +2,16 @@ import BlurredBackground from '@/components/common/blur/BlurredBackground'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import React from 'react'
+import React, { useCallback } from 'react'
 
 const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}
 
 const ContactUsNowSection = (props: Props) => {
-    const handleCall = (phoneNumber: any) => {
+    const handleCall = useCallback((phoneNumber: any) => {
         window.location.href = `tel:${phoneNumber}`;
-    };
+    }, []);
 
     return (
         <div className="3xl:py-32 lg:py-28 py-16">
@@ -70,7 +70,7 @@ const ContactUsNowSection = (props: Props) => {
                                 ],
                             }}
                             onClick={() => handleCall("0901136968")}
-                            // aria-label={`Gọi tới số ${phoneNumber}`}
+                        // aria-label={`Gọi tới số ${phoneNumber}`}
                         />
                     </AnimatedReveal>
                 </div>

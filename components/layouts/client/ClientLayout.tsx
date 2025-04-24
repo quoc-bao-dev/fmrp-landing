@@ -10,10 +10,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
-import ProviderLayout from '../provider/ProviderLayout'
 import FosoHeaderContainer from '@/components/layouts/header/header-foso/FosoHeaderContainer'
 import FooterContainer from '@/components/layouts/footer/FooterContainer'
-import { useTheme } from 'next-themes';
 import FmrpHeaderContainer from '../header/header-fmrp/FmrpHeaderContainer'
 import { DynamicSheet } from '../../common/sheet/DynamicSheet';
 import { useSheetStores } from '../../../stores/useSheetStores';
@@ -21,10 +19,7 @@ import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
 import WidgetButton from '@/components/common/button/WidgetButton'
 
 const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
-    const { openDialogCustom } = useDialogStore()
     const { openSheetCustom } = useSheetStores()
-    const { openAlertDialog } = useAlertDialogStore()
-    const { theme } = useTheme()
     const pathname = usePathname()
 
     return (
