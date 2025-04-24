@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 const CursorFollower = () => {
-    const pathname = usePathname()
+    const pathname = usePathname();
     const cursorRef = useRef<HTMLDivElement>(null);
 
     const mouseX = useMotionValue(0);
@@ -14,71 +14,65 @@ const CursorFollower = () => {
     const smoothX = useSpring(mouseX, { stiffness: 200, damping: 20 });
     const smoothY = useSpring(mouseY, { stiffness: 200, damping: 20 });
 
-    const sizeRef = useRef<number>(12); // Kích thước mặc định
-    const colorRef = useRef<string>("rgba(26, 213, 152, 1)");
+    const defaultSize = 16;
+    const sizeRef = useRef(defaultSize);
+    const prevSizeRef = useRef(defaultSize);
+    const colorRef = useRef("");
+
+    const updateCursorStyle = useCallback(() => {
+        const el = cursorRef.current;
+        if (!el) return;
+
+        if (prevSizeRef.current !== sizeRef.current) {
+            el.style.width = `${sizeRef.current}px`;
+            el.style.height = `${sizeRef.current}px`;
+            prevSizeRef.current = sizeRef.current;
+        }
+
+        el.style.backgroundColor = colorRef.current;
+    }, []);
+
+    const handleMove = useCallback((e: MouseEvent) => {
+        mouseX.set(e.clientX - sizeRef.current / 2);
+        mouseY.set(e.clientY - sizeRef.current / 2);
+        updateCursorStyle();
+    }, [mouseX, mouseY, updateCursorStyle]);
+
+    const handleHover = useCallback((e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target.closest("footer, footer *")) {
+            sizeRef.current = 60;
+            colorRef.current = "rgba(255, 255, 255, 0.9)";
+            cursorRef.current?.classList.add("mix-blend-difference");
+        }
+    }, []);
+
+    const handleLeave = useCallback(() => {
+        sizeRef.current = defaultSize;
+        colorRef.current = dataFmrpPages.includes(pathname)
+            ? "rgba(3, 117, 243, 1)"
+            : "rgba(26, 213, 152, 1)";
+        cursorRef.current?.classList.remove("mix-blend-difference");
+    }, [pathname]);
 
     useEffect(() => {
-        let animationFrame: number;
-
-        const moveCursor = (e: MouseEvent) => {
-            cancelAnimationFrame(animationFrame);
-            animationFrame = requestAnimationFrame(() => {
-                mouseX.set(e.clientX - sizeRef.current / 2);
-                mouseY.set(e.clientY - sizeRef.current / 2);
-                if (cursorRef.current) {
-                    cursorRef.current.style.width = `${sizeRef.current}px`;
-                    cursorRef.current.style.height = `${sizeRef.current}px`;
-                    cursorRef.current.style.backgroundColor = colorRef.current;
-                }
-            });
-        };
-
-        window.addEventListener("mousemove", moveCursor, { passive: true });
-
-        return () => {
-            window.removeEventListener("mousemove", moveCursor);
-            cancelAnimationFrame(animationFrame);
-        };
-    }, [mouseX, mouseY]);
-
-    useEffect(() => {
-        const handleHover = (e: Event) => {
-            const target = e.target as HTMLElement;
-            // if (target.closest("header")) {
-            //     sizeRef.current = 10; // Header - Zoom nhẹ
-            //     colorRef.current = "rgba(255, 100, 100, 0.9)"; // Đỏ nhạt
-            //     cursorRef.current?.classList.add("mix-blend-difference");
-            // } else if (target.closest("footer")) {
-            //     sizeRef.current = 60; // Footer - Zoom mạnh
-            //     colorRef.current = "rgba(255, 255, 255, 0.9)"; // Xanh nhạt
-            //     cursorRef.current?.classList.add("mix-blend-difference");
-            // } else if (target.closest("button") || /^H[1-6]$/i.test(target.tagName) || target.closest("a") || target.closest("p") || target.closest("span")) {
-            //     sizeRef.current = 60;
-            //     colorRef.current = "rgba(255, 255, 255, 0.9)";
-            //     cursorRef.current?.classList.add("mix-blend-difference");
-            // }
-
-            if (target.closest("footer, footer *")) {
-                sizeRef.current = 60;
-                colorRef.current = "rgba(255, 255, 255, 0.9)";
-                cursorRef.current?.classList.add("mix-blend-difference");
-            }
-        };
-
-        const handleLeave = () => {
-            sizeRef.current = 16; // Quay về kích thước mặc định khi rời đi
-            colorRef.current = !dataFmrpPages.includes(pathname) ? "rgba(26, 213, 152, 1)" : "rgba(3, 117, 243, 1)";
-            cursorRef.current?.classList.remove("mix-blend-difference");
-        };
-
+        window.addEventListener("mousemove", handleMove, { passive: true });
         document.body.addEventListener("mouseenter", handleHover, true);
         document.body.addEventListener("mouseleave", handleLeave, true);
 
+        // Set initial color
+        handleLeave();
+
         return () => {
+            window.removeEventListener("mousemove", handleMove);
             document.body.removeEventListener("mouseenter", handleHover, true);
             document.body.removeEventListener("mouseleave", handleLeave, true);
         };
-    }, [pathname]);
+    }, [handleMove, handleHover, handleLeave]);
+
+    const isFmrp = dataFmrpPages.includes(pathname);
+    const cursorColor = isFmrp ? "rgba(3, 117, 243, 1)" : "rgba(26, 213, 152, 1)";
+    const shadowColor = isFmrp ? "rgba(3, 117, 243, 0.45)" : "rgba(26, 213, 152, 0.45)";
 
     return (
         <motion.div
@@ -87,12 +81,12 @@ const CursorFollower = () => {
             style={{
                 x: smoothX,
                 y: smoothY,
-                width: "16px",
-                height: "16px",
+                width: defaultSize,
+                height: defaultSize,
                 borderRadius: "50%",
-                backgroundColor: !dataFmrpPages.includes(pathname) ? "rgba(26, 213, 152, 1)" : "rgba(3, 117, 243, 1)",
-                transition: "width 0.2s ease-out, height 0.2s ease-out, background-color 0.3s ease-out",
-                boxShadow: !dataFmrpPages.includes(pathname) ? "4px 8px 25px 4px rgba(26, 213, 152, 0.45)" : " 4px 8px 25px 4px rgba(3, 117, 243, 0.45)"
+                backgroundColor: cursorColor,
+                transition: "width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out",
+                boxShadow: `4px 8px 25px 4px ${shadowColor}`
             }}
         />
     );

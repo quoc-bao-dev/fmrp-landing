@@ -41,7 +41,7 @@ const FeatureSecond = (props: Props) => {
                     <h2 className="text-title-section-feature font-extrabold text-[#25387A]">Định mức BOM & Kế hoạch NVL</h2>
                 }
 
-                <div className='grid grid-cols-2 3xl:gap-14 gap-12'>
+                <div className='grid grid-cols-2 3xl:gap-10 xl:gap-8 gap-6'>
                     <div className="flex items-start gap-2 lg:col-span-1 col-span-2">
                         <div className="flex-shrink-0 mt-1">
                             <span className="inline-flex items-center justify-center 3xl:size-6 size-5 text-[#10805B] rounded-sm">

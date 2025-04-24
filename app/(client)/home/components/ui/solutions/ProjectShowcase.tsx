@@ -1,14 +1,18 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import React, { useState, useRef, useMemo, useCallback } from "react"
+import { motion } from "framer-motion"
 import Image from "next/image"
+
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination } from 'swiper/modules';
 
-import { useResizeStore } from '../../../../../../stores/useResizeStore';
-import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal"
+import { useResizeStore } from '@/stores/useResizeStore';
 import { useInView } from "react-intersection-observer"
+
+import dynamic from "next/dynamic"
+
+const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 interface Category {
     id: number
@@ -55,8 +59,7 @@ const ProjectShowcase = () => {
     const [selectedCategory, setSelectedCategory] = useState<Category>(categories[0])
     const [swiperInstance, setSwiperInstance] = useState<any>(null)
 
-
-    const handleCategoryChange = (category: Category, index: number) => {
+    const handleCategoryChange = useCallback((category: Category, index: number) => {
         setSelectedCategory(category);
         if (swiperInstance) {
             swiperInstance.slideToLoop(index);
@@ -74,15 +77,15 @@ const ProjectShowcase = () => {
                 });
             }
         }
-    };
+    }, [swiperInstance, isVisibleTablet])
 
-    const customPagination = {
+    const customPagination = useMemo(() => ({
         el: ".swiper-pagination2",
         clickable: true,
         renderBullet: function (index: number, className: string) {
             return `<span class=${className}></span>`
         },
-    }
+    }), []);
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-16 items-center justify-center lg:gap-10 gap-4 xl:py-10 py-4 w-full h-full overflow-x-hidden relative z-10">
@@ -105,20 +108,6 @@ const ProjectShowcase = () => {
 
                             onClick={() => handleCategoryChange(item, index)} // Gọi hàm cuộn vào viewport
                         >
-                            {/* Hiệu ứng trượt từ trái vào của gạch ngang */}
-                            {/* {selectedCategory.id === item.id && !isVisibleTablet && (
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        layout
-                                        className="absolute left-0 top-1/2 w-10 h-[3px] bg-black rounded-full z-10"
-                                        initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -50 }}
-                                        transition={{ duration: 0.3, ease: "easeOut" }}
-                                    />
-                                </AnimatePresence>
-                            )} */}
-
                             {/* Hiệu ứng trượt vào với motion.div */}
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }} // Tiêu đề trượt từ ngoài vào
@@ -157,7 +146,6 @@ const ProjectShowcase = () => {
             >
                 <div ref={ref} >
                     <Swiper
-
                         modules={[Autoplay, Pagination]}
                         direction={isVisibleTablet ? "horizontal" : "vertical"}
                         slidesPerView={isVisibleTablet ? 1 : 1.2} // Hiện một hình đầy đủ + 200px của hình tiếp theo
@@ -169,7 +157,9 @@ const ProjectShowcase = () => {
                         pagination={customPagination}
                         onSlideChange={(swiper) => {
                             const newIndex = swiper.realIndex;
-                            setSelectedCategory(categories[newIndex]);
+                            if (selectedCategory.id !== categories[newIndex].id) {
+                                setSelectedCategory(categories[newIndex]);
+                            }
 
                             if (swiper.activeIndex === 0) return; // ⛔ CHẶN `scrollIntoView` KHI MỚI LOAD
 
@@ -210,8 +200,8 @@ const ProjectShowcase = () => {
                                         <Image
                                             src={category.image || "/placeholder.svg"}
                                             alt={category.title}
-                                            width={1920}
-                                            height={1024}
+                                            width={1280}
+                                            height={720}
                                             className="size-full object-cover rounded-3xl aspect-video"
                                         />
                                     </motion.div>

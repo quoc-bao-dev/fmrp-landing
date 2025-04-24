@@ -356,12 +356,12 @@ const MembershipPlansSection = () => {
                                 pagination={customPagination}
                                 breakpoints={{
                                     320: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 30
+                                        slidesPerView: 1.2,
+                                        spaceBetween: 15
                                     },
                                     640: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 30
+                                        slidesPerView: 1.2,
+                                        spaceBetween: 15
                                     },
                                     768: {
                                         slidesPerView: 2,
@@ -376,7 +376,7 @@ const MembershipPlansSection = () => {
                                         spaceBetween: 60,
                                     }
                                 }}
-                                className='custom-swiper-pagination-fmrp h-[840px] rounded-2xl  !px-2'
+                                className='custom-swiper-pagination-fmrp h-[880px] !px-2'
                                 allowTouchMove={true}
                             >
                                 {

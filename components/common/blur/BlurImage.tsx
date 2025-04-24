@@ -4,8 +4,8 @@ import Image from "next/image";
 type BlurImageProps = {
     src: string;
     alt: string;
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
     classNameContainer?: string;
     className?: string;
     blurDataURL?: string;
@@ -33,9 +33,6 @@ const BlurImage: React.FC<BlurImageProps> = ({
     const [loaded, setLoaded] = useState(false);
 
     // Callback giúp tránh re-render không cần thiết
-    // const handleLoad = useCallback(() => setLoaded(true), []);
-    // const handleError = useCallback(() => setLoaded(true), []); // Nếu lỗi cũng tránh re-render
-
     const handleLoad = useCallback(() => {
         loadedRef.current[src] = true; // ✅ Ghi nhận ảnh này đã load
         setLoaded(true);
@@ -62,8 +59,8 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 key={src} // 🔑 Quan trọng nếu dùng trong list
                 src={src}
                 alt={alt}
-                width={width}
-                height={height}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className={`${className} transition-opacity duration-700 size-full`}
                 placeholder="blur"
                 blurDataURL={blurDataURL}
@@ -74,7 +71,7 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 onError={handleError}
                 style={{
                     opacity: loaded ? 1 : 0,
-                    filter: loaded ? "blur(0px)" : "blur(4px)",
+                    filter: loaded ? "blur(0px)" : "blur(2px)",
                     ...style,
                 }}
             />

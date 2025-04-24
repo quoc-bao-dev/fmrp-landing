@@ -16,12 +16,6 @@ const BlurBackgroundFixed: React.FC = () => {
                         className="size-full object-contain"
                     />
                 </div>
-                {/* <div
-                    className="absolute 3xl:size-[500px] size-[420px] aspect-square rounded-[40px] backdrop-filter blur-[267px] -translate-x-1/2"
-                    style={{
-                        background: "linear-gradient(180deg, rgba(157, 255, 179, 0.3) 100%, rgba(26, 163, 122, 0.3) 0% , rgba(157, 255, 179, 0.3) 100%)",
-                    }}
-                /> */}
 
                 {/* Gradient background bên phải */}
                 <div className='absolute 3xl:size-[500px] size-[420px] aspect-square rounded-[40px] blur-[155px] translate-x-1/2 pointer-events-none'>

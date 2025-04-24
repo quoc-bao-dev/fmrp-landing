@@ -10,11 +10,7 @@ import { useInView } from 'react-intersection-observer';
 type HeroSectionProps = {
 }
 
-const BabylonViewer = dynamic(() => import('@/components/common/3D/BabylonViewer'), {
-    ssr: false,
-    // loading: () => <div className="h-[300px] bg-gray-100 animate-pulse" />
-});
-
+const BabylonViewer = dynamic(() => import('@/components/common/3D/BabylonViewer'), { ssr: false, });
 const AnimatedArrows = dynamic(() => import('../ui/hero/AnimatedArrows'), { ssr: false });
 const AnimatedTitle = dynamic(() => import('@/components/common/animations/text/AnimatedTitle'), { ssr: false });
 const FadeInZoomSpan = dynamic(() => import('@/components/common/animations/fade/FadeInZoomSpan'), { ssr: false });
@@ -33,11 +29,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ }) => {
         ],
         []
     );
-
-    // ✅ Tạo hàm handleScroll với `useCallback` để tránh tạo lại hàm mỗi lần render
-    // const handleScroll = useCallback((type: "enable" | "disable") => {
-    //     document.body.style.overflow = type === "disable" ? "hidden" : "";
-    // }, []);
 
     const preventScroll = (e: Event) => {
         e.preventDefault();

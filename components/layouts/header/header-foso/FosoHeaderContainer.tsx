@@ -1,25 +1,18 @@
 'use client'
 
 import { KEY_COOKIES } from '@/constants/Cookie'
-import { useTranslate } from '@/contexts/TranslateContext'
 import { dataLanguageOptions } from '@/data/DataTranslate'
 import { uuidv4 } from '@/lib/uuid'
-// import { updateLanguage } from '@/managers/api-management/server/useGetInitializeLanguage'
-// import { usePostChangeLanguage } from '@/managers/api-management/translate/usePostChangeLanguage'
-import { useAuthStore } from '@/stores/useAuthStores'
+
 import useCookieStore from '@/stores/useCookieStore'
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useResizeStore } from '@/stores/useResizeStore'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
-import { usePathname, useRouter } from 'next/navigation'
-// import DesktopHeaderClient from './DesktopHeaderClient'
-// import TabletHeaderClient from './TabletHeaderClient'
+import { usePathname } from 'next/navigation'
 import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-import FosoDesktopHeader from './sections/FosoDesktopHeader'
-import FosoTabletHeader from './sections/FosoTabletHeader'
+
 import LaptopIconLinear from '@/components/icons/linear/LaptopIconLinear'
 import DeviceMobileIconLinear from '@/components/icons/linear/DeviceMobileIconLinear'
-import CodeIconLinear from '@/components/icons/linear/CodeIconLinear'
 import CloudArrowUpIconLinear from '@/components/icons/linear/CloudArrowUpIconLinear'
 
 import FolderStarIconLinear from '@/components/icons/linear/FolderStarIconLinear'
@@ -27,27 +20,29 @@ import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear
 import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
 import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
 
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 import React, { useEffect, useCallback, useRef } from 'react'
-import FmrpIcon from '../../../icons/common/FmrpIcon';
-import FposIcon from '../../../icons/common/FposIcon';
 import { useSheetStores } from '../../../../stores/useSheetStores';
 import { useModalContext } from '@/contexts/ModalContext'
 import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
 import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
+import dynamic from 'next/dynamic'
+
+const FosoDesktopHeader = dynamic(() => import('./sections/FosoDesktopHeader'));
+const FosoTabletHeader = dynamic(() => import('./sections/FosoTabletHeader'));
 
 const dataHeader: IMenuHeader[] = [
     {
-        id: uuidv4(),
+        id: "432432432",
         name: "Về chúng tôi",
-        link: "/ve-chung-toi",
-        active: ['about-us', 've-chung-toi'],
+        link: "/gioi-thieu",
+        active: ['about-us', 'gioi-thieu'],
         type: "default",
         visible: true,
     },
     {
-        id: uuidv4(),
+        id: "5454545453",
         name: "Giải Pháp",
         link: "products",
         type: "products",
@@ -128,12 +123,12 @@ const dataHeader: IMenuHeader[] = [
         visible: true,
     },
     {
-        id: uuidv4(),
+        id: "dsadasq34234",
         name: "Tài nguyên",
         link: "resource",
         type: "resource",
         description: "Thông tin và tài liệu hữu ích từ khách hàng.",
-        active: ['du-an','projects', 'cau-chuyen-khach-hang','customer-stories', 'blogs'],
+        active: ['du-an', 'projects', 'cau-chuyen-khach-hang', 'customer-stories', 'blogs'],
         subMenu: {
             tabs: ["Khách hàng", "Nâng cao"],
             activeTab: "Khách hàng",
@@ -190,7 +185,7 @@ const dataHeader: IMenuHeader[] = [
         visible: true,
     },
     {
-        id: uuidv4(),
+        id: "95684968594",
         name: "Liên hệ",
         link: "/lien-he",
         active: ['contact-us', 'lien-he'],
@@ -199,18 +194,11 @@ const dataHeader: IMenuHeader[] = [
     },
 ];
 
-
-
 const FosoHeaderContainer = () => {
-    // const { theme } = useTheme()
-    const router = useRouter()
     const pathname = usePathname()
-
-    const { dataLang } = useTranslate();
 
     const { setCookie } = useCookieStore()
 
-    const { informationUser } = useAuthStore()
     const { isVisibleTablet } = useResizeStore()
 
     const { setOpenDialogCustom, setStatusDialog } = useDialogStore()
@@ -220,11 +208,12 @@ const FosoHeaderContainer = () => {
 
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
 
+    const controls = useAnimation(); // Framer Motion controls
+
+    const ticking = useRef<boolean>(false); // Prevents redundant re-renders
     const lastScrollY = useRef<number>(0); // Stores last known scroll position
     const lastScrollX = useRef<number>(0); // Lưu vị trí scroll ngang trước đó
-    const ticking = useRef<boolean>(false); // Prevents redundant re-renders
     const isHeaderVisible = useRef<boolean>(false);
-    const controls = useAnimation(); // Framer Motion controls
     const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
     const forceCheckScroll = useRef<boolean>(false); // Flag để kiểm tra hướng cuộn sau khi tự hiện header
 
@@ -251,8 +240,6 @@ const FosoHeaderContainer = () => {
                 } else {
                     if (scrollY === 0) {
                         // ✅ Nếu đang ở trang chủ => Ẩn header khi ở vị trí đầu trang
-                        // shouldShowHeader = pathname !== "/";
-                        // shouldShowHeader = false; // Ẩn header khi ở đầu trang
                         shouldShowHeader = true;
                     } else if (scrollY > lastScrollY.current || forceCheckScroll.current) {
                         shouldShowHeader = false; // Ẩn header khi cuộn xuống
@@ -279,7 +266,6 @@ const FosoHeaderContainer = () => {
             ticking.current = true;
         }
 
-        // if (pathname !== "/products/phan-mem-quan-ly-san-xuat-fmrp") resetInactivityTimer();
         if (!dataFmrpPages.includes(pathname)) resetInactivityTimer();
     }, [controls, pathname]);
 
@@ -307,7 +293,7 @@ const FosoHeaderContainer = () => {
         isHeaderVisible.current = true; // Đặt lại giá trị ref
 
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         const interactionEvents = ['mousemove', 'keydown'];
 
@@ -340,7 +326,6 @@ const FosoHeaderContainer = () => {
         });
     }, [pathname]);
 
-
     useEffect(() => {
         const body = document.body;
         if (!isStateClientLayout?.header?.isShowMenuMobileFoso) {
@@ -353,7 +338,7 @@ const FosoHeaderContainer = () => {
     }, [isStateClientLayout?.header?.isShowMenuMobileFoso]);
 
     // bật/tắt menu dưới tablet/mobile
-    const handleToggleMenu = (action: string): void => {
+    const handleToggleMenu = useCallback((action: string): void => {
         if (action === "on") {
             queryKeyIsStateClientLayout({
                 header: {
@@ -369,10 +354,10 @@ const FosoHeaderContainer = () => {
                 }
             })
         }
-    }
+    }, [isStateClientLayout?.header]);
 
     // chuyển đổi ngôn ngữ
-    const handleChangeLanguage = async (value: string) => {
+    const handleChangeLanguage = useCallback(async (value: string) => {
         const selectedCountry = dataLanguageOptions.find(option => option.code === value)
         if (!selectedCountry) return
 
@@ -384,21 +369,10 @@ const FosoHeaderContainer = () => {
         })
 
         setCookie(KEY_COOKIES.WEBSITE_LANG, value)
-
-        // if (informationUser) {
-        //     // const res = await onSubmitChangeLanguage.mutateAsync(value)
-        //     // await updateLanguage(value)
-        //     await updateLanguage(value)
-        //     const [res] = await Promise.all([onSubmitChangeLanguage.mutateAsync(value)])
-        //     router.refresh()
-        // } else {
-        //     await updateLanguage(value)
-        //     router.refresh()
-        // }
-    };
+    }, [isStateClientLayout?.header, setCookie]);
 
     // bật/tắt dialog
-    const handleOpenDialog = (status: string, type_device: string) => {
+    const handleOpenDialog = useCallback((status: string, type_device: string) => {
         if (type_device === "desktop") {
             setOpenDialogCustom(true)
             setStatusDialog(status)
@@ -414,10 +388,10 @@ const FosoHeaderContainer = () => {
                 setStatusDialog(status)
             }, 500);
         }
-    }
+    }, [isStateClientLayout?.header, setOpenDialogCustom, setStatusDialog]);
 
     // bật/tắt sheet
-    const handleOpenSheet = (status: string, type_device: string) => {
+    const handleOpenSheet = useCallback((status: string, type_device: string) => {
         if (type_device === "desktop") {
             setOpenSheetCustom(true)
             setStatusSheet(status)
@@ -433,28 +407,7 @@ const FosoHeaderContainer = () => {
                 setStatusSheet(status)
             }, 500);
         }
-    }
-
-    // change input search product
-    const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        queryKeyIsStateClientLayout({
-            header: {
-                ...isStateClientLayout?.header,
-                searchProduct: e.target.value,
-            }
-        })
-    }
-
-    const handleToggleSubMenu = (id: string) => {
-        let active = isStateClientLayout?.header?.isActiveSubMenuFoso === id ? null : id
-
-        queryKeyIsStateClientLayout({
-            header: {
-                ...isStateClientLayout?.header,
-                isActiveSubMenuFoso: active
-            }
-        })
-    };
+    }, [isStateClientLayout?.header, setOpenSheetCustom, setStatusSheet]);
 
     return (
         <header className='fixed top-0 left-0 w-full z-50 pointer-events-none'>
@@ -477,7 +430,6 @@ const FosoHeaderContainer = () => {
                             handleToggleMenu={handleToggleMenu}
                             handleChangeLanguage={handleChangeLanguage}
                             handleOpenDialog={handleOpenDialog}
-                            handleValueChange={handleValueChange}
                         />
                         :
                         // màn hình desktop
@@ -487,7 +439,6 @@ const FosoHeaderContainer = () => {
                             handleChangeLanguage={handleChangeLanguage}
                             handleOpenDialog={handleOpenDialog}
                             handleOpenSheet={handleOpenSheet}
-                            handleValueChange={handleValueChange}
                         />
                 }
             </motion.div>

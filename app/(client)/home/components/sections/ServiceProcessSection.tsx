@@ -1,17 +1,21 @@
-import ButtonAnimation from '@/components/common/button/ButtonAnimation'
-import React, { useEffect, useRef, useState } from 'react'
-import { GoArrowUpRight } from 'react-icons/go'
-import { useScrollContext } from '@/contexts/ScrollContext';
+import React, { useEffect, useRef } from 'react'
 import ServiceProcessIntro from '../ui/service-process/ServiceProcessIntro';
 import ServiceProcessStep from '../ui/service-process/ServiceProcessStep';
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
-import BlurredBackground from '@/components/common/blur/BlurredBackground';
-import { useResizeStore } from '@/stores/useResizeStore';
-import ButtonAnimationNew from './../../../../../components/common/button/ButtonAnimationNew';
-import ArrowUpRightIcon from '../../../../../components/icons/common/ArrowUpRightIcon';
 
 import { motion, Variants } from 'framer-motion';
+
+import { useScrollContext } from '@/contexts/ScrollContext';
+
+import { useResizeStore } from '@/stores/useResizeStore';
 import { useSheetStores } from '@/stores/useSheetStores';
+
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
+
+import dynamic from 'next/dynamic';
+
+const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}
 

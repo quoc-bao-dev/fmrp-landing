@@ -1,7 +1,6 @@
 import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb'
-import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'
-import React, { memo, useMemo, useRef, useState, useEffect } from 'react'
+import React, { memo, useMemo, useRef } from 'react'
 import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 import { motion } from 'framer-motion'
 import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
@@ -19,9 +18,7 @@ const breadcrumbItems = [
 
 // CSS gradient tái sử dụng
 const gradientStyle = {
-    // background: `linear-gradient(to right, #0375F3, #013DA0)`,
     background: `linear-gradient(107deg, #0375F3 13.08%, #036EEA, #0267E1, #0261D7, #025ACE, #0254C5, #024EBC, #0148B3, #0142A9, #013DA0)`,
-    // background: `linear-gradient(107deg, #0375F3 43.86%, #036EEA 45.1%, #0267E1 46.34%, #0261D7 47.57%, #025ACE 48.81%, #0254C5 50.05%, #024EBC 51.29%, #0148B3 52.52%, #0142A9 53.76%, #013DA0 55%)`
 };
 
 const HeroFmrpSection = memo((props: Props) => {

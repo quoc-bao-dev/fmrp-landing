@@ -23,15 +23,11 @@ interface TabletHeaderProps {
     handleToggleMenu: (action: string) => void
     handleChangeLanguage: (value: string) => void
     handleOpenDialog: (value: string, type_device: string) => void
-    handleValueChange: (e?: any) => void
 }
 
 const FosoTabletHeader: React.FC<TabletHeaderProps> = ({
     dataHeader,
     handleToggleMenu,
-    handleChangeLanguage,
-    handleOpenDialog,
-    handleValueChange
 }: TabletHeaderProps) => {
     const dropdownRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div cần kiểm tra
     const { dataLang } = useTranslate()

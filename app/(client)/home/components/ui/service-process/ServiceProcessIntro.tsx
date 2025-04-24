@@ -1,5 +1,7 @@
 import React from "react";
-import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
+import dynamic from "next/dynamic";
+
+const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 const ServiceProcessIntro: React.FC = () => {
     return (

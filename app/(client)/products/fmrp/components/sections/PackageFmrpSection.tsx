@@ -150,6 +150,7 @@ const PackageFmrpSection = (props: Props) => {
                             <Link
                                 key={`plan-${index}`}
                                 href="/products/bang-gia-fmrp"
+                                className='lg:col-span-1 col-span-2'
                             >
                                 <PlanPackageCard {...plan} />
                             </Link>

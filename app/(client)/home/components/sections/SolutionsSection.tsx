@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProjectShowcase from '../ui/solutions/ProjectShowcase';
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
-import BlurredBackground from '@/components/common/blur/BlurredBackground';
 import { useResizeStore } from '@/stores/useResizeStore';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import { motion } from 'framer-motion'
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
 import { useSheetStores } from '@/stores/useSheetStores';
+
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+
+import dynamic from 'next/dynamic';
+
+const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}
 
 const SolutionsSection = (props: Props) => {
-    const { statusSheet, setStatusSheet, setOpenSheetCustom } = useSheetStores()
+    const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
     const { isVisibleTablet } = useResizeStore()
 
     return (

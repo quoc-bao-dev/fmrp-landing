@@ -68,10 +68,9 @@ interface DesktopHeaderClientProps {
     handleChangeLanguage: (value: string) => void
     handleOpenDialog: (value: string, type_device: string) => void
     handleOpenSheet: (value: string, type_device: string) => void
-    handleValueChange: (e?: any) => void
 }
 
-const FosoDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleOpenSheet, handleValueChange }: DesktopHeaderClientProps) => {
+const FosoDesktopHeader = ({ dataHeader, handleOpenSheet }: DesktopHeaderClientProps) => {
     const { isVisibleTablet } = useResizeStore()
 
     const dropdownRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div cần kiểm tra

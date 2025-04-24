@@ -82,11 +82,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                             <BlurImage
                                 alt="logo"
                                 src={project?.logo ?? "/default/default.png"}
-                                width={300}
-                                height={150}
                                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSk..." // Base64 của ảnh mờ
-                                className='size-full object-contain'
-                                classNameContainer='h-8 w-auto'
+                                className='!w-auto h-full object-contain'
+                                classNameContainer='h-8 w-full'
                                 loading='lazy'
                             />
                         </div>
