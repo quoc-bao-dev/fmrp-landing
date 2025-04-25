@@ -1,12 +1,12 @@
 'use client'
+
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { cn } from "@/lib/utils";
-import { useTranslate } from '@/contexts/TranslateContext';
-import Link from 'next/link';
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+
 import SalyAnimation from '../animations/common/SalyAnimation';
 import ButtonAnimationNew from '../button/ButtonAnimationNew';
+
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
 
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation';
@@ -17,9 +17,7 @@ type DevelopingProps = {
 
 const SystemDeveloping = ({ classNameParent }: DevelopingProps) => {
     const router = useRouter()
-    const [isHovered, setIsHovered] = useState<boolean>(false);
 
-    // const { dataLang } = useTranslate()
     return (
         <div className={`custom-container h-screen flex flex-col space-y-8 items-center justify-center`} >
             <SalyAnimation className="aspect-square 3xl:w-[32%] 2xl:w-[38%] xl:w-[38%] lg:w-[35%] md:w-[50%] w-[85%]">
@@ -41,32 +39,7 @@ const SystemDeveloping = ({ classNameParent }: DevelopingProps) => {
                         Trang đang trong giai đoạn phát triển, vui lòng quay lại sau!
                     </h5>
                 </div>
-
-                {/* <ButtonAnimation
-                    type="button"
-                    title="Xem tất cả"
-                    reverse={true}
-                    icon={
-                        <div className='size-5'>
-                            <GoArrowUpRight className='size-full' />
-                        </div>
-                    }
-                    className="flex items-center gap-2 text-base-default text-[#10805B] hover:bg-[#A3EED6] hover:text-[#052B1E] font-medium px-8 py-2 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
-                    onClick={() => { }}
-                /> */}
-
-                {/* <Link
-                    href="/"
-                    className="flex items-center justify-between gap-2 xl:!text-base text-sm !tracking-[1%] text-[#10805B] hover:bg-[#A3EED6]/40 hover:text-[#052B1E] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full custom-transition group"
-                >
-                    <span>
-                        Trở về trang chủ
-                    </span>
-
-                    <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
-                        <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
-                    </div>
-                </Link> */}
+                
                 <ButtonAnimationNew
                     title="Trở về trang chủ"
                     icon={

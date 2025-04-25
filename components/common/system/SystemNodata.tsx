@@ -1,5 +1,5 @@
 'use client'
-import { useTranslate } from "@/contexts/TranslateContext"
+
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -9,17 +9,12 @@ interface State {
     image: string
 }
 const SystemNodata = ({ type, className, classNameTitle }: { type: string, className?: string, classNameTitle?: string }) => {
-    // const { dataLang, language } = useTranslate()
-
     const [data, setData] = useState<State>({ title: '', image: '/background/system/no-data.svg', })
 
     const quertyState = (key: any) => setData((prev: State) => ({ ...prev, ...key }))
 
     useEffect(() => {
         switch (type) {
-            // case 'no-address':
-            //     quertyState({ title: dataLang?.no_data_no_address ?? "no_data_no_address", image: '/background/system/no-data.svg' })
-            //     break;
             case 'blog-list':
                 quertyState({ title: '', image: '/background/system/upload-no-data.svg' })
                 break;
@@ -28,7 +23,6 @@ const SystemNodata = ({ type, className, classNameTitle }: { type: string, class
                 break;
         }
     }, [type])
-    // }, [type, language])
 
     return (
         <div className={`${className} flex flex-col gap-2 items-center justify-center h-full`}>
