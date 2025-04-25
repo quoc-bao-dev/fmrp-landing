@@ -10,6 +10,7 @@ import { getMetadata } from "@/components/seo/DefaultMetadata";
 
 import '@smastrom/react-rating/style.css';
 import "@babylonjs/loaders";
+
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/effect-fade";
@@ -18,6 +19,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/thumbs";
 import "swiper/swiper-bundle.css";
+
 import "@/styles/globals.scss";
 
 export const metadata = getMetadata({

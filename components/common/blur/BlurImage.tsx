@@ -59,8 +59,11 @@ const BlurImage: React.FC<BlurImageProps> = ({
                 key={src} // 🔑 Quan trọng nếu dùng trong list
                 src={src}
                 alt={alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                // fill
+                // sizes="(max-width: 768px) 100vw, 50vw"
+                {...(width && height
+                    ? { width, height }
+                    : { fill: true, sizes: "(max-width: 768px) 100vw, 50vw" })}
                 className={`${className} transition-opacity duration-700 size-full`}
                 placeholder="blur"
                 blurDataURL={blurDataURL}
