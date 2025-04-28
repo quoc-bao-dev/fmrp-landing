@@ -24,7 +24,7 @@ const PriceTableSection = (props: Props) => {
             professional: "1,680,000 đ/buổi/90p + phí di chuyển",
         },
         {
-            title: "Tham gia nhóm",
+            title: "Thêm chi nhánh",
             freemium: "1,299,000 đ",
             professional: "999,000 đ",
         },

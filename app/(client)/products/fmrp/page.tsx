@@ -9,12 +9,6 @@ import MediaCoverageFmrpSection from './components/sections/MediaCoverageFmrpSec
 import QuestionsFmrpSection from './components/sections/QuestionsFmrpSection'
 import CommunityFmrpSection from './components/sections/CommunityFmrpSection'
 import CTAFmrpSection from './components/sections/CTAFmrpSection'
-import VideoFmrpSection from './components/sections/VideoFmrpSection'
-import SystemOverviewFmrpSection from './components/sections/SystemOverviewFmrpSection'
-import AiBomFmrpSection from './components/sections/AiBomFmrpSection'
-import FeatureManagementOverviewSection from './components/sections/FeatureManagementOverviewSection';
-import ProcessOptimizationFmrpSection from './components/sections/ProcessOptimizationFmrpSection'
-import BlurBackgroundFixed from './components/ui/common/BlurBackgroundFixed';
 import PackageFmrpSection from './components/sections/PackageFmrpSection'
 import FmrpBenefitsSection from './components/sections/FmrpBenefitsSection'
 import SupportedIndustriesSection from './components/sections/SupportedIndustriesSection';

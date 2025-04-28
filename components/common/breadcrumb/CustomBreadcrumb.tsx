@@ -1,6 +1,6 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import React from "react";
+import React, { memo } from "react";
 
 type BreadcrumbProps = {
     items: { label: string; href?: string }[];
@@ -39,4 +39,7 @@ const CustomBreadcrumb = ({ items }: BreadcrumbProps) => {
     );
 };
 
-export default CustomBreadcrumb;
+// Đặt displayName để debug dễ hơn
+CustomBreadcrumb.displayName = 'CustomBreadcrumb';
+
+export default memo(CustomBreadcrumb);
