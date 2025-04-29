@@ -31,19 +31,19 @@ const categories: Category[] = [
     {
         id: 1,
         title: "Thiết Kế Web",
-        image: "/example/solution/web.webp",
+        image: "/example/solution/web-design-1.webp",
         description: "Website chuẩn SEO, giao diện hiện đại theo nhận diện thương hiệu. Tối ưu tốc độ, dễ quản trị và sẵn sàng mở rộng theo từng giai đoạn kinh doanh.",
     },
     {
         id: 2,
         title: "Thiết Kế App Mobile",
-        image: "/example/solution/mobile-app.webp",
+        image: "/example/solution/mobile-app-design1.webp",
         description: "Từ bán hàng, đặt lịch, đến quản lý kho và sản xuất – FOSO thiết kế ứng dụng mobile theo đúng bài toán thực tế của bạn. App mượt mà, giao diện thân thiện, dễ dùng trên cả iOS và Android.",
     },
     {
         id: 3,
         title: "Thuê Hosting & Server",
-        image: "/example/solution/hosting.webp",
+        image: "/example/solution/hosting-server-1.webp",
         description: "Hạ tầng máy chủ chuyên dụng cho phần mềm sản xuất và hệ thống doanh nghiệp. Ổn định, bảo mật cao và hỗ trợ kỹ thuật nhanh chóng khi cần",
     },
     // { id: 4, title: "Thuê IT Outsourcing", image: "/example/solution/outsourcing.webp" },
@@ -200,8 +200,8 @@ const ProjectShowcase = () => {
                                         <Image
                                             src={category.image || "/placeholder.svg"}
                                             alt={category.title}
-                                            width={1280}
-                                            height={720}
+                                            width={1920}
+                                            height={1080}
                                             className="size-full object-cover rounded-3xl aspect-video"
                                         />
                                     </motion.div>

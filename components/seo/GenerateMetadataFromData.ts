@@ -4,12 +4,12 @@ import he from 'he';
 
 export function GenerateMetadataFromData(data: any, slug: string) {
     const title = he.decode(data?.title || 'Bài viết blog');
-    const description = he.decode(data?.content_no_html || 'FOSO cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu vận hành, từ giải pháp phần mềm đến thiết kế app mobile và website theo yêu cầu.');
+    const description = he.decode(data?.descption_no_html || 'FOSO cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu vận hành, từ giải pháp phần mềm đến thiết kế app mobile và website theo yêu cầu.');
     const keywords = data?.seo_keywords || 'FOSO, thiết kế website, phát triển phần mềm, công nghệ cho SME';
 
     const baseUrl = process.env.NEXT_PUBLIC_URL_WEBSITE || 'https://fososoft.com';
 
-    const canonicalUrl = `${process.env.NEXT_PUBLIC_URL_WEBSITE}/resource/blogs/${slug}`;
+    const canonicalUrl = `${process.env.NEXT_PUBLIC_URL_WEBSITE}/blogs/${slug}`;
 
     const image = data?.image?.startsWith('http')
         ? data?.image

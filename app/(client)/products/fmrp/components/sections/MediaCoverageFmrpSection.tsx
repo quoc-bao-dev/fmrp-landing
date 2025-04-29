@@ -23,7 +23,15 @@ type Props = {}
 const mediaList = [
     {
         id: uuidv4(),
-        image: "/example/blog/1.png",
+        image: "/example/blog/ket-noi-dau-tu.webp",
+        date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
+        category: "Kết nối đầu tư",
+        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất",
+        link: "https://ketnoidautu.net/foso-ra-mat-app-quan-ly-xuong-cai-thien-tien-do-san-xuat-trong-quan-ly-nha-may-a32964.html",
+    },
+    {
+        id: uuidv4(),
+        image: "/example/blog/doanh-nhan-online.webp",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Doanh nhân Sài Gòn online",
         title: "Doanh nghiệp chuyển đổi số mạnh mẽ cùng giải pháp phần mềm FMRP",
@@ -31,19 +39,11 @@ const mediaList = [
     },
     {
         id: uuidv4(),
-        image: "/example/blog/2.png",
+        image: "/example/blog/cong-nghe-doi-song.webp",
         date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
         category: "Công nghệ đời sống",
         title: "Quản lý sản xuất thông minh với giải pháp phần mềm FMRP",
         link: "https://congnghedoisong.net/quan-ly-san-xuat-thong-minh-voi-giai-phap-phan-mem-fmrp-a37796.html",
-    },
-    {
-        id: uuidv4(),
-        image: "/example/blog/3.png",
-        date: "Wed Aug 14 2024 00:00:00 GMT+0000 (UTC)",
-        category: "Kết nối đầu tư",
-        title: "FOSO ra mắt App Quản lý xưởng cải thiện tiến độ sản xuất",
-        link: "https://ketnoidautu.net/foso-ra-mat-app-quan-ly-xuong-cai-thien-tien-do-san-xuat-trong-quan-ly-nha-may-a32964.html",
     },
 ]
 

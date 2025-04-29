@@ -157,8 +157,6 @@ const PackageFmrpSection = (props: Props) => {
                         ))
                     }
                 </div>
-
-
             </div>
         </div>
     )

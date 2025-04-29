@@ -42,7 +42,7 @@ const features = [
         pro: true
     },
     {
-        label: "Quản lý chuyên sau công đoạn BTP",
+        label: "Quản lý chuyên sâu công đoạn BTP",
         key: "btp",
         freemium: false,
         pro: true
