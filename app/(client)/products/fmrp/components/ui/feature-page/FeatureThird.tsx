@@ -64,7 +64,7 @@ const FeatureThird = (props: Props) => {
                 <Link
                     href="https://bom.so/mrp"
                     target='_blank'
-                    className="inline-flex items-center gap-2 text-base-default text-[#0375F3] hover:text-[#0375F3]/80 custom-transition pl-[26px]"
+                    className="inline-flex items-center gap-2 text-base-default text-[#0375F3] underline-offset-2 underline hover:text-[#0375F3]/80 custom-transition pl-[26px]"
                 >
                     <div className='font-semibold'>
                         Khám phá cách theo dõi và in lệnh sản xuất nhanh gọn ngay
