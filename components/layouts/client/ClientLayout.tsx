@@ -1,45 +1,50 @@
-'use client'
+"use client";
 
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 // import HeaderContainerClient from '../header/HeaderContainerClient'
 // import FooterContainer from '../footer/FooterContainer'
 
-import { useDialogStore } from '@/stores/useDialogStores'
-import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
-import FosoHeaderContainer from '@/components/layouts/header/header-foso/FosoHeaderContainer'
-import FooterContainer from '@/components/layouts/footer/FooterContainer'
-import FmrpHeaderContainer from '../header/header-fmrp/FmrpHeaderContainer'
-import { DynamicSheet } from '../../common/sheet/DynamicSheet';
-import { useSheetStores } from '../../../stores/useSheetStores';
-import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
-import WidgetButton from '@/components/common/button/WidgetButton'
+import { useDialogStore } from "@/stores/useDialogStores";
+import { useAlertDialogStore } from "@/stores/useAlertDialogStore";
+import FosoHeaderContainer from "@/components/layouts/header/header-foso/FosoHeaderContainer";
+import FooterContainer from "@/components/layouts/footer/FooterContainer";
+import FmrpHeaderContainer from "../header/header-fmrp/FmrpHeaderContainer";
+import { DynamicSheet } from "../../common/sheet/DynamicSheet";
+import { useSheetStores } from "../../../stores/useSheetStores";
+import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
+import WidgetButton from "@/components/common/button/WidgetButton";
 
-const ClientLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
-    const { openSheetCustom } = useSheetStores()
-    const pathname = usePathname()
+const ClientLayout = ({
+  children,
+  data,
+}: {
+  children: React.ReactNode;
+  data: any;
+}) => {
+  const { openSheetCustom } = useSheetStores();
+  const pathname = usePathname();
 
-    return (
-        <>
-            {/* header */}
-            {dataFmrpPages.includes(pathname) && <FmrpHeaderContainer />}
-            <FosoHeaderContainer />
+  return (
+    <>
+      {/* header */}
+      {dataFmrpPages.includes(pathname) && <FmrpHeaderContainer />}
+      <FosoHeaderContainer />
 
-            {children}
+      {children}
 
-            {/* footer */}
-            <FooterContainer />
+      {/* footer */}
+      <FooterContainer />
 
-            <WidgetButton />
+      <WidgetButton />
 
-            {openSheetCustom && <DynamicSheet />}
-            {/* {openDialogCustom && <DialogCustom />} */}
-            {/* {openAlertDialog && <AlertDialogCustom />} */}
-        </>
-    )
-}
+      {openSheetCustom && <DynamicSheet />}
+      {/* {openDialogCustom && <DialogCustom />} */}
+      {/* {openAlertDialog && <AlertDialogCustom />} */}
+    </>
+  );
+};
 
-export default ClientLayout
+export default ClientLayout;
