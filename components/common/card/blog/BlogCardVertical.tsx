@@ -113,7 +113,7 @@ const BlogCardVertical = ({ blog, className }: Props) => {
                             blog && blog?.type_blog?.map((item: IBlogTag) => (
                                 <div
                                     key={`tag-${item.id}`}
-                                    className='px-3 py-2 3xl:text-[13px] text-xs text-white font-semibold rounded-lg capitalize'
+                                    className='px-2 py-1 text-xs text-white font-semibold rounded-lg capitalize'
                                     style={{
                                         background: item.color
                                     }}

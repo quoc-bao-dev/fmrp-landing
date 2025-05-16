@@ -1,13 +1,13 @@
-import React from "react";
-import Image from "next/image";
-import ButtonToTop from "./ButtonToTop";
-import SocialMediaButton from "./SocialMediaButton";
-import { usePathname } from "next/navigation";
-import PhoneLink from "../contact-links/PhoneLink";
-import EmailLink from "../contact-links/EmailLink";
-import Link from "next/link";
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import React from "react";
+import PhoneLink from "../contact-links/PhoneLink";
+import SocialMediaButton from "./SocialMediaButton";
+import ButtonToTop from "./ButtonToTop";
+import EmailLink from "../contact-links/EmailLink";
+import Link from "next/link";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
@@ -100,25 +100,37 @@ const socialButtons = [
   // }
 ];
 
+// Function kiểm tra xem có phải trang blog chi tiết không
+const isBlogDetailPage = (pathname: string) => {
+  // Kiểm tra xem URL có khớp với mẫu /blogs/{slug} không
+  return /^\/blogs\/[^\/]+$/.test(pathname);
+};
+
 // Component WidgetButton
 const WidgetButton: React.FC = () => {
   const pathname = usePathname();
+  
+  // Xác định vị trí của các nút dựa trên pathname
+  const positionClass = isBlogDetailPage(pathname)
+    ? "3xl:left-24 xxl:left-12 xl:left-8 left-0 top-[calc(50vh+220px)] -translate-y-1/2 sm:right-8" // Vị trí bottom cho trang blog chi tiết
+    : "3xl:left-24 xxl:left-12 xl:left-8 left-0 top-1/2 -translate-y-1/2 sm:right-8"; // Vị trí mặc định
+  
   return (
-    <div className="flex flex-col gap-4 fixed bottom-8 left-5 sm:left-auto sm:right-8 z-[999]">
+    <div className={`hidden lg:flex flex-col gap-4 fixed z-40 w-[55px] ${positionClass}`}>
       {socialButtons.map((button, index) => (
         <SocialMediaButton
           key={index}
-          // className={button?.className || ""}
-          // background_animation={button.background_animation}
           info={button.info}
-          handleClick={button.handleClick} // ✅ Truyền `handleClick` riêng cho từng button
+          handleClick={button.handleClick}
+          // Thay đổi vị trí tooltip nếu là trang blog chi tiết
+          tooltipPosition={isBlogDetailPage(pathname) ? "top" : "left"}
           icon={
             <div
               className={`${
                 dataFmrpPages.includes(pathname)
                   ? "hover:bg-[#0375f3]/80"
                   : "hover:scale-[1.04]"
-              } bg-white  p-3 rounded-full custom-transition`}
+              } bg-white p-3 rounded-full custom-transition`}
               style={{
                 boxShadow:
                   "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A",
@@ -136,7 +148,7 @@ const WidgetButton: React.FC = () => {
         />
       ))}
 
-      <ButtonToTop />
+      {/* <ButtonToTop /> */}
     </div>
   );
 };

@@ -277,7 +277,11 @@ const MainBlogSection = (props: Props) => {
                 <div className='w-full flex lg:flex-row flex-col 3xl:gap-8 gap-6'>
                     {/* Main Content Area */}
                     <div className="3xl:w-[74%] xxl:w-[70%] lg:w-[68%] w-full flex flex-col 3xl:gap-8 gap-6 lg:order-1 order-2">
-                        <h1 ref={titleRef} className="text-title-section-small font-extrabold align-middle">Tất Cả Bài Viết</h1>
+                        <h1 ref={titleRef} className="text-title-section-feature-small font-extrabold align-middle">
+                            {isStatePageBlogs?.isSelectedCategory ? 
+                                (isStatePageBlogs.isSelectedCategory.name === "Tất cả" ? "Tất Cả Bài Viết" : isStatePageBlogs.isSelectedCategory.name) 
+                                : "Tất Cả Bài Viết"}
+                        </h1>
                         {/* Hero Banner */}
 
                         {/* {

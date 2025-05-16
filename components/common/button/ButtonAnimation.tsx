@@ -16,7 +16,9 @@ type Props = {
     hideTitle?: boolean;
     disabled?: boolean;
     isLoading?: boolean;
+    forceHover?: boolean;
     whileHover?: Variants | { [key: string]: any }; // ✅ Type chính xác
+    animateProps?: Variants | { [key: string]: any }; // ✅ Animate Props mới
 };
 
 const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
@@ -33,14 +35,16 @@ const ButtonAnimation = forwardRef<HTMLButtonElement, Props>(({
     hideTitle = false,
     disabled = false,
     isLoading = false,
-    whileHover
+    forceHover = false,
+    whileHover,
+    animateProps
 }, ref) => {
     return (
         <motion.button
             initial={{
                 boxShadow: "none",
             }}
-            animate="rest"
+            animate={animateProps || (forceHover ? "hover" : "rest")}
             whileTap="press"
             whileHover={whileHover || "hover"} // ✅ Nhận động từ props hoặc dùng mặc định
             variants={disabled ? {} : variant}

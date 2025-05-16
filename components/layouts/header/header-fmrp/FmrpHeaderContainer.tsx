@@ -23,6 +23,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect, useCallback, useRef } from "react";
 import { useModalContext } from "@/contexts/ModalContext";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
+import { useRegisterButtonVisibility, useRegisterButtonDelayCleanup } from "@/hooks/custom/useRegisterButtonVisibility";
 
 const dataHeader: IMenuHeader[] = [
   {
@@ -91,6 +92,11 @@ const FmrpHeaderContainer = () => {
 
   const { openModal, closeModal } = useModalContext();
 
+  const { setHeaderVisible } = useRegisterButtonVisibility();
+  
+  // Sử dụng hook để cleanup khi component unmount
+  useRegisterButtonDelayCleanup();
+
   // ✅ Xử lý scroll để kiểm tra hướng cuộn (dùng throttle để tránh lag)
   const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
@@ -118,6 +124,8 @@ const FmrpHeaderContainer = () => {
 
         if (shouldShowHeader !== isHeaderVisible.current) {
           isHeaderVisible.current = shouldShowHeader;
+          // Cập nhật trạng thái hiển thị header để kiểm soát nút đăng ký
+          setHeaderVisible(shouldShowHeader);
           controls.start({
             y: shouldShowHeader ? 0 : -100,
             opacity: shouldShowHeader ? 1 : 0,
@@ -137,7 +145,7 @@ const FmrpHeaderContainer = () => {
     }
 
     resetInactivityTimer();
-  }, [controls]);
+  }, [controls, setHeaderVisible]);
 
   // ✅ Xử lý khi không thao tác để tự hiện header
   const resetInactivityTimer = useCallback(() => {
@@ -149,6 +157,8 @@ const FmrpHeaderContainer = () => {
       if (window.scrollY > 0) {
         // Kiểm tra lại trước khi hiển thị
         isHeaderVisible.current = true;
+        // Cập nhật trạng thái hiển thị header để kiểm soát nút đăng ký
+        setHeaderVisible(true);
         forceCheckScroll.current = true;
         controls.start({
           y: 0,
@@ -162,7 +172,7 @@ const FmrpHeaderContainer = () => {
       }
       inactivityTimer.current = null;
     }, 1500);
-  }, [controls]);
+  }, [controls, setHeaderVisible]);
 
   // useEffect(() => {
   //   lastScrollY.current = window.scrollY; // Cập nhật vị trí scroll ngay khi tải trang
@@ -220,33 +230,20 @@ const FmrpHeaderContainer = () => {
         window.removeEventListener("keydown", resetInactivityTimer);
       };
     } else {
-      // 📱 Mobile/Tablet: hiện khi scroll > 60, ẩn khi về top
-      const handleMobileScroll = () => {
-        const scrollY = window.scrollY;
-
-        if (scrollY > 20 && !isHeaderVisible.current) {
-          isHeaderVisible.current = true;
-          controls.start({
-            y: 0,
-            opacity: 1,
-            transition: { type: "spring", stiffness: 100, damping: 20 },
-          });
-        }
-
-        if (scrollY === 0 && isHeaderVisible.current) {
-          isHeaderVisible.current = false;
-          controls.start({
-            y: -100,
-            opacity: 0,
-            transition: { type: "spring", stiffness: 100, damping: 20 },
-          });
-        }
-      };
-
-      window.addEventListener("scroll", handleMobileScroll);
-      return () => window.removeEventListener("scroll", handleMobileScroll);
+      // 📱 Mobile/Tablet: KHÔNG dùng logic scroll cho header và floating button
+      // Đảm bảo header luôn hiển thị
+      isHeaderVisible.current = true;
+      setHeaderVisible(true);
+      controls.start({
+        y: 0,
+        opacity: 1,
+        transition: { type: "spring", stiffness: 100, damping: 20 },
+      });
+      
+      // Không cần event listener
+      return undefined;
     }
-  }, [handleScroll, resetInactivityTimer, isVisibleTablet]);
+  }, [handleScroll, resetInactivityTimer, isVisibleTablet, setHeaderVisible, controls]);
 
   // 🛠️ Chặn cuộn khi mở menu mobile
   useEffect(() => {

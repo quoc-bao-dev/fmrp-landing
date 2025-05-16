@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IMenuHeader } from "@/types/ui/menu/IMenuUI";
 import { useStateClientLayout } from "@/managers/state/client/useStateClientLayout";
@@ -19,6 +19,8 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import { variantButtonScaleZoom } from "@/utils/animations/variantsAnimation";
 import { scrollToTop } from "@/utils/scroll/scrollUtils";
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
+import { useRegisterButtonVisibility, useRegisterButtonDelayCleanup } from '@/hooks/custom/useRegisterButtonVisibility'
+import { useScrollDirection } from '@/hooks/custom/useScrollDirection'
 
 interface TabletHeaderProps {
   dataHeader: IMenuHeader[];
@@ -47,6 +49,16 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
 
   const { isStateClientLayout, queryKeyIsStateClientLayout } =
     useStateClientLayout();
+
+  const { canShowButton } = useRegisterButtonVisibility();
+  
+  useRegisterButtonDelayCleanup();
+  
+  const { scrollDirection, scrollY } = useScrollDirection();
+
+  const [isLanguage, setIsLanguage] = useState(false);
+  
+  const shouldShowRegisterButton = true;
 
   const handleToggleSubMenu = (id: string) => {
     let active =
@@ -95,47 +107,31 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
             Trải nghiệm ngay
           </Link> */}
           <div className="min-h-full">
-            <ButtonAnimation
-              icon={
-                <div className="xl:size-6 size-5 flex-shrink-0 flex items-center justify-center bg-[#000000] rounded-full">
-                  <Image
-                    width={100}
-                    height={100}
-                    alt="icon"
-                    src={"/icons/common/arrow/ArrowUpRight.svg"}
-                    className="size-4 object-contain"
-                  />
-                </div>
-              }
-              reverse={true}
-              title="Đăng ký"
-              onClick={() => {
-                window.open("https://bom.so/mrp");
-              }}
-              className="border-gradient-button-fmrp flex items-center gap-2 text-sm text-white font-semibold capitalize border-none w-fit rounded-[6px] px-4 py-2 transition-colors duration-300 ease-in-out min-h-full"
-              style={{
-                background:
-                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(118.21deg, #0375F3 10.03%, #013DA0 107.74%)",
-              }}
-              whileHover={{
-                background: [
-                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
-                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
-                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
-                ],
-                transition: {
-                  duration: 1.5,
-                  ease: [0.4, 0, 0.6, 1],
-                  repeat: Infinity,
-                },
-                boxShadow: [
-                  "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
-                  "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
-                  "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
-                  "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)",
-                ],
-              }}
-            />
+            {shouldShowRegisterButton && (
+              <ButtonAnimation
+                icon={
+                  <div className="xl:size-6 size-5 flex-shrink-0 flex items-center justify-center bg-[#000000] rounded-full">
+                    <Image
+                      width={100}
+                      height={100}
+                      alt="icon"
+                      src={"/icons/common/arrow/ArrowUpRight.svg"}
+                      className="size-4 object-contain"
+                    />
+                  </div>
+                }
+                reverse={true}
+                title="Đăng ký"
+                onClick={() => {
+                  window.open("https://bom.so/mrp");
+                }}
+                className="border-gradient-button-fmrp flex items-center gap-2 text-sm text-white font-semibold capitalize border-none w-fit rounded-[6px] px-4 py-2 transition-colors duration-300 ease-in-out min-h-full"
+                style={{
+                  background:
+                    "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(118.21deg, #0375F3 10.03%, #013DA0 107.74%)",
+                }}
+              />
+            )}
           </div>
 
           <motion.div

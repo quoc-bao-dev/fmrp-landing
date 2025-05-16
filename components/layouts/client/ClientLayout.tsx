@@ -16,6 +16,7 @@ import { DynamicSheet } from "../../common/sheet/DynamicSheet";
 import { useSheetStores } from "../../../stores/useSheetStores";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import WidgetButton from "@/components/common/button/WidgetButton";
+import RegisterButton from "@/components/common/button/RegisterButton";
 
 const ClientLayout = ({
   children,
@@ -39,7 +40,7 @@ const ClientLayout = ({
       <FooterContainer />
 
       <WidgetButton />
-
+      <RegisterButton />
       {openSheetCustom && <DynamicSheet />}
       {/* {openDialogCustom && <DialogCustom />} */}
       {/* {openAlertDialog && <AlertDialogCustom />} */}

@@ -123,6 +123,10 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:text-[32px] 2xl:text-[28px] xxl:text-[28px] xl:text-[26px] md:text-[24px] text-[20px] 3xl:!leading-[42px] 2xl:!leading-[38px] xxl:!leading-[38px] xl:!leading-[36px] md:!leading-[36px] !leading-[34px] tracking-[-2%];
   }
 
+  .text-title-section-feature-small {
+    @apply 3xl:text-[28px] 2xl:text-[24px] xxl:text-[24px] xl:text-[22px] md:text-[20px] text-[18px] 3xl:!leading-[38px] 2xl:!leading-[34px] xxl:!leading-[34px] xl:!leading-[32px] md:!leading-[32px] !leading-[30px] tracking-[-2%];
+  }
+
   .text-title {
     @apply 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-xl !tracking-[2%];
   }
