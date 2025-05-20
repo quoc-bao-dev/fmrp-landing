@@ -133,6 +133,12 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      backgroundImage: {
+        "radian-border":
+          "radial-gradient(circle, rgba(2, 84, 197, 1) 0%, rgba(255, 255, 255, 0) 100%)",
+        "linear-button-register":
+          "linear-gradient(173deg, #0375F3 14.12%, #013DA0 95.45%)",
+      },
     },
   },
   plugins: [

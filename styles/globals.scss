@@ -59,7 +59,11 @@ canvas {
 .mask-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 1) 68%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 1) 68%
+  );
   pointer-events: none;
   z-index: 5;
 }
@@ -210,9 +214,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       pointer-events: none;
       z-index: -1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
     }
@@ -230,16 +232,17 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       inset: 0;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(50% 93.75% at 50% 6.25%, #a3eed6 0%, rgba(255, 255, 255, 0) 100%);
+      background: radial-gradient(
+        50% 93.75% at 50% 6.25%,
+        #a3eed6 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
       pointer-events: none;
       z-index: 1;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
 
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -247,7 +250,12 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
 
     &:hover::before {
-      background: conic-gradient(from var(--angle), #a3eed6, rgba(255, 255, 255, 0), #a3eed6);
+      background: conic-gradient(
+        from var(--angle),
+        #a3eed6,
+        rgba(255, 255, 255, 0),
+        #a3eed6
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -274,11 +282,8 @@ iframe[title="recaptcha challenge expires in two minutes"] {
 
       background: linear-gradient(77.74deg, #10805b, #10805b);
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -287,7 +292,12 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
 
     &:hover::before {
-      background: conic-gradient(from var(--angle), #10805b, rgba(3, 234, 3, 0.2), #10805b);
+      background: conic-gradient(
+        from var(--angle),
+        #10805b,
+        rgba(3, 234, 3, 0.2),
+        #10805b
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -309,12 +319,13 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       inset: 0px;
       border-radius: inherit;
       padding: var(--border-width);
-      background: radial-gradient(50% 93.75% at 50% 6.25%, #c7dffb 0%, rgba(255, 255, 255, 0) 100%);
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      background: radial-gradient(
+        50% 93.75% at 50% 6.25%,
+        #0254c5 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -323,12 +334,64 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
 
     &:hover::before {
-      background: conic-gradient(from var(--angle), #c7dffb, rgba(255, 255, 255, 0), #c7dffb);
+      background: conic-gradient(
+        from var(--angle),
+        #c7dffb,
+        rgba(255, 255, 255, 0),
+        #c7dffb
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
   }
 
+  .border-gradient-button-fmrp-new {
+    --border-radius: 9999px;
+    --border-width: 1.8px;
+    --border-width-hover: 2px;
+    --border-color: white;
+    --border-inset-hover: 0px;
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    z-index: 0;
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: conic-gradient(
+        from var(--angle),
+        #0254c5 0%,
+        transparent 25%,
+        rgba(3, 110, 234, 0.2) 50%,
+        transparent 75%,
+        #0254c5 100%
+      );
+      
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: -1;
+      // animation: moveGradient 2s linear infinite;
+      animation: borderMove 2s linear infinite;
+    }
+  }
+  @keyframes moveGradient {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: 0% 0;
+    }
+  }
   .border-gradient-button-no-bg-fmrp {
     --border-radius: 6px;
     --border-width: 1px;
@@ -358,11 +421,8 @@ iframe[title="recaptcha challenge expires in two minutes"] {
         #0142a9 82.24%
       );
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -392,7 +452,12 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     // 💥 Hover từ chính button hoặc từ cha group đều hoạt động
     &:hover::before,
     .group:hover &::before {
-      background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
+      background: conic-gradient(
+        from var(--angle),
+        #036eea 0%,
+        rgba(3, 110, 234, 0.2) 50%,
+        #0254c5 100%
+      );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
     }
@@ -423,15 +488,16 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
+      background: linear-gradient(
+        360deg,
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(9, 9, 11, 0.1) 100%
+      );
       pointer-events: none;
       z-index: 0;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -467,15 +533,16 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       inset: var(--border-inset);
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(360deg, rgba(9, 9, 11, 0.05) 0%, rgba(9, 9, 11, 0.1) 100%);
+      background: linear-gradient(
+        360deg,
+        rgba(9, 9, 11, 0.05) 0%,
+        rgba(9, 9, 11, 0.1) 100%
+      );
       pointer-events: none;
       z-index: 0;
 
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       mask-composite: exclude;
       -webkit-mask-composite: xor; /* hoặc destination-out */
@@ -519,8 +586,18 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       );
 
       /* 👇 Mask chỉ để hiện viền trên */
-      mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
-      -webkit-mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
+      mask-image: linear-gradient(
+        to bottom,
+        white 0px,
+        white 4px,
+        transparent 4px
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        white 0px,
+        white 4px,
+        transparent 4px
+      );
 
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
@@ -544,11 +621,27 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       inset: 0;
       border-radius: inherit;
       padding: var(--border-width);
-      background: linear-gradient(270deg, rgba(1, 61, 160, 0) 0%, #013da0 32%, #013da0 61.5%, rgba(1, 61, 160, 0) 100%);
+      background: linear-gradient(
+        270deg,
+        rgba(1, 61, 160, 0) 0%,
+        #013da0 32%,
+        #013da0 61.5%,
+        rgba(1, 61, 160, 0) 100%
+      );
 
       /* 👇 Mask chỉ để hiện viền trên */
-      mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
-      -webkit-mask-image: linear-gradient(to bottom, white 0px, white 4px, transparent 4px);
+      mask-image: linear-gradient(
+        to bottom,
+        white 0px,
+        white 4px,
+        transparent 4px
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        white 0px,
+        white 4px,
+        transparent 4px
+      );
 
       mask-composite: exclude;
       -webkit-mask-composite: destination-out;
@@ -764,4 +857,23 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   background-image: url("/icons/blog/quote-left.svg");
   background-position: center;
   @apply absolute -top-2 left-0 xl:w-[52px] xl:h-[52px] size-10 bg-contain bg-no-repeat z-[1];
+}
+
+@keyframes radialMove {
+  0% {
+    --x: 50%;
+    --y: 0%;
+  }
+  50% {
+    --x: 50%;
+    --y: 100%;
+  }
+  100% {
+    --x: 50%;
+    --y: 0%;
+  }
+}
+
+.animate-radial {
+  animation: radialMove 5s ease-in-out infinite;
 }
