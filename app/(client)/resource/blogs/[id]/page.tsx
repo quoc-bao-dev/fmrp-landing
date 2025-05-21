@@ -34,31 +34,7 @@ import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import BannerBottomBlog from "@/app/(client)/resource/blogs/[id]/components/sections/BannerBottomBlog";
-
-export const useHideOnScrollBottom = (offset = 100) => {
-  const [hide, setHide] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      const scrolledToBottom =
-        scrollY + windowHeight >= documentHeight - offset;
-      setHide(scrolledToBottom);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // chạy lần đầu
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [offset]);
-
-  return hide;
-};
+import { useHideOnScrollBottom } from "@/hooks/custom/useHideOnScrollBottom";
 
 type Props = {};
 
