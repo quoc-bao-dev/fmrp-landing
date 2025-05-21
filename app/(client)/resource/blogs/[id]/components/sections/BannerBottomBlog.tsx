@@ -6,12 +6,12 @@ import Image from "next/image";
 
 const BannerBottomBlog = () => {
   return (
-    <div className="w-full bg-[#EBF5FF] md:gap-x-4 gap-x-1 sticky bottom-0 flex items-end 3xl:px-60 xxl:px-40 xl:px-32 lg:px-10 md:px-8 px-3 justify-between z-40 h-fit">
-      <div className="md:w-fit md:my-1 lg:my-1.5 w-full flex justify-center md:px-0 px-2  3xl:mb-4">
+    <div className=" w-full  md:gap-x-4 gap-x-1  flex items-end 3xl:px-60 xxl:px-40 xl:px-32 lg:px-10 md:px-8 px-3 py-1.5 md:py-0 justify-between h-fit ">
+      <div className="md:w-fit md:my-1 lg:my-1.5 w-full flex justify-center md:px-0 px-2  3xl:mb-2">
         <ButtonAnimationNew
           title="Đăng ký trải nghiệm ngay"
           icon={
-            <div className="3xl:size-9 2xl:size-8 md:size-6 size-8 rounded-full flex items-center justify-center bg-[#025FCA] text-white">
+            <div className="3xl:size-7 2xl:size-5 md:size-5 size-8 rounded-full flex items-center justify-center bg-[#025FCA] text-white">
               <motion.div
                 initial={{ x: 0, y: 0 }}
                 variants={{
@@ -21,12 +21,15 @@ const BannerBottomBlog = () => {
                 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
               >
-                <ArrowUpRightIcon className="2xl:size-4 md:size-3 size-4 3xl:size-5" />
+                <ArrowUpRightIcon className="2xl:size-3 md:size-3 size-4 3xl:size-4" />
               </motion.div>
             </div>
           }
+          onClick={() => {
+            window.open("https://hub.fmrp.vn/auth/register");
+          }}
           reverse={true}
-          className=" relative bg-white border-gradient-button-fmrp-new !shadow-[0px_8px_16px_rgba(3,117,243,0.24)] flex items-center gap-1.5 3xl:!text-base xl:!text-sm lg:!text-sm md:!text-sm text-sm font-bold !tracking-[1%] text-[#025FCA] 3xl:px-4 3xl:py-2.5 xl:px-3 lg:py-2 md:py-1.5 md:px-2.5 py-2 px-4 rounded-full md:w-fit w-full capitalize whitespace-nowrap text-nowrap"
+          className=" relative bg-white border-gradient-button-fmrp-new !shadow-[0px_8px_16px_rgba(3,117,243,0.24)] flex items-center gap-1.5 3xl:!text-sm xl:!text-xs lg:!text-xs md:!text-[10px] text-sm font-bold !tracking-[1%] text-[#025FCA] 3xl:px-3 3xl:py-1.5 xl:px-2 xxl:py-1.5 lg:py-1.5 md:py-1.5 md:px-2.5 py-1.5 px-3 rounded-full md:w-fit w-full capitalize whitespace-nowrap text-nowrap"
         />
       </div>
       <div className="flex-1 hidden md:flex justify-end">
@@ -35,7 +38,7 @@ const BannerBottomBlog = () => {
           alt="bg-image"
           width={900}
           height={600}
-          className="lg:w-[800px] xxl:w-[800px] md:w-[800px] 3xl:w-[1100px] h-full object-cover "
+          className="lg:w-[800px] xxl:w-[850px] 2xl:w-[970px] md:w-[800px] 3xl:w-[1100px] h-full object-cover "
           quality={100}
         />
       </div>

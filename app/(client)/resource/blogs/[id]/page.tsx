@@ -1,7 +1,7 @@
 "use client";
 
 import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import TableOfContents from "./components/sections/TableOfContents";
 import BannerVerticalFmrp from "@/components/common/banner/BannerVerticalFmrp";
 import BannerVerticalBlog from "@/components/common/banner/BannerVerticalBlog";
@@ -31,9 +31,35 @@ import ButtonAnimation from "@/components/common/button/ButtonAnimation";
 import Lottie from "lottie-react";
 import sparkle from "@/public/logo/sparkle.json";
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import BannerBottomBlog from "@/app/(client)/resource/blogs/[id]/components/sections/BannerBottomBlog";
+
+export const useHideOnScrollBottom = (offset = 100) => {
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      const scrolledToBottom =
+        scrollY + windowHeight >= documentHeight - offset;
+      setHide(scrolledToBottom);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // chạy lần đầu
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [offset]);
+
+  return hide;
+};
+
 type Props = {};
 
 const breadcrumbItems = [
@@ -113,7 +139,6 @@ const DetailBlog = () => {
   const { isVisibleTablet } = useResizeStore();
   const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } =
     useGetDataDetailBlog({ slug: idBlog?.id });
-  console.log("🚀 ~ DetailBlog ~ dataBlogDetail:", dataBlogDetail?.register);
 
   const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } =
     useBlogsList({
@@ -144,10 +169,76 @@ const DetailBlog = () => {
     return doc.body.innerHTML;
   };
 
+  const controls = useAnimation();
+  // Thêm đoạn này để theo dõi scroll
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollY = window.scrollY;
+
+  //     if (scrollY > 300) {
+  //       // hiện lên từ dưới lên
+  //       controls.start({
+  //         y: 0,
+  //         opacity: 1,
+  //         transition: { type: "spring", stiffness: 500, damping: 40 },
+  //       });
+  //     } else {
+  //       // ẩn đi từ trên xuống
+  //       controls.start({
+  //         y: 100,
+  //         opacity: 0,
+  //         transition: { duration: 0.3 },
+  //       });
+  //     }
+  //   };
+
+  //   // gọi lần đầu để kiểm tra trạng thái
+  //   handleScroll();
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [controls]);
+
+  useEffect(() => {
+    let isMounted = false;
+
+    const handleScroll = () => {
+      if (!isMounted) return;
+
+      const scrollY = window.scrollY;
+      if (scrollY > 300) {
+        controls.start({
+          y: 0,
+          opacity: 1,
+          transition: { type: "spring", stiffness: 500, damping: 40 },
+        });
+      } else {
+        controls.start({
+          y: 100,
+          opacity: 0,
+          transition: { duration: 0.3 },
+        });
+      }
+    };
+
+    const onMount = () => {
+      isMounted = true;
+      window.addEventListener("scroll", handleScroll);
+      handleScroll(); // chạy sau khi mounted
+    };
+
+    // delay 1 tick sau mount
+    requestAnimationFrame(onMount);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [controls]);
+  const isScrollBottom = useHideOnScrollBottom(450);
   return (
-    <main>
-      <div className="custom-padding-section">
-        <div className="custom-container 3xl:space-y-14 space-y-10 sm:px-0 px-4">
+    <main className="relative">
+      <div className="custom-padding-section relative">
+        <div className="custom-container 3xl:space-y-14 space-y-10 sm:px-0 px-4 ">
           <div className="lg:pt-8 pt-16">
             <CustomBreadcrumb items={breadcrumbItems} />
           </div>
@@ -380,17 +471,26 @@ const DetailBlog = () => {
           )}
         </div>
       </div>
-      {dataBlogDetail?.register === 1 && !isLoadingBlogDetail && (
-        <BannerBottomBlog />
-      )}
-
-      {!isVisibleTablet && (
-        <SocialShare
-          classNameContainer={
-            "fixed 3xl:left-24 xxl:left-12 xl:left-8 left-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-4 z-40"
-          }
-          classNameSocial={"flex flex-col items-center justify-center gap-4"}
-        />
+      <AnimatePresence>
+        {dataBlogDetail?.register === 1 && !isLoadingBlogDetail && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={controls}
+            className=" sticky bottom-0 bg-[#EBF5FF] overflow-hidden z-40 rounded-b-3xl "
+          >
+            <BannerBottomBlog />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {!isVisibleTablet && !isScrollBottom && (
+        <div>
+          <SocialShare
+            classNameContainer={
+              "fixed 3xl:left-24 xxl:left-12 xl:left-8 left-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-4 z-20"
+            }
+            classNameSocial={"flex flex-col items-center justify-center gap-4"}
+          />
+        </div>
       )}
     </main>
   );

@@ -25,7 +25,7 @@ const FooterContainer = (props: Props) => {
 
     return (
         <footer className='relative w-full overflow-hidden bg-[#052B1E]'>
-            <div className="w-full h-6 bg-white rounded-b-3xl" />
+            {/* <div className="w-full h-6 bg-white rounded-b-3xl" /> */}
 
             <div className="custom-container flex flex-col 3xl:gap-8 gap-6 pt-16 pb-12">
                 {/* Phần Logo & Slogan */}
