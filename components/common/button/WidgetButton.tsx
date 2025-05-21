@@ -112,8 +112,8 @@ const WidgetButton: React.FC = () => {
 
   // Xác định vị trí của các nút dựa trên pathname
   const positionClass = isBlogDetailPage(pathname)
-    ? "bottom-0 -translate-y-1/2 sm:right-7" // Vị trí bottom cho trang blog chi tiết
-    : "bottom-0 -translate-y-1/2 sm:right-7"; // Vị trí mặc định
+    ? "bottom-0 -translate-y-[80%] sm:right-8" // Vị trí bottom cho trang blog chi tiết
+    : "bottom-0 -translate-y-[80%] sm:right-8"; // Vị trí mặc định
 
   return (
     <div
