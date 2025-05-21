@@ -1,9 +1,13 @@
+"use client";
 import { useEffect, useState } from "react";
 
 export const useHideOnScrollBottom = (offset = 100) => {
   const [hide, setHide] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined" || typeof document === "undefined")
+      return;
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
