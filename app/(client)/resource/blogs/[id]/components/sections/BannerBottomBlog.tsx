@@ -7,7 +7,7 @@ import Image from "next/image";
 const BannerBottomBlog = () => {
   return (
     <div className="w-full bg-[#EBF5FF] md:gap-x-4 gap-x-1 sticky bottom-0 flex items-end 3xl:px-60 xxl:px-40 xl:px-32 lg:px-10 md:px-8 px-3 justify-between z-40 h-fit">
-      <div className="md:w-fit my-2 w-full flex justify-center md:px-0 px-2  3xl:mb-4">
+      <div className="md:w-fit md:my-1 lg:my-1.5 w-full flex justify-center md:px-0 px-2  3xl:mb-4">
         <ButtonAnimationNew
           title="Đăng ký trải nghiệm ngay"
           icon={
@@ -31,11 +31,11 @@ const BannerBottomBlog = () => {
       </div>
       <div className="flex-1 hidden md:flex justify-end">
         <Image
-          src="/logo/blog/bg_image2.webp"
+          src="/logo/blog/bg_image3.webp"
           alt="bg-image"
           width={900}
           height={600}
-          className="lg:w-[900px] md:w-[900px] 3xl:w-[1200px] h-full object-cover "
+          className="lg:w-[800px] xxl:w-[800px] md:w-[800px] 3xl:w-[1100px] h-full object-cover "
           quality={100}
         />
       </div>

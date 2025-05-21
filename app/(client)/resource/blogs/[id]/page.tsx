@@ -147,7 +147,7 @@ const DetailBlog = () => {
   return (
     <main>
       <div className="custom-padding-section">
-        <div className="custom-container 3xl:space-y-14 space-y-10">
+        <div className="custom-container 3xl:space-y-14 space-y-10 sm:px-0 px-4">
           <div className="lg:pt-8 pt-16">
             <CustomBreadcrumb items={breadcrumbItems} />
           </div>
