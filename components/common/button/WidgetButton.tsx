@@ -109,14 +109,16 @@ const isBlogDetailPage = (pathname: string) => {
 // Component WidgetButton
 const WidgetButton: React.FC = () => {
   const pathname = usePathname();
-  
+
   // Xác định vị trí của các nút dựa trên pathname
   const positionClass = isBlogDetailPage(pathname)
-    ? "3xl:left-24 xxl:left-12 xl:left-8 left-0 top-[calc(50vh+220px)] -translate-y-1/2 sm:right-8" // Vị trí bottom cho trang blog chi tiết
-    : "3xl:left-24 xxl:left-12 xl:left-8 left-0 top-1/2 -translate-y-1/2 sm:right-8"; // Vị trí mặc định
-  
+    ? "bottom-0 -translate-y-[80%] sm:right-8" // Vị trí bottom cho trang blog chi tiết
+    : "bottom-0 -translate-y-[80%] sm:right-8"; // Vị trí mặc định
+
   return (
-    <div className={`hidden lg:flex flex-col gap-4 fixed z-40 w-[55px] ${positionClass}`}>
+    <div
+      className={`hidden lg:flex flex-col gap-4 fixed z-40  ${positionClass}`}
+    >
       {socialButtons.map((button, index) => (
         <SocialMediaButton
           key={index}
