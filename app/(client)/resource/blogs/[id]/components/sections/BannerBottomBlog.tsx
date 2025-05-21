@@ -1,0 +1,46 @@
+import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
+import React from "react";
+import { motion } from "framer-motion";
+import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
+import Image from "next/image";
+
+const BannerBottomBlog = () => {
+  return (
+    <div className="w-full bg-[#EBF5FF] md:gap-x-4 gap-x-1 sticky bottom-0 flex items-end 3xl:px-60 xxl:px-40 xl:px-32 lg:px-10 md:px-8 px-3 justify-between z-40 h-fit">
+      <div className="md:w-fit my-2 w-full flex justify-center md:px-0 px-2  3xl:mb-4">
+        <ButtonAnimationNew
+          title="Đăng ký trải nghiệm ngay"
+          icon={
+            <div className="3xl:size-9 2xl:size-8 md:size-6 size-8 rounded-full flex items-center justify-center bg-[#025FCA] text-white">
+              <motion.div
+                initial={{ x: 0, y: 0 }}
+                variants={{
+                  rest: { scale: 1 },
+                  hover: { x: 2, y: -2 }, // Khi hover vào button, div cũng scale lớn hơn
+                  press: { scale: 0.98 }, // Khi hover vào button, div cũng scale lớn hơn
+                }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              >
+                <ArrowUpRightIcon className="2xl:size-4 md:size-3 size-4 3xl:size-5" />
+              </motion.div>
+            </div>
+          }
+          reverse={true}
+          className=" relative bg-white border-gradient-button-fmrp-new !shadow-[0px_8px_16px_rgba(3,117,243,0.24)] flex items-center gap-1.5 3xl:!text-base xl:!text-sm lg:!text-sm md:!text-sm text-sm font-bold !tracking-[1%] text-[#025FCA] 3xl:px-4 3xl:py-2.5 xl:px-3 lg:py-2 md:py-1.5 md:px-2.5 py-2 px-4 rounded-full md:w-fit w-full capitalize whitespace-nowrap text-nowrap"
+        />
+      </div>
+      <div className="flex-1 hidden md:flex justify-end">
+        <Image
+          src="/logo/blog/bg_image2.webp"
+          alt="bg-image"
+          width={900}
+          height={600}
+          className="lg:w-[900px] md:w-[900px] 3xl:w-[1200px] h-full object-cover "
+          quality={100}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default BannerBottomBlog;

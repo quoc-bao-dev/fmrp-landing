@@ -109,7 +109,7 @@ const RegisterButton: React.FC = () => {
     canShowButton("floating");
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 fixed bottom-8 left-5 sm:left-auto sm:right-8 z-[999]">
+    <div className="flex flex-col lg:flex-row gap-3 fixed bottom-20 left-5 sm:left-auto sm:right-8 z-[999]">
       <div className="flex flex-col lg:hidden gap-3">
         {socialButtons.map((button, index) => (
           <SocialMediaButton
