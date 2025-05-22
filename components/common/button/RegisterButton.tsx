@@ -3,7 +3,6 @@ import {
   useRegisterButtonDelayCleanup,
   useRegisterButtonVisibility,
 } from "@/hooks/custom/useRegisterButtonVisibility";
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -13,7 +12,6 @@ import ButtonToTop from "./ButtonToTop";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import SocialMediaButton from "./SocialMediaButton";
 import { useResizeStore } from "@/stores/useResizeStore";
-import IconRegisterButton from "@/components/icons/common/IconRegisterButton";
 
 const socialButtons = [
   {

@@ -27,12 +27,7 @@ import AutoTableOfContents from "./components/sections/AutoTableOfContents";
 import { Skeleton } from "@/components/ui/skeleton";
 import BlogContentSkeleton from "@/components/common/skeleton/blogs/BlogContentSkeleton";
 import BlurImage from "@/components/common/blur/BlurImage";
-import ButtonAnimation from "@/components/common/button/ButtonAnimation";
-import Lottie from "lottie-react";
-import sparkle from "@/public/logo/sparkle.json";
-import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import BannerBottomBlog from "@/app/(client)/resource/blogs/[id]/components/sections/BannerBottomBlog";
 import { useHideOnScrollBottom } from "@/hooks/custom/useHideOnScrollBottom";
 
@@ -110,7 +105,7 @@ const dataBlogList: IBlogItem[] = [
 
 const DetailBlog = () => {
   const idBlog = useParams();
-
+  const lastStateRef = useRef<"show" | "hide">("hide");
   const swiperRef = useRef<any>(null);
   const { isVisibleTablet } = useResizeStore();
   const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } =
@@ -146,68 +141,43 @@ const DetailBlog = () => {
   };
 
   const controls = useAnimation();
-  // Thêm đoạn này để theo dõi scroll
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollY = window.scrollY;
-
-  //     if (scrollY > 300) {
-  //       // hiện lên từ dưới lên
-  //       controls.start({
-  //         y: 0,
-  //         opacity: 1,
-  //         transition: { type: "spring", stiffness: 500, damping: 40 },
-  //       });
-  //     } else {
-  //       // ẩn đi từ trên xuống
-  //       controls.start({
-  //         y: 100,
-  //         opacity: 0,
-  //         transition: { duration: 0.3 },
-  //       });
-  //     }
-  //   };
-
-  //   // gọi lần đầu để kiểm tra trạng thái
-  //   handleScroll();
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [controls]);
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    let isMounted = false;
-
     const handleScroll = () => {
-      if (!isMounted) return;
-
-      const scrollY = window.scrollY;
-      if (scrollY > 300) {
-        controls.start({
-          y: 0,
-          opacity: 1,
-          transition: { type: "spring", stiffness: 500, damping: 40 },
-        });
-      } else {
-        controls.start({
-          y: 100,
-          opacity: 0,
-          transition: { duration: 0.3 },
-        });
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
       }
+
+      debounceTimeoutRef.current = setTimeout(() => {
+        const scrollY = window.scrollY;
+
+        if (scrollY > 300 && lastStateRef.current !== "show") {
+          controls.start({
+            y: 0,
+            opacity: 1,
+            transition: { type: "spring", stiffness: 500, damping: 40 },
+          });
+          lastStateRef.current = "show";
+        } else if (scrollY <= 300 && lastStateRef.current !== "hide") {
+          controls.start({
+            y: 100,
+            opacity: 0,
+            transition: { duration: 0.3 },
+          });
+          lastStateRef.current = "hide";
+        }
+      }, 500); // debounce 100ms
     };
 
-    const onMount = () => {
-      isMounted = true;
-      window.addEventListener("scroll", handleScroll);
-      handleScroll(); // chạy sau khi mounted
-    };
-
-    // delay 1 tick sau mount
-    requestAnimationFrame(onMount);
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // chạy lần đầu
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
     };
   }, [controls]);
   const isScrollBottom = useHideOnScrollBottom(450);

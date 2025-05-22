@@ -2,13 +2,10 @@
 
 import { usePathname } from "next/navigation";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 
 // import HeaderContainerClient from '../header/HeaderContainerClient'
 // import FooterContainer from '../footer/FooterContainer'
-
-import { useDialogStore } from "@/stores/useDialogStores";
-import { useAlertDialogStore } from "@/stores/useAlertDialogStore";
 import FosoHeaderContainer from "@/components/layouts/header/header-foso/FosoHeaderContainer";
 import FooterContainer from "@/components/layouts/footer/FooterContainer";
 import FmrpHeaderContainer from "../header/header-fmrp/FmrpHeaderContainer";
@@ -18,8 +15,7 @@ import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import WidgetButton from "@/components/common/button/WidgetButton";
 import RegisterButton from "@/components/common/button/RegisterButton";
 import RegisterBttonNew from "@/components/common/button/RegisterBttonNew";
-import { useResizeStore } from "@/stores/useResizeStore";
-import SocialShare from "@/app/(client)/resource/blogs/[id]/components/ui/SocialShare";
+
 
 const ClientLayout = ({
   children,

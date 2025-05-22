@@ -1,15 +1,9 @@
+"use client";
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
-import IconRegisterButton from "@/components/icons/common/IconRegisterButton";
-import {
-  useRegisterButtonDelayCleanup,
-  useRegisterButtonVisibility,
-} from "@/hooks/custom";
 import { useResizeStore } from "@/stores/useResizeStore";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { motion } from "framer-motion";
-import sparkle from "@/public/logo/sparkle.json";
-import Lottie from "lottie-react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const RegisterBttonNew = () => {
   const pathname = usePathname();
@@ -27,10 +21,10 @@ const RegisterBttonNew = () => {
         <ButtonAnimation
           icon={
             <div className="size-10 bg-linear-button-register rounded-full flex justify-center items-center">
-              <Lottie
-                animationData={sparkle}
-                loop
+              <DotLottieReact
+                src="/gif/sparkle.lottie"
                 autoplay
+                loop
                 style={{ width: 30, height: 30 }}
               />
             </div>

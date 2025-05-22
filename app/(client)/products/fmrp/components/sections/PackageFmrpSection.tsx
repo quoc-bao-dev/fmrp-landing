@@ -3,19 +3,7 @@ import FosoOriginIcon from "@/components/icons/social-media/FosoOriginIcon";
 import TiktokOriginIcon from "@/components/icons/social-media/TiktokOriginIcon";
 import YoutubeOriginIcon from "@/components/icons/social-media/YoutubeOriginIcon";
 import { uuidv4 } from "@/lib/uuid";
-import React, { useState } from "react";
-
-import { motion } from "framer-motion";
-import {
-  variantButtonScaleZoom,
-  variantCardScaleZoom,
-} from "@/utils/animations/variantsAnimation";
-import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
-import { ArrowUpRightIcon } from "lucide-react";
-import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
-import Image from "next/image";
-import { useResizeStore } from "@/stores/useResizeStore";
-import FosoOriginIcon2 from "../../../../../../components/icons/social-media/FosoOriginIcon2";
+import React from "react";
 import PlanPackageCard from "@/components/common/card/plan/PlanPackageCard";
 import Link from "next/link";
 
@@ -119,9 +107,6 @@ const dataPackage = [
 ];
 
 const PackageFmrpSection = (props: Props) => {
-  const { isVisibleTablet } = useResizeStore();
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-
   return (
     <div className="custom-padding-section">
       <div className="custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8">

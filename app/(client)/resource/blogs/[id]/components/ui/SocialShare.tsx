@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import ZaloOriginIcon from "../../../../../../../components/icons/social-media/ZaloOriginIcon";
 import FacebookOriginIcon from "@/components/icons/social-media/FacebookOriginIcon";

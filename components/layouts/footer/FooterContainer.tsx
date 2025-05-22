@@ -2,8 +2,6 @@
 
 import React from 'react'
 
-import { usePathname, useRouter } from 'next/navigation'
-
 import { LineSeparator } from '../../common/separator/LineSeparator'
 import FooterLogo from './sections/FooterLogo';
 import FooterContent from './sections/FooterContent';
@@ -19,9 +17,7 @@ const socialMedia = [
 ];
 
 const FooterContainer = (props: Props) => {
-    const router = useRouter()
 
-    const pathname = usePathname()
 
     return (
         <footer className='relative w-full overflow-hidden bg-[#052B1E]'>
