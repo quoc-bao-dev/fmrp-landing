@@ -26,7 +26,7 @@ const BannerBottomBlog = () => {
             </div>
           }
           onClick={() => {
-            window.open("https://hub.fmrp.vn/auth/register");
+            window.open("https://bom.so/mrp");
           }}
           reverse={true}
           className=" relative bg-white border-gradient-button-fmrp-new !shadow-[0px_8px_16px_rgba(3,117,243,0.24)] flex items-center gap-1.5 3xl:!text-sm xl:!text-xs lg:!text-xs md:!text-[10px] text-sm font-bold !tracking-[1%] text-[#025FCA] 3xl:px-3 3xl:py-1.5 xl:px-2 xxl:py-1.5 lg:py-1.5 md:py-1.5 md:px-2.5 py-1.5 px-3 rounded-full md:w-fit w-full capitalize whitespace-nowrap text-nowrap"
