@@ -29,7 +29,7 @@ const AuthorCard = () => {
             </div>
             <div className="flex flex-col gap-1">
               <h3 className="text-[#15AA7A] font-bold text-2xl xl:text-3xl">An Bùi</h3>
-              <p className="text-sm xl:text-base font-bold text-[#809FB8]">
+              <p className="text-sm xl:text-base font-bold text-[#809FB8] uppercase">
                 chuyên gia công nghệ{" "}
               </p>
             </div>
