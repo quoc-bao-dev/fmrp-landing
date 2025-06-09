@@ -1,35 +1,34 @@
 "use client";
 
-import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import TableOfContents from "./components/sections/TableOfContents";
-import BannerVerticalFmrp from "@/components/common/banner/BannerVerticalFmrp";
-import BannerVerticalBlog from "@/components/common/banner/BannerVerticalBlog";
-import Image from "next/image";
+import BannerBottomBlog from "@/app/(client)/resource/blogs/[id]/components/sections/BannerBottomBlog";
 import AvatarCustom from "@/components/common/avatar/AvatarCustom";
+import BannerVerticalBlog from "@/components/common/banner/BannerVerticalBlog";
+import BannerVerticalFmrp from "@/components/common/banner/BannerVerticalFmrp";
+import BlurImage from "@/components/common/blur/BlurImage";
+import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
+import BlogContentSkeleton from "@/components/common/skeleton/blogs/BlogContentSkeleton";
 import CalendarBlankIcon from "@/components/icons/common/CalendarBlankIcon";
 import ClockIcon from "@/components/icons/common/ClockIcon";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useHideOnScrollBottom } from "@/hooks/custom/useHideOnScrollBottom";
+import { uuidv4 } from "@/lib/uuid";
+import { useBlogsList } from "@/managers/api/blogs/useBlogsList";
+import { IBlogItem } from "@/types/blog/IBlog";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import moment from "moment";
+import { useParams } from "next/navigation";
+import React, { useEffect, useRef } from "react";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import QuoteBox from "../../../../../components/common/quote/QuoteBox";
+import { FORMAT_DATE } from "../../../../../constants/FormatDate";
+import { useGetDataDetailBlog } from "../../../../../managers/api/blogs/useGetDataDetailBlog";
+import { useResizeStore } from "../../../../../stores/useResizeStore";
+import AuthorCard from "./components/sections/AuthorCard";
+import AutoTableOfContents from "./components/sections/AutoTableOfContents";
 import ReactionBox from "./components/ui/ReactionBox";
 import RelatedBlogList from "./components/ui/RelatedBlogList";
-import { uuidv4 } from "@/lib/uuid";
-import { IBlogItem } from "@/types/blog/IBlog";
 import SocialShare from "./components/ui/SocialShare";
-import { useResizeStore } from "../../../../../stores/useResizeStore";
-import { SwiperSlide, Swiper } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import { useBlogsList } from "@/managers/api/blogs/useBlogsList";
-import { useGetDataDetailBlog } from "../../../../../managers/api/blogs/useGetDataDetailBlog";
-import { useParams } from "next/navigation";
-import { FORMAT_DATE } from "../../../../../constants/FormatDate";
-import moment from "moment";
-import QuoteBox from "../../../../../components/common/quote/QuoteBox";
-import AutoTableOfContents from "./components/sections/AutoTableOfContents";
-import { Skeleton } from "@/components/ui/skeleton";
-import BlogContentSkeleton from "@/components/common/skeleton/blogs/BlogContentSkeleton";
-import BlurImage from "@/components/common/blur/BlurImage";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import BannerBottomBlog from "@/app/(client)/resource/blogs/[id]/components/sections/BannerBottomBlog";
-import { useHideOnScrollBottom } from "@/hooks/custom/useHideOnScrollBottom";
 
 type Props = {};
 
@@ -110,7 +109,7 @@ const DetailBlog = () => {
   const { isVisibleTablet } = useResizeStore();
   const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } =
     useGetDataDetailBlog({ slug: idBlog?.id });
-
+  console.log(dataBlogDetail);
   const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } =
     useBlogsList({
       page: 1,
@@ -318,7 +317,7 @@ const DetailBlog = () => {
                       classNameSocial={"flex items-center justify-center gap-2"}
                     />
                   )}
-
+                  {dataBlogDetail?.created?.name === "An Bùi" && <AuthorCard />}
                   <ReactionBox />
                 </React.Fragment>
               )}
