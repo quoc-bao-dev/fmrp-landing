@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import PhoneLink from "../contact-links/PhoneLink";
 import SocialMediaButton from "./SocialMediaButton";
-import ButtonToTop from "./ButtonToTop";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [

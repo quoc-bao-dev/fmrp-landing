@@ -19,7 +19,7 @@ export const IMAGES = {
   khachHang: "/icons/fmrp/khachHang.png",
   star: "/icons/fmrp/star.png",
   glass: "/icons/fmrp/glass.png",
-  fimo: "/icons/fmrp/fimo.png",
+  fimo: "/icons/fmrp/fimo.webp",
   lenhSanXuat: "/icons/fmrp/lenhSanXuat1.png",
   lotDate: "/icons/fmrp/lotDate2.png",
   fmrpApp: "/icons/fmrp/fmrpApp.png",

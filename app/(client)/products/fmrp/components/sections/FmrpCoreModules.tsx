@@ -63,7 +63,7 @@ const FmrpCoreModules = () => {
                     className="size-16"
                   />
                 </div>
-                <p className="text-base-default text-[#33404A font-bold text-center">
+                <p className="text-base-default text-[#33404A] font-bold text-center">
                   {m.title}
                 </p>
               </div>

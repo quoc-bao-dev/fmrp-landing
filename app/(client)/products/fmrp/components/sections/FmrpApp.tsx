@@ -39,7 +39,7 @@ const FmrpApp = () => {
             <div className="w-full 3xl:max-w-[63%] 2xl:max-w-[63%] xxl:max-w-[60%] xl:max-w-[55%] lg:max-w-[52%] max-w-full">
               <AnimatedReveal
                 from="right"
-                className="w-auto 3xl:h-[10px] 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] lg:h-[500px] h-auto aspect-3/2"
+                className="w-auto 2xl:h-[720px] xxl:h-[620px] xl:h-[540px] lg:h-[500px] h-auto aspect-3/2"
               >
                 <BlurImage
                   src="/background/ui/fmrp/bg-fmrp3.png"
