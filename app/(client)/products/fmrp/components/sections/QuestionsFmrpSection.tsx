@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-import { useStatePageFmrp } from '../../_state/useStatePageFmrp'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import AnimateOnScroll from '@/components/common/animations/scroll/AnimateOnScroll';
-import { GoDash } from 'react-icons/go';
-import { IoMdAdd } from 'react-icons/io';
+"use client"
 import CaretUpIcon from '@/components/icons/common/CaretUpIcon';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useStatePageFmrp } from '../../_state/useStatePageFmrp';
 
 type Props = {}
 

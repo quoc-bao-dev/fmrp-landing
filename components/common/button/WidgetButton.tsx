@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import PhoneLink from "../contact-links/PhoneLink";
 import SocialMediaButton from "./SocialMediaButton";
-
+import ButtonToTop from "./ButtonToTop";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
   {
-    icon: "/icons/social-media/zalo2.svg",
+    icon: "/icons/social-media/whiteZalo.svg",
     background_animation:
       "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
     info: (
@@ -32,7 +32,7 @@ const socialButtons = [
     },
   },
   {
-    icon: "/icons/social-media/messenger.svg",
+    icon: "/icons/social-media/whiteMess.svg",
     background_animation:
       "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
     info: (
@@ -63,7 +63,7 @@ const socialButtons = [
     },
   },
   {
-    icon: "/icons/social-media/call.svg",
+    icon: "/icons/social-media/whiteCall.svg",
     background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
     info: (
       <p className="text-sm text-nowrap space-x-1 text-gray-500">
@@ -80,43 +80,23 @@ const socialButtons = [
       window.location.href = `tel:0901136968`;
     },
   },
-  // {
-  //     icon: "/icons/social-media/gmail.svg",
-  //     background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
-  //     className: "bg-[#53B086]/80",
-  //     info: (
-  //         <p className="text-sm text-nowrap space-x-1 text-gray-500">
-  //             <span className='text-nowrap'>Email:</span>
-  //             <EmailLink email="info@fososoft.com" className="text-gray-500 font-semibold !text-nowrap">
-  //                 info@fososoft.com
-  //             </EmailLink>
-  //         </p>
-  //     ),
-  //     handleClick: () => { window.open("https://m.me/yourpage", "_blank") },
-  //     // handleClick: () => { window.open("mailto:info@fososoft.com", "_blank") }
-  //     // handleClick: () => { window.location.href = `mailto:info@fososoft.com` }
-  // }
 ];
 
 // Function kiểm tra xem có phải trang blog chi tiết không
 const isBlogDetailPage = (pathname: string) => {
-  // Kiểm tra xem URL có khớp với mẫu /blogs/{slug} không
   return /^\/blogs\/[^\/]+$/.test(pathname);
 };
 
-// Component WidgetButton
 const WidgetButton: React.FC = () => {
   const pathname = usePathname();
 
   // Xác định vị trí của các nút dựa trên pathname
   const positionClass = isBlogDetailPage(pathname)
-    ? "bottom-0 -translate-y-[80%] sm:right-8" // Vị trí bottom cho trang blog chi tiết
-    : "bottom-0 -translate-y-[80%] sm:right-8"; // Vị trí mặc định
+    ? "bottom-0 -translate-y-[80%] xl:right-8" // Vị trí bottom cho trang blog chi tiết
+    : "bottom-20 right-2 xl:right-8"; // Vị trí mặc định
 
   return (
-    <div
-      className={`hidden lg:flex flex-col gap-4 fixed z-40  ${positionClass}`}
-    >
+    <div className={`flex flex-col fixed z-40  ${positionClass}`}>
       {socialButtons.map((button, index) => (
         <SocialMediaButton
           key={index}
@@ -128,9 +108,12 @@ const WidgetButton: React.FC = () => {
             <div
               className={`${
                 dataFmrpPages.includes(pathname)
-                  ? "hover:bg-[#0375f3]/80"
+                  ? "hover:bg-[#48DDAD]/80"
                   : "hover:scale-[1.04]"
-              } bg-white p-3 rounded-full custom-transition`}
+              } 
+              ${index == 0 && "rounded-t-xl"}
+              ${index == socialButtons.length - 1 && "rounded-b-xl"}
+              bg-[#48DDAD] border border-[#15AA7A] size-[56px] custom-transition flex justify-center items-center`}
               style={{
                 boxShadow:
                   "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A",
@@ -140,7 +123,9 @@ const WidgetButton: React.FC = () => {
                 width={100}
                 height={100}
                 alt="social-media"
-                className="size-6 object-contain"
+                className={`${
+                  index == 1 ? "size-8" : "size-7"
+                } aspect-square object-cover flex-shrink-0`}
                 src={button.icon}
               />
             </div>

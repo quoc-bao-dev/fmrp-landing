@@ -1,36 +1,35 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { useLenis } from '@/contexts/LenisContext';
+// import { useJsApiLoader } from "@react-google-maps/api";
+import { FC } from "react";
 
 interface CustomMapProps {
     lat: number;
     lng: number;
 }
 
-const mapContainerStyle = {
-    width: "100%",
-    height: "100%",
-    borderRadius: "12px",
-    overflow: "hidden",
-};
+// const mapContainerStyle = {
+//     width: "100%",
+//     height: "100%",
+//     borderRadius: "12px",
+//     overflow: "hidden",
+// };
 
 // ⭐ Dữ liệu style lấy từ Figma
-const mapStyles = [
-    { stylers: [{ hue: "#baf4c4" }, { saturation: 10 }] },
-    { featureType: "water", stylers: [{ color: "#effefd" }] },
-    { featureType: "all", elementType: "labels", stylers: [{ visibility: "off" }] },
-    { featureType: "administrative", elementType: "labels", stylers: [{ visibility: "on" }] },
-    { featureType: "road", elementType: "all", stylers: [{ visibility: "off" }] },
-    { featureType: "transit", elementType: "all", stylers: [{ visibility: "off" }] }
-];
+// const mapStyles = [
+//     { stylers: [{ hue: "#baf4c4" }, { saturation: 10 }] },
+//     { featureType: "water", stylers: [{ color: "#effefd" }] },
+//     { featureType: "all", elementType: "labels", stylers: [{ visibility: "off" }] },
+//     { featureType: "administrative", elementType: "labels", stylers: [{ visibility: "on" }] },
+//     { featureType: "road", elementType: "all", stylers: [{ visibility: "off" }] },
+//     { featureType: "transit", elementType: "all", stylers: [{ visibility: "off" }] }
+// ];
 
 const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string, // 🔑 API Key từ Google
-    });
+    // const { isLoaded } = useJsApiLoader({
+    //     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string, // 🔑 API Key từ Google
+    // });
 
-    const mapRef = useRef<HTMLDivElement>(null);
-    const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+    // const mapRef = useRef<HTMLDivElement>(null);
+    // const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
     // const { lenis } = useLenis(); // Sử dụng Lenis Context
 
@@ -51,31 +50,31 @@ const CustomMap: FC<CustomMapProps> = ({ lat, lng }) => {
     //     };
     // }, [lenis]);
 
-    const toggleFullscreen = () => {
-        if (!mapRef.current) return;
+    // const toggleFullscreen = () => {
+    //     if (!mapRef.current) return;
 
-        if (!isFullscreen) {
-            if (mapRef.current.requestFullscreen) {
-                mapRef.current.requestFullscreen();
-            }
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
-        }
-        setIsFullscreen(!isFullscreen);
-    };
+    //     if (!isFullscreen) {
+    //         if (mapRef.current.requestFullscreen) {
+    //             mapRef.current.requestFullscreen();
+    //         }
+    //     } else {
+    //         if (document.exitFullscreen) {
+    //             document.exitFullscreen();
+    //         }
+    //     }
+    //     setIsFullscreen(!isFullscreen);
+    // };
 
 
-    const onLoad = useCallback((map: google.maps.Map) => {
-        map.setOptions({ styles: mapStyles }); // Áp dụng styles custom từ Figma
-    }, []);
+    // const onLoad = useCallback((map: google.maps.Map) => {
+    //     map.setOptions({ styles: mapStyles }); // Áp dụng styles custom từ Figma
+    // }, []);
 
-    if (!isLoaded) return <p>Đang tải bản đồ...</p>;
+    // if (!isLoaded) return <p>Đang tải bản đồ...</p>;
 
     return (
         <div
-            ref={mapRef}
+            // ref={mapRef}
             className="relative w-full h-full lg:aspect-2/1 aspect-1/1.92 rounded-3xl overflow-hidden shadow-lg"
         >
             {/* <GoogleMap

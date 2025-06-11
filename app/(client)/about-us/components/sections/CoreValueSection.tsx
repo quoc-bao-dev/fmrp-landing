@@ -1,7 +1,4 @@
-import React from 'react'
 import CoreValueStep from '../ui/core-value/CoreValueStep'
-import { useResizeStore } from '@/stores/useResizeStore'
-import BlurredBackground from '@/components/common/blur/BlurredBackground'
 
 type Props = {}
 

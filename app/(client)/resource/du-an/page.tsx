@@ -1,7 +1,4 @@
-'use client'
-
 import SystemDeveloping from '@/components/common/system/SystemDeveloping'
-import React from 'react'
 type Props = {}
 
 const Fpos = (props: Props) => {

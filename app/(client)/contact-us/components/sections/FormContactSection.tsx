@@ -1,13 +1,13 @@
+import ContactCard from '@/components/common/card/contact/ContactCard';
+import FormContact from '@/components/common/form/FormContact';
 import SocialMediaList from '@/components/common/social/SocialMediaList';
 import ClockIconLinear from '@/components/icons/linear/ClockIconLinear';
 import EnvelopeSimpleIconLinear from '@/components/icons/linear/EnvelopeSimpleIconLinear';
 import MapPinIconLinear from '@/components/icons/linear/MapPinIconLinear';
 import PhoneIconLinear from '@/components/icons/linear/PhoneIconLinear';
-import React from 'react'
 import { uuidv4 } from '@/lib/uuid';
-import ContactCard from '@/components/common/card/contact/ContactCard';
 import { ICardContactItem } from '@/types/card/ICard';
-import FormContact from '@/components/common/form/FormContact';
+import React from 'react';
 
 type Props = {}
 

@@ -1,3 +1,4 @@
+"use client"
 import FloatingRotateAnimation from '@/components/common/animations/common/FloatingRotateAnimation'
 import PulseGlowAnimation from '@/components/common/animations/common/PulseGlowAnimation'
 import SalyAnimation from '@/components/common/animations/common/SalyAnimation'

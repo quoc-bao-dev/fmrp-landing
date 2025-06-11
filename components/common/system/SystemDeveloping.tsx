@@ -1,15 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import React, { useState } from 'react'
-
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import SalyAnimation from '../animations/common/SalyAnimation';
 import ButtonAnimationNew from '../button/ButtonAnimationNew';
-
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
-
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation';
 
 type DevelopingProps = {
     classNameParent?: string

@@ -1,10 +1,9 @@
-
+'use client'
+import { useScrollContext } from '@/contexts/ScrollContext';
+import { uuidv4 } from '@/lib/uuid';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useCallback, useMemo } from 'react';
-
-import { uuidv4 } from '@/lib/uuid';
-import { useScrollContext } from '@/contexts/ScrollContext';
-import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 
 type HeroSectionProps = {

@@ -1,19 +1,16 @@
-import React, { useMemo, useRef } from 'react'
+'use client'
 
-import { uuidv4 } from '@/lib/uuid';
-
-import { useResizeStore } from '@/stores/useResizeStore';
-
-import { Autoplay, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation';
-
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import MediaCard from '@/components/common/card/media/MediaCard';
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
-import BlurredBackground from '@/components/common/blur/BlurredBackground'
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+import { uuidv4 } from '@/lib/uuid';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import React, { useMemo, useRef } from 'react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 type Props = {}
 

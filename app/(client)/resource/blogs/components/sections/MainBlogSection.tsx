@@ -1,24 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
-import CommunityJoinSection from '../ui/CommunityJonbinSection'
-import { uuidv4 } from '@/lib/uuid'
-import BlogCardVertical from '@/components/common/card/blog/BlogCardVertical'
-import { IBlogItem, IFilterBlog } from '@/types/blog/IBlog'
-import { CustomPagination } from '@/components/common/paginations/CustomPagination'
-import { useResizeStore } from '@/stores/useResizeStore';
+'use client'
 
-import InputSearchComponent from '@/components/common/search/InputSearchComponent'
-import { useStatePageBlogs } from '../../_state/useStatePageBlogs'
 import BannerVerticalBlog from '@/components/common/banner/BannerVerticalBlog'
 import BannerVerticalFmrp from '@/components/common/banner/BannerVerticalFmrp'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination } from 'swiper/modules'
+import BlogCardVertical from '@/components/common/card/blog/BlogCardVertical'
+import { CustomPagination } from '@/components/common/paginations/CustomPagination'
+import InputSearchComponent from '@/components/common/search/InputSearchComponent'
+import BlogTypeSkeleton from '@/components/common/skeleton/blogs/BlogTypeSkeleton'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
-import { useGetTypeBlogsList } from '@/managers/api/blogs/useGetTypeBlogsList'
+import { uuidv4 } from '@/lib/uuid'
 import { useBlogsList } from '@/managers/api/blogs/useBlogsList'
-import BlogTypeSkeleton from '@/components/common/skeleton/blogs/BlogTypeSkeleton';
-import BlogCardSkeletonVertical from '../../../../../../components/common/skeleton/blogs/BlogCardSkeletonVertical';
-import SystemNodataNew from '../../../../../../components/common/system/SystemNodataNew';
+import { useGetTypeBlogsList } from '@/managers/api/blogs/useGetTypeBlogsList'
+import { useResizeStore } from '@/stores/useResizeStore'
+import { IBlogItem, IFilterBlog } from '@/types/blog/IBlog'
 import { smoothScrollTo } from '@/utils/scroll/scrollUtils'
+import React, { useEffect, useRef, useState } from 'react'
+import { Autoplay, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import BlogCardSkeletonVertical from '../../../../../../components/common/skeleton/blogs/BlogCardSkeletonVertical'
+import SystemNodataNew from '../../../../../../components/common/system/SystemNodataNew'
+import { useStatePageBlogs } from '../../_state/useStatePageBlogs'
 
 type Props = {}
 

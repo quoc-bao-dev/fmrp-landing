@@ -1,3 +1,4 @@
+"use client"
 import FireIcon from "@/components/icons/fmrp/FireIcon";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";

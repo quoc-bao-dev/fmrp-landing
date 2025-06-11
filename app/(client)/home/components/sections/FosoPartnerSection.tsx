@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
-import Image from 'next/image';
+'use client'
 
 import dynamic from 'next/dynamic';
-
+import Image from 'next/image';
+import React, { useMemo } from 'react';
 const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}

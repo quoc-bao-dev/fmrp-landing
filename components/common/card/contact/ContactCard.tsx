@@ -1,16 +1,9 @@
+'use client'
+
 import { ICardContactItem } from "@/types/card/ICard";
+import { motion } from 'framer-motion';
 import React from "react";
 import { useResizeStore } from '../../../../stores/useResizeStore';
-
-import { motion } from 'framer-motion'
-
-// export type ContactItemType = {
-//     icon: React.ReactNode;
-//     title: string;
-//     description?: string;
-//     content: string | { label: string; value: string }[];
-//     type?: "phone" | "email" | "working_hours" | string;
-// };
 
 interface ContactCardProps {
     item: ICardContactItem;

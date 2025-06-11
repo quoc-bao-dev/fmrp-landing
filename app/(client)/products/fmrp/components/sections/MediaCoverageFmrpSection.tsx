@@ -1,22 +1,15 @@
-import BlurredBackground from '@/components/common/blur/BlurredBackground'
-import React, { useRef, useState } from 'react'
-
-import { uuidv4 } from '@/lib/uuid';
-import MediaCard from '@/components/common/card/media/MediaCard';
-import ButtonAnimation from '@/components/common/button/ButtonAnimation';
-
-import { GoArrowUpRight } from "react-icons/go";
-import { useResizeStore } from '@/stores/useResizeStore';
-
-import { Autoplay, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+"use client"
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-
-import { motion } from 'framer-motion'
-import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
+import MediaCard from '@/components/common/card/media/MediaCard';
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
+import { uuidv4 } from '@/lib/uuid';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import React, { useRef, useState } from 'react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 type Props = {}
 

@@ -1,16 +1,15 @@
+'use client'
+
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
+import ProjectCard from '@/components/common/card/project/ProjectCard'
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon'
 import { uuidv4 } from '@/lib/uuid'
 import { useResizeStore } from '@/stores/useResizeStore'
-import React, { useRef } from 'react'
-
-import { Autoplay, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-
-import ProjectCard from '@/components/common/card/project/ProjectCard'
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+import React, { useRef } from 'react'
+import { Autoplay, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Props = {}
 

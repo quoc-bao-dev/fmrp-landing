@@ -1,7 +1,4 @@
-'use client'
-
 import React from 'react'
-
 import HeroSection from './components/sections/HeroSection'
 import ServicePresentationSection from './components/sections/ServicePresentationSection'
 import CustomerPartnerSection from './components/sections/CustomerPartnerSection'

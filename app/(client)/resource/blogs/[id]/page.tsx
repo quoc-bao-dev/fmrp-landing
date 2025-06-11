@@ -109,7 +109,7 @@ const DetailBlog = () => {
   const { isVisibleTablet } = useResizeStore();
   const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } =
     useGetDataDetailBlog({ slug: idBlog?.id });
-  console.log(dataBlogDetail);
+
   const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } =
     useBlogsList({
       page: 1,

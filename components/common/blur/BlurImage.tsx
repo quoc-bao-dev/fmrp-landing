@@ -1,5 +1,6 @@
-import { useState, useCallback, memo, useRef, useEffect } from "react";
+"use client"
 import Image from "next/image";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 type BlurImageProps = {
     src: string;

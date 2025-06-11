@@ -119,6 +119,10 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[36px] tracking-normal;
   }
 
+  .text-title-section-medium {
+    @apply 3xl:text-[48px] 2xl:text-[40px] xxl:text-[38px] xl:text-[34px] md:text-[32px] text-[28px] 3xl:!leading-[72px] 2xl:!leading-[64px] xxl:!leading-[60px] xl:!leading-[56px] md:!leading-[52px] !leading-[42px] tracking-[-2%];
+  }
+
   .text-title-section-small {
     @apply 3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[28px] text-[24px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%];
   }

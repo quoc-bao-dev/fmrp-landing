@@ -1,11 +1,11 @@
+"use client"
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-
-import { motion } from 'framer-motion'
-import React, { useState } from 'react';
-import LogoMarquee from '../ui/partner-fmrp/LogoMarquee';
-import { ArrowUpRightIcon } from 'lucide-react';
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
+import { motion } from 'framer-motion';
+import { ArrowUpRightIcon } from 'lucide-react';
+import { useState } from 'react';
 import { useSheetStores } from '../../../../../../stores/useSheetStores';
+import LogoMarquee from '../ui/partner-fmrp/LogoMarquee';
 
 type Props = {}
 

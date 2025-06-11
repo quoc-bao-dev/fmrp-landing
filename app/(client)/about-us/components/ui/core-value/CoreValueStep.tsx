@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-
-import { motion } from 'framer-motion'
-import Image from 'next/image';
-import { useResizeStore } from '@/stores/useResizeStore';
+"use client"
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
-import BlurImage from '@/components/common/blur/BlurImage';
 import AnimatedCircle from '@/components/common/animations/ui/AnimatedCircle';
-import { uuidv4 } from '@/lib/uuid';
+import BlurImage from '@/components/common/blur/BlurImage';
 import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import { uuidv4 } from '@/lib/uuid';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 type Props = {}
 

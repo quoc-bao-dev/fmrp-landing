@@ -1,23 +1,17 @@
-import React, { useEffect, useRef } from 'react'
-import ServiceProcessIntro from '../ui/service-process/ServiceProcessIntro';
-import ServiceProcessStep from '../ui/service-process/ServiceProcessStep';
+'use client'
 
-import { motion, Variants } from 'framer-motion';
-
+import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
 import { useScrollContext } from '@/contexts/ScrollContext';
-
 import { useResizeStore } from '@/stores/useResizeStore';
 import { useSheetStores } from '@/stores/useSheetStores';
-
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-import BlurredBackground from '@/components/common/blur/BlurredBackground';
-
+import { motion, Variants } from 'framer-motion';
 import dynamic from 'next/dynamic';
-
+import { useEffect, useRef } from 'react';
+import ServiceProcessIntro from '../ui/service-process/ServiceProcessIntro';
+import ServiceProcessStep from '../ui/service-process/ServiceProcessStep';
 const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
-
-type Props = {}
 
 // Định nghĩa animation cho icon
 const iconVariants: Variants = {

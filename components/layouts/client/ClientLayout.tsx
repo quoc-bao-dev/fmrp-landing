@@ -43,7 +43,7 @@ const ClientLayout = ({
       </div>
 
       <WidgetButton />
-      <RegisterButton />
+      {/* <RegisterButton /> */}
       <RegisterBttonNew />
       {openSheetCustom && <DynamicSheet />}
       {/* {openDialogCustom && <DialogCustom />} */}

@@ -1,40 +1,39 @@
-"use client";
-
-import React from "react";
-import HeroFmrpSection from "./components/sections/HeroFmrpSection";
-import IntroductionFmrpSection from "./components/sections/IntroductionFmrpSection";
-import FeedbackFmrpSection from "./components/sections/FeedbackFmrpSection";
-import PartnerFmrpSection from "./components/sections/PartnerFmrpSection";
-import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
-import QuestionsFmrpSection from "./components/sections/QuestionsFmrpSection";
 import CommunityFmrpSection from "./components/sections/CommunityFmrpSection";
-import CTAFmrpSection from "./components/sections/CTAFmrpSection";
+import FmrpApp from "./components/sections/FmrpApp";
+import FmrpBenefits from "./components/sections/FmrpBenefits";
+import FmrpCoreModules from "./components/sections/FmrpCoreModules";
+import FmrpHighlightFeatures from "./components/sections/FmrpHighlightFeatures";
+import IntroductionFmrpSection from "./components/sections/IntroductionFmrpSection";
+import ManufacturingFields from "./components/sections/ManufacturingFields";
+import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
 import PackageFmrpSection from "./components/sections/PackageFmrpSection";
-import FmrpBenefitsSection from "./components/sections/FmrpBenefitsSection";
-import SupportedIndustriesSection from "./components/sections/SupportedIndustriesSection";
-import ModelSection from "./components/sections/ModelSection";
-import FeaturePageSection from "./components/sections/FeaturePageSection";
+import PartnerFmrpSection from "./components/sections/PartnerFmrpSection";
+import QuestionsFmrpSection from "./components/sections/QuestionsFmrpSection";
 
 type Props = {};
 
 const AboutUs = (props: Props) => {
   return (
     <main className="min-h-screen relative">
-      <div className="relative z-[1] overflow-x-hidden">
-        <HeroFmrpSection />
+      <div className="relative z-[1] overflow-x-hidden flex flex-col 3xl:gap-24 gap-12">
+        {/* <HeroFmrpSection /> */}
         <IntroductionFmrpSection />
-        <ModelSection />
-        <FeaturePageSection />
-        <SupportedIndustriesSection />
-        <FmrpBenefitsSection />
+        <ManufacturingFields />
+        <FmrpBenefits />
+        <FmrpCoreModules />
+        <FmrpHighlightFeatures />
+        {/* <ModelSection /> */}
+        {/* <FeaturePageSection /> */}
+        {/* <SupportedIndustriesSection /> */}
+        {/* <FmrpBenefitsSection /> */}
         <PackageFmrpSection />
-        <FeedbackFmrpSection />
-        <CTAFmrpSection />
+        {/* <FeedbackFmrpSection /> */}
+        {/* <CTAFmrpSection /> */}
         <PartnerFmrpSection />
         <MediaCoverageFmrpSection />
         <QuestionsFmrpSection />
         <CommunityFmrpSection />
-
+        <FmrpApp />
         {/* <VideoFmrpSection /> */}
         {/* <SystemOverviewFmrpSection /> */}
         {/* <FeatureManagementOverviewSection /> */}

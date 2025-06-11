@@ -1,18 +1,16 @@
 "use client"
 
-import Image from "next/image"
-import Link from "next/link"
-import { Check, ChevronRight, MessageCircle } from "lucide-react"
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import Image from "next/image";
+import { useMemo } from 'react';
+import { useInView } from 'react-intersection-observer';
+import AnimatedTitle from '../../../../../../components/common/animations/text/AnimatedTitle';
+import UnderlineCurveLinearSvg2 from '../../../../../../components/icons/underline/UnderlineCurveLinearSvg2';
+import { useResizeStore } from '../../../../../../stores/useResizeStore';
 import FeatureFirst from '../ui/feature-page/FeatureFirst';
+import FeatureFour from '../ui/feature-page/FeatureFour';
 import FeatureSecond from '../ui/feature-page/FeatureSecond';
 import FeatureThird from '../ui/feature-page/FeatureThird';
-import FeatureFour from '../ui/feature-page/FeatureFour';
-import { useInView } from 'react-intersection-observer';
-import UnderlineCurveLinearSvg2 from '../../../../../../components/icons/underline/UnderlineCurveLinearSvg2';
-import { useMemo } from 'react';
-import AnimatedTitle from '../../../../../../components/common/animations/text/AnimatedTitle';
-import { useResizeStore } from '../../../../../../stores/useResizeStore';
 
 const FeaturePageSection = () => {
     const { isVisibleTablet } = useResizeStore()

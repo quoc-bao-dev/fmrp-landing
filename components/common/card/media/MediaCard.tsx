@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import moment from "moment";
 import { usePathname } from 'next/navigation';

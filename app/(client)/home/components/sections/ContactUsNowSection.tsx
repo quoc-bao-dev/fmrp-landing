@@ -1,9 +1,10 @@
+'use client'
+
 import BlurredBackground from '@/components/common/blur/BlurredBackground'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import React, { useCallback } from 'react'
-
+import { useCallback } from 'react'
 const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}

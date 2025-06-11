@@ -1,6 +1,5 @@
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal'
 import BlurImage from '@/components/common/blur/BlurImage'
-import React from 'react'
 
 type Props = {}
 
