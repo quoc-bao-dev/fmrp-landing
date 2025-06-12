@@ -105,7 +105,7 @@ const SocialMediaButton = ({
                         onMouseLeave={() => setIsHovered(false)}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className={`${className} relative z-[1] size-12 rounded-full text-white flex flex-col justify-center items-center shadow-2xl`}
+                        className={`${className} relative z-[1] xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center shadow-2xl`}
                     >
                         {icon}
                     </motion.button>

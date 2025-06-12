@@ -66,7 +66,7 @@ const ButtonAnimationNew = forwardRef<HTMLButtonElement, Props>(({
             {!reverse && icon && <span className={`${hideTitle ? "max-w-full" : "shink"}`}>{icon}</span>}
 
             {!hideTitle && (
-                <span className='flex items-center w-full text-center'>
+                <span className='flex items-center justify-center w-full text-center'>
                     {title}
                 </span>
             )}

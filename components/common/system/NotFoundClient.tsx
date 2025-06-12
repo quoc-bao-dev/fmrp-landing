@@ -1,5 +1,3 @@
-'use client';
-
 import SystemNotFoundAnimation from "@/components/common/system/SystemNotFoundAnimation";
 import Link from "next/link";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";

@@ -6,6 +6,7 @@ import FmrpHighlightFeatures from "./components/sections/FmrpHighlightFeatures";
 import IntroductionFmrpSection from "./components/sections/IntroductionFmrpSection";
 import ManufacturingFields from "./components/sections/ManufacturingFields";
 import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
+import ModelSection from "./components/sections/ModelSection";
 import PackageFmrpSection from "./components/sections/PackageFmrpSection";
 import PartnerFmrpSection from "./components/sections/PartnerFmrpSection";
 import QuestionsFmrpSection from "./components/sections/QuestionsFmrpSection";
@@ -15,7 +16,7 @@ type Props = {};
 const AboutUs = (props: Props) => {
   return (
     <main className="min-h-screen relative">
-      <div className="relative z-[1] overflow-x-hidden flex flex-col 3xl:gap-24 gap-12">
+      <div className="relative z-[1] overflow-x-hidden flex flex-col xl:gap-24 gap-8">
         {/* <HeroFmrpSection /> */}
         <IntroductionFmrpSection />
         <ManufacturingFields />

@@ -55,10 +55,10 @@ const MediaCoverageFmrpSection = (props: Props) => {
     }
 
     return (
-        <div className='relative custom-padding-section '>
+        <div className='relative custom-padding-section bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
-                <div className='space-x-2 font-extrabold'>
-                    <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về</span>
+                <div className='space-x-2 font-extrabold text-center'>
+                    <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về phần mềm</span>
                     <span
                         className='text-title-section-small uppercase'
                         style={{
@@ -109,14 +109,13 @@ const MediaCoverageFmrpSection = (props: Props) => {
                                         spaceBetween: 60,
                                     }
                                 }}
-                                className='custom-swiper-pagination md:h-[500px] h-[520px] rounded-2xl mx-2'
+                                className='custom-swiper-pagination px-2 flex flex-col gap-8'
                                 allowTouchMove={true}
                             >
                                 {
                                     mediaList && mediaList?.map((media) => (
                                         <SwiperSlide
                                             key={`media-${media?.id}`}
-                                        // className='h-full relative cursor-pointer group'
                                         >
                                             <MediaCard media={media} />
                                         </SwiperSlide>

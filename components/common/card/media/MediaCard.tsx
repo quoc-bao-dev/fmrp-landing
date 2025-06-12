@@ -32,24 +32,24 @@ const MediaCard = ({ media }: MediaCardProps) => {
 
     return (
         <Link
-            className="col-span-1 rounded-3xl group cursor-pointer h-full bg-white transition-all duration-300 ease-out"
-            style={{
-                boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
-            }}
+            className="col-span-1 rounded-3xl overflow-hidden group cursor-pointer h-full bg-white transition-all duration-300 ease-out shadow-[0px_1px_2px_0px_#1212170F,0px_1px_3px_0px_#1212171A]"
+            // style={{
+            //     boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
+            // }}
             href={media.link ?? "#"}
             target="_blank"
         >
-            <div className="aspect-square w-full overflow-hidden rounded-t-2xl">
+            <div className="aspect-square w-full overflow-hidden">
                 <Image
                     width={500}
                     height={500}
                     alt="img"
                     src={media?.image ?? "/default/default.png"}
-                    className="size-full object-cover rounded-t-2xl group-hover:scale-105 duration-300 transition-all ease-out aspect-square"
+                    className="size-full object-cover rounded-t-3xl group-hover:scale-105 duration-300 transition-all ease-out aspect-square"
                 />
             </div>
 
-            <div className="flex flex-col gap-2 p-4 bg-white rounded-b-3xl">
+            <div className="flex flex-col gap-2 p-4 bg-white rounded-b-3xl shadow-[0px_1px_2px_0px_#1212170F,0px_1px_3px_0px_#1212171A]">
                 <div className="flex items-center justify-between">
                     <div className="text-sm-default text-[#667F93] lg:max-w-[40%] max-w-[30%] truncate">
                     {formattedDate}

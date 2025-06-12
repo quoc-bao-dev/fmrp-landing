@@ -1,9 +1,13 @@
 "use client";
+import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
+import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
 import { IMAGES } from "@/constants/Images";
+import { useResizeStore } from "@/stores/useResizeStore";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 
 const modules = [
   { icon: IMAGES.nguyenVatLieu, title: "Quản lý nguyên vật liệu, thành phẩm" },
@@ -19,10 +23,13 @@ const modules = [
 const FmrpCoreModules = () => {
   const radius = 450; // tăng bán kính để vòng tròn rộng hơn
   const centerY = 450;
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const { isVisibleTablet } = useResizeStore();
+
   return (
-    <section className="w-full pt-20 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">
-      <div className="custom-container flex flex-col gap-12 justify-center items-center">
-        <h2 className="text-title-section-small text-[#1A2025] font-extrabold">
+    <section className="w-full pt-12 xl:pt-20 px-2 xl:px-0 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">
+      <div className="custom-container flex flex-col gap-6 xl:gap-12 justify-center items-center">
+        <AnimatedReveal className="text-title-section-small text-[#1A2025] font-extrabold text-center">
           Các Phân Hệ Cốt Lõi Trong phần mềm{" "}
           <span
             style={{
@@ -35,97 +42,189 @@ const FmrpCoreModules = () => {
           >
             FMRP
           </span>
-        </h2>
-        <div className="relative w-full max-w-[1440px] h-[620px] mx-auto">
-          {modules.map((m, i) => {
-            const total = modules.length;
-            const angle = 180 - (180 / (total - 1)) * i;
-            const rad = (angle * Math.PI) / 180;
-            const x = radius * Math.cos(rad) * 1.3;
-            const y = radius * Math.sin(rad);
-
-            return (
-              <div
-                key={i}
-                className="absolute flex flex-col gap-3 justify-center items-center max-w-[170px]"
-                style={{
-                  top: `${centerY - y + 0}px`,
-                  left: `50%`,
-                  transform: `translateX(${x - 65}px)`,
-                }}
-              >
-                <div className="p-4 bg-white rounded-xl border border-[#D9E1E7] shadow-[1px_-1px_20px_-5px_#0375F326]">
-                  <Image
-                    src={m.icon}
-                    width={100}
-                    height={100}
-                    alt=""
-                    className="size-16"
-                  />
-                </div>
-                <p className="text-base-default text-[#33404A] font-bold text-center">
-                  {m.title}
-                </p>
-              </div>
-            );
-          })}
-
-          {/* Semi-circle border (wrapper with overflow hidden) */}
-          <div
-            className="absolute left-1/2 -translate-x-1/2 overflow-hidden"
-            style={{
-              width: `${radius * 2}px`,
-              height: `${radius}px`, // Chiều cao hiển thị của cung tròn
-              top: `${centerY - radius / 1.7}px`, // Đặt phần tử này ở vị trí bắt đầu của hình tròn đầy đủ
-            }}
+        </AnimatedReveal>
+        <div className="flex flex-col-reverse xl:flex-col gap-6 xl:gap-0 w-full">
+          <AnimatedReveal
+            effect="zoom-in"
+            className="relative w-full max-w-[1440px] xl:h-[620px] mx-auto grid grid-cols-3 gap-3 xl:gap-0 xl:block"
           >
-            {/* Đường tròn đầy đủ với viền gradient */}
+            {modules.map((m, i) => {
+              const total = modules.length;
+              const angle = 180 - (180 / (total - 1)) * i;
+              const rad = (angle * Math.PI) / 180;
+              const x = radius * Math.cos(rad) * 1.3;
+              const y = radius * Math.sin(rad);
+
+              return (
+                <div
+                  key={i}
+                  className="xl:absolute flex flex-col gap-3 xl:justify-center items-center max-w-[170px] flex-shrink-0"
+                  style={{
+                    top: isVisibleTablet ? "" : `${centerY - y + 0}px`,
+                    left: isVisibleTablet ? "" : `50%`,
+                    transform: isVisibleTablet ? "" : `translateX(${x - 65}px)`,
+                  }}
+                >
+                  <div className="p-3 xl:p-4 !flex-shrink-0 bg-white rounded-xl border border-[#D9E1E7] shadow-[1px_-1px_20px_-5px_#0375F326]">
+                    <Image
+                      src={m.icon}
+                      width={100}
+                      height={100}
+                      alt={m.title}
+                      className="size-9 xl:size-16 !flex-shrink-0 object-cover"
+                    />
+                  </div>
+                  <p className="text-base-default text-[#33404A] font-bold text-center">
+                    {m.title}
+                  </p>
+                </div>
+              );
+            })}
+
+            {/* Semi-circle border (wrapper with overflow hidden) */}
             <div
-              className="absolute left-1/2 -translate-x-1/2 rounded-full"
+              className="hidden xl:block absolute left-1/2 -translate-x-1/2 overflow-hidden"
               style={{
                 width: `${radius * 2}px`,
-                height: `${radius * 2}px`, // Kích thước của một hình tròn đầy đủ
-                top: `0px`, // Đặt nó ở phía trên cùng của phần tử cha (wrapper)
-                background: `linear-gradient(to bottom, #0375F3, #013DA0, #ffffff, #ffffff, #ffffff)`,
-                padding: "12px",
-                boxSizing: "border-box",
+                height: `${radius}px`, // Chiều cao hiển thị của cung tròn
+                top: `${centerY - radius / 1.7}px`, // Đặt phần tử này ở vị trí bắt đầu của hình tròn đầy đủ
               }}
             >
-              <div className="w-full h-full bg-white rounded-full"></div>
+              {/* Đường tròn đầy đủ với viền gradient */}
+              <div
+                className="rounded-full relative"
+                style={{
+                  width: `${radius * 2}px`,
+                  height: `${radius * 2}px`,
+                  top: `0px`,
+                  background: `linear-gradient(180deg, #0375F3, #013DA0, rgba(255,255,255,0.8), #ffffff, #ffffff)`,
+                  backgroundSize: "400% 400%",
+                  padding: "12px",
+                  boxSizing: "border-box",
+                }}
+              >
+                <div
+                  className="w-full h-full bg-white rounded-full relative overflow-hidden"
+                  style={{
+                    boxShadow:
+                      "inset 0 0 20px rgba(3, 117, 243, 0.3), inset 0 0 60px rgba(3, 117, 243, 0.1)",
+                  }}
+                ></div>
+                <div className="absolute bottom-1/2 left-0 right-0 w-full h-20 bg-gradient-to-t from-white via-white/[99%] to-transparent"></div>
+              </div>
             </div>
-          </div>
+          </AnimatedReveal>
 
           {/* Trung tâm dưới nửa vòng tròn */}
-          <div className="absolute top-[48%] left-1/2 -translate-x-1/2 text-center max-w-[512px] flex flex-col justify-center items-center gap-6">
-            <h3 className="text-title-section-feature font-extrabold text-[#25387A]">
+          <div className="xl:absolute xl:bottom-8 xl:left-1/2 xl:-translate-x-1/2 text-center xl:max-w-[512px] flex flex-col justify-center items-center gap-6">
+            <h3 className="text-base xl:text-[32px] leading-[150%] font-extrabold text-[#25387A] w-full">
               Tích Hợp – Quản Lý Toàn Diện
-              <br />
+              <br className="hidden xl:block" />
               Cho Mọi Hoạt Động Sản Xuất
             </h3>
             <p className="text-title text-[#33404A] font-medium">
               Quản lý chặt chẽ từ mua – bán đến kho hàng và nhà cung cấp. Kết
               nối xuyên suốt, nâng cao hiệu quả quản lý xưởng của bạn.
             </p>
-            <a
-              href="#"
-              className="flex items-center gap-2 group w-fit p-2 rounded-full bg-[#206AFF] border border-[#899CFD] shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]"
-            >
-              <p className=" text-base-default text-white font-semibold">
-                Trải nghiệm miễn phí
-              </p>
-              <div className="2xl:size-12 md:size-10 size-8 rounded-full capitalize flex items-center justify-center bg-white duration-500 transition-colors">
-                <motion.div
-                  initial={{ x: 0, y: 0 }}
-                  // animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
-                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                >
-                  <ArrowUpRightIcon className="text-[#206AFF] 2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
-                  <ArrowUpRightLinearBlueIcon className="text-[#206AFF] 2xl:size-6 md:size-5 size-4 group-hover:hidden" />
-                </motion.div>
-              </div>
-            </a>
+            <ButtonAnimationNew
+              title="Trải Nghiệm Miễn Phí"
+              icon={
+                <div className="2xl:size-12 md:size-10 size-8 rounded-full capitalize flex items-center justify-center bg-white duration-500 transition-colors">
+                  <motion.div
+                    initial={{ x: 0, y: 0 }}
+                    animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 10,
+                    }}
+                  >
+                    <ArrowUpRightIcon className="text-[#206AFF] 2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
+                    <ArrowUpRightLinearBlueIcon className="text-[#206AFF] 2xl:size-6 md:size-5 size-4 group-hover:hidden" />
+                  </motion.div>
+                </div>
+              }
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={() => {
+                window.open("https://bom.so/mrpbeta");
+              }}
+              reverse={true}
+              className="hidden xl:flex border-gradient-button-fmrp bg-[#206AFF] text-white lg:mr-0 mr-1 items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC] hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] lg:w-fit w-full"
+              style={{
+                boxShadow:
+                  "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
+              }}
+              whileHover={{
+                background: [
+                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                  "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+                ],
+                transition: {
+                  duration: 1.5,
+                  ease: [0.4, 0, 0.6, 1],
+                  repeat: Infinity,
+                },
+                boxShadow: [
+                  "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+                  "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+                  "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+                  "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)",
+                ],
+              }}
+            />
           </div>
         </div>
+
+        <ButtonAnimationNew
+          title="Trải Nghiệm Miễn Phí"
+          icon={
+            <div className="2xl:size-12 md:size-10 size-8 rounded-full capitalize flex items-center justify-center bg-white duration-500 transition-colors">
+              <motion.div
+                initial={{ x: 0, y: 0 }}
+                animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 10,
+                }}
+              >
+                <ArrowUpRightIcon className="text-[#206AFF] 2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
+                <ArrowUpRightLinearBlueIcon className="text-[#206AFF] 2xl:size-6 md:size-5 size-4 group-hover:hidden" />
+              </motion.div>
+            </div>
+          }
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => {
+            window.open("https://bom.so/mrpbeta");
+          }}
+          reverse={true}
+          className="flex xl:hidden border-gradient-button-fmrp bg-[#206AFF] text-white lg:mr-0 mr-1 items-center gap-2 md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC] hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] w-fit"
+          style={{
+            boxShadow:
+              "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
+          }}
+          whileHover={{
+            background: [
+              "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+              "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+              "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",
+            ],
+            transition: {
+              duration: 1.5,
+              ease: [0.4, 0, 0.6, 1],
+              repeat: Infinity,
+            },
+            boxShadow: [
+              "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.15)",
+              "inset -3px -3px 6px rgba(255,255,255,0.7), inset 3px 3px 6px rgba(0,0,0,0.35)",
+              "inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(0,0,0,0.4)",
+              "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)",
+            ],
+          }}
+        />
       </div>
     </section>
   );

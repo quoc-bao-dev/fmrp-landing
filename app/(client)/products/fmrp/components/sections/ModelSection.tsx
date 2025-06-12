@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import BlurImage from '@/components/common/blur/BlurImage';
 import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';

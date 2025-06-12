@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
 import { IMAGES } from "@/constants/Images";
@@ -49,10 +50,9 @@ const ManufacturingFields = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
-    <section className="custom-padding-section bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
-      <div className="custom-container flex flex-col gap-16 items-center justify-center">
-        <h2 className="text-title-section-small text-[#1A2025] font-extrabold">
-          {" "}
+    <section className="custom-padding-section px-2 xl:px-0 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
+      <div className="custom-container flex flex-col gap-6 xl:gap-16 items-center justify-center">
+        <AnimatedReveal className="text-title-section-small text-[#1A2025] font-extrabold text-center">
           Linh Hoạt Triển Khai Cho{" "}
           <span
             style={{
@@ -65,8 +65,29 @@ const ManufacturingFields = () => {
           >
             Mọi Ngành Sản Xuất
           </span>
-        </h2>
-        <div className="flex flex-col gap-7 items-center">
+        </AnimatedReveal>
+
+        <AnimatedReveal className="grid grid-cols-3 gap-4 xl:hidden">
+          {fieldsData.map((field, index) => (
+            <div
+              key={index}
+              className="px-2 aspect-square shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
+            >
+              <Image
+                src={field.image}
+                alt={field.name}
+                width={500}
+                height={500}
+                className="size-10 object-cover"
+              />
+              <p className="text-sm-default font-semibold text-primary-new-02 text-center">
+                {field.name}
+              </p>
+            </div>
+          ))}
+        </AnimatedReveal>
+
+        <AnimatedReveal className="hidden xl:flex flex-col gap-7 items-center">
           <div className="grid grid-cols-4 gap-7">
             {fieldsData.slice(0, 4).map((field, index) => (
               <div
@@ -105,7 +126,7 @@ const ManufacturingFields = () => {
               </div>
             ))}
           </div>
-        </div>
+        </AnimatedReveal>
         <ButtonAnimationNew
           title="Trải Nghiệm Ngay"
           icon={
@@ -118,17 +139,16 @@ const ManufacturingFields = () => {
                 {isHovered ? (
                   <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
                 ) : (
-                  <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />
+                  <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 text-[#036EEA]" />
                 )}
               </motion.div>
             </div>
           }
           onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
           onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-          // onClick={() => {
-          //   setOpenSheetCustom(true);
-          //   setStatusSheet("contact");
-          // }}
+          onClick={() => {
+            window.open("https://bom.so/mrpbeta");
+          }}
           reverse={true}
           className="border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"
           style={{

@@ -116,7 +116,7 @@ const PackageFmrpSection = (props: Props) => {
 
   return (
     <div className="custom-padding-section bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
-      <div className="custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8">
+      <div className="custom-container flex flex-col items-center justify-center gap-12">
         <div className="flex flex-col lg:items-center items-start justify-center gap-2">
           <div className="space-x-2 font-extrabold text-center w-full">
             <span className="text-title-section-small text-[#1A2025] capitalize">
@@ -175,10 +175,9 @@ const PackageFmrpSection = (props: Props) => {
           }
           onMouseEnter={() => setIsHovered(true)} // Khi hover vào button
           onMouseLeave={() => setIsHovered(false)} // Khi rời khỏi button
-          // onClick={() => {
-          //   setOpenSheetCustom(true);
-          //   setStatusSheet("contact");
-          // }}
+          onClick={() => {
+            window.open("/bang-gia-fmrp");
+          }}
           reverse={true}
           className="border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full"
           style={{

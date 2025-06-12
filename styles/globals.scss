@@ -120,7 +120,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 
   .text-title-section-medium {
-    @apply 3xl:text-[48px] 2xl:text-[40px] xxl:text-[38px] xl:text-[34px] md:text-[32px] text-[28px] 3xl:!leading-[72px] 2xl:!leading-[64px] xxl:!leading-[60px] xl:!leading-[56px] md:!leading-[52px] !leading-[42px] tracking-[-2%];
+    @apply 3xl:text-[48px] 2xl:text-[40px] xxl:text-[38px] xl:text-[34px] md:text-[32px] text-[24px] 3xl:!leading-[72px] 2xl:!leading-[64px] xxl:!leading-[60px] xl:!leading-[56px] md:!leading-[52px] !leading-[150%] tracking-[-2%];
   }
 
   .text-title-section-small {
@@ -136,14 +136,14 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 
   .text-title {
-    @apply 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-xl !tracking-[2%];
+    @apply 3xl:!text-2xl xl:!text-xl lg:!text-lg !text-sm !tracking-[2%];
   }
 
   .text-title-feature {
-    @apply 3xl:!text-xl lg:!text-base !text-lg !tracking-[1%];
+    @apply 3xl:!text-xl lg:!text-base !text-base !tracking-[1%];
   }
   .text-base-default-feature {
-    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm !text-base !tracking-[1%];
+    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm !text-sm !tracking-[1%];
   }
 
   .text-button {
@@ -151,7 +151,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 
   .text-base-default {
-    @apply 3xl:!text-lg xl:!text-base lg:!text-sm !text-base !tracking-[1%];
+    @apply 3xl:!text-lg xl:!text-base !text-sm !tracking-[1%];
   }
 
   .text-sm-default {
@@ -476,6 +476,87 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     // }
   }
 
+  .border-gradient-button-no-bg-fmrp-gray {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: #D9E1E7;
+      // background: linear-gradient(
+      //   77.74deg,
+      //   #0375f3 11.85%,
+      //   #036eea 20.65%,
+      //   #0267e1 29.45%,
+      //   #0261d7 38.25%,
+      //   #025ace 47.05%,
+      //   #0254c5 55.84%,
+      //   #024ebc 64.64%,
+      //   #0148b3 73.44%,
+      //   #0142a9 82.24%
+      // );
+
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    /* Background khi hover */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(2, 78, 188, 0.1); /* Nền khi hover */
+      // background: "rgba(235, 245, 255, 0.2)"; /* Nền khi hover */
+      opacity: 0; /* Mặc định ẩn */
+      transition: opacity 0.3s ease-in-out;
+      z-index: 1; /* Đặt dưới border */
+    }
+
+    // &:hover::before {
+    //   background: conic-gradient(from var(--angle), #036eea, rgba(3, 110, 234, 0.2), #0254c5);
+    //   padding: var(--border-width-hover);
+    //   animation: borderMove 1.5s linear infinite;
+    // }
+
+    // 💥 Hover từ chính button hoặc từ cha group đều hoạt động
+    &:hover::before,
+    .group:hover &::before {
+      background: conic-gradient(
+        from var(--angle),
+        #036eea 0%,
+        rgba(3, 110, 234, 0.2) 50%,
+        #0254c5 100%
+      );
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+
+    &:hover::after,
+    .group:hover &::after {
+      opacity: 1;
+    }
+
+    // &:hover::after {
+    //   opacity: 1; /* Hiển thị nền khi hover */
+    // }
+  }
+
   .border-gradient-login {
     --border-width: 1px;
     --border-width-hover: 2px;
@@ -737,14 +818,14 @@ iframe[title="recaptcha challenge expires in two minutes"] {
 
 .custom-swiper-pagination {
   .swiper-pagination {
-    @apply w-screen text-center bottom-0 z-50;
+    @apply relative w-screen text-center z-50 flex items-center gap-2;
     // @apply md:text-start text-center 3xl:-bottom-[5px] 2xl:bottom-6 xl:bottom-8 lg:bottom-10 bottom-12;
     .swiper-pagination-bullet {
-      @apply w-12 bg-[#bbc3c9] rounded-sm;
+      @apply w-full bg-[#D9E1E7] rounded-sm;
     }
     .swiper-pagination-bullet-active {
-      background: linear-gradient(180deg, #9dffb3 0%, #1aa37a 100%);
-      @apply w-12 rounded-sm;
+      // background: linear-gradient(180deg, #0375F3 0%, #013DA0 100%);
+      @apply w-full bg-gradient-to-r from-[#0375F3] to-[#013DA0] rounded-sm;
     }
   }
 }

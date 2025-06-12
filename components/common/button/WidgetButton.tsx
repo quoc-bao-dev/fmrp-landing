@@ -1,3 +1,5 @@
+"use client";
+
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import Image from "next/image";
@@ -5,6 +7,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import PhoneLink from "../contact-links/PhoneLink";
 import SocialMediaButton from "./SocialMediaButton";
+import ButtonToTop from "./ButtonToTop";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
@@ -91,8 +94,8 @@ const WidgetButton: React.FC = () => {
 
   // Xác định vị trí của các nút dựa trên pathname
   const positionClass = isBlogDetailPage(pathname)
-    ? "bottom-0 -translate-y-[80%] xl:right-8" // Vị trí bottom cho trang blog chi tiết
-    : "bottom-20 right-2 xl:right-8"; // Vị trí mặc định
+    ? "bottom-1/2 translate-y-1/2 right-3 " // Vị trí bottom cho trang blog chi tiết
+    : "bottom-1/2 translate-y-1/2 right-3 "; // Vị trí mặc định
 
   return (
     <div className={`flex flex-col fixed z-40  ${positionClass}`}>
@@ -107,12 +110,12 @@ const WidgetButton: React.FC = () => {
             <div
               className={`${
                 dataFmrpPages.includes(pathname)
-                  ? "hover:bg-[#48DDAD]/80"
+                  ? "hover:bg-[#166846]/80"
                   : "hover:scale-[1.04]"
               } 
-              ${index == 0 && "rounded-t-xl"}
-              ${index == socialButtons.length - 1 && "rounded-b-xl"}
-              bg-[#48DDAD] border border-[#15AA7A] size-[56px] custom-transition flex justify-center items-center`}
+              ${index === 0 && "rounded-t-xl"}
+              ${index === socialButtons.length - 1 && "rounded-b-xl"}
+              bg-[#166846] border border-[#00AA5980] xl:size-12 size-10 custom-transition flex justify-center items-center`}
               style={{
                 boxShadow:
                   "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A",
