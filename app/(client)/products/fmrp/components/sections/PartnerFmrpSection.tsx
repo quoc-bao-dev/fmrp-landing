@@ -62,7 +62,7 @@ const PartnerFmrpSection = (props: Props) => {
                 {isHovered ? (
                   <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 text-[#10805B] group-hover:text-white " />
                 ) : (
-                  <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 !text-[#10805B] xl:text-[#0375F3]" />
+                  <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 text-[#10805B] xl:text-[#0375F3]" />
                 )}
               </motion.div>
             </div>

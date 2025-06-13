@@ -9,15 +9,15 @@ import Image from "next/image";
 import { useState } from "react";
 
 const modules = [
-  { icon: IMAGES.nguyenVatLieu, title: "Quản lý nguyên vật liệu, thành phẩm" },
-  { icon: IMAGES.baoCao, title: "Báo cáo & Thống kê" },
-  { icon: IMAGES.banHang, title: "Quản lý bán hàng" },
-  { icon: IMAGES.nhaCungCap, title: "Quản lý nhà cung cấp" },
-  { icon: IMAGES.sanXuat, title: "Quản lý sản xuất" },
-  { icon: IMAGES.khoHang, title: "Quản lý kho hàng" },
-  { icon: IMAGES.muaHang, title: "Quản lý mua hàng" },
-  { icon: IMAGES.nhanSu, title: "Quản lý nhân sự" },
-  { icon: IMAGES.khachHang, title: "Quản lý khách hàng" },
+  { icon: IMAGES.nguyenVatLieu, title: "Quản lý nguyên vật liệu, thành phẩm", mobileTitle: "Quản lý NVL & TP" },
+  { icon: IMAGES.baoCao, title: "Báo cáo & Thống kê", mobileTitle: "Báo cáo & Thống kê" },
+  { icon: IMAGES.banHang, title: "Quản lý bán hàng", mobileTitle: "Quản lý bán hàng" },
+  { icon: IMAGES.nhaCungCap, title: "Quản lý nhà cung cấp", mobileTitle: "Quản lý nhà cung cấp" },
+  { icon: IMAGES.sanXuat, title: "Quản lý sản xuất", mobileTitle: "Quản lý sản xuất" },
+  { icon: IMAGES.khoHang, title: "Quản lý kho hàng", mobileTitle: "Quản lý kho hàng" },
+  { icon: IMAGES.muaHang, title: "Quản lý mua hàng", mobileTitle: "Quản lý mua hàng" },
+  { icon: IMAGES.nhanSu, title: "Quản lý nhân sự", mobileTitle: "Quản lý nhân sự" },
+  { icon: IMAGES.khachHang, title: "Quản lý khách hàng", mobileTitle: "Quản lý khách hàng" },
 ];
 const FmrpCoreModules = () => {
   const radius = 450; // tăng bán kính để vòng tròn rộng hơn
@@ -56,7 +56,9 @@ const FmrpCoreModules = () => {
               return (
                 <div
                   key={i}
-                  className="xl:absolute flex flex-col gap-3 xl:justify-center items-center max-w-[170px] flex-shrink-0"
+                  className={`xl:absolute flex flex-col gap-3 xl:justify-center items-center max-w-[160px] flex-shrink-0
+                    ${i === 3 && "2xl:w-[140px] xl:w-[120px]"}
+                    `}
                   style={{
                     top: isVisibleTablet ? "" : `${centerY - y + 0}px`,
                     left: isVisibleTablet ? "" : `50%`,
@@ -73,7 +75,7 @@ const FmrpCoreModules = () => {
                     />
                   </div>
                   <p className="text-base-default text-[#33404A] font-bold text-center">
-                    {m.title}
+                    {isVisibleTablet ? m.mobileTitle : m.title}
                   </p>
                 </div>
               );
@@ -116,7 +118,7 @@ const FmrpCoreModules = () => {
           {/* Trung tâm dưới nửa vòng tròn */}
           <div className="xl:absolute xl:bottom-8 xl:left-1/2 xl:-translate-x-1/2 text-center xl:max-w-[512px] flex flex-col justify-center items-center gap-6">
             <h3 className="text-base xl:text-[32px] leading-[150%] font-extrabold text-[#25387A] w-full">
-              Tích Hợp – Quản Lý Toàn Diện
+              Tích Hợp – Quản Lý Toàn Diện{" "}
               <br className="hidden xl:block" />
               Cho Mọi Hoạt Động Sản Xuất
             </h3>

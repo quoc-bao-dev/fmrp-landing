@@ -84,6 +84,7 @@ export default {
         "3xl": "1920px",
         xxl: "1440px",
         xs: "430px",
+        xxs: "374px",
       },
       aspectRatio: {
         "8/3": "8 / 3",

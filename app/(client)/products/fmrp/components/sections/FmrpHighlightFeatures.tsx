@@ -153,7 +153,7 @@ const FmrpHighlightFeatures = () => {
           />
         </div>
         <div className="xl:w-1/2 flex flex-col gap-6">
-          <h2 className="text-title-section-feature font-extrabold text-[#25387A]">
+          <h2 className="hidden xl:block text-title-section-feature font-extrabold text-[#25387A]">
             Thảo luận trong Lệnh sản xuất
           </h2>
           <div className="flex flex-col xl:flex-row gap-6 xl:gap-9">

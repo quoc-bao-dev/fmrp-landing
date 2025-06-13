@@ -58,7 +58,7 @@ const IntroductionFmrpSection = (props: Props) => {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 w-full px-4 xl:px-0">
+          <div className="flex flex-col xxs:flex-row items-center gap-3 w-full">
             <ButtonAnimationNew
               title="Trải Nghiệm Miễn Phí"
               icon={
