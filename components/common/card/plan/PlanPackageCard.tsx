@@ -122,7 +122,7 @@ const PlanPackageCard = ({
         </div>
       </div>
 
-      <p className="text-lg text-[#33404A] font-medium align-middle">
+      <p className="text-sm md:text-lg text-[#33404A] font-medium align-middle">
         {description}
       </p>
     </CardContent>

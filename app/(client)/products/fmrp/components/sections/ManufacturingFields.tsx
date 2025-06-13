@@ -102,7 +102,11 @@ const ManufacturingFields = () => {
                 height={500}
                 className="size-10 object-cover"
               />
-              <p className="text-sm-default font-semibold text-primary-new-02 text-center">
+              <p
+                className={`text-sm-default font-semibold text-primary-new-02 text-center
+                ${index === 2 && "w-[80%] xs:w-[70%]"}
+              `}
+              >
                 {field.name}
               </p>
             </Link>

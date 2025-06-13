@@ -27,7 +27,7 @@ const FmrpHighlightFeatures = () => {
             Nổi Bật
           </span>
         </h2>
-        <h2 className="hidden xl:block text-title-section-small text-[#1A2025] font-extrabold text-center">
+        <h2 className="hidden xl:block text-title-section-small text-[#1A2025] font-extrabold text-center capitalize">
           Các Tính Năng Nổi Bật trong{" "}
           <span
             style={{
@@ -140,7 +140,7 @@ const FmrpHighlightFeatures = () => {
       </div>
 
       <div className="flex flex-col xl:flex-row items-center gap-6 xl:gap-[72px] w-full">
-        <div className="xl:hidden text-title-section-feature font-extrabold text-[#25387A] text-center">
+        <div className="xl:hidden text-title-section-feature font-extrabold text-[#25387A] text-center capitalize">
           Thảo luận trong Lệnh sản xuất
         </div>
         <div className="xl:w-1/2">
@@ -153,7 +153,7 @@ const FmrpHighlightFeatures = () => {
           />
         </div>
         <div className="xl:w-1/2 flex flex-col gap-6">
-          <h2 className="hidden xl:block text-title-section-feature font-extrabold text-[#25387A]">
+          <h2 className="hidden xl:block text-title-section-feature font-extrabold text-[#25387A] capitalize">
             Thảo luận trong Lệnh sản xuất
           </h2>
           <div className="flex flex-col xl:flex-row gap-6 xl:gap-9">
@@ -231,7 +231,7 @@ const FmrpHighlightFeatures = () => {
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
         </div>
-        <div className="xl:hidden text-title-section-feature text-[#25387A] font-extrabold capitalize">
+        <div className="xl:hidden text-title-section-feature text-[#25387A] font-extrabold capitalize text-center">
           Quản lý Đa Biến Thể & LOT – DATE
         </div>
       </div>

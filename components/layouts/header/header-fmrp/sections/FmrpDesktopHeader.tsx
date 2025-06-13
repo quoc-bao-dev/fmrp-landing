@@ -1,40 +1,17 @@
-import React, { useRef, useEffect } from 'react'
-
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-
-import { useTranslate } from '@/contexts/TranslateContext'
-
-import { useAuthStore } from '@/stores/useAuthStores'
-import { useAlertDialogStore } from '@/stores/useAlertDialogStore'
-
-import { IoIosArrowDown } from 'react-icons/io'
-
-import {
-    Heart,
-    Location,
-    Lock,
-    MessageQuestion,
-    Note,
-    UserSquare
-} from 'iconsax-react'
-
-import { motion } from 'framer-motion'
-import useCookieStore from '@/stores/useCookieStore'
-import { ActionTooltip } from '@/components/common/tooltip/ActionTooltip'
-import ButtonAnimation from '@/components/common/button/ButtonAnimation'
-import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
-import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-
-import { useResizeStore } from '@/stores/useResizeStore'
-
-import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
 import HoverEffect from '@/components/common/animations/hover-button/HoverEffectButton'
+import ButtonAnimation from '@/components/common/button/ButtonAnimation'
+import { ActionTooltip } from '@/components/common/tooltip/ActionTooltip'
+import SubmenuTooltip from '@/components/common/tooltip/SubmenuTooltip'
+import { useRegisterButtonDelayCleanup } from '@/hooks/custom/useRegisterButtonVisibility'
+import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
 import { variantButtonScaleZoom } from '@/utils/animations/variantsAnimation'
 import { scrollToTop } from '@/utils/scroll/scrollUtils'
-import { useScrollDirection } from '@/hooks/custom/useScrollDirection'
-import { useRegisterButtonVisibility, useRegisterButtonDelayCleanup } from '@/hooks/custom/useRegisterButtonVisibility'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import React from 'react'
+import { IoIosArrowDown } from 'react-icons/io'
 
 interface DesktopHeaderClientProps {
     dataHeader: IMenuHeader[]
@@ -47,17 +24,8 @@ interface DesktopHeaderClientProps {
 const FmrpDesktopHeader = ({ dataHeader, handleToggleMenu, handleChangeLanguage, handleOpenDialog, handleValueChange }: DesktopHeaderClientProps) => {
     const pathname = usePathname();
     
-    // Sử dụng hook kiểm soát hiển thị nút đăng ký
-    const { canShowButton } = useRegisterButtonVisibility();
-    
     // Sử dụng hook để reset trạng thái khi unmount
     useRegisterButtonDelayCleanup();
-    
-    // Sử dụng hook theo dõi cuộn trang
-    const { scrollDirection, scrollY } = useScrollDirection();
-    
-    // Kiểm tra xem có thể hiển thị nút trong header hay không
-    const shouldShowRegisterButton = canShowButton('header');
 
     return (
         <div className="flex items-center justify-between w-full">

@@ -28,7 +28,7 @@ const FmrpCoreModules = () => {
   return (
     <section className="w-full py-12 xl:pt-24 xl:pb-0 px-2 xl:px-0 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">
       <div className="custom-container flex flex-col gap-6 xl:gap-12 justify-center items-center">
-        <div className="text-title-section-small text-[#1A2025] font-extrabold text-center">
+        <div className="text-title-section-small text-[#1A2025] font-extrabold text-center capitalize">
           Các Phân Hệ Cốt Lõi Trong phần mềm{" "}
           <span
             style={{
@@ -74,7 +74,7 @@ const FmrpCoreModules = () => {
                       className="size-9 xl:size-16 !flex-shrink-0 object-cover"
                     />
                   </div>
-                  <p className="text-base-default text-[#33404A] font-bold text-center">
+                  <p className="text-base-default text-[#33404A] font-bold text-center w-[90%] xxs:w-[75%] md:w-full">
                     {isVisibleTablet ? m.mobileTitle : m.title}
                   </p>
                 </div>
@@ -117,7 +117,7 @@ const FmrpCoreModules = () => {
 
           {/* Trung tâm dưới nửa vòng tròn */}
           <div className="xl:absolute xl:bottom-8 xl:left-1/2 xl:-translate-x-1/2 text-center xl:max-w-[512px] flex flex-col justify-center items-center gap-6">
-            <h3 className="text-base xl:text-[32px] leading-[150%] font-extrabold text-[#25387A] w-full">
+            <h3 className="text-base xl:text-[32px] leading-[150%] font-extrabold text-[#25387A] w-full capitalize">
               Tích Hợp – Quản Lý Toàn Diện{" "}
               <br className="hidden xl:block" />
               Cho Mọi Hoạt Động Sản Xuất
