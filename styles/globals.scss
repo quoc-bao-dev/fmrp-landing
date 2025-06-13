@@ -111,6 +111,10 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   .custom-padding-section {
     @apply 3xl:py-24 xl:py-20 lg:py-16 py-8;
   }
+
+  .custom-padding-section2 {
+    @apply 3xl:py-24 xl:py-20 lg:py-16 py-12;
+  }
 }
 
 .custom-size-text {
@@ -338,6 +342,48 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
 
     &:hover::before {
+      background: conic-gradient(
+        from var(--angle),
+        #c7dffb,
+        rgba(255, 255, 255, 0),
+        #c7dffb
+      );
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+  }
+
+  .border-gradient-button-fmrp-active {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: radial-gradient(
+        50% 93.75% at 50% 6.25%,
+        #0254c5 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    &::before {
       background: conic-gradient(
         from var(--angle),
         #c7dffb,

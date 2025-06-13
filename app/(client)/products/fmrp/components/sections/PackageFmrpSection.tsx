@@ -115,7 +115,7 @@ const PackageFmrpSection = (props: Props) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
-    <div className="custom-padding-section bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
+    <div className="custom-padding-section2 px-2 xl:px-0 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
       <div className="custom-container flex flex-col items-center justify-center gap-12">
         <div className="flex flex-col lg:items-center items-start justify-center gap-2">
           <div className="space-x-2 font-extrabold text-center w-full">

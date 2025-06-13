@@ -55,7 +55,7 @@ const MediaCoverageFmrpSection = (props: Props) => {
     }
 
     return (
-        <div className='relative custom-padding-section bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
+        <div className='relative custom-padding-section2 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
             <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
                 <div className='space-x-2 font-extrabold text-center'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về phần mềm</span>
@@ -144,7 +144,7 @@ const MediaCoverageFmrpSection = (props: Props) => {
                                 animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
                                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
                             >
-                                {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />}
+                                    {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 text-white" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 text-[#0375F3] group-hover:text-white" />}
                             </motion.div>
                         </div>
                     }

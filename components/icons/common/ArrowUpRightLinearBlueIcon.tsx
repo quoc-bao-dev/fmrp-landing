@@ -9,7 +9,7 @@ interface ArrowUpRightLinearBlueIconProps {
     style?: React.CSSProperties;
 }
 
-const ArrowUpRightLinearBlueIcon: React.FC<ArrowUpRightLinearBlueIconProps> = ({ size = 32, color = '#036EEA', className = '', style = {} }) => {
+const ArrowUpRightLinearBlueIcon: React.FC<ArrowUpRightLinearBlueIconProps> = ({ size = 32, color = 'currentColor', className = '', style = {} }) => {
     return (
         <svg
             viewBox="0 0 24 24"

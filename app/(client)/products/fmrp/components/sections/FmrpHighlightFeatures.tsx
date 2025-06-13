@@ -1,5 +1,4 @@
 "use client";
-import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import UnderlineCurveLinearSvg2 from "@/components/icons/underline/UnderlineCurveLinearSvg2";
 import { IMAGES } from "@/constants/Images";
 import Image from "next/image";
@@ -13,7 +12,7 @@ import {
 const FmrpHighlightFeatures = () => {
   return (
     <section className="xl:custom-padding-section custom-container px-2 xl:px-0 flex flex-col gap-8 xl:gap-24 justify-center items-center">
-      <AnimatedReveal className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3">
         <h2 className="block xl:hidden text-title-section-small text-[#1A2025] font-extrabold text-center">
           Các Tính Năng{" "}
           <span
@@ -45,10 +44,10 @@ const FmrpHighlightFeatures = () => {
         <p className="text-title text-[#33404A] font-medium text-center">
           Hỗ trợ thực chiến – giúp xưởng vận hành dễ hơn, không còn bị động
         </p>
-      </AnimatedReveal>
+      </div>
 
       <div className="flex flex-col-reverse xl:flex-row items-center gap-6 xl:gap-10 w-full">
-        <AnimatedReveal from="left" className="flex flex-col gap-6 xl:w-1/2">
+        <div className="flex flex-col gap-6 xl:w-1/2">
           <div className="hidden xl:flex items-center gap-3">
             <Image
               width={100}
@@ -104,8 +103,8 @@ const FmrpHighlightFeatures = () => {
               phẩm mới.
             </p>
           </div>
-        </AnimatedReveal>
-        <AnimatedReveal from="right" className="xl:w-1/2">
+        </div>
+        <div className="xl:w-1/2">
           <Image
             src={IMAGES.fimo}
             width={700}
@@ -113,8 +112,8 @@ const FmrpHighlightFeatures = () => {
             alt=""
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
-        </AnimatedReveal>
-        <AnimatedReveal from="left" className="flex flex-col xl:hidden">
+        </div>
+        <div className="flex flex-col xl:hidden">
           <div className="flex gap-3 items-center">
             <Image
               width={100}
@@ -137,14 +136,14 @@ const FmrpHighlightFeatures = () => {
           <h2 className="text-title-section-feature text-[#25387A] font-extrabold capitalize w-full text-center">
             thông minh
           </h2>
-        </AnimatedReveal>
+        </div>
       </div>
 
       <div className="flex flex-col xl:flex-row items-center gap-6 xl:gap-[72px] w-full">
-        <AnimatedReveal className="xl:hidden text-title-section-feature font-extrabold text-[#25387A] text-center">
+        <div className="xl:hidden text-title-section-feature font-extrabold text-[#25387A] text-center">
           Thảo luận trong Lệnh sản xuất
-        </AnimatedReveal>
-        <AnimatedReveal from="right" className="xl:w-1/2">
+        </div>
+        <div className="xl:w-1/2">
           <Image
             src={IMAGES.lenhSanXuat}
             width={700}
@@ -152,8 +151,8 @@ const FmrpHighlightFeatures = () => {
             alt=""
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
-        </AnimatedReveal>
-        <AnimatedReveal from="left" className="xl:w-1/2 flex flex-col gap-6">
+        </div>
+        <div className="xl:w-1/2 flex flex-col gap-6">
           <h2 className="text-title-section-feature font-extrabold text-[#25387A]">
             Thảo luận trong Lệnh sản xuất
           </h2>
@@ -188,11 +187,11 @@ const FmrpHighlightFeatures = () => {
               </div>
             </div>
           </div>
-        </AnimatedReveal>
+        </div>
       </div>
 
       <div className="flex flex-col-reverse xl:flex-row items-center gap-6 xl:gap-[72px] w-full">
-        <AnimatedReveal from="left" className="flex flex-col gap-6 xl:w-1/2">
+        <div className="flex flex-col gap-6 xl:w-1/2">
           <h2 className="hidden xl:block text-title-section-feature text-[#25387A] font-extrabold capitalize">
             Quản lý Đa Biến Thể & LOT – DATE
           </h2>
@@ -222,8 +221,8 @@ const FmrpHighlightFeatures = () => {
               ro đầu ra.
             </p>
           </div>
-        </AnimatedReveal>
-        <AnimatedReveal from="right" className="xl:w-1/2">
+        </div>
+        <div className="xl:w-1/2">
           <Image
             src={IMAGES.lotDate}
             width={700}
@@ -231,10 +230,10 @@ const FmrpHighlightFeatures = () => {
             alt=""
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
-        </AnimatedReveal>
-        <AnimatedReveal className="xl:hidden text-title-section-feature text-[#25387A] font-extrabold capitalize">
+        </div>
+        <div className="xl:hidden text-title-section-feature text-[#25387A] font-extrabold capitalize">
           Quản lý Đa Biến Thể & LOT – DATE
-        </AnimatedReveal>
+        </div>
       </div>
     </section>
   );

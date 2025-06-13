@@ -1,5 +1,4 @@
 "use client";
-import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
@@ -27,14 +26,14 @@ const FmrpCoreModules = () => {
   const { isVisibleTablet } = useResizeStore();
 
   return (
-    <section className="w-full pt-12 xl:pt-20 px-2 xl:px-0 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">
+    <section className="w-full py-12 xl:pt-24 xl:pb-0 px-2 xl:px-0 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">
       <div className="custom-container flex flex-col gap-6 xl:gap-12 justify-center items-center">
-        <AnimatedReveal className="text-title-section-small text-[#1A2025] font-extrabold text-center">
+        <div className="text-title-section-small text-[#1A2025] font-extrabold text-center">
           Các Phân Hệ Cốt Lõi Trong phần mềm{" "}
           <span
             style={{
               background:
-                "linear-gradient(78deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)",
+                "linear-gradient(125deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -42,10 +41,9 @@ const FmrpCoreModules = () => {
           >
             FMRP
           </span>
-        </AnimatedReveal>
+        </div>
         <div className="flex flex-col-reverse xl:flex-col gap-6 xl:gap-0 w-full">
-          <AnimatedReveal
-            effect="zoom-in"
+          <div
             className="relative w-full max-w-[1440px] xl:h-[620px] mx-auto grid grid-cols-3 gap-3 xl:gap-0 xl:block"
           >
             {modules.map((m, i) => {
@@ -65,7 +63,7 @@ const FmrpCoreModules = () => {
                     transform: isVisibleTablet ? "" : `translateX(${x - 65}px)`,
                   }}
                 >
-                  <div className="p-3 xl:p-4 !flex-shrink-0 bg-white rounded-xl border border-[#D9E1E7] shadow-[1px_-1px_20px_-5px_#0375F326]">
+                  <div className="hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] custom-transition p-3 xl:p-4 !flex-shrink-0 bg-white rounded-2xl xl:rounded-[28px] border border-[#D9E1E7] shadow-[1px_-1px_20px_-5px_#0375F326]">
                     <Image
                       src={m.icon}
                       width={100}
@@ -113,7 +111,7 @@ const FmrpCoreModules = () => {
                 <div className="absolute bottom-1/2 left-0 right-0 w-full h-20 bg-gradient-to-t from-white via-white/[99%] to-transparent"></div>
               </div>
             </div>
-          </AnimatedReveal>
+          </div>
 
           {/* Trung tâm dưới nửa vòng tròn */}
           <div className="xl:absolute xl:bottom-8 xl:left-1/2 xl:-translate-x-1/2 text-center xl:max-w-[512px] flex flex-col justify-center items-center gap-6">
@@ -154,7 +152,9 @@ const FmrpCoreModules = () => {
               style={{
                 boxShadow:
                   "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
-              }}
+                  background: "#206AFF"
+              
+                }}
               whileHover={{
                 background: [
                   "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #0375F3 10.03%, #013DA0 107.74%)",

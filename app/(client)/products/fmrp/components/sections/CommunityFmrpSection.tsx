@@ -1,17 +1,12 @@
 "use client"
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
-import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
 import FacebookOriginIcon from '@/components/icons/social-media/FacebookOriginIcon'
 import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
 import TiktokOriginIcon from '@/components/icons/social-media/TiktokOriginIcon'
 import YoutubeOriginIcon from '@/components/icons/social-media/YoutubeOriginIcon'
 import { uuidv4 } from '@/lib/uuid'
-import { useResizeStore } from '@/stores/useResizeStore'
 import { variantCardScaleZoom } from '@/utils/animations/variantsAnimation'
 import { motion } from 'framer-motion'
-import { ArrowUpRightIcon } from 'lucide-react'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 
 type Props = {}
 
@@ -81,12 +76,10 @@ const textVariants = {
 
 
 const CommunityFmrpSection = (props: Props) => {
-    const { isVisibleTablet } = useResizeStore()
-    const [isHovered, setIsHovered] = useState<boolean>(false);
 
     return (
-        <div className='custom-padding-section bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-10 gap-8'>
+        <div className='custom-padding-section2 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
+            <div className='custom-container px-2 xl:px-0 flex flex-col items-center justify-center 3xl:gap-10 gap-8'>
                 <div className='flex flex-col items-center justify-center gap-2'>
                     <div className='space-x-2 font-extrabold w-full text-center'>
                         <span className='text-title-section-small text-[#1A2025] capitalize'>Tham gia cộng đồng cho</span>
@@ -102,12 +95,6 @@ const CommunityFmrpSection = (props: Props) => {
                             Nhà Sản Xuất
                         </span>
                     </div>
-
-                    {/* <div className='text-base-default text-[#33404A] font-medium md:text-center text-center max-w-full'>
-                        <span>
-                            Kết nối với các chuyên gia và doanh nghiệp sử dụng FMRP để trao đổi kinh nghiệm, bí quyết tối ưu quy trình sản xuất ngay!
-                        </span>
-                    </div> */}
                 </div>
 
                 <div className='grid lg:grid-cols-4 grid-cols-2 3xl:gap-8 lg:gap-6 gap-2 w-full'>

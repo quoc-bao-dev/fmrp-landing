@@ -1,47 +1,56 @@
 "use client";
-import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
 import { IMAGES } from "@/constants/Images";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const fieldsData = [
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-may-mac-cho-xuong-vua-va-nho",
     image: IMAGES.maymac,
     name: "May mặc",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-dien-may",
     image: IMAGES.dienmay,
     name: "Điện máy",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-co-khi-canh-tay-phai-so-hoa-cho-nganh-che-tao",
     image: IMAGES.cokhi,
     name: "Cơ khí - chế tạo",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-thuc-pham-kiem-soat-han-su-dung-toi-uu-hieu-suat",
     image: IMAGES.thucpham,
     name: "Thực phẩm",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nong-nghiep-dot-pha-trong-quan-ly-cho-nong-trai-thoi-dai-so",
     image: IMAGES.nongnghiep,
     name: "Nông nghiệp",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nganh-go-tu-dong-hoa-de-dang-hieu-qua-vuot-troi",
     image: IMAGES.go,
     name: "Gỗ nội, ngoại thất",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nganh-nhua",
     image: IMAGES.nhua,
     name: "Sản xuất nhựa",
   },
   {
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nganh-giay-bao-bi",
     image: IMAGES.giay,
     name: "Sản xuất giấy",
   },
   {
+    href: "",
     image: IMAGES.khac,
     name: "Khác",
   },
@@ -50,9 +59,9 @@ const ManufacturingFields = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
-    <section className="custom-padding-section px-2 xl:px-0 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
+    <section className="custom-padding-section2 px-2 xl:px-0 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
       <div className="custom-container flex flex-col gap-6 xl:gap-16 items-center justify-center">
-        <AnimatedReveal className="text-title-section-small text-[#1A2025] font-extrabold text-center">
+        <h2 className="text-title-section-small text-[#1A2025] font-extrabold text-center">
           Linh Hoạt Triển Khai Cho{" "}
           <span
             style={{
@@ -65,11 +74,24 @@ const ManufacturingFields = () => {
           >
             Mọi Ngành Sản Xuất
           </span>
-        </AnimatedReveal>
-
-        <AnimatedReveal className="grid grid-cols-3 gap-4 xl:hidden">
+        </h2>
+        {/* style={{
+      background: popular
+        ? "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 33.55%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
+        : "#FFFFFF",
+    }}
+  >
+    <div
+      className={`${
+        popular
+          ? "border-gradient-professional-price-list"
+          : "border-gradient-freemium-price-list"
+      } h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`}
+    /> */}
+        <div className="grid grid-cols-3 gap-4 xl:hidden">
           {fieldsData.map((field, index) => (
-            <div
+            <Link
+              href={field.href}
               key={index}
               className="px-2 aspect-square shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
             >
@@ -83,16 +105,17 @@ const ManufacturingFields = () => {
               <p className="text-sm-default font-semibold text-primary-new-02 text-center">
                 {field.name}
               </p>
-            </div>
+            </Link>
           ))}
-        </AnimatedReveal>
-
-        <AnimatedReveal className="hidden xl:flex flex-col gap-7 items-center">
+        </div>
+        {/* bg-gradient-to-b from-[#0375F340] to-[#0375F300] */}
+        <div className="hidden xl:flex flex-col gap-7 items-center">
           <div className="grid grid-cols-4 gap-7">
             {fieldsData.slice(0, 4).map((field, index) => (
-              <div
+              <Link
+                href={field.href}
                 key={index}
-                className="size-[150px] shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
+                className="bg-white hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] custom-transition cursor-pointer size-[150px] shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center "
               >
                 <Image
                   src={field.image}
@@ -104,14 +127,15 @@ const ManufacturingFields = () => {
                 <p className="text-sm-default font-semibold text-primary-new-02">
                   {field.name}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="grid grid-cols-5 gap-7">
             {fieldsData.slice(4).map((field, index) => (
-              <div
+              <Link
+                href={field.href}
                 key={index}
-                className="size-[150px] shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
+                className="hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] custom-transition cursor-pointer size-[150px] shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
               >
                 <Image
                   src={field.image}
@@ -123,10 +147,10 @@ const ManufacturingFields = () => {
                 <p className="text-sm-default font-semibold text-primary-new-02">
                   {field.name}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
-        </AnimatedReveal>
+        </div>
         <ButtonAnimationNew
           title="Trải Nghiệm Ngay"
           icon={

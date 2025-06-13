@@ -25,23 +25,24 @@ const FmrpBenefits = () => {
   return (
     <section className="xl:custom-padding-section">
       <div className="custom-container px-2 pl:mx-0 flex flex-col gap-6 xl:gap-12 justify-center items-center">
-        <AnimatedReveal className="text-title-section-small text-[#1A2025] font-extrabold text-center">
-          <span
-            style={{
-              background:
-                "linear-gradient(107.37deg, #0375F3 30.28%, #036EEA 30.78%, #0267E1 31.29%, #0261D7 31.8%, #025ACE 32.31%, #0254C5 32.82%, #024EBC 33.33%, #0148B3 33.84%, #0142A9 34.34%, #013DA0 34.85%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text", 
-              WebkitTextFillColor: "transparent",
-            }}
+        <div className="text-title-section-small text-[#1A2025] font-extrabold text-center">
+          <span className="text-[#0375F3]"
+            // style={{
+            //   background:
+            //     "linear-gradient(180deg, #0375F3 30.28%, #036EEA 30.78%, #0267E1 31.29%, #0261D7 31.8%, #025ACE 32.31%, #0254C5 32.82%, #024EBC 33.33%, #0148B3 33.84%, #0142A9 34.34%, #013DA0 34.85%)",
+            //   backgroundClip: "text",
+            //   WebkitBackgroundClip: "text", 
+            //   WebkitTextFillColor: "transparent",
+            // }}
           >
             FMRP
           </span>{" "}
           Giúp Xưởng Vận Hành Dễ Dàng Và Kiểm Soát Hiệu Quả
-        </AnimatedReveal>
-        <AnimatedReveal className="grid grid-cols-1 xl:grid-cols-3 gap-3 xl:gap-8">
+        </div>
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-3 xl:gap-8">
           {benefitsData.map((benefit, index) => (
-            <div key={index} className="p-6 flex xl:flex-col flex-row gap-6 rounded-3xl bg-white shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]">
+            <div key={index} className="p-6 flex xl:flex-col flex-row gap-6 rounded-3xl bg-white shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D] hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] 
+            custom-transition">
               <div className="size-[60px] xl:size-[72px] flex-shrink-0 rounded-[20px] p-3 bg-gradient-to-b from-[#0375F3] to-[#013DA0]">
                 <benefit.icon className="size-full shrink-0 text-white" />
               </div>
@@ -55,7 +56,7 @@ const FmrpBenefits = () => {
               </div>
             </div>
           ))}
-        </AnimatedReveal>
+        </div>
       </div>
     </section>
   );

@@ -21,10 +21,10 @@ const FmrpApp = () => {
   const { isVisibleTablet } = useResizeStore();
   const [isHovered, setIsHovered] = useState<boolean>(false);
   return (
-    <section className="custom-padding-section">
+    <section className="xl:custom-padding-section">
       {/* <div className="w-full 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] max-w-full flex flex-col shrink-0 lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4"> */}
       <div className="custom-container flex flex-col xl:flex-row gap-[72px] justify-center items-center">
-        <div className="w-full 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] flex flex-col shrink-0 lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
+        <div className="w-full pb-9 xl:pb-0 px-2 xl:px-0 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] flex flex-col shrink-0 lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
           <div className="xxl:space-y-2 space-y-1">
             <h2 className="text-title-section-small text-[#1A2025] font-extrabold capitalize">
               Hơn cả một phần mềm
@@ -74,7 +74,7 @@ const FmrpApp = () => {
             }}
           />
 
-          <div className="lg:order-2 order-1 flex items-center gap-4 mt-4">
+          <div className="lg:order-2 order-1 flex items-center gap-4 xl:mt-4">
             <div className="flex lg:flex-col flex-row gap-2">
               <motion.div
                 initial={false}

@@ -4,15 +4,16 @@ import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import PhoneLink from "../contact-links/PhoneLink";
 import SocialMediaButton from "./SocialMediaButton";
 import ButtonToTop from "./ButtonToTop";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Danh sách các button mạng xã hội với `handleClick` riêng
 const socialButtons = [
   {
-    icon: "/icons/social-media/whiteZalo.svg",
+    icon: "/icons/social-media/zalo3.svg",
     background_animation:
       "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
     info: (
@@ -34,7 +35,7 @@ const socialButtons = [
     },
   },
   {
-    icon: "/icons/social-media/whiteMess.svg",
+    icon: "/icons/social-media/messenger.svg",
     background_animation:
       "linear-gradient(212.75deg, #FF7061 5.92%, #FF5280 34.96%, #A033FF 68.84%, #0099FF 96.41%)",
     info: (
@@ -65,7 +66,7 @@ const socialButtons = [
     },
   },
   {
-    icon: "/icons/social-media/whiteCall.svg",
+    icon: "/icons/social-media/call.svg",
     background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
     info: (
       <p className="text-sm text-nowrap space-x-1 text-gray-500">
@@ -91,6 +92,36 @@ const isBlogDetailPage = (pathname: string) => {
 
 const WidgetButton: React.FC = () => {
   const pathname = usePathname();
+  const [isShow, setIsShow] = useState(false);
+  const lastScrollY = useRef<number>(0);
+  const ticking = useRef<boolean>(false);
+
+  const handleNavigation = useCallback(() => {
+    const scrollY = window.scrollY;
+    const heightScreen = window.innerHeight;
+
+    if (!ticking.current) {
+      requestAnimationFrame(() => {
+        if (scrollY > heightScreen && lastScrollY.current <= heightScreen) {
+          setIsShow(true);
+        } else if (scrollY <= heightScreen && lastScrollY.current > heightScreen) {
+          setIsShow(false);
+        }
+
+        lastScrollY.current = scrollY;
+        ticking.current = false;
+      });
+
+      ticking.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleNavigation);
+    return () => {
+      window.removeEventListener("scroll", handleNavigation);
+    };
+  }, [handleNavigation]);
 
   // Xác định vị trí của các nút dựa trên pathname
   const positionClass = isBlogDetailPage(pathname)
@@ -98,43 +129,48 @@ const WidgetButton: React.FC = () => {
     : "bottom-1/2 translate-y-1/2 right-3 "; // Vị trí mặc định
 
   return (
-    <div className={`flex flex-col fixed z-40  ${positionClass}`}>
-      {socialButtons.map((button, index) => (
-        <SocialMediaButton
-          key={index}
-          info={button.info}
-          handleClick={button.handleClick}
-          // Thay đổi vị trí tooltip nếu là trang blog chi tiết
-          tooltipPosition={isBlogDetailPage(pathname) ? "top" : "left"}
-          icon={
-            <div
-              className={`${
-                dataFmrpPages.includes(pathname)
-                  ? "hover:bg-[#166846]/80"
-                  : "hover:scale-[1.04]"
-              } 
-              ${index === 0 && "rounded-t-xl"}
-              ${index === socialButtons.length - 1 && "rounded-b-xl"}
-              bg-[#166846] border border-[#00AA5980] xl:size-12 size-10 custom-transition flex justify-center items-center`}
-              style={{
-                boxShadow:
-                  "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A",
-              }}
-            >
-              <Image
-                width={100}
-                height={100}
-                alt="social-media"
-                className={`${
-                  index == 1 ? "size-8" : "size-7"
-                } aspect-square object-cover flex-shrink-0`}
-                src={button.icon}
+    <div className={`flex flex-col gap-0 fixed z-40 ${positionClass}`}>
+      <AnimatePresence>
+        {isShow && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="rounded-xl bg-white shadow-[0px_4px_24px_0px_#0000001A]"
+          >
+            {socialButtons.map((button, index) => (
+              <SocialMediaButton
+                key={index}
+                info={button.info}
+                handleClick={button.handleClick}
+                tooltipPosition={isBlogDetailPage(pathname) ? "top" : "left"}
+                icon={
+                  <div
+                    className={`${
+                      dataFmrpPages.includes(pathname)
+                        ? "hover:bg-gray-50"
+                        : "hover:scale-[1.04]"
+                    } 
+                    ${index === 0 && "rounded-t-xl"}
+                    ${index === socialButtons.length - 1 && "rounded-b-xl"}
+                    ${index === 1 && "border-y border-[#F6F6F8]"}
+                    p-3 custom-transition flex justify-center items-center`}
+                  >
+                    <Image
+                      width={100}
+                      height={100}
+                      alt="social-media"
+                      className="size-8 aspect-square object-cover flex-shrink-0"
+                      src={button.icon}
+                    />
+                  </div>
+                }
               />
-            </div>
-          }
-        />
-      ))}
-
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* <ButtonToTop /> */}
     </div>
   );

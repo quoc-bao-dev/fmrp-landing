@@ -40,7 +40,7 @@ const PartnerFmrpSection = (props: Props) => {
   ];
 
   return (
-    <div className="custom-padding-section bg-white">
+    <div className="py-0 xl:py-12 bg-white px-2 xl:px-0">
       <div className="custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-6 relative z-[1]">
         <div className="space-x-2 font-extrabold">
           <span className="text-title-section-small text-[#1A2025] capitalize">
@@ -53,7 +53,7 @@ const PartnerFmrpSection = (props: Props) => {
         <ButtonAnimationNew
           title="Trở Thành Khách Hàng Của Chúng Tôi"
           icon={
-            <div className="text-[#10805B] 2xl:size-12 md:size-10 size-9 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
+            <div className="text-[#10805B] 2xl:size-12 md:size-10 size-9 rounded-full capitalize flex items-center justify-center xl:group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
               <motion.div
                 initial={{ x: 0, y: 0 }}
                 animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
@@ -62,7 +62,7 @@ const PartnerFmrpSection = (props: Props) => {
                 {isHovered ? (
                   <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 text-[#10805B] group-hover:text-white " />
                 ) : (
-                  <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 text-[#10805B] xl:text-[#0375F3]" />
+                  <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 !text-[#10805B] xl:text-[#0375F3]" />
                 )}
               </motion.div>
             </div>
@@ -74,7 +74,7 @@ const PartnerFmrpSection = (props: Props) => {
             setStatusSheet("contact");
           }}
           reverse={true}
-          className={`border flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full
+          className={`border flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group xl:hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 rounded-[40px] lg:w-fit w-full
             ${!isVisibleTablet ? "border-gradient-button-no-bg-fmrp" : "border-[#10805B] text-[#10805B]"}`}
           style={{
             background: isVisibleTablet

@@ -3,6 +3,7 @@ import FmrpApp from "./components/sections/FmrpApp";
 import FmrpBenefits from "./components/sections/FmrpBenefits";
 import FmrpCoreModules from "./components/sections/FmrpCoreModules";
 import FmrpHighlightFeatures from "./components/sections/FmrpHighlightFeatures";
+import HeroFmrpSection from "./components/sections/HeroFmrpSection";
 import IntroductionFmrpSection from "./components/sections/IntroductionFmrpSection";
 import ManufacturingFields from "./components/sections/ManufacturingFields";
 import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
