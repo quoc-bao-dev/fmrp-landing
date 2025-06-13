@@ -1,26 +1,28 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-// Danh sách từ khóa nghi ngờ (có thể bổ sung tùy ý)
-const spammyKeywords = ['xổ số', 'vietlott', 'casino', 'thuốc', 'bet', 'seo', 'backlink', 'hack', 'tăng like']
+// Danh sách từ khóa spam (có thể cập nhật thêm theo log thực tế)
+const spammyKeywords = [
+  'xổ số', 'vietlott', 'casino', 'thuốc', 'bet', 'seo', 'backlink',
+  'hack', 'tăng like', 'gà đá', 'mitom', 'red tiger', 'bwing', 'grabtaxi'
+]
 
 export function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone()
-  const query = decodeURIComponent(url.search || '')
+  const rawUrl = decodeURIComponent(request.url.toLowerCase())
 
-  const hasSlash = query.includes('/')
-  const hasSpamKeyword = spammyKeywords.some(keyword => query.toLowerCase().includes(keyword))
+  const matchedSpam = spammyKeywords.some(keyword => rawUrl.includes(keyword))
 
-  // Nếu query đáng ngờ → chuyển sang trang 404
-  if (hasSlash || hasSpamKeyword) {
-    url.pathname = '/404'
-    url.search = ''
-    return NextResponse.rewrite(url)
+  if (matchedSpam) {
+    const newUrl = request.nextUrl.clone()
+    newUrl.pathname = '/404'
+    newUrl.search = ''
+    return NextResponse.rewrite(newUrl)
   }
 
   return NextResponse.next()
 }
 
+// ⚠️ Chặn cho toàn bộ route (bao gồm /, /blogs, /products, v.v.)
 export const config = {
-  matcher: ['/', '/home'],
+  matcher: ['/:path*'],
 }

@@ -1,13 +1,10 @@
-import React from "react"
-
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon"
+'use client'
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew"
+import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon"
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon"
-
+import { Card, CardContent } from "@/components/ui/card"
 import { motion } from 'framer-motion'
+import React from "react"
 
 type Props = {}
 

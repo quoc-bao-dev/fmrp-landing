@@ -1,10 +1,8 @@
-'use client'
-
-import React from 'react'
+// 'use client'
+import EnhancedPrinterSection from './components/sections/EnhancedPrinterSection'
 import IntroPricingFmrpSection from './components/sections/IntroPricingFmrpSection'
 import MembershipPlansSection from './components/sections/MembershipPlansSection'
 import PriceTableSection from './components/sections/PriceTableSection'
-import EnhancedPrinterSection from './components/sections/EnhancedPrinterSection'
 
 type Props = {}
 
