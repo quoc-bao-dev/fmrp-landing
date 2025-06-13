@@ -56,7 +56,7 @@ const FmrpCoreModules = () => {
               return (
                 <div
                   key={i}
-                  className={`xl:absolute flex flex-col gap-3 xl:justify-center items-center max-w-[160px] flex-shrink-0
+                  className={`xl:absolute flex flex-col gap-3 xl:justify-center items-center max-w-[172px] flex-shrink-0
                     ${i === 3 && "2xl:w-[140px] xl:w-[120px]"}
                     `}
                   style={{
