@@ -63,7 +63,6 @@ const QuestionsFmrpSection = (props: Props) => {
                         {
                             questions?.map((item: any, index) => {
                                 const isActive = isStatePageFmrp.isOpenAccordion === item.value;
-                                console.log(isActive)
                                 return (
                                     <AccordionItem
                                         key={`accordion-${item.value}`}

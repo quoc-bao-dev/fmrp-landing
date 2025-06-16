@@ -60,8 +60,6 @@ const ProviderLayout = ({ children, data, ...props }: ProviderLayoutProps) => {
         }
     }, [informationUser, data])
 
-    console.log('isStateClientLayout: ', isStateClientLayout);
-
 
     return (
         <NextThemesProvider {...props}>

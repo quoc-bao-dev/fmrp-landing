@@ -20,10 +20,10 @@ const modules = [
   { icon: IMAGES.khachHang, title: "Quản lý khách hàng", mobileTitle: "Quản lý khách hàng" },
 ];
 const FmrpCoreModules = () => {
-  const radius = 450; // tăng bán kính để vòng tròn rộng hơn
+  const { isVisibleTablet, isVisibleDesktopXL } = useResizeStore();
+  const radius = isVisibleDesktopXL ? 400 : 450; // bán kính để vòng tròn
   const centerY = 450;
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const { isVisibleTablet } = useResizeStore();
 
   return (
     <section className="w-full py-12 xl:pt-24 xl:pb-0 px-2 xl:px-0 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">

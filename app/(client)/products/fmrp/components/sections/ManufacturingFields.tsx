@@ -50,7 +50,7 @@ const fieldsData = [
     name: "Sản xuất giấy",
   },
   {
-    href: "",
+    href: "https://bom.so/mrpbeta",
     image: IMAGES.khac,
     name: "Khác",
   },
@@ -92,6 +92,8 @@ const ManufacturingFields = () => {
           {fieldsData.map((field, index) => (
             <Link
               href={field.href}
+              target="_blank"
+              rel="noopener noreferrer"
               key={index}
               className="px-2 aspect-square shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
             >
@@ -118,6 +120,8 @@ const ManufacturingFields = () => {
             {fieldsData.slice(0, 4).map((field, index) => (
               <Link
                 href={field.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={index}
                 className="bg-white hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] custom-transition cursor-pointer size-[150px] shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center "
               >
@@ -139,6 +143,8 @@ const ManufacturingFields = () => {
               <Link
                 href={field.href}
                 key={index}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:shadow-[0px_4px_20px_-5px_#0375F340,0px_4px_20px_-5px_#0375F340] custom-transition cursor-pointer size-[150px] shadow-[1px_-1px_20px_-5px_#0375F326_inset] rounded-2xl flex flex-col items-center justify-center bg-white"
               >
                 <Image

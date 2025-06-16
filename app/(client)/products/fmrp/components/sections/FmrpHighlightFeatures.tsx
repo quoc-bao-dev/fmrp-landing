@@ -107,8 +107,9 @@ const FmrpHighlightFeatures = () => {
         <div className="xl:w-1/2">
           <Image
             src={IMAGES.fimo}
-            width={700}
-            height={700}
+            width={1920}
+            height={1080}
+            quality={100}
             alt=""
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
@@ -146,9 +147,10 @@ const FmrpHighlightFeatures = () => {
         <div className="xl:w-1/2">
           <Image
             src={IMAGES.lenhSanXuat}
-            width={700}
-            height={700}
-            alt=""
+            width={1920}
+            height={1080}
+            quality={100}
+            alt="lenh-san-xuat"
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
         </div>
@@ -225,9 +227,10 @@ const FmrpHighlightFeatures = () => {
         <div className="xl:w-1/2">
           <Image
             src={IMAGES.lotDate}
-            width={700}
-            height={700}
-            alt=""
+            width={1920}
+            height={1080}
+            quality={100}
+            alt="lot-date"
             className="size-full object-cover [filter:drop-shadow(0_25px_25px_rgba(170,255,230,0.2))]"
           />
         </div>

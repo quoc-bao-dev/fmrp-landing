@@ -66,7 +66,7 @@ const socialButtons = [
     },
   },
   {
-    icon: "/icons/social-media/call.svg",
+    icon: "/icons/social-media/call2.svg",
     background_animation: "linear-gradient(90deg, #53B086 0%, #53B086 100%)",
     info: (
       <p className="text-sm text-nowrap space-x-1 text-gray-500">
@@ -158,8 +158,8 @@ const WidgetButton: React.FC = () => {
                     p-3 custom-transition flex justify-center items-center`}
                   >
                     <Image
-                      width={100}
-                      height={100}
+                      width={200}
+                      height={200}
                       alt="social-media"
                       className="size-8 aspect-square object-cover flex-shrink-0"
                       src={button.icon}

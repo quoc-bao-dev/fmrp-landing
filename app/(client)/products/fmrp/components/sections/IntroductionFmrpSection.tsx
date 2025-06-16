@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import BlurBackgroundFixed from "../ui/common/BlurBackgroundFixed";
+import Image from "next/image";
 
 type Props = {};
 
@@ -122,29 +123,33 @@ const IntroductionFmrpSection = (props: Props) => {
         {isVisibleTablet && (
           <div className="w-full mt-2">
             <div className="w-auto">
-              <BlurImage
+              <Image
                 src="/background/ui/fmrp/bg-fmrpMb.png"
                 alt="bg-fmrp"
                 width={1536}
                 height={853}
+                quality={100}
+                priority={true}
                 className="size-full object-cover relative"
-                classNameContainer="w-full object-cover relative"
-                loading="lazy"
+                // classNameContainer="w-full object-cover relative"
+                // loading="lazy"
               />
             </div>
           </div>
         )}
         {!isVisibleTablet && (
           <div className="w-full pointer-events-none select-none relative">
-            <div className=" w-auto 3xl:h-[800px] 2xl:h-[760px] xxl:h-[720px] xl:h-[540px] h-fit aspect-1.6/1 relative">
-              <BlurImage
+            <div className=" w-auto xxl:h-[960px] xl:h-[700px] h-fit aspect-1.6/1 relative">
+              <Image
                 src="/background/ui/fmrp/bg-fmrp4.png"
                 alt="bg-fmrp"
                 width={1536}
                 height={853}
+                quality={100}
+                priority={true}
                 className="size-full object-contain aspect-1.6/1 relative"
-                classNameContainer="w-full object-contain aspect-1.6/1 relative"
-                loading="lazy"
+                // classNameContainer="w-full object-contain aspect-1.6/1 relative"
+                // loading="lazy"
               />
               {/* Mask Gradient chỉ nằm vùng 180px cuối */}
               {/* <div

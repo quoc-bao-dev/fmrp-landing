@@ -213,7 +213,6 @@ const FosoDesktopHeader = ({ dataHeader, handleOpenSheet }: DesktopHeaderClientP
             <div className="flex-grow max-w-[65%] flex items-center justify-center 2xl:gap-4 xl:gap-2 lg:gap-1">
                 {
                     dataHeader.map((item) => {
-                        console.log('checkIsActive(pathname, item.link): ', checkIsActive(pathname, item.active));
 
 
                         return (
