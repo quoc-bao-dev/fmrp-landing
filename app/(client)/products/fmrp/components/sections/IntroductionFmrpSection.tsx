@@ -139,7 +139,7 @@ const IntroductionFmrpSection = (props: Props) => {
         )}
         {!isVisibleTablet && (
           <div className="w-full pointer-events-none select-none relative">
-            <div className=" w-auto xxl:h-[960px] xl:h-[700px] h-fit aspect-1.6/1 relative">
+            <div className=" w-auto 3xl:h-[800px] 2xl:h-[760px] xxl:h-[720px] xl:h-[540px] h-fit aspect-1.6/1 relative">
               <Image
                 src="/background/ui/fmrp/bg-fmrp4.png"
                 alt="bg-fmrp"
