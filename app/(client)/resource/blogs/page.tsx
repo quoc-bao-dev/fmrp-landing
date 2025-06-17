@@ -1,9 +1,6 @@
-'use client'
-
-import React from 'react'
+import CTABlogSection from './components/sections/CTABlogSection'
 import IntroBlogSection from './components/sections/IntroBlogSection'
 import MainBlogSection from './components/sections/MainBlogSection'
-import CTABlogSection from './components/sections/CTABlogSection'
 
 type Props = {}
 

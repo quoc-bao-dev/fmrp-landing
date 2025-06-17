@@ -1,13 +1,12 @@
-import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle'
-import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
-import React, { useMemo } from 'react'
-
-import { motion, useMotionValue, useTransform } from 'framer-motion'
-import Image from 'next/image';
-import SalyAnimation from '@/components/common/animations/common/SalyAnimation';
-import { useResizeStore } from '@/stores/useResizeStore';
-import { useTheme } from 'next-themes';
+'use client'
 import StickerHighlight from '@/components/common/animations/common/StickerHighlight';
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
+import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import React, { useMemo } from 'react';
 
 type Props = {}
 

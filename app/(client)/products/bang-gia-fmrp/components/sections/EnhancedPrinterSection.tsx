@@ -1,6 +1,3 @@
-"use client"
-
-import { motion } from "framer-motion"
 import EnhancedPrinterCard from "../ui/EnhancedPrinterCard"
 import React from "react"
 

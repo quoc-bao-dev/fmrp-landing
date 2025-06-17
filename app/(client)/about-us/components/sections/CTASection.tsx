@@ -1,12 +1,11 @@
+'use client'
 import BlurImage from '@/components/common/blur/BlurImage'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import { useResizeStore } from '@/stores/useResizeStore'
-import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
-import Image from 'next/image'
-import React from 'react'
-
-import { motion } from 'framer-motion'
 import { useSheetStores } from '@/stores/useSheetStores'
+import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 type Props = {}
 

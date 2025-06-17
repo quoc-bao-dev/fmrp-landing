@@ -1,16 +1,12 @@
-import BlurImage from '@/components/common/blur/BlurImage'
+'use client'
 import { uuidv4 } from '@/lib/uuid'
-import { useResizeStore } from '@/stores/useResizeStore'
 import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
-import Marquee from 'react-fast-marquee'
-
+import { useEffect, useRef, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 
 type Props = {}
 

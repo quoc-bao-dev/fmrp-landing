@@ -1,3 +1,4 @@
+"use client"
 import FireIcon from "@/components/icons/fmrp/FireIcon";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -51,10 +52,10 @@ const PlanPackageCard = ({
       } h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`}
     />
 
-    <CardContent className="px-4 pb-4 pt-2 flex flex-col gap-6">
+    <CardContent className="px-4 pb-4 pt-2 flex flex-col gap-2 xl:gap-6">
       <div className="3xl:space-y-2 lg:space-y-4">
         <div className="flex items-center gap-3">
-          <h2 className="text-title font-bold text-[#33404A]">{title}</h2>
+          <h2 className="text-2xl font-bold text-[#33404A]">{title}</h2>
           {popular && (
             <span className="flex items-center gap-1 text-sxs-default text-[#64511E] bg-[#FACA4A] font-semibold rounded-full pl-1 pr-2.5 py-1">
               <FireIcon className="size-3.5" /> Phổ biến
@@ -62,12 +63,12 @@ const PlanPackageCard = ({
           )}
         </div>
 
-        <div className={` space-x-2 relative w-full lg:mt-0 mt-8`}>
-          <span className="3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[32px] text-[32px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-[#003DA0] font-bold">
+        <div className="space-x-2 relative w-full lg:mt-0 mt-2">
+          <span className="text-[48px] leading-[150%] tracking-[-2%] text-[#003DA0] font-bold">
             {FormatNumberToCommanDecimal(price, 3)}
           </span>
 
-          <span className="3xl:text-[36px] 2xl:text-[32px] xxl:text-[30px] xl:text-[28px] md:text-[32px] text-[32px] 3xl:!leading-[56px] 2xl:!leading-[46px] xxl:!leading-[46px] xl:!leading-[42px] md:!leading-[38px] !leading-[34px] tracking-[-2%] text-[#003DA0] font-bold underline decoration-2 underline-offset-4">
+          <span className="text-[48px] leading-[150%] tracking-[-2%] text-[#003DA0] font-bold underline decoration-2 underline-offset-4">
             đ
           </span>
 
@@ -121,7 +122,7 @@ const PlanPackageCard = ({
         </div>
       </div>
 
-      <p className="text-base-default text-[#33404A] font-medium align-middle">
+      <p className="text-sm md:text-lg text-[#33404A] font-medium align-middle">
         {description}
       </p>
     </CardContent>

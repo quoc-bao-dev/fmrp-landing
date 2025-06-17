@@ -1,3 +1,4 @@
+'use client'
 import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb'
 import { playwrite_is_sans } from '@/utils/fonts/fontUtils'
 import Image from 'next/image'

@@ -40,14 +40,14 @@ const ButtonToTop = () => {
                     animate={{ x: 0 }}
                     exit={{ x: '100%' }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="relative flex flex-col justify-center items-center"
+                    className="flex flex-col justify-center items-center fixed bottom-10 right-3 z-50"
                 >
                     <motion.button
                         type="button"
                         onClick={handleClick}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className={`${dataFmrpPages.includes(pathname) ? "bg-[#0375f3]" : "bg-[#53B086]"} relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center`}
+                        className={`${dataFmrpPages.includes(pathname) ? "bg-[#0375f3]" : "bg-[#53B086] mb-6"} relative z-[1] 3xl:size-12 size-10 rounded-full text-white flex flex-col justify-center items-center`}
                     >
                         <HiOutlineArrowNarrowUp className='text-2xl' />
                     </motion.button>

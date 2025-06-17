@@ -1,26 +1,17 @@
-"use client";
-
-import { useTranslate } from "@/contexts/TranslateContext";
-import { useAuthStore } from "@/stores/useAuthStores";
-import useCookieStore from "@/stores/useCookieStore";
+import ButtonAnimation from "@/components/common/button/ButtonAnimation";
+import { useRegisterButtonDelayCleanup } from '@/hooks/custom/useRegisterButtonVisibility';
+import { useStateClientLayout } from "@/managers/state/client/useStateClientLayout";
+import { IMenuHeader } from "@/types/ui/menu/IMenuUI";
+import { variantButtonScaleZoom } from "@/utils/animations/variantsAnimation";
+import { scrollToTop } from "@/utils/scroll/scrollUtils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useRef, useState, useEffect } from "react";
-import { IoCloseSharp } from "react-icons/io5";
-import { IMenuHeader } from "@/types/ui/menu/IMenuUI";
-import { useStateClientLayout } from "@/managers/state/client/useStateClientLayout";
-
-import { TbMenu3 } from "react-icons/tb";
-import { useResizeStore } from "@/stores/useResizeStore";
-
+import { usePathname } from "next/navigation";
+import React from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
-import { variantButtonScaleZoom } from "@/utils/animations/variantsAnimation";
-import { scrollToTop } from "@/utils/scroll/scrollUtils";
-import ButtonAnimation from "@/components/common/button/ButtonAnimation";
-import { useRegisterButtonVisibility, useRegisterButtonDelayCleanup } from '@/hooks/custom/useRegisterButtonVisibility'
-import { useScrollDirection } from '@/hooks/custom/useScrollDirection'
+import { IoCloseSharp } from "react-icons/io5";
+import { TbMenu3 } from "react-icons/tb";
 
 interface TabletHeaderProps {
   dataHeader: IMenuHeader[];
@@ -37,26 +28,12 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
   handleOpenDialog,
   handleValueChange,
 }: TabletHeaderProps) => {
-  const dropdownRef = useRef<HTMLDivElement>(null); // Tham chiếu đến div cần kiểm tra
-  const { dataLang } = useTranslate();
-  const router = useRouter();
-
   const pathname = usePathname();
-
-  const { getCookie } = useCookieStore();
-  const { isVisibleTablet } = useResizeStore();
-  const { informationUser } = useAuthStore();
 
   const { isStateClientLayout, queryKeyIsStateClientLayout } =
     useStateClientLayout();
-
-  const { canShowButton } = useRegisterButtonVisibility();
   
   useRegisterButtonDelayCleanup();
-  
-  const { scrollDirection, scrollY } = useScrollDirection();
-
-  const [isLanguage, setIsLanguage] = useState(false);
   
   const shouldShowRegisterButton = true;
 

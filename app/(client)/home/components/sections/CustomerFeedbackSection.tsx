@@ -1,15 +1,13 @@
-import React from 'react'
-import { uuidv4 } from '@/lib/uuid';
-import FeedbackMarquee from '../ui/customer-feedback/FeedbackMarquee';
+'use client'
+
 import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import { uuidv4 } from '@/lib/uuid';
 import { useResizeStore } from '@/stores/useResizeStore';
 import { FeedbackItem } from '@/types/feedback/IFeedback';
-
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer';
-
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-
+import { useInView } from 'react-intersection-observer';
+import FeedbackMarquee from '../ui/customer-feedback/FeedbackMarquee';
 const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}

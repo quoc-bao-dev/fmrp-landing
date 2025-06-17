@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import WhyChooseFosoSection from './components/sections/WhyChooseFosoSection'
 import AboutVisionSection from './components/sections/AboutVisionSection'

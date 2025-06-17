@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import IntroContactSection from './components/sections/IntroContactSection'
 import FormContactSection from './components/sections/FormContactSection'

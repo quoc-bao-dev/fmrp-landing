@@ -1,14 +1,12 @@
-import React from 'react'
-
-import { useResizeStore } from '@/stores/useResizeStore';
-
-import FeatureCard from '@/components/common/card/contact/FeatureCard';
-import WrenchIconLinear from '@/components/icons/linear/WrenchIconLinear';
+'use client'
 import BlurredBackground from '@/components/common/blur/BlurredBackground';
+import FeatureCard from '@/components/common/card/contact/FeatureCard';
 import GradientGreenText from '@/components/common/gradient/GradientGreenText';
-import HeadsetIconLinear from '@/components/icons/linear/HeadsetIconLinear';
 import HandshakeIconLinear from '@/components/icons/linear/HandshakeIconLinear';
-import BgPaddingMarginSection from '@/components/layouts/sections/BgPaddingMarginSection'
+import HeadsetIconLinear from '@/components/icons/linear/HeadsetIconLinear';
+import WrenchIconLinear from '@/components/icons/linear/WrenchIconLinear';
+import BgPaddingMarginSection from '@/components/layouts/sections/BgPaddingMarginSection';
+import { useResizeStore } from '@/stores/useResizeStore';
 
 type Props = {}
 

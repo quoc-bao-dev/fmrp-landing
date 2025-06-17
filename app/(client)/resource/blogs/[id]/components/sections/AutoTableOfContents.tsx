@@ -1,9 +1,7 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
-import Link from 'next/link'
 import { animate } from 'framer-motion'
-import { Skeleton } from '@/components/ui/skeleton'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 interface TocItem {
     id: string

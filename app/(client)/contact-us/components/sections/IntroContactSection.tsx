@@ -1,12 +1,11 @@
-import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle'
-import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
-import React, { useMemo } from 'react'
-
-import { motion } from 'framer-motion'
-import Image from 'next/image';
+'use client'
 import SalyAnimation from '@/components/common/animations/common/SalyAnimation';
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
+import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
 import { useResizeStore } from '@/stores/useResizeStore';
-import { useTheme } from 'next-themes';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import React, { useMemo } from 'react';
 
 type Props = {}
 
@@ -22,8 +21,6 @@ const IntroContactSection = (props: Props) => {
         () => "Liên hệ".split("").map((letter, index) => ({ id: index, letter })),
         []
     );
-
-    const { theme, setTheme } = useTheme();
 
     return (
         <div className='3xl:py-24 xl:py-20 lg:py-16 pt-8 lg:h-full h-[75svh] relative'>

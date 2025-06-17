@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-import { useStatePageFmrp } from '../../_state/useStatePageFmrp'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import AnimateOnScroll from '@/components/common/animations/scroll/AnimateOnScroll';
-import { GoDash } from 'react-icons/go';
-import { IoMdAdd } from 'react-icons/io';
+"use client"
 import CaretUpIcon from '@/components/icons/common/CaretUpIcon';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useStatePageFmrp } from '../../_state/useStatePageFmrp';
 
 type Props = {}
 
@@ -50,8 +47,8 @@ const QuestionsFmrpSection = (props: Props) => {
     const { isStatePageFmrp, queryKeyIsStatePageFmrp } = useStatePageFmrp()
 
     return (
-        <div className='custom-padding-section'>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-8 gap-6 relative z-[1]'>
+        <div className='xl:custom-padding-section'>
+            <div className='custom-container px-2 xl:px-0 flex flex-col items-center justify-center 3xl:gap-8 gap-6 relative z-[1]'>
                 <div className='space-x-2 font-extrabold'>
                     <span className='text-title-section-small text-[#1A2025] capitalize'>Câu hỏi thường gặp</span>
                 </div>
@@ -66,7 +63,6 @@ const QuestionsFmrpSection = (props: Props) => {
                         {
                             questions?.map((item: any, index) => {
                                 const isActive = isStatePageFmrp.isOpenAccordion === item.value;
-
                                 return (
                                     <AccordionItem
                                         key={`accordion-${item.value}`}

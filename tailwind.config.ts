@@ -12,6 +12,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        "primary-new": {
+          "02": "#1760B9",
+        },
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -22,6 +26,7 @@ export default {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -78,7 +83,8 @@ export default {
         "4xl": "2560px",
         "3xl": "1920px",
         xxl: "1440px",
-        xs: "430px",
+        xs: "424px",
+        xxs: "374px",
       },
       aspectRatio: {
         "8/3": "8 / 3",

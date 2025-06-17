@@ -1,15 +1,13 @@
-import React from 'react'
-import ProjectShowcase from '../ui/solutions/ProjectShowcase';
-import { useResizeStore } from '@/stores/useResizeStore';
-import { motion } from 'framer-motion'
-import { useSheetStores } from '@/stores/useSheetStores';
+'use client'
 
-import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
 import BlurredBackground from '@/components/common/blur/BlurredBackground';
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-
+import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { useSheetStores } from '@/stores/useSheetStores';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-
+import ProjectShowcase from '../ui/solutions/ProjectShowcase';
 const AnimatedReveal = dynamic(() => import('@/components/common/animations/common/AnimatedReveal'), { ssr: false });
 
 type Props = {}

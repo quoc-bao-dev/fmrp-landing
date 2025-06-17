@@ -33,8 +33,8 @@ const companyInfo: CompanyInfoItem[] = [
         </PhoneLink>
     },
     { label: "Email:", value: <EmailLink email="info@fososoft.com" className="hover:text-[#B3C5D4]/80 custom-transition" /> },
-    { label: "Địa chỉ trụ sở:", value: "số 68 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM" },
-    { label: "Địa chỉ văn phòng:", value: "Tòa nhà VCC Building, 69/1/3 Nguyễn Gia Trí, Phường 25, Quận Bình Thạnh, TP.HCM" }
+    // { label: "Địa chỉ trụ sở:", value: "số 68 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM" },
+    { label: "Địa chỉ công ty:", value: "Tòa nhà VCC Building, 69/1/3 Nguyễn Gia Trí, Phường 25, Quận Bình Thạnh, TP.HCM" }
 ];
 
 const services: ServiceItem[] = [

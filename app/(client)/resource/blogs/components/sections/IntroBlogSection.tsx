@@ -1,15 +1,13 @@
-import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle'
-import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+'use client'
 
-import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
-import Image from 'next/image';
 import SalyAnimation from '@/components/common/animations/common/SalyAnimation';
-import { useResizeStore } from '@/stores/useResizeStore';
-import { useTheme } from 'next-themes';
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 import AnimatedTitleGradient from '@/components/common/animations/text/AnimatedTitleGradient';
-import { useLenis } from '@/contexts/LenisContext';
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import Image from 'next/image';
+import React, { useMemo, useRef } from 'react';
 
 type Props = {}
 

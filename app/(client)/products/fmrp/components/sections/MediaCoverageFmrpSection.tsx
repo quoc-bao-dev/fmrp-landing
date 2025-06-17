@@ -1,22 +1,15 @@
-import BlurredBackground from '@/components/common/blur/BlurredBackground'
-import React, { useRef, useState } from 'react'
-
-import { uuidv4 } from '@/lib/uuid';
-import MediaCard from '@/components/common/card/media/MediaCard';
-import ButtonAnimation from '@/components/common/button/ButtonAnimation';
-
-import { GoArrowUpRight } from "react-icons/go";
-import { useResizeStore } from '@/stores/useResizeStore';
-
-import { Autoplay, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import AnimatedReveal from '@/components/common/animations/common/AnimatedReveal';
+"use client"
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-
-import { motion } from 'framer-motion'
-import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
+import MediaCard from '@/components/common/card/media/MediaCard';
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
+import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
+import { uuidv4 } from '@/lib/uuid';
+import { useResizeStore } from '@/stores/useResizeStore';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import React, { useRef, useState } from 'react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 type Props = {}
 
@@ -62,10 +55,10 @@ const MediaCoverageFmrpSection = (props: Props) => {
     }
 
     return (
-        <div className='relative custom-padding-section '>
-            <div className='custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
-                <div className='space-x-2 font-extrabold'>
-                    <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về</span>
+        <div className='relative custom-padding-section2 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
+            <div className='custom-container px-2 xl:px-0 flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-8 relative z-[1]'>
+                <div className='space-x-2 font-extrabold text-center'>
+                    <span className='text-title-section-small text-[#1A2025] capitalize'>Báo chí nói về phần mềm</span>
                     <span
                         className='text-title-section-small uppercase'
                         style={{
@@ -116,14 +109,13 @@ const MediaCoverageFmrpSection = (props: Props) => {
                                         spaceBetween: 60,
                                     }
                                 }}
-                                className='custom-swiper-pagination md:h-[500px] h-[520px] rounded-2xl mx-2'
+                                className='custom-swiper-pagination flex flex-col gap-8'
                                 allowTouchMove={true}
                             >
                                 {
                                     mediaList && mediaList?.map((media) => (
                                         <SwiperSlide
                                             key={`media-${media?.id}`}
-                                        // className='h-full relative cursor-pointer group'
                                         >
                                             <MediaCard media={media} />
                                         </SwiperSlide>
@@ -152,7 +144,7 @@ const MediaCoverageFmrpSection = (props: Props) => {
                                 animate={isHovered ? { x: 2, y: -2 } : { x: 0, y: 0 }} // Bay chéo lên phải và xuống lại
                                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
                             >
-                                {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4" />}
+                                    {isHovered ? <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4 text-white" /> : <ArrowUpRightLinearBlueIcon className="2xl:size-6 md:size-5 size-4 text-[#0375F3] group-hover:text-white" />}
                             </motion.div>
                         </div>
                     }

@@ -122,7 +122,7 @@ const RegisterButton: React.FC = () => {
                   dataFmrpPages.includes(pathname)
                     ? "hover:bg-[#0375f3]/80"
                     : "hover:scale-[1.04]"
-                } bg-white  p-3 rounded-full custom-transition`}
+                } bg-[#48DDAD] border border-[#15AA7A] p-3 rounded-full custom-transition`}
                 style={{
                   boxShadow:
                     "0px 4px 6px -1px #0000001A, 0px 2px 4px -2px #0000001A",

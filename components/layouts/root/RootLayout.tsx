@@ -184,7 +184,7 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
                             disableTransitionOnChange
                         >
                             <ScrollbarStyle />
-                            {!isVisibleTablet && <CursorFollower />}
+                            {/* {!isVisibleTablet && <CursorFollower />} */}
                             {children}
                             <ToastShadcnUi />
                         </ProviderLayout>

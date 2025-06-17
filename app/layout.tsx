@@ -1,15 +1,14 @@
 // app/layout.tsx
-import { Suspense } from "react";
-import { KEY_COOKIES } from "@/constants/Cookie";
-
 import RootLayout from "@/components/layouts/root/RootLayout";
-import { raleway_sans } from "@/utils/fonts/fontUtils";
 import GoogleAnalytics from "@/components/script/GoogleAnalytics";
-import Script from "next/script";
 import { getMetadata } from "@/components/seo/DefaultMetadata";
+import { KEY_COOKIES } from "@/constants/Cookie";
+import { raleway_sans } from "@/utils/fonts/fontUtils";
+import Script from "next/script";
+import { Suspense } from "react";
 
-import '@smastrom/react-rating/style.css';
 import "@babylonjs/loaders";
+import '@smastrom/react-rating/style.css';
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";

@@ -1,20 +1,18 @@
+'use client'
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
 import CheckIconLinear from "@/components/icons/fmrp/CheckIconLinear";
-import CloseIconLinear from "@/components/icons/fmrp/CloseIconLinear";
-import { Button } from "@/components/ui/button";
+import FireIcon from "@/components/icons/fmrp/FireIcon";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { FormatNumberToCommanDecimal } from "@/utils/format/FormatNumber";
-import React, { useRef } from "react";
-
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import { useRef } from "react";
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import LockIcon from '../../../../../../components/icons/fmrp/LockIcon';
 import { useResizeStore } from '../../../../../../stores/useResizeStore';
-import { Pagination, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import FireIcon from "@/components/icons/fmrp/FireIcon";
 
 const features = [
     {

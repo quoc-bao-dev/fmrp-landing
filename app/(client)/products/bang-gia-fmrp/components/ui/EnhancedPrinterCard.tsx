@@ -1,16 +1,13 @@
-import React, { memo } from 'react'
-import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
-import { IPrinterSpec } from '../sections/EnhancedPrinterSection'
+'use client'
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew'
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon'
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon'
-
-import { motion } from 'framer-motion'
 import { FormatNumberToCommanDecimal } from '@/utils/format/FormatNumber'
+import { motion } from 'framer-motion'
+import Image from "next/image"
 import Link from 'next/link'
+import { memo } from 'react'
+import { IPrinterSpec } from '../sections/EnhancedPrinterSection'
 
 type Props = {
     printer: IPrinterSpec

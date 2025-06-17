@@ -1,17 +1,13 @@
+'use client'
+import SalyAnimation from '@/components/common/animations/common/SalyAnimation'
 import BlurredBackground from '@/components/common/blur/BlurredBackground'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
 import { useResizeStore } from '@/stores/useResizeStore'
 import Image from 'next/image'
-import React from 'react'
-import { useRouter } from 'next/navigation';
-
-import { motion } from 'framer-motion'
-import SalyAnimation from '@/components/common/animations/common/SalyAnimation'
 
 type Props = {}
 
 const MissionAndActionSection = (props: Props) => {
-    const router = useRouter()
     const { isVisibleTablet } = useResizeStore()
 
     return (

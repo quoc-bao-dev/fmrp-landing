@@ -1,15 +1,12 @@
-import HoverEffect from '@/components/common/animations/hover-button/HoverEffectButton';
-import BlurredBackground from '@/components/common/blur/BlurredBackground';
+'use client'
+import BlurredBackgroundDynamic from '@/components/common/blur/BlurredBackgroundDynamic';
 import ButtonAnimation from '@/components/common/button/ButtonAnimation';
 import WhyCard from '@/components/common/card/why/WhyCard';
 import { useResizeStore } from '@/stores/useResizeStore';
-import { BookOpen, Cat } from 'lucide-react';
-import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react'
-
-import { variantsLinearShadow } from '@/utils/animations/variantsAnimation'
 import { useSheetStores } from '@/stores/useSheetStores';
-import BlurredBackgroundDynamic from '@/components/common/blur/BlurredBackgroundDynamic';
+import { variantsLinearShadow } from '@/utils/animations/variantsAnimation';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {}
 
