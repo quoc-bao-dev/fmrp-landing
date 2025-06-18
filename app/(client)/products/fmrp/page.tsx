@@ -19,15 +19,7 @@ const AboutUs = (props: Props) => {
     <main className="min-h-screen relative">
       <div className="relative z-[1] overflow-x-hidden flex flex-col xl:gap-24 gap-8">
         {/* <HeroFmrpSection /> */}
-        <Image
-          src={IMAGES.banner}
-          alt="fmrp"
-          width={1920}
-          height={1080}
-          priority
-          quality={100}
-          className="w-full h-auto"
-        />
+       
         <IntroductionFmrpSection />
         <ManufacturingFields />
         <FmrpBenefits />

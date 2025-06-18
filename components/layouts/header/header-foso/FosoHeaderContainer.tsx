@@ -22,7 +22,7 @@ import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLi
 
 import { motion, useAnimation } from 'framer-motion';
 
-import React, { useEffect, useCallback, useRef } from 'react'
+import React, { useEffect, useCallback, useRef, useState } from 'react'
 import { useSheetStores } from '../../../../stores/useSheetStores';
 import { useModalContext } from '@/contexts/ModalContext'
 import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
@@ -209,6 +209,8 @@ const FosoHeaderContainer = () => {
     const { isStateClientLayout, queryKeyIsStateClientLayout } = useStateClientLayout()
 
     const controls = useAnimation(); // Framer Motion controls
+    
+    const [isAtPageTop, setIsAtPageTop] = useState(true); // Track if we're at the top of the page
 
     const ticking = useRef<boolean>(false); // Prevents redundant re-renders
     const lastScrollY = useRef<number>(0); // Stores last known scroll position
@@ -216,13 +218,16 @@ const FosoHeaderContainer = () => {
     const isHeaderVisible = useRef<boolean>(false);
     const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
     const forceCheckScroll = useRef<boolean>(false); // Flag để kiểm tra hướng cuộn sau khi tự hiện header
-
+    
     const { openModal, closeModal } = useModalContext()
 
     // ✅ Xử lý scroll để kiểm tra hướng cuộn (dùng throttle để tránh lag)
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;
         const scrollX = window.scrollX;
+
+        // Update whether we're at the top of the page
+        setIsAtPageTop(scrollY === 0);
 
         // Nếu chỉ cuộn ngang (scrollX thay đổi mà scrollY không đổi) → Bỏ qua
         if (scrollX !== lastScrollX.current && scrollY === lastScrollY.current) {
@@ -291,7 +296,9 @@ const FosoHeaderContainer = () => {
         lastScrollY.current = window.scrollY; // Cập nhật vị trí scroll ngay khi tải trang
         // 🚀 Khi load trang, đảm bảo header HIỆN ra trước
         isHeaderVisible.current = true; // Đặt lại giá trị ref
-
+        
+        // Set initial page top state
+        setIsAtPageTop(window.scrollY === 0);
 
         window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -409,15 +416,13 @@ const FosoHeaderContainer = () => {
         }
     }, [isStateClientLayout?.header, setOpenSheetCustom, setStatusSheet]);
 
-    console.log(pathname)
     return (
         <header className='fixed top-0 left-0 w-full z-50 pointer-events-none'>
             <motion.div
                 initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
                 // initial={{ y: pathname === "/" ? -100 : 0, opacity: pathname === "/" ? 0 : 1 }}
                 animate={controls}
-                className={`${isStateClientLayout?.header?.isShowMenuMobileFoso ? "mx-0" : "md:mx-8 mx-4"} 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl custom-transition
-                ${pathname === "/phan-mem-quan-ly-san-xuat-fmrp" ? "2xl:mt-32 mt-24" : ""}
+                className={`${isStateClientLayout?.header?.isShowMenuMobileFoso ? "mx-0" : `md:mx-8 mx-4 ${isAtPageTop ? "2xl:mt-32 xl:mt-24 lg:mt-20 mt-12" : "mt-4"} `} 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl custom-transition
                 `}
                 style={{
                     willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
