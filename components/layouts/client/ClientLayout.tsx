@@ -39,7 +39,7 @@ const ClientLayout = ({
       </div>
 
       {/* footer */}
-      <div className="lg:sticky bottom-0 z-0 block static ">
+      <div className="xl:sticky bottom-0 z-0 block static ">
         <FooterContainer />
       </div>
 
