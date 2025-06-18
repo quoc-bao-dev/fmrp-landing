@@ -23,4 +23,5 @@ export const IMAGES = {
   lenhSanXuat: "/icons/fmrp/lenhSanXuat1.png",
   lotDate: "/icons/fmrp/lotDate2.png",
   fmrpApp: "/icons/fmrp/fmrpApp.png",
+  banner: "/banner.png",
 };

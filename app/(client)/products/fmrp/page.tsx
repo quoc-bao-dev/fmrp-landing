@@ -1,10 +1,10 @@
+import { IMAGES } from "@/constants/Images";
+import Image from "next/image";
 import CommunityFmrpSection from "./components/sections/CommunityFmrpSection";
-import FeaturePageSection from "./components/sections/FeaturePageSection";
 import FmrpApp from "./components/sections/FmrpApp";
 import FmrpBenefits from "./components/sections/FmrpBenefits";
 import FmrpCoreModules from "./components/sections/FmrpCoreModules";
 import FmrpHighlightFeatures from "./components/sections/FmrpHighlightFeatures";
-import HeroFmrpSection from "./components/sections/HeroFmrpSection";
 import IntroductionFmrpSection from "./components/sections/IntroductionFmrpSection";
 import ManufacturingFields from "./components/sections/ManufacturingFields";
 import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
@@ -19,6 +19,15 @@ const AboutUs = (props: Props) => {
     <main className="min-h-screen relative">
       <div className="relative z-[1] overflow-x-hidden flex flex-col xl:gap-24 gap-8">
         {/* <HeroFmrpSection /> */}
+        <Image
+          src={IMAGES.banner}
+          alt="fmrp"
+          width={1920}
+          height={1080}
+          priority
+          quality={100}
+          className="w-full h-auto"
+        />
         <IntroductionFmrpSection />
         <ManufacturingFields />
         <FmrpBenefits />
