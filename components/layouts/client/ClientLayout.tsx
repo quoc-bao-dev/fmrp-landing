@@ -28,7 +28,7 @@ const ClientLayout = ({
           height={1080}
           priority
           quality={100}
-          className="w-full h-10 lg:h-16 xl:h-auto object-cover"
+          className="w-full h-10 lg:h-16 2xl:h-20 4xl:h-32 object-cover"
         />
       <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
         <FmrpHeaderContainer />
