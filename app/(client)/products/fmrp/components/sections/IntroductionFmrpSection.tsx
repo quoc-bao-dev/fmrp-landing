@@ -27,6 +27,7 @@ const IntroductionFmrpSection = (props: Props) => {
   return (
     <div
       className="3xl:pt-32 xl:pt-28 pt-28 bg-transparent flex flex-col justify-center items-center relative"
+      // className=" bg-transparent flex flex-col justify-center items-center relative"
       // style={{
       //   background:
       //     "linear-gradient(180deg, #FFFFFF 0%, #F0F8FF 12.04%, #F0F8FF 86.67%, #FFFFFF 100%)",

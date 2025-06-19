@@ -8,6 +8,8 @@ import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 import React from "react";
 import FmrpHeaderContainer from "../header/header-fmrp/FmrpHeaderContainer";
 import PathCheckerWrapper from "./PathCheckerWrapper";
+import Image from "next/image";
+import { IMAGES } from "@/constants/Images";
 
 const ClientLayout = ({
   children,
@@ -19,6 +21,15 @@ const ClientLayout = ({
   return (
     <div className="bg-[#052B1E]">
       {/* header */}
+      <Image
+          src={IMAGES.banner}
+          alt="fmrp"
+          width={1920}
+          height={1080}
+          priority
+          quality={100}
+          className="w-full h-10 lg:h-16 xl:h-auto object-cover"
+        />
       <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
         <FmrpHeaderContainer />
       </PathCheckerWrapper>
@@ -28,7 +39,7 @@ const ClientLayout = ({
       </div>
 
       {/* footer */}
-      <div className="md:sticky bottom-0 z-0 block static ">
+      <div className="lg:sticky bottom-0 z-0 block static ">
         <FooterContainer />
       </div>
 
