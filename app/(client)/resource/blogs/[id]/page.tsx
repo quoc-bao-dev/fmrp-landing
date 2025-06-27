@@ -29,6 +29,7 @@ import AutoTableOfContents from "./components/sections/AutoTableOfContents";
 import ReactionBox from "./components/ui/ReactionBox";
 import RelatedBlogList from "./components/ui/RelatedBlogList";
 import SocialShare from "./components/ui/SocialShare";
+import { removeFontWeight400 } from "@/utils/format/FormatFont";
 
 type Props = {};
 
@@ -189,7 +190,7 @@ const DetailBlog = () => {
           </div>
 
           <div className="flex lg:flex-row flex-col 3xl:gap-8 gap-6">
-            <div className="3xl:w-[74%] xxl:w-[70%] lg:w-[68%] w-full shrink-0 flex flex-col lg:gap-8 gap-4">
+            <div className="3xl:w-[74%] xxl:w-[70%] lg:w-[73%] w-full shrink-0 flex flex-col lg:gap-8 gap-4">
               {isLoadingBlogDetail ? (
                 <BlogContentSkeleton />
               ) : (
@@ -289,7 +290,7 @@ const DetailBlog = () => {
                                     [&_h4]:text-xl [&_h4]:font-medium [&_h4]:mt-4 [&_h4]:mb-1
                                     [&_h5]:text-lg [&_h5]:font-medium [&_h5]:mt-3 [&_h5]:mb-1.5
                                     [&_h6]:text-base [&_h6]:font-medium [&_h6]:mt-2 [&_h6]:mb-1
-                                    3xl:[&_p]:text-lg [&_p]:text-base [&_p]:font-normal [&_p]:mt-2 [&_p]:mb-1 
+                                    3xl:[&_p]:text-lg [&_p]:text-base [&_p]:font-medium [&_p]:mt-2 [&_p]:mb-1 
                                     [&_img]:mx-auto [&_img]:rounded-md [&_img]:my-6
                                     [&_figure]:flex [&_figure]:justify-center [&_figure]:my-6
                                     [&_a]:w-fit [&_a:has(img)]:w-full [&_a:has(img)]:inline-block
@@ -302,21 +303,22 @@ const DetailBlog = () => {
                                 "
                         dangerouslySetInnerHTML={{
                           __html: `${addIdsToHeadings(
-                            dataBlogDetail?.content ?? ""
+                            removeFontWeight400(dataBlogDetail?.content ?? "")
                           )}`,
                         }}
                       />
                     </div>
                   </div>
 
-                  {isVisibleTablet && (
+                  <div className="w-full flex items-center justify-center xl:justify-end">
                     <SocialShare
                       classNameContainer={
-                        "flex flex-col items-center justify-center gap-4 z-40"
+                        "w-full xl:w-fit flex flex-col items-center xl:items-start justify-end gap-4 z-40"
                       }
-                      classNameSocial={"flex items-center justify-center gap-2"}
+                      classNameSocial={"flex items-end justify-start gap-2"}
                     />
-                  )}
+                  </div>
+
                   {dataBlogDetail?.created?.name === "An Bùi" && <AuthorCard />}
                   <ReactionBox />
                 </React.Fragment>
@@ -324,7 +326,7 @@ const DetailBlog = () => {
             </div>
 
             {!isVisibleTablet && (
-              <div className="3xl:w-[26%] xxl:w-[30%] lg:w-[32%] w-full">
+              <div className="3xl:w-[26%] xxl:w-[30%] lg:w-[27%] w-full">
                 <div className="sticky top-28 space-y-8">
                   {isLoadingBlogDetail ? (
                     <div className="space-y-3">
@@ -427,7 +429,7 @@ const DetailBlog = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      {!isVisibleTablet && !isScrollBottom && (
+      {/* {!isVisibleTablet && !isScrollBottom && (
         <div>
           <SocialShare
             classNameContainer={
@@ -436,7 +438,7 @@ const DetailBlog = () => {
             classNameSocial={"flex flex-col items-center justify-center gap-4"}
           />
         </div>
-      )}
+      )} */}
     </main>
   );
 };

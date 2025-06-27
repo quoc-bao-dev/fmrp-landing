@@ -119,7 +119,7 @@ export default function SocialShare({
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className={classNameContainer}
       >
-        <h3 className="text-base-default font-extrabold text-[#33404A]">
+        <h3 className="text-base-default font-medium text-[#33404A]">
           Chia sẻ
         </h3>
         {isVisibleTablet ? (
