@@ -1,3 +1,4 @@
+import { removeFontWeight400 } from "@/utils/format/FormatFont";
 
 type QuoteBoxProps = {
     content?: string
@@ -11,7 +12,7 @@ const QuoteBox: React.FC<QuoteBoxProps> = ({ content }) => {
             </p> */}
             <p
                 className="italic text-[#33404A] 3xl:text-xl text-lg font-medium"
-                dangerouslySetInnerHTML={{ __html: `${content ?? ''}` }}
+                dangerouslySetInnerHTML={{ __html: `${removeFontWeight400(content ?? '')}` }}
             />
         </div>
     );
