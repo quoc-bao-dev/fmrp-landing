@@ -1,12 +1,17 @@
-import SystemDeveloping from '@/components/common/system/SystemDeveloping'
-type Props = {}
+import { Metadata } from "next";
+import { ProjectPage } from "./components";
 
-const Fpos = (props: Props) => {
-    return (
-        <main className='h-screen'>
-            <SystemDeveloping />
-        </main >
-    )
-}
+export const metadata: Metadata = {
+  title: "Dự án",
+  description: "Dự án",
+};
 
-export default Fpos
+const Page = () => {
+  return (
+    <main className="min-h-screen">
+      <ProjectPage />
+    </main>
+  );
+};
+
+export default Page;
