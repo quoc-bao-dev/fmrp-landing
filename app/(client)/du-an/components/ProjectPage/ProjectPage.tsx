@@ -16,8 +16,10 @@ const ProjectPage = () => {
 
         {/* Tagline Section - Tiêu đề chính và giới thiệu */}
         <Tagline />
+        <div className="hidden md:block pt-[192px]"></div>
 
         <ProjectSection />
+        <div className="hidden md:block pt-[144px]"></div>
         <CustomerPartnerSection />
         {/* CTA Section - Call to action cuối trang */}
         <CTASection />

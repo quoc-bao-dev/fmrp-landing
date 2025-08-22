@@ -1,6 +1,5 @@
-import React from "react";
 import Image from "next/image";
-import { Check } from "lucide-react";
+import React from "react";
 
 interface TabItemProps {
   id: string;
@@ -24,28 +23,31 @@ const TabItem: React.FC<TabItemProps> = ({
       <div
         onClick={() => onClick(id)}
         className={`
-          relative flex-shrink-0 h-auto p-4 flex items-center gap-3
+          relative flex-shrink-0 px-4 py-3 flex flex-col items-start gap-1
           rounded-xl transition-all duration-300 whitespace-nowrap cursor-pointer overflow-hidden
-          ${
-            isActive
-              ? "bg-white border border-[#A1A1A11A] text-gray-700 shadow-lg"
-              : "bg-none border-gray-200 text-[#809FB8] hover:border-[#53B086] hover:shadow-md"
-          }
+          border bg-white text-gray-700 hover:shadow-xl hover:shadow-gray-400/10
         `}
       >
+        {/* Dấu tích bo tròn ở góc trên bên phải khi tab được chọn */}
+        {isActive && (
+          <div className="absolute -top-8 -right-12">
+            <img src="/project/icons/image-02.png" alt="" className="h-20" />
+          </div>
+        )}
+
         {/* Icon */}
-        <div className="size-[24px] flex items-center justify-center flex-shrink-0">
+        <div className=" flex items-center justify-center flex-shrink-0">
           <Image
             src={iconPath}
             alt={label}
-            width={24}
-            height={24}
+            width={32}
+            height={32}
             className="object-contain"
           />
         </div>
 
         {/* Label */}
-        <span className="text-sm font-semibold">{label}</span>
+        <span className="text-base font-semibold text-center">{label}</span>
       </div>
     );
   }
