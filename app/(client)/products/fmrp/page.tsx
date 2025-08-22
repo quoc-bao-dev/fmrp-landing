@@ -1,5 +1,3 @@
-import { IMAGES } from "@/constants/Images";
-import Image from "next/image";
 import CommunityFmrpSection from "./components/sections/CommunityFmrpSection";
 import FmrpApp from "./components/sections/FmrpApp";
 import FmrpBenefits from "./components/sections/FmrpBenefits";
@@ -19,7 +17,7 @@ const AboutUs = (props: Props) => {
     <main className="min-h-screen relative">
       <div className="relative z-[1] overflow-x-hidden flex flex-col xl:gap-24 gap-8">
         {/* <HeroFmrpSection /> */}
-       
+
         <IntroductionFmrpSection />
         <ManufacturingFields />
         <FmrpBenefits />

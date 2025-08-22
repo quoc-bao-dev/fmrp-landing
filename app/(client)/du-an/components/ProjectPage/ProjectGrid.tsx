@@ -1,17 +1,11 @@
 "use client";
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  ArrowDownRight,
-  ArrowRight,
-  ArrowUpRight,
-  ArrowUpRightIcon,
-} from "lucide-react";
-import { FcStart } from "react-icons/fc";
 import AnimatedReveal from "@/components/common/animations/common/AnimatedReveal";
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { ArrowDownRightIcon, ArrowRight } from "lucide-react";
+import React from "react";
 
 // Interface cho project data
 interface Project {
@@ -144,7 +138,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
               className="lg:w-fit w-full"
             >
               <ButtonAnimationNew
-                title="Đăng ký tư vấn ngay"
+                title="Xem thêm"
                 icon={
                   <div className="2xl:size-12 md:size-10 size-9 rounded-full flex items-center justify-center group-hover:bg-[#10805B] group-hover:text-white duration-500 transition-colors">
                     <motion.div
@@ -160,7 +154,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
                         damping: 10,
                       }}
                     >
-                      <ArrowUpRightIcon className="2xl:size-6 md:size-5 size-4" />
+                      <ArrowDownRightIcon className="2xl:size-6 md:size-5 size-4" />
                     </motion.div>
                   </div>
                 }
