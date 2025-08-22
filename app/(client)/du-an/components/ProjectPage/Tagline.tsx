@@ -18,7 +18,7 @@ const Tagline: React.FC<Props> = () => {
     <section className="custom-padding-section relative overflow-hidden">
       {/* Decorative images for desktop */}
       <motion.div
-        className="hidden lg:block absolute lg:top-1/4 top-1/2 left-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:h-[260px] xl:h-[220px] lg:h-[180px] h-[160px] aspect-[0.78/1] pointer-events-none"
+        className="hidden lg:block absolute lg:top-[15%] top-1/2 left-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[260px] xl:h-[250px] lg:h-[250px] size-[250px] aspect-[0.78/1] pointer-events-none"
         animate={{ y: [0, -12, 0] }}
         transition={floatingTransition}
       >
@@ -33,7 +33,7 @@ const Tagline: React.FC<Props> = () => {
       </motion.div>
 
       <motion.div
-        className="hidden lg:block absolute lg:top-1/4 top-1/2 right-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:h-[260px] xl:h-[220px] lg:h-[180px] h-[160px] aspect-[0.78/1] pointer-events-none"
+        className="hidden lg:block absolute lg:top-[15%] top-1/2 right-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[260px] xl:h-[250px] lg:h-[250px] size-[250px] aspect-[0.78/1] pointer-events-none"
         animate={{ y: [0, -12, 0] }}
         transition={floatingTransition}
       >
@@ -63,7 +63,7 @@ const Tagline: React.FC<Props> = () => {
 
         {/* Decorative images for mobile/tablet */}
         <div className="lg:hidden w-full flex items-center justify-between gap-4">
-          <div className="w-[120px] md:w-[140px] h-auto aspect-square ">
+          <div className="size-[150px] md:size-[160px] h-auto aspect-square ">
             <Image
               src="/project/image-02.png"
               alt="Decor left mobile"
@@ -72,7 +72,7 @@ const Tagline: React.FC<Props> = () => {
               className="size-full object-contain "
             />
           </div>
-          <div className="w-[120px] md:w-[140px] h-auto aspect-square">
+          <div className="size-[150px] md:size-[160px] h-auto aspect-square">
             <Image
               src="/project/image-01.png"
               alt="Decor right mobile"
