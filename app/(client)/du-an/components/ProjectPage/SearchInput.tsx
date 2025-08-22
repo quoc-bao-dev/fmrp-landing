@@ -46,7 +46,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
             onClick={handleClear}
             className="absolute right-[80px] top-1/2 transform -translate-y-1/2 size-8 bg-gray-950 p-0 text-gray-50 rounded-full hover:text-gray-600"
           >
-            <XIcon />
+            <XIcon className="size-[18px]" />
           </Button>
         )}
 

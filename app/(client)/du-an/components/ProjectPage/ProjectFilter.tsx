@@ -109,7 +109,7 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
 
             {/* Mobile: horizontal scroll tabs */}
             <div className="lg:hidden">
-              <div className="flex gap-8 overflow-x-auto pb-12 scrollbar-hide">
+              <div className="flex gap-8 overflow-x-auto md:pb-12 scrollbar-hide">
                 {tabs.map((tab) => (
                   <TabItem
                     key={tab.id}
@@ -126,7 +126,7 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
           </div>
 
           {/* Phần search và filter */}
-          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center w-full pt-6">
+          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center w-full md:pt-6 ">
             {/* Search input - responsive width */}
             <SearchInput
               value={searchValue}

@@ -6,6 +6,17 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowDownRightIcon, ArrowRight } from "lucide-react";
 import React from "react";
+import ProjectCard from "./ProjectCard";
+
+// Danh sách avatar cho brand
+const brandAvatars = [
+  "/project/icons/image-1.png",
+  "/project/icons/image-2.png",
+  "/project/icons/image-3.png",
+  "/project/icons/image-4.png",
+  "/project/icons/image-5.png",
+  "/project/icons/image-6.png",
+];
 
 // Interface cho project data
 interface Project {
@@ -15,6 +26,7 @@ interface Project {
   category: string;
   tags: string[];
   image: string;
+  brandAvatar?: string;
   isHighlighted?: boolean;
 }
 
@@ -34,7 +46,8 @@ const sampleProjects: Project[] = [
     description: "Effective Affiliate Platform with Blockchain Technology",
     category: "software",
     tags: ["Nổi bật"],
-    image: "/api/placeholder/600/400",
+    image: "/project/thumb/image-01.png",
+    brandAvatar: brandAvatars[0], // image-1.png
     isHighlighted: true,
   },
   {
@@ -43,7 +56,8 @@ const sampleProjects: Project[] = [
     description: "Find tours, places, and tour guides",
     category: "mobile",
     tags: ["Nổi bật"],
-    image: "/api/placeholder/600/400",
+    image: "/project/thumb/image-02.png",
+    brandAvatar: brandAvatars[1], // image-2.png
     isHighlighted: true,
   },
   {
@@ -52,7 +66,8 @@ const sampleProjects: Project[] = [
     description: "Ứng dụng hỗ trợ nông nghiệp thông minh",
     category: "mobile",
     tags: ["Nổi bật"],
-    image: "/api/placeholder/600/400",
+    image: "/project/thumb/image-03.png",
+    brandAvatar: brandAvatars[2], // image-3.png
     isHighlighted: true,
   },
   {
@@ -61,7 +76,8 @@ const sampleProjects: Project[] = [
     description: "Booking spa và chăm sóc sức khỏe",
     category: "mobile",
     tags: ["Nổi bật"],
-    image: "/api/placeholder/600/400",
+    image: "/project/thumb/image-04.png",
+    brandAvatar: brandAvatars[3], // image-4.png
     isHighlighted: true,
   },
   {
@@ -70,7 +86,8 @@ const sampleProjects: Project[] = [
     description: "Nền tảng thương mại điện tử đa quốc gia",
     category: "website",
     tags: ["Nổi bật"],
-    image: "/api/placeholder/600/400",
+    image: "/project/thumb/image-05.png",
+    brandAvatar: brandAvatars[4], // image-5.png
     isHighlighted: true,
   },
   {
@@ -79,7 +96,8 @@ const sampleProjects: Project[] = [
     description: "Hệ thống quản lý sản xuất và vận hành",
     category: "software",
     tags: ["Nổi bật"],
-    image: "/api/placeholder/600/400",
+    image: "/project/thumb/image-06.png",
+    brandAvatar: brandAvatars[5], // image-6.png
     isHighlighted: true,
   },
 ];
@@ -199,73 +217,5 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
 };
 
 // Component ProjectCard riêng biệt
-interface ProjectCardProps {
-  project: Project;
-}
-
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  return (
-    <div className="group relative md:bg-white rounded-2xl overflow-hidden md:shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-      {/* Image container với aspect ratio cố định */}
-      <div className="relative aspect-[4/3]">
-        {/* Placeholder image với gradient background */}
-        <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center  rounded-2xl md:rounded-none">
-          <div className="text-gray-400 text-sm font-medium">
-            {project.title.substring(0, 20)}...
-          </div>
-        </div>
-
-        {/* Brand Avatar - Desktop only */}
-        <div className="hidden md:block absolute -bottom-7 left-[17%] transform -translate-x-1/2 z-10">
-          <div className="relative">
-            <img src="/project/image-05.png" alt="" className="" />
-            <div className="absolute top-[12px] left-[] w-full h-full flex items-center justify-center">
-              <div className="size-[60px] bg-gray-500 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Tags overlay */}
-        {project.tags.length > 0 && (
-          <div className="absolute top-4 left-4">
-            {project.tags.map((tag, index) => (
-              <div
-                key={index}
-                className="inline-flex items-center gap-1 bg-white border border-gray-50 text-gray-900 font-semibold text-xs px-3 py-1 rounded-full"
-              >
-                <img
-                  src="/project/icons/image-01.png"
-                  alt=""
-                  className="size-4"
-                />{" "}
-                <p className="mt-0.5">{tag}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="pt-4 md:pt-16 md:px-6 md:pb-6">
-        {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#53B086] transition-colors duration-300">
-          {project.title}
-        </h3>
-
-        {/* Action button */}
-        <Button
-          variant="ghost"
-          className="hidden md:flex mt-6 w-full gap-5 justify-end p-0 h-auto text-gray-400 hover:text-[#53B086] hover:bg-transparent font-semibold group/btn"
-        >
-          <span>Xem chi tiết</span>
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-        </Button>
-      </div>
-    </div>
-  );
-};
 
 export default ProjectGrid;
