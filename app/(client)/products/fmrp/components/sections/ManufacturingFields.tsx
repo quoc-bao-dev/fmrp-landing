@@ -20,22 +20,22 @@ const fieldsData = [
     name: "Điện máy",
   },
   {
-    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-co-khi-canh-tay-phai-so-hoa-cho-nganh-che-tao",
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-co-khi",
     image: IMAGES.cokhi,
     name: "Cơ khí - chế tạo",
   },
   {
-    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-thuc-pham-kiem-soat-han-su-dung-toi-uu-hieu-suat",
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-thuc-pham",
     image: IMAGES.thucpham,
     name: "Thực phẩm",
   },
   {
-    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nong-nghiep-dot-pha-trong-quan-ly-cho-nong-trai-thoi-dai-so",
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nong-nghiep",
     image: IMAGES.nongnghiep,
     name: "Nông nghiệp",
   },
   {
-    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nganh-go-tu-dong-hoa-de-dang-hieu-qua-vuot-troi",
+    href: "https://fososoft.com/blogs/phan-mem-quan-ly-san-xuat-nganh-go-noi-that",
     image: IMAGES.go,
     name: "Gỗ nội, ngoại thất",
   },

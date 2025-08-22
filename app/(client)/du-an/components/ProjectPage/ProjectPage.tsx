@@ -1,55 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
-import ProjectFilter from "./ProjectFilter";
-import ProjectGrid from "./ProjectGrid";
+import CTASection from "@/app/(client)/about-us/components/sections/CTASection";
+import ProjectBreadcrumb from "./ProjectBreadcrumb";
+import ProjectSection from "./ProjectSection";
 import Tagline from "./Tagline";
-import BusinessSupport from "./BusinessSupport";
+import CustomerPartnerSection from "@/app/(client)/home/components/sections/CustomerPartnerSection";
 
 const ProjectPage = () => {
-  // State để quản lý filter
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
-  // Handlers để truyền từ ProjectFilter xuống ProjectGrid
-  const handleSearchChange = (value: string) => {
-    setSearchQuery(value);
-  };
-
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-  };
-
   return (
-    <div>
-      {/* Tagline */}
-      <div className="pt-[67px]"></div>
-      <Tagline />
+    <main>
+      <div className="custom-padding-section relative">
+        {/* Spacing từ header */}
+        <ProjectBreadcrumb />
+        <div className="pt-[72px]" />
 
-      {/* Project Filter */}
-      <ProjectFilter
-        onSearchChange={handleSearchChange}
-        onTabChange={handleTabChange}
-        onCategoryChange={handleCategoryChange}
-        activeTab={activeTab}
-        selectedCategory={selectedCategory}
-      />
+        {/* Tagline Section - Tiêu đề chính và giới thiệu */}
+        <Tagline />
 
-      {/* Project Grid */}
-      <ProjectGrid
-        searchQuery={searchQuery}
-        activeTab={activeTab}
-        selectedCategory={selectedCategory}
-      />
-
-      {/* Business Support CTA */}
-      <BusinessSupport />
-    </div>
+        <ProjectSection />
+        <CustomerPartnerSection />
+        {/* CTA Section - Call to action cuối trang */}
+        <CTASection />
+      </div>
+    </main>
   );
 };
 
