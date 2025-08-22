@@ -64,7 +64,7 @@ const CustomerProblem = () => {
           <div
             key={item.id}
             className={`flex flex-col xl:flex-row gap-6 xl:gap-12 ${
-              index % 2 === 1 ? "flex-row-reverse" : ""
+              index % 2 === 1 ? "xl:flex-row-reverse" : ""
             }`}
           >
             <div className="flex-1 rounded-xl overflow-hidden">
