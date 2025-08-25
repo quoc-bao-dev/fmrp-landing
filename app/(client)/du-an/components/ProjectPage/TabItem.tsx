@@ -18,6 +18,7 @@ const TabItem: React.FC<TabItemProps> = ({
   onClick,
   variant = "desktop",
 }) => {
+  // [Mobile]
   if (variant === "mobile") {
     return (
       <div
@@ -30,8 +31,8 @@ const TabItem: React.FC<TabItemProps> = ({
       >
         {/* Dấu tích bo tròn ở góc trên bên phải khi tab được chọn */}
         {isActive && (
-          <div className="absolute -top-8 -right-12">
-            <img src="/project/icons/image-02.png" alt="" className="h-20" />
+          <div className="absolute top-0 right-0 ">
+            <img src="/project/icons/icon-05.svg" alt="" className="w-[60px]" />
           </div>
         )}
 
@@ -40,9 +41,9 @@ const TabItem: React.FC<TabItemProps> = ({
           <Image
             src={iconPath}
             alt={label}
-            width={32}
-            height={32}
-            className="object-contain"
+            width={100}
+            height={100}
+            className="object-contain size-[32px]"
           />
         </div>
 
@@ -52,6 +53,7 @@ const TabItem: React.FC<TabItemProps> = ({
     );
   }
 
+  // [Desktop]
   return (
     <div
       onClick={() => onClick(id)}
@@ -62,8 +64,8 @@ const TabItem: React.FC<TabItemProps> = ({
     >
       {/* Dấu tích bo tròn ở góc trên bên phải khi tab được chọn */}
       {isActive && (
-        <div className="absolute -top-4 -right-2">
-          <img src="/project/icons/image-02.png" alt="" className="" />
+        <div className="absolute top-0 right-0 ">
+          <img src="/project/icons/icon-05.svg" alt="" />
         </div>
       )}
 
@@ -72,9 +74,9 @@ const TabItem: React.FC<TabItemProps> = ({
         <Image
           src={iconPath}
           alt={label}
-          width={70}
-          height={70}
-          className="object-contain"
+          width={300}
+          height={300}
+          className="object-contain size-[70px]"
         />
       </div>
 
