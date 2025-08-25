@@ -4,12 +4,13 @@ import WidgetButton from "@/components/common/button/WidgetButton";
 import DynamicSheetWrapper from "@/components/common/sheet/DynamicSheetWrapper";
 import FooterContainer from "@/components/layouts/footer/FooterContainer";
 import FosoHeaderContainer from "@/components/layouts/header/header-foso/FosoHeaderContainer";
+import { IMAGES } from "@/constants/Images";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React from "react";
 import FmrpHeaderContainer from "../header/header-fmrp/FmrpHeaderContainer";
 import PathCheckerWrapper from "./PathCheckerWrapper";
-import Image from "next/image";
-import { IMAGES } from "@/constants/Images";
 
 const ClientLayout = ({
   children,
@@ -18,10 +19,14 @@ const ClientLayout = ({
   children: React.ReactNode;
   data: any;
 }) => {
+  const pathname = usePathname();
+  const hideBanner = pathname.startsWith("/du-an");
+
   return (
     <div className="bg-[#052B1E]">
       {/* header */}
-      <Image
+      {!hideBanner && (
+        <Image
           src={IMAGES.banner}
           alt="fmrp"
           width={1920}
@@ -30,6 +35,8 @@ const ClientLayout = ({
           quality={100}
           className="w-full h-10 lg:h-16 2xl:h-20 4xl:h-32 object-cover"
         />
+      )}
+
       <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
         <FmrpHeaderContainer />
       </PathCheckerWrapper>

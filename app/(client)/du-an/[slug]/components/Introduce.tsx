@@ -6,57 +6,90 @@ import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
 import { IMAGES } from "@/constants/Images";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import BlurImage from "@/components/common/blur/BlurImage";
 
-const breadcrumbItems = [
-  { label: "Trang chủ", href: "/" },
-  { label: "Dự án", href: "/du-an" },
-  { label: "Kanow" },
-];
+interface IntroduceProps {
+  data: any;
+  logo: string;
+  name: string;
+  year: string;
+  field_detail: any;
+  category: any;
+  isLoading?: boolean;
+}
 
-const Introduce = () => {
+const Introduce = ({
+  data,
+  logo,
+  name,
+  year,
+  field_detail,
+  category,
+  isLoading = false,
+}: IntroduceProps) => {
+  const breadcrumbItems = [
+    { label: "Trang chủ", href: "/" },
+    { label: "Dự án", href: "/du-an" },
+    { label: name || "" },
+  ];
+
   const heroPerTitle = useMemo(
     () =>
-      "KANOW – Nơi mỗi chuyến đi đều là một trải nghiệm trọn vẹn"
+      data?.title
         .split("")
-        .map((letter, index) => ({ id: index, letter })),
-    []
+        .map((letter: string, index: number) => ({ id: index, letter })),
+    [data?.title]
   );
-  
+
   return (
-    <div className="relative flex flex-col gap-9 xl:gap-8 2xl:gap-12 pt-28 xl:pt-32">
+    <div className="relative flex flex-col gap-9 xl:gap-20 pt-28 xl:pt-32">
       <BlurBackgroundFixed />
       <div className="block xl:hidden mx-auto">
         <CustomBreadcrumb items={breadcrumbItems} />
       </div>
       <div className="z-10 flex flex-col-reverse xl:flex-row gap-20 xl:gap-32 2xl:gap-40">
-        <div className="px-3 md:px-9 xl:px-0 w-full xl:w-[35%] 2xl:w-[30%] 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-12">
+        <div className="px-3 md:px-9 xl:px-0 w-full xl:w-[35%] 2xl:w-[32%] 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-8 2xl:gap-12">
           <div className="hidden xl:block">
             <CustomBreadcrumb items={breadcrumbItems} />
           </div>
 
           <div className="flex flex-col gap-5">
-            <Image
-              src={IMAGES.logoKanow}
-              alt="logo"
-              width={1000}
-              height={1000}
-              className="w-[200px] h-auto"
-            />
-            {/* <h2 className="text-title-section-medium-fit-leading font-extrabold text-[#1A2025] capitalize">
-              KANOW – Nơi mỗi chuyến đi đều là một trải nghiệm trọn vẹn
-            </h2> */}
-            <AnimatedTitle
-              className="text-title-section-medium-fit-leading font-extrabold text-[#1A2025] capitalize"
-              heroPerTitle={heroPerTitle}
-              delay={0}
-            />
+            {!isLoading && logo ? (
+              <Image
+                src={logo || IMAGES.logoKanow}
+                alt="logo"
+                width={1000}
+                height={1000}
+                className="h-10 object-contain w-fit"
+              />
+            ) : (
+              <Skeleton className="h-10 w-40" />
+            )}
 
-            <p className="text-base-default text-[#33404A] font-medium">
-              KANOW là dự án thiết kế website cho thuê xe kết hợp app mobile
-              hiện đại, giúp khách hàng dễ dàng đặt xe, lựa chọn tài xế và theo
-              dõi hành trình một cách minh bạch, thuận tiện.
-            </p>
+            {!isLoading && data?.title ? (
+              <AnimatedTitle
+                className="text-title-section-medium-fit-leading font-extrabold text-[#1A2025] capitalize"
+                heroPerTitle={heroPerTitle || []}
+                delay={0.5}
+              />
+            ) : (
+              <Skeleton className="h-20 w-3/4" />
+            )}
+
+            {!isLoading && data?.content_one ? (
+              <p className="text-base-default text-[#33404A] font-medium">
+                {data?.content_one}
+              </p>
+            ) : (
+              <div className="space-y-1">
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-6 w-11/12" />
+                <Skeleton className="h-6 w-10/12" />
+              </div>
+            )}
             <div className="hidden xl:block">
               <h4 className="text-sm-default text-[#33404A] font-medium">
                 Công nghệ
@@ -82,13 +115,17 @@ const Introduce = () => {
         </div>
 
         <div className="ml-14 md:ml-24 lg:ml-32 xl:ml-0 relative flex-1 h-fit pl-1 py-1 xl:pl-2 xl:py-2 rounded-l-lg xl:rounded-l-3xl bg-[#FFFFFF73] shadow-[-25.05px_25.05px_50.11px_0px_#257A2840] backdrop-blur-[31.317508697509766px]">
-          <Image
-            src={IMAGES.bannerKanow}
-            alt="banner"
-            width={1000}
-            height={1000}
-            className="w-full aspect-[915/652] object-cover rounded-l-lg xl:rounded-l-2xl bg-gray-50"
-          />
+          <div className="rounded-l-lg xl:rounded-l-2xl overflow-hidden">
+            <BlurImage
+              src={data?.img?.right || IMAGES.bannerKanow}
+              alt="banner"
+              width={1000}
+              height={1000}
+              loading="lazy"
+              className="w-full aspect-[915/652] object-cover rounded-l-lg xl:rounded-l-2xl bg-gray-50"
+            />
+          </div>
+
           <div className="absolute w-[25%] bottom-4 left-0 -translate-x-1/2">
             <div className="relative">
               <Image
@@ -100,11 +137,11 @@ const Introduce = () => {
               />
               <div className="absolute bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[95%] rounded-3xl lg:rounded-[40px] aspect-[234/462] object-cover"></div>
               <Image
-                src={IMAGES.kanowMB}
+                src={data?.img?.left || IMAGES.kanowMB}
                 alt="mokupPhone"
                 width={1000}
                 height={1000}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[94%] rounded-xl md:rounded-3xl lg:rounded-[40px] aspect-[234/462] object-cover"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[94%] rounded-xl md:rounded-3xl lg:rounded-[35px] aspect-[234/462] object-cover"
               />
             </div>
           </div>
@@ -113,51 +150,71 @@ const Introduce = () => {
 
       <div className="hidden xl:grid w-full [grid-template-columns:1fr_1fr_1.4fr_1.7fr_3.6fr]">
         <div className="bg-green-02 rounded-b-[20px] px-10 pt-12 pb-4 flex flex-col justify-center items-center">
-          <h3 className="text-sm-default font-medium text-light-800">
+          <h3 className="whitespace-nowrap text-sm-default font-medium text-light-800">
             Khách hàng
           </h3>
-          <p className="whitespace-nowrap text-button text-dark-primary font-bold">
-            Kanow
-          </p>
+          {!isLoading && name ? (
+            <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+              {name}
+            </p>
+          ) : (
+            <Skeleton className="h-6 w-14" />
+          )}
         </div>
         <div className="bg-green-03 p-4 rounded-b-[20px] px-10 pt-12 pb-4 flex flex-col justify-center items-center">
           <h3 className="text-sm-default font-medium text-light-800">
             Thời gian
           </h3>
-          <p className="whitespace-nowrap text-button text-dark-primary font-bold">
-            2023
-          </p>
+          {!isLoading && year ? (
+            <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+              {year}
+            </p>
+          ) : (
+            <Skeleton className="h-6 w-16" />
+          )}
         </div>
         <div className="bg-green-02 p-4 rounded-b-[20px] px-10 pt-12 pb-4 flex flex-col justify-center items-center">
           <h3 className="text-sm-default font-medium text-light-800">
             Lĩnh vực
           </h3>
-          <p className="whitespace-nowrap text-button text-dark-primary font-bold">
-            Book xe & Vận chuyển
-          </p>
+          {!isLoading && (Array.isArray(field_detail) || field_detail?.name) ? (
+            <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+              {Array.isArray(field_detail)
+                ? field_detail
+                    .map((item: any) => item?.name)
+                    .filter(Boolean)
+                    .join(", ")
+                : field_detail?.name || ""}
+            </p>
+          ) : (
+            <Skeleton className="h-6 w-40" />
+          )}
         </div>
         <div className="bg-green-03 p-4 rounded-b-[20px] px-10 pt-12 pb-4 flex flex-col justify-center items-center">
           <h3 className="text-sm-default font-medium text-light-800">
             Dịch vụ
           </h3>
-          <p className="whitespace-nowrap text-button text-dark-primary font-bold">
-            Thiết kế website
-          </p>
+          {!isLoading && category?.name ? (
+            <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+              {category?.name}
+            </p>
+          ) : (
+            <Skeleton className="h-6 w-28" />
+          )}
         </div>
-        <div className="bg-green-06 p-4 rounded-b-[20px] flex justify-center items-center">
+        <Link
+          href={data?.link_button || ""}
+          target="_blank"
+          className="bg-green-06 p-4 rounded-b-[20px] flex justify-center items-center"
+        >
           <h3 className="whitespace-nowrap text-button text-dark-primary font-bold">
             Truy cập website
           </h3>
-        </div>
+        </Link>
       </div>
       <div className="px-3 md:px-9 xl:px-0 flex flex-col gap-3 xl:hidden">
         <ButtonAnimation
-          onClick={() =>
-            window.open(
-              "https://drive.google.com/file/d/1OyCXhXv44M5BdbTXaUwruJ0KJEwofk6Z/view?usp=sharing",
-              "_blank"
-            )
-          }
+          onClick={() => window.open(data?.link_button, "_blank")}
           icon={
             <div className="xl:size-6 size-5 flex-shrink-0">
               <Image
@@ -182,7 +239,7 @@ const Introduce = () => {
             background: [
               "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
               "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
-              "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)",
+              "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%) , linear-gradient(0deg, #1AD598, #1AD598)",
             ],
             transition: {
               duration: 1.5,
@@ -202,34 +259,55 @@ const Introduce = () => {
             <h3 className="text-sm-default font-medium text-light-800">
               Khách hàng
             </h3>
-            <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
-              Kanow
-            </p>
+            {!isLoading && name ? (
+              <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
+                {name}
+              </p>
+            ) : (
+              <Skeleton className="h-6 w-24" />
+            )}
           </div>
           <div className="flex flex-col">
             <h3 className="text-sm-default font-medium text-light-800">
               Thời gian
             </h3>
-            <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
-              2023
-            </p>
+            {!isLoading && year ? (
+              <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
+                {year}
+              </p>
+            ) : (
+              <Skeleton className="h-6 w-16" />
+            )}
           </div>
         </div>
         <div className="flex flex-col">
           <h3 className="text-sm-default font-medium text-light-800">
             Lĩnh vực
           </h3>
-          <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
-            Book xe & Vận chuyển
-          </p>
+          {!isLoading && (Array.isArray(field_detail) || field_detail?.name) ? (
+            <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
+              {Array.isArray(field_detail)
+                ? field_detail
+                    .map((item: any) => item?.name)
+                    .filter(Boolean)
+                    .join(", ")
+                : field_detail?.name || ""}
+            </p>
+          ) : (
+            <Skeleton className="h-6 w-40" />
+          )}
         </div>
         <div className="flex flex-col">
           <h3 className="text-sm-default font-medium text-light-800">
             Dịch vụ
           </h3>
-          <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
-            Thiết kế website
-          </p>
+          {!isLoading && category?.name ? (
+            <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
+              {category?.name}
+            </p>
+          ) : (
+            <Skeleton className="h-6 w-28" />
+          )}
         </div>
       </div>
     </div>
