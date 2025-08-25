@@ -37,6 +37,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
         title: item.title || item.name || "",
         description: item.name || "",
         category: "",
+        slug: item.slug || "",
         tags: [],
         image: item.image || item.background || "",
         brandAvatar: item.logo || "",

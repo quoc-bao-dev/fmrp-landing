@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 type ProjectListProject = {
   id: number;
+  slug: string;
   name: string;
   title: string;
   logo: string;

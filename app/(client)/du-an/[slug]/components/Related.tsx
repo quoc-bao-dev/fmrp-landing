@@ -35,15 +35,15 @@ const ImageWithFallback = ({
   );
 };
 
-const Related = () => {
+const Related = ({ slug }: { slug: string }) => {
   const { data: projectList, isLoading } = useProjectList({
     params: {
       current_page: 1,
-      per_page: 10,
-      id: 7,
+      per_page: 3,
+      id: slug,
     },
   });
-  console.log(projectList?.data);
+
   return (
     <div className="custom-container px-1 xl:px-0 flex flex-col gap-6 xl:gap-12 xl:py-24">
       <h2 className="text-[#050505] font-extrabold capitalize text-title-section-small">

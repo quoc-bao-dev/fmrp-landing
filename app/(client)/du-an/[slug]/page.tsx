@@ -60,7 +60,7 @@ const ProjectDetailPage = () => {
       </div>
 
       <div id="related">
-        <Related />
+        <Related slug={slug as string} />
       </div>
 
       <div id="contact-us">

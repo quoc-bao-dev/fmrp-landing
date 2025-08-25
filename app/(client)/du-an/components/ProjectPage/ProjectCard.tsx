@@ -5,6 +5,7 @@ import React from "react";
 
 interface Project {
   id: string;
+  slug: string;
   title: string;
   description: string;
   category: string;
@@ -19,9 +20,10 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  console.log(project)
   return (
     <Link
-      href={`/du-an/du-an-chi-tiet`}
+      href={`/du-an/${project?.slug}`}
       className="group relative md:bg-white rounded-[16px] md:rounded-2xl overflow-hidden shadow-lg md:hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
     >
       {/* Image container với aspect ratio cố định */}
