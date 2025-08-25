@@ -1,8 +1,66 @@
+"use client";
 import { IMAGES } from "@/constants/Images";
 import Image from "next/image";
-import React from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useState, useEffect, useRef } from "react";
+import type { Swiper as SwiperType } from "swiper";
+import { motion, AnimatePresence } from "framer-motion";
 
-const Interface = () => {
+interface InterfaceProps {
+  data: any;
+}
+
+const Interface = ({ data }: InterfaceProps) => {
+  // State để quản lý tab đang được chọn
+  const [activeTab, setActiveTab] = useState(0);
+  
+  // Ref để điều khiển Swiper
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  // Lấy danh sách các tính năng từ data.item
+  const features = data?.item || [];
+
+  // Lấy hình ảnh của tính năng đang được chọn
+  const currentImages = features[activeTab]?.img || [];
+
+  // Lấy nội dung mô tả
+  const content = data?.content || "Miêu tả";
+
+  // useEffect để đảm bảo khi dữ liệu được load, tab đầu tiên sẽ được active
+  useEffect(() => {
+    if (features.length > 0 && activeTab === 0) {
+      // Force re-render để hiển thị hình ảnh của tab đầu tiên
+      setActiveTab(0);
+    }
+  }, [features, activeTab]);
+
+  // useEffect để reset Swiper khi activeTab thay đổi
+  useEffect(() => {
+    if (swiperRef.current) {
+      // Reset Swiper về slide đầu tiên khi chuyển tab
+      swiperRef.current.slideTo(0);
+      // Cập nhật Swiper để hiển thị hình ảnh mới
+      swiperRef.current.update();
+    }
+  }, [activeTab, currentImages]);
+
+  // Kiểm tra xem có dữ liệu không
+  if (!features || features.length === 0) {
+    return (
+      <div className="relative xl:py-24 overflow-hidden">
+        <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-10">
+          <div className="text-center">
+            <p className="text-gray-500">Đang tải dữ liệu...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative xl:py-24 overflow-hidden">
       <div className="absolute w-[500px] h-auto aspect-square rounded-[40px] 2xl:translate-x-[40%] translate-x-[60%] top-10 right-0 pointer-events-none z-[-1]">
@@ -14,71 +72,122 @@ const Interface = () => {
           className="size-full object-contain"
         />
       </div>
-      <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-12">
-        <div className="flex flex-col xl:flex-row gap-2">
+      <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-10">
+        <div className="flex flex-col xl:flex-row gap-2 w-full">
           <h2 className="flex-1 text-green-700 text-title-section-medium font-extrabold capitalize">
             Giao diện dự án
           </h2>
           <p className="flex-1 text-base-default text-[#231F20] font-medium">
-            The design of their existing website lacked a modern aesthetic,
-            failing to represent Yadea’s cutting-edge technologies & products.
-            Beyond the outdated visuals, the website’s CMS proved
-            user-unfriendly for the marketing team, hindering content updates.
-            To top it off, the website wasn’t optimized for performance,
-            potentially leading to slow loading times and a negative user
-            experience for Vietnamese consumers.
+            {content}
           </p>
         </div>
-        <div className="flex gap-3 border-b border-[#F1F5F7] overflow-x-auto">
-          <div className="relative py-3 px-4">
-            <button className="whitespace-nowrap text-title text-green-700 font-bold">
-              Tính năng 1
-            </button>
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"></span>
-          </div>
-          <div className="relative py-3 px-4">
-            <button className="whitespace-nowrap text-title text-light-600 font-semibold">
-              Tính năng 2
-            </button>
-            {/* <span className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"></span> */}
-          </div>
-          <div className="relative py-3 px-4">
-            <button className="whitespace-nowrap text-title text-light-600 font-semibold">
-              Tính năng 3
-            </button>
-            {/* <span className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"></span> */}
-          </div>
-          <div className="relative py-3 px-4">
-            <button className="whitespace-nowrap text-title text-light-600 font-semibold">
-              Tính năng 4
-            </button>
-            {/* <span className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"></span> */}
-          </div>
-          <div className="relative py-3 px-4">
-            <button className="whitespace-nowrap text-title text-light-600 font-semibold">
-              Tính năng 5
-            </button>
-            {/* <span className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"></span> */}
-          </div>
+
+        {/* Tab navigation - hiển thị danh sách các tính năng */}
+        <div className="flex gap-3 border-b border-[#F1F5F7] overflow-x-scroll overflow-y-hidden scrollbar-hide">
+          {features.map((feature: any, index: number) => (
+            <motion.div 
+              key={index} 
+              className="relative py-3 px-4 flex-shrink-0"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <button
+                className={`whitespace-nowrap first-letter:uppercase text-title font-semibold transition-all duration-300 ${
+                  activeTab === index
+                    ? "text-green-700 font-bold"
+                    : "text-light-600 hover:text-green-600"
+                }`}
+                onClick={() => setActiveTab(index)}
+              >
+                {feature.title}
+              </button>
+              {/* Hiển thị gạch chân cho tab đang được chọn với animation */}
+              <AnimatePresence>
+                {activeTab === index && (
+                  <motion.span 
+                    className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    exit={{ scaleX: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  />
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
         </div>
-        <div className="w-full px-10 xl:px-40 bg-gradient-to-r from-[#E0FFCC] to-[#CCFFEC] rounded-xl p-4">
-          <div className="relative">
-            <Image
-              src={IMAGES.mokupTablet}
-              alt="mokupTablet"
-              width={1000}
-              height={1000}
-              className="w-full aspect-[924/658] object-cover relative z-[11]"
-            />
-            <Image
-              src={IMAGES.bannerKanow}
-              alt="bannerKanow"
-              width={1000}
-              height={1000}
-              className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 xl:p-8 rounded-xl lg:rounded-[50px]"
-            />
-          </div>
-        </div>
+
+        {/* Hiển thị hình ảnh của tính năng được chọn với fade transition */}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeTab}
+            className="w-full px-10 xl:px-40 2xl:px-72 bg-gradient-to-r from-[#E0FFCC] to-[#CCFFEC] rounded-xl p-4 lg:p-10"
+            // initial={{ opacity: 0, y: 20 }}
+            // animate={{ opacity: 1, y: 0 }}
+            // exit={{ opacity: 0, y: -20 }}
+            // transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <div className="relative">
+              <Image
+                src={IMAGES.mokupTablet}
+                alt="mokupTablet"
+                width={1000}
+                height={1000}
+                className="w-full aspect-[924/658] object-cover relative z-[11]"
+              />
+              <div className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 xl:p-8 rounded-xl lg:rounded-[50px]">
+                <div className="bg-gray-50 w-full h-full"></div>
+              </div>
+              <motion.div 
+                className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 xl:p-8 rounded-xl lg:rounded-[50px]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
+                <Swiper
+                  key={`swiper-${activeTab}-${currentImages.length}`}
+                  onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                  }}
+                  modules={[Autoplay, Pagination]}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                  navigation={false}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                  }}
+                  loop={true}
+                  className="w-full h-full custom-swiper-project"
+                >
+                  {currentImages.map((image: string, imageIndex: number) => (
+                    <SwiperSlide key={`${activeTab}-${imageIndex}`}>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: imageIndex * 0.1 }}
+                        className="h-full"
+                      >
+                        <Image
+                          src={image}
+                          alt={`Hình ảnh ${imageIndex + 1} của ${
+                            features[activeTab]?.title
+                          }`}
+                          width={2000}
+                          height={2000}
+                          className="w-full h-full object-cover bg-gray-50"
+                        />
+                      </motion.div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
