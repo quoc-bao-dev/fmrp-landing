@@ -2,6 +2,7 @@
 
 import BlurredBackground from '@/components/common/blur/BlurredBackground'
 import ButtonAnimation from '@/components/common/button/ButtonAnimation'
+import { useSheetStores } from '@/stores/useSheetStores'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useCallback } from 'react'
@@ -13,6 +14,7 @@ const ContactUsNowSection = (props: Props) => {
     const handleCall = useCallback((phoneNumber: any) => {
         window.location.href = `tel:${phoneNumber}`;
     }, []);
+    const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
 
     return (
         <div className="3xl:py-32 lg:py-28 py-16">
@@ -45,7 +47,7 @@ const ContactUsNowSection = (props: Props) => {
                                 </div>
                             }
                             reverse={true}
-                            title="Gọi ngay cho chúng tôi"
+                            title="Liên hệ ngay cho chúng tôi"
                             className='border-gradient-button-foso flex items-center gap-2 text-sm-default text-[#052B1E] font-bold capitalize border-none w-fit rounded-full px-4 py-2 transition-colors duration-300 ease-in-out'
                             style={{
                                 background: `radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #1AD598, #1AD598)`,
@@ -70,7 +72,11 @@ const ContactUsNowSection = (props: Props) => {
                                     "inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 4px rgba(0,0,0,0.3)"
                                 ],
                             }}
-                            onClick={() => handleCall("0901136968")}
+                            // onClick={() => handleCall("0901136968")}
+                            onClick={() => {
+                                setOpenSheetCustom(true)
+                                setStatusSheet("contact")
+                            }}
                         // aria-label={`Gọi tới số ${phoneNumber}`}
                         />
                     </AnimatedReveal>

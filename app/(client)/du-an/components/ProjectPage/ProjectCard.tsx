@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 interface Project {
@@ -19,7 +20,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="group relative md:bg-white rounded-2xl overflow-hidden md:shadow-lg md:hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <Link href={`/du-an/du-an-chi-tiet`} className="group relative md:bg-white rounded-2xl overflow-hidden md:shadow-lg md:hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       {/* Image container với aspect ratio cố định */}
       <div className="relative aspect-[4/3]">
         {/* Project image */}
@@ -86,7 +87,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
         </Button>
       </div>
-    </div>
+    </Link>
   );
 };
 
