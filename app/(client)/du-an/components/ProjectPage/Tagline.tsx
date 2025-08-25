@@ -63,7 +63,7 @@ const Tagline: React.FC<Props> = () => {
 
         {/* Decorative images for mobile/tablet */}
         <div className="lg:hidden w-full flex items-center justify-between gap-4">
-          <div className="size-[150px] md:size-[160px] h-auto aspect-square ">
+          <div className="size-[120px] md:size-[160px] h-auto aspect-square ">
             <Image
               src="/project/image-02.png"
               alt="Decor left mobile"
@@ -72,7 +72,7 @@ const Tagline: React.FC<Props> = () => {
               className="size-full object-contain "
             />
           </div>
-          <div className="size-[150px] md:size-[160px] h-auto aspect-square">
+          <div className="size-[120px] md:size-[160px] h-auto aspect-square">
             <Image
               src="/project/image-01.png"
               alt="Decor right mobile"
