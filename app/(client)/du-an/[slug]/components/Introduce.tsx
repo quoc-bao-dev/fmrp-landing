@@ -1,10 +1,12 @@
 "use client";
 
 import BlurBackgroundFixed from "@/app/(client)/products/fmrp/components/ui/common/BlurBackgroundFixed";
+import AnimatedTitle from "@/components/common/animations/text/AnimatedTitle";
 import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
 import { IMAGES } from "@/constants/Images";
 import Image from "next/image";
+import { useMemo } from "react";
 
 const breadcrumbItems = [
   { label: "Trang chủ", href: "/" },
@@ -13,13 +15,21 @@ const breadcrumbItems = [
 ];
 
 const Introduce = () => {
+  const heroPerTitle = useMemo(
+    () =>
+      "KANOW – Nơi mỗi chuyến đi đều là một trải nghiệm trọn vẹn"
+        .split("")
+        .map((letter, index) => ({ id: index, letter })),
+    []
+  );
+  
   return (
-    <div className="relative flex flex-col gap-9 xl:gap-16 pt-28 xl:pt-32">
+    <div className="relative flex flex-col gap-9 xl:gap-8 2xl:gap-12 pt-28 xl:pt-32">
       <BlurBackgroundFixed />
       <div className="block xl:hidden mx-auto">
         <CustomBreadcrumb items={breadcrumbItems} />
       </div>
-      <div className="flex flex-col-reverse xl:flex-row gap-20 xl:gap-24 2xl:gap-28">
+      <div className="z-10 flex flex-col-reverse xl:flex-row gap-20 xl:gap-32 2xl:gap-40">
         <div className="px-3 md:px-9 xl:px-0 w-full xl:w-[35%] 2xl:w-[30%] 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-12">
           <div className="hidden xl:block">
             <CustomBreadcrumb items={breadcrumbItems} />
@@ -33,9 +43,15 @@ const Introduce = () => {
               height={1000}
               className="w-[200px] h-auto"
             />
-            <h2 className="text-title-section-medium-fit-leading font-extrabold text-[#1A2025] capitalize">
+            {/* <h2 className="text-title-section-medium-fit-leading font-extrabold text-[#1A2025] capitalize">
               KANOW – Nơi mỗi chuyến đi đều là một trải nghiệm trọn vẹn
-            </h2>
+            </h2> */}
+            <AnimatedTitle
+              className="text-title-section-medium-fit-leading font-extrabold text-[#1A2025] capitalize"
+              heroPerTitle={heroPerTitle}
+              delay={0}
+            />
+
             <p className="text-base-default text-[#33404A] font-medium">
               KANOW là dự án thiết kế website cho thuê xe kết hợp app mobile
               hiện đại, giúp khách hàng dễ dàng đặt xe, lựa chọn tài xế và theo
