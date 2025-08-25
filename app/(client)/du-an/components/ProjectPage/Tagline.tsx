@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import { motion, type RepeatType, type Easing } from "framer-motion";
+import AnimatedTitle from "@/components/common/animations/text/AnimatedTitle";
 
 type Props = {};
 
@@ -14,6 +15,10 @@ const floatingTransition = {
 };
 
 const Tagline: React.FC<Props> = () => {
+  const heroPerTitle = useMemo(
+    () => "Dự Án".split("").map((letter, index) => ({ id: index, letter })),
+    []
+  );
   return (
     <section className="custom-padding-section relative overflow-hidden">
       {/* Decorative images for desktop */}
@@ -50,12 +55,51 @@ const Tagline: React.FC<Props> = () => {
       {/* Content */}
       <div className="flex flex-col items-center gap-4 relative z-[1]">
         <h1 className="text-center font-normal tracking-normal 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[27px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[40px]">
-          <span className="relative mr-2 font-extrabold">
-            <span className="relative z-10">Dự Án</span>
-            <span className="absolute left-0 w-full -bottom-0 md:bottom-0 h-[16px] md:h-[24px] rounded-full bg-[#A3EED6] -z-0" />
+          <span className="relative flex justify-center">
+            {/* Background trượt từ trái sang phải */}
+            <motion.span
+              className="absolute lg:bottom-[16%] bottom-[10%] bg-[#A3EED6] rounded-full h-[26%] lg:w-[38%] w-[37%]"
+              initial={{ clipPath: "inset(0% 100% 0% 0%)", opacity: 0 }} // Bắt đầu ẩn
+              animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }} // Hiện dần ra
+              transition={{
+                duration: 2, // Làm chậm hiệu ứng để mượt hơn
+                delay: 0.4, // Đồng bộ với chữ nhưng bắt đầu mượt hơn
+                ease: [0.25, 1, 0.5, 1], // Bezier Curve giúp chạy tự nhiên hơn
+              }}
+            />
+
+            <AnimatedTitle
+              className="text-[#050505] relative z-10 font-extrabold"
+              heroPerTitle={heroPerTitle}
+            />
           </span>
-          <span className="mx-1 font-extrabold text-[#53B086]">FOSO</span>
-          <span className="font-normal">Triển Khai</span>
+          <AnimatedTitle
+            className="mx-1 font-extrabold text-[#53B086]"
+            heroPerTitle={["F", "O", "S", "O"].map((letter, index) => ({
+              id: index,
+              letter,
+            }))}
+            delay={0.5}
+          />
+          <AnimatedTitle
+            className="font-normal"
+            heroPerTitle={[
+              "T",
+              "r",
+              "i",
+              "ể",
+              "n",
+              " ",
+              "K",
+              "h",
+              "a",
+              "i",
+            ].map((letter, index) => ({
+              id: index,
+              letter,
+            }))}
+            delay={1}
+          />
         </h1>
         <p className="3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base !text-sm !tracking-[1%] text-[#33404A] font-medium text-center">
           Cùng nhìn lại những dự án thành công tại FOSO!

@@ -125,7 +125,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
   }, []);
   const emptyState = useMemo(() => {
     return (
-      <div className="text-center md:py-16 px-16 md:px-4">
+      <div className="text-center md:py-16 px-4">
         {/* Main content container */}
         <div className="max-w-2xl mx-auto">
           {/* Image */}
@@ -133,7 +133,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
             <img
               src="/project/image-04.png"
               alt="Không tìm thấy kết quả"
-              className="md:w-[500px] md:h-[500px] object-contain"
+              className="md:w-[500px] md:h-[500px] object-contain px-16 md:px-0"
             />
           </div>
 
