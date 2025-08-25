@@ -67,7 +67,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
     });
   }, [projectList]);
 
-  const isEmpty = projectList?.data.length === 0;
+  const isEmpty = !projectList || projectList?.data.length === 0;
 
   // Skeleton component với useMemo
   const projectGridSkeleton = useMemo(() => {

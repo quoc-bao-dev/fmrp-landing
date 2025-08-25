@@ -1,9 +1,9 @@
 "use client";
 
+import AnimatedTitle from "@/components/common/animations/text/AnimatedTitle";
+import { motion, type Easing, type RepeatType } from "framer-motion";
 import Image from "next/image";
 import React, { useMemo } from "react";
-import { motion, type RepeatType, type Easing } from "framer-motion";
-import AnimatedTitle from "@/components/common/animations/text/AnimatedTitle";
 
 type Props = {};
 
@@ -102,7 +102,16 @@ const Tagline: React.FC<Props> = () => {
           />
         </h1>
         <p className="3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base !text-sm !tracking-[1%] text-[#33404A] font-medium text-center">
-          Cùng nhìn lại những dự án thành công tại FOSO!
+          <AnimatedTitle
+            className="font-medium"
+            heroPerTitle={" Cùng nhìn lại những dự án thành công tại FOSO!"
+              .split("")
+              .map((letter, index) => ({
+                id: index,
+                letter,
+              }))}
+            delay={1.5}
+          />
         </p>
 
         {/* Decorative images for mobile/tablet */}
