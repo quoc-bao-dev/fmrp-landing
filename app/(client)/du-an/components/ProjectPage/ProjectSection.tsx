@@ -3,24 +3,16 @@
 import React, { useState } from "react";
 import ProjectFilter from "./ProjectFilter";
 import ProjectGrid from "./ProjectGrid";
-import Tagline from "./Tagline";
-import CTASection from "@/app/(client)/about-us/components/sections/CTASection";
-
-/**
- * ProjectSection Component
- *
- * Tổng hợp toàn bộ nội dung trang dự án bao gồm:
- * - Tagline: Tiêu đề và mô tả chính của trang
- * - ProjectFilter: Bộ lọc và tìm kiếm dự án
- * - ProjectGrid: Lưới hiển thị các dự án
- * - CTASection: Call-to-action cuối trang
- */
 
 const ProjectSection: React.FC = () => {
   // State để quản lý các bộ lọc
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("0");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  console.log("searchQuery", searchQuery);
+  console.log("activeTab", activeTab);
+  console.log("selectedCategories", selectedCategories);
 
   // Handlers để xử lý thay đổi từ ProjectFilter
   const handleSearchChange = (value: string) => {
