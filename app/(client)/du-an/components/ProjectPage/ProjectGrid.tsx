@@ -125,7 +125,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
   }, []);
   const emptyState = useMemo(() => {
     return (
-      <div className="text-center py-16 px-4">
+      <div className="text-center md:py-16 px-16 md:px-4">
         {/* Main content container */}
         <div className="max-w-2xl mx-auto">
           {/* Image */}
@@ -133,12 +133,12 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
             <img
               src="/project/image-04.png"
               alt="Không tìm thấy kết quả"
-              className="w-[500px] h-[500px] object-contain"
+              className="md:w-[500px] md:h-[500px] object-contain"
             />
           </div>
 
           {/* Description */}
-          <div className="text-gray-600 text-base leading-relaxed">
+          <div className="text-gray-600 text-sm md:text-base leading-relaxed">
             Không tìm thấy kết quả tìm kiếm{" "}
             <span className="font-semibold">"{searchQuery}"</span>, vui lòng
             điều chỉnh lại bộ lọc và từ khóa tìm kiếm.
@@ -170,7 +170,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
               </h2>
             )}
             {isEmpty && (
-              <h2 className="text-4xl font-bold mb-6 text-center">
+              <h2 className="md:text-4xl font-bold mb-6 text-center">
                 Kết quả tìm kiếm cho &quot;{searchQuery}&quot;
               </h2>
             )}

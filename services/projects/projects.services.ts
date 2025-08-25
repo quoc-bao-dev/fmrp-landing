@@ -2,10 +2,10 @@ import { instanceDefault } from "@/utils/axios/AxiosCustomize";
 
 const apiProjects = {
   async getProjectMenu() {
-    return await instanceDefault.get(`/api/project/get_field`);
+    return await instanceDefault.get(`/project/get_field`);
   },
   async getProjectCategory() {
-    return await instanceDefault.get(`/api/project/get_category`);
+    return await instanceDefault.get(`/project/get_category`);
   },
 
   async getProjectList(params: any) {
