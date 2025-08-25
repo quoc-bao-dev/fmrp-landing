@@ -29,6 +29,28 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
     },
   });
 
+  const emptyText = useMemo(() => {
+    if (searchQuery)
+      return `Không tìm thấy kết quế tìm kiếm cho "${searchQuery}"`;
+    return "Không có dự án nào";
+  }, [searchQuery]);
+
+  const emptyTextSearch = useMemo(() => {
+    if (searchQuery)
+      return (
+        <div className="text-gray-600 text-sm md:text-base leading-relaxed">
+          Không tìm thấy kết quả tìm kiếm{" "}
+          <span className="font-semibold">"{searchQuery}"</span>, vui lòng điều
+          chỉnh lại bộ lọc và từ khóa tìm kiếm.
+        </div>
+      );
+    return (
+      <div className="text-gray-600 text-sm md:text-base leading-relaxed">
+        Không có dự án nào cho bộ lọc này
+      </div>
+    );
+  }, [searchQuery]);
+
   const projectListData = useMemo(() => {
     if (!projectList) return [];
     return projectList?.data.map((item) => {
@@ -138,11 +160,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
           </div>
 
           {/* Description */}
-          <div className="text-gray-600 text-sm md:text-base leading-relaxed">
-            Không tìm thấy kết quả tìm kiếm{" "}
-            <span className="font-semibold">"{searchQuery}"</span>, vui lòng
-            điều chỉnh lại bộ lọc và từ khóa tìm kiếm.
-          </div>
+          {emptyTextSearch}
         </div>
       </div>
     );
@@ -171,7 +189,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
             )}
             {isEmpty && (
               <h2 className="md:text-4xl font-bold mb-6 text-center">
-                Kết quả tìm kiếm cho &quot;{searchQuery}&quot;
+                {emptyText}
               </h2>
             )}
             {/* Grid container với responsive layout */}
