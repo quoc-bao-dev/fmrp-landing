@@ -8,29 +8,6 @@ import { ArrowDownRightIcon } from "lucide-react";
 import React, { useMemo } from "react";
 import ProjectCard from "./ProjectCard";
 
-// Danh sách avatar cho brand
-const brandAvatars = [
-  "/project/icons/image-1.png",
-  "/project/icons/image-2.png",
-  "/project/icons/image-3.png",
-  "/project/icons/image-4.png",
-  "/project/icons/image-5.png",
-  "/project/icons/image-6.png",
-];
-
-// Interface cho project data
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-  image: string;
-  brandAvatar?: string;
-  isHighlighted?: boolean;
-}
-
-// Interface cho props
 interface ProjectGridProps {
   searchQuery?: string;
   activeTab?: string;
@@ -42,7 +19,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
   activeTab = "0",
   selectedCategories = [],
 }) => {
-  const { data: projectList } = useProjectList({
+  const { data: projectList, isLoading } = useProjectList({
     params: {
       category_search: activeTab,
       search: searchQuery,
@@ -70,14 +47,49 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
 
   const isEmpty = projectList?.data.length === 0;
 
+  // Skeleton component với useMemo
+  const projectGridSkeleton = useMemo(() => {
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div key={index} className="animate-pulse">
+            {/* Card container */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+              {/* Image skeleton */}
+              <div className="aspect-[4/3] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer"></div>
+
+              {/* Content skeleton */}
+              <div className="p-4 md:p-6">
+                {/* Brand avatar */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded-full"></div>
+                  <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-24"></div>
+                </div>
+
+                {/* Title skeleton */}
+                <div className="space-y-2 mb-3">
+                  <div className="h-5 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-full"></div>
+                  <div className="h-5 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-3/4"></div>
+                </div>
+
+                {/* Description skeleton */}
+                <div className="space-y-2">
+                  <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-full"></div>
+                  <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-5/6"></div>
+                  <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-2/3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }, []);
+
   const showMoreButton = useMemo(() => {
     return (
       <div className="flex justify-center mt-6 lg:mt-12">
-        <AnimatedReveal
-          // once={false}
-          effect="fade"
-          className="lg:w-fit w-full"
-        >
+        <AnimatedReveal effect="fade" className="lg:w-fit w-full">
           <ButtonAnimationNew
             title="Xem thêm"
             icon={
@@ -139,27 +151,60 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
   return (
     <section className="w-full py-8 lg:py-12">
       <div className="custom-container">
-        {!isEmpty && (
-          <h2 className="text-lg lg:text-4xl font-bold mb-6">Tất cả dự án</h2>
+        {/* Loading state */}
+        {isLoading && (
+          <>
+            <div className="mb-6">
+              <div className="h-8 lg:h-10 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded w-48"></div>
+            </div>
+            {projectGridSkeleton}
+          </>
         )}
-        {isEmpty && (
-          <h2 className="text-4xl font-bold mb-6 text-center">
-            Kết quả tìm kiếm cho &quot;{searchQuery}&quot;
-          </h2>
+
+        {/* Loaded state */}
+        {!isLoading && (
+          <>
+            {!isEmpty && (
+              <h2 className="text-lg lg:text-4xl font-bold mb-6">
+                Tất cả dự án
+              </h2>
+            )}
+            {isEmpty && (
+              <h2 className="text-4xl font-bold mb-6 text-center">
+                Kết quả tìm kiếm cho &quot;{searchQuery}&quot;
+              </h2>
+            )}
+            {/* Grid container với responsive layout */}
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8">
+              {projectListData.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+
+            {/* Show more button */}
+            {!isEmpty && showMoreButton}
+
+            {/* Empty state */}
+            {isEmpty && emptyState}
+          </>
         )}
-        {/* Grid container với responsive layout */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8">
-          {projectListData.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-
-        {/* Show more button */}
-        {!isEmpty && showMoreButton}
-
-        {/* Empty state */}
-        {isEmpty && emptyState}
       </div>
+
+      {/* Custom CSS cho shimmer animation */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+
+        .animate-shimmer {
+          animation: shimmer 2s infinite linear;
+        }
+      `}</style>
     </section>
   );
 };

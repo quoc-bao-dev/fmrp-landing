@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ProjectFilter from "./ProjectFilter";
 import ProjectGrid from "./ProjectGrid";
 
@@ -10,9 +10,8 @@ const ProjectSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState("0");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  console.log("searchQuery", searchQuery);
-  console.log("activeTab", activeTab);
-  console.log("selectedCategories", selectedCategories);
+  // Ref để tham chiếu đến section cần scroll
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Handlers để xử lý thay đổi từ ProjectFilter
   const handleSearchChange = (value: string) => {
@@ -27,13 +26,30 @@ const ProjectSection: React.FC = () => {
     setSelectedCategories(categories);
   };
 
+  // Hàm xử lý scroll đến đầu section
+  const handleScroll = () => {
+    if (sectionRef.current) {
+      const yOffset = -100; // Offset để tránh bị che bởi header cố định
+      const y =
+        sectionRef.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="w-full">
+    <div ref={sectionRef} className="w-full">
       {/* Project Filter Section - Bộ lọc và tìm kiếm */}
       <ProjectFilter
         onSearchChange={handleSearchChange}
         onTabChange={handleTabChange}
         onCategoryChange={handleCategoryChange}
+        onScroll={handleScroll}
         activeTab={activeTab}
         selectedCategories={selectedCategories}
       />
