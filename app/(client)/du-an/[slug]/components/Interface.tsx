@@ -28,7 +28,7 @@ const Interface = ({ data }: InterfaceProps) => {
   const currentImages = features[activeTab]?.img || [];
 
   // Lấy nội dung mô tả
-  const content = data?.content || "Miêu tả";
+  const content = data?.content || "";
 
   // useEffect để đảm bảo khi dữ liệu được load, tab đầu tiên sẽ được active
   useEffect(() => {
@@ -47,19 +47,6 @@ const Interface = ({ data }: InterfaceProps) => {
       swiperRef.current.update();
     }
   }, [activeTab, currentImages]);
-
-  // Kiểm tra xem có dữ liệu không
-  if (!features || features.length === 0) {
-    return (
-      <div className="relative xl:py-24 overflow-hidden">
-        <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-10">
-          <div className="text-center">
-            <p className="text-gray-500">Đang tải dữ liệu...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="relative xl:py-24 overflow-hidden">

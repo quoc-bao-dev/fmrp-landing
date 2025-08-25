@@ -9,11 +9,11 @@ const apiProjects = {
   },
 
   async getProjectList(params: any) {
-    return await instanceDefault.get(`/api/project/list`, { params });
+    return await instanceDefault.get(`/project/list`, { params });
   },
 
   async getProjectDetail(id: string): Promise<any> {
-    return await instanceDefault.get(`/api/project/detail/${id}`);
+    return await instanceDefault.get(`/project/detail/${id}`);
   },
 };
 

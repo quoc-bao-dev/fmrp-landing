@@ -55,7 +55,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Tags overlay */}
-        {project.tags.length > 0 && (
+        {project?.tags?.length > 0 && (
           <div className="absolute top-4 left-4">
             {project.tags.map((tag, index) => (
               <div

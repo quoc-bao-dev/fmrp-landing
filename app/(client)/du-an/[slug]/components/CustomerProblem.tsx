@@ -33,7 +33,7 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
         />
       </div>
       <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-12">
-        <div className="flex flex-col gap-2.5 xl:items-center">
+        <div className="flex flex-col gap-2.5 xl:items-center w-full">
           <h2 className="text-green-700 font-extrabold text-title-section-small">
             {isLoading ? <Skeleton className="h-8 w-64" /> : data?.title}
           </h2>

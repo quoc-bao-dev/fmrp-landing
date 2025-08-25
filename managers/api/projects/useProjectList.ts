@@ -41,6 +41,7 @@ type ProjectListParams = {
   category_search?: string | number;
   search?: string;
   field_search?: string | number;
+  id?: string | number;
 };
 
 type UseProjectListProps = {
@@ -74,6 +75,10 @@ export const useProjectList = ({
 
       if (params.field_search) {
         dataSubmit.field_search = params.field_search;
+      }
+
+      if (params.id) {
+        dataSubmit.id = params.id;
       }
 
       const { data } = await apiProjects.getProjectList(dataSubmit);

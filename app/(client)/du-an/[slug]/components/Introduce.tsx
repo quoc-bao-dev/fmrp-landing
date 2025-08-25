@@ -150,7 +150,7 @@ const Introduce = ({
 
       <div className="hidden xl:grid w-full [grid-template-columns:1fr_1fr_1.4fr_1.7fr_3.6fr]">
         <div className="bg-green-02 rounded-b-[20px] px-10 pt-12 pb-4 flex flex-col justify-center items-center">
-          <h3 className="text-sm-default font-medium text-light-800">
+          <h3 className="whitespace-nowrap text-sm-default font-medium text-light-800">
             Khách hàng
           </h3>
           {!isLoading && name ? (
