@@ -20,11 +20,11 @@ const Tagline: React.FC<Props> = () => {
     []
   );
   return (
-    <section className="custom-padding-section relative overflow-hidden">
+    <section className="py-6 relative overflow-hidden ">
       {/* Decorative images for desktop */}
       <motion.div
-        className="hidden lg:block absolute lg:top-[10%] top-1/2 left-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[260px] xl:h-[250px] lg:h-[250px] size-[250px] aspect-[0.78/1] pointer-events-none"
-        animate={{ y: [0, -12, 0] }}
+        className="hidden lg:block absolute lg:top-[10%] top-1/2 left-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[200px] xl:h-[200px] lg:h-[200px] size-[200px] aspect-[0.78/1] pointer-events-none"
+        // animate={{ y: [0, -12, 0] }}
         transition={floatingTransition}
       >
         <Image
@@ -38,8 +38,8 @@ const Tagline: React.FC<Props> = () => {
       </motion.div>
 
       <motion.div
-        className="hidden lg:block absolute lg:top-[10%] top-1/2 right-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[260px] xl:h-[250px] lg:h-[250px] size-[250px] aspect-[0.78/1] pointer-events-none"
-        animate={{ y: [0, -12, 0] }}
+        className="hidden lg:block absolute lg:top-[10%] top-1/2 right-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[200px] xl:h-[200px] lg:h-[200px] size-[200px] aspect-[0.78/1] pointer-events-none"
+        // animate={{ y: [0, -12, 0] }}
         transition={floatingTransition}
       >
         <Image
@@ -102,16 +102,7 @@ const Tagline: React.FC<Props> = () => {
           />
         </h1>
         <p className="3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base !text-sm !tracking-[1%] text-[#33404A] font-medium text-center">
-          <AnimatedTitle
-            className="font-medium"
-            heroPerTitle={" Cùng nhìn lại những dự án thành công tại FOSO!"
-              .split("")
-              .map((letter, index) => ({
-                id: index,
-                letter,
-              }))}
-            delay={1.5}
-          />
+          Cùng nhìn lại những dự án thành công tại FOSO!
         </p>
 
         {/* Decorative images for mobile/tablet */}
