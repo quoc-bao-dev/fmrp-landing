@@ -122,11 +122,11 @@ const Interface = ({ data }: InterfaceProps) => {
                 height={1000}
                 className="w-full aspect-[924/658] object-cover relative z-[11]"
               />
-              <div className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 xl:p-8 rounded-xl lg:rounded-[50px]">
+              <div className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 md:p-5 lg:p-7 rounded-xl lg:rounded-[50px]">
                 <div className="bg-gray-50 w-full h-full"></div>
               </div>
               <motion.div 
-                className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 xl:p-8 rounded-xl lg:rounded-[50px]"
+                className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 md:p-5 lg:p-7 rounded-xl lg:rounded-[50px]"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
