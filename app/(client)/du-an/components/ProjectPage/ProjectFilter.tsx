@@ -96,38 +96,6 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
     );
   }, []);
 
-  const searchAndFilterSkeleton = useMemo(() => {
-    return (
-      <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center w-full md:pt-6">
-        {/* Search input skeleton */}
-        <div className="flex-1 lg:flex-initial lg:w-[366px]">
-          <div className="h-[72px] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded-[12px] border border-gray-200"></div>
-        </div>
-
-        {/* Category dropdown skeleton */}
-        <div className="w-full lg:w-fit lg:min-w-[366px]">
-          <div className="h-[72px] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded-[12px] border border-gray-200"></div>
-        </div>
-      </div>
-    );
-  }, []);
-
-  const categoryListSkeleton = useMemo(() => {
-    return (
-      <div className="hidden lg:block">
-        <div className="flex flex-wrap gap-6">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              key={index}
-              className="h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded"
-              style={{ width: `${Math.random() * 40 + 60}px` }}
-            ></div>
-          ))}
-        </div>
-      </div>
-    );
-  }, []);
-
   console.log("activeTab", activeTab);
 
   return (
@@ -135,67 +103,53 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
       {/* Container chính với responsive margin */}
       <div className="custom-container">
         <div className="flex flex-col gap-6">
-          {/* Loading state */}
-          {isLoading && (
-            <>
-              {/* Tabs skeleton */}
-              <div className="w-full">{tabsSkeleton}</div>
+          {/* Tabs - Loading state */}
+          {isLoading && <div className="w-full">{tabsSkeleton}</div>}
 
-              {/* Search và filter skeleton */}
-              {searchAndFilterSkeleton}
-
-              {/* Category list skeleton */}
-              {categoryListSkeleton}
-            </>
-          )}
-
-          {/* Loaded state */}
+          {/* Tabs - Loaded state */}
           {!isLoading && (
-            <>
-              {/* Phần tabs - horizontal scroll trên mobile */}
-              <div className="w-full">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
-                  {tabs.map((tab) => (
-                    <TabItem
-                      key={tab.id}
-                      id={tab.id}
-                      label={tab.label}
-                      iconPath={tab.iconPath}
-                      isActive={activeTab === tab.id}
-                      onClick={handleTabClick}
-                    />
-                  ))}
-                </div>
+            <div className="w-full">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
+                {tabs.map((tab) => (
+                  <TabItem
+                    key={tab.id}
+                    id={tab.id}
+                    label={tab.label}
+                    iconPath={tab.iconPath}
+                    isActive={activeTab === tab.id}
+                    onClick={handleTabClick}
+                  />
+                ))}
               </div>
-
-              {/* Phần search và filter */}
-              <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center w-full md:pt-6 ">
-                {/* Search input - responsive width */}
-                <SearchInput
-                  value={searchValue}
-                  onChange={handleSearchChange}
-                  placeholder="Tìm kiếm dự án"
-                />
-
-                {/* Category dropdown - responsive width */}
-                <CategoryDropdown
-                  options={projectFieldOption}
-                  selectedValues={selectedCategories}
-                  onChange={handleCategoryChange}
-                  onScroll={onScroll}
-                  placeholder="Lĩnh vực"
-                />
-              </div>
-              {/* Phần danh sách lĩnh vực cho desktop */}
-              {/* <div className="hidden lg:block">
-                <div className="flex flex-wrap gap-6 text-base text-gray-600">
-                  {projectFieldOption.slice(1).map((category, index) => (
-                    <span key={category.value}>{category.label}</span>
-                  ))}
-                </div>
-              </div> */}
-            </>
+            </div>
           )}
+
+          {/* Phần search và filter - luôn hiển thị */}
+          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center w-full md:pt-6 ">
+            {/* Search input - responsive width */}
+            <SearchInput
+              value={searchValue}
+              onChange={handleSearchChange}
+              placeholder="Tìm kiếm dự án"
+            />
+
+            {/* Category dropdown - responsive width */}
+            <CategoryDropdown
+              options={projectFieldOption}
+              selectedValues={selectedCategories}
+              onChange={handleCategoryChange}
+              onScroll={onScroll}
+              placeholder="Lĩnh vực"
+            />
+          </div>
+          {/* Phần danh sách lĩnh vực cho desktop */}
+          {/* <div className="hidden lg:block">
+            <div className="flex flex-wrap gap-6 text-base text-gray-600">
+              {projectFieldOption.slice(1).map((category, index) => (
+                <span key={category.value}>{category.label}</span>
+              ))}
+            </div>
+          </div> */}
         </div>
       </div>
 

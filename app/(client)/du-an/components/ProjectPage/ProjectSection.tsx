@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import ProjectFilter from "./ProjectFilter";
 import ProjectGrid from "./ProjectGrid";
 
 const ProjectSection: React.FC = () => {
+  // Hooks
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   // State để quản lý các bộ lọc
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("0");
@@ -12,19 +17,6 @@ const ProjectSection: React.FC = () => {
 
   // Ref để tham chiếu đến section cần scroll
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Handlers để xử lý thay đổi từ ProjectFilter
-  const handleSearchChange = (value: string) => {
-    setSearchQuery(value);
-  };
-
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
-  };
-
-  const handleCategoryChange = (categories: string[]) => {
-    setSelectedCategories(categories);
-  };
 
   // Hàm xử lý scroll đến đầu section
   const handleScroll = () => {
@@ -40,6 +32,36 @@ const ProjectSection: React.FC = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  // Effect để đọc query parameter khi component mount
+  useEffect(() => {
+    const tabParam = searchParams.get("tab");
+    if (tabParam) {
+      setActiveTab(tabParam);
+      // Auto scroll xuống section khi có query param
+      setTimeout(() => {
+        handleScroll();
+      }, 100); // Delay nhỏ để đảm bảo component đã render
+    }
+  }, [searchParams]);
+
+  // Handlers để xử lý thay đổi từ ProjectFilter
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+  };
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+
+    // Cập nhật URL với query parameter
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", tabId);
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
+
+  const handleCategoryChange = (categories: string[]) => {
+    setSelectedCategories(categories);
   };
 
   return (
