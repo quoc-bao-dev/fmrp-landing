@@ -79,10 +79,10 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
   // Skeleton components với useMemo
   const tabsSkeleton = useMemo(() => {
     return (
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4">
         {Array.from({ length: 4 }).map((_, index) => (
           <div key={index} className="animate-pulse">
-            <div className="h-[120px] lg:h-[140px] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded-2xl border border-gray-100">
+            <div className="h-[120px] md:h-[130px] lg:h-[140px] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded-2xl border border-gray-100">
               <div className="p-4 h-full flex flex-col items-center justify-center space-y-3">
                 {/* Icon skeleton */}
                 <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 bg-[length:200%_100%] animate-shimmer rounded-lg"></div>

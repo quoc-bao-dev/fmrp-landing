@@ -23,7 +23,7 @@ const Tagline: React.FC<Props> = () => {
     <section className="py-6 relative overflow-hidden ">
       {/* Decorative images for desktop */}
       <motion.div
-        className="hidden lg:block absolute lg:top-[10%] top-1/2 left-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[260px] xl:h-[250px] lg:h-[250px] size-[250px] aspect-[0.78/1] pointer-events-none"
+        className="hidden lg:block absolute lg:top-[10%] top-1/2 left-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[200px] xl:h-[200px] lg:h-[200px] size-[200px] aspect-[0.78/1] pointer-events-none"
         // animate={{ y: [0, -12, 0] }}
         transition={floatingTransition}
       >
@@ -38,7 +38,7 @@ const Tagline: React.FC<Props> = () => {
       </motion.div>
 
       <motion.div
-        className="hidden lg:block absolute lg:top-[10%] top-1/2 right-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[260px] xl:h-[250px] lg:h-[250px] size-[250px] aspect-[0.78/1] pointer-events-none"
+        className="hidden lg:block absolute lg:top-[10%] top-1/2 right-0 lg:-translate-y-1/4 -translate-y-1/2 3xl:size-[200px] xl:h-[200px] lg:h-[200px] size-[200px] aspect-[0.78/1] pointer-events-none"
         // animate={{ y: [0, -12, 0] }}
         transition={floatingTransition}
       >
