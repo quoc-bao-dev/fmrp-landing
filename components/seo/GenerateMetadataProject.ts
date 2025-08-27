@@ -1,13 +1,8 @@
-// lib/generateBlogMetadata.ts
-import he from "he";
-// import type { Metadata } from 'next';
-
 export function GenerateMetadataProject(data: any, slug: string) {
-  const title = he.decode(data?.name || "Dự án");
-  const description = he.decode(
+  const title = data?.name || "Dự án";
+  const description =
     data?.introduce?.content_one ||
-      "FOSO cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu vận hành, từ giải pháp phần mềm đến thiết kế app mobile và website theo yêu cầu."
-  );
+    "FOSO cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu vận hành, từ giải pháp phần mềm đến thiết kế app mobile và website theo yêu cầu.";
   const keywords =
     data?.seo_keywords ||
     "FOSO, thiết kế website, phát triển phần mềm, công nghệ cho SME";
