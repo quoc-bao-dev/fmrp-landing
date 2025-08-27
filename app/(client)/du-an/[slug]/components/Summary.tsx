@@ -16,13 +16,13 @@ interface SummaryProps {
 const Summary = ({ data, isLoading = false }: SummaryProps) => {
   const images = data?.img;
   return (
-    <div className="custom-container px-1 xl:px-0 flex flex-col xl:items-center gap-2 xl:gap-12 xl:py-24">
+    <div className="custom-container px-1 xl:px-0 flex flex-col lg:items-center gap-2 lg:gap-6 xl:gap-12 xl:py-24">
       <h2 className="text-green-700 font-extrabold capitalize text-title-section-small">
         Tổng kết dự án
       </h2>
-      <div className="flex flex-col gap-6 xl:gap-12 xl:flex-row w-full">
+      <div className="flex flex-col gap-6 xl:gap-12 lg:flex-row w-full">
         <div className="flex-1 flex flex-col gap-6 justify-center">
-          <div className="flex flex-col xl:flex-row gap-2 xl:gap-8">
+          <div className="flex flex-col lg:flex-row gap-2 xl:gap-8">
             <Image
               src={IMAGES.sign}
               alt="sign"

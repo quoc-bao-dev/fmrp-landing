@@ -33,7 +33,7 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
         />
       </div>
       <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-12">
-        <div className="flex flex-col gap-2.5 xl:items-center w-full">
+        <div className="flex flex-col gap-2.5 lg:items-center w-full">
           <h2 className="text-green-700 font-extrabold text-title-section-small">
             {isLoading ? <Skeleton className="h-8 w-64" /> : data?.title}
           </h2>
@@ -44,7 +44,7 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
               <Skeleton className="h-6 w-10/12 text-center" />
             </div>
           ) : (
-            <div className="xl:text-center font-medium max-w-5xl mx-auto text-base-default text-[#231F20]">
+            <div className="lg:text-center font-medium max-w-5xl mx-auto text-base-default text-[#231F20]">
               <p>{data?.content}</p>
             </div>
           )}
@@ -54,8 +54,8 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
           ? Array.from({ length: 2 }).map((_, index) => (
               <div
                 key={`sk-${index}`}
-                className={`flex flex-col xl:flex-row gap-6 xl:gap-12 w-full ${
-                  index % 2 === 1 ? "xl:flex-row-reverse" : ""
+                className={`flex flex-col lg:flex-row gap-6 xl:gap-12 w-full ${
+                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
                 <div className="flex-1 rounded-xl overflow-hidden">
@@ -71,8 +71,8 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
           : problemData?.map((item: any, index: number) => (
               <div
                 key={index}
-                className={`flex flex-col xl:flex-row gap-6 xl:gap-12 ${
-                  index % 2 === 1 ? "xl:flex-row-reverse" : ""
+                className={`flex flex-col lg:flex-row gap-6 xl:gap-12 ${
+                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
                 <div className="flex-1 rounded-xl overflow-hidden">
@@ -97,9 +97,9 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
                         <Image
                           src={image}
                           alt={`${item.title} - Hình ảnh ${imageIndex + 1}`}
-                          width={1000}
-                          height={1000}
-                          className="w-full aspect-video object-cover bg-gray-50"
+                          width={2000}
+                          height={2000}
+                          className="w-full aspect-[1578:1052] object-cover bg-gray-50"
                         />
                       </SwiperSlide>
                     ))}

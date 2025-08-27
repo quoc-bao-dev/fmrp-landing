@@ -11,6 +11,8 @@ export const IMAGES = {
   img3: "/project-detail/img.png",
   bannerPj: "/project-detail/bannerPj.png",
   mokupTablet: "/project-detail/mokupTablet.png",
+  appstore: "/project-detail/appstore.png",
+  googleplay: "/project-detail/googleplay.png",
   sign: "/project-detail/sign.png",
   dienmay: "/icons/fmrp/dienmay1.png",
   cokhi: "/icons/fmrp/cokhi1.png",
