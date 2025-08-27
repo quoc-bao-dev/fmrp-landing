@@ -42,6 +42,7 @@ const ProjectDetailPage = () => {
           year={projectDetail?.year}
           field_detail={projectDetail?.field_detail}
           category={projectDetail?.category}
+          type_view={projectDetail?.type_view}
         />
       </div>
 
@@ -52,7 +53,7 @@ const ProjectDetailPage = () => {
       <Banner data={projectDetail?.derive} />
 
       <div id="feature-interface">
-        <Interface data={projectDetail?.feature} />
+        <Interface data={projectDetail?.feature} type_view={projectDetail?.type_view} />
       </div>
 
       <div id="summary">

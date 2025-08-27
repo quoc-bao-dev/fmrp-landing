@@ -21,7 +21,7 @@ const TabItem: React.FC<TabItemProps> = ({
       onClick={() => onClick(id)}
       className={`
         relative p-3 lg:p-6 items-center gap-2 lg:gap-4  overflow-hidden
-        border rounded-[12px] md:rounded-[24px] transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-gray-400/10 bg-white text-gray-700 
+        border rounded-[12px] lg:rounded-[24px] transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-gray-400/10 bg-white text-gray-700 
       `}
     >
       {/* Dấu tích bo tròn ở góc trên bên phải khi tab được chọn */}

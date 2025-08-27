@@ -65,7 +65,7 @@ const Related = ({ slug }: { slug: string }) => {
             ))}
       </div>
 
-      <div className="xl:hidden flex flex-col gap-3">
+      <div className="lg:hidden flex flex-col gap-3">
         {isLoading
           ? Array.from({ length: 4 }).map((_, i) => (
               <div className="flex gap-3" key={`sk-m-${i}`}>
@@ -85,7 +85,7 @@ const Related = ({ slug }: { slug: string }) => {
                   height={200}
                   className="size-[100px] flex-shrink-0 rounded-lg object-cover"
                 />
-                <div className="flex flex-col justify-center gap-2">
+                <div className="flex flex-col justify-center gap-2 flex-1">
                   {project?.featured ? (
                     <div className="inline-flex w-fit items-center gap-1 bg-white border border-gray-50 px-1 py-0.5 rounded-full">
                       <Image
