@@ -64,7 +64,7 @@ const Introduce = ({
         }`}
       >
         <div
-          className={`px-3 md:px-9 xl:px-0 w-full 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-8 2xl:gap-12 pb-5 ${
+          className={`px-3 md:px-9 xl:px-0 w-full 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-8 2xl:gap-12 xl:pb-5 ${
             type_view === 1 ? " xl:w-[27%] 2xl:w-[25%]" : "xl:w-[30%]"
           }`}
         >
