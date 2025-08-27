@@ -75,7 +75,7 @@ const Introduce = ({
           <div className="flex flex-col gap-5">
             {!isLoading && logo ? (
               <Image
-                src={logo || IMAGES.logoKanow}
+                src={data?.technology?.left || IMAGES.img}
                 alt="logo"
                 width={1000}
                 height={1000}
@@ -146,13 +146,15 @@ const Introduce = ({
                     className="w-[200px] h-auto"
                   />
                 </div>
-                <Image
-                  src={data?.technology?.left || IMAGES.googleplay}
-                  alt="googleplay"
-                  width={1000}
-                  height={1000}
-                  className="w-[130px] aspect-square border border-[#0000000F] rounded-lg"
-                />
+                <div className="w-[130px] aspect-square flex-shrink-0 border border-[#0000000F] rounded-lg overflow-hidden">
+                  <Image
+                    src={data?.technology?.right || IMAGES.img}
+                    alt="googleplay"
+                    width={1000}
+                    height={1000}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             )}
           </div>
