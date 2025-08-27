@@ -5,9 +5,7 @@ import apiProjects from "@/services/projects/projects.services";
 export async function generateMetadata({ params }: any) {
   try {
     const { slug } = await params;
-console.log(slug)
     const { data } = await apiProjects.getProjectDetail(slug);
-console.log(data)
     const canonicalUrl = `${process.env.NEXT_PUBLIC_URL_WEBSITE}/du-an/${slug}`;
 
     return GenerateMetadataProject(data?.data, canonicalUrl);
