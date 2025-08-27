@@ -178,7 +178,7 @@ const Introduce = ({
                   width={1000}
                   height={1000}
                   className="w-full aspect-[435/891] object-cover"
-                />
+                /> 
                 <div className="absolute bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[95%] rounded-3xl aspect-[435/891] object-cover"></div>
                 <Image
                   src={data?.img?.left || IMAGES.kanowMB}
