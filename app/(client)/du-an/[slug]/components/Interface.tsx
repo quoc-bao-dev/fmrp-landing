@@ -72,7 +72,7 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
 
         {/* Tab navigation - hiển thị danh sách các tính năng */}
         <div className="flex gap-3 border-b border-[#F1F5F7] overflow-x-scroll overflow-y-hidden scrollbar-hide">
-          {features.map((feature: any, index: number) => (
+          {features?.map((feature: any, index: number) => (
             <motion.div
               key={index}
               className="relative py-3 px-4 flex-shrink-0"

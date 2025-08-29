@@ -88,7 +88,7 @@ const Summary = ({ data, isLoading = false }: SummaryProps) => {
                     alt={`Hình ảnh ${imageIndex + 1}`}
                     width={1000}
                     height={1000}
-                    className="w-full aspect-video object-cover bg-gray-50"
+                    className="w-full aspect-[1578:1052] object-cover bg-gray-50"
                   />
                 </SwiperSlide>
               ))}
