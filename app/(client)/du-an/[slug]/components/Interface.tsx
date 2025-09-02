@@ -21,6 +21,12 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
 
   // Ref để điều khiển Swiper
   const swiperRef = useRef<SwiperType | null>(null);
+  // Ref container của danh sách tab và ref từng tab để cuộn vào giữa
+  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
+  const tabItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // State hiển thị mũi tên cuộn
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   // Lấy danh sách các tính năng từ data.item
   const features = data?.item || [];
@@ -48,7 +54,59 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
       swiperRef.current.update();
     }
   }, [activeTab, currentImages]);
-  console.log(currentImages);
+
+  // Cuộn tab đang chọn vào giữa thanh cuộn ngang
+  useEffect(() => {
+    const container = tabsContainerRef.current;
+    const activeEl = tabItemRefs.current[activeTab];
+    if (!container || !activeEl) return;
+
+    const containerWidth = container.clientWidth;
+    const maxScrollLeft = container.scrollWidth - containerWidth;
+    const targetCenter = activeEl.offsetLeft + activeEl.offsetWidth / 2;
+    let newScrollLeft = targetCenter - containerWidth / 2;
+
+    if (newScrollLeft < 0) newScrollLeft = 0;
+    if (newScrollLeft > maxScrollLeft) newScrollLeft = maxScrollLeft;
+
+    container.scrollTo({ left: newScrollLeft, behavior: "smooth" });
+    // cập nhật trạng thái mũi tên sau khi cuộn
+    requestAnimationFrame(() => updateScrollIndicators());
+  }, [activeTab, features]);
+
+  // Cập nhật trạng thái có thể cuộn trái/phải
+  const updateScrollIndicators = () => {
+    const el = tabsContainerRef.current;
+    if (!el) return;
+    const atLeft = el.scrollLeft <= 0;
+    const atRight = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1;
+    setCanScrollLeft(!atLeft);
+    setCanScrollRight(!atRight);
+  };
+
+  // Lắng nghe resize để cập nhật mũi tên
+  useEffect(() => {
+    updateScrollIndicators();
+    const onResize = () => updateScrollIndicators();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [features]);
+
+  const handleScrollLeft = () => {
+    const el = tabsContainerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: -Math.max(200, el.clientWidth * 0.5), behavior: "smooth" });
+    setTimeout(updateScrollIndicators, 200);
+  };
+
+  const handleScrollRight = () => {
+    const el = tabsContainerRef.current;
+    if (!el) return;
+    el.scrollBy({ left: Math.max(200, el.clientWidth * 0.5), behavior: "smooth" });
+    setTimeout(updateScrollIndicators, 200);
+  };
+
+  console.log(features)
   return (
     <div className="relative xl:py-24 overflow-hidden">
       <div className="absolute w-[500px] h-auto aspect-square rounded-[40px] 2xl:translate-x-[40%] translate-x-[60%] top-10 right-0 pointer-events-none z-[-1]">
@@ -63,7 +121,7 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
       <div className="custom-container px-1 xl:px-0 flex flex-col items-center gap-6 xl:gap-10">
         <div className="flex flex-col xl:flex-row gap-2 w-full">
           <h2 className="flex-1 text-green-700 text-title-section-medium font-extrabold capitalize">
-            Giao diện dự án
+            Giao diện dự án {`(${features.length})`}
           </h2>
           <p className="flex-1 text-base-default text-[#231F20] font-medium">
             {content}
@@ -71,45 +129,80 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
         </div>
 
         {/* Tab navigation - hiển thị danh sách các tính năng */}
-        <div className="flex gap-3 border-b border-[#F1F5F7] overflow-x-scroll overflow-y-hidden scrollbar-hide">
-          {features?.map((feature: any, index: number) => (
-            <motion.div
-              key={index}
-              className="relative py-3 px-4 flex-shrink-0"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        <div className="relative w-full">
+          {canScrollLeft && (
+            <button
+              type="button"
+              onClick={handleScrollLeft}
+              className="absolute border border-gray-200 left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white hover:bg-gray-50"
+              aria-label="Scroll left"
             >
-              <button
-                className={`whitespace-nowrap first-letter:uppercase text-title font-semibold transition-all duration-300 ${
-                  activeTab === index
-                    ? "text-green-700 font-bold"
-                    : "text-light-600 hover:text-green-600"
-                }`}
-                onClick={() => setActiveTab(index)}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
+
+          <div
+            ref={tabsContainerRef}
+            onScroll={updateScrollIndicators}
+            className="flex gap-3 border-b border-[#F1F5F7] overflow-x-scroll overflow-y-hidden scrollbar-hide"
+          >
+            {features?.map((feature: any, index: number) => (
+              <motion.div
+                key={index}
+                ref={(el) => { tabItemRefs.current[index] = el; }}
+                className="relative py-3 px-4 flex-shrink-0"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {feature.title}
-              </button>
-              {/* Hiển thị gạch chân cho tab đang được chọn với animation */}
-              <AnimatePresence>
-                {activeTab === index && (
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    animate={{ scaleX: 1, opacity: 1 }}
-                    exit={{ scaleX: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  />
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                <button
+                  className={`whitespace-nowrap first-letter:uppercase text-title font-semibold transition-all duration-300 ${
+                    activeTab === index
+                      ? "text-green-700 font-bold"
+                      : "text-light-600 hover:text-green-600"
+                  }`}
+                  onClick={() => setActiveTab(index)}
+                >
+                  {feature.title}
+                </button>
+                {/* Hiển thị gạch chân cho tab đang được chọn với animation */}
+                <AnimatePresence>
+                  {activeTab === index && (
+                    <motion.span
+                      className="absolute bottom-0 left-0 w-full h-[3px] bg-green-700 rounded-t-full"
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      exit={{ scaleX: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    />
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+
+          {canScrollRight && (
+            <button
+              type="button"
+              onClick={handleScrollRight}
+              className="absolute border border-gray-200 right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white hover:bg-gray-50"
+              aria-label="Scroll right"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6L15 12L9 18" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
         </div>
 
         {/* Hiển thị hình ảnh của tính năng được chọn với fade transition */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            className="w-full px-10 xl:px-40 2xl:px-72 bg-gradient-to-r from-[#E0FFCC] to-[#CCFFEC] rounded-xl p-4 lg:p-10"
+            className={`w-full px-10 bg-gradient-to-r from-[#E0FFCC] to-[#CCFFEC] rounded-xl p-4 lg:p-10
+              ${type_view === 1 ? "xl:px-40 2xl:px-72" : ""}
+            `}
           >
             {type_view === 1 ? (
               <div className="relative">
@@ -175,25 +268,45 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
                 </motion.div>
               </div>
             ) : (
-              <div className="w-full flex gap-1 xl:gap-4 justify-center">
-                {currentImages?.map((item: any, index: number) => (
-                  <div key={index} className="relative w-[100px] md:w-[150px] xl:w-[293px]">
-                    <Image
-                      src={IMAGES.mokupPhone}
-                      alt="mokupPhone"
-                      width={1000}
-                      height={1000}
-                      className="w-full aspect-[435/891] object-cover z-[11] relative"
-                    />
-                    <Image
-                      src={item || IMAGES.kanowMB}
-                      alt="mokupPhone"
-                      width={1000}
-                      height={1000}
-                      className="absolute top-0 bottom-0 aspect-[435/891] left-1/2 -translate-x-1/2  z-[10] p-1 xl:p-3 rounded-3xl md:rounded-3xl xl:rounded-[50px] object-cover"
-                    />
-                  </div>
-                ))}
+              <div className="w-full flex justify-center">
+                {(() => {
+                  const n = currentImages?.length || 0;
+                  // Map vị trí bắt đầu theo số phần tử để canh giữa trên 5 cột
+                  const colStartsByCount: Record<number, number[]> = {
+                    1: [3],
+                    2: [2, 4],
+                    3: [2, 3, 4],
+                    4: [1, 2, 4, 5], // chừa cột 3 ở giữa để cân hai bên
+                    5: [1, 2, 3, 4, 5],
+                  };
+                  const starts = colStartsByCount[n] || [];
+                  return (
+                    <div className="grid grid-cols-5 gap-1 xl:gap-4 w-fit">
+                      {currentImages?.map((item: any, index: number) => (
+                        <div
+                          key={index}
+                          style={starts[index] ? { gridColumnStart: starts[index] } : undefined}
+                          className="relative"
+                        >
+                          <Image
+                            src={IMAGES.mokupPhone}
+                            alt="mokupPhone"
+                            width={1000}
+                            height={1000}
+                            className="w-full aspect-[435/891] object-cover z-[11] relative"
+                          />
+                          <Image
+                            src={item || IMAGES.kanowMB}
+                            alt="mokupPhone"
+                            width={1000}
+                            height={1000}
+                            className="absolute top-0 bottom-0 aspect-[435/891] left-1/2 -translate-x-1/2 z-[10] p-0.5 md:p-1 xl:p-2 rounded-lg md:rounded-3xl lg:rounded-[30px] 2xl:rounded-[40px] object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
             )}
           </motion.div>

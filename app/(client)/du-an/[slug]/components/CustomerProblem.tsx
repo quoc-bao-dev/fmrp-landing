@@ -106,10 +106,10 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
                   </Swiper>
                 </div>
                 <div className="flex-1 flex flex-col gap-2.5 justify-center">
-                  <h3 className="text-title-section-feature font-extrabold text-light-1000">
+                  <h3 className="text-title-section-small font-extrabold text-light-1000">
                     {item.title}
                   </h3>
-                  <p className="text-base text-[#231F20] font-medium">
+                  <p className="text-base xl:text-lg text-[#231F20] font-medium">
                     {item.content_short}
                   </p>
                 </div>

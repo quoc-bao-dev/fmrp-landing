@@ -208,7 +208,7 @@ const Introduce = ({
                   alt="mokupPhone"
                   width={1000}
                   height={1000}
-                  className="absolute top-0 left-1/2 -translate-x-1/2  z-[-1] p-1 lg:p-3 xl:p-3 rounded-2xl md:rounded-[50px] lg:rounded-[60px] xl:rounded-[40px] 3xl:rounded-[100px] object-cover"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-[-1] p-1 lg:p-3 rounded-2xl md:rounded-[40px] lg:rounded-[60px] xl:rounded-[40px] 2xl:rounded-[60px] 3xl:rounded-[90px] object-cover"
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-transparent to-black rounded-l-lg xl:rounded-l-2xl"></div>
               </div>
@@ -225,7 +225,7 @@ const Introduce = ({
                   alt="mokupPhone"
                   width={1000}
                   height={1000}
-                  className="absolute top-0 left-1/2 -translate-x-1/2  z-[-1] p-1 lg:p-3 xl:p-3 rounded-2xl md:rounded-[50px] lg:rounded-[60px] xl:rounded-[40px] 3xl:rounded-[100px] object-cover"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-[-1] p-1 lg:p-3 rounded-2xl md:rounded-[40px] lg:rounded-[60px] xl:rounded-[40px] 2xl:rounded-[60px] 3xl:rounded-[90px] object-cover"
                 />
               </div>
             </div>
