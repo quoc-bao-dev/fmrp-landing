@@ -425,7 +425,8 @@ const FosoHeaderContainer = () => {
                 initial={{ y: 0, opacity: 1 }} // 🚀 Đảm bảo header HIỆN khi vào trang
                 // initial={{ y: pathname === "/" ? -100 : 0, opacity: pathname === "/" ? 0 : 1 }}
                 animate={controls}
-                className={`${isStateClientLayout?.header?.isShowMenuMobileFoso ? "mx-0" : `md:mx-8 mx-4 ${(!isDuAnPage && isAtPageTop) ? "4xl:mt-36 2xl:mt-24 lg:mt-20 mt-14" : "mt-4"} `} 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl custom-transition
+                // 4xl:mt-36 2xl:mt-24 lg:mt-20 mt-14 thay class này cho mt-4 điều kiện true khi có banner ở trên đầu web
+                className={`${isStateClientLayout?.header?.isShowMenuMobileFoso ? "mx-0" : `md:mx-8 mx-4 ${(!isDuAnPage && isAtPageTop) ? "mt-4" : "mt-4"} `} 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 px-6 xxl:py-3 py-2 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl custom-transition
                 `}
                 style={{
                     willChange: 'transform, opacity', // Tối ưu hóa GPU rendering
