@@ -2,14 +2,14 @@
 
 import BlurBackgroundFixed from "@/app/(client)/products/fmrp/components/ui/common/BlurBackgroundFixed";
 import AnimatedTitle from "@/components/common/animations/text/AnimatedTitle";
+import BlurImage from "@/components/common/blur/BlurImage";
 import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
+import { Skeleton } from "@/components/ui/skeleton";
 import { IMAGES } from "@/constants/Images";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
-import BlurImage from "@/components/common/blur/BlurImage";
 
 interface IntroduceProps {
   data: any;
@@ -39,7 +39,7 @@ const Introduce = ({
   ];
 
   const heroPerTitle = useMemo(
-    () => 
+    () =>
       data?.title
         .split("")
         .map((letter: string, index: number) => ({ id: index, letter })),
@@ -280,13 +280,20 @@ const Introduce = ({
             Dịch vụ
           </h3>
           {!isLoading && category ? (
-            <p className="whitespace-nowrap text-button text-dark-primary font-bold">
-              {category
-                .map((item: any) => item?.name)
-                .filter(Boolean)
-                .join(", ")}
-              {category?.name}
-            </p>
+            <>
+              {category?.name ? (
+                <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+                  {category?.name}
+                </p>
+              ) : (
+                <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+                  {category
+                    .map((item: any) => item?.name)
+                    .filter(Boolean)
+                    .join(" và ")}
+                </p>
+              )}
+            </>
           ) : (
             <Skeleton className="h-6 w-28" />
           )}
