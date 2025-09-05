@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useState, useEffect, useRef } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { motion, AnimatePresence } from "framer-motion";
+import BlurImage from "@/components/common/blur/BlurImage";
 
 interface InterfaceProps {
   data: any;
@@ -95,18 +96,23 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
   const handleScrollLeft = () => {
     const el = tabsContainerRef.current;
     if (!el) return;
-    el.scrollBy({ left: -Math.max(200, el.clientWidth * 0.5), behavior: "smooth" });
+    el.scrollBy({
+      left: -Math.max(200, el.clientWidth * 0.5),
+      behavior: "smooth",
+    });
     setTimeout(updateScrollIndicators, 200);
   };
 
   const handleScrollRight = () => {
     const el = tabsContainerRef.current;
     if (!el) return;
-    el.scrollBy({ left: Math.max(200, el.clientWidth * 0.5), behavior: "smooth" });
+    el.scrollBy({
+      left: Math.max(200, el.clientWidth * 0.5),
+      behavior: "smooth",
+    });
     setTimeout(updateScrollIndicators, 200);
   };
 
-  console.log(features)
   return (
     <div className="relative xl:py-24 overflow-hidden">
       <div className="absolute w-[500px] h-auto aspect-square rounded-[40px] 2xl:translate-x-[40%] translate-x-[60%] top-10 right-0 pointer-events-none z-[-1]">
@@ -137,8 +143,20 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
               className="absolute border border-gray-200 left-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white hover:bg-gray-50"
               aria-label="Scroll left"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 18L9 12L15 6"
+                  stroke="#111827"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}
@@ -151,7 +169,9 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
             {features?.map((feature: any, index: number) => (
               <motion.div
                 key={index}
-                ref={(el) => { tabItemRefs.current[index] = el; }}
+                ref={(el) => {
+                  tabItemRefs.current[index] = el;
+                }}
                 className="relative py-3 px-4 flex-shrink-0"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -189,8 +209,20 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
               className="absolute border border-gray-200 right-0 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white hover:bg-gray-50"
               aria-label="Scroll right"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 6L15 12L9 18" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 6L15 12L9 18"
+                  stroke="#111827"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}
@@ -202,6 +234,7 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
             key={activeTab}
             className={`w-full px-10 bg-gradient-to-r from-[#E0FFCC] to-[#CCFFEC] rounded-xl p-4 lg:p-10
               ${type_view === 1 ? "xl:px-40 2xl:px-72" : ""}
+              ${type_view === 3 ? "xl:px-20 2xl:px-52" : ""}
             `}
           >
             {type_view === 1 ? (
@@ -267,7 +300,7 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
                   </Swiper>
                 </motion.div>
               </div>
-            ) : (
+            ) : type_view === 2 ? (
               <div className="w-full flex justify-center">
                 {(() => {
                   const n = currentImages?.length || 0;
@@ -285,7 +318,11 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
                       {currentImages?.map((item: any, index: number) => (
                         <div
                           key={index}
-                          style={starts[index] ? { gridColumnStart: starts[index] } : undefined}
+                          style={
+                            starts[index]
+                              ? { gridColumnStart: starts[index] }
+                              : undefined
+                          }
                           className="relative"
                         >
                           <Image
@@ -307,6 +344,121 @@ const Interface = ({ data, type_view }: InterfaceProps) => {
                     </div>
                   );
                 })()}
+              </div>
+            ) : (
+              // <div className="w-full flex justify-center gap-5">
+              //   <div className="relative w-1/5">
+              //     <Image
+              //       src={IMAGES.mokupPhone}
+              //       alt="mokupPhone"
+              //       width={1000}
+              //       height={1000}
+              //       className="w-full aspect-[435/891] object-cover z-[11] relative"
+              //     />
+              //     <Image
+              //       src={currentImages[0] || IMAGES.kanowMB}
+              //       alt="mokupPhone"
+              //       width={1000}
+              //       height={1000}
+              //       className="absolute top-0 bottom-0 aspect-[435/891] left-1/2 -translate-x-1/2 z-[10] p-0.5 md:p-1 xl:p-2 rounded-lg md:rounded-3xl lg:rounded-[30px] 2xl:rounded-[40px] object-cover"
+              //     />
+              //   </div>
+              //   <div className="relative">
+              //     <Image
+              //       src={IMAGES.mokupTablet}
+              //       alt="mokupTablet"
+              //       width={1000}
+              //       height={1000}
+              //       className="w-full aspect-[924/658] object-cover relative z-[11]"
+              //     />
+              //     <div className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 md:p-5 lg:p-7 rounded-xl lg:rounded-[50px]">
+              //       <div className="bg-gray-50 w-full h-full"></div>
+              //     </div>
+              //     <motion.div
+              //       className="w-full aspect-[924/658] z-[10] object-cover absolute top-0 left-0 p-3 md:p-5 lg:p-7 rounded-xl lg:rounded-[50px]"
+              //       initial={{ opacity: 0, scale: 0.95 }}
+              //       animate={{ opacity: 1, scale: 1 }}
+              //       transition={{ duration: 0.4, delay: 0.2 }}
+              //     >
+              //       <Swiper
+              //         key={`swiper-${activeTab}-${currentImages.length}`}
+              //         onSwiper={(swiper) => {
+              //           swiperRef.current = swiper;
+              //         }}
+              //         modules={[Autoplay, Pagination]}
+              //         spaceBetween={0}
+              //         slidesPerView={1}
+              //         navigation={false}
+              //         pagination={{
+              //           clickable: true,
+              //         }}
+              //         // autoplay={{
+              //         //   delay: 3000,
+              //         //   disableOnInteraction: false,
+              //         // }}
+              //         loop={true}
+              //         className="w-full h-full custom-swiper-project"
+              //       >
+              //         {currentImages?.map(
+              //           (image: string, imageIndex: number) => (
+              //             <SwiperSlide key={`${activeTab}-${imageIndex}`}>
+              //               <motion.div
+              //                 initial={{ opacity: 0, scale: 0.9 }}
+              //                 animate={{ opacity: 1, scale: 1 }}
+              //                 transition={{
+              //                   duration: 0.5,
+              //                   delay: imageIndex * 0.1,
+              //                 }}
+              //                 className="h-full"
+              //               >
+              //                 <Image
+              //                   src={image}
+              //                   alt={`Hình ảnh ${imageIndex + 1} của ${
+              //                     features[activeTab]?.title
+              //                   }`}
+              //                   width={2000}
+              //                   height={2000}
+              //                   className="w-full h-full object-cover bg-gray-50"
+              //                 />
+              //               </motion.div>
+              //             </SwiperSlide>
+              //           )
+              //         )}
+              //       </Swiper>
+              //     </motion.div>
+              //   </div>
+              // </div>
+              <div className="relative ml-[10%] flex-1 h-fit p-1 xl:p-2 rounded-lg xl:rounded-3xl bg-[#FFFFFF] shadow-[-25.05px_25.05px_50.11px_0px_#257A2840] backdrop-blur-[31.317508697509766px]">
+                <div className="rounded-lg xl:rounded-2xl">
+                  <BlurImage
+                    src={currentImages[1] || IMAGES.img}
+                    alt="banner"
+                    width={1000}
+                    height={1000}
+                    loading="lazy"
+                    className="w-full aspect-[1280/800] object-cover rounded-lg xl:rounded-2xl bg-gray-50"
+                  />
+                </div>
+
+                <div className="absolute w-[22.5%] bottom-4 left-0 -translate-x-1/2">
+                  <div className="relative">
+                    <Image
+                      src={IMAGES.mokupPhone}
+                      alt="mokupPhone"
+                      width={1000}
+                      height={1000}
+                      className="w-full aspect-[435/891] object-cover"
+                    />
+                    <div className="absolute bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[95%] rounded-3xl aspect-[435/891] object-cover"></div>
+                    <Image
+                      src={currentImages[0] || IMAGES.img}
+                      alt="mokupPhone"
+                      width={1000}
+                      height={1000}
+                      className="absolute aspect-[435/891] top-0 bottom-0 left-1/2 -translate-x-1/2 z-[-1] p-0.5 md:p-2 rounded-xl md:rounded-3xl lg:rounded-[35px] xl:rounded-3xl object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </motion.div>

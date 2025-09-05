@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: any) {
     const { slug } = await params;
     const { data } = await apiProjects.getProjectDetail(slug);
     const canonicalUrl = `${process.env.NEXT_PUBLIC_URL_WEBSITE}/du-an/${slug}`;
-
+console.log(data.data)
     return GenerateMetadataProject(data?.data, canonicalUrl);
   } catch (error) {
     return {
