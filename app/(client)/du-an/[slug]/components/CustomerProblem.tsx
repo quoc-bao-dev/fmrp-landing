@@ -17,7 +17,7 @@ interface CustomerProblemProps {
 }
 
 const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
-  const { setStatusSheet, setOpenSheetCustom } = useSheetStores()
+  const { setStatusSheet, setOpenSheetCustom } = useSheetStores();
   // Tạo mảng dữ liệu cho nhiều phần tử
   const problemData = data?.item;
 
@@ -109,9 +109,9 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
                   <h3 className="text-title-section-small font-extrabold text-light-1000">
                     {item.title}
                   </h3>
-                  <p className="text-base xl:text-lg text-[#231F20] font-medium">
-                    {item.content_short}
-                  </p>
+                  <div className="text-base xl:text-lg text-[#231F20] font-medium whitespace-pre-line">
+                    {item?.content_short}
+                  </div>
                 </div>
               </div>
             ))}
@@ -133,9 +133,9 @@ const CustomerProblem = ({ data, isLoading }: CustomerProblemProps) => {
             </div>
           }
           onClick={() => {
-            setOpenSheetCustom(true)
-            setStatusSheet("contact")
-        }}
+            setOpenSheetCustom(true);
+            setStatusSheet("contact");
+          }}
           reverse={true}
           className="border-gradient-button-no-bg-foso flex items-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group text-[#10805B] hover:bg-[#A3EED6]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter hover:text-[#10805B] font-medium pl-6 pr-1 py-1 border border-[#10805B] rounded-[40px] lg:w-fit w-full"
           style={{
