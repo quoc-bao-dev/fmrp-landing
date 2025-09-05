@@ -39,7 +39,7 @@ const Introduce = ({
   ];
 
   const heroPerTitle = useMemo(
-    () =>
+    () => 
       data?.title
         .split("")
         .map((letter: string, index: number) => ({ id: index, letter })),
