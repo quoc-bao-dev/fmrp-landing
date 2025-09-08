@@ -134,6 +134,18 @@ const Introduce = ({
                   />
                 </div>
               </div>
+            ) : type_view === 3 ? (
+              <div className="hidden xl:block">
+                <div className="flex gap-7">
+                  <Image
+                    src={data?.technology?.right || IMAGES.img}
+                    alt="logo"
+                    width={1000}
+                    height={1000}
+                    className="w-[160px] h-auto"
+                  />
+                </div>
+              </div>
             ) : (
               <div className="hidden xl:block">
                 <h4 className="text-sm-default text-[#33404A] font-medium">
@@ -290,7 +302,7 @@ const Introduce = ({
                   {category
                     .map((item: any) => item?.name)
                     .filter(Boolean)
-                    .join(" và ")}
+                    .join(" & ")}
                 </p>
               )}
             </>
