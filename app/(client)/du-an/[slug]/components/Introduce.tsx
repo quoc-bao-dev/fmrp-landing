@@ -106,7 +106,7 @@ const Introduce = ({
                 <Skeleton className="h-6 w-10/12" />
               </div>
             )}
-            {type_view === 2 ? (
+            {type_view === 2 || type_view === 3 ? (
               <div className="hidden xl:flex gap-3">
                 <div className="flex flex-col gap-3">
                   <Image
@@ -131,18 +131,6 @@ const Introduce = ({
                     width={1000}
                     height={1000}
                     className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            ) : type_view === 3 ? (
-              <div className="hidden xl:block">
-                <div className="flex gap-7">
-                  <Image
-                    src={data?.technology?.right || IMAGES.img}
-                    alt="logo"
-                    width={1000}
-                    height={1000}
-                    className="w-[160px] h-auto"
                   />
                 </div>
               </div>
