@@ -1,4 +1,3 @@
-import { GenerateMetadataFromData } from "@/components/seo/GenerateMetadataFromData";
 import { GenerateMetadataProject } from "@/components/seo/GenerateMetadataProject";
 import apiProjects from "@/services/projects/projects.services";
 

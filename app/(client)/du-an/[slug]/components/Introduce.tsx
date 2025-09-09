@@ -2,14 +2,14 @@
 
 import BlurBackgroundFixed from "@/app/(client)/products/fmrp/components/ui/common/BlurBackgroundFixed";
 import AnimatedTitle from "@/components/common/animations/text/AnimatedTitle";
+import BlurImage from "@/components/common/blur/BlurImage";
 import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
+import { Skeleton } from "@/components/ui/skeleton";
 import { IMAGES } from "@/constants/Images";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
-import BlurImage from "@/components/common/blur/BlurImage";
 
 interface IntroduceProps {
   data: any;
@@ -49,7 +49,7 @@ const Introduce = ({
   return (
     <div
       className={`relative flex flex-col pt-28 xl:pt-32 gap-9 ${
-        type_view === 1 ? "xl:gap-20" : "xl:gap-0"
+        type_view === 2 ? "xl:gap-0" : "xl:gap-20"
       }`}
     >
       <BlurBackgroundFixed />
@@ -58,14 +58,14 @@ const Introduce = ({
       </div>
       <div
         className={`z-10 flex flex-col-reverse xl:flex-row ${
-          type_view === 1
-            ? "gap-20 xl:gap-32 2xl:gap-40"
-            : "gap-9 xl:gap-0 xl:pr-20 2xl:pr-0"
+          type_view === 2
+            ? "gap-9 xl:gap-0 xl:pr-20 2xl:pr-0"
+            : "gap-20 xl:gap-32 2xl:gap-40"
         }`}
       >
         <div
           className={`px-3 md:px-9 xl:px-0 w-full 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-8 2xl:gap-12 xl:pb-5 ${
-            type_view === 1 ? " xl:w-[27%] 2xl:w-[25%]" : "xl:w-[30%]"
+            type_view === 2 ? "xl:w-[30%]" : "xl:w-[27%] 2xl:w-[25%]"
           }`}
         >
           <div className="hidden xl:block">
@@ -106,29 +106,7 @@ const Introduce = ({
                 <Skeleton className="h-6 w-10/12" />
               </div>
             )}
-            {type_view === 1 ? (
-              <div className="hidden xl:block">
-                <h4 className="text-sm-default text-[#33404A] font-medium">
-                  Công nghệ
-                </h4>
-                <div className="flex gap-7">
-                  <Image
-                    src={IMAGES.logoReact}
-                    alt="logo"
-                    width={1000}
-                    height={1000}
-                    className="w-[160px] h-auto"
-                  />
-                  <Image
-                    src={IMAGES.logoNext}
-                    alt="logo"
-                    width={1000}
-                    height={1000}
-                    className="w-[160px] h-auto"
-                  />
-                </div>
-              </div>
-            ) : (
+            {type_view === 2 || type_view === 3 ? (
               <div className="hidden xl:flex gap-3">
                 <div className="flex flex-col gap-3">
                   <Image
@@ -156,14 +134,74 @@ const Introduce = ({
                   />
                 </div>
               </div>
+            ) : (
+              <div className="hidden xl:block">
+                <h4 className="text-sm-default text-[#33404A] font-medium">
+                  Công nghệ
+                </h4>
+                <div className="flex gap-7">
+                  <Image
+                    src={IMAGES.logoReact}
+                    alt="logo"
+                    width={1000}
+                    height={1000}
+                    className="w-[160px] h-auto"
+                  />
+                  <Image
+                    src={IMAGES.logoNext}
+                    alt="logo"
+                    width={1000}
+                    height={1000}
+                    className="w-[160px] h-auto"
+                  />
+                </div>
+              </div>
             )}
           </div>
         </div>
-        {type_view === 1 ? (
+        {type_view === 2 ? (
+          <div className="overflow-hidden px-10 xl:pr-0 w-full flex-1">
+            <div className="relative rotate-[15deg] flex-1 flex items-center justify-center w-full -translate-x-[10%] -mb-[20%] 2xl:-mb-[18%] 3xl:-mb-[12%]">
+              <div className="w-[40%] relative translate-x-1/3 translate-y-[15%]">
+                <Image
+                  src={IMAGES.mokupPhone}
+                  alt="mokupPhone"
+                  width={1000}
+                  height={1000}
+                  className="w-full aspect-[435/891] object-cover "
+                />
+                <Image
+                  src={data?.img?.left || IMAGES.kanowMB}
+                  alt="mokupPhone"
+                  width={1000}
+                  height={1000}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-[-1] p-1 lg:p-3 rounded-2xl md:rounded-[40px] lg:rounded-[60px] xl:rounded-[40px] 2xl:rounded-[60px] 3xl:rounded-[90px] object-cover"
+                />
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-transparent to-black rounded-l-lg xl:rounded-l-2xl"></div>
+              </div>
+              <div className="w-[40%] relative z-10">
+                <Image
+                  src={IMAGES.mokupPhone}
+                  alt="mokupPhone"
+                  width={1000}
+                  height={1000}
+                  className="w-full aspect-[435/891] object-cover"
+                />
+                <Image
+                  src={data?.img?.right || IMAGES.kanowMB}
+                  alt="mokupPhone"
+                  width={1000}
+                  height={1000}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-[-1] p-1 lg:p-3 rounded-2xl md:rounded-[40px] lg:rounded-[60px] xl:rounded-[40px] 2xl:rounded-[60px] 3xl:rounded-[90px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
           <div className="ml-14 md:ml-24 lg:ml-32 xl:ml-0 relative flex-1 h-fit pl-1 py-1 xl:pl-2 xl:py-2 rounded-l-lg xl:rounded-l-3xl bg-[#FFFFFF73] shadow-[-25.05px_25.05px_50.11px_0px_#257A2840] backdrop-blur-[31.317508697509766px]">
             <div className="rounded-l-lg xl:rounded-l-2xl">
               <BlurImage
-                src={data?.img?.right || IMAGES.bannerKanow}
+                src={data?.img?.right || IMAGES.img}
                 alt="banner"
                 width={1000}
                 height={1000}
@@ -183,49 +221,11 @@ const Introduce = ({
                 />
                 <div className="absolute bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[95%] rounded-3xl aspect-[435/891] object-cover"></div>
                 <Image
-                  src={data?.img?.left || IMAGES.kanowMB}
+                  src={data?.img?.left || IMAGES.img}
                   alt="mokupPhone"
                   width={1000}
                   height={1000}
                   className="absolute aspect-[435/891] top-0 bottom-0 left-1/2 -translate-x-1/2 z-[-1] p-0.5 md:p-2 rounded-xl md:rounded-3xl lg:rounded-[35px] xl:rounded-3xl object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="overflow-hidden px-10 xl:pr-0 w-full flex-1">
-            <div className="relative rotate-[15deg] flex-1 flex items-center justify-center w-full -translate-x-[10%] -mb-[20%] 2xl:-mb-[18%] 3xl:-mb-[12%]">
-              <div className="w-[40%] relative translate-x-1/3 translate-y-[15%]">
-                <Image
-                  src={IMAGES.mokupPhone}
-                  alt="mokupPhone"
-                  width={1000}
-                  height={1000}
-                  className="w-full aspect-[435/891] object-cover "
-                />
-                <Image
-                  src={data?.img?.left || IMAGES.kanowMB}
-                  alt="mokupPhone"
-                  width={1000}
-                  height={1000}
-                  className="absolute top-0 left-1/2 -translate-x-1/2  z-[-1] p-1 lg:p-3 xl:p-3 rounded-2xl md:rounded-[50px] lg:rounded-[60px] xl:rounded-[40px] 3xl:rounded-[100px] object-cover"
-                />
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-transparent to-black rounded-l-lg xl:rounded-l-2xl"></div>
-              </div>
-              <div className="w-[40%] relative z-10">
-                <Image
-                  src={IMAGES.mokupPhone}
-                  alt="mokupPhone"
-                  width={1000}
-                  height={1000}
-                  className="w-full aspect-[435/891] object-cover"
-                />
-                <Image
-                  src={data?.img?.right || IMAGES.kanowMB}
-                  alt="mokupPhone"
-                  width={1000}
-                  height={1000}
-                  className="absolute top-0 left-1/2 -translate-x-1/2  z-[-1] p-1 lg:p-3 xl:p-3 rounded-2xl md:rounded-[50px] lg:rounded-[60px] xl:rounded-[40px] 3xl:rounded-[100px] object-cover"
                 />
               </div>
             </div>
@@ -279,10 +279,21 @@ const Introduce = ({
           <h3 className="text-sm-default font-medium text-light-800">
             Dịch vụ
           </h3>
-          {!isLoading && category?.name ? (
-            <p className="whitespace-nowrap text-button text-dark-primary font-bold">
-              {category?.name}
-            </p>
+          {!isLoading && category ? (
+            <>
+              {category?.name ? (
+                <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+                  {category?.name}
+                </p>
+              ) : (
+                <p className="whitespace-nowrap text-button text-dark-primary font-bold">
+                  {category
+                    .map((item: any) => item?.name)
+                    .filter(Boolean)
+                    .join(" & ")}
+                </p>
+              )}
+            </>
           ) : (
             <Skeleton className="h-6 w-28" />
           )}

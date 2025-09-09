@@ -19,13 +19,13 @@ const ClientLayout = ({
   children: React.ReactNode;
   data: any;
 }) => {
-  const pathname = usePathname();
-  const hideBanner = pathname.startsWith("/du-an");
+  // const pathname = usePathname();
+  // const hideBanner = pathname.startsWith("/du-an");
 
   return (
     <div className="bg-[#052B1E]">
       {/* header */}
-      {!hideBanner && (
+      {/* {!hideBanner && (
         <Image
           src={IMAGES.banner}
           alt="fmrp"
@@ -35,7 +35,7 @@ const ClientLayout = ({
           quality={100}
           className="w-full h-10 lg:h-16 2xl:h-20 4xl:h-32 object-cover"
         />
-      )}
+      )} */}
 
       <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
         <FmrpHeaderContainer />

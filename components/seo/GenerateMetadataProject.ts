@@ -1,5 +1,5 @@
 export function GenerateMetadataProject(data: any, slug: string) {
-  const title = data?.name || "Dự án";
+  const title = data?.title || "Dự án";
   const description =
     data?.introduce?.content_one ||
     "FOSO cung cấp giải pháp công nghệ giúp doanh nghiệp tối ưu vận hành, từ giải pháp phần mềm đến thiết kế app mobile và website theo yêu cầu.";
@@ -9,7 +9,7 @@ export function GenerateMetadataProject(data: any, slug: string) {
 
   const baseUrl = process.env.NEXT_PUBLIC_URL_WEBSITE || "https://fososoft.com";
 
-  const canonicalUrl = `/blogs/${slug}`;
+  const canonicalUrl = `${slug}`;
 
   const image = data?.image?.startsWith("http")
     ? data?.image
