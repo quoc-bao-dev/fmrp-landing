@@ -1,10 +1,9 @@
-import SystemDeveloping from '@/components/common/system/SystemDeveloping'
-import React from 'react'
+import DetailBlog from './BlogDetail'
 type Props = {}
 
 const AppMobile = (props: Props) => {
     return (
-        <SystemDeveloping />
+        <DetailBlog />
     )
 }
 
