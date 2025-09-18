@@ -6,30 +6,30 @@ import BannerVerticalBlog from "@/components/common/banner/BannerVerticalBlog";
 import BannerVerticalFmrp from "@/components/common/banner/BannerVerticalFmrp";
 import BlurImage from "@/components/common/blur/BlurImage";
 import CustomBreadcrumb from "@/components/common/breadcrumb/CustomBreadcrumb";
+import QuoteBox from "@/components/common/quote/QuoteBox";
 import BlogContentSkeleton from "@/components/common/skeleton/blogs/BlogContentSkeleton";
 import CalendarBlankIcon from "@/components/icons/common/CalendarBlankIcon";
 import ClockIcon from "@/components/icons/common/ClockIcon";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FORMAT_DATE } from "@/constants/FormatDate";
 import { useHideOnScrollBottom } from "@/hooks/custom/useHideOnScrollBottom";
 import { uuidv4 } from "@/lib/uuid";
 import { useBlogsList } from "@/managers/api/blogs/useBlogsList";
+import { useGetDataDetailBlog } from "@/managers/api/blogs/useGetDataDetailBlog";
+import { useResizeStore } from "@/stores/useResizeStore";
 import { IBlogItem } from "@/types/blog/IBlog";
+import { removeFontWeight400 } from "@/utils/format/FormatFont";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import moment from "moment";
 import { useParams } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import QuoteBox from "../../../../../components/common/quote/QuoteBox";
-import { FORMAT_DATE } from "../../../../../constants/FormatDate";
-import { useGetDataDetailBlog } from "../../../../../managers/api/blogs/useGetDataDetailBlog";
-import { useResizeStore } from "../../../../../stores/useResizeStore";
-import AuthorCard from "./components/sections/AuthorCard";
-import AutoTableOfContents from "./components/sections/AutoTableOfContents";
-import ReactionBox from "./components/ui/ReactionBox";
-import RelatedBlogList from "./components/ui/RelatedBlogList";
-import SocialShare from "./components/ui/SocialShare";
-import { removeFontWeight400 } from "@/utils/format/FormatFont";
+import SocialShare from "../../resource/blogs/[id]/components/ui/SocialShare";
+import AuthorCard from "../../resource/blogs/[id]/components/sections/AuthorCard";
+import ReactionBox from "../../resource/blogs/[id]/components/ui/ReactionBox";
+import AutoTableOfContents from "../../resource/blogs/[id]/components/sections/AutoTableOfContents";
+import RelatedBlogList from "../../resource/blogs/[id]/components/ui/RelatedBlogList";
 
 type Props = {};
 
@@ -104,12 +104,11 @@ const dataBlogList: IBlogItem[] = [
 ];
 
 const DetailBlog = () => {
-  const idBlog = useParams();
   const lastStateRef = useRef<"show" | "hide">("hide");
   const swiperRef = useRef<any>(null);
   const { isVisibleTablet } = useResizeStore();
   const { data: dataBlogDetail, isLoading: isLoadingBlogDetail } =
-    useGetDataDetailBlog({ slug: idBlog?.id });
+    useGetDataDetailBlog({ slug: "thiet-ke-app-mobile" });
 
   const { data: dataBlogsRelatedList, isLoading: isLoadingBlogsRelatedList } =
     useBlogsList({
