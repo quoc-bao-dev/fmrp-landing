@@ -91,8 +91,8 @@ const dataHeader: IMenuHeader[] = [
                         {
                             id: "3",
                             name: "Thiết Kế App Mobile",
-                            link: "https://thietkeappfoso.com/",
-                            // link: "/products/thiet-ke-app-mobile",
+                            // link: "https://thietkeappfoso.com/",
+                            link: "/thiet-ke-app-mobile",
                             icon: <DeviceMobileIconLinear className='size-full' />,
                             description: "Nâng tầm doanh nghiệp",
                             typeIcon: "default",
