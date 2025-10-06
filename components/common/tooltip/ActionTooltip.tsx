@@ -21,6 +21,11 @@ interface ActionTooltipProps {
     onArrow?: boolean;
     sideOffset?: number
     styleContent?: any
+    // Optional controlled mode
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    // Open behavior: default hover, or click-only (ignore hover open)
+    openMode?: "hover" | "click";
 }
 
 export const ActionTooltip = ({
@@ -32,9 +37,14 @@ export const ActionTooltip = ({
     onArrow = true,
     sideOffset = 10,
     classNameArrow,
-    styleContent = {}
+    styleContent = {},
+    open: openProp,
+    onOpenChange,
+    openMode = "hover"
 }: ActionTooltipProps) => {
-    const [open, setOpen] = useState<boolean>(false);
+    const [internalOpen, setInternalOpen] = useState<boolean>(false);
+    const isControlled = typeof openProp === 'boolean';
+    const open = isControlled ? (openProp as boolean) : internalOpen;
     const StyledArrow = TooltipPrimitive.Arrow
 
     // Variants animation cho Tooltip
@@ -63,7 +73,19 @@ export const ActionTooltip = ({
 
     return (
         <TooltipPrimitive.TooltipProvider>
-            <TooltipPrimitive.Tooltip open={open} onOpenChange={setOpen} delayDuration={50} >
+            <TooltipPrimitive.Tooltip
+                open={open}
+                onOpenChange={(v) => {
+                    // In click mode, ignore attempts to open via hover/focus
+                    if (openMode === "click" && v === true) return;
+                    if (isControlled) {
+                        onOpenChange?.(v);
+                    } else {
+                        setInternalOpen(v);
+                    }
+                }}
+                delayDuration={50}
+            >
                 <TooltipPrimitive.TooltipTrigger asChild>
                     {children}
                 </TooltipPrimitive.TooltipTrigger>
