@@ -70,6 +70,10 @@ const nextConfig: NextConfig = {
                 destination: '/products/thiet-ke-app-mobile',
             },
             {
+                source: '/thiet-ke-app-mobile',
+                destination: '/blogs/thiet-ke-app-mobile',
+            },
+            {
                 source: '/thiet-ke-website', // ensublink
                 destination: '/products/thiet-ke-website',
             },
@@ -149,6 +153,11 @@ const nextConfig: NextConfig = {
             },
             {
                 source: '/products/thiet-ke-app-mobile',
+                destination: '/thiet-ke-app-mobile',
+                permanent: true
+            },
+            {
+                source: '/blogs/thiet-ke-app-mobile',
                 destination: '/thiet-ke-app-mobile',
                 permanent: true
             },

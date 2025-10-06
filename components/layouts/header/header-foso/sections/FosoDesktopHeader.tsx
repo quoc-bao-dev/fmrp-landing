@@ -2,7 +2,6 @@ import HoverEffect from "@/components/common/animations/hover-button/HoverEffect
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
 import { ActionTooltip } from "@/components/common/tooltip/ActionTooltip";
 import SubmenuTooltip from "@/components/common/tooltip/SubmenuTooltip";
-import { useResizeStore } from "@/stores/useResizeStore";
 import { IMenuHeader } from "@/types/ui/menu/IMenuUI";
 import { variantButtonScaleZoom } from "@/utils/animations/variantsAnimation";
 import { scrollToTop } from "@/utils/scroll/scrollUtils";
@@ -25,12 +24,12 @@ const FosoDesktopHeader = ({
   dataHeader,
   handleOpenSheet,
 }: DesktopHeaderClientProps) => {
-  const { isVisibleDesktopLG } = useResizeStore();
+  // Luôn dùng chế độ click cho mọi kích thước màn hình
   const router = useRouter();
   const pathname = usePathname();
 
-  // Chế độ click cho lg, hover cho xl+
-  const isClickMode = !!isVisibleDesktopLG;
+  // Chỉ mở submenu bằng click (không dùng hover)
+  const isClickMode = true;
 
   const [openId, setOpenId] = React.useState<string | null>(null);
 
@@ -108,17 +107,12 @@ const FosoDesktopHeader = ({
                   styleContent={{ boxShadow: "0px 1px 1px 2px #1018280D" }}
                   side="bottom"
                   align="center"
-                  {...(isClickMode
-                    ? {
-                        open: isOpen,
-                        onOpenChange: (v: boolean) =>
-                          setOpenId(v ? String(item.id) : null),
-                      }
-                    : {
-                        onOpenChange: (v: boolean) => {
-                          if (!v && openId) setOpenId(null);
-                        },
-                      })}
+                  // Controlled theo state click: chỉ đóng khi v=false, bỏ mở bằng hover
+                  open={isOpen}
+                  onOpenChange={(v: boolean) => {
+                    if (!v) setOpenId(null);
+                  }}
+                  openMode="click"
                 >
                   <div
                     data-submenu-root="true"

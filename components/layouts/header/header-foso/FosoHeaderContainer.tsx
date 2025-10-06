@@ -1,33 +1,27 @@
 'use client'
 
+import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
+import CloudArrowUpIconLinear from '@/components/icons/linear/CloudArrowUpIconLinear'
+import DeviceMobileIconLinear from '@/components/icons/linear/DeviceMobileIconLinear'
+import FolderStarIconLinear from '@/components/icons/linear/FolderStarIconLinear'
+import LaptopIconLinear from '@/components/icons/linear/LaptopIconLinear'
+import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
+import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear'
+import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
 import { KEY_COOKIES } from '@/constants/Cookie'
+import { useModalContext } from '@/contexts/ModalContext'
 import { dataLanguageOptions } from '@/data/DataTranslate'
-import { uuidv4 } from '@/lib/uuid'
-
+import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
+import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 import useCookieStore from '@/stores/useCookieStore'
 import { useDialogStore } from '@/stores/useDialogStores'
 import { useResizeStore } from '@/stores/useResizeStore'
 import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
-import { usePathname } from 'next/navigation'
-import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-
-import LaptopIconLinear from '@/components/icons/linear/LaptopIconLinear'
-import DeviceMobileIconLinear from '@/components/icons/linear/DeviceMobileIconLinear'
-import CloudArrowUpIconLinear from '@/components/icons/linear/CloudArrowUpIconLinear'
-
-import FolderStarIconLinear from '@/components/icons/linear/FolderStarIconLinear'
-import UsersThreeIconLinear from '@/components/icons/linear/UsersThreeIconLinear'
-import ChatsTeardropIconLinear from '@/components/icons/linear/ChatsTeardropIconLinear'
-import PencilSimpleLineIconLinear from '@/components/icons/linear/PencilSimpleLineIconLinear'
-
-import { motion, useAnimation } from 'framer-motion';
-
-import React, { useEffect, useCallback, useRef, useState } from 'react'
-import { useSheetStores } from '../../../../stores/useSheetStores';
-import { useModalContext } from '@/contexts/ModalContext'
-import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
-import { dataFmrpPages } from '@/data/UrlHeaderFmrp'
+import { motion, useAnimation } from 'framer-motion'
 import dynamic from 'next/dynamic'
+import { usePathname } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useSheetStores } from '../../../../stores/useSheetStores'
 
 const FosoDesktopHeader = dynamic(() => import('./sections/FosoDesktopHeader'));
 const FosoTabletHeader = dynamic(() => import('./sections/FosoTabletHeader'));
@@ -96,7 +90,7 @@ const dataHeader: IMenuHeader[] = [
                             icon: <DeviceMobileIconLinear className='size-full' />,
                             description: "Nâng tầm doanh nghiệp",
                             typeIcon: "default",
-                            typeLink: "new_tab",
+                            typeLink: "normal",
                         },
                         // {
                         //     id: "2",

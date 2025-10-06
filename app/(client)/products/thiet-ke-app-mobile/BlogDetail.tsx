@@ -35,8 +35,8 @@ type Props = {};
 
 const breadcrumbItems = [
   { label: "Trang chủ", href: "/" },
-  { label: "Tài nguyên", href: "#" },
-  { label: "Blog", href: "/resource/blogs" },
+  { label: "Thiết kế app mobile", href: "thiet-ke-app-mobile" },
+  // { label: "Blog", href: "/resource/blogs" },
   // { label: "Quản Lý Sản Xuất" },
 ];
 
