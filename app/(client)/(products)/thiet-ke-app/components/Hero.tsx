@@ -48,21 +48,21 @@ const Hero = () => {
 
   return (
     <div className='relative'>
-      <div className='custom-container h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
+      <div className='custom-container-new h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
         <CustomBreadcrumb items={breadcrumbItems} />
-        <div className='flex gap-20 2xl:gap-24 items-center w-full h-full'>
-          <div className='flex flex-col gap-9 w-[40%]'>
+        <div className='flex flex-col-reverse xl:flex-row gap-9 xl:gap-20 2xl:gap-24 items-center w-full h-full'>
+          <div className='flex flex-col gap-9 w-full xl:w-[40%]'>
             <div className='flex flex-col gap-5'>
-              <div className='flex flex-col'>
+              <div className='flex flex-col justify-center items-center xl:items-start'>
                 <h2 className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
                   Giải pháp <span className='text-[#F3654A]'>mobile app </span><br />
                 </h2>
                 <h2 className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
                   toàn diện cho doanh nghiệp </h2>
               </div>
-              <p className='text-base-default w-[90%] font-semibold text-light-900'>FOSO không chỉ thiết kế app, mà còn giúp bạn kể câu chuyện thương hiệu qua từng cú chạm – độc đáo, tinh tế và đậm chất riêng.</p>
+              <p className='text-base-default w-full xl:w-[90%] text-center xl:text-left font-semibold text-light-900'>FOSO không chỉ thiết kế app, mà còn giúp bạn kể câu chuyện thương hiệu qua từng cú chạm – độc đáo, tinh tế và đậm chất riêng.</p>
             </div>
-            <div className="flex flex-col xxs:flex-row items-center gap-3 w-full">
+            <div className="flex flex-col xxs:flex-row items-center justify-center xl:justify-start gap-3 w-full">
               <ButtonAnimationNew
                 title="Tư vấn ngay"
                 icon={
@@ -87,7 +87,7 @@ const Hero = () => {
                   window.open("https://zalo.me/2281264205827497572");
                 }}
                 reverse={true}
-                className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-full xl:w-fit"
+                className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-fit"
                 style={{
                   boxShadow:
                     "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
@@ -116,13 +116,13 @@ const Hero = () => {
 
               <Link
                 href="/du-an"
-                className="w-full xl:w-fit whitespace-nowrap border-gradient-button-no-bg-orange border-[#FAC1B7] bg-white rounded-full px-5 py-2.5 md:py-4 xl:py-[13px] 2xl:py-[18px] text-sm font-medium shadow-[0px_1px_2px_0px_#B3ADAD0D,0px_4px_4px_0px_#B3ADAD0A,0px_9px_5px_0px_#B3ADAD08,0px_16px_6px_0px_#B3ADAD03,0px_25px_7px_0px_#B3ADAD00]"
+                className="w-fit whitespace-nowrap border-gradient-button-no-bg-orange border-[#FAC1B7] bg-white rounded-full px-5 py-2.5 md:py-4 xl:py-[13px] 2xl:py-[18px] text-sm font-medium shadow-[0px_1px_2px_0px_#B3ADAD0D,0px_4px_4px_0px_#B3ADAD0A,0px_9px_5px_0px_#B3ADAD08,0px_16px_6px_0px_#B3ADAD03,0px_25px_7px_0px_#B3ADAD00]"
               >
                 Xem chi tiết dự án
               </Link>
             </div>
           </div>
-          <div className='relative w-[60%] h-full'>
+          <div className='relative w-full xl:w-[60%] h-full'>
             <div className='relative w-1/2 ml-[37.5%] mr-[12.5%]'>
               <div className='relative w-full aspect-[10/25] 2xl:aspect-[10/18]'>
                 {/* Scene 3D với perspective để tạo cảm giác trụ */}
@@ -170,15 +170,15 @@ const Hero = () => {
                 <Image src={IMAGES.arrowRightOrange} alt="arrowRightOrange" width={1000} height={1000} className='size-full shrink-0 object-contain' />
               </div>
             </div>
-            <div className='absolute bottom-10 left-0 p-4 pb-6 bg-orange-100 rounded-[40px] w-[55%]  2xl:w-1/2 h-fit' style={{ boxShadow: '0px 1px 3px -1px #0000004D, 0px 6px 10px -1px #32325D40' }}>
+            <div className='absolute bottom-10 left-0 p-3 xl:p-4 pb-6 bg-orange-100 rounded-[20px] xl:rounded-[40px] w-[65%] xl:w-[55%] 2xl:w-1/2 h-fit' style={{ boxShadow: '0px 1px 3px -1px #0000004D, 0px 6px 10px -1px #32325D40' }}>
               <div className='flex gap-2 items-center p-2 pr-4 bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] rounded-full w-full h-fit'>
-                <Image src="/design-app/avt.png" alt="logo" width={1000} height={1000} className='size-[50px] 2xl:size-[60px] rounded-full object-cover' />
+                <Image src="/design-app/avt.png" alt="logo" width={1000} height={1000} className='size-[43px] xl:size-[50px] 2xl:size-[60px] rounded-full object-cover' />
                 <div className='flex flex-col'>
-                  <p className='text-title-section-feature-small font-semibold text-white'>Mrs. Nguyên</p>
-                  <p className='text-xs-default text-white'>Giám Đốc NPCare Việt Nam</p>
+                  <p className='text-title font-semibold text-white'>Mrs. Nguyên</p>
+                  <p className='text-sxs-default text-white'>Giám Đốc NPCare Việt Nam</p>
                 </div>
               </div>
-              <p className='text-sm-default text-light-900 mt-3'>
+              <p className='text-sm-table-default text-light-900 mt-3'>
                 “Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án.”
               </p>
             </div>

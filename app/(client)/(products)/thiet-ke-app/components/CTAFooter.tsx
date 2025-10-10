@@ -14,8 +14,8 @@ const CTAFooter = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   return (
     <section className="relative xl:custom-padding-section">
-      <div className="custom-container flex flex-col xl:flex-row gap-[72px] justify-center items-center">
-        <div className="hidden xl:block w-full">
+      <div className="custom-container flex flex-col-reverse xl:flex-row gap-[72px] justify-center items-center">
+        <div className="w-full">
           <Image
             width={800}
             height={800}
@@ -24,12 +24,12 @@ const CTAFooter = () => {
             className="size-full object-cover "
           />
         </div>
-        <div className="mt-[12%] w-full pb-9 xl:pb-0 px-2 xl:px-0 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] flex flex-col shrink-0 lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
-          <div className="xxl:space-y-2 space-y-1">
-            <h2 className="text-title-section-small text-[#1A2025] font-extrabold capitalize">
+        <div className="mt-[12%] w-full pb-9 xl:pb-0 px-2 xl:px-0 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] flex flex-col shrink-0 lg:items-start lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
+          <div className="xxl:space-y-2 space-y-5">
+            <h2 className="text-title-section-small text-[#1A2025] text-left font-extrabold capitalize">
               Cùng FOSO Nâng cấp vận hành, bứt phá doanh thu
             </h2>
-            <p>Hợp tác cùng FOSO để kiến tạo giải pháp số đột phá cho doanh nghiệp – bắt đầu ngay hôm nay!</p>
+            <p className="text-left">Hợp tác cùng FOSO để kiến tạo giải pháp số đột phá cho doanh nghiệp – bắt đầu ngay hôm nay!</p>
           </div>
 
           <ButtonAnimationNew
@@ -56,7 +56,7 @@ const CTAFooter = () => {
               window.open("https://zalo.me/2281264205827497572");
             }}
             reverse={true}
-            className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-full xl:w-fit"
+            className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-fit"
             style={{
               boxShadow:
                 "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
@@ -84,10 +84,10 @@ const CTAFooter = () => {
           />
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 h-[70%] w-full overflow-hidden pointer-events-none">
-        <Image src={IMAGES.blurOrangeLarge} alt="blurOrange" width={1000} height={1000} className='absolute top-[-50%] right-[0%] w-[40%] object-cover z-[-1] pointer-events-none' />
-        <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -top-[10%] left-0 -translate-x-[30%] w-[40%] object-cover z-[-1] pointer-events-none' />
-        <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -top-[10%] left-1/2 -translate-x-[50%] w-[40%] object-cover z-[-1] pointer-events-none' />
+      <div className="absolute bottom-0 left-0 h-full xl:h-[70%] w-full overflow-hidden pointer-events-none">
+        <Image src={IMAGES.blurOrangeLarge} alt="blurOrange" width={1000} height={1000} className='absolute top-[10%] right-[0%] w-[200%] xl:w-[40%] object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -top-[10%] left-0 -translate-x-[30%] w-full xl:w-[40%] object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -top-[10%] left-1/2 -translate-x-[50%] w-full xl:w-[40%] object-cover z-[-1] pointer-events-none' />
       </div>
     </section>
   );

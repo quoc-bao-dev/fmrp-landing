@@ -13,7 +13,7 @@ import Why from './components/Why'
 
 const DesignAppPage = () => {
   return (
-    <div className='flex flex-col gap-14'>
+    <div className='flex flex-col gap-6 xl:gap-14 overflow-hidden'>
       <Hero />
       <Ready />
       <Why />

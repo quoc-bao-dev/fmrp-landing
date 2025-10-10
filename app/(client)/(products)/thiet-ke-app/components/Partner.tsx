@@ -41,7 +41,7 @@ const Partner = (props: Props) => {
 
   return (
     <div className="py-0 xl:py-12 bg-white px-2 xl:px-0">
-      <div className="custom-container flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-6 relative z-[1]">
+      <div className="custom-container-new flex flex-col items-center justify-center 3xl:gap-12 xl:gap-10 gap-6 relative z-[1]">
         <div className="space-x-2 font-extrabold">
           <span className="text-title-section-small text-[#1A2025] capitalize">
             Khách hàng và đối tác

@@ -110,9 +110,9 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 md:mx-8 mx-2 4xl:px-[10%];
   }
 
-  // .custom-container {
-  //     @apply 3xl:mx-60 xxl:mx-40 xl:mx-56 lg:mx-56 md:mx-8 mx-4 4xl:px-[10%];
-  // }
+  .custom-container-new {
+      @apply 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 md:mx-8 mx-4 4xl:px-[10%];
+  }
 
   .custom-container-no-right {
     @apply 3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 md:ml-8 ml-4 4xl:px-[10%];
@@ -173,7 +173,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:!text-xl lg:!text-base !text-base !tracking-[1%];
   }
   .text-base-default-feature {
-    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm !text-sm !tracking-[1%];
+    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm text-sm !tracking-[1%];
   }
 
   .text-button {
@@ -185,7 +185,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 
   .text-sm-default {
-    @apply 3xl:!text-base xxl:!text-sm lg:!text-xs !text-sm !tracking-[1%];
+    @apply 3xl:!text-base xxl:!text-sm lg:!text-xs text-sm !tracking-[1%];
   }
 
   .text-xs-default {
@@ -463,6 +463,46 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
   }
 
+  .border-gradient-black {
+    --border-radius: 16px;
+    --border-width: 1.8px;
+    --border-width-hover: 2px;
+    --border-color: white;
+    --border-inset-hover: 0px;
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    z-index: 0;
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: conic-gradient(
+        from var(--angle),
+        #38386E 0%,
+        transparent 25%,
+        #ffffff 70%,
+        transparent 75%,
+        #38386E 100%
+      );
+      
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: -1;
+      /* // animation: moveGradient 2s linear infinite; */
+      animation: borderMove 2s linear infinite;
+    }
+  }
+
   .border-gradient-button-fmrp-new {
     --border-radius: 9999px;
     --border-width: 1.8px;
@@ -502,6 +542,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       animation: borderMove 2s linear infinite;
     }
   }
+
   @keyframes moveGradient {
     0% {
       background-position: 200% 0;

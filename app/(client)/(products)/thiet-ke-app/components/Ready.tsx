@@ -10,7 +10,7 @@ const services = [
   {
     icon: IMAGES.edit,
     title: 'Thiết Kế App iOS & Android',
-    description: '',
+    description: 'Giúp doanh nghiệp mở rộng khách hàng và tối ưu trải nghiệm người dùng.',
     style: 'hover:shadow-[0px_4px_20px_-5px_#C5F0BE,0px_4px_20px_-5px_#C5F0BE]'
   },
   {
@@ -30,7 +30,7 @@ const services = [
 const Ready = () => {
   return (
     <div className='relative'>
-      <div className='custom-container py-24 flex flex-col gap-3 justify-center items-center'>
+      <div className='custom-container-new py-3 xl:py-24 flex flex-col gap-3 justify-center items-center'>
         <h2 className='text-title-section-small text-[#050505] font-extrabold capitalize'>
           <span style={{
             background: "linear-gradient(to bottom, #85EEB3 0%, #53B086 100%), radial-gradient(219.3% 1471.82% at 24.6% -30.56%, rgba(84, 171, 177, 0) 0%, rgba(84, 171, 177, 0.409141) 34.37%, rgba(133, 238, 179, 0.71) 51.52%, rgba(84, 171, 177, 0) 100%)",
@@ -42,13 +42,13 @@ const Ready = () => {
           sẵn sàng hỗ trợ bạn</h2>
         <p className='text-base-default text-light-900 font-semibold'>Bạn đang cần tư vấn thêm về báo giá dịch vụ, hướng dẫn sử dụng hoặc trở thành đối tác FOSO - Chúng tôi luôn sẵn sàng kết nối cùng bạn!</p>
         <div className='flex flex-col items-center gap-6'>
-          <div className='grid grid-cols-3 gap-6 pt-9'>
+          <div className='grid grid-cols-1 xl:grid-cols-3 gap-3 xl:gap-6 pt-0 xl:pt-9 pb-0 xl:pb-4'>
             {services.map((service, index) => (
-              <div key={index} className={`flex flex-col gap-6 p-6 rounded-3xl bg-white cursor-pointer shadow-[0px_4px_20px_-5px_#77729326,0px_4px_20px_-5px_#7772930D] ${service.style}`}>
-                <Image src={service.icon} alt='calendar' width={100} height={100} />
+              <div key={index} className={`flex xl:flex-col gap-6 p-3 xl:p-6 rounded-3xl bg-white cursor-pointer shadow-[0px_4px_20px_-5px_#77729326,0px_4px_20px_-5px_#7772930D] ${service.style}`}>
+                <Image src={service.icon} alt='calendar' width={100} height={100} className='size-[67px] xl:size-[100px]' />
                 <div className='flex flex-col gap-2'>
-                  <h3 className='text-title text-[#050505] font-extrabold capitalize'>{service.title}</h3>
-                  <p className='text-base-default-feature text-light-900 font-medium'>{service.description}</p>
+                  <h3 className='text-title-section-feature-small text-[#050505] font-extrabold capitalize'>{service.title}</h3>
+                  <p className='text-base-default-feature !text-xs text-light-900 font-medium'>{service.description}</p>
                 </div>
               </div>
             ))}
@@ -77,7 +77,7 @@ const Ready = () => {
               window.open("https://zalo.me/2281264205827497572");
             }}
             reverse={true}
-            className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-full xl:w-fit"
+            className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-fit"
             style={{
               boxShadow:
                 "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
