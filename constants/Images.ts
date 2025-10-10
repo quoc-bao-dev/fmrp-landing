@@ -68,4 +68,6 @@ export const IMAGES = {
   logoFnb: "/design-app/logoFnb.svg",
   logoHomeCare: "/design-app/logoHomeCare.svg",
   qr: "/design-app/qr.png",
+  check: "/design-app/check.png",
+  ctaFooter: "/design-app/ctaFooter.png",
 };

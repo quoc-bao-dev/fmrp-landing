@@ -40,6 +40,24 @@ canvas {
   box-sizing: border-box; /* Đảm bảo padding/margin không làm bành trướng width */
 }
 
+/* Tối ưu hóa performance */
+* {
+  will-change: auto; /* Chỉ set will-change khi cần thiết */
+}
+
+/* Tối ưu hóa cho animations */
+.animate-performance {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Giảm repaints và reflows */
+.smooth-transition {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
 ::-webkit-scrollbar {
   @apply absolute top-0 right-0 bottom-0 w-4 h-0;
 }
@@ -660,7 +678,6 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     --border-color: rgba(9, 9, 11, 0.2);
 
     position: relative;
-    border: none; /* Đảm bảo không có border mặc định */
 
     /* Viền gradient chạy quanh */
     &::before {
@@ -702,12 +719,15 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       );
       padding: var(--border-width-hover);
       animation: borderMove 1.5s linear infinite;
+      border: none; /* Đảm bảo không có border mặc định */
     }
 
     &:hover::after,
     .group:hover &::after {
       opacity: 1;
+      border: none; /* Đảm bảo không có border mặc định */
     }
+
   }
 
   .border-gradient-login {
@@ -890,13 +910,23 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 }
 
-/* Animation hiệu ứng viền chạy */
+/* Animation hiệu ứng viền chạy - tối ưu hóa */
 @keyframes borderMove {
-  from {
+  0% {
     --angle: 0deg;
   }
-  to {
+  100% {
     --angle: 360deg;
+  }
+}
+
+/* Tối ưu hóa animation performance */
+@keyframes borderMoveOptimized {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

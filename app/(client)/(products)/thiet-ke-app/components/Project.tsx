@@ -5,6 +5,7 @@ import { IMAGES } from '@/constants/Images';
 import { motion } from 'framer-motion';
 import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const projects = [
   {
@@ -71,11 +72,22 @@ const Project = () => {
             </div>
             <Image src={project.image} alt='kanow' width={1000} height={1000} />
             <div className='flex flex-col gap-4 items-center justify-center'>
-              <button className='text-base-default font-bold bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] border border-orange-300 rounded-full py-2 px-4 text-white shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]'>Xem chi tiết</button>
+              <button className='text-base-default font-bold bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] hover:from-[#F3654A]/80 hover:to-[#FFB9AC]/80 transition-all duration-300 border border-orange-300 rounded-full py-2 px-4 text-white shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]'>Xem chi tiết</button>
               <Image src={project.qr} alt='qr' width={1000} height={1000} className='size-[82px] rounded-2xl object-cover' />
             </div>
           </div>
         ))}
+        <div className='py-3 px-6 my-auto mx-auto w-[80%] aspect-square rounded-[20px] bg-gradient-to-r from-white to-white/20 shadow-[5px_5px_20px_0px_#EB575740] relative'>
+          <div className='absolute inset-0 rounded-[20px] bg-gradient-to-r from-[rgba(208,58,9,0.5)] to-[rgba(244,138,138,0.3)] p-[2px] pointer-events-none'>
+            <div className='w-full h-full rounded-[18px] bg-gradient-to-r from-white to-white/20'></div>
+          </div>
+          <div className='h-full relative z-10 flex flex-col gap-5 items-center justify-center'>
+            <p className='text-title font-extrabold capitalize text-[#050505] text-center'>Xem thêm các dự án khác</p>
+            <Link href='/du-an' className='text-button text-base-default text-[#25272A] font-semibold bg-white py-2 px-5 rounded-full border border-light-300 shadow-[0px_1px_2px_0px_#B3ADAD0D,0px_4px_4px_0px_#B3ADAD0A,0px_9px_5px_0px_#B3ADAD08,0px_16px_6px_0px_#B3ADAD03,0px_25px_7px_0px_#B3ADAD00]'>
+              Xem thêm
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )
