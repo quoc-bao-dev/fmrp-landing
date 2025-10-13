@@ -238,7 +238,7 @@ const Hero = () => {
           </div>
           <div className='relative w-full xl:w-[60%] h-full'>
             <div className='relative w-1/2 ml-[37.5%] mr-[12.5%]'>
-              <div className='relative w-full aspect-[10/18] 2xl:aspect-[10/18]'>
+              <div className='relative w-full aspect-[10/23] xl:aspect-[10/18] 2xl:aspect-[10/18]'>
                 {/* Scene 3D với perspective để tạo cảm giác trụ */}
                 <div
                   className='absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing'
@@ -274,7 +274,7 @@ const Hero = () => {
                             priority={index === currentImageIndex}
                             width={1000}
                             height={1000}
-                            className='w-[80%] 2xl:w-[80%] h-auto bg-transparent'
+                            className='w-[88%] xl:w-[80%] h-auto bg-transparent'
                           />
                         </div>
                       );
@@ -326,7 +326,7 @@ const Hero = () => {
                 style={{ background: '#33404a' }}
               />
             </div>
-            <div className='xl:hidden absolute -bottom-2 2xl:bottom-[-13%] left-1/2 -translate-x-1/2 flex gap-2 items-center'>
+            <div className='xl:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 items-center'>
               {mockupData.map((_, index) => (
                 <div
                   key={index}

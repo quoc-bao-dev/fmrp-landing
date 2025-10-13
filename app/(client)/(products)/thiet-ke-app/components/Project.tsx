@@ -118,7 +118,7 @@ const Project = () => {
           viewport={{ once: true }}
           transition={{
             duration: 0.6,
-            delay: 0.4 + projects.length * 0.2,
+            delay: projects.length * 0.2,
             ease: "easeOut"
           }}
         >
