@@ -105,9 +105,9 @@ const dataBlogList: IBlogItem[] = [
 
 const DetailBlog = () => {
   const idBlog = useParams();
-  if (idBlog.id && idBlog?.id === "thiet-ke-app-mobile") {
-     idBlog.id = "thiet-ke-app-mobile-1"
-  }
+  // if (idBlog.id && idBlog?.id === "thiet-ke-app-mobile") {
+  //    idBlog.id = "thiet-ke-app-mobile-1"
+  // }
   const lastStateRef = useRef<"show" | "hide">("hide");
   const swiperRef = useRef<any>(null);
   const { isVisibleTablet } = useResizeStore();

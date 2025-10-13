@@ -65,14 +65,14 @@ const nextConfig: NextConfig = {
                 source: '/fpos', // ensublink
                 destination: '/products/fpos',
             },
-            {
-                source: '/thiet-ke-app-mobile', // ensublink
-                destination: '/products/thiet-ke-app-mobile',
-            },
-            {
-                source: '/thiet-ke-app-mobile',
-                destination: '/blogs/thiet-ke-app-mobile',
-            },
+            // {
+            //     source: '/thiet-ke-app-mobile', // ensublink
+            //     destination: '/products/thiet-ke-app-mobile',
+            // },
+            // {
+            //     source: '/thiet-ke-app-mobile',
+            //     destination: '/blogs/thiet-ke-app-mobile',
+            // },
             {
                 source: '/thiet-ke-website', // ensublink
                 destination: '/products/thiet-ke-website',
@@ -151,16 +151,16 @@ const nextConfig: NextConfig = {
                 destination: '/fpos',
                 permanent: true
             },
-            {
-                source: '/products/thiet-ke-app-mobile',
-                destination: '/thiet-ke-app-mobile',
-                permanent: true
-            },
-            {
-                source: '/blogs/thiet-ke-app-mobile',
-                destination: '/thiet-ke-app-mobile',
-                permanent: true
-            },
+            // {
+            //     source: '/products/thiet-ke-app-mobile',
+            //     destination: '/thiet-ke-app-mobile',
+            //     permanent: true
+            // },
+            // {
+            //     source: '/blogs/thiet-ke-app-mobile',
+            //     destination: '/thiet-ke-app-mobile',
+            //     permanent: true
+            // },
             {
                 source: '/products/thiet-ke-website',
                 destination: '/thiet-ke-website',
