@@ -1,6 +1,7 @@
 'use client'
 import { IMAGES } from '@/constants/Images'
 import { useResizeStore } from '@/stores/useResizeStore'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import React from 'react'
 
@@ -63,6 +64,7 @@ const reasons = [
 const Why = () => {
   const { isVisibleMobile } = useResizeStore()
 
+
   return (
     <div className='relative'>
       <div className='custom-container-new'>
@@ -76,7 +78,7 @@ const Why = () => {
                 WebkitTextFillColor: "transparent",
               }}>
               Doanh nghiệp
-            </span> {' '} nên <br className=' xl:hidden'/> Thiết kế<br className='hidden xl:block'/> Mobile App tại{' '}
+            </span> {' '} nên <br className=' xl:hidden' /> Thiết kế<br className='hidden xl:block' /> Mobile App tại{' '}
             <span className='text-title-section-medium-fit-leading'
               style={{
                 background: "linear-gradient(to bottom, #85EEB3 0%, #53B086 100%)",
@@ -84,27 +86,64 @@ const Why = () => {
                 WebkitTextFillColor: "transparent",
               }}>
               FOSO
-            </span></h2>
-          <p className='text-base-default text-center xl:text-left text-light-900 font-semibold'>Tại FOSO, chúng tôi biến mục tiêu kinh doanh của bạn thành trải nghiệm di động mượt mà.</p>
+            </span>
+          </h2>
+          <p className='text-base-default text-center xl:text-left text-light-900 font-semibold'>
+            Tại FOSO, chúng tôi biến mục tiêu kinh doanh của bạn thành trải nghiệm di động mượt mà.
+          </p>
         </div>
-        <div className='relative mt-4 flex gap-3 xl:justify-center xl:items-center overflow-x-auto'>
-          <Image src={IMAGES.whyBanner} alt='whyBanner' width={1000} height={1000} className='hidden xl:block w-[50%] 2xl:w-[40%]' />
+        <motion.div
+          className='relative mt-4 flex gap-3 xl:justify-center xl:items-center overflow-x-auto xl:overflow-visible'
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.3
+              }
+            }
+          }}
+        >
+          <Image src={IMAGES.whyBanner} alt='whyBanner' width={1000} height={1000} className='hidden xl:block w-[40%]' />
 
-          {reasons.map((reason) => (
-            <div key={reason.title} className={`${reason.positionClass} flex flex-col xl:flex-row items-center xl:items-start gap-5 xl:gap-2 p-3 xl:p-0 rounded-[20px] bg-gradient-to-r from-[#FF707040] to-[#FFFFFF33] min-w-[165px] border-2 border-[#F48A8A99] xl:border-0 xl:from-transparent xl:to-transparent `}>
+          {reasons.map((reason, index) => (
+            <motion.div
+              key={reason.title}
+              className={`${reason.positionClass} flex flex-col xl:flex-row items-center xl:items-start gap-5 xl:gap-2 p-3 xl:p-0 rounded-[20px] bg-gradient-to-r from-[#FF707040] to-[#FFFFFF33] min-w-[165px] border-2 border-[#F48A8A99] xl:border-0 xl:from-transparent xl:to-transparent`}
+              variants={{
+                hidden: {
+                  opacity: 0
+                },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    duration: 1.5,
+                    delay: index < 3 ? index * 0.4 : (index - 3) * 0.4
+                  }
+                }
+              }}
+            >
               {(reason.align === 'left' || isVisibleMobile) && (
-                <Image src={reason.icon} alt='bag' width={1000} height={1000} className={reason.size} />
+                <Image src={reason.icon} alt='icon' width={1000} height={1000} className={reason.size} />
               )}
               <div className={`flex flex-col gap-2 ${reason.align === 'right' ? 'xl:items-end' : 'xl:items-start'}`}>
-                <h3 className='text-xs md:text-sm xl:text-xl text-[#424150] xl:text-orange-700 font-bold xl:whitespace-nowrap'>{reason.title}</h3>
-                <p className={`text-sm-default !text-xs text-justify ${reason.align === 'right' ? 'xl:text-right' : 'xl:text-left'} text-light-900 font-semibold`}>{reason.description}</p>
+                <h3 className='text-xs md:text-sm xl:text-xl text-[#424150] xl:text-orange-700 font-bold xl:whitespace-nowrap'>
+                  {reason.title}
+                </h3>
+                <p className={`text-sm-default !text-xs text-justify ${reason.align === 'right' ? 'xl:text-right' : 'xl:text-left'} text-light-900 font-semibold`}>
+                  {reason.description}
+                </p>
               </div>
               {(reason.align === 'right' && !isVisibleMobile) && (
-                <Image src={reason.icon} alt='bag' width={1000} height={1000} className={reason.size} />
+                <Image src={reason.icon} alt='icon' width={1000} height={1000} className={reason.size} />
               )}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -bottom-[35%] left-0 -translate-x-[30%] w-[50%] object-cover z-[-1] pointer-events-none' />
     </div>

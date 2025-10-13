@@ -51,32 +51,65 @@ const Procedure = () => {
         <p className='text-base-default text-center text-light-900 font-semibold'>Biến ý tưởng thành ứng dụng hoàn chỉnh với quy trình rõ ràng.</p>
       </div>
 
-      <div className='relative px-0 xl:px-24 grid grid-cols-1 xl:grid-cols-5 justify-between items-center gap-6 xl:gap-12'>
+      <motion.div
+        className='relative px-0 xl:px-24 grid grid-cols-1 xl:grid-cols-5 justify-between items-center gap-6 xl:gap-12'
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.2,
+              delayChildren: 0.4
+            }
+          }
+        }}
+      >
         <div className='hidden xl:block absolute bottom-[88px] 2xl:bottom-[103px] left-1/2 -translate-x-1/2 w-[70%] 2xl:w-[75%] h-[1px] border-b border-dashed border-[#F3654A] z-[-1]'></div>
         <div className='xl:hidden absolute top-2 left-[64px] h-[80%] w-[1px] border-r border-dashed border-[#F3654A] z-[-1]'></div>
         {steps.map((step, index) => (
-          <div key={index} className='flex gap-3 px-4 xl:px-0'>
+          <motion.div
+            key={index}
+            className='flex gap-3 px-4 xl:px-0 h-full'
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 15,
+              delay: index * 0.2
+            }}
+          >
             <div className='xl:hidden flex gap-2 h-fit items-center'>
               <span className='text-orange-700 text-title-section-medium-fit-leading font-semibold'>0{index + 1}</span>
               <div className='size-6 bg-orange-200 rounded-full flex items-center justify-center'>
                 <span className='size-3 rounded-full bg-gradient-to-r from-[#F3654A] to-[#FFB9AC]'></span>
               </div>
             </div>
-            <div className='flex flex-col h-full gap-8 items-center'>
-              <Image src={step.image} alt={step.title} width={1000} height={1000} className='size-[100px] object-contain' />
-              <div className='flex flex-col gap-2 xl:gap-4 items-center flex-1'>
-                <h3 className='text-title text-[#050505] font-bold capitalize'> {step.title}</h3>
-                <p className='text-sm-default text-center text-light-900 font-semibold'>{step.description}</p>
+            <div className='flex flex-col h-full gap-8 justify-between'>
+              <div className='flex flex-col gap-8 items-center'>
+                <Image src={step.image} alt={step.title} width={1000} height={1000} className='size-[100px] object-contain' />
+                <div className='flex flex-col gap-2 xl:gap-4 items-center flex-1'>
+                  <h3 className='text-title text-[#050505] font-bold capitalize'> {step.title}</h3>
+                  <p className='text-sm-default text-center text-light-900 font-semibold'>{step.description}</p>
+                </div>
               </div>
-              <div className='hidden size-8 bg-orange-200 rounded-full xl:flex items-center justify-center'>
-                <span className='size-4 rounded-full bg-gradient-to-r from-[#F3654A] to-[#FFB9AC]'></span>
+              <div className='flex flex-col gap-8 items-center'>
+                <div className='hidden size-8 bg-orange-200 rounded-full xl:flex items-center justify-center'>
+                  <span className='size-4 rounded-full bg-gradient-to-r from-[#F3654A] to-[#FFB9AC]'></span>
+                </div>
+                <span className='hidden xl:block text-orange-700 text-title-section-medium-fit-leading font-semibold'>
+                  0{index + 1}
+                </span>
               </div>
-              <span className='hidden xl:block text-orange-700 text-title-section-medium-fit-leading font-semibold'>0{index + 1}</span>
             </div>
-          </div>
+          </motion.div>
 
         ))}
-      </div>
+      </motion.div>
       <ButtonAnimationNew
         title="Tư vấn ngay"
         icon={

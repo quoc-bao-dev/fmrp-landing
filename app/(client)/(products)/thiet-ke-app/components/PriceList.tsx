@@ -1,9 +1,15 @@
 'use client'
 import CircleQuestion from '@/components/icons/common/CircleQuestion'
 import { IMAGES } from '@/constants/Images'
+import { motion } from 'framer-motion'
 import { Check, X } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Dữ liệu gói pricing
 const priceList = [
@@ -154,6 +160,20 @@ const FeatureValue = ({ value }: { value: any }) => {
 
 const PriceList = () => {
   const [activePlan, setActivePlan] = useState(0)
+  const [slidesOffsetAfter, setSlidesOffsetAfter] = useState<number>(0)
+  const swiperRef = useRef<any>(null)
+
+  useEffect(() => {
+    const updateOffset = () => {
+      // 20% viewport width to match slidesPerView 1.2 peek
+      const vw20 = Math.round(window.innerWidth * 0.1)
+      // Add current spaceBetween (approx 40) for better alignment
+      setSlidesOffsetAfter(vw20 + 20)
+    }
+    updateOffset()
+    window.addEventListener('resize', updateOffset)
+    return () => window.removeEventListener('resize', updateOffset)
+  }, [])
 
   return (
     <div className='relative'>
@@ -179,155 +199,197 @@ const PriceList = () => {
           <p className='text-base-default text-light-900 font-semibold'>Chọn gói hoàn hảo cho nhu cầu kinh doanh của bạn.</p>
         </div>
         <div className='xl:hidden flex items-center justify-center gap-2'>
-          <button
-            onClick={() => setActivePlan(0)}
+          <motion.button
+            onClick={() => {
+              setActivePlan(0)
+              swiperRef.current?.slideTo(0)
+            }}
             className={`py-2 px-5 rounded-full border-[1.5px] text-base font-bold ${activePlan === 0
               ? 'border-[#26AB5B] text-[#028B0B]'
               : ' text-[#667F93] border-[#D9E1E7]'
               }`}
           >
             Standard
-          </button>
-          <button
-            onClick={() => setActivePlan(1)}
+          </motion.button>
+          <motion.button
+            onClick={() => {
+              setActivePlan(1)
+              swiperRef.current?.slideTo(1)
+            }}
             className={`py-2 px-5 rounded-full border-[1.5px] text-base font-bold ${activePlan === 1
               ? 'border-[#1282CC] text-[#0E8CC0]'
               : ' text-[#667F93] border-[#D9E1E7]'
               }`}
           >
             Professional
-          </button>
-          <button
-            onClick={() => setActivePlan(2)}
+          </motion.button>
+          <motion.button
+            onClick={() => {
+              setActivePlan(2)
+              swiperRef.current?.slideTo(2)
+            }}
             className={`py-2 px-5 rounded-full border-[1.5px] text-base font-bold ${activePlan === 2
               ? 'border-[#29006D] text-[#634F92]'
               : ' text-[#667F93] border-[#D9E1E7]'
               }`}
           >
             Premium
-          </button>
+          </motion.button>
         </div>
 
-        {/* Mobile: hiển thị card theo gói đã chọn */}
-        <div className='xl:hidden px-6 pb-10'>
-          {(() => {
-            const item = priceList[activePlan]
-            const index = activePlan
-            return (
-              <div className="relative">
-                <div className={`absolute inset-0 rounded-[20px] bg-gradient-to-r opacity-80 ${item.background}`}></div>
-                <div className={`absolute top-4 left-4 w-full h-full rounded-[20px] border border-gray-200 bg-gradient-to-r from-white/20 to-white ${item.shadow} backdrop-blur-[15px]`}></div>
-                <div className='flex flex-col gap-4 z-10 relative p-9'>
-                  <div className='flex flex-col'>
-                    <h3 className='text-title-section-small text-[#050505] font-extrabold'>{item.title}</h3>
-                    <p className='text-[#606060] font-medium text-base-default'>{item.description}</p>
-                  </div>
-                  <div className='flex flex-col gap-5'>
-                    <h4 className={`text-title-section-small ${item.color} font-extrabold`}>{item.price}{' '}
-                      {index !== 2 && (
-                        <span className='text-base-default-feature text-[#363636]'>
-                          / App
-                        </span>
+        {/* Mobile: Swiper cho pricing cards */}
+        <div className='xl:hidden pb-10'>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={40}
+            slidesPerView={1.2}
+            centeredSlides={false}
+            onSwiper={(swiper) => { swiperRef.current = swiper }}
+            onSlideChange={(swiper) => setActivePlan(swiper.activeIndex)}
+            initialSlide={activePlan}
+            autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            speed={1500}
+            slidesOffsetAfter={slidesOffsetAfter}
+          >
+            {priceList.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="relative mb-10">
+                  <div className={`absolute inset-0 rounded-[20px] bg-gradient-to-r opacity-80 ${item.background}`}></div>
+                  <div className={`absolute top-4 left-4 w-full h-full rounded-[20px] border border-gray-200 bg-gradient-to-r from-white/20 to-white ${item.shadow} backdrop-blur-[15px]`}></div>
+                  <div className='flex flex-col gap-4 z-10 relative p-9'>
+                    <div className='flex flex-col'>
+                      <h3 className='text-title-section-small text-[#050505] font-extrabold'>{item.title}</h3>
+                      <p className='text-[#606060] font-medium text-base-default'>{item.description}</p>
+                    </div>
+                    <div className='flex flex-col gap-5'>
+                      <h4 className={`text-title-section-small ${item.color} font-extrabold`}>{item.price}{' '}
+                        {index !== 2 && (
+                          <span className='text-base-default-feature text-[#363636]'>
+                            / App
+                          </span>
+                        )}
+                      </h4>
+                      {index !== 2 ? (
+                        <button
+                          onClick={() => {
+                            window.open("https://zalo.me/2281264205827497572");
+                          }}
+                          className='w-fit text-base-default font-bold bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] hover:from-[#F3654A]/80 hover:to-[#FFB9AC]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-4 text-white shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]'
+                        >
+                          Tham khảo ngay
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            window.open("https://zalo.me/2281264205827497572");
+                          }}
+                          className='w-fit border-gradient-black text-base-default font-bold bg-gradient-to-tr from-[#2B2B4D] to-[#848498] hover:from-[#2B2B4D]/80 hover:to-[#FFFFFF]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-5 text-white shadow-[0px_-1px_2px_0px_#B3ADAD0D,0px_-2px_5px_1px_#B3ADAD0A,0px_1px_2px_0px_#B3ADAD08,0px_2px_6px_0px_#B3ADAD05,0px_-2px_14px_0px_#B3ADAD00]'
+                        >
+                          Liên hệ ngay
+                        </button>
                       )}
-                    </h4>
-                    {index !== 2 ? (
-                      <button className='w-fit text-base-default font-bold bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] hover:from-[#F3654A]/80 hover:to-[#FFB9AC]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-4 text-white shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]'>
-                        Tham khảo ngay
-                      </button>
-                    ) : (
-                      <button className='w-fit border-gradient-black text-base-default font-bold bg-gradient-to-tr from-[#2B2B4D] to-[#848498] hover:from-[#2B2B4D]/80 hover:to-[#FFFFFF]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-5 text-white shadow-[0px_-1px_2px_0px_#B3ADAD0D,0px_-2px_5px_1px_#B3ADAD0A,0px_1px_2px_0px_#B3ADAD08,0px_2px_6px_0px_#B3ADAD05,0px_-2px_14px_0px_#B3ADAD00]'>
-                        Liên hệ ngay
-                      </button>
-                    )}
-                  </div>
-                  <hr className='border-[#6C757D]' />
-                  <div className='flex flex-col gap-1'>
-                    {(() => {
-                      const allFeatures = [...commonFeatures, ...uniqueFeatures]
-                      const mobileOrder = [
-                        'Tính năng App theo yêu cầu',
-                        'Hỗ trợ up app lên Store',
-                        'Ngôn ngữ App',
-                        'Nền tảng: IOS & Android',
-                        'Bàn giao Source code',
-                        'Web Admin (Trang quản trị)',
-                        'Thiết kế giao diện',
-                        'Web giới thiệu cơ bản',
-                        'Hỗ trợ kết nối API',
-                      ]
-                      const orderedFeatures = mobileOrder
-                        .map(title => allFeatures.find(f => f.title === title))
-                        .filter(Boolean) as typeof allFeatures
+                    </div>
+                    <hr className='border-[#6C757D]/30' />
+                    <div className='flex flex-col gap-1'>
+                      {(() => {
+                        const allFeatures = [...commonFeatures, ...uniqueFeatures]
+                        const mobileOrder = [
+                          'Tính năng App theo yêu cầu',
+                          'Hỗ trợ up app lên Store',
+                          'Ngôn ngữ App',
+                          'Nền tảng: IOS & Android',
+                          'Bàn giao Source code',
+                          'Web Admin (Trang quản trị)',
+                          'Thiết kế giao diện',
+                          'Web giới thiệu cơ bản',
+                          'Hỗ trợ kết nối API',
+                        ]
+                        const orderedFeatures = mobileOrder
+                          .map(title => allFeatures.find(f => f.title === title))
+                          .filter(Boolean) as typeof allFeatures
 
-                      return orderedFeatures.map((feature, i) => {
-                        const v = feature.values[activePlan]
-                        const title = feature.title
-                        const displayTitle = title === 'Hỗ trợ up app lên Store' ? 'Hỗ trợ up App lên Store' : title
-                      if (!v) return null
-                      if (v.type === 'check') {
-                        return (
-                          <div key={i} className='flex items-center gap-2.5'>
-                            <Check className={`size-4 ${priceList[activePlan].color}`} />
-                            <p className='text-xs/[24px] font-medium text-[#484848]'>{displayTitle}</p>
-                          </div>
-                        )
-                      }
-                      if (v.type === 'dash') {
-                        return (
-                          <div key={i} className='flex items-center gap-2.5'>
-                            <X className='size-4 text-[#EA3A3D]' />
-                            <p className='text-xs/[24px] font-medium text-[#484848]'>{displayTitle}</p>
-                          </div>
-                        )
-                      }
-                      if (v.type === 'text') {
-                        // Dòng "Thiết kế giao diện ...": font semibold và màu theo tab hiện tại
-                        if (title === 'Thiết kế giao diện') {
-                          return (
-                            <div key={i} className='flex items-center gap-2.5'>
-                              <Check className={`size-4 ${priceList[activePlan].color}`} />
-                              <p className={`text-xs/[24px] font-semibold ${priceList[activePlan].color}`}>
-                                {title} {(v as any).content}
-                              </p>
-                            </div>
-                          )
-                        }
-                        // Dòng "Ngôn ngữ App" -> hiển thị dạng "1 Ngôn ngữ" hoặc "Đa ngôn ngữ"
-                        if (title === 'Ngôn ngữ App') {
-                          const content = (v as any).content
-                          const isNumeric = /^\d+$/g.test(String(content))
-                          const label = isNumeric ? `${content} Ngôn ngữ` : content
-                          return (
-                            <div key={i} className='flex items-center gap-2.5'>
-                              <Check className={`size-4 ${priceList[activePlan].color}`} />
-                              <p className={`text-xs/[24px] ${isNumeric ? 'font-medium text-[#484848]' : `font-semibold ${priceList[activePlan].color}`}`}>
-                                {label}
-                              </p>
-                            </div>
-                          )
-                        }
-                        return (
-                          <div key={i} className='flex items-center gap-2.5'>
-                            <Check className={`size-4 ${priceList[activePlan].color}`} />
-                            <p className='text-xs/[24px] font-medium text-[#484848]'>
-                              {displayTitle}: <span className={`${(v as any).color || ''}`}>{(v as any).content}</span>
-                            </p>
-                          </div>
-                        )
-                      }
-                      return null
-                      })
-                    })()}
+                        return orderedFeatures.map((feature, i) => {
+                          const v = feature.values[index]
+                          const title = feature.title
+                          const displayTitle = title === 'Hỗ trợ up app lên Store' ? 'Hỗ trợ up App lên Store' : title
+                          if (!v) return null
+                          if (v.type === 'check') {
+                            return (
+                              <div key={i} className='flex items-center gap-2.5'>
+                                <Check className={`size-4 ${priceList[index].color}`} />
+                                <p className='text-xs/[24px] font-medium text-[#484848]'>{displayTitle}</p>
+                              </div>
+                            )
+                          }
+                          if (v.type === 'dash') {
+                            return (
+                              <div key={i} className='flex items-center gap-2.5'>
+                                <X className='size-4 text-[#EA3A3D]' />
+                                <p className='text-xs/[24px] font-medium text-[#484848]'>{displayTitle}</p>
+                              </div>
+                            )
+                          }
+                          if (v.type === 'text') {
+                            // Dòng "Thiết kế giao diện ...": font semibold và màu theo tab hiện tại
+                            if (title === 'Thiết kế giao diện') {
+                              return (
+                                <div key={i} className='flex items-center gap-2.5'>
+                                  <Check className={`size-4 ${priceList[index].color}`} />
+                                  <p className={`text-xs/[24px] font-semibold ${priceList[index].color}`}>
+                                    {title} {(v as any).content}
+                                  </p>
+                                </div>
+                              )
+                            }
+                            // Dòng "Ngôn ngữ App" -> hiển thị dạng "1 Ngôn ngữ" hoặc "Đa ngôn ngữ"
+                            if (title === 'Ngôn ngữ App') {
+                              const content = (v as any).content
+                              const isNumeric = /^\d+$/g.test(String(content))
+                              const label = isNumeric ? `${content} Ngôn ngữ` : content
+                              return (
+                                <div key={i} className='flex items-center gap-2.5'>
+                                  <Check className={`size-4 ${priceList[index].color}`} />
+                                  <p className={`text-xs/[24px] ${isNumeric ? 'font-medium text-[#484848]' : `font-semibold ${priceList[index].color}`}`}>
+                                    {label}
+                                  </p>
+                                </div>
+                              )
+                            }
+                            return (
+                              <div key={i} className='flex items-center gap-2.5'>
+                                <Check className={`size-4 ${priceList[index].color}`} />
+                                <p className='text-xs/[24px] font-medium text-[#484848]'>
+                                  {displayTitle}: <span className={`${(v as any).color || ''}`}>{(v as any).content}</span>
+                                </p>
+                              </div>
+                            )
+                          }
+                          return null
+                        })
+                      })()}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          })()}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         <div className='hidden xl:grid grid-cols-3 gap-20'>
           {priceList.map((item, index) => (
-            <div key={index} className="relative">
+            <motion.div
+              key={index}
+              className="relative cursor-pointer"
+              whileHover={{
+                scale: 1.01,
+                y: -10,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut"
+                }
+              }}
+              whileTap={{ scale: 1 }}
+            >
               <div className={`absolute inset-0 rounded-[20px] bg-gradient-to-r opacity-80 ${item.background}`}></div>
               <div className={`absolute top-6 left-6 w-full h-full rounded-[20px] border border-gray-200 bg-gradient-to-r from-white/20 to-white ${item.shadow} backdrop-blur-[15px]`}></div>
               <div className='flex flex-col gap-6 z-10 relative p-11'>
@@ -344,17 +406,39 @@ const PriceList = () => {
                     )}
                   </h4>
                   {index !== 2 ? (
-                    <button className='w-fit text-base-default font-bold bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] hover:from-[#F3654A]/80 hover:to-[#FFB9AC]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-4 text-white shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]'>
+                    <motion.button
+                      onClick={() => {
+                        window.open("https://zalo.me/2281264205827497572");
+                      }}
+                      className='w-fit text-base-default font-bold bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] hover:from-[#F3654A]/80 hover:to-[#FFB9AC]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-4 text-white shadow-[0px_-1px_2px_0px_#FFFFFF4D_inset,0px_-2px_5px_1px_#FFFFFF1F_inset,0px_1px_2px_0px_#151A364D_inset,0px_2px_6px_0px_#151A3626_inset,0px_-2px_14px_0px_#FFFFFF26_inset,0px_20px_26px_-8px_#0F163A26]'
+                      whileHover={{
+                        scale: 1.05,
+                        y: -2,
+                        transition: { duration: 0.2 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       Tham khảo ngay
-                    </button>
+                    </motion.button>
                   ) : (
-                    <button className='w-fit border-gradient-black text-base-default font-bold bg-gradient-to-tr from-[#2B2B4D] to-[#848498] hover:from-[#2B2B4D]/80 hover:to-[#FFFFFF]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-5 text-white shadow-[0px_-1px_2px_0px_#B3ADAD0D,0px_-2px_5px_1px_#B3ADAD0A,0px_1px_2px_0px_#B3ADAD08,0px_2px_6px_0px_#B3ADAD05,0px_-2px_14px_0px_#B3ADAD00]'>
+                    <motion.button
+                      onClick={() => {
+                        window.open("https://zalo.me/2281264205827497572");
+                      }}
+                      className='w-fit border-gradient-black text-base-default font-bold bg-gradient-to-tr from-[#2B2B4D] to-[#848498] hover:from-[#2B2B4D]/80 hover:to-[#FFFFFF]/80 transition-all duration-300 border border-orange-300 rounded-2xl py-2 px-5 text-white shadow-[0px_-1px_2px_0px_#B3ADAD0D,0px_-2px_5px_1px_#B3ADAD0A,0px_1px_2px_0px_#B3ADAD08,0px_2px_6px_0px_#B3ADAD05,0px_-2px_14px_0px_#B3ADAD00]'
+                      whileHover={{
+                        scale: 1.05,
+                        y: -2,
+                        transition: { duration: 0.2 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       Liên hệ ngay
-                    </button>
+                    </motion.button>
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

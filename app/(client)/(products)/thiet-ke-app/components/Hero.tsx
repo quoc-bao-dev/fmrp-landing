@@ -1,4 +1,6 @@
 'use client'
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
+import AnimatedTyping from '@/components/common/animations/text/AnimatedTyping';
 import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
@@ -7,7 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useMemo } from 'react';
 
 const breadcrumbItems = [
   { label: "Trang chủ", href: "/" },
@@ -16,26 +18,49 @@ const breadcrumbItems = [
 ];
 
 const Hero = () => {
-  // Mảng hình ảnh để chuyển đổi
-  const mockupImages = [
-    IMAGES.mockupApp,
-    "/design-app/mockup1.png", // Thêm các hình khác nếu có
-    "/design-app/mockup1.png", // Có thể thay bằng hình khác
+  // Mảng dữ liệu mockup và testimonial
+  const mockupData = [
+    {
+      image: IMAGES.mockupApp,
+      avatar: "/design-app/avt.png",
+      name: "Mrs. Nguyên",
+      position: "Giám Đốc NPCare Việt Nam",
+      quote: "Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án."
+    },
+    {
+      image: "/design-app/mockup1.png",
+      avatar: "/design-app/avt.png", // Có thể thay bằng avatar khác
+      name: "Mr. Minh",
+      position: "CEO TechStart",
+      quote: "FOSO đã giúp chúng tôi tạo ra một ứng dụng mobile chuyên nghiệp và hiện đại. Đội ngũ thiết kế rất tài năng và có tầm nhìn xa."
+    },
+    {
+      image: "/design-app/mockup1.png", // Có thể thay bằng hình khác
+      avatar: "/design-app/avt.png", // Có thể thay bằng avatar khác
+      name: "Ms. Lan",
+      position: "Founder EduApp",
+      quote: "Trải nghiệm làm việc với FOSO rất tuyệt vời. Họ không chỉ thiết kế đẹp mà còn hiểu rõ nhu cầu người dùng và tạo ra sản phẩm thực sự hữu ích."
+    }
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(1); // Mặc định phải
   const [isAnimating, setIsAnimating] = useState(false);
-  const panelCount = mockupImages.length;
+  const panelCount = mockupData.length;
   const angle = 360 / panelCount;
   const [rotation, setRotation] = useState(0); // độ xoay hiện tại của trụ 3D
+
+  // Touch/Swipe handling
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+  const minSwipeDistance = 50; // Khoảng cách tối thiểu để tính là swipe
 
   const nextImage = () => {
     if (isAnimating) return; // Đang animate thì không cho bấm
     setIsAnimating(true);
     setDirection(1); // Phải
     setRotation((prev) => prev - angle);
-    setCurrentImageIndex((prev) => (prev + 1) % mockupImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % mockupData.length);
   };
 
   const prevImage = () => {
@@ -43,9 +68,84 @@ const Hero = () => {
     setIsAnimating(true);
     setDirection(-1); // Trái
     setRotation((prev) => prev + angle);
-    setCurrentImageIndex((prev) => (prev - 1 + mockupImages.length) % mockupImages.length);
+    setCurrentImageIndex((prev) => (prev - 1 + mockupData.length) % mockupData.length);
   };
 
+  const goToImage = (targetIndex: number) => {
+    if (isAnimating || targetIndex === currentImageIndex) return; // Đang animate hoặc đã ở vị trí đó thì không làm gì
+    setIsAnimating(true);
+
+    const diff = targetIndex - currentImageIndex;
+    const rotationDiff = -diff * angle; // Tính góc xoay cần thiết
+
+    setDirection(diff > 0 ? 1 : -1); // Xác định hướng
+    setRotation((prev) => prev + rotationDiff);
+    setCurrentImageIndex(targetIndex);
+  };
+
+  // Touch event handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage(); // Swipe trái -> chuyển sang hình tiếp theo
+    } else if (isRightSwipe) {
+      prevImage(); // Swipe phải -> chuyển về hình trước
+    }
+  };
+
+  // Mouse event handlers for desktop drag
+  const handleMouseDown = (e: React.MouseEvent) => {
+    touchStartX.current = e.clientX;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    touchEndX.current = e.clientX;
+
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage();
+    } else if (isRightSwipe) {
+      prevImage();
+    }
+  };
+
+  const heroPerTitle1a = useMemo(
+    () => "Giải pháp ".split("").map((letter, index) => ({ 
+      id: index, 
+      letter
+    })),
+    []
+  );
+
+  const heroPerTitle1b = useMemo(
+    () => "mobile app".split("").map((letter, index) => ({ 
+      id: index + 100, 
+      letter
+    })),
+    []
+  );
+
+  const heroPerTitle2 = useMemo(
+    () => "toàn diện cho doanh nghiệp".split("").map((letter, index) => ({ id: index, letter })),
+    []
+  );
+  
   return (
     <div className='relative'>
       <div className='custom-container-new h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
@@ -54,11 +154,25 @@ const Hero = () => {
           <div className='flex flex-col gap-9 w-full xl:w-[40%]'>
             <div className='flex flex-col gap-5'>
               <div className='flex flex-col justify-center items-center xl:items-start'>
-                <h2 className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
-                  Giải pháp <span className='text-[#F3654A]'>mobile app </span><br />
-                </h2>
-                <h2 className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
-                  toàn diện cho doanh nghiệp </h2>
+                <div className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
+                  <AnimatedTitle 
+                    className='text-title-section-2 font-extrabold' 
+                    heroPerTitle={heroPerTitle1a} 
+                    delay={0.2} 
+                  />
+                  <AnimatedTitle 
+                    className='text-title-section-2 font-extrabold text-[#F3654A]' 
+                    heroPerTitle={heroPerTitle1b} 
+                    delay={0.7} 
+                  />
+                </div>
+                <div className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
+                  <AnimatedTitle 
+                    className='text-title-section-2 font-extrabold' 
+                    heroPerTitle={heroPerTitle2} 
+                    delay={1} 
+                  />
+                </div>
               </div>
               <p className='text-base-default w-full xl:w-[90%] text-center xl:text-left font-semibold text-light-900'>FOSO không chỉ thiết kế app, mà còn giúp bạn kể câu chuyện thương hiệu qua từng cú chạm – độc đáo, tinh tế và đậm chất riêng.</p>
             </div>
@@ -124,9 +238,17 @@ const Hero = () => {
           </div>
           <div className='relative w-full xl:w-[60%] h-full'>
             <div className='relative w-1/2 ml-[37.5%] mr-[12.5%]'>
-              <div className='relative w-full aspect-[10/25] 2xl:aspect-[10/18]'>
+              <div className='relative w-full aspect-[10/18] 2xl:aspect-[10/18]'>
                 {/* Scene 3D với perspective để tạo cảm giác trụ */}
-                <div className='absolute inset-0 flex items-center justify-center' style={{ perspective: '1200px' }}>
+                <div
+                  className='absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing'
+                  style={{ perspective: '1200px' }}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  onMouseDown={handleMouseDown}
+                  onMouseUp={handleMouseUp}
+                >
                   <motion.div
                     className='relative w-full h-full'
                     style={{ transformStyle: 'preserve-3d' }}
@@ -134,7 +256,7 @@ const Hero = () => {
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
                     onAnimationComplete={() => setIsAnimating(false)}
                   >
-                    {mockupImages.map((src, index) => {
+                    {mockupData.map((item, index) => {
                       const radius = 260; // bán kính trụ (px)
                       return (
                         <div
@@ -147,12 +269,12 @@ const Hero = () => {
                           }}
                         >
                           <Image
-                            src={src}
+                            src={item.image}
                             alt={`mockup-${index}`}
                             priority={index === currentImageIndex}
                             width={1000}
                             height={1000}
-                            className='w-[88%] 2xl:w-[80%] h-auto bg-transparent'
+                            className='w-[80%] 2xl:w-[80%] h-auto bg-transparent'
                           />
                         </div>
                       );
@@ -161,37 +283,67 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className='absolute top-1/2 -translate-y-1/2 -left-[30%] size-[50px] 2xl:size-[60px] rounded-full bg-[#E96C6C40] hover:bg-[#E96C6C60] cursor-pointer transition-all duration-500 flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
+              <div className='hidden absolute top-1/2 -translate-y-1/2 -left-[30%] size-[50px] 2xl:size-[60px] rounded-full bg-[#E96C6C]/60 hover:bg-[#E96C6C] cursor-pointer transition-all duration-500 xl:flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
                 onClick={prevImage}>
                 <Image src={IMAGES.arrowRightOrange} alt="arrowRightOrange" width={1000} height={1000} className='size-full rotate-180 shrink-0 object-contain' />
               </div>
-              <div className='absolute top-1/2 -translate-y-1/2 -right-[30%] size-[50px] 2xl:size-[60px] rounded-full bg-[#E96C6C40] hover:bg-[#E96C6C60] cursor-pointer transition-all duration-500 flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
+              <div className='hidden absolute top-1/2 -translate-y-1/2 -right-[30%] size-[50px] 2xl:size-[60px] rounded-full bg-[#E96C6C]/60 hover:bg-[#E96C6C] cursor-pointer transition-all duration-500 xl:flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
                 onClick={nextImage}>
                 <Image src={IMAGES.arrowRightOrange} alt="arrowRightOrange" width={1000} height={1000} className='size-full shrink-0 object-contain' />
               </div>
+
+              {/* Indicator hiển thị vị trí hiện tại */}
+              <div className='hidden xl:flex absolute -bottom-[13%] left-1/2 -translate-x-1/2 gap-2 items-center'>
+                {mockupData.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-2.5 h-2.5 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4 rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
+                      ? 'bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] w-5 lg:w-6 2xl:w-8'
+                      : 'bg-[#888888] hover:bg-[#F3654A]/60 hover:scale-110'
+                      }`}
+                    onClick={() => goToImage(index)}
+                  />
+                ))}
+              </div>
             </div>
-            <div className='absolute bottom-10 left-0 p-3 xl:p-4 pb-6 bg-orange-100 rounded-[20px] xl:rounded-[40px] w-[65%] xl:w-[55%] 2xl:w-1/2 h-fit' style={{ boxShadow: '0px 1px 3px -1px #0000004D, 0px 6px 10px -1px #32325D40' }}>
+            <div className='absolute bottom-0 left-0 p-3 xl:p-4 pb-6 bg-orange-100 rounded-[20px] xl:rounded-[40px] w-[65%] xl:w-[55%] 2xl:w-1/2 h-fit' style={{ boxShadow: '0px 1px 3px -1px #0000004D, 0px 6px 10px -1px #32325D40' }}>
               <div className='flex gap-2 items-center p-2 pr-4 bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] rounded-full w-full h-fit'>
-                <Image src="/design-app/avt.png" alt="logo" width={1000} height={1000} className='size-[43px] xl:size-[50px] 2xl:size-[60px] rounded-full object-cover' />
+                <Image 
+                  src={mockupData[currentImageIndex].avatar} 
+                  alt="avatar" 
+                  width={1000} 
+                  height={1000} 
+                  className='size-[43px] xl:size-[50px] 2xl:size-[60px] rounded-full object-cover' 
+                />
                 <div className='flex flex-col'>
-                  <p className='text-title font-semibold text-white'>Mrs. Nguyên</p>
-                  <p className='text-sxs-default text-white'>Giám Đốc NPCare Việt Nam</p>
+                  <p className='text-title font-semibold text-white'>{mockupData[currentImageIndex].name}</p>
+                  <p className='text-sxs-default text-white'>{mockupData[currentImageIndex].position}</p>
                 </div>
               </div>
-              <p className='text-sm-table-default text-light-900 mt-3'>
-                “Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án.”
-              </p>
+              <AnimatedTyping
+                phrases={[mockupData[currentImageIndex].quote]}
+                className="text-sm-table-default !text-light-900 mt-3 min-h-16"
+                style={{ background: '#33404a' }}
+              />
+            </div>
+            <div className='xl:hidden absolute -bottom-2 2xl:bottom-[-13%] left-1/2 -translate-x-1/2 flex gap-2 items-center'>
+              {mockupData.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2.5 h-2.5 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4 rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
+                    ? 'bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] w-6 2xl:w-8'
+                    : 'bg-[#888888] hover:bg-[#F3654A]/60 hover:scale-110'
+                    }`}
+                  onClick={() => goToImage(index)}
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
       <div className='absolute top-0 right-[40%] translate-x-1/2 w-[60%] z-[-1] pointer-events-none'>
         <div className='relative w-full h-full'>
-          <div
-            className='absolute top-0 right-0 w-10 h-full bg-gradient-to-r from-transparent to-white'
-          >
-
-          </div>
+          <div className='absolute top-0 right-0 w-10 h-full bg-gradient-to-r from-transparent to-white' />
           <Image src={IMAGES.blurOrangeLarge} alt="blurOrange" width={1000} height={1000} className=' object-cover ' />
         </div>
       </div>
