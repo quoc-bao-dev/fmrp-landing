@@ -14,7 +14,7 @@ const CTAFooter = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   return (
     <section className="relative xl:custom-padding-section">
-      <div className="custom-container flex flex-col-reverse xl:flex-row gap-2 xl:gap-[72px] justify-center items-center">
+      <div className="custom-container flex flex-col-reverse lg:flex-row gap-2 lg:gap-[72px] justify-center items-center">
         <div className="w-full">
           <Image
             width={800}

@@ -1,21 +1,15 @@
 'use client'
 
-import React, { useEffect } from 'react'
-
-
-import { TranslateProvider } from '@/contexts/TranslateContext'
-
-import useCookieStore from '@/stores/useCookieStore'
-import { useAuthStore } from '@/stores/useAuthStores'
-
 import { KEY_COOKIES } from '@/constants/Cookie'
-import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-import { dataLanguageOptions } from '../../../data/DataTranslate';
 import { ScrollProvider } from '@/contexts/ScrollContext'
+import { TranslateProvider } from '@/contexts/TranslateContext'
+import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
+import { useAuthStore } from '@/stores/useAuthStores'
+import useCookieStore from '@/stores/useCookieStore'
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import React, { useEffect } from 'react'
+import { dataLanguageOptions } from '../../../data/DataTranslate'
 import ClientLayout from '../client/ClientLayout'
-
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import ThemeSwitcher from '../../common/theme/ThemeSwitch';
 
 type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
 
@@ -64,12 +58,12 @@ const ProviderLayout = ({ children, data, ...props }: ProviderLayoutProps) => {
     return (
         <NextThemesProvider {...props}>
             <TranslateProvider dataLang={data?.dataLang} language={data?.language} loading={false}>
-                <ScrollProvider>
+                {/* <ScrollProvider> */}
                     {/* <ThemeSwitcher /> */}
                     <ClientLayout data={data}>
                         {children}
                     </ClientLayout>
-                </ScrollProvider>
+                {/* </ScrollProvider> */}
             </TranslateProvider>
         </NextThemesProvider>
     )

@@ -4,10 +4,7 @@ import WidgetButton from "@/components/common/button/WidgetButton";
 import DynamicSheetWrapper from "@/components/common/sheet/DynamicSheetWrapper";
 import FooterContainer from "@/components/layouts/footer/FooterContainer";
 import FosoHeaderContainer from "@/components/layouts/header/header-foso/FosoHeaderContainer";
-import { IMAGES } from "@/constants/Images";
 import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
 import React from "react";
 import FmrpHeaderContainer from "../header/header-fmrp/FmrpHeaderContainer";
 import PathCheckerWrapper from "./PathCheckerWrapper";
@@ -37,9 +34,9 @@ const ClientLayout = ({
         />
       )} */}
 
-      <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
+      {/* <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
         <FmrpHeaderContainer />
-      </PathCheckerWrapper>
+      </PathCheckerWrapper> */}
       <FosoHeaderContainer />
       <div className="rounded-b-3xl bg-white relative z-0 md:z-10 ">
         {children}
@@ -50,12 +47,12 @@ const ClientLayout = ({
         <FooterContainer />
       </div>
 
-      <WidgetButton />
-      <ButtonToTop />
+      {/* <WidgetButton /> */}
+      {/* <ButtonToTop /> */}
       {/* <RegisterButton /> */}
 
-      <RegisterBttonNew />
-      <DynamicSheetWrapper />
+      {/* <RegisterBttonNew /> */}
+      {/* <DynamicSheetWrapper /> */}
     </div>
   );
 };

@@ -52,7 +52,7 @@ const Procedure = () => {
       </div>
 
       <motion.div
-        className='relative px-0 xl:px-24 grid grid-cols-1 xl:grid-cols-5 justify-between items-center gap-6 xl:gap-12'
+        className='relative px-0 lg:px-6 xl:px-24 grid grid-cols-1 lg:grid-cols-5 justify-between items-center gap-6 xl:gap-12'
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
@@ -67,12 +67,12 @@ const Procedure = () => {
           }
         }}
       >
-        <div className='hidden xl:block absolute bottom-[88px] 2xl:bottom-[103px] left-1/2 -translate-x-1/2 w-[70%] 2xl:w-[75%] h-[1px] border-b border-dashed border-[#F3654A] z-[-1]'></div>
-        <div className='xl:hidden absolute top-2 left-[64px] h-[80%] w-[1px] border-r border-dashed border-[#F3654A] z-[-1]'></div>
+        <div className='hidden lg:block absolute bottom-[88px] 2xl:bottom-[103px] left-1/2 -translate-x-1/2 w-[70%] lg:w-[80%] xl:w-[70%] 2xl:w-[75%] h-[1px] border-b border-dashed border-[#F3654A] z-[-1]'></div>
+        <div className='lg:hidden absolute top-2 left-[64px] h-[80%] w-[1px] border-r border-dashed border-[#F3654A] z-[-1]'></div>
         {steps.map((step, index) => (
           <motion.div
             key={index}
-            className='flex gap-3 px-4 xl:px-0 h-full'
+            className='flex gap-3 px-4 lg:px-0 h-full'
             initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
@@ -83,7 +83,7 @@ const Procedure = () => {
               delay: index * 0.2
             }}
           >
-            <div className='xl:hidden flex gap-2 h-fit items-center'>
+            <div className='lg:hidden flex gap-2 h-fit items-center'>
               <span className='text-orange-700 text-title-section-medium-fit-leading font-semibold'>0{index + 1}</span>
               <div className='size-6 bg-orange-200 rounded-full flex items-center justify-center'>
                 <span className='size-3 rounded-full bg-gradient-to-r from-[#F3654A] to-[#FFB9AC]'></span>
@@ -93,15 +93,15 @@ const Procedure = () => {
               <div className='flex flex-col gap-8 items-center'>
                 <Image src={step.image} alt={step.title} width={1000} height={1000} className='size-[100px] object-contain' />
                 <div className='flex flex-col gap-2 xl:gap-4 items-center flex-1'>
-                  <h3 className='text-title text-[#050505] font-bold capitalize'> {step.title}</h3>
+                  <h3 className='text-title text-[#050505] font-bold capitalize text-center'> {step.title}</h3>
                   <p className='text-sm-default text-center text-light-900 font-semibold'>{step.description}</p>
                 </div>
               </div>
               <div className='flex flex-col gap-8 items-center'>
-                <div className='hidden size-8 bg-orange-200 rounded-full xl:flex items-center justify-center'>
+                <div className='hidden size-8 bg-orange-200 rounded-full lg:flex items-center justify-center'>
                   <span className='size-4 rounded-full bg-gradient-to-r from-[#F3654A] to-[#FFB9AC]'></span>
                 </div>
-                <span className='hidden xl:block text-orange-700 text-title-section-medium-fit-leading font-semibold'>
+                <span className='hidden lg:block text-orange-700 text-title-section-medium-fit-leading font-semibold'>
                   0{index + 1}
                 </span>
               </div>

@@ -1,7 +1,9 @@
 'use client'
-
+import ScrollbarStyle from '@/components/common/scroll/ScrollbarStyle'
 import ToastCustom from '@/components/common/toast/ToastCustom'
 import { Toaster as ToastShadcnUi } from "@/components/ui/toaster"
+import { KEY_COOKIES } from '@/constants/Cookie'
+import { ModalProvider } from '@/contexts/ModalContext'
 import { useToast } from '@/hooks/ui/use-toast'
 import { useResizeStore } from '@/stores/useResizeStore'
 import { useToastStore } from '@/stores/useToastStore'
@@ -10,13 +12,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import CursorFollower from '../../common/cursor/CursorFollower';
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import ProviderLayout from '../provider/ProviderLayout'
-import { KEY_COOKIES } from '@/constants/Cookie'
-import ScrollbarStyle from '@/components/common/scroll/ScrollbarStyle'
-// import { LenisProvider } from '@/contexts/LenisContext'
-import { ModalProvider } from '@/contexts/ModalContext';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -26,7 +23,7 @@ const queryClient = new QueryClient({
     }
 })
 
-const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }) => {
+const RootLayout = memo(({ children, data }: { children: React.ReactNode, data: any }) => {
     const { toast } = useToast()
 
     const [isMounted, setIsMounted] = useState<boolean>(false)
@@ -75,39 +72,45 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
 
     // ẩn/hiện khi chuyển qua màn hình nhỏ khi không dùng chung div để tránh xung đột 
     useEffect(() => {
-        // Kiểm tra kích thước màn hình và cập nhật trạng thái isVisible 
+        let timeoutId: NodeJS.Timeout;
+
+        // Debounce resize handler để tối ưu hiệu năng
         const handleResize = () => {
-            if (window.innerWidth < 768) {
-                // khi đến màn 768 thì bắt đầu thực hiện function
-                onResizeMobile();
-            } else {
-                onCloseResizeMobile()
-            }
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                const width = window.innerWidth;
 
-            if (window.innerWidth < 1024) {
-                onResizeTablet()
-            } else {
-                onCloseResizeTablet()
-            }
+                // Tối ưu: chỉ gọi function khi cần thiết
+                if (width < 768) {
+                    onResizeMobile();
+                } else {
+                    onCloseResizeMobile();
+                }
 
-            if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
-                onResizeDesktopLG()
-            } else {
-                onCloseResizeDesktopLG()
-            }
+                if (width < 1024) {
+                    onResizeTablet();
+                } else {
+                    onCloseResizeTablet();
+                }
 
-            if (window.innerWidth >= 1280 && window.innerWidth < 1440) {
-                onResizeDesktopXL()
-            } else {
-                onCloseResizeDesktopXL()
-            }
+                if (width >= 1024 && width < 1280) {
+                    onResizeDesktopLG();
+                } else {
+                    onCloseResizeDesktopLG();
+                }
 
-            if (window.innerWidth >= 1440 && window.innerWidth < 1536) {
-                onResizeDesktopXXL()
-            } else {
-                onCloseResizeDesktopXXL()
-            }
+                if (width >= 1280 && width < 1440) {
+                    onResizeDesktopXL();
+                } else {
+                    onCloseResizeDesktopXL();
+                }
 
+                if (width >= 1440 && width < 1536) {
+                    onResizeDesktopXXL();
+                } else {
+                    onCloseResizeDesktopXXL();
+                }
+            }, 100); // Debounce 100ms
         };
 
         // Gọi hàm handleResize khi kích thước màn hình thay đổi
@@ -118,27 +121,12 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
 
         // Hủy lắng nghe sự kiện resize khi component bị unmount
         return () => {
+            clearTimeout(timeoutId);
             window.removeEventListener('resize', handleResize);
         };
-    }, [
-        isVisibleMobile,
-        isVisibleTablet,
-        isVisibleDesktopLG,
-        isVisibleDesktopXL,
-        isVisibleDesktopXXL,
-        onResizeMobile,
-        onResizeTablet,
-        onResizeDesktopLG,
-        onResizeDesktopXL,
-        onResizeDesktopXXL,
-        onCloseResizeMobile,
-        onCloseResizeTablet,
-        onCloseResizeDesktopLG,
-        onCloseResizeDesktopXL,
-        onCloseResizeDesktopXXL,
-    ]);
+    }, []); // Loại bỏ dependencies để tránh re-render không cần thiết
 
-    const showToast = (type: 'success' | 'error' | 'warning', message: string, description?: string) => {
+    const showToast = useCallback((type: 'success' | 'error' | 'warning', message: string, description?: string) => {
         return toast({
             duration: duration,
             className: 'rounded-[13px] max-w-[336px]',
@@ -150,16 +138,19 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
                 />
             )
         });
-    };
+    }, [duration, toast]);
 
     useEffect(() => {
         if (openToast && type && message) {
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 setToast(false)
             }, duration)
+
             showToast(type, message, description)
+
+            return () => clearTimeout(timeoutId);
         }
-    }, [openToast])
+    }, [openToast, type, message, description, duration, showToast, setToast])
 
     if (!isMounted) return null;
 
@@ -167,13 +158,13 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
         // <LenisProvider>
         <QueryClientProvider client={queryClient}>
             <main id="scroll-container" className='bg-white min-w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-container'>
-                <AnimatePresence
+                {/* <AnimatePresence
                     mode="wait"
                     onExitComplete={() => {
                         if (typeof window == 'undefined') return;
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                     }}
-                >
+                > */}
                     <ModalProvider>
                         <ProviderLayout
                             data={data}
@@ -189,12 +180,14 @@ const RootLayout = ({ children, data }: { children: React.ReactNode, data: any }
                             <ToastShadcnUi />
                         </ProviderLayout>
                     </ModalProvider>
-                </AnimatePresence>
+                {/* </AnimatePresence> */}
             </main>
-            <ReactQueryDevtools initialIsOpen={true} />
+            {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
         </QueryClientProvider>
         // </LenisProvider >
     )
-}
+});
+
+RootLayout.displayName = 'RootLayout';
 
 export default RootLayout

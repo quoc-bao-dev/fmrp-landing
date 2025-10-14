@@ -42,9 +42,9 @@ const Ready = () => {
           sẵn sàng hỗ trợ bạn</h2>
         <p className='text-base-default text-light-900 font-semibold'>Bạn đang cần tư vấn thêm về báo giá dịch vụ, hướng dẫn sử dụng hoặc trở thành đối tác FOSO - Chúng tôi luôn sẵn sàng kết nối cùng bạn!</p>
         <div className='flex flex-col items-center gap-6'>
-          <div className='grid grid-cols-1 xl:grid-cols-3 gap-3 xl:gap-6 pt-0 xl:pt-9 pb-0 xl:pb-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-6 pt-0 lg:pt-9 pb-0 lg:pb-4'>
             {services.map((service, index) => (
-              <div key={index} className={`flex xl:flex-col gap-6 p-3 xl:p-6 rounded-3xl bg-white cursor-pointer shadow-[0px_4px_20px_-5px_#77729326,0px_4px_20px_-5px_#7772930D] ${service.style}`}>
+              <div key={index} className={`flex lg:flex-col gap-6 p-3 lg:p-4 xl:p-6 rounded-3xl bg-white cursor-pointer shadow-[0px_4px_20px_-5px_#77729326,0px_4px_20px_-5px_#7772930D] ${service.style}`}>
                 <Image src={service.icon} alt='calendar' width={100} height={100} className='size-[67px] xl:size-[100px]' />
                 <div className='flex flex-col gap-2'>
                   <h3 className='text-title-section-feature-small text-[#050505] font-extrabold capitalize'>{service.title}</h3>

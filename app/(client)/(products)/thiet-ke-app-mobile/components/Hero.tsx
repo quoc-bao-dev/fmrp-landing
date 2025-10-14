@@ -150,10 +150,10 @@ const Hero = () => {
     <div className='relative'>
       <div className='custom-container-new h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
         <CustomBreadcrumb items={breadcrumbItems} />
-        <div className='flex flex-col-reverse xl:flex-row gap-9 xl:gap-20 2xl:gap-24 items-center w-full h-full'>
-          <div className='flex flex-col gap-9 w-full xl:w-[40%]'>
+        <div className='flex flex-col-reverse lg:flex-row gap-9 xl:gap-20 2xl:gap-24 items-center w-full h-full'>
+          <div className='flex flex-col gap-9 w-full lg:w-[50%] xl:w-[40%]'>
             <div className='flex flex-col gap-5'>
-              <div className='flex flex-col justify-center items-center xl:items-start'>
+              <div className='flex flex-col justify-center items-center lg:items-start'>
                 <div className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
                   <AnimatedTitle 
                     className='text-title-section-2 font-extrabold' 
@@ -174,9 +174,9 @@ const Hero = () => {
                   />
                 </div>
               </div>
-              <p className='text-base-default w-full xl:w-[90%] text-center xl:text-left font-semibold text-light-900'>FOSO không chỉ thiết kế app, mà còn giúp bạn kể câu chuyện thương hiệu qua từng cú chạm – độc đáo, tinh tế và đậm chất riêng.</p>
+              <p className='text-base-default w-full lg:w-[90%] text-center lg:text-left font-semibold text-light-900'>FOSO không chỉ thiết kế app, mà còn giúp bạn kể câu chuyện thương hiệu qua từng cú chạm – độc đáo, tinh tế và đậm chất riêng.</p>
             </div>
-            <div className="flex flex-col xxs:flex-row items-center justify-center xl:justify-start gap-3 w-full">
+            <div className="flex flex-col xxs:flex-row items-center justify-center lg:justify-start gap-3 w-full">
               <ButtonAnimationNew
                 title="Tư vấn ngay"
                 icon={
@@ -230,13 +230,13 @@ const Hero = () => {
 
               <Link
                 href="/du-an"
-                className="w-fit whitespace-nowrap border-gradient-button-no-bg-orange border-[#FAC1B7] bg-white rounded-full px-5 py-2.5 md:py-4 xl:py-[13px] 2xl:py-[18px] text-sm font-medium shadow-[0px_1px_2px_0px_#B3ADAD0D,0px_4px_4px_0px_#B3ADAD0A,0px_9px_5px_0px_#B3ADAD08,0px_16px_6px_0px_#B3ADAD03,0px_25px_7px_0px_#B3ADAD00]"
+                className="w-fit whitespace-nowrap border-gradient-button-no-bg-orange border-[#FAC1B7] bg-white rounded-full px-5 py-2.5 md:py-4 lg:py-[18px] xl:py-[13px] 2xl:py-[18px] text-sm font-medium shadow-[0px_1px_2px_0px_#B3ADAD0D,0px_4px_4px_0px_#B3ADAD0A,0px_9px_5px_0px_#B3ADAD08,0px_16px_6px_0px_#B3ADAD03,0px_25px_7px_0px_#B3ADAD00]"
               >
                 Xem chi tiết dự án
               </Link>
             </div>
           </div>
-          <div className='relative w-full xl:w-[60%] h-full'>
+          <div className='relative w-full lg:w-[60%] h-full'>
             <div className='relative w-1/2 ml-[37.5%] mr-[12.5%]'>
               <div className='relative w-full aspect-[10/23] xl:aspect-[10/18] 2xl:aspect-[10/18]'>
                 {/* Scene 3D với perspective để tạo cảm giác trụ */}
@@ -283,17 +283,17 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className='hidden absolute top-1/2 -translate-y-1/2 -left-[30%] size-[50px] 2xl:size-[60px] rounded-full bg-[#E96C6C]/60 hover:bg-[#E96C6C] cursor-pointer transition-all duration-500 xl:flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
+              <div className='hidden absolute top-1/2 -translate-y-1/2 -left-[30%] size-[50px] lg:size-[44px] 2xl:size-[60px] rounded-full bg-[#E96C6C]/60 hover:bg-[#E96C6C] cursor-pointer transition-all duration-500 lg:flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
                 onClick={prevImage}>
                 <Image src={IMAGES.arrowRightOrange} alt="arrowRightOrange" width={1000} height={1000} className='size-full rotate-180 shrink-0 object-contain' />
               </div>
-              <div className='hidden absolute top-1/2 -translate-y-1/2 -right-[30%] size-[50px] 2xl:size-[60px] rounded-full bg-[#E96C6C]/60 hover:bg-[#E96C6C] cursor-pointer transition-all duration-500 xl:flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
+              <div className='hidden absolute top-1/2 -translate-y-1/2 -right-[30%] size-[50px] lg:size-[44px] 2xl:size-[60px] rounded-full bg-[#E96C6C]/60 hover:bg-[#E96C6C] cursor-pointer transition-all duration-500 lg:flex items-center justify-center p-3.5 2xl:p-4 border border-white/60'
                 onClick={nextImage}>
                 <Image src={IMAGES.arrowRightOrange} alt="arrowRightOrange" width={1000} height={1000} className='size-full shrink-0 object-contain' />
               </div>
 
               {/* Indicator hiển thị vị trí hiện tại */}
-              <div className='hidden xl:flex absolute -bottom-[13%] left-1/2 -translate-x-1/2 gap-2 items-center'>
+              <div className='hidden lg:flex absolute xl:-bottom-[13%] lg:-bottom-[8%] left-1/2 -translate-x-1/2 gap-2 items-center'>
                 {mockupData.map((_, index) => (
                   <div
                     key={index}
@@ -326,7 +326,7 @@ const Hero = () => {
                 style={{ background: '#33404a' }}
               />
             </div>
-            <div className='xl:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 items-center'>
+            <div className='lg:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 items-center'>
               {mockupData.map((_, index) => (
                 <div
                   key={index}

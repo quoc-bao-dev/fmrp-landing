@@ -177,7 +177,7 @@ const PriceList = () => {
 
   return (
     <div className='relative'>
-      <div className='custom-container-new flex flex-col gap-6 xl:gap-16'>
+      <div className='custom-container-new flex flex-col gap-6 lg:gap-16'>
         <div className='flex flex-col gap-4 justify-center items-center'>
           <h2 className='text-title-section-small text-center text-[#050505] font-extrabold capitalize'>
             <span className='text-title-section-medium-fit-leading'
@@ -198,7 +198,7 @@ const PriceList = () => {
             </span></h2>
           <p className='text-base-default text-light-900 font-semibold'>Chọn gói hoàn hảo cho nhu cầu kinh doanh của bạn.</p>
         </div>
-        <div className='xl:hidden flex items-center justify-center gap-2'>
+        <div className='lg:hidden flex items-center justify-center gap-2'>
           <motion.button
             onClick={() => {
               setActivePlan(0)
@@ -238,7 +238,7 @@ const PriceList = () => {
         </div>
 
         {/* Mobile: Swiper cho pricing cards */}
-        <div className='xl:hidden pb-10'>
+        <div className='lg:hidden pb-10'>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={40}
@@ -254,9 +254,9 @@ const PriceList = () => {
             {priceList.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="relative mb-10">
-                  <div className={`absolute inset-0 rounded-[20px] bg-gradient-to-r opacity-80 ${item.background}`}></div>
-                  <div className={`absolute top-4 left-4 w-full h-full rounded-[20px] border border-gray-200 bg-gradient-to-r from-white/20 to-white ${item.shadow} backdrop-blur-[15px]`}></div>
-                  <div className='flex flex-col gap-4 z-10 relative p-9'>
+                  <div className={`absolute z-[1] inset-0 rounded-[20px] bg-gradient-to-r opacity-80 ${item.background}`}></div>
+                  <div className={`absolute z-[2] top-4 left-4 w-full h-full rounded-[20px] border border-gray-200 bg-gradient-to-r from-white/20 to-white ${item.shadow} backdrop-blur-[15px]`}></div>
+                  <div className='flex flex-col gap-4 z-20 relative p-9'>
                     <div className='flex flex-col'>
                       <h3 className='text-title-section-small text-[#050505] font-extrabold'>{item.title}</h3>
                       <p className='text-[#606060] font-medium text-base-default'>{item.description}</p>
@@ -375,7 +375,7 @@ const PriceList = () => {
           </Swiper>
         </div>
 
-        <div className='hidden xl:grid grid-cols-3 gap-20'>
+        <div className='hidden lg:grid grid-cols-3 lg:gap-10 xl:gap-20'>
           {priceList.map((item, index) => (
             <motion.div
               key={index}
@@ -442,7 +442,7 @@ const PriceList = () => {
           ))}
         </div>
 
-        <div className='hidden xl:flex flex-col gap-5'>
+        <div className='hidden lg:flex flex-col gap-5'>
           <div className='flex flex-col gap-2'>
             {/* Header của bảng */}
             <div className='flex justify-end gap-3'>

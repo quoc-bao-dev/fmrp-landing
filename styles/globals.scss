@@ -141,6 +141,10 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[36px] tracking-normal;
   }
 
+  .text-title-section-1 {
+    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] leading-[120%] tracking-normal;
+  }
+
   .text-title-section-2 {
     @apply 3xl:text-[54px] 2xl:text-[44px] xxl:text-[42px] xl:text-[40px] lg:text-[36px] md:text-[32px] text-[26px] leading-[150%] tracking-normal;
   }
@@ -1199,3 +1203,27 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   animation: radialMove 5s ease-in-out infinite;
 }
 
+@keyframes wave {
+  0% { transform: translateX(0) }
+  50% { transform: translateX(-80%) }
+  100% { transform: translateX(0) }
+}
+
+.wave-1 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.wave-2 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: 2s;
+}
+
+.wave-3 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: 4s;
+}
+
+.wave-4 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: 6s;
+}

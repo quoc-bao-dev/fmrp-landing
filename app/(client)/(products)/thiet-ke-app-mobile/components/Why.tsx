@@ -62,7 +62,7 @@ const reasons = [
   },
 ]
 const Why = () => {
-  const { isVisibleMobile } = useResizeStore()
+  const { isVisibleMobile, isVisibleTablet, isVisibleDesktopLG } = useResizeStore()
 
 
   return (
@@ -127,7 +127,7 @@ const Why = () => {
                 }
               }}
             >
-              {(reason.align === 'left' || isVisibleMobile) && (
+              {(reason.align === 'left' || isVisibleMobile || isVisibleTablet || isVisibleDesktopLG) && (
                 <Image src={reason.icon} alt='icon' width={1000} height={1000} className={reason.size} />
               )}
               <div className={`flex flex-col gap-2 ${reason.align === 'right' ? 'xl:items-end' : 'xl:items-start'}`}>
@@ -138,7 +138,7 @@ const Why = () => {
                   {reason.description}
                 </p>
               </div>
-              {(reason.align === 'right' && !isVisibleMobile) && (
+              {(reason.align === 'right' && !isVisibleMobile && !isVisibleTablet && !isVisibleDesktopLG) && (
                 <Image src={reason.icon} alt='icon' width={1000} height={1000} className={reason.size} />
               )}
             </motion.div>
