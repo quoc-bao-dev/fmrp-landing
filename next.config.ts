@@ -77,14 +77,14 @@ const nextConfig: NextConfig = {
                 source: '/thiet-ke-website', // ensublink
                 destination: '/products/thiet-ke-website',
             },
-            {
-                source: '/hosting-server-rental-services', // ensublink
-                destination: '/products/thue-hosting-server',
-            },
-            {
-                source: '/thue-hosting-server', // ensublink
-                destination: '/products/thue-hosting-server',
-            },
+            // {
+            //     source: '/hosting-server-rental-services', // ensublink
+            //     destination: '/products/thue-hosting-server',
+            // },
+            // {
+            //     source: '/thue-hosting-server', // ensublink
+            //     destination: '/products/thue-hosting-server',
+            // },
             {
                 source: '/gioi-thieu',
                 destination: '/about-us',
@@ -166,11 +166,11 @@ const nextConfig: NextConfig = {
                 destination: '/thiet-ke-website',
                 permanent: true
             },
-            {
-                source: '/products/thue-hosting-server',
-                destination: '/thue-hosting-server',
-                permanent: true
-            },
+            // {
+            //     source: '/products/thue-hosting-server',
+            //     destination: '/thue-hosting-server',
+            //     permanent: true
+            // },
             {
                 source: '/resource',
                 destination: '/du-an',
