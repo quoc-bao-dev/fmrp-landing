@@ -1,6 +1,10 @@
+import CTAFooter from './components/CTAFooter'
 import Hero from './components/Hero'
 import Hosting from './components/Hosting'
+import Other from './components/Other'
+import Partner from './components/Partner'
 import ServerPackage from './components/ServerPackage'
+import Service from './components/Service'
 import Wave from './components/Wave'
 import Why from './components/Why'
 
@@ -12,9 +16,10 @@ const RentAServerPage = () => {
       <Hosting />
       <Why />
       <Wave />
-      <div className='h-20 bg-white'>
-
-      </div>
+      <Service />
+      <Other />
+      <Partner />
+      <CTAFooter />
     </div>
   )
 }

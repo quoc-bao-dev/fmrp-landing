@@ -1,12 +1,13 @@
 'use client'
 import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb'
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
+import AnimatedTitle from '@/components/common/animations/text/AnimatedTitle';
 import ArrowUpRightIcon from '@/components/icons/common/ArrowUpRightIcon';
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
 import { IMAGES } from '@/constants/Images';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react'
+import React, { useMemo } from 'react'
 
 const breadcrumbItems = [
   { label: "Trang chủ", href: "/" },
@@ -15,18 +16,47 @@ const breadcrumbItems = [
 ];
 
 const Hero = () => {
+  const heroPerTitle1 = useMemo(
+    () => 'Dịch vụ '.split('').map((letter, index) => ({ id: index, letter })),
+    []
+  )
+
+  const heroPerTitle2 = useMemo(
+    () => 'Thuê Server'.split('').map((letter, index) => ({ id: index + 100, letter })),
+    []
+  )
+
+  const heroPerTitle3a = useMemo(
+    () => '& '.split('').map((letter, index) => ({ id: index + 200, letter })),
+    []
+  )
+
+  const heroPerTitle3b = useMemo(
+    () => 'F-Care+'.split('').map((letter, index) => ({ id: index + 300, letter })),
+    []
+  )
+
+  const heroPerTitle3c = useMemo(
+    () => ' (Bảo trì Web/App)'.split('').map((letter, index) => ({ id: index + 400, letter })),
+    []
+  )
+
   return (
     <div className='relative'>
       <div className='custom-container-new h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
         <CustomBreadcrumb items={breadcrumbItems} />
-        <div className='flex gap-4 items-center justify-center'>
-          <div className='flex flex-col gap-7'>
-            <h2 className='text-title-section-1 font-extrabold text-[#58576B] capitalize whitespace-nowrap'>Dịch vụ <span className='text-[#2129C3]'>
-              Thuê Server
-            </span><br />
-              & <span className='text-[#2129C3]'>F-Care+</span> (Bảo trì Web/App)</h2>
+        <div className='min-h-[50vh] flex flex-col-reverse lg:flex-row gap-4 items-center justify-center'>
+          <div className='flex flex-col gap-3 xl:gap-7'>
+            <h2 className='text-title-section-1 font-extrabold text-[#58576B] capitalize xl:whitespace-nowrap'>
+              <AnimatedTitle className='text-title-section-1 font-extrabold text-[#58576B]' heroPerTitle={heroPerTitle1} delay={0.1} />
+              <AnimatedTitle className='text-title-section-1 font-extrabold text-[#2129C3]' heroPerTitle={heroPerTitle2} delay={0.4} />
+              <br />
+              <AnimatedTitle className='text-title-section-1 font-extrabold text-[#58576B]' heroPerTitle={heroPerTitle3a} delay={0.7} />
+              <AnimatedTitle className='text-title-section-1 font-extrabold text-[#2129C3]' heroPerTitle={heroPerTitle3b} delay={0.9} />
+              <AnimatedTitle className='text-title-section-1 font-extrabold text-[#58576B]' heroPerTitle={heroPerTitle3c} delay={1.1} />
+            </h2>
             <div className='flex flex-col gap-2'>
-              <p className='text-light-1000 text-title-section-medium-fit-leading font-semibold capitalize'>trọn gói dành cho doanh nghiệp</p>
+              <p className='text-light-1000 text-xl lg:text-2xl xl:text-4xl 2xl:text-5xl font-semibold capitalize'>trọn gói dành cho doanh nghiệp</p>
               <p className='text-title text-light-1000 font-medium'>Đội ngũ FOSO đồng hành cùng bạn trên chặng đường kinh doanh với ba giá trị cốt lõi: Tốc độ - An toàn - Tiết kiệm</p>
             </div>
             <ButtonAnimationNew
@@ -60,10 +90,12 @@ const Hero = () => {
               }}
             />
           </div>
-          <Image src={IMAGES.giftBanner} width={725} height={725} alt="giftBanner" className='w-[45%]' />
+          <div className='w-full lg:w-[50%]'>
+            <Image src={IMAGES.giftBanner} width={725} height={725} alt="giftBanner" className='w-full' />
+          </div>
         </div>
       </div>
-      <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute top-0 right-0 w-full h-full object-cover z-[-1] pointer-events-none' />
+      <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute xl:top-[-20%] top-[10%] right-0 w-full object-cover z-[-1] pointer-events-none' />
     </div>
   )
 }

@@ -34,9 +34,9 @@ const ClientLayout = ({
         />
       )} */}
 
-      {/* <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
+      <PathCheckerWrapper dataFmrpPages={dataFmrpPages}>
         <FmrpHeaderContainer />
-      </PathCheckerWrapper> */}
+      </PathCheckerWrapper>
       <FosoHeaderContainer />
       <div className="rounded-b-3xl bg-white relative z-0 md:z-10 ">
         {children}
@@ -47,12 +47,12 @@ const ClientLayout = ({
         <FooterContainer />
       </div>
 
-      {/* <WidgetButton /> */}
-      {/* <ButtonToTop /> */}
+      <WidgetButton />
+      <ButtonToTop />
       {/* <RegisterButton /> */}
 
-      {/* <RegisterBttonNew /> */}
-      {/* <DynamicSheetWrapper /> */}
+      <RegisterBttonNew />
+      <DynamicSheetWrapper />
     </div>
   );
 };

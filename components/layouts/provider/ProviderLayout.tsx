@@ -58,12 +58,12 @@ const ProviderLayout = ({ children, data, ...props }: ProviderLayoutProps) => {
     return (
         <NextThemesProvider {...props}>
             <TranslateProvider dataLang={data?.dataLang} language={data?.language} loading={false}>
-                {/* <ScrollProvider> */}
+                <ScrollProvider>
                     {/* <ThemeSwitcher /> */}
                     <ClientLayout data={data}>
                         {children}
                     </ClientLayout>
-                {/* </ScrollProvider> */}
+                </ScrollProvider>
             </TranslateProvider>
         </NextThemesProvider>
     )

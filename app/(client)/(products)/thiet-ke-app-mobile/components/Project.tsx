@@ -1,9 +1,6 @@
 'use client'
-import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
-import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
 import { IMAGES } from '@/constants/Images';
 import { motion } from 'framer-motion';
-import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 

@@ -158,13 +158,13 @@ const RootLayout = memo(({ children, data }: { children: React.ReactNode, data: 
         // <LenisProvider>
         <QueryClientProvider client={queryClient}>
             <main id="scroll-container" className='bg-white min-w-screen lg:min-h-screen min-h-dvh custom-tailwind custom-size-text custom-swiper relative border-gradient scroll-container'>
-                {/* <AnimatePresence
+                <AnimatePresence
                     mode="wait"
                     onExitComplete={() => {
                         if (typeof window == 'undefined') return;
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                     }}
-                > */}
+                >
                     <ModalProvider>
                         <ProviderLayout
                             data={data}
@@ -180,7 +180,7 @@ const RootLayout = memo(({ children, data }: { children: React.ReactNode, data: 
                             <ToastShadcnUi />
                         </ProviderLayout>
                     </ModalProvider>
-                {/* </AnimatePresence> */}
+                </AnimatePresence>
             </main>
             {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
         </QueryClientProvider>

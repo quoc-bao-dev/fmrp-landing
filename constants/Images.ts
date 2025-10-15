@@ -13,16 +13,20 @@ export const IMAGES = {
   blurOrange: "/background/blur/bg-orange.svg",
   blurOrangeLarge: "/background/blur/bg-orange-large.svg",
   blurBlueGreen: "/background/blur/blur-blue-green.png",
+  blurPupple: "/background/blur/bg-pupple.svg",
   
   // ================= C =================
   calendar: "/design-app/Calendar.svg",
   check: "/design-app/check.png",
   ctaFooter: "/design-app/ctaFooter.png",
+  ctaFooterServer: "/server/ctaFooterServer.png",
   cokhi: "/icons/fmrp/cokhi1.png",
   client: "/server/client.png",
 
   // ================= D =================
   dienmay: "/icons/fmrp/dienmay1.png",
+  designWeb: "/server/designWeb.png",
+  designApp: "/server/designApp.png",
 
   // ================= E =================
   edit: "/design-app/Edit.svg",
@@ -32,6 +36,7 @@ export const IMAGES = {
   fimo: "/icons/fmrp/fimo1.webp",
   fmrpApp: "/icons/fmrp/fmrpApp.png",
   fnb: "/design-app/fnb.png",
+  fmrp: "/server/fmrp.png",
 
   // ================= G =================
   giay: "/icons/fmrp/giay1.png",
@@ -69,6 +74,8 @@ export const IMAGES = {
   logoSPMobile: "/design-app/logoSPMobile.svg",
   logoTheOM: "/design-app/logoTheOM.svg",
   lotDate: "/icons/fmrp/lotDate2.png",
+  lineProceduce: "/server/lineProceduce.png",
+  lineProceduceMB: "/server/lineProceduceMB.png",
 
   // ================= M =================
   markerTick: "/design-app/marker-tick.svg",
@@ -78,6 +85,7 @@ export const IMAGES = {
   mokupPhone: "/project-detail/mokupPhone.png",
   mokupTablet: "/project-detail/mokupTablet.png",
   muaHang: "/icons/fmrp/muaHang.png",
+  maintenance: "/server/maintenance.png",
 
   // ================= N =================
   nhaCungCap: "/icons/fmrp/nhaCungCap.png",
@@ -85,6 +93,9 @@ export const IMAGES = {
   nhua: "/icons/fmrp/nhua1.png",
   nguyenVatLieu: "/icons/fmrp/nguyenVatLieu.png",
   nongnghiep: "/icons/fmrp/nongnghiep1.png",
+
+  // ================= O =================
+  operate: "/server/operate.png",
 
   // ================= P =================
   pencil: "/design-app/Pencil.svg",
@@ -100,17 +111,23 @@ export const IMAGES = {
 
   // ================= R =================
   rivet: "/design-app/rivet.svg",
+  route: "/server/route.png",
 
   // ================= S =================
   sanXuat: "/icons/fmrp/sanXuat.png",
   sign: "/project-detail/sign.png",
   star: "/icons/fmrp/star.png",
   supportMobile: "/design-app/supportMobile.png",
-
+  security: "/server/security.png",
+  speed: "/server/speed.png", 
+  
   // ================= T =================
   theOM: "/design-app/theOM.png",
   thucpham: "/icons/fmrp/thucpham1.png",
   team: "/server/team.png",
+
+  // ================= U =================
+  upTime: "/server/up-time.png",
 
   // ================= W =================
   whyBanner: "/design-app/whyBanner.png",

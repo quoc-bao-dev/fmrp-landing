@@ -3,11 +3,8 @@ import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
 import { IMAGES } from "@/constants/Images";
-import { useResizeStore } from "@/stores/useResizeStore";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-
 
 const CTAFooter = () => {
   return (
@@ -18,11 +15,11 @@ const CTAFooter = () => {
             width={800}
             height={800}
             alt="demo"
-            src={IMAGES.ctaFooter}
+            src={IMAGES.ctaFooterServer}
             className="size-full object-cover "
           />
         </div>
-        <div className="mt-[12%] w-full pb-9 xl:pb-0 px-2 xl:px-0 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] flex flex-col shrink-0 lg:items-start lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
+        <div className="mt-[12%] w-full pb-9 xl:pb-0 px-6 xl:px-0 3xl:max-w-[37%] 2xl:max-w-[37%] xxl:max-w-[40%] xl:max-w-[45%] lg:max-w-[48%] flex flex-col shrink-0 lg:items-start lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
           <div className="xxl:space-y-2 space-y-5">
             <h2 className="text-title-section-small text-[#1A2025] text-left font-extrabold capitalize">
               Cùng FOSO Nâng cấp vận hành, bứt phá doanh thu
@@ -43,8 +40,8 @@ const CTAFooter = () => {
                     damping: 10,
                   }}
                 >
-                  <ArrowUpRightIcon className="text-[#F3654A] 2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
-                  <ArrowUpRightLinearBlueIcon className="text-[#F3654A] 2xl:size-6 md:size-5 size-4 group-hover:hidden" />
+                  <ArrowUpRightIcon className="text-[#5856D6] 2xl:size-6 md:size-5 size-4 hidden group-hover:block" />
+                  <ArrowUpRightLinearBlueIcon className="text-[#5856D6] 2xl:size-6 md:size-5 size-4 group-hover:hidden" />
                 </motion.div>
               </div>
             }
@@ -54,18 +51,18 @@ const CTAFooter = () => {
               window.open("https://zalo.me/2281264205827497572");
             }}
             reverse={true}
-            className="border-gradient-orange xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-fit"
+            className="border-gradient-button-fmrp-new xl:pl-6 xl:p-1 pl-3 p-2 text-white lg:mr-0 mr-1 flex items-center text-center gap-2 3xl:!text-lg xl:!text-base lg:!text-sm md:!text-base text-sm !tracking-[1%] group hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium rounded-full w-fit"
             style={{
               boxShadow:
                 "0px -1px 2px 0px #FFFFFF4D inset, 0px -2px 5px 1px #FFFFFF1F inset, 0px 1px 2px 0px #151A364D inset, 0px 2px 6px 0px #151A3626 inset, 0px -2px 14px 0px #FFFFFF26 inset, 0px 20px 26px -8px #0F163A26",
-              background: "linear-gradient(90deg, #F3654A 0%, #FFB9AC 100%)",
-              border: "1px solid #FAC1B7",
+              background: "linear-gradient(90deg, #5856D6 0%, #5856D659 100%)",
+              border: "1px solid #5856D6",
             }}
             whileHover={{
               background: [
-                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #F3654A 10.03%, #FFB9AC 107.74%)",
-                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #F3654A 10.03%, #FFB9AC 107.74%)",
-                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #F3654A 10.03%, #FFB9AC 107.74%)",
+                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #5856D6 10.03%, #5856D6 107.74%)",
+                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%), linear-gradient(0deg, #5856D6 10.03%, #5856D6 107.74%)",
+                "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(0deg, #5856D6 10.03%, #5856D6 107.74%)",
               ],
               transition: {
                 duration: 1.5,
@@ -83,9 +80,11 @@ const CTAFooter = () => {
         </div>
       </div>
       <div className="absolute bottom-0 left-0 h-full xl:h-[70%] w-full overflow-hidden pointer-events-none">
-        <Image src={IMAGES.blurOrangeLarge} alt="blurOrange" width={1000} height={1000} className='absolute top-[10%] right-[0%] w-[200%] xl:w-[40%] object-cover z-[-1] pointer-events-none' />
-        <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -top-[10%] left-0 -translate-x-[30%] w-full xl:w-[40%] object-cover z-[-1] pointer-events-none' />
-        <Image src={IMAGES.blurOrange} alt="blurOrange" width={1000} height={1000} className='absolute -top-[10%] left-1/2 -translate-x-[50%] w-full xl:w-[40%] object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute top-[0%] left-0 -translate-x-[20%] w-full xl:w-2/3 object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute bottom-[-20%] left-0 -translate-x-[0%] w-full xl:w-2/3 object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute bottom-[0%] left-1/2 -translate-x-[20%] w-full xl:w-2/3 object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute top-[0%] left-1/2 translate-y-[0%] w-full xl:w-2/3 object-cover z-[-1] pointer-events-none' />
+        <Image src={IMAGES.blurPupple} alt='blurPupple' width={1000} height={1000} className='absolute bottom-[0%] right-0 translate-x-[20%] w-full xl:w-1/3 z-[-1] object-cover pointer-events-none' />
       </div>
     </section>
   );
