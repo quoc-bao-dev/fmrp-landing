@@ -14,7 +14,7 @@ const apiBlogs = {
                 ...param,
             },
         };
-        return await instanceDefault.get(`/blog/getListBlog?current_page=${page}&per_page=${limit}&show_all=1`, config);
+        return await instanceDefault.get(`/blog/getListBlog?current_page=${page}&per_page=${limit}&${process.env.NEXT_PUBLIC_BLOGS_SHOW_ALL || ""}`, config);
     },
 
     // get detail blog

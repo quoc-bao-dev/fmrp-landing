@@ -40,6 +40,24 @@ canvas {
   box-sizing: border-box; /* Đảm bảo padding/margin không làm bành trướng width */
 }
 
+/* Tối ưu hóa performance */
+* {
+  will-change: auto; /* Chỉ set will-change khi cần thiết */
+}
+
+/* Tối ưu hóa cho animations */
+.animate-performance {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Giảm repaints và reflows */
+.smooth-transition {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
 ::-webkit-scrollbar {
   @apply absolute top-0 right-0 bottom-0 w-4 h-0;
 }
@@ -92,9 +110,9 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 md:mx-8 mx-2 4xl:px-[10%];
   }
 
-  // .custom-container {
-  //     @apply 3xl:mx-60 xxl:mx-40 xl:mx-56 lg:mx-56 md:mx-8 mx-4 4xl:px-[10%];
-  // }
+  .custom-container-new {
+      @apply 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 md:mx-8 mx-4 4xl:px-[10%];
+  }
 
   .custom-container-no-right {
     @apply 3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 md:ml-8 ml-4 4xl:px-[10%];
@@ -121,6 +139,14 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   // chỉ sử dụng cho section nổi bật
   .text-title-section {
     @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] 3xl:!leading-[94px] 2xl:!leading-[84px] xxl:!leading-[80px] xl:!leading-[80px] lg:!leading-[70px] md:!leading-[60px] !leading-[36px] tracking-normal;
+  }
+
+  .text-title-section-1 {
+    @apply 3xl:text-[64px] 2xl:text-[54px] xxl:text-[52px] xl:text-[48px] lg:text-[40px] md:text-[38px] text-[26px] leading-[120%] tracking-normal;
+  }
+
+  .text-title-section-2 {
+    @apply 3xl:text-[54px] 2xl:text-[44px] xxl:text-[42px] xl:text-[40px] lg:text-[36px] md:text-[32px] text-[26px] leading-[150%] tracking-normal;
   }
 
   .text-title-section-medium {
@@ -151,7 +177,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     @apply 3xl:!text-xl lg:!text-base !text-base !tracking-[1%];
   }
   .text-base-default-feature {
-    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm !text-sm !tracking-[1%];
+    @apply 3xl:!text-lg xl:!text-sm lg:!text-sm text-sm !tracking-[1%];
   }
 
   .text-button {
@@ -163,7 +189,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 
   .text-sm-default {
-    @apply 3xl:!text-base xxl:!text-sm lg:!text-xs !text-sm !tracking-[1%];
+    @apply 3xl:!text-base xxl:!text-sm lg:!text-xs text-sm !tracking-[1%];
   }
 
   .text-xs-default {
@@ -399,6 +425,88 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     }
   }
 
+  .border-gradient-orange {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: radial-gradient(
+        50% 93.75% at 50% 6.25%,
+        #FAC1B7 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    &::before {
+      background: conic-gradient(
+        from var(--angle),
+        #FAC1B7,
+        rgba(255, 255, 255, 0),
+        #FAC1B7
+      );
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+    }
+  }
+
+  .border-gradient-black {
+    --border-radius: 16px;
+    --border-width: 1.8px;
+    --border-width-hover: 2px;
+    --border-color: white;
+    --border-inset-hover: 0px;
+
+    position: relative;
+    border: none; /* Đảm bảo không có border mặc định */
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    z-index: 0;
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: conic-gradient(
+        from var(--angle),
+        #38386E 0%,
+        transparent 25%,
+        #ffffff 70%,
+        transparent 75%,
+        #38386E 100%
+      );
+      
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: -1;
+      /* // animation: moveGradient 2s linear infinite; */
+      animation: borderMove 2s linear infinite;
+    }
+  }
+
   .border-gradient-button-fmrp-new {
     --border-radius: 9999px;
     --border-width: 1.8px;
@@ -438,6 +546,7 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       animation: borderMove 2s linear infinite;
     }
   }
+
   @keyframes moveGradient {
     0% {
       background-position: 200% 0;
@@ -605,6 +714,65 @@ iframe[title="recaptcha challenge expires in two minutes"] {
     // &:hover::after {
     //   opacity: 1; /* Hiển thị nền khi hover */
     // }
+  }
+
+  .border-gradient-button-no-bg-orange {
+    --border-radius: 6px;
+    --border-width: 1px;
+    --border-width-hover: 2px;
+    --border-color: rgba(9, 9, 11, 0.2);
+
+    position: relative;
+
+    /* Viền gradient chạy quanh */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: #D9E1E7;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor; /* hoặc destination-out */
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+
+    /* Background khi hover */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #fac1b75a; /* Nền khi hover */
+      opacity: 0; /* Mặc định ẩn */
+      transition: opacity 0.3s ease-in-out;
+      z-index: 1; /* Đặt dưới border */
+    }
+
+    // 💥 Hover từ chính button hoặc từ cha group đều hoạt động
+    &:hover::before,
+    .group:hover &::before {
+      background: conic-gradient(
+        from var(--angle),
+        #F3654A 0%,
+        #FFB9AC 50%,
+        #FFB9AC 100%
+      );
+      padding: var(--border-width-hover);
+      animation: borderMove 1.5s linear infinite;
+      border: none; /* Đảm bảo không có border mặc định */
+    }
+
+    &:hover::after,
+    .group:hover &::after {
+      opacity: 1;
+      border: none; /* Đảm bảo không có border mặc định */
+    }
+
   }
 
   .border-gradient-login {
@@ -787,13 +955,23 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 }
 
-/* Animation hiệu ứng viền chạy */
+/* Animation hiệu ứng viền chạy - tối ưu hóa */
 @keyframes borderMove {
-  from {
+  0% {
     --angle: 0deg;
   }
-  to {
+  100% {
     --angle: 360deg;
+  }
+}
+
+/* Tối ưu hóa animation performance */
+@keyframes borderMoveOptimized {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
@@ -1025,3 +1203,27 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   animation: radialMove 5s ease-in-out infinite;
 }
 
+@keyframes wave {
+  0% { transform: translateX(0) }
+  50% { transform: translateX(-80%) }
+  100% { transform: translateX(0) }
+}
+
+.wave-1 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.wave-2 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: 2s;
+}
+
+.wave-3 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: 4s;
+}
+
+.wave-4 {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation-delay: 6s;
+}

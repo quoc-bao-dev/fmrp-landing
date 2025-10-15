@@ -73,16 +73,6 @@ const dataHeader: IMenuHeader[] = [
                     image: "/background/banner/banner1.webp",
                     items: [
                         {
-                            id: "1",
-                            name: "Thiết Kế Website",
-                            link: "https://thietkewebfoso.com/",
-                            // link: "/products/thiet-ke-website",
-                            icon: <LaptopIconLinear className='size-full' />,
-                            description: "Bệ phóng thương hiệu",
-                            typeIcon: "default",
-                            typeLink: "new_tab",
-                        },
-                        {
                             id: "3",
                             name: "Thiết Kế App Mobile",
                             // link: "https://thietkeappfoso.com/",
@@ -91,6 +81,16 @@ const dataHeader: IMenuHeader[] = [
                             description: "Nâng tầm doanh nghiệp",
                             typeIcon: "default",
                             typeLink: "normal",
+                        },
+                        {
+                            id: "1",
+                            name: "Thiết Kế Website",
+                            link: "https://thietkewebfoso.com/",
+                            // link: "/products/thiet-ke-website",
+                            icon: <LaptopIconLinear className='size-full' />,
+                            description: "Bệ phóng thương hiệu",
+                            typeIcon: "default",
+                            typeLink: "new_tab",
                         },
                         // {
                         //     id: "2",
