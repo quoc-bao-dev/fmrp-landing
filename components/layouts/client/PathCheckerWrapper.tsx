@@ -10,7 +10,7 @@ interface PathCheckerWrapperProps {
 
 const PathCheckerWrapper = ({ children, dataFmrpPages }: PathCheckerWrapperProps) => {
   const pathname = usePathname();
-  
+
   if (!dataFmrpPages.includes(pathname)) {
     return null;
   }

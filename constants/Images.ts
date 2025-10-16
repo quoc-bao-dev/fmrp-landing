@@ -86,6 +86,7 @@ export const IMAGES = {
   mokupTablet: "/project-detail/mokupTablet.png",
   muaHang: "/icons/fmrp/muaHang.png",
   maintenance: "/server/maintenance.png",
+  monitorGraph: "/server/monitor-graph.png",
 
   // ================= N =================
   nhaCungCap: "/icons/fmrp/nhaCungCap.png",
@@ -120,6 +121,7 @@ export const IMAGES = {
   supportMobile: "/design-app/supportMobile.png",
   security: "/server/security.png",
   speed: "/server/speed.png", 
+  spiralUp: "/server/spiral-up.png",
   
   // ================= T =================
   theOM: "/design-app/theOM.png",

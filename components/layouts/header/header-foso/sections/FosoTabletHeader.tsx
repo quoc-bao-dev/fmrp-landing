@@ -1,22 +1,19 @@
 'use client'
 
 import { useTranslate } from '@/contexts/TranslateContext'
+import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
 import { useAuthStore } from '@/stores/useAuthStores'
 import useCookieStore from '@/stores/useCookieStore'
+import { useResizeStore } from '@/stores/useResizeStore'
+import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useRef } from 'react'
+import { FiMinus, FiPlus } from "react-icons/fi"
 import { IoCloseSharp } from "react-icons/io5"
-import { IMenuHeader } from '@/types/ui/menu/IMenuUI'
-import { useStateClientLayout } from '@/managers/state/client/useStateClientLayout'
-
-import { TbMenu3 } from "react-icons/tb";
-import { useResizeStore } from '@/stores/useResizeStore'
-
-import { FiMinus, FiPlus } from "react-icons/fi";
-import { useModalContext } from '@/contexts/ModalContext'
+import { TbMenu3 } from "react-icons/tb"
 
 interface TabletHeaderProps {
     dataHeader: IMenuHeader[]

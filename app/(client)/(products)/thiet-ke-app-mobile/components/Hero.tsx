@@ -5,11 +5,13 @@ import CustomBreadcrumb from '@/components/common/breadcrumb/CustomBreadcrumb';
 import ButtonAnimationNew from '@/components/common/button/ButtonAnimationNew';
 import ArrowUpRightLinearBlueIcon from '@/components/icons/common/ArrowUpRightLinearBlueIcon';
 import { IMAGES } from '@/constants/Images';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useGetAppMobile } from '@/managers/api/products';
+import { motion } from 'framer-motion';
 import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useRef, useMemo } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const breadcrumbItems = [
   { label: "Trang chủ", href: "/" },
@@ -18,35 +20,23 @@ const breadcrumbItems = [
 ];
 
 const Hero = () => {
-  // Mảng dữ liệu mockup và testimonial
-  const mockupData = [
-    {
-      image: IMAGES.mockupApp,
-      avatar: "/design-app/avt.png",
-      name: "Mrs. Nguyên",
-      position: "Giám Đốc NPCare Việt Nam",
-      quote: "Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án."
-    },
-    {
-      image: "/design-app/mockup1.png",
-      avatar: "/design-app/avt.png", // Có thể thay bằng avatar khác
-      name: "Mr. Minh",
-      position: "CEO TechStart",
-      quote: "FOSO đã giúp chúng tôi tạo ra một ứng dụng mobile chuyên nghiệp và hiện đại. Đội ngũ thiết kế rất tài năng và có tầm nhìn xa."
-    },
-    {
-      image: "/design-app/mockup1.png", // Có thể thay bằng hình khác
-      avatar: "/design-app/avt.png", // Có thể thay bằng avatar khác
-      name: "Ms. Lan",
-      position: "Founder EduApp",
-      quote: "Trải nghiệm làm việc với FOSO rất tuyệt vời. Họ không chỉ thiết kế đẹp mà còn hiểu rõ nhu cầu người dùng và tạo ra sản phẩm thực sự hữu ích."
-    }
-  ];
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(1); // Mặc định phải
   const [isAnimating, setIsAnimating] = useState(false);
-  const panelCount = mockupData.length;
+  const { data: appMobile, isLoading, isError } = useGetAppMobile();
+
+  const slides = (appMobile?.slide as Array<any>) ?? [];
+  // const slides = [
+  //   {
+  //     image: IMAGES.mockupApp,
+  //     avatar: "/design-app/avt.png",
+  //     name: "Mrs. Nguyên",
+  //     position: "Giám Đốc NPCare Việt Nam",
+  //     content: "Chúng tôi hài lòng về chất lượng dịch vụ App mà FOSO đã triển khai. Bên phía FOSO đã tư vấn chúng tôi nhiệt tình, tận tâm trong quá trình hoàn thành dự án."
+  //   },
+  // ];
+  const slidesLength = slides.length;
+  const panelCount = Math.max(slidesLength, 1);
   const angle = 360 / panelCount;
   const [rotation, setRotation] = useState(0); // độ xoay hiện tại của trụ 3D
 
@@ -56,23 +46,23 @@ const Hero = () => {
   const minSwipeDistance = 50; // Khoảng cách tối thiểu để tính là swipe
 
   const nextImage = () => {
-    if (isAnimating) return; // Đang animate thì không cho bấm
+    if (isAnimating || slidesLength === 0) return; // Đang animate hoặc không có dữ liệu thì không cho bấm
     setIsAnimating(true);
     setDirection(1); // Phải
     setRotation((prev) => prev - angle);
-    setCurrentImageIndex((prev) => (prev + 1) % mockupData.length);
+    setCurrentImageIndex((prev) => (prev + 1) % slidesLength);
   };
 
   const prevImage = () => {
-    if (isAnimating) return; // Đang animate thì không cho bấm
+    if (isAnimating || slidesLength === 0) return; // Đang animate hoặc không có dữ liệu thì không cho bấm
     setIsAnimating(true);
     setDirection(-1); // Trái
     setRotation((prev) => prev + angle);
-    setCurrentImageIndex((prev) => (prev - 1 + mockupData.length) % mockupData.length);
+    setCurrentImageIndex((prev) => (prev - 1 + slidesLength) % slidesLength);
   };
 
   const goToImage = (targetIndex: number) => {
-    if (isAnimating || targetIndex === currentImageIndex) return; // Đang animate hoặc đã ở vị trí đó thì không làm gì
+    if (isAnimating || targetIndex === currentImageIndex || slidesLength === 0) return; // Đang animate, không có dữ liệu hoặc đã ở vị trí đó thì không làm gì
     setIsAnimating(true);
 
     const diff = targetIndex - currentImageIndex;
@@ -126,16 +116,16 @@ const Hero = () => {
   };
 
   const heroPerTitle1a = useMemo(
-    () => "Giải pháp ".split("").map((letter, index) => ({ 
-      id: index, 
+    () => "Giải pháp ".split("").map((letter, index) => ({
+      id: index,
       letter
     })),
     []
   );
 
   const heroPerTitle1b = useMemo(
-    () => "mobile app".split("").map((letter, index) => ({ 
-      id: index + 100, 
+    () => "mobile app".split("").map((letter, index) => ({
+      id: index + 100,
       letter
     })),
     []
@@ -145,7 +135,7 @@ const Hero = () => {
     () => "toàn diện cho doanh nghiệp".split("").map((letter, index) => ({ id: index, letter })),
     []
   );
-  
+
   return (
     <div className='relative'>
       <div className='custom-container-new h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
@@ -155,22 +145,22 @@ const Hero = () => {
             <div className='flex flex-col gap-5'>
               <div className='flex flex-col justify-center items-center lg:items-start'>
                 <div className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
-                  <AnimatedTitle 
-                    className='text-title-section-2 font-extrabold' 
-                    heroPerTitle={heroPerTitle1a} 
-                    delay={0.2} 
+                  <AnimatedTitle
+                    className='text-title-section-2 font-extrabold'
+                    heroPerTitle={heroPerTitle1a}
+                    delay={0.2}
                   />
-                  <AnimatedTitle 
-                    className='text-title-section-2 font-extrabold text-[#F3654A]' 
-                    heroPerTitle={heroPerTitle1b} 
-                    delay={0.7} 
+                  <AnimatedTitle
+                    className='text-title-section-2 font-extrabold text-[#F3654A]'
+                    heroPerTitle={heroPerTitle1b}
+                    delay={0.7}
                   />
                 </div>
                 <div className='capitalize text-title-section-2 font-extrabold whitespace-nowrap'>
-                  <AnimatedTitle 
-                    className='text-title-section-2 font-extrabold' 
-                    heroPerTitle={heroPerTitle2} 
-                    delay={1} 
+                  <AnimatedTitle
+                    className='text-title-section-2 font-extrabold'
+                    heroPerTitle={heroPerTitle2}
+                    delay={1}
                   />
                 </div>
               </div>
@@ -249,37 +239,43 @@ const Hero = () => {
                   onMouseDown={handleMouseDown}
                   onMouseUp={handleMouseUp}
                 >
-                  <motion.div
-                    className='relative w-full h-full'
-                    style={{ transformStyle: 'preserve-3d' }}
-                    animate={{ rotateY: rotation }}
-                    transition={{ duration: 0.6, ease: 'easeInOut' }}
-                    onAnimationComplete={() => setIsAnimating(false)}
-                  >
-                    {mockupData.map((item, index) => {
-                      const radius = 260; // bán kính trụ (px)
-                      return (
-                        <div
-                          key={index}
-                          className='absolute inset-0 flex items-center justify-center'
-                          style={{
-                            transformStyle: 'preserve-3d',
-                            transform: `rotateY(${index * angle}deg) translateZ(${radius}px)`,
-                            backfaceVisibility: 'hidden',
-                          }}
-                        >
-                          <Image
-                            src={item.image}
-                            alt={`mockup-${index}`}
-                            priority={index === currentImageIndex}
-                            width={1000}
-                            height={1000}
-                            className='w-[88%] xl:w-[80%] h-auto bg-transparent'
-                          />
-                        </div>
-                      );
-                    })}
-                  </motion.div>
+                  {isLoading || isError ? (
+                    <div className='relative w-full h-full'>
+                      <Skeleton className='w-full h-full rounded-xl' />
+                    </div>
+                  ) : (
+                    <motion.div
+                      className='relative w-full h-full'
+                      style={{ transformStyle: 'preserve-3d' }}
+                      animate={{ rotateY: rotation }}
+                      transition={{ duration: 0.6, ease: 'easeInOut' }}
+                      onAnimationComplete={() => setIsAnimating(false)}
+                    >
+                      {slides?.map((item, index) => {
+                        const radius = 200; // bán kính trụ (px)
+                        return (
+                          <div
+                            key={index}
+                            className='absolute inset-0 flex items-center justify-center'
+                            style={{
+                              transformStyle: 'preserve-3d',
+                              transform: `rotateY(${index * angle}deg) translateZ(${radius}px)`,
+                              backfaceVisibility: 'hidden',
+                            }}
+                          >
+                            <Image
+                              src={item.image}
+                              alt={`mockup-${index}`}
+                              priority={index === currentImageIndex}
+                              width={1000}
+                              height={1000}
+                              className='w-[88%] xl:w-[80%] h-auto bg-transparent'
+                            />
+                          </div>
+                        );
+                      })}
+                    </motion.div>
+                  )}
                 </div>
               </div>
 
@@ -293,51 +289,71 @@ const Hero = () => {
               </div>
 
               {/* Indicator hiển thị vị trí hiện tại */}
-              <div className='hidden lg:flex absolute xl:-bottom-[13%] lg:-bottom-[8%] left-1/2 -translate-x-1/2 gap-2 items-center'>
-                {mockupData.map((_, index) => (
+              {slidesLength > 0 && (
+                <div className='hidden lg:flex absolute xl:-bottom-[13%] lg:-bottom-[8%] left-1/2 -translate-x-1/2 gap-2 items-center'>
+                  {slides.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`w-2.5 h-2.5 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4 rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
+                        ? 'bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] w-5 lg:w-6 2xl:w-8'
+                        : 'bg-[#888888] hover:bg-[#F3654A]/60 hover:scale-110'
+                        }`}
+                      onClick={() => goToImage(index)}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className='absolute bottom-0 left-0 p-3 xl:p-4 pb-6 bg-orange-100 rounded-[20px] xl:rounded-[30px] w-[65%] xl:w-[55%] 2xl:w-1/2 h-fit' style={{ boxShadow: '0px 1px 3px -1px #0000004D, 0px 6px 10px -1px #32325D40' }}>
+              {isLoading || isError ? (
+                <>
+                  <div className='flex gap-2 items-center w-full h-fit'>
+                    <Skeleton className='size-[43px] xl:size-[50px] 2xl:size-[60px] aspect-square rounded-full' />
+                    <div className='flex flex-col gap-2 w-full'>
+                      <Skeleton className='h-5 w-1/3' />
+                      <Skeleton className='h-4 w-1/4' />
+                    </div>
+                  </div>
+                  <Skeleton className='h-16 mt-3 w-full' />
+                </>
+              ) : (
+                slidesLength > 0 && (
+                  <>
+                    <div className='flex gap-2 items-center p-2 pr-4 bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] rounded-full w-full h-fit'>
+                      <Image
+                        src={slides[currentImageIndex].avatar}
+                        alt="avatar"
+                        width={1000}
+                        height={1000}
+                        className='size-[43px] xl:size-[50px] 2xl:size-[60px] rounded-full object-cover'
+                      />
+                      <div className='flex flex-col'>
+                        <p className='text-title font-semibold text-white'>{slides[currentImageIndex].name}</p>
+                        <p className='text-sxs-default text-white'>{slides[currentImageIndex].position}</p>
+                      </div>
+                    </div>
+                    <AnimatedTyping
+                      phrases={[slides[currentImageIndex].content]}
+                      className="text-sm-table-default !text-light-900 mt-3 min-h-16"
+                      style={{ background: '#33404a' }}
+                    />
+                  </>
+                ))}
+            </div>
+            {!isLoading && slidesLength > 0 && (
+              <div className='lg:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 items-center'>
+                {slides.map((_, index) => (
                   <div
                     key={index}
                     className={`w-2.5 h-2.5 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4 rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
-                      ? 'bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] w-5 lg:w-6 2xl:w-8'
+                      ? 'bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] w-6 2xl:w-8'
                       : 'bg-[#888888] hover:bg-[#F3654A]/60 hover:scale-110'
                       }`}
                     onClick={() => goToImage(index)}
                   />
                 ))}
               </div>
-            </div>
-            <div className='absolute bottom-0 left-0 p-3 xl:p-4 pb-6 bg-orange-100 rounded-[20px] xl:rounded-[40px] w-[65%] xl:w-[55%] 2xl:w-1/2 h-fit' style={{ boxShadow: '0px 1px 3px -1px #0000004D, 0px 6px 10px -1px #32325D40' }}>
-              <div className='flex gap-2 items-center p-2 pr-4 bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] rounded-full w-full h-fit'>
-                <Image 
-                  src={mockupData[currentImageIndex].avatar} 
-                  alt="avatar" 
-                  width={1000} 
-                  height={1000} 
-                  className='size-[43px] xl:size-[50px] 2xl:size-[60px] rounded-full object-cover' 
-                />
-                <div className='flex flex-col'>
-                  <p className='text-title font-semibold text-white'>{mockupData[currentImageIndex].name}</p>
-                  <p className='text-sxs-default text-white'>{mockupData[currentImageIndex].position}</p>
-                </div>
-              </div>
-              <AnimatedTyping
-                phrases={[mockupData[currentImageIndex].quote]}
-                className="text-sm-table-default !text-light-900 mt-3 min-h-16"
-                style={{ background: '#33404a' }}
-              />
-            </div>
-            <div className='lg:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 items-center'>
-              {mockupData.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2.5 h-2.5 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4 rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
-                    ? 'bg-gradient-to-r from-[#F3654A] to-[#FFB9AC] w-6 2xl:w-8'
-                    : 'bg-[#888888] hover:bg-[#F3654A]/60 hover:scale-110'
-                    }`}
-                  onClick={() => goToImage(index)}
-                />
-              ))}
-            </div>
+            )}
           </div>
         </div>
       </div>
