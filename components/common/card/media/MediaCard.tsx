@@ -41,7 +41,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
             href={(media.link || `/du-an/${media?.slug}`) ?? "#"}
             target="_blank"
         >
-            <div className="aspect-square w-full overflow-hidden">
+            <div className="aspect-[1578/1052] w-full overflow-hidden">
                 <Image
                     width={500}
                     height={500}
