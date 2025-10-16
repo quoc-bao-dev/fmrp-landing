@@ -258,10 +258,14 @@ const ServerPackage = () => {
                             style={{ boxShadow: `5px 5px 20px 0px ${item?.color}40` }}
                           />
                           <div className='flex gap-2 items-center'>
-                            <h4 className={`w-1/2 whitespace-nowrap text-title-section-feature font-bold`} style={{ color: item?.color }}>
-                              {formatPriceVND(item?.price_three_year)} <br />
-                              x 36 tháng
-                            </h4>
+                            <div className='flex flex-col'>
+                              <h4 className="tracking-tight whitespace-nowrap text-title-section-feature font-bold" style={{ color: item?.color }}>
+                                {formatPriceVND(item?.price_three_year)} <br />
+                              </h4>
+                              <span className='text-title font-bold' style={{ color: item?.color }}>
+                                x 36 tháng
+                              </span>
+                            </div>
                             <span className='border-r border-[#747474] w-[1px] h-14' />
                             <div className='w-1/2 flex flex-col gap-1'>
                               <p className='text-sm 2xl:text-base text-light-900 font-medium whitespace-nowrap'>{formatPriceVND(item?.price_one_year)} x 12 tháng</p>
@@ -377,10 +381,14 @@ const ServerPackage = () => {
                         style={{ boxShadow: `5px 5px 20px 0px ${item?.color}40` }}
                       />
                       <div className='flex gap-2 items-center'>
-                        <h4 className={`tracking-tight whitespace-nowrap text-title-section-feature font-bold`} style={{ color: item?.color }}>
-                          {formatPriceVND(item?.price_three_year)} <br />
-                          x 36 tháng
-                        </h4>
+                        <div className='flex flex-col'>
+                          <h4 className="tracking-tight whitespace-nowrap text-title-section-feature font-bold" style={{ color: item?.color }}>
+                            {formatPriceVND(item?.price_three_year)} <br />
+                          </h4>
+                          <span className='text-title font-bold' style={{ color: item?.color }}>
+                            x 36 tháng
+                          </span>
+                        </div>
                         <span className='border-r border-[#747474] w-[1px] h-14' />
                         <div className='w-1/2 flex flex-col gap-1'>
                           <p className='text-sm 2xl:text-base text-light-900 font-medium whitespace-nowrap'>{formatPriceVND(item?.price_one_year)} x 12 tháng</p>
