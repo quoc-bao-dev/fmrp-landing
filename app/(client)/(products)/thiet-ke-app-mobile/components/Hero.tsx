@@ -140,7 +140,7 @@ const Hero = () => {
     <div className='relative'>
       <div className='custom-container-new h-full 3xl:pt-32 xl:pt-28 pt-28 flex flex-col justify-center items-center gap-6 py-12'>
         <CustomBreadcrumb items={breadcrumbItems} />
-        <div className='min-h-[60vh] flex flex-col-reverse lg:flex-row gap-9 xl:gap-20 2xl:gap-24 items-center w-full h-full'>
+        <div className='min-h-[40vh] lg:min-h-[60vh] flex flex-col-reverse lg:flex-row gap-9 xl:gap-20 2xl:gap-24 items-center w-full h-full'>
           <div className='flex flex-col gap-9 w-full lg:w-[50%] xl:w-[40%]'>
             <div className='flex flex-col gap-5'>
               <div className='flex flex-col justify-center items-center lg:items-start'>
