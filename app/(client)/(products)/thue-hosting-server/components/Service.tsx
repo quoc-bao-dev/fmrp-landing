@@ -66,7 +66,7 @@ const procedures = [
     title: 'Vận hành và tối ưu',
     description: 'Cập nhật và tối ưu hiệu năng định kỳ',
     descriptionMB: 'Cập nhật và tối ưu hiệu năng định kỳ',
-    position: 'top-[80%] right-[26%] md:top-[-40%] md:-bottom-10 md:right-0',
+    position: 'top-[80%] right-[26%] md:top-[-40%] md:-bottom-10 2xl:-bottom-20 md:right-0',
   },
 ]
 

@@ -43,6 +43,7 @@ type ProjectListParams = {
   search?: string;
   field_search?: string | number;
   id?: string | number;
+  is_featured?: boolean;
 };
 
 type UseProjectListProps = {
@@ -80,6 +81,10 @@ export const useProjectList = ({
 
       if (params.id) {
         dataSubmit.id = params.id;
+      }
+
+      if (params.is_featured) {
+        dataSubmit.is_featured = params.is_featured;
       }
 
       const { data } = await apiProjects.getProjectList(dataSubmit);

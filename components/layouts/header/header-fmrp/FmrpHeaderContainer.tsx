@@ -11,7 +11,6 @@ import { useDialogStore } from "@/stores/useDialogStores";
 import { useResizeStore } from "@/stores/useResizeStore";
 import { IMenuHeader } from "@/types/ui/menu/IMenuUI";
 import { motion, useAnimation } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 import DesktopHeader from "./sections/FmrpDesktopHeader";
 import TabletHeader from "./sections/FmrpTabletHeader";
@@ -59,7 +58,7 @@ const FmrpHeaderContainer = () => {
   const { setCookie } = useCookieStore();
   const { isVisibleTablet } = useResizeStore();
   const { setOpenDialogCustom, setStatusDialog } = useDialogStore();
-
+console.log(2)
   const { isStateClientLayout, queryKeyIsStateClientLayout } =
     useStateClientLayout();
 

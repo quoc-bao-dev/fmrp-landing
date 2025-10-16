@@ -9,19 +9,21 @@ import { dataFmrpPages } from "@/data/UrlHeaderFmrp";
 
 type MediaCardProps = {
     media: {
-        id: string;
+        id: string | number;
         image: string;
-        date: string;
-        category: string;
+        date?: string;
+        updated_at?: string;
+        category?: string;
         title: string;
         link?: string;
+        slug?: string;
     };
 };
 
 const MediaCard = ({ media }: MediaCardProps) => {
     const pathname = usePathname()
 
-    const formattedDate = useMemo(() => moment(media.date).format("DD/MM/YYYY"), [media.date])
+    const formattedDate = useMemo(() => moment(media?.date || media?.updated_at).format("DD/MM/YYYY"), [media?.date, media?.updated_at])
 
     const categoryColorClass = useMemo(() => {
         return dataFmrpPages.includes(pathname)
@@ -36,7 +38,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
             // style={{
             //     boxShadow: "0px 1px 2px 0px #1212170F, 0px 1px 3px 0px #1212171A",
             // }}
-            href={media.link ?? "#"}
+            href={(media.link || `/du-an/${media?.slug}`) ?? "#"}
             target="_blank"
         >
             <div className="aspect-square w-full overflow-hidden">
@@ -49,7 +51,7 @@ const MediaCard = ({ media }: MediaCardProps) => {
                 />
             </div>
 
-            <div className="flex flex-col gap-2 p-4 bg-white rounded-b-3xl shadow-[0px_1px_2px_0px_#1212170F,0px_1px_3px_0px_#1212171A]">
+            <div className="flex flex-col gap-2 p-4 bg-white rounded-b-3xl ">
                 <div className="flex items-center justify-between">
                     <div className="text-sm-default text-[#667F93] lg:max-w-[40%] max-w-[30%] truncate">
                     {formattedDate}

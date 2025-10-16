@@ -3,7 +3,7 @@
 const Wave = () => {
   return (
     <svg
-      className="relative w-full h-[10vh] min-h-[100px] max-h-[150px] -mb-2"
+      className="relative w-full h-20 -mb-2"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 24 150 28"
@@ -17,11 +17,17 @@ const Wave = () => {
         />
       </defs>
       <g>
+      <use
+          xlinkHref="#gentle-wave"
+          x="48"
+          y="0"
+          className="wave-1 fill-[#BA90FF]/10"
+        />
         <use
           xlinkHref="#gentle-wave"
           x="48"
           y="0"
-          className="wave-2 fill-[#BA90FF]/10"
+          className="wave-2 fill-[#BA90FF]/20"
         />
         <use
           xlinkHref="#gentle-wave"
@@ -32,7 +38,7 @@ const Wave = () => {
         <use
           xlinkHref="#gentle-wave"
           x="48"
-          y="5"
+          y="10"
           className="wave-4 fill-white"
         />
       </g>

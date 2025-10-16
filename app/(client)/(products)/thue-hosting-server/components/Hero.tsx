@@ -91,11 +91,11 @@ const Hero = () => {
             />
           </div>
           <div className='w-full lg:w-[50%]'>
-            <Image src={IMAGES.giftBanner} width={725} height={725} alt="giftBanner" className='w-full' />
+            <Image src={IMAGES.giftBanner} priority={true} width={725} height={725} alt="giftBanner" className='w-full' />
           </div>
         </div>
       </div>
-      <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" width={1000} height={1000} className='absolute xl:top-[-20%] top-[10%] right-0 w-full object-cover z-[-1] pointer-events-none' />
+      <Image src={IMAGES.blurBlueGreen} alt="blurBlueGreen" priority={true} width={1000} height={1000} className='absolute xl:top-[-20%] top-[10%] right-0 w-full object-cover z-[-1] pointer-events-none' />
     </div>
   )
 }
