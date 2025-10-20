@@ -9,11 +9,13 @@ const apiProjects = {
   },
 
   async getProjectList(params: any) {
-    return await instanceDefault.get(`/project/list?${process.env.NEXT_PUBLIC_SHOW_ALL || ""}`, { params });
+    const showAll = process.env.NEXT_PUBLIC_SHOW_ALL || "";
+    return await instanceDefault.get(`/project/list?${showAll}`, { params });
   },
 
   async getProjectDetail(id: string): Promise<any> {
-    return await instanceDefault.get(`/project/detail/${id}`);
+    const showAll = process.env.NEXT_PUBLIC_SHOW_ALL || "";
+    return await instanceDefault.get(`/project/detail/${id}?${showAll}`);
   },
 };
 
