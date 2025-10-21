@@ -160,7 +160,7 @@ const Solution = () => {
                       alt={solution[activeTab]?.name || 'solution'}
                       width={2000}
                       height={2000}
-                      className='w-full object-cover rounded-2xl block xl:hidden'
+                      className='w-full object-cover rounded-2xl block md:hidden'
                     />
                     {/* Desktop Image */}
                     <Image
@@ -168,7 +168,7 @@ const Solution = () => {
                       alt={solution[activeTab]?.name || 'solution'}
                       width={2000}
                       height={2000}
-                      className='w-full object-cover rounded-2xl hidden xl:block'
+                      className='w-full object-cover rounded-2xl hidden md:block'
                     />
                   </motion.div>
                 </AnimatePresence>
