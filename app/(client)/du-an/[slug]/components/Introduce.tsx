@@ -48,25 +48,22 @@ const Introduce = ({
 
   return (
     <div
-      className={`relative flex flex-col pt-28 xl:pt-32 gap-9 ${
-        type_view === 2 ? "xl:gap-0" : "xl:gap-20"
-      }`}
+      className={`relative flex flex-col pt-28 xl:pt-32 gap-9 ${type_view === 2 ? "xl:gap-0" : "xl:gap-20"
+        }`}
     >
       <BlurBackgroundFixed />
       <div className="block xl:hidden mx-auto">
         <CustomBreadcrumb items={breadcrumbItems} />
       </div>
       <div
-        className={`z-10 flex flex-col-reverse xl:flex-row ${
-          type_view === 2
-            ? "gap-9 xl:gap-0 xl:pr-20 2xl:pr-0"
-            : "gap-20 xl:gap-32 2xl:gap-40"
-        }`}
+        className={`z-10 flex flex-col-reverse xl:flex-row ${type_view === 2
+          ? "gap-9 xl:gap-0 xl:pr-20 2xl:pr-0"
+          : "gap-9 xl:gap-32 2xl:gap-40"
+          }`}
       >
         <div
-          className={`px-3 md:px-9 xl:px-0 w-full 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-8 2xl:gap-12 xl:pb-5 ${
-            type_view === 2 ? "xl:w-[30%]" : "xl:w-[27%] 2xl:w-[25%]"
-          }`}
+          className={`px-3 md:px-9 xl:px-0 w-full 3xl:ml-60 xxl:ml-40 xl:ml-32 flex flex-col gap-8 2xl:gap-12 xl:pb-5 ${type_view === 2 ? "xl:w-[30%]" : "xl:w-[27%] 2xl:w-[25%]"
+            }`}
         >
           <div className="hidden xl:block">
             <CustomBreadcrumb items={breadcrumbItems} />
@@ -197,40 +194,53 @@ const Introduce = ({
               </div>
             </div>
           </div>
-        ) : (
-          <div className="ml-14 md:ml-24 lg:ml-32 xl:ml-0 relative flex-1 h-fit pl-1 py-1 xl:pl-2 xl:py-2 rounded-l-lg xl:rounded-l-3xl bg-[#FFFFFF73] shadow-[-25.05px_25.05px_50.11px_0px_#257A2840] backdrop-blur-[31.317508697509766px]">
-            <div className="rounded-l-lg xl:rounded-l-2xl">
-              <BlurImage
-                src={data?.img?.right || IMAGES.img}
-                alt="banner"
-                width={1000}
-                height={1000}
-                loading="lazy"
-                className="w-full aspect-[1280/800] object-cover rounded-l-lg xl:rounded-l-2xl bg-gray-50"
-              />
-            </div>
-
-            <div className="absolute w-[22.5%] bottom-4 left-0 -translate-x-1/2">
-              <div className="relative">
-                <Image
-                  src={IMAGES.mokupPhone}
-                  alt="mokupPhone"
+        ) :
+          type_view === 3 ? (
+            <div className="ml-14 md:ml-24 lg:ml-32 xl:ml-0 relative flex-1 h-fit pl-1 py-1 xl:pl-2 xl:py-2 rounded-l-lg xl:rounded-l-3xl bg-[#FFFFFF73] shadow-[-25.05px_25.05px_50.11px_0px_#257A2840] backdrop-blur-[31.317508697509766px]">
+              <div className="rounded-l-lg xl:rounded-l-2xl">
+                <BlurImage
+                  src={data?.img?.right || IMAGES.img}
+                  alt="banner"
                   width={1000}
                   height={1000}
-                  className="w-full aspect-[435/891] object-cover"
+                  loading="lazy"
+                  className="w-full aspect-[1280/800] object-cover rounded-l-lg xl:rounded-l-2xl bg-gray-50"
                 />
-                <div className="absolute bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[95%] rounded-3xl aspect-[435/891] object-cover"></div>
-                <Image
-                  src={data?.img?.left || IMAGES.img}
-                  alt="mokupPhone"
+              </div>
+              <div className="absolute w-[22.5%] bottom-4 left-0 -translate-x-1/2">
+                <div className="relative">
+                  <Image
+                    src={IMAGES.mokupPhone}
+                    alt="mokupPhone"
+                    width={1000}
+                    height={1000}
+                    className="w-full aspect-[435/891] object-cover"
+                  />
+                  <div className="absolute bg-gray-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-[90%] h-[95%] rounded-3xl aspect-[435/891] object-cover"></div>
+                  <Image
+                    src={data?.img?.left || IMAGES.img}
+                    alt="mokupPhone"
+                    width={1000}
+                    height={1000}
+                    className="absolute aspect-[435/891] top-0 bottom-0 left-1/2 -translate-x-1/2 z-[-1] p-0.5 md:p-2 rounded-xl md:rounded-3xl lg:rounded-[35px] xl:rounded-3xl object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="ml-4 md:ml-24 lg:ml-32 xl:ml-0 relative flex-1 h-fit pl-1 py-1 xl:pl-2 xl:py-2 rounded-l-lg xl:rounded-l-3xl bg-[#FFFFFF73] shadow-[-25.05px_25.05px_50.11px_0px_#257A2840] backdrop-blur-[31.317508697509766px]">
+              <div className="rounded-l-lg xl:rounded-l-2xl">
+                <BlurImage
+                  src={data?.img?.right || IMAGES.img}
+                  alt="banner"
                   width={1000}
                   height={1000}
-                  className="absolute aspect-[435/891] top-0 bottom-0 left-1/2 -translate-x-1/2 z-[-1] p-0.5 md:p-2 rounded-xl md:rounded-3xl lg:rounded-[35px] xl:rounded-3xl object-cover"
+                  loading="lazy"
+                  className="w-full aspect-[1280/800] object-cover rounded-l-lg xl:rounded-l-2xl bg-gray-50"
                 />
               </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
 
       <div className="hidden xl:grid w-full [grid-template-columns:1fr_1fr_1.4fr_1.7fr_3.6fr]">
@@ -266,9 +276,9 @@ const Introduce = ({
             <p className="whitespace-nowrap text-button text-dark-primary font-bold">
               {Array.isArray(field_detail)
                 ? field_detail
-                    .map((item: any) => item?.name)
-                    .filter(Boolean)
-                    .join(", ")
+                  .map((item: any) => item?.name)
+                  .filter(Boolean)
+                  .join(", ")
                 : field_detail?.name || ""}
             </p>
           ) : (
@@ -384,9 +394,9 @@ const Introduce = ({
             <p className="whitespace-nowrap text-title-feature text-dark-primary font-bold">
               {Array.isArray(field_detail)
                 ? field_detail
-                    .map((item: any) => item?.name)
-                    .filter(Boolean)
-                    .join(", ")
+                  .map((item: any) => item?.name)
+                  .filter(Boolean)
+                  .join(", ")
                 : field_detail?.name || ""}
             </p>
           ) : (
