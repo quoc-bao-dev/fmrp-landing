@@ -14,7 +14,7 @@ export const IMAGES = {
   blurOrangeLarge: "/background/blur/bg-orange-large.svg",
   blurBlueGreen: "/background/blur/blur-blue-green.png",
   blurPupple: "/background/blur/bg-pupple.svg",
-  
+
   // ================= C =================
   calendar: "/design-app/Calendar.svg",
   check: "/design-app/check.png",
@@ -120,17 +120,20 @@ export const IMAGES = {
   star: "/icons/fmrp/star.png",
   supportMobile: "/design-app/supportMobile.png",
   security: "/server/security.png",
-  speed: "/server/speed.png", 
+  speed: "/server/speed.png",
   spiralUp: "/server/spiral-up.png",
-  
+
   // ================= T =================
   theOM: "/design-app/theOM.png",
   thucpham: "/icons/fmrp/thucpham1.png",
   team: "/server/team.png",
+  thietKeApp: "/design-app/thiet-ke-app.png",
 
   // ================= U =================
   upTime: "/server/up-time.png",
 
   // ================= W =================
   whyBanner: "/design-app/whyBanner.png",
+
+  // ================= Design App  =================
 };
