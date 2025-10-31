@@ -1,157 +1,160 @@
-"use client"
-import FacebookOriginIcon from '@/components/icons/social-media/FacebookOriginIcon'
-import FosoOriginIcon from '@/components/icons/social-media/FosoOriginIcon'
-import TiktokOriginIcon from '@/components/icons/social-media/TiktokOriginIcon'
-import YoutubeOriginIcon from '@/components/icons/social-media/YoutubeOriginIcon'
-import { uuidv4 } from '@/lib/uuid'
-import { variantCardScaleZoom } from '@/utils/animations/variantsAnimation'
-import { motion } from 'framer-motion'
-import React from 'react'
+"use client";
+import FacebookOriginIcon from "@/components/icons/social-media/FacebookOriginIcon";
+import FosoOriginIcon from "@/components/icons/social-media/FosoOriginIcon";
+import TiktokOriginIcon from "@/components/icons/social-media/TiktokOriginIcon";
+import YoutubeOriginIcon from "@/components/icons/social-media/YoutubeOriginIcon";
+import { uuidv4 } from "@/lib/uuid";
+import { variantCardScaleZoom } from "@/utils/animations/variantsAnimation";
+import { motion } from "framer-motion";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const dataCommunity = [
-    {
-        id: uuidv4(),
-        icon: <FacebookOriginIcon className='size-full text-[#0866FF]' />,
-        name: "Fanpage",
-        bg: "linear-gradient(135deg, #1877F2 0%, #4C8BF5 100%)", // Gradient xanh Facebook hiện đại
-        link: "https://www.facebook.com/fososoftware",
-    },
-    {
-        id: uuidv4(),
-        icon: <FosoOriginIcon className='size-full' />,
-        name: "Group",
-        bg: "linear-gradient(90.1deg, #0375F3 0.09%, #119DBB 50%, #1FC583 99.92%)", // Xanh biển nổi bật
-        // bg: "linear-gradient(135deg, #00C6FF 0%, #0072FF 100%)", // Xanh biển nổi bật
-        link: "https://www.facebook.com/groups/mrpvn",
-    },
-    {
-        id: uuidv4(),
-        icon: <YoutubeOriginIcon className='size-full text-[#E62117]' />,
-        name: "Youtube",
-        bg: "linear-gradient(135deg, #FF0000 0%, #FF6347 100%)", // Đỏ Youtube rực rỡ
-        link: "https://www.youtube.com/@fososoft",
-    },
-    {
-        id: uuidv4(),
-        icon: <TiktokOriginIcon className='size-full text-[#010101]' />,
-        name: "Tiktok",
-        bg: "linear-gradient(95.03deg, #03EFE5 2.2%, #E41B5F 97.4%)", // Hiệu ứng gradient tím-hồng-cam,
-        // bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam,
-        link: "https://www.tiktok.com/@fososoftware"
-    },
-]
+  {
+    id: uuidv4(),
+    icon: <FacebookOriginIcon className="size-full text-[#0866FF]" />,
+    name: "Fanpage",
+    bg: "linear-gradient(135deg, #1877F2 0%, #4C8BF5 100%)", // Gradient xanh Facebook hiện đại
+    link: "https://www.facebook.com/fososoftware",
+  },
+  {
+    id: uuidv4(),
+    icon: <FosoOriginIcon className="size-full" />,
+    name: "Group",
+    bg: "linear-gradient(90.1deg, #0375F3 0.09%, #119DBB 50%, #1FC583 99.92%)", // Xanh biển nổi bật
+    // bg: "linear-gradient(135deg, #00C6FF 0%, #0072FF 100%)", // Xanh biển nổi bật
+    link: "https://www.facebook.com/groups/mrpvn",
+  },
+  {
+    id: uuidv4(),
+    icon: <YoutubeOriginIcon className="size-full text-[#E62117]" />,
+    name: "Youtube",
+    bg: "linear-gradient(135deg, #FF0000 0%, #FF6347 100%)", // Đỏ Youtube rực rỡ
+    link: "https://www.youtube.com/@fososoft",
+  },
+  {
+    id: uuidv4(),
+    icon: <TiktokOriginIcon className="size-full text-[#010101]" />,
+    name: "Tiktok",
+    bg: "linear-gradient(95.03deg, #03EFE5 2.2%, #E41B5F 97.4%)", // Hiệu ứng gradient tím-hồng-cam,
+    // bg: "linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)", // Hiệu ứng gradient tím-hồng-cam,
+    link: "https://www.tiktok.com/@fososoftware",
+  },
+];
 
 // Variants cho nền (trượt lên khi hover)
 const bgVariants = {
-    rest: { top: '100%' },
-    hover: { top: '0%', transition: { duration: 0.5 } },
+  rest: { top: "100%" },
+  hover: { top: "0%", transition: { duration: 0.5 } },
 };
 
 // Variants cho icon (Xoay 360° + đổi màu khi hover)
 const iconVariants = {
-    rest: (color: any) => ({
-        rotateY: 0,
-        color: color,
-        // fill: color, // Giữ nguyên màu gradient
-        filter: "brightness(1) invert(0)", // Giữ nguyên màu gradient
-        transition: { duration: 0.6, ease: "easeInOut" }
-    }),
-    hover: {
-        rotateY: 360,
-        color: "#FFFFFF",
-        // fill: "#FFFFFF", // Chuyển icon thành màu trắng khi hover
-        filter: "brightness(0) invert(1)", // Chuyển icon sang trắng
-        transition: { duration: 0.6, ease: "easeInOut" }
-    }
+  rest: (color: any) => ({
+    rotateY: 0,
+    color: color,
+    // fill: color, // Giữ nguyên màu gradient
+    filter: "brightness(1) invert(0)", // Giữ nguyên màu gradient
+    transition: { duration: 0.6, ease: "easeInOut" },
+  }),
+  hover: {
+    rotateY: 360,
+    color: "#FFFFFF",
+    // fill: "#FFFFFF", // Chuyển icon thành màu trắng khi hover
+    filter: "brightness(0) invert(1)", // Chuyển icon sang trắng
+    transition: { duration: 0.6, ease: "easeInOut" },
+  },
 };
-
 
 // Variants cho text (đổi màu khi hover)
 const textVariants = {
-    rest: { color: "#1A2025" },
-    hover: { color: "#FFFFFF", transition: { duration: 0.6 } }
+  rest: { color: "#1A2025" },
+  hover: { color: "#FFFFFF", transition: { duration: 0.6 } },
 };
 
-
 const CommunityFmrpSection = (props: Props) => {
-
-    return (
-        <div className='custom-padding-section2 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]'>
-            <div className='custom-container px-2 xl:px-0 flex flex-col items-center justify-center 3xl:gap-10 gap-8'>
-                <div className='flex flex-col items-center justify-center gap-2'>
-                    <div className='space-x-2 font-extrabold w-full text-center'>
-                        <span className='text-title-section-small text-[#1A2025] capitalize'>Tham gia cộng đồng cho</span>
-                        <span
-                            className='text-title-section-small capitalize'
-                            style={{
-                                background: "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
-                                // background: "linear-gradient(107.4deg, #0375F3 65.02%, #036EEA 67.88%, #0267E1 70.73%, #0261D7 73.59%, #025ACE 76.45%, #0254C5 79.31%, #024EBC 82.17%, #0148B3 85.03%, #0142A9 87.89%, #013DA0 90.75%)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                            }}
-                        >
-                            Nhà Sản Xuất
-                        </span>
-                    </div>
-                </div>
-
-                <div className='grid lg:grid-cols-4 grid-cols-2 3xl:gap-8 lg:gap-6 gap-2 w-full'>
-                    {
-                        dataCommunity && dataCommunity?.map((item, index) => {
-                            const defaultColor = item.icon.props.className.match(/text-\[(.*?)\]/)?.[1] || "#1A2025";
-
-                            return (
-                                <motion.div
-                                    key={`community-${item.id}`}
-                                    initial="rest"
-                                    animate="rest"
-                                    whileHover="hover"
-                                    whileTap="press"
-                                    variants={variantCardScaleZoom}
-                                    transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-                                    className='relative col-span-1 flex items-center lg:gap-4 gap-2 lg:p-6 p-6 w-full bg-white border border-[#F3F4FE] 2xl:rounded-3xl rounded-2xl overflow-hidden group cursor-pointer'
-                                    style={{
-                                        boxShadow: "0px 20px 95px 0px #C9CBCC4D"
-                                    }}
-                                    onClick={() => { window.open(item.link) }}
-                                >
-                                    {/* Hiệu ứng nền hover */}
-                                    <motion.div
-                                        className='absolute top-0 left-0 inset-0 z-[1] w-full h-full'
-                                        variants={bgVariants}
-                                        style={{ background: item.bg }}
-                                    />
-
-                                    {/* Hiệu ứng icon xoay 360° và đổi màu */}
-                                    <motion.div
-                                        className='lg:size-12 size-10 shrink-0 relative z-10'
-                                        custom={defaultColor} // Truyền màu gốc vào variants
-                                        variants={iconVariants}
-
-                                        style={{ color: "url(#paint0_linear)" }} // Gradient mặc định
-
-                                    >
-                                        {React.cloneElement(item.icon, { className: "size-full", fill: "currentColor" })}
-                                    </motion.div>
-
-
-                                    {/* Tên cộng đồng - đổi màu khi hover */}
-                                    <motion.div
-                                        className="3xl:text-xl text-lg font-bold relative z-10"
-                                        variants={textVariants}
-                                    >
-                                        {item.name}
-                                    </motion.div>
-                                </motion.div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
+  return (
+    <div className="custom-padding-section2 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
+      <div className="custom-container px-2 xl:px-0 flex flex-col items-center justify-center 3xl:gap-10 gap-8">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <div className="space-x-2 font-extrabold w-full text-center">
+            <span className="text-title-section-small text-[#1A2025] capitalize">
+              Tham gia cộng đồng cho
+            </span>
+            <span
+              className="text-title-section-small capitalize"
+              style={{
+                background:
+                  "linear-gradient(107.4deg, #0375F3 0%, #013DA0 100%)",
+                // background: "linear-gradient(107.4deg, #0375F3 65.02%, #036EEA 67.88%, #0267E1 70.73%, #0261D7 73.59%, #025ACE 76.45%, #0254C5 79.31%, #024EBC 82.17%, #0148B3 85.03%, #0142A9 87.89%, #013DA0 90.75%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Nhà Sản Xuất
+            </span>
+          </div>
         </div>
-    )
-}
 
-export default CommunityFmrpSection
+        <div className="grid lg:grid-cols-4 grid-cols-2 3xl:gap-8 lg:gap-6 gap-2 w-full">
+          {dataCommunity &&
+            dataCommunity?.map((item, index) => {
+              const defaultColor =
+                item.icon.props.className.match(/text-\[(.*?)\]/)?.[1] ||
+                "#1A2025";
+
+              return (
+                <motion.div
+                  key={`community-${item.id}`}
+                  initial="rest"
+                  animate="rest"
+                  whileHover="hover"
+                  whileTap="press"
+                  variants={variantCardScaleZoom}
+                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                  className="relative col-span-1 flex items-center lg:gap-4 gap-2 lg:p-6 p-6 w-full bg-white border border-[#F3F4FE] 2xl:rounded-3xl rounded-2xl overflow-hidden group cursor-pointer"
+                  style={{
+                    boxShadow: "0px 20px 95px 0px #C9CBCC4D",
+                  }}
+                  onClick={() => {
+                    window.open(item.link);
+                  }}
+                >
+                  {/* Hiệu ứng nền hover */}
+                  <motion.div
+                    className="absolute top-0 left-0 inset-0 z-[1] w-full h-full"
+                    variants={bgVariants}
+                    style={{ background: item.bg }}
+                  />
+
+                  {/* Hiệu ứng icon xoay 360° và đổi màu */}
+                  <motion.div
+                    className="lg:size-12 size-10 shrink-0 relative z-10"
+                    custom={defaultColor} // Truyền màu gốc vào variants
+                    variants={iconVariants as any}
+                    style={{ color: "url(#paint0_linear)" }} // Gradient mặc định
+                  >
+                    {React.cloneElement(item.icon, {
+                      className: "size-full",
+                      fill: "currentColor",
+                    })}
+                  </motion.div>
+
+                  {/* Tên cộng đồng - đổi màu khi hover */}
+                  <motion.div
+                    className="3xl:text-xl text-lg font-bold relative z-10"
+                    variants={textVariants}
+                  >
+                    {item.name}
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CommunityFmrpSection;
