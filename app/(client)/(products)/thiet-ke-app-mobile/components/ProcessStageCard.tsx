@@ -240,10 +240,10 @@ const ProcessStageCard = React.forwardRef<
             {renderIcon()}
           </div>
           <div className="mt-1">
-            <p className="text-gray-900 text-[12px] md:text-base lg:text-[21px] font-bold">
+            <p className="text-gray-900 text-[12px] md:text-base lg:text-[21px] text-center lg:text-left font-bold capitalize">
               {title}
             </p>
-            <h3 className="text-gray-900 text-[10px] md:text-xs lg:text-base mt-2">
+            <h3 className="text-gray-900 text-[10px] md:text-xs lg:text-base mt-2 text-center lg:text-left">
               {content}
             </h3>
           </div>

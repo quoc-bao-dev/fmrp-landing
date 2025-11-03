@@ -101,7 +101,7 @@ const Questions = () => {
             alt="Thiết kế app mobile"
             width={1000}
             height={1000}
-            className="w-full object-contain h-fit object-bottom origin-bottom"
+            className="w-[80%] mx-auto mg:w-full object-contain h-fit object-bottom origin-bottom"
             priority
           />
         </div>
