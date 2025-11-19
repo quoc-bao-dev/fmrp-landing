@@ -5,7 +5,7 @@ import { getMetadata } from "@/components/seo/DefaultMetadata";
 import { KEY_COOKIES } from "@/constants/Cookie";
 import { raleway_sans } from "@/utils/fonts/fontUtils";
 import Script from "next/script";
-import { Suspense } from "react";
+import { Suspense } from "react"; 
 
 import "@babylonjs/loaders";
 import '@smastrom/react-rating/style.css';
