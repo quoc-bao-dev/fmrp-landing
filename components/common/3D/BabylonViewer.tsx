@@ -2,10 +2,11 @@
 
 // import * as BABYLON from "@babylonjs/core";
 import { Engine, Scene, ArcRotateCamera, TransformNode, Color4, Color3, Vector3, HemisphericLight, CubeTexture, SceneLoader, Quaternion, Axis, PBRMaterial } from '@babylonjs/core';
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "@babylonjs/loaders";
 
 const BabylonViewer = () => {
+    const [isWebglSupported, setIsWebglSupported] = useState(true);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const engineRef = useRef<Engine | null>(null);
     const sceneRef = useRef<Scene | null>(null);
@@ -13,6 +14,12 @@ const BabylonViewer = () => {
 
     useEffect(() => {
         if (!canvasRef.current) return;
+
+        if (!Engine.IsSupported) {
+            console.warn("⚠️ WebGL/WebGL2 không được hỗ trợ, BabylonViewer sẽ không render.");
+            setIsWebglSupported(false);
+            return;
+        }
 
         const canvas = canvasRef.current;
 
@@ -200,6 +207,10 @@ const BabylonViewer = () => {
             rootRef.current = null;
         };
     }, []);
+
+    if (!isWebglSupported) {
+        return null;
+    }
 
     return (
         <React.Fragment>
