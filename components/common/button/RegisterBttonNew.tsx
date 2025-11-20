@@ -12,8 +12,7 @@ const RegisterBttonNew = () => {
   const { isVisibleTablet } = useResizeStore();
 
   // Chỉ hiển thị trên màn hình PC và khi nút header bị ẩn
-  const shouldShowRegisterButton =
-    pathname === "/phan-mem-quan-ly-san-xuat-fmrp" && !isVisibleTablet;
+  const shouldShowRegisterButton = !isVisibleTablet && pathname === "/";
 
   return (
     <div className="hidden fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[999] sm:flex flex-col lg:flex-row gap-3">

@@ -3,7 +3,10 @@
 import { KEY_COOKIES } from "@/constants/Cookie";
 import { useModalContext } from "@/contexts/ModalContext";
 import { dataLanguageOptions } from "@/data/DataTranslate";
-import { useRegisterButtonDelayCleanup, useRegisterButtonVisibility } from "@/hooks/custom/useRegisterButtonVisibility";
+import {
+  useRegisterButtonDelayCleanup,
+  useRegisterButtonVisibility,
+} from "@/hooks/custom/useRegisterButtonVisibility";
 import { uuidv4 } from "@/lib/uuid";
 import { useStateClientLayout } from "@/managers/state/client/useStateClientLayout";
 import useCookieStore from "@/stores/useCookieStore";
@@ -46,7 +49,7 @@ const dataHeader: IMenuHeader[] = [
   {
     id: uuidv4(),
     name: "Kiến Thức",
-    link: "/resource/blogs",
+    link: "https://fososoft.com/resource/blogs",
     active: ["blogs"],
     type: "default",
     typeLink: "new_tab",
@@ -58,7 +61,6 @@ const FmrpHeaderContainer = () => {
   const { setCookie } = useCookieStore();
   const { isVisibleTablet } = useResizeStore();
   const { setOpenDialogCustom, setStatusDialog } = useDialogStore();
-console.log(2)
   const { isStateClientLayout, queryKeyIsStateClientLayout } =
     useStateClientLayout();
 
@@ -73,7 +75,7 @@ console.log(2)
   const { openModal, closeModal } = useModalContext();
 
   const { setHeaderVisible } = useRegisterButtonVisibility();
-  
+
   // Sử dụng hook để cleanup khi component unmount
   useRegisterButtonDelayCleanup();
 
@@ -93,17 +95,17 @@ console.log(2)
         let shouldShowHeader = isHeaderVisible.current;
 
         // Thêm threshold để tránh header nhảy liên tục trên mobile
-        const SCROLL_THRESHOLD = 50;
+        const SCROLL_THRESHOLD = 5;
         const scrollDelta = scrollY - lastScrollY.current;
 
         if (scrollY === 0) {
-          shouldShowHeader = false;
+          shouldShowHeader = true;
         } else if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
           // Chỉ thay đổi trạng thái khi scroll đủ lớn
           if (scrollDelta > 0) {
             shouldShowHeader = false; // Cuộn xuống
           } else {
-            shouldShowHeader = true;  // Cuộn lên
+            shouldShowHeader = true; // Cuộn lên
           }
         }
 
@@ -161,7 +163,7 @@ console.log(2)
   useEffect(() => {
     // Áp dụng cho cả desktop và mobile
     lastScrollY.current = window.scrollY;
-    isHeaderVisible.current = lastScrollY.current !== 0;
+    isHeaderVisible.current = true;
 
     window.addEventListener("scroll", handleScroll);
     if (lastScrollY.current !== 0) {
@@ -187,7 +189,7 @@ console.log(2)
       openModal();
     }
   }, [isStateClientLayout?.header?.isShowMenuMobileFmrp]);
-  
+
   // 🛠️ Mở/Tắt menu mobile
   const handleToggleMenu = (action: string): void => {
     if (action === "on") {
@@ -255,8 +257,8 @@ console.log(2)
     <header className="fixed top-0 left-0 w-full !z-50 pointer-events-none ">
       <motion.div
         initial={{
-          y: -100,
-          opacity: 0
+          y: 0,
+          opacity: 1,
         }}
         animate={controls}
         className="md:mx-8 mx-4 3xl:mx-60 xxl:mx-40 xl:mx-32 lg:mx-10 4xl:px-[10%] !z-50  lg:bg-[#FFFFFF]/65 bg-[#FFFFFF]/50 !backdrop-filter !backdrop-blur-[25px] 3xl:px-12 xxl:px-10 lg:px-8 sm:px-6 px-3 xxl:py-3 py-2 mt-4 lg:space-y-0 -space-y-4 pointer-events-auto lg:rounded-[40px] rounded-xl"

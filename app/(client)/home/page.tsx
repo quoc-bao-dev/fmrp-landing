@@ -1,30 +1,48 @@
-import React from 'react'
-import HeroSection from './components/sections/HeroSection'
-import ServicePresentationSection from './components/sections/ServicePresentationSection'
-import CustomerPartnerSection from './components/sections/CustomerPartnerSection'
-import MediaCoverageSection from './components/sections/MediaCoverageSection'
-import ContactUsNowSection from './components/sections/ContactUsNowSection'
-import SolutionsSection from './components/sections/SolutionsSection';
-import ServiceProcessSection from './components/sections/ServiceProcessSection'
-import CustomerFeedbackSection from './components/sections/CustomerFeedbackSection';
-import FosoPartnerSection from './components/sections/FosoPartnerSection'
+import CommunityFmrpSection from "./components/sections/CommunityFmrpSection";
+import FmrpApp from "./components/sections/FmrpApp";
+import FmrpBenefits from "./components/sections/FmrpBenefits";
+import FmrpCoreModules from "./components/sections/FmrpCoreModules";
+import FmrpHighlightFeatures from "./components/sections/FmrpHighlightFeatures";
+import IntroductionFmrpSection from "./components/sections/IntroductionFmrpSection";
+import ManufacturingFields from "./components/sections/ManufacturingFields";
+import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
+import PackageFmrpSection from "./components/sections/PackageFmrpSection";
+import PartnerFmrpSection from "./components/sections/PartnerFmrpSection";
+import QuestionsFmrpSection from "./components/sections/QuestionsFmrpSection";
 
-type Props = {}
+type Props = {};
 
-const Home = (props: Props) => {
-    return (
-        <main className='overflow-hidden'>
-            <HeroSection />
-            <ServiceProcessSection />
-            <FosoPartnerSection />
-            <SolutionsSection />
-            <ServicePresentationSection />
-            <CustomerFeedbackSection />
-            <CustomerPartnerSection />
-            <MediaCoverageSection />
-            <ContactUsNowSection />
-        </main>
-    )
-}
+const AboutUs = (props: Props) => {
+  return (
+    <main className="min-h-screen relative">
+      <div className="relative z-[1] overflow-x-hidden flex flex-col xl:gap-24 gap-8">
+        {/* <HeroFmrpSection /> */}
 
-export default Home
+        <IntroductionFmrpSection />
+        <ManufacturingFields />
+        <FmrpBenefits />
+        <FmrpCoreModules />
+        <FmrpHighlightFeatures />
+        {/* <ModelSection /> */}
+        {/* <FeaturePageSection /> */}
+        {/* <SupportedIndustriesSection /> */}
+        {/* <FmrpBenefitsSection /> */}
+        <PackageFmrpSection />
+        {/* <FeedbackFmrpSection /> */}
+        {/* <CTAFmrpSection /> */}
+        <PartnerFmrpSection />
+        <MediaCoverageFmrpSection />
+        <QuestionsFmrpSection />
+        <CommunityFmrpSection />
+        <FmrpApp />
+        {/* <VideoFmrpSection /> */}
+        {/* <SystemOverviewFmrpSection /> */}
+        {/* <FeatureManagementOverviewSection /> */}
+        {/* <AiBomFmrpSection /> */}
+        {/* <ProcessOptimizationFmrpSection /> */}
+      </div>
+    </main>
+  );
+};
+
+export default AboutUs;

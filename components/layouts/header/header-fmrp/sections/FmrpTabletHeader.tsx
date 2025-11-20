@@ -1,9 +1,8 @@
 import ButtonAnimation from "@/components/common/button/ButtonAnimation";
-import { useRegisterButtonDelayCleanup } from '@/hooks/custom/useRegisterButtonVisibility';
+import { useRegisterButtonDelayCleanup } from "@/hooks/custom/useRegisterButtonVisibility";
 import { useStateClientLayout } from "@/managers/state/client/useStateClientLayout";
 import { IMenuHeader } from "@/types/ui/menu/IMenuUI";
 import { variantButtonScaleZoom } from "@/utils/animations/variantsAnimation";
-import { scrollToTop } from "@/utils/scroll/scrollUtils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,9 +31,9 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
 
   const { isStateClientLayout, queryKeyIsStateClientLayout } =
     useStateClientLayout();
-  
+
   useRegisterButtonDelayCleanup();
-  
+
   const shouldShowRegisterButton = true;
 
   const handleToggleSubMenu = (id: string) => {
@@ -53,26 +52,30 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
     <React.Fragment>
       <div className="flex flex-row items-center justify-center">
         <div className="flex-1 w-full flex items-center justify-start gap-2">
-          <motion.div
-            initial={false}
-            animate="rest"
-            whileTap="press"
-            variants={variantButtonScaleZoom}
+          <Link
+            href="/"
             className="flex items-center justify-start w-auto sm:h-[55px] h-[40px] py-4 shrink-0"
-            onClick={() => {
-              handleToggleMenu("off");
-              scrollToTop();
-            }}
           >
-            <Image
-              width={200}
-              height={100}
-              alt="logo"
-              src="/logo/fmrp/logo-fmrp.svg"
-              className="w-auto sm:h-[55px] h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
-              priority
-            />
-          </motion.div>
+            <motion.div
+              initial={false}
+              animate="rest"
+              whileTap="press"
+              variants={variantButtonScaleZoom}
+              className="flex items-center justify-start w-auto sm:h-[55px] h-[40px] shrink-0"
+              onClick={() => {
+                handleToggleMenu("off");
+              }}
+            >
+              <Image
+                width={200}
+                height={100}
+                alt="logo"
+                src="/logo/fmrp/logo-fmrp.svg"
+                className="w-auto sm:h-[55px] h-[40px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
+                priority
+              />
+            </motion.div>
+          </Link>
         </div>
 
         <div className="flex flex-row items-stretch justify-end gap-2 gap-x-3 ">
@@ -148,25 +151,30 @@ const FmrpTabletHeader: React.FC<TabletHeaderProps> = ({
           >
             <div className="grid grid-cols-16 py-3 items-center justify-center md:px-8 px-6">
               <div className="col-span-12 w-full flex items-center justify-start gap-2">
-                <motion.div
-                  initial={false}
-                  animate="rest"
-                  whileTap="press"
-                  variants={variantButtonScaleZoom}
+                <Link
+                  href="/"
                   className="flex items-center justify-start w-auto h-[55px] py-4 shrink-0"
-                  onClick={() => {
-                    handleToggleMenu("off");
-                  }}
                 >
-                  <Image
-                    width={800}
-                    height={800}
-                    alt="logo"
-                    src="/logo/fmrp/logo-fmrp.svg"
-                    className="w-auto h-[55px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
-                    priority
-                  />
-                </motion.div>
+                  <motion.div
+                    initial={false}
+                    animate="rest"
+                    whileTap="press"
+                    variants={variantButtonScaleZoom}
+                    className="flex items-center justify-start w-auto h-[55px] shrink-0"
+                    onClick={() => {
+                      handleToggleMenu("off");
+                    }}
+                  >
+                    <Image
+                      width={800}
+                      height={800}
+                      alt="logo"
+                      src="/logo/fmrp/logo-fmrp.svg"
+                      className="w-auto h-[55px] object-contain cursor-pointer aspect-2.57/1 shrink-0"
+                      priority
+                    />
+                  </motion.div>
+                </Link>
               </div>
 
               <div className="col-span-4 flex items-center justify-end gap-3">
