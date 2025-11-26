@@ -1227,3 +1227,42 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
   animation-delay: 6s;
 }
+
+.ai-shine-badge {
+  position: relative;
+  overflow: hidden;
+}
+.ai-shine-badge::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -30%;
+  width: 40%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
+  transform: rotate(25deg);
+  animation: aiShine 4s linear infinite;
+  opacity: 0.7;
+}
+
+.ai-shine-text {
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 25%, #60a5fa 50%, #3b82f6 75%, #2563eb 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 3s ease-in-out infinite;
+  font-weight: 600;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
