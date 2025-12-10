@@ -29,7 +29,7 @@ const FmrpCoreModules = () => {
     <section className="w-full py-12 xl:pt-24 xl:pb-0 px-2 xl:px-0 overflow-hidden relative bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)] overflow-x-hidden">
       <div className="custom-container flex flex-col gap-6 xl:gap-12 justify-center items-center">
         <div className="text-title-section-small text-[#1A2025] font-extrabold text-center capitalize">
-          Các Phân Hệ Cốt Lõi Trong phần mềm{" "}
+          Các Phân Hệ Cốt Lõi<br className='lg:hidden' /> Trong phần mềm{" "}
           <span
             style={{
               background:
