@@ -3,10 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
-  eslint: {
-    // Tắt ESLint trong quá trình build
-    ignoreDuringBuilds: true,
-  },
+  // eslint: {
+  //   // Tắt ESLint trong quá trình build
+  //   ignoreDuringBuilds: true,
+  // },
   typescript: {
     // Bỏ qua lỗi TypeScript trong quá trình build
     ignoreBuildErrors: true,
@@ -15,6 +15,15 @@ const nextConfig: NextConfig = {
     // Giảm JS ban đầu
     optimizeCss: true,
     scrollRestoration: true,
+  },
+  // Cấu hình Turbopack cho SVG (chỉ dùng khi chạy với --turbopack flag)
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
   },
   images: {
     // unoptimized: true,

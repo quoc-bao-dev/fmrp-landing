@@ -8,6 +8,7 @@ import ManufacturingFields from "./components/sections/ManufacturingFields";
 import MediaCoverageFmrpSection from "./components/sections/MediaCoverageFmrpSection";
 import PackageFmrpSection from "./components/sections/PackageFmrpSection";
 import PartnerFmrpSection from "./components/sections/PartnerFmrpSection";
+import ProgressPath from "./components/sections/ProgressPath";
 import QuestionsFmrpSection from "./components/sections/QuestionsFmrpSection";
 
 type Props = {};
@@ -19,6 +20,7 @@ const AboutUs = (props: Props) => {
         {/* <HeroFmrpSection /> */}
 
         <IntroductionFmrpSection />
+        <ProgressPath />
         <ManufacturingFields />
         <FmrpBenefits />
         <FmrpCoreModules />

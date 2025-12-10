@@ -27,21 +27,21 @@ const IntroductionFmrpSection = (props: Props) => {
   return (
     <div
       className="3xl:pt-32 xl:pt-28 pt-28 bg-transparent flex flex-col justify-center items-center relative"
-      // className=" bg-transparent flex flex-col justify-center items-center relative"
-      // style={{
-      //   background:
-      //     "linear-gradient(180deg, #FFFFFF 0%, #F0F8FF 12.04%, #F0F8FF 86.67%, #FFFFFF 100%)",
-      // }}
+    // className=" bg-transparent flex flex-col justify-center items-center relative"
+    // style={{
+    //   background:
+    //     "linear-gradient(180deg, #FFFFFF 0%, #F0F8FF 12.04%, #F0F8FF 86.67%, #FFFFFF 100%)",
+    // }}
     >
       <BlurBackgroundFixed />
 
-      {/* <div className="h-[20px]"></div> */}
-      <div className="3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 lg:mr-0 4xl:px-[10%] flex lg:flex-row flex-col-reverse items-center lg:justify-normal justify-center overflow-x-hidden">
+      <CustomBreadcrumb items={breadcrumbItems} />
+      <div className="3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 lg:mr-0 4xl:px-[10%] flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden">
         <div className="px-4 xl:px-0 w-full xl:max-w-[34%] flex flex-col shrink-0 lg:items-start items-center lg:justify-normal justify-center lg:text-start text-center 3xl:gap-8 2xl:gap-6 gap-4">
           <div className="flex flex-col gap-1 xl:gap-4">
-            <h2 className="text-title-section-medium text-[#1A2025] font-extrabold capitalize">
+            <h2 className="3xl:text-[48px] 2xl:text-[40px] xxl:text-[38px] xl:text-[34px] text-[32px] text-[#1A2025] font-extrabold capitalize">
               Phần Mềm Quản Lý
-              <br /> Xưởng{" "}
+              <br /> {" "}
               <span
                 style={{
                   background:
@@ -51,7 +51,19 @@ const IntroductionFmrpSection = (props: Props) => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Sản Xuất
+                Xưởng Sản Xuất{" "}
+              </span><br />{" "}
+              cho {" "}
+              <span
+                style={{
+                  background:
+                    "linear-gradient(78deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Doanh nghiệp việt
               </span>
             </h2>
             <p className="text-sm-default text-[#33404A] font-semibold xl:w-[75%] text-justify">
@@ -59,6 +71,8 @@ const IntroductionFmrpSection = (props: Props) => {
               công nhân và quản lý tiến độ mọi lúc – mọi nơi.
             </p>
           </div>
+
+
 
           <div className="flex flex-col xxs:flex-row items-center gap-3 w-full">
             <ButtonAnimationNew
@@ -132,12 +146,13 @@ const IntroductionFmrpSection = (props: Props) => {
                 quality={100}
                 priority={true}
                 className="size-full object-cover relative"
-                // classNameContainer="w-full object-cover relative"
-                // loading="lazy"
+              // classNameContainer="w-full object-cover relative"
+              // loading="lazy"
               />
             </div>
           </div>
         )}
+
         {!isVisibleTablet && (
           <div className="w-full pointer-events-none select-none relative">
             <div className=" w-auto 3xl:h-[800px] 2xl:h-[760px] xxl:h-[720px] xl:h-[540px] h-fit aspect-1.6/1 relative">
@@ -149,8 +164,8 @@ const IntroductionFmrpSection = (props: Props) => {
                 quality={100}
                 priority={true}
                 className="size-full object-contain aspect-1.6/1 relative"
-                // classNameContainer="w-full object-contain aspect-1.6/1 relative"
-                // loading="lazy"
+              // classNameContainer="w-full object-contain aspect-1.6/1 relative"
+              // loading="lazy"
               />
               {/* Mask Gradient chỉ nằm vùng 180px cuối */}
               {/* <div

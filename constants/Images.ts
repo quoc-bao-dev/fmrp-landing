@@ -14,7 +14,8 @@ export const IMAGES = {
   blurOrangeLarge: "/background/blur/bg-orange-large.svg",
   blurBlueGreen: "/background/blur/blur-blue-green.png",
   blurPupple: "/background/blur/bg-pupple.svg",
-
+  blurGreen: "/background/blur/blur-green.png",
+  blurGreenLarge: "/background/blur/bg-green.svg",
   // ================= C =================
   calendar: "/design-app/Calendar.svg",
   check: "/design-app/check.png",
@@ -87,7 +88,8 @@ export const IMAGES = {
   muaHang: "/icons/fmrp/muaHang.png",
   maintenance: "/server/maintenance.png",
   monitorGraph: "/server/monitor-graph.png",
-
+  mess: "/icons/mess.png",
+  mobileIcon: "/icons/mobile-icon.svg",
   // ================= N =================
   nhaCungCap: "/icons/fmrp/nhaCungCap.png",
   nhanSu: "/icons/fmrp/nhanSu.png",
@@ -113,6 +115,7 @@ export const IMAGES = {
   // ================= R =================
   rivet: "/design-app/rivet.svg",
   route: "/server/route.png",
+  rocketBoyGif: "/gif/rocket-boy.gif",
 
   // ================= S =================
   sanXuat: "/icons/fmrp/sanXuat.png",
