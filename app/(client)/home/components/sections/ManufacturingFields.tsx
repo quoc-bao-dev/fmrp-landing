@@ -62,7 +62,7 @@ const ManufacturingFields = () => {
     <section className="custom-padding-section2 px-2 xl:px-0 bg-[linear-gradient(180deg,#FFFFFF_0%,#F0F8FF_10.1%,#F0F8FF_90.89%,#FFFFFF_100.99%)]">
       <div className="custom-container flex flex-col gap-6 xl:gap-16 items-center justify-center">
         <h2 className="text-title-section-small text-[#1A2025] font-extrabold text-center">
-          Linh Hoạt Triển Khai Cho{" "}
+          Linh Hoạt Triển Khai <br className='lg:hidden' />Cho {" "}
           <span
             style={{
               background:
