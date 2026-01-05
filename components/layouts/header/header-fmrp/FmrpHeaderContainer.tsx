@@ -157,7 +157,7 @@ const FmrpHeaderContainer = () => {
         });
       }
       inactivityTimer.current = null;
-    }, 1500);
+    }, 200);
   }, [controls, setHeaderVisible]);
 
   useEffect(() => {

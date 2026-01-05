@@ -953,6 +953,50 @@ iframe[title="recaptcha challenge expires in two minutes"] {
       transition: background 0.5s ease-in-out;
     }
   }
+  .border-gradient-premium-price-list {
+    --border-radius: 16px;
+    --border-width: 3px;
+    --border-width-hover: 2px;
+
+    position: relative;
+    border-radius: var(--border-radius);
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: var(--border-width);
+      background: linear-gradient(
+        270deg,
+        rgba(138, 249, 158, 0) 0%,
+        #39A001 32%,
+        #39A001 61.5%,
+        rgba(138, 249, 158, 0) 100%
+      );
+
+      /* 👇 Mask chỉ để hiện viền trên */
+      mask-image: linear-gradient(
+        to bottom,
+        white 0px,
+        white 4px,
+        transparent 4px
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        white 0px,
+        white 4px,
+        transparent 4px
+      );
+
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+
+      z-index: 0;
+      transition: background 0.5s ease-in-out;
+    }
+  }
 }
 
 /* Animation hiệu ứng viền chạy - tối ưu hóa */
