@@ -83,7 +83,7 @@ const dataPackage = [
     price: 0,
     expirationDate: "",
     brand: "1 chi nhánh",
-    description: "Trải nghiệm thật, hiệu quả thật, Không giới hạn thời gian",
+    description: "Trải nghiệm thật, hiệu quả thật. Dùng thử trong vòng 7 ngày.",
     type: "Cơ bản",
     buttonText: "Đăng ký ngay",
     variant: "freemium",
@@ -95,16 +95,32 @@ const dataPackage = [
   },
   {
     title: "Professional",
-    price: 2860,
+    price: 29000,
     expirationDate: "/ngày",
     brand: "1 chi nhánh",
     description:
-      "Tối ưu sản xuất, tối thiểu lãng phí. Toàn quyền truy cập các tính năng chuyên nghiệp",
+      "Tối ưu sản xuất, tối thiểu lãng phí. Truy cập hầu hết các tính năng chuyên nghiệp.",
     type: "Chuyên sâu",
     buttonText: "Liên hệ",
     variant: "pro",
     className: "lg:col-span-1 col-span-2",
     popular: true,
+    blurImageColor: "/background/blur/blur-blue.png",
+    linearImageColor:
+      "linear-gradient(to right, rgba(22, 119, 247, 0), rgba(22, 119, 247, 0.6), rgba(22, 119, 247, 0))",
+  },
+  {
+    title: "Premium",
+    price: 40000,
+    expirationDate: "/ngày",
+    brand: "1 chi nhánh",
+    description:
+      "Tối ưu sản xuất, tối thiểu lãng phí. Toàn quyền truy cập các tính năng chuyên nghiệp.",
+    type: "Chuyên sâu",
+    buttonText: "Liên hệ",
+    variant: "pre",
+    className: "lg:col-span-1 col-span-2",
+    popular: false,
     blurImageColor: "/background/blur/blur-blue.png",
     linearImageColor:
       "linear-gradient(to right, rgba(22, 119, 247, 0), rgba(22, 119, 247, 0.6), rgba(22, 119, 247, 0))",
@@ -144,13 +160,13 @@ const PackageFmrpSection = (props: Props) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 2xl:w-[65%] lg:w-[80%] w-full gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 2xl:w-[90%] w-full gap-5">
           {dataPackage &&
             dataPackage?.map((plan, index) => (
               <Link
                 key={`plan-${index}`}
                 href="/products/bang-gia-fmrp"
-                className="lg:col-span-1 col-span-2 h-full"
+                className="h-full"
               >
                 <PlanPackageCard {...plan} />
               </Link>

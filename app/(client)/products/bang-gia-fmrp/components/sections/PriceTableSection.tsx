@@ -2,6 +2,7 @@
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew"
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon"
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon"
+import CheckIcon from "@/components/icons/fmrp/CheckIcon"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from 'framer-motion'
 import React from "react"
@@ -24,6 +25,11 @@ const PriceTableSection = (props: Props) => {
             title: "Thêm chi nhánh",
             freemium: "1,299,000 đ",
             professional: "999,000 đ",
+        },
+        {
+            title: "Thêm user",
+            freemium: "86,000 đ/ 1 user",
+            professional: "86,000 đ/ 1 user",
         },
     ]
 
@@ -49,18 +55,18 @@ const PriceTableSection = (props: Props) => {
                                 {/* Header row */}
                                 <div className="col-span-1 p-4 border-b border-dashed"></div>
                                 <h2 className="col-span-2 p-4 text-start text-title font-bold border-b border-dashed text-[#33404A]">
-                                    Freemium
+                                    Professional
                                 </h2>
                                 <h2 className="col-span-2 p-4 text-start text-title font-bold border-b border-dashed text-[#33404A]">
-                                    Professional
+                                    Premium
                                 </h2>
 
                                 {/* Pricing rows */}
                                 {pricingData.map((item, index) => (
                                     <React.Fragment key={index}>
                                         <div className="col-span-1 p-4 flex items-start text-sm-default font-semibold text-[#33404A]">{item.title}</div>
-                                        <div className="col-span-2 p-4 text-start text-sm-default font-semibold text-[#33404A]">{item.freemium}</div>
-                                        <div className="col-span-2 p-4 text-start text-sm-default font-semibold text-[#33404A]">{item.professional}</div>
+                                        <div className="col-span-2 p-4 text-start text-sm-default font-semibold text-[#33404A] flex items-center gap-3"><CheckIcon/>{item.freemium}</div>
+                                        <div className="col-span-2 p-4 text-start text-sm-default font-semibold text-[#33404A] flex items-center gap-3"><CheckIcon/>{item.professional}</div>
                                     </React.Fragment>
                                 ))}
 
@@ -160,20 +166,23 @@ const PriceTableSection = (props: Props) => {
                         className="border rounded-3xl shadow-sm"
                         style={{
                             boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
-                            background: "#FFFFFF"
+                            background: "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
                         }}
                     >
-                        <div className={`border-gradient-freemium-price-list h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`} />
+                        <div className={`border-gradient-professional-price-list h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`} />
 
                         <CardContent className="px-4 pb-4 pt-2">
-                            <h2 className="text-start text-title font-bold pb-3 border-b border-dashed text-[#33404A]">
-                                Freemium
+                            <h2 className="text-start text-2xl font-bold pb-3 border-b border-dashed text-[#33404A]">
+                                Professional
                             </h2>
                             <div className="space-y-3 pt-4">
                                 {pricingData.map((item, index) => (
-                                    <div key={index} className="space-x-2 text-base-default text-[#33404A]">
-                                        <span className='font-semibold'>{item.title}:</span>
-                                        <span className="font-extrabold">{item.freemium}</span>
+                                    <div key={index} className="flex items-center gap-3">
+                                        <CheckIcon className="size-4" />
+                                        <div className="space-x-2 text-base-default text-[#33404A]">
+                                            <span className='font-semibold'>{item.title}:</span>
+                                            <span className="font-extrabold">{item.freemium}</span>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -234,20 +243,23 @@ const PriceTableSection = (props: Props) => {
                         className="border rounded-3xl shadow-sm"
                         style={{
                             boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
-                            background: "#FFFFFF"
+                            background: "linear-gradient(180deg, #8AF99E40 -0.03%, #8AF99E00 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
                         }}
                     >
-                        <div className={`border-gradient-professional-price-list h-2 rounded-2xl border-3 absolute top-0 left-0 w-[92%] mx-auto`} />
+                        <div className={`border-gradient-premium-price-list h-2 rounded-2xl border-3 absolute top-0 left-0 w-[92%] mx-auto`} />
 
                         <CardContent className="px-4 pb-4 pt-2">
-                            <h2 className="text-start text-title font-bold pb-3 border-b border-dashed text-[#33404A]">
-                                Professional
+                            <h2 className="text-start text-2xl font-bold pb-3 border-b border-dashed text-[#33404A]">
+                                Premium
                             </h2>
                             <div className="space-y-3 pt-4">
                                 {pricingData.map((item, index) => (
-                                    <div key={index} className="space-x-2 text-base-default text-[#33404A]">
-                                        <span className='font-semibold'>{item.title}:</span>
-                                        <span className="font-extrabold">{item.professional}</span>
+                                    <div key={index} className="flex items-center gap-3">
+                                        <CheckIcon className="size-4" />
+                                        <div className="space-x-2 text-base-default text-[#33404A]">
+                                            <span className='font-semibold'>{item.title}:</span>
+                                            <span className="font-extrabold">{item.professional}</span>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
