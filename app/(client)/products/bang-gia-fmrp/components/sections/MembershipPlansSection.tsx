@@ -2,9 +2,8 @@
 import ButtonAnimationNew from "@/components/common/button/ButtonAnimationNew";
 import ArrowUpRightIcon from "@/components/icons/common/ArrowUpRightIcon";
 import ArrowUpRightLinearBlueIcon from "@/components/icons/common/ArrowUpRightLinearBlueIcon";
-import CheckIconLinear from "@/components/icons/fmrp/CheckIconLinear";
+import CheckIcon from "@/components/icons/fmrp/CheckIcon";
 import FireIcon from "@/components/icons/fmrp/FireIcon";
-import SparkleIcon from "@/components/icons/common/SparkleIcon";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { FormatNumberToCommanDecimal } from "@/utils/format/FormatNumber";
@@ -24,7 +23,6 @@ const AILabel = ({
   text?: string;
   isEnabled?: boolean;
 }) => {
-  const iconColor = isEnabled ? "#2563eb" : "#B3C5D4";
   return (
     <span
       className={`normal-case whitespace-nowrap flex items-center justify-center gap-1 responsive-text-xxs font-medium ai-shine-badge ${
@@ -91,94 +89,126 @@ const LabelWrapper = ({
 
 const features = [
   {
+    label: <p className="text-sm-default text-[#33404A] font-semibold">Báo cáo sản xuất: <span className="font-extrabold">Cơ bản</span></p>,
+    key: "report_production",
+    freemium: true,
+    pro: true,
+    pre: true,
+    hiddenPre: true,
+    hiddenPro: true,
+  },
+  {
+    label: <p className="text-sm-default text-[#33404A] font-semibold">Báo cáo sản xuất: <span className="font-extrabold">Chuyên sâu</span></p>,
+    key: "report_production_bom",
+    freemium: true,
+    pro: true,
+    pre: true,
+    hiddenFreemium: true,
+  },
+  {
     label: "Lập lệnh sản xuất",
     key: "plan",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Thiết kế định mức BOM",
     key: "bom",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Thiết kế công đoạn",
     key: "steps",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Quản lý đơn đặt hàng (PO)",
     key: "po",
     freemium: false,
     pro: true,
+    pre: true,
   },
   {
     label: "Quản lý chuyên sâu công đoạn BTP",
     key: "btp",
     freemium: false,
     pro: true,
+    pre: true,
   },
   {
     label: "Quản lý khách hàng, NCC",
     key: "customers",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Quản lý đơn hàng bán & xuất hàng",
     key: "sale",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Quản lý nhập hàng & trả hàng",
     key: "return",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Quản lý nhập kho & xuất kho",
     key: "warehouse",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Cảnh báo tồn kho & hạn sử dụng",
     key: "alert",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Kiểm tra QC",
     key: "qc",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Tính năng in QR",
     key: "qr",
     freemium: true,
     pro: true,
+    pre: true,
   },
   {
     label: "Báo cáo tồn kho",
     key: "report_stock",
-    freemium: true,
+    freemium: false,
     pro: true,
+    pre: true,
   },
   {
     label: "Báo cáo bán hàng",
     key: "report_sale",
-    freemium: true,
+    freemium: false,
     pro: true,
+    pre: true,
   },
   {
     label: "Báo cáo mua hàng",
     key: "report_buy",
-    freemium: true,
+    freemium: false,
     pro: true,
+    pre: true,
   },
   {
     label: (
@@ -188,25 +218,48 @@ const features = [
     ),
     key: "ai_basic",
     freemium: true,
-    pro: false,
-    hiddenPro: true,
-  },
-  {
-    label: (
-      <div className="flex items-center gap-1">
-        <AILabel text="Tích hợp AI chuyên sâu" />
-      </div>
-    ),
-    key: "ai_bom",
-    freemium: false,
     pro: true,
-    hiddenFreemium: true,
+    pre: true,
   },
+  // {
+  //   label: (
+  //     <div className="flex items-center gap-1">
+  //       <AILabel text="Tích hợp AI chuyên sâu" />
+  //     </div>
+  //   ),
+  //   key: "ai_bom",
+  //   freemium: false,
+  //   pro: true,
+  //   pre: true,
+  //   hiddenFreemium: true,
+  // },
   {
     label: "Thảo luận chi tiết lệnh sản xuất sản phẩm",
     key: "discussion",
     freemium: true,
     pro: true,
+    pre: true,
+  },
+  {
+    label: "Phân hệ lương sản lượng",
+    key: "salary",
+    freemium: false,
+    pro: true,
+    pre: true,
+  },
+  {
+    label: "Phân hệ gia công ngoài",
+    key: "outsourcing",
+    freemium: false,
+    pro: true,
+    pre: true,
+  },
+  {
+    label: "Tích hợp quản lý nhân sự",
+    key: "hr",
+    freemium: false,
+    pro: false,
+    pre: true,
   },
 ];
 
@@ -214,7 +267,7 @@ const planList = [
   {
     title: "Freemium",
     price: 0,
-    expirationDate: "/1 user",
+    expirationDate: "/1 user ( Dùng thử trong vòng 7 ngày)",
     brand: "1 chi nhánh",
     support: "Cộng đồng FMRP & Gitbook",
     type: "Cơ bản",
@@ -226,9 +279,10 @@ const planList = [
   },
   {
     title: "Professional",
-    price: 86000,
-    expirationDate: "/1 user / tháng",
+    price: 890000,
+    expirationDate: "/ tháng",
     brand: "1 chi nhánh",
+    user: "20 user/ Gói",
     support: "đội ngũ chuyên gia",
     type: "Chuyên sâu",
     features: features,
@@ -237,9 +291,24 @@ const planList = [
     className: "col-span-1 w-full",
     popular: true,
   },
+  {
+    title: "Premium",
+    price: 1200000,
+    expirationDate: "/ tháng",
+    brand: "1 chi nhánh",
+    user: "35 user/ Gói",
+    support: "đội ngũ chuyên gia",
+    type: "Chuyên sâu",
+    features: features,
+    buttonText: "Liên hệ",
+    variant: "pre",
+    className: "col-span-1 w-full",
+    popular: false,
+  },
 ];
 
 const PlanCard = ({
+  user,
   className,
   title,
   price,
@@ -257,24 +326,26 @@ const PlanCard = ({
       `w-full max-w-full rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`,
       className
     )}`}
-    // className={`${cn(`w-full 3xl:max-w-xl max-w-lg rounded-2xl relative border-none hover:!drop-shadow-lg custom-transition`, className)}`}
-    // className={`${cn(`w-full max-w-lg rounded-2xl ${popular ? "border-gradient-professional-price-list" : "border-gradient-freemium-price-list"}`, className)}`}
     style={{
       boxShadow: "0px 4px 6px -2px #1212170D, 0px 10px 15px -3px #12121714",
-      background: popular
+      background: variant === "pro"
         ? "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
+        : variant === "pre"
+        ? "linear-gradient(180deg, #8AF99E40 -0.03%, #8AF99E00 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
         : "#FFFFFF",
     }}
   >
     <div
       className={`${
-        popular
+        variant === "pro"
           ? "border-gradient-professional-price-list"
+          : variant === "pre"
+          ? "border-gradient-premium-price-list"
           : "border-gradient-freemium-price-list"
       } h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`}
     />
 
-    <CardContent className="px-4 pb-4 pt-2 flex flex-col gap-4">
+    <CardContent className="h-ful px-4 pb-4 pt-2 flex flex-col gap-4 justify-between">
       <div className="space-y-2">
         <div className="flex items-center gap-3">
           <h2 className="text-title font-bold text-[#33404A]">{title}</h2>
@@ -286,11 +357,11 @@ const PlanCard = ({
         </div>
 
         <div className="space-x-2">
-          <span className="text-title-section-small text-[#003DA0] font-bold">
+          <span className={`text-title-section-small font-bold ${variant === "pre" ? "text-[#368F06]" : "text-[#003DA0]"}`}>
             {FormatNumberToCommanDecimal(price, 3)}
           </span>
 
-          <span className="text-title-section-small text-[#003DA0] font-bold underline decoration-2 underline-offset-4">
+          <span className={`text-title-section-small font-bold underline decoration-2 underline-offset-4 ${variant === "pre" ? "text-[#368F06]" : "text-[#003DA0]"}`}>
             đ
           </span>
 
@@ -302,6 +373,7 @@ const PlanCard = ({
 
       <div className="py-4 border-y border-dashed space-y-2">
         <p className="text-sm-default text-[#33404A] font-semibold">{brand}</p>
+        <p className="text-sm-default text-[#33404A] font-semibold">{user}</p>
         <p className="text-sm-default text-[#33404A] font-semibold">
           Được hỗ trợ bởi <span className="font-extrabold">{support}</span>
         </p>
@@ -311,21 +383,22 @@ const PlanCard = ({
         <p className="text-sm-default text-[#1A2025] font-bold uppercase">
           TÍNH NĂNG
         </p>
-        <p className="text-sm-default text-[#33404A] font-semibold">
+        {/* <p className="text-sm-default text-[#33404A] font-semibold">
           Báo cáo sản xuất: <span className="font-extrabold">{type}</span>
-        </p>
+        </p> */}
         <ul className="space-y-2 text-sm">
           {features
             .filter(
               (f: any) =>
-                (!f.hiddenFreemium && variant === "freemium") ||
-                (!f.hiddenPro && variant === "pro")
+                (variant === "freemium" && !f.hiddenFreemium) ||
+                (variant === "pro" && !f.hiddenPro) ||
+                (variant === "pre" && !f.hiddenPre)
             )
             .map((f: any) => (
               <li key={f.key} className="flex items-center gap-2">
                 <div className="size-4">
                   {f[variant] ? (
-                    <CheckIconLinear className="size-full" />
+                    <CheckIcon />
                   ) : (
                     <LockIcon className="text-[#B3C5D4] size-full" />
                   )}
@@ -353,8 +426,8 @@ const PlanCard = ({
         </ul>
       </div>
 
-      <div className="3xl:mt-3 mt-2">
-        {popular ? (
+      <div className={`${variant === "freemium" ? "mt-4 xl:mt-8 3xl:mt-10" : "3xl:mt-3 mt-2"}`}>
+        {variant !== "freemium" ? (
           <ButtonAnimationNew
             title={buttonText}
             icon={
@@ -366,10 +439,7 @@ const PlanCard = ({
                   }}
                   transition={{ type: "spring", stiffness: 200, damping: 10 }}
                 >
-                  {/* Dùng Tailwind để đổi icon khi hover mà không cần state */}
                   <ArrowUpRightIcon className="2xl:size-5 md:size-4 size-4" />
-                  {/* <ArrowUpRightIcon className="2xl:size-5 md:size-5 size-4 hidden group-hover:block" />
-                                        <ArrowUpRightLinearBlueIcon className="2xl:size-5 md:size-5 size-4 group-hover:hidden" /> */}
                 </motion.div>
               </div>
             }
@@ -381,14 +451,10 @@ const PlanCard = ({
             reverse={true}
             className="lg:mr-0 mr-1 lg:order-1 order-2 border-gradient-button-no-bg-fmrp flex items-center gap-2 3xl:!text-base xl:!text-sm lg:!text-sm md:!text-base text-sm !tracking-[1%] text-white group hover:!bg-[#024EBC]/40 hover:!backdrop-blur-[100px] hover:!backdrop-filter font-medium pl-6 pr-1 py-1 ml-1 rounded-[40px] w-full"
             style={{
-              // background: "linear-gradient(180deg, #0375F3 0%, #0B69D2 100%)",
               background:
                 "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #0375F3 0%, #0B69D2 100%)",
-              // background: "radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(118.21deg, #0375F3 10.03%, #013DA0 107.74%)",
-              // WebkitBackgroundClip: "text",
-              // WebkitTextFillColor: "transparent",
               boxShadow: "0px 1px 2px 0px #FFFFFF7D inset",
-              WebkitBackdropFilter: "blur(15px)", // Safari
+              WebkitBackdropFilter: "blur(15px)",
             }}
             whileHover={{
               background: [
@@ -415,13 +481,8 @@ const PlanCard = ({
             icon={
               <div className="2xl:size-10 md:size-8 size-8 rounded-full capitalize flex items-center justify-center group-hover:bg-[#024EBC] group-hover:text-white duration-500 transition-colors">
                 <motion.div
-                  // variants={{
-                  //     rest: { x: 0, y: 0 },
-                  //     hover: { x: 4, y: -4 },
-                  // }}
                   transition={{ type: "spring", stiffness: 200, damping: 10 }}
                 >
-                  {/* Dùng Tailwind để đổi icon khi hover mà không cần state */}
                   <ArrowUpRightIcon className="2xl:size-5 md:size-4 size-4 hidden group-hover:block" />
                   <ArrowUpRightLinearBlueIcon className="2xl:size-5 md:size-4 size-4 group-hover:hidden" />
                 </motion.div>
@@ -437,8 +498,7 @@ const PlanCard = ({
                 "linear-gradient(77.74deg, #0375F3 11.85%, #036EEA 20.65%, #0267E1 29.45%, #0261D7 38.25%, #025ACE 47.05%, #0254C5 55.84%, #024EBC 64.64%, #0148B3 73.44%, #0142A9 82.24%, #013DA0 91.04%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-
-              WebkitBackdropFilter: "blur(15px)", // Safari
+              WebkitBackdropFilter: "blur(15px)",
               boxShadow:
                 "0px 2px 83.99px 0px rgba(0, 0, 0, 0.02) inset, -9px 20px 59.99px -24px rgba(0, 0, 0, 0.05), 1px -1px 0px 0px rgba(255, 255, 255, 1), -1px 1px 0px 0px rgba(240, 240, 240, 1)",
             }}
@@ -455,7 +515,7 @@ const MembershipPlansSection = () => {
 
   const customPagination = {
     clickable: true,
-    renderBullet: function (index: number, className: string) {
+    renderBullet: function (_index: number, className: string) {
       return `<span class=${className}></span>`;
     },
   };
@@ -467,7 +527,6 @@ const MembershipPlansSection = () => {
           Gói Thành Viên
         </h1>
 
-        {/* <div className="grid grid-cols-2 gap-6"> */}
         {isVisibleTablet ? (
           <div className="w-full">
             <Swiper
@@ -477,7 +536,6 @@ const MembershipPlansSection = () => {
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
               }}
-              // loop
               autoplay={true}
               speed={1000}
               pagination={customPagination}
@@ -503,15 +561,12 @@ const MembershipPlansSection = () => {
                   spaceBetween: 60,
                 },
               }}
-              className="custom-swiper-pagination-fmrp h-[880px] !px-2"
+              className="custom-swiper-pagination-fmrp h-[970px] !px-2"
               allowTouchMove={true}
             >
               {planList &&
                 planList?.map((plan, index) => (
-                  <SwiperSlide
-                    key={`member-plan-${index}`}
-                    // className='h-full relative cursor-pointer group'
-                  >
+                  <SwiperSlide key={`member-plan-${index}`}>
                     <PlanCard key={`plan-${index}`} {...plan} />
                   </SwiperSlide>
                 ))}
@@ -522,31 +577,6 @@ const MembershipPlansSection = () => {
             {planList.map((plan, index) => (
               <PlanCard key={`plan-${index}`} {...plan} />
             ))}
-            {/* <PlanCard
-                                title="Freemium"
-                                price={0}
-                                expirationDate="/1 user"
-                                brand="1 chi nhánh"
-                                support="Cộng đồng FMRP & Gitbook"
-                                type="Cơ bản"
-                                features={features}
-                                buttonText="Đăng ký ngay"
-                                variant="freemium"
-                                className="col-span-1 w-full"
-                            />
-                            <PlanCard
-                                title="Professional"
-                                price={86000}
-                                expirationDate="/1 user / tháng"
-                                popular
-                                brand="1 chi nhánh"
-                                support="đội ngũ chuyên gia"
-                                type="Chuyên sâu"
-                                features={features}
-                                buttonText="Liên hệ"
-                                variant="pro"
-                                className='col-span-1 w-full'
-                            /> */}
           </div>
         )}
       </div>

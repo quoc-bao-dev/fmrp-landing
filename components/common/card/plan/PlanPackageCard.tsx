@@ -18,6 +18,7 @@ type Props = {
   expirationDate: string;
   blurImageColor: string;
   linearImageColor: string;
+  variant: string;
 };
 
 const PlanPackageCard = ({
@@ -29,6 +30,7 @@ const PlanPackageCard = ({
   expirationDate,
   blurImageColor,
   linearImageColor,
+  variant,
 }: Props) => (
   <Card
     className={`${cn(
@@ -39,15 +41,19 @@ const PlanPackageCard = ({
       className
     )}`}
     style={{
-      background: popular
+      background: variant === "pro"
         ? "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 33.55%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
+        : variant === "pre"
+        ? "linear-gradient(180deg, #8AF99E40 -0.03%, #8AF99E00 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
         : "#FFFFFF",
     }}
   >
     <div
       className={`${
-        popular
+        variant === "pro"
           ? "border-gradient-professional-price-list"
+          : variant === "pre"
+          ? "border-gradient-premium-price-list"
           : "border-gradient-freemium-price-list"
       } h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`}
     />
@@ -64,11 +70,11 @@ const PlanPackageCard = ({
         </div>
 
         <div className="space-x-2 relative w-full lg:mt-0 mt-2">
-          <span className="text-[48px] leading-[150%] tracking-[-2%] text-[#003DA0] font-bold">
+          <span className={`text-[48px] leading-[150%] tracking-[-2%] ${variant === "pre" ? "text-[#368F06]" : "text-[#003DA0]"} font-bold`}>
             {FormatNumberToCommanDecimal(price, 3)}
           </span>
 
-          <span className="text-[48px] leading-[150%] tracking-[-2%] text-[#003DA0] font-bold underline decoration-2 underline-offset-4">
+          <span className={`text-[48px] leading-[150%] tracking-[-2%] ${variant === "pre" ? "text-[#368F06]" : "text-[#003DA0]"} font-bold underline decoration-2 underline-offset-4`}>
             đ
           </span>
 
@@ -76,7 +82,7 @@ const PlanPackageCard = ({
             <span className="text-xs-default font-bold text-[#667F93] -translate-y-2">
               {expirationDate}
             </span>
-            {popular && (
+            {variant !== "freemium" && (
               <span className="flex items-center absolute bottom-0 right-0 w-full">
                 {/* Mũi tên và chữ đều có chung hiệu ứng lắc nhẹ theo hướng */}
                 <motion.span
