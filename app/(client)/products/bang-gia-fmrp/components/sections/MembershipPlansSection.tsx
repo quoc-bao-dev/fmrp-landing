@@ -218,21 +218,23 @@ const features = [
     ),
     key: "ai_basic",
     freemium: true,
+    pro: false,
+    pre: false,
+    hiddenPre: true,
+    hiddenPro: true,
+  },
+  {
+    label: (
+      <div className="flex items-center gap-1">
+        <AILabel text="Tích hợp AI chuyên sâu" />
+      </div>
+    ),
+    key: "ai_bom",
     pro: true,
     pre: true,
+    freemium: false,
+    hiddenFreemium: true,
   },
-  // {
-  //   label: (
-  //     <div className="flex items-center gap-1">
-  //       <AILabel text="Tích hợp AI chuyên sâu" />
-  //     </div>
-  //   ),
-  //   key: "ai_bom",
-  //   freemium: false,
-  //   pro: true,
-  //   pre: true,
-  //   hiddenFreemium: true,
-  // },
   {
     label: "Thảo luận chi tiết lệnh sản xuất sản phẩm",
     key: "discussion",
