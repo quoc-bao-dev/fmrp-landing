@@ -83,7 +83,7 @@ const dataPackage = [
     price: 0,
     expirationDate: "",
     brand: "1 chi nhánh",
-    description: "Trải nghiệm thật, hiệu quả thật. Dùng thử trong vòng 7 ngày.",
+    description: "Trải nghiệm thật, hiệu quả thật. Dùng thử trong vòng 14 ngày.",
     type: "Cơ bản",
     buttonText: "Đăng ký ngay",
     variant: "freemium",
