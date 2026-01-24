@@ -269,7 +269,7 @@ const planList = [
   {
     title: "Freemium",
     price: 0,
-    expirationDate: "/1 user ( Dùng thử trong vòng 7 ngày)",
+    expirationDate: "/1 user ( Dùng thử trong vòng 14 ngày)",
     brand: "1 chi nhánh",
     support: "Cộng đồng FMRP & Gitbook",
     type: "Cơ bản",
