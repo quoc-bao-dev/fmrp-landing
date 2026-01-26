@@ -411,13 +411,20 @@ const PlanCard = ({
                     className={`${f[variant] ? "text-[#33404A]" : "text-[#B3C5D4]"
                       } text-sm-default font-semibold`}
                   >
-                    {f.label} {f.isComingSoon && f[variant] && <span
-                      className="ml-1 inline-flex items-center gap-1 opacity-100 py-1 px-2 rounded-[40px] border-[0.5px] text-white text-xs font-bold"
-                      style={{
-                        background: "linear-gradient(90deg, #F3654A 50.96%, #FFB9AC 93.27%)",
-                        boxShadow: "0px -1px 2px 0px rgba(255, 255, 255, 0.3) inset, 0px -2px 5px 1px rgba(255, 255, 255, 0.12) inset, 0px 1px 2px 0px rgba(21, 26, 54, 0.3) inset, 0px 2px 6px 0px rgba(21, 26, 54, 0.15) inset, 0px -2px 14px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 6px -8px rgba(15, 22, 58, 0.05)"
-                      }}
-                    >Sắp ra mắt</span>}
+                    {f.label}{" "}
+                    {f.isComingSoon && f[variant] && (
+                      <span
+                        className="ml-1 inline-flex items-center gap-1 opacity-100 py-1 px-1.5 rounded-[40px] border-[0.5px] text-white text-[10px] leading-none font-semibold md:py-1 md:px-2 md:text-xs"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #F3654A 50.96%, #FFB9AC 93.27%)",
+                          boxShadow:
+                            "0px -1px 2px 0px rgba(255, 255, 255, 0.3) inset, 0px -2px 5px 1px rgba(255, 255, 255, 0.12) inset, 0px 1px 2px 0px rgba(21, 26, 54, 0.3) inset, 0px 2px 6px 0px rgba(21, 26, 54, 0.15) inset, 0px -2px 14px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 6px -8px rgba(15, 22, 58, 0.05)",
+                        }}
+                      >
+                        Sắp ra mắt
+                      </span>
+                    )}
                   </span>
                 ) : (
                   <LabelWrapper
