@@ -414,13 +414,7 @@ const PlanCard = ({
                     {f.label}{" "}
                     {f.isComingSoon && f[variant] && (
                       <span
-                        className="ml-1 inline-flex items-center gap-1 opacity-100 py-1 px-1.5 rounded-[40px] border-[0.5px] text-white text-[10px] leading-none font-semibold md:py-1 md:px-2 md:text-xs"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #F3654A 50.96%, #FFB9AC 93.27%)",
-                          boxShadow:
-                            "0px -1px 2px 0px rgba(255, 255, 255, 0.3) inset, 0px -2px 5px 1px rgba(255, 255, 255, 0.12) inset, 0px 1px 2px 0px rgba(21, 26, 54, 0.3) inset, 0px 2px 6px 0px rgba(21, 26, 54, 0.15) inset, 0px -2px 14px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 6px -8px rgba(15, 22, 58, 0.05)",
-                        }}
+                        className="ml-1 inline-flex items-center justify-center gap-1 rounded px-2  text-center text-[10px] md:text-[11px] font-semibold leading-[170%] text-[#F3654A] bg-[#FDE0DB]"
                       >
                         Sắp ra mắt
                       </span>
