@@ -25,9 +25,8 @@ const AILabel = ({
 }) => {
   return (
     <span
-      className={`normal-case whitespace-nowrap flex items-center justify-center gap-1 responsive-text-xxs font-medium ai-shine-badge ${
-        isEnabled ? "text-blue-600" : "text-[#B3C5D4]"
-      }`}
+      className={`normal-case whitespace-nowrap flex items-center justify-center gap-1 responsive-text-xxs font-medium ai-shine-badge ${isEnabled ? "text-blue-600" : "text-[#B3C5D4]"
+        }`}
     >
       <Image
         src="/icons/app/SparkleYellow.png"
@@ -129,14 +128,14 @@ const features = [
   {
     label: "Quản lý đơn đặt hàng (PO)",
     key: "po",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
   },
   {
     label: "Quản lý chuyên sâu công đoạn BTP",
     key: "btp",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
   },
@@ -192,21 +191,21 @@ const features = [
   {
     label: "Báo cáo tồn kho",
     key: "report_stock",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
   },
   {
     label: "Báo cáo bán hàng",
     key: "report_sale",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
   },
   {
     label: "Báo cáo mua hàng",
     key: "report_buy",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
   },
@@ -245,23 +244,26 @@ const features = [
   {
     label: "Phân hệ lương sản lượng",
     key: "salary",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
+    isComingSoon: true,
   },
   {
     label: "Phân hệ gia công ngoài",
     key: "outsourcing",
-    freemium: false,
+    freemium: true,
     pro: true,
     pre: true,
+    isComingSoon: true,
   },
   {
     label: "Tích hợp quản lý nhân sự",
     key: "hr",
-    freemium: false,
+    freemium: true,
     pro: false,
     pre: true,
+    isComingSoon: true,
   },
 ];
 
@@ -333,18 +335,17 @@ const PlanCard = ({
       background: variant === "pro"
         ? "linear-gradient(180deg, rgba(3, 117, 243, 0.25) -0.03%, rgba(3, 117, 243, 0) 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
         : variant === "pre"
-        ? "linear-gradient(180deg, #8AF99E40 -0.03%, #8AF99E00 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
-        : "#FFFFFF",
+          ? "linear-gradient(180deg, #8AF99E40 -0.03%, #8AF99E00 21.87%), linear-gradient(0deg, #FFFFFF, #FFFFFF)"
+          : "#FFFFFF",
     }}
   >
     <div
-      className={`${
-        variant === "pro"
-          ? "border-gradient-professional-price-list"
-          : variant === "pre"
+      className={`${variant === "pro"
+        ? "border-gradient-professional-price-list"
+        : variant === "pre"
           ? "border-gradient-premium-price-list"
           : "border-gradient-freemium-price-list"
-      } h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`}
+        } h-2 rounded-2xl border-3 absolute top-0 left-0 w-[98%] mx-auto`}
     />
 
     <CardContent className="h-ful px-4 pb-4 pt-2 flex flex-col gap-4 justify-between">
@@ -407,18 +408,22 @@ const PlanCard = ({
                 </div>
                 {typeof f.label === "string" ? (
                   <span
-                    className={`${
-                      f[variant] ? "text-[#33404A]" : "text-[#B3C5D4]"
-                    } text-sm-default font-semibold`}
+                    className={`${f[variant] ? "text-[#33404A]" : "text-[#B3C5D4]"
+                      } text-sm-default font-semibold`}
                   >
-                    {f.label}
+                    {f.label} {f.isComingSoon && f[variant] && <span
+                      className="inline-flex items-center gap-1 opacity-100 py-1 px-2 rounded-[40px] border-[0.5px] text-white text-xs font-bold"
+                      style={{
+                        background: "linear-gradient(90deg, #F3654A 50.96%, #FFB9AC 93.27%)",
+                        boxShadow: "0px -1px 2px 0px rgba(255, 255, 255, 0.3) inset, 0px -2px 5px 1px rgba(255, 255, 255, 0.12) inset, 0px 1px 2px 0px rgba(21, 26, 54, 0.3) inset, 0px 2px 6px 0px rgba(21, 26, 54, 0.15) inset, 0px -2px 14px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 6px -8px rgba(15, 22, 58, 0.05)"
+                      }}
+                    >Sắp ra mắt</span>}
                   </span>
                 ) : (
                   <LabelWrapper
                     isEnabled={f[variant]}
-                    className={`${
-                      f[variant] ? "text-[#33404A]" : "text-[#B3C5D4]"
-                    } text-sm-default font-semibold`}
+                    className={`${f[variant] ? "text-[#33404A]" : "text-[#B3C5D4]"
+                      } text-sm-default font-semibold`}
                   >
                     {f.label}
                   </LabelWrapper>
