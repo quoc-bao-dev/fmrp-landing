@@ -33,7 +33,9 @@ const IntroductionFmrpSection = (props: Props) => {
     //     "linear-gradient(180deg, #FFFFFF 0%, #F0F8FF 12.04%, #F0F8FF 86.67%, #FFFFFF 100%)",
     // }}
     >
-      <BlurBackgroundFixed />
+      <div className="hidden lg:block">
+        <BlurBackgroundFixed />
+      </div>
 
       <CustomBreadcrumb items={breadcrumbItems} />
       <div className="3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 lg:mr-0 4xl:px-[10%] flex lg:flex-row flex-col items-center lg:justify-normal justify-center overflow-x-hidden">

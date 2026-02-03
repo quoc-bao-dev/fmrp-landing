@@ -9,7 +9,7 @@ const BlurBackgroundFixed: React.FC = () => {
                 <div className='absolute 2xl:size-[500px] size-[320px] aspect-square rounded-[40px] blur-[145px] -translate-x-1/2 pointer-events-none'>
                     <img
                         alt="green-blur"
-                        src="/background/blur/bg-green.svg"
+                        src="/background/blur/bg-green.png"
                         className="size-full object-contain"
                     />
                 </div>
