@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* MagicUI - Orbiting Circles
+   Đặt ở đây vì file này mới là global stylesheet đang được import trong `app/layout.tsx`. */
+@keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(var(--radius))
+      rotate(var(--angle-negative));
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) + 360deg))
+      translateY(var(--radius)) rotate(calc(var(--angle-negative) - 360deg));
+  }
+}
+
 canvas {
   outline: none;
 }
@@ -115,11 +128,19 @@ iframe[title="recaptcha challenge expires in two minutes"] {
   }
 
   .custom-container-no-right {
-    @apply 3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 md:ml-8 ml-4 4xl:px-[10%];
+    @apply 3xl:ml-60 xxl:ml-40 xl:ml-32 lg:ml-10 md:ml-8 ml-2 4xl:px-[10%];
   }
 
   .custom-container-no-left {
     @apply 3xl:mr-60 xxl:mr-40 xl:mr-32 lg:mr-10 md:mr-8 mr-4 4xl:px-[10%];
+  }
+
+  .custom-container-padding-right {
+    @apply 3xl:pr-60 xxl:pr-40 xl:pr-32 lg:pr-10 md:pr-8 pr-1 4xl:px-[10%];
+  }
+
+  .custom-container-padding-left {
+    @apply 3xl:pl-60 xxl:pl-40 xl:pl-32 lg:pl-10 md:pl-8 pl-1 4xl:px-[10%];
   }
 
   .custom-padding-right {
