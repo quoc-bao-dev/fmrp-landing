@@ -1,12 +1,17 @@
 export const IMAGES = {
   // ================= A =================
   appstore: "/project-detail/appstore.png",
+  appLuongSanLuong: "/icons/fmrp/appLuong-SanLuong.png",
+  appGiaCongNgoai: "/icons/fmrp/appGia-cong-ngoai.png",
+  appAPIMisa: "/icons/fmrp/appAPI-misa.png",
   arrowRightOrange: "/icons/common/arrow/arrowRightOrange2.svg",
 
   // ================= B =================
   bag: "/design-app/bag.svg",
   banHang: "/icons/fmrp/banHang.png",
   baoCao: "/icons/fmrp/baoCao.png",
+  baoCao1: "/icons/fmrp/bao-cao1.png",
+  bookmark: "/icons/fmrp/Bookmark.png",
   banner: "/banner1.png",
   bannerKanow: "/project-detail/bannerKanow.png",
   bannerPj: "/project-detail/bannerPj.png",
@@ -23,11 +28,14 @@ export const IMAGES = {
   ctaFooterServer: "/server/ctaFooterServer.png",
   cokhi: "/icons/fmrp/cokhi1.png",
   client: "/server/client.png",
+  chuanHoaQuyTrinh: "/icons/fmrp/chuan-hoa-quy-trinh.png",
+  chartDecreasing: "/icons/fmrp/ChartDecreasing.png",
 
   // ================= D =================
   dienmay: "/icons/fmrp/dienmay1.png",
   designWeb: "/server/designWeb.png",
   designApp: "/server/designApp.png",
+  dashboard: "/icons/fmrp/dashboard.png",
 
   // ================= E =================
   edit: "/design-app/Edit.svg",
@@ -66,6 +74,18 @@ export const IMAGES = {
 
   // ================= L =================
   lenhSanXuat: "/icons/fmrp/lenhSanXuat1.png",
+  luongSanLuong: "/icons/fmrp/luong-san-luong1.png",
+  lightBulb: "/icons/fmrp/LightBulb.png",
+  logoThanhTan: "/icons/fmrp/logo-thanh-tan1.png",
+  logoAG: "/icons/fmrp/logoAG.png",
+  logoHihi: "/icons/fmrp/logoHihi.png",
+  logoKKO: "/icons/fmrp/logoKKO1.png",
+  logoThienan: "/icons/fmrp/logoThienan1.png",
+  logoToanphat: "/icons/fmrp/logoToanphat1.png",
+  logoTP: "/icons/fmrp/logoTP1.png",
+  logoPJ: "/icons/fmrp/logoPJ1.png",
+  logoSciko: "/icons/fmrp/logoSciko1.png",
+  logoSK: "/icons/fmrp/logoSK1.png",
   logoFnb: "/design-app/logoFnb.svg",
   logoHomeCare: "/design-app/logoHomeCare.svg",
   logoKanow: "/design-app/logoKanow.svg",
@@ -108,6 +128,7 @@ export const IMAGES = {
   procedure4: "/design-app/procedure4.png",
   procedure5: "/design-app/procedure5.png",
   project: "/server/project.png",
+  puzzlePiece: "/icons/fmrp/PuzzlePiece.png",
 
   // ================= Q =================
   qr: "/design-app/qr.png",
@@ -116,6 +137,7 @@ export const IMAGES = {
   rivet: "/design-app/rivet.svg",
   route: "/server/route.png",
   rocketBoyGif: "/gif/rocket-boy.gif",
+  rocketBoy: "/icons/fmrp/rocket-boy.png",
 
   // ================= S =================
   sanXuat: "/icons/fmrp/sanXuat.png",
@@ -131,6 +153,7 @@ export const IMAGES = {
   thucpham: "/icons/fmrp/thucpham1.png",
   team: "/server/team.png",
   thietKeApp: "/design-app/thiet-ke-app.png",
+  theoDoiSanXuat: "/icons/fmrp/theo-doi-san-xuat2.png",
 
   // ================= U =================
   upTime: "/server/up-time.png",
