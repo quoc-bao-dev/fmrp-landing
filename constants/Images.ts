@@ -30,6 +30,7 @@ export const IMAGES = {
   client: "/server/client.png",
   chuanHoaQuyTrinh: "/icons/fmrp/chuan-hoa-quy-trinh.png",
   chartDecreasing: "/icons/fmrp/ChartDecreasing.png",
+  lightBulbGif: "/icons/fmrp/LightBulb.gif",
 
   // ================= D =================
   dienmay: "/icons/fmrp/dienmay1.png",
@@ -153,7 +154,7 @@ export const IMAGES = {
   thucpham: "/icons/fmrp/thucpham1.png",
   team: "/server/team.png",
   thietKeApp: "/design-app/thiet-ke-app.png",
-  theoDoiSanXuat: "/icons/fmrp/theo-doi-san-xuat2.png",
+  theoDoiSanXuat: "/icons/fmrp/theo-doi-san-xuat.gif",
 
   // ================= U =================
   upTime: "/server/up-time.png",

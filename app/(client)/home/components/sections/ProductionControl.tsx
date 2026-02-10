@@ -32,7 +32,7 @@ const ProductionControl = () => {
       </div>
 
       <div className="custom-container-padding-left flex flex-col xl:flex-row justify-center items-center gap-6 xl:gap-10 w-full">
-        <div className="flex flex-col gap-6 xl:w-[45%]">
+        <div className="flex flex-col gap-6 xl:w-[45%] relative z-999">
           <div className="flex items-center gap-3">
             <Image
               width={100}
@@ -55,7 +55,7 @@ const ProductionControl = () => {
               width={100}
               height={100}
               src="/icons/fmrp/Eight-Thirty.png"
-              className="object-cover size-[50px] 2xl:size-[69px] -mt-10"
+              className="object-cover size-[50px] 2xl:size-[69px] -mt-10 z-50 relative"
               alt="dizzy"
             />
           </div>
@@ -68,7 +68,7 @@ const ProductionControl = () => {
             </p>
           </div>
         </div>
-        <div className="xl:w-[55%] h-full relative flex-shrink-0">
+        <div className="xl:w-[55%] h-full relative flex-shrink-0 z-10">
           <Image
             src={IMAGES.blurGreen}
             width={200}
@@ -148,10 +148,21 @@ const ProductionControl = () => {
           <h2 className="mx-auto xl:mx-0 relative flex flex-col xl:flex-row w-fit text-title-section-feature text-[#25387A] font-extrabold capitalize whitespace-nowrap">
             Theo dõi và tổng hợp
             <span className="relative inline-block w-fit px-2">
-              <UnderlineCurveLinearSvg5
+              {/* <UnderlineCurveLinearSvg5
                 inView={true}
                 className="!-bottom-4"
-              />
+              /> */}
+
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[298px] h-[73px] pointer-events-none">
+                <Image
+                  src={IMAGES.lightBulbGif}
+                  width={200}
+                  height={200}
+                  quality={100}
+                  className="size-full object-contain"
+                  alt="lightBulb"
+                />
+              </div>
               <span className="relative z-10">lương sản lượng</span>
             </span>
             <Image
