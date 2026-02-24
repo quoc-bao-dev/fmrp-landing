@@ -131,7 +131,9 @@ const FMRPSolutions = () => {
             <h3 className='text-2xl font-bold text-[#33404A]'>Kết nối kinh doanh và sản xuất</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>FMRP giúp liên kết dữ liệu giữa bán hàng, kế hoạch và xưởng sản xuất, đảm bảo mọi quyết định kinh doanh đều bám sát năng lực sản xuất thực tế, hạn chế sai lệch và tồn kho dư thừa.</p>
             <div className='relative'>
-              <Image src={IMAGES.dashboard} width={1000} height={1000} alt="dashboard" className='w-full object-cover' />
+              <div className="aspect-[725/520] w-full">
+                <Image src={IMAGES.dashboard} width={1000} height={1000} alt="dashboard" className='w-full object-cover' priority />
+              </div>
               <Image src={IMAGES.rocketBoy} width={1000} height={1000} alt="rocket-boy" className='w-1/2 absolute bottom-0 -right-[15%] object-cover' />
             </div>
           </motion.div>
