@@ -122,10 +122,10 @@ const FMRPSolutions = () => {
         </div>
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-7 2xl:px-[6%]'>
           <motion.div
-            initial={{ scale: 0.6, opacity: 0 }}
+            initial={{ scale: 0.7, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl row-span-3 z-[3] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
           >
             <h3 className='text-2xl font-bold text-[#33404A]'>Kết nối kinh doanh và sản xuất</h3>
@@ -138,30 +138,30 @@ const FMRPSolutions = () => {
             </div>
           </motion.div>
           <motion.div
-            initial={{ scale: 0.6, opacity: 0 }}
+            initial={{ scale: 0.7, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
           >
             <h3 className='text-2xl font-bold text-[#33404A]'>Tự động hóa & tích hợp thiết bị</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>Kết nối với máy quét mã vạch, thiết bị sản xuất và các hệ thống liên quan, giúp tự động ghi nhận dữ liệu, giảm thao tác thủ công và tăng độ chính xác trong vận hành.</p>
           </motion.div>
           <motion.div
-            initial={{ scale: 0.6, opacity: 0 }}
+            initial={{ scale: 0.7, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
           >
             <h3 className='text-2xl font-bold text-[#33404A]'>Tối ưu nguyên vật liệu & phụ phẩm</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>FMRP hỗ trợ quản lý định mức và tận dụng phụ phẩm trong sản xuất, giúp giảm thất thoát, tối ưu chi phí và nâng cao hiệu quả sử dụng nguyên vật liệu.</p>
           </motion.div>
           <motion.div
-            initial={{ scale: 0.6, opacity: 0 }}
+            initial={{ scale: 0.7, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
           >
             <h3 className='text-2xl font-bold text-[#33404A]'>Tích hợp trợ lý AI</h3>
