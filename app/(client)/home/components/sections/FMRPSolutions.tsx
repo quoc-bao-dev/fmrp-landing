@@ -121,26 +121,50 @@ const FMRPSolutions = () => {
           </p>
         </div>
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-7 2xl:px-[6%]'>
-          <div className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl row-span-3 z-[3] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'>
+          <motion.div
+            initial={{ scale: 0.6, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl row-span-3 z-[3] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
+          >
             <h3 className='text-2xl font-bold text-[#33404A]'>Kết nối kinh doanh và sản xuất</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>FMRP giúp liên kết dữ liệu giữa bán hàng, kế hoạch và xưởng sản xuất, đảm bảo mọi quyết định kinh doanh đều bám sát năng lực sản xuất thực tế, hạn chế sai lệch và tồn kho dư thừa.</p>
             <div className='relative'>
               <Image src={IMAGES.dashboard} width={1000} height={1000} alt="dashboard" className='w-full object-cover' />
               <Image src={IMAGES.rocketBoy} width={1000} height={1000} alt="rocket-boy" className='w-1/2 absolute bottom-0 -right-[15%] object-cover' />
             </div>
-          </div>
-          <div className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'>
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0.6, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
+          >
             <h3 className='text-2xl font-bold text-[#33404A]'>Tự động hóa & tích hợp thiết bị</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>Kết nối với máy quét mã vạch, thiết bị sản xuất và các hệ thống liên quan, giúp tự động ghi nhận dữ liệu, giảm thao tác thủ công và tăng độ chính xác trong vận hành.</p>
-          </div>
-          <div className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'>
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0.6, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
+          >
             <h3 className='text-2xl font-bold text-[#33404A]'>Tối ưu nguyên vật liệu & phụ phẩm</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>FMRP hỗ trợ quản lý định mức và tận dụng phụ phẩm trong sản xuất, giúp giảm thất thoát, tối ưu chi phí và nâng cao hiệu quả sử dụng nguyên vật liệu.</p>
-          </div>
-          <div className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'>
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0.6, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className='flex flex-col gap-4 bg-white p-3 xl:p-6 rounded-xl z-[2] shadow-[0px_0px_20px_-5px_#0375F326,0px_4px_20px_-5px_#7772930D]'
+          >
             <h3 className='text-2xl font-bold text-[#33404A]'>Tích hợp trợ lý AI</h3>
             <p className='text-lg font-medium text-[#33404A] text-justify'>Fimo AI phân tích sản phẩm, đề xuất BOM và kế hoạch sản xuất tối ưu, giúp rút ngắn đến 80% thời gian setup và nâng cao hiệu suất.</p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
