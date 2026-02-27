@@ -247,7 +247,7 @@ const features = [
     freemium: true,
     pro: true,
     pre: true,
-    isComingSoon: true,
+    // isComingSoon: true,
   },
   {
     label: "Phân hệ gia công ngoài",
